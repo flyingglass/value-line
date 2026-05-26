@@ -5,14 +5,14 @@
     "name_en": "POP MART",
     "market": "hk",
     "currency": "HKD",
-    "generated": "2026-05-26 19:07:27.005738"
+    "generated": "2026-05-26 19:30:03.257418"
   },
   "spot": {
     "price": 153.60001,
-    "pe": 0.0,
-    "pb": 0.0,
-    "div_yield": 0.0,
-    "mkt_cap": 0.0,
+    "pe": 16.0,
+    "pb": 9.25,
+    "div_yield": 0.24,
+    "mkt_cap": 1.4,
     "change_pct": 2.05981
   },
   "kline": [
@@ -1842,7 +1842,10 @@
       "TOTAL_EQUITY": 0.78824,
       "ROIC_YEARLY": 1.219237374405,
       "ROE_AVG": 1.990510504415,
-      "DEBT_ASSET_RATIO": 44.5989921211
+      "DEBT_ASSET_RATIO": 44.5989921211,
+      "PE_AVG": null,
+      "PE_RELATIVE": null,
+      "PE_TTM": null
     },
     "2018": {
       "PER_OI": null,
@@ -1863,7 +1866,10 @@
       "TOTAL_EQUITY": 2.1883,
       "ROIC_YEARLY": 45.790466550106,
       "ROE_AVG": 66.870258756812,
-      "DEBT_ASSET_RATIO": 45.6721160888
+      "DEBT_ASSET_RATIO": 45.6721160888,
+      "PE_AVG": null,
+      "PE_RELATIVE": null,
+      "PE_TTM": null
     },
     "2019": {
       "PER_OI": 14.321917403415,
@@ -1884,7 +1890,10 @@
       "TOTAL_EQUITY": 5.92781,
       "ROIC_YEARLY": 86.102723646289,
       "ROE_AVG": 111.166063545221,
-      "DEBT_ASSET_RATIO": 44.4171063526
+      "DEBT_ASSET_RATIO": 44.4171063526,
+      "PE_AVG": null,
+      "PE_RELATIVE": null,
+      "PE_TTM": null
     },
     "2020": {
       "PER_OI": 1.792855181031,
@@ -1905,7 +1914,10 @@
       "TOTAL_EQUITY": 61.31002,
       "ROIC_YEARLY": 51.543762796589,
       "ROE_AVG": 15.575511127012,
-      "DEBT_ASSET_RATIO": 12.053664604
+      "DEBT_ASSET_RATIO": 12.053664604,
+      "PE_AVG": 172.4,
+      "PE_RELATIVE": 12.77,
+      "PE_TTM": null
     },
     "2021": {
       "PER_OI": 3.20317477765,
@@ -1928,7 +1940,10 @@
       "ROE_AVG": 13.196915309731,
       "RETAINED_RATIO": 12.524879070487621,
       "PAYOUT_RATIO": 24.725806451612904,
-      "DEBT_ASSET_RATIO": 18.0644829549
+      "DEBT_ASSET_RATIO": 18.0644829549,
+      "PE_AVG": 98.2,
+      "PE_RELATIVE": 9.35,
+      "PE_TTM": null
     },
     "2022": {
       "PER_OI": 3.344576876065,
@@ -1951,7 +1966,10 @@
       "ROE_AVG": 6.902892071746,
       "RETAINED_RATIO": 6.827051751354028,
       "PAYOUT_RATIO": 42.05714285714286,
-      "DEBT_ASSET_RATIO": 18.819642562
+      "DEBT_ASSET_RATIO": 18.819642562,
+      "PE_AVG": 74.6,
+      "PE_RELATIVE": 9.95,
+      "PE_TTM": null
     },
     "2023": {
       "PER_OI": 4.673490831383,
@@ -1974,7 +1992,10 @@
       "ROE_AVG": 14.692570494627,
       "RETAINED_RATIO": 13.907671936930601,
       "PAYOUT_RATIO": 38.22222222222222,
-      "DEBT_ASSET_RATIO": 21.9531655716
+      "DEBT_ASSET_RATIO": 21.9531655716,
+      "PE_AVG": 25.4,
+      "PE_RELATIVE": 2.82,
+      "PE_TTM": null
     },
     "2024": {
       "PER_OI": 9.708340222741,
@@ -1997,7 +2018,10 @@
       "ROE_AVG": 33.874164979176,
       "RETAINED_RATIO": 28.706451780348434,
       "PAYOUT_RATIO": 42.24576271186441,
-      "DEBT_ASSET_RATIO": 26.8046595339
+      "DEBT_ASSET_RATIO": 26.8046595339,
+      "PE_AVG": 18.3,
+      "PE_RELATIVE": 2.15,
+      "PE_TTM": null
     },
     "2025": {
       "PER_OI": 27.640821579082,
@@ -2020,7 +2044,10 @@
       "ROE_AVG": 77.519468320973,
       "RETAINED_RATIO": 56.397500685027744,
       "PAYOUT_RATIO": 3.7773152965660772,
-      "DEBT_ASSET_RATIO": 29.4348549909
+      "DEBT_ASSET_RATIO": 29.4348549909,
+      "PE_AVG": 20.9,
+      "PE_RELATIVE": 2.61,
+      "PE_TTM": null
     }
   },
   "cagr": {
@@ -2266,6 +2293,193 @@
         "pct": 3.9
       }
     ]
+  },
+  "capital_structure": {
+    "total_assets": 321.01354,
+    "total_debt": 94.48987,
+    "total_equity": 226.52367,
+    "current_assets": 249.14643,
+    "current_liabilities": 71.68161,
+    "cash": 137.75087,
+    "inventory": 54.72839,
+    "receivables": 9.2124,
+    "non_current_liab": 22.80826,
+    "lt_debt": 22.75301,
+    "lt_debt_pct": 9.1,
+    "common_shares": 1341,
+    "common_shares_str": "1,341,043,150",
+    "mkt_cap": 2059.8,
+    "cap_label": "Large Cap"
+  },
+  "current_position": {
+    "years": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "items": [
+      {
+        "name": "Cash & Equiv",
+        "2023": 20.77927,
+        "2024": 61.09017,
+        "2025": 137.75087
+      },
+      {
+        "name": "Receivables",
+        "2023": 3.21337,
+        "2024": 4.77723,
+        "2025": 9.2124
+      },
+      {
+        "name": "Inventory",
+        "2023": 9.04708,
+        "2024": 15.24521,
+        "2025": 54.72839
+      },
+      {
+        "name": "Other Current Assets",
+        "2023": 0,
+        "2024": 0,
+        "2025": 0
+      },
+      {
+        "name": "Current Assets",
+        "2023": 76.83469,
+        "2024": 122.36081,
+        "2025": 249.14643
+      },
+      {
+        "name": "Accounts Payable",
+        "2023": 0,
+        "2024": 0,
+        "2025": 0
+      },
+      {
+        "name": "Debt Due",
+        "2023": 0,
+        "2024": 0,
+        "2025": 0
+      },
+      {
+        "name": "Other Current Liab",
+        "2023": 0,
+        "2024": 0,
+        "2025": 0
+      },
+      {
+        "name": "Current Liabilities",
+        "2023": 17.33301,
+        "2024": 33.70028,
+        "2025": 71.68161
+      }
+    ]
+  },
+  "annual_rates": {
+    "sales": {
+      "10yr": null,
+      "5yr": 71.3,
+      "future": "TBD"
+    },
+    "cashflow": {
+      "10yr": null,
+      "5yr": 74.4,
+      "future": "TBD"
+    },
+    "earnings": {
+      "10yr": null,
+      "5yr": 85.3,
+      "future": "TBD"
+    },
+    "dividends": {
+      "10yr": null,
+      "5yr": null,
+      "future": "TBD"
+    }
+  },
+  "quarterly": {
+    "sales": [
+      {
+        "year": "2023",
+        "q1q2": 28.1,
+        "q3q4": 34.9,
+        "full": 63.0
+      },
+      {
+        "year": "2024",
+        "q1q2": 45.6,
+        "q3q4": 84.8,
+        "full": 130.4
+      },
+      {
+        "year": "2025",
+        "q1q2": 138.8,
+        "q3q4": 232.4,
+        "full": 371.2
+      }
+    ],
+    "eps": [
+      {
+        "year": "2023",
+        "q1q2": 0.35,
+        "q3q4": 0.46,
+        "full": 0.81
+      },
+      {
+        "year": "2024",
+        "q1q2": 0.69,
+        "q3q4": 1.67,
+        "full": 2.36
+      },
+      {
+        "year": "2025",
+        "q1q2": 3.44,
+        "q3q4": 6.17,
+        "full": 9.61
+      }
+    ],
+    "dividends": [
+      {
+        "year": "2023",
+        "q1q2": 0,
+        "q3q4": 0.3096,
+        "full": 0.3096
+      },
+      {
+        "year": "2024",
+        "q1q2": 0,
+        "q3q4": 0.997,
+        "full": 0.997
+      },
+      {
+        "year": "2025",
+        "q1q2": 0,
+        "q3q4": 0.363,
+        "full": 0.363
+      }
+    ]
+  },
+  "position": {
+    "pe": {
+      "current": 16.0,
+      "min": 18.3,
+      "max": 172.4,
+      "avg": 68.3,
+      "pct": -1.0
+    },
+    "price": {
+      "current": 153.6,
+      "min": 9.8,
+      "max": 316.8,
+      "avg": 79.6,
+      "pct": 47.0
+    },
+    "pb": {
+      "current": 9.25,
+      "min": 3.6,
+      "max": 16.6,
+      "avg": 9.1,
+      "pct": 43.0
+    }
   },
   "analyst": {
     "business": "",

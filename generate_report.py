@@ -87,6 +87,42 @@ var DATA = {DATA_JS};
   html+='</div>';
 
   // ============================================================
+  // Current Position (估值定位)
+  // ============================================================
+  var pos=d.position||{{}};
+  function positionBar(label, data, unit, color){{
+    if(!data.current) return '';
+    var pct=Math.max(0, Math.min(100, data.pct||50));
+    var lowText=(data.pct!=null && data.pct<0)?'⇐ LOW':'';
+    var highText=(data.pct!=null && data.pct>100)?'HIGH ⇒':'';
+    var s='<div style="display:flex;align-items:center;gap:4px;margin:1px 0;font-size:9px">';
+    s+='<span style="width:42px;font-weight:600">'+label+'</span>';
+    s+='<span style="width:40px;text-align:right;color:#999;font-size:8px">'+data.min+unit+'</span>';
+    s+='<div style="flex:1;height:8px;background:#e8e8e8;border-radius:4px;position:relative;margin:0 4px">';
+    s+='<div style="position:absolute;top:-2px;left:calc('+pct+'% - 2px);width:4px;height:12px;background:'+color+';border-radius:2px"></div>';
+    s+='</div>';
+    s+='<span style="width:40px;text-align:left;color:#999;font-size:8px">'+data.max+unit+'</span>';
+    s+='<span style="width:55px;font-weight:700;color:'+color+'">'+data.current+unit+'</span>';
+    s+='<span style="color:#ff6b35;font-size:8px"> '+lowText+highText+'</span>';
+    s+='</div>';
+    return s;
+  }}
+  html+='<div class="section-title">Current Position (历史估值区间定位)</div>';
+  html+='<div style="display:flex;gap:12px;background:#fff;padding:4px 8px;border:1px solid #e0e0e0;font-size:10px">';
+  html+='<div style="flex:1">';
+  html+=positionBar('P/E(TTM)',pos.pe||{{}},'x','#ef232a');
+  html+=positionBar('Price',pos.price||{{}},'','#333');
+  html+=positionBar('P/B',pos.pb||{{}},'x','#378ADD');
+  html+='</div>';
+  html+='<div style="width:140px;font-size:8px;color:#999;line-height:1.4;border-left:1px solid #eee;padding-left:8px">';
+  html+='PE Range: '+(pos.pe?pos.pe.min+'x ~ '+pos.pe.max+'x':'—')+'<br>';
+  html+='Price Range: '+(pos.price?pos.price.min+' ~ '+pos.price.max:'—')+'<br>';
+  html+='Avg PE: '+(pos.pe?pos.pe.avg+'x':'—')+'<br>';
+  html+='Avg Price: '+(pos.price?pos.price.avg:'—')+'<br>';
+  html+='<span style="color:#ff6b35">'+(pos.pe && pos.pe.pct<0?'★ PE 低于历史最低':'')+'</span>';
+  html+='</div></div>';
+
+  // ============================================================
   // 区域二: 走势图 (Log Scale + RS line + Total Return)
   // ============================================================
   var kl=d.kline, hsi=d.hsi_kline||[], lastIdx=kl.length-1;
@@ -132,27 +168,32 @@ var DATA = {DATA_JS};
   html+='</table></div>';
 
   // ============================================================
-  // 区域四: Capital Structure + Semi-Annual + CAGR
+  // 区域四: Capital Structure & Quarterly
+  // 1. CAPITAL STRUCTURE | 2. CURRENT POSITION | 3. ANNUAL RATES | 4. QUARTERLY
   // ============================================================
-  var ly=MT[Y[Y.length-1]]||{{}}, py=MT[Y[Y.length-2]]||{{}};
-  var bs=d.balance_summary, is=d.income_summary;
-  var yoy=function(c,p){{if(!c||!p)return'';var r=((c/p-1)*100).toFixed(0);return r>0?' +'+r+'%':' '+r+'%';}};
+  var cs=d.capital_structure||{{}}, cp=d.current_position||{{}}, ar=d.annual_rates||{{}}, qt=d.quarterly||{{}};
+  var latestYr=Y[Y.length-1];
 
-  // Capital Structure
-  html+='<div class="section-title">Capital Structure / Key Ratios / Quarterly Data</div>';
+  html+='<div class="section-title">Capital Structure & Quarterly Data</div>';
+
+  // ----- Block 1: CAPITAL STRUCTURE + Block 3: ANNUAL RATES (side by side) -----
   html+='<div class="block-row">';
-  html+='<div><div class="ttl">Capital Structure (FY'+Y[Y.length-1]+')</div><table>';
-  html+='<tr><td>Total Assets</td><td class="bold">'+(bs.total_assets||0).toFixed(1)+'B</td></tr>';
-  html+='<tr><td>Total Liabilities</td><td class="bold">'+(bs.total_liabilities||0).toFixed(1)+'B</td></tr>';
-  html+='<tr><td>Shareholders Equity</td><td class="bold">'+(bs.total_equity||0).toFixed(1)+'B</td></tr>';
-  html+='<tr><td>Debt/Asset</td><td class="bold">'+(ly.DEBT_ASSET_RATIO||0).toFixed(1)+'%</td></tr>';
-  html+='<tr><td>Current Ratio</td><td class="bold">'+(ly.CURRENT_RATIO||0).toFixed(2)+'x</td></tr>';
-  html+='<tr><td>Cash & Equiv</td><td class="bold">'+(bs.cash||0).toFixed(1)+'B</td></tr>';
-  html+='<tr><td>LT Debt</td><td class="bold">'+(ly.LT_DEBT||0).toFixed(1)+'B</td></tr>';
+
+  // 1. CAPITAL STRUCTURE
+  html+='<div><div class="ttl">1. Capital Structure (as of '+Y[Y.length-1]+'-12-31)</div><table>';
+  html+='<tr><td>Total Debt</td><td class="bold">¥'+(cs.total_debt||0).toFixed(1)+'B</td></tr>';
+  html+='<tr><td>LT Debt</td><td class="bold">¥'+(cs.lt_debt||0).toFixed(1)+'B</td>';
+  html+='<td style="color:#999">('+cs.lt_debt_pct+'% of Capital)</td></tr>';
+  html+='<tr><td>Total Assets</td><td class="bold">¥'+(cs.total_assets||0).toFixed(1)+'B</td></tr>';
+  html+='<tr><td>Shareholders Eq.</td><td class="bold">¥'+(cs.total_equity||0).toFixed(1)+'B</td></tr>';
+  html+='<tr><td>Common Stock</td><td class="bold">'+cs.common_shares_str+'</td></tr>';
+  html+='<tr><td>Market Cap</td><td class="bold">¥'+(cs.mkt_cap||0).toFixed(0)+'B</td>';
+  html+='<td style="color:#999">('+(cs.cap_label||'—')+')</td></tr>';
   html+='</table></div>';
 
-  // Key Ratios
-  html+='<div><div class="ttl">Key Ratios (FY'+Y[Y.length-1]+')</div><table>';
+  // 2. Key Ratios
+  var ly=MT[latestYr]||{{}};
+  html+='<div><div class="ttl">Key Ratios (FY'+latestYr+')</div><table>';
   html+='<tr><td>Gross Margin</td><td class="bold">'+(ly.GROSS_PROFIT_RATIO||0).toFixed(1)+'%</td></tr>';
   html+='<tr><td>Net Margin</td><td class="bold">'+(ly.NET_PROFIT_RATIO||0).toFixed(1)+'%</td></tr>';
   html+='<tr><td>ROE</td><td class="bold">'+(ly.ROE_AVG||0).toFixed(1)+'%</td></tr>';
@@ -163,43 +204,73 @@ var DATA = {DATA_JS};
   html+='<tr><td>CF/Sh</td><td class="bold">'+(ly.PER_NETCASH_OPERATE||0).toFixed(2)+'</td></tr>';
   html+='</table></div>';
 
-  // CAGR (1yr/3yr/5yr/10yr)
-  var c=d.cagr;
-  html+='<div><div class="ttl">CAGR (1yr / 3yr / 5yr / 10yr)</div><table>';
-  var cagr_items=[['Revenue',c.revenue],['EPS',c.eps],['Cash Flow',c.cashflow],['Equity',c.equity]];
-  cagr_items.forEach(function(item){{
-    var vals=item[1];
+  // 3. ANNUAL RATES of Change
+  html+='<div><div class="ttl">3. Annual Rates of Change</div><table>';
+  html+='<tr><th></th><th>Past 10yr</th><th>Past 5yr</th><th>Future 3-5yr</th></tr>';
+  var ar_items=[
+    ['Sales',ar.sales],['Cash Flow',ar.cashflow],['Earnings',ar.earnings],['Dividends',ar.dividends]
+  ];
+  ar_items.forEach(function(item){{
+    var vals=item[1]||{{}};
     html+='<tr><td>'+item[0]+'</td>';
-    html+='<td class="bold">'+(vals['1yr']!=null?vals['1yr'].toFixed(1)+'%':'—')+'</td>';
-    html+='<td class="bold">'+(vals['3yr']!=null?vals['3yr'].toFixed(1)+'%':'—')+'</td>';
-    html+='<td class="bold">'+(vals['5yr']!=null?vals['5yr'].toFixed(1)+'%':'—')+'</td>';
     html+='<td class="bold">'+(vals['10yr']!=null?vals['10yr'].toFixed(1)+'%':'—')+'</td>';
+    html+='<td class="bold">'+(vals['5yr']!=null?vals['5yr'].toFixed(1)+'%':'—')+'</td>';
+    html+='<td class="bold">'+vals['future']+'</td>';
     html+='</tr>';
   }});
   html+='</table></div></div>';
 
-  // Semi-Annual Data (H1/H2/Annual)
-  html+='<div class="section-title">Semi-Annual / Annual Data (最近3年)</div>';
-  var saYears=['2023','2024','2025'];
-  html+='<div class="semi-table"><table>';
-  html+='<tr><th>Year</th><th>H1 Rev(B)</th><th>H2 Rev(B)</th><th>Full-Year(B)</th><th>H1 EPS</th><th>H2 EPS</th><th>Full EPS</th><th>H1 NP(B)</th><th>H2 NP(B)</th><th>Full NP(B)</th></tr>';
-  saYears.forEach(function(yr){{
-    var s=SA[yr];
-    if(!s) return;
-    html+='<tr>';
-    html+='<td>'+yr+'</td>';
-    html+='<td>'+s.h1_revenue.toFixed(1)+'</td>';
-    html+='<td>'+s.h2_revenue.toFixed(1)+'</td>';
-    html+='<td>'+s.annual_revenue.toFixed(1)+'</td>';
-    html+='<td>'+s.h1_eps.toFixed(2)+'</td>';
-    html+='<td>'+s.h2_eps.toFixed(2)+'</td>';
-    html+='<td>'+s.annual_eps.toFixed(2)+'</td>';
-    html+='<td>'+s.h1_net_profit.toFixed(1)+'</td>';
-    html+='<td>'+s.h2_net_profit.toFixed(1)+'</td>';
-    html+='<td>'+s.annual_net_profit.toFixed(1)+'</td>';
+  // ----- Block 2: CURRENT POSITION (3-year comparison) -----
+  html+='<div class="block-row">';
+  html+='<div style="flex:1.5"><div class="ttl">2. Current Position (Balance Sheet, ¥ Billions)</div>';
+  html+='<table style="font-size:9px">';
+  var cpYears=cp.years||[];
+  html+='<tr><th></th>';
+  cpYears.forEach(function(yr){{html+='<th style="text-align:right">'+yr+'</th>';}});
+  html+='</tr>';
+  (cp.items||[]).forEach(function(item){{
+    var isTotal=(item.name.indexOf('Current Assets')>=0||item.name.indexOf('Current Liabilities')>=0);
+    html+='<tr'+(isTotal?' style="font-weight:700;border-top:1px solid #333"':'')+'>';
+    html+='<td>'+(isTotal?'<b>':'')+item.name+(isTotal?'</b>':'')+'</td>';
+    cpYears.forEach(function(yr){{
+      html+='<td style="text-align:right">'+(item[yr]||0).toFixed(1)+'</td>';
+    }});
     html+='</tr>';
   }});
   html+='</table></div>';
+  html+='</div>';
+
+  // ----- Block 4: QUARTERLY TABLES (港股: H1/H2) -----
+  html+='<div class="block-row">';
+  // Sales
+  html+='<div><div class="ttl">4a. Quarterly Sales (¥ B) <span style="font-weight:400;color:#999;font-size:8px">港股H1/H2</span></div>';
+  html+='<table style="font-size:9px">';
+  html+='<tr><th>Year</th><th>H1</th><th>H2</th><th>Full</th></tr>';
+  (qt.sales||[]).forEach(function(r){{
+    html+='<tr><td>'+r.year+'</td><td>'+r.q1q2+'</td><td>'+r.q3q4+'</td><td style="font-weight:700">'+r.full+'</td></tr>';
+  }});
+  html+='</table></div>';
+  // EPS
+  html+='<div><div class="ttl">4b. Quarterly EPS <span style="font-weight:400;color:#999;font-size:8px">港股H1/H2</span></div>';
+  html+='<table style="font-size:9px">';
+  html+='<tr><th>Year</th><th>H1</th><th>H2</th><th>Full</th></tr>';
+  (qt.eps||[]).forEach(function(r){{
+    html+='<tr><td>'+r.year+'</td><td>'+(r.q1q2!=null?r.q1q2.toFixed(2):'—')+'</td><td>'+(r.q3q4!=null?r.q3q4.toFixed(2):'—')+'</td><td style="font-weight:700">'+(r.full!=null?r.full.toFixed(2):'—')+'</td></tr>';
+  }});
+  html+='</table></div>';
+  // Dividends
+  html+='<div><div class="ttl">4c. Quarterly Dividends <span style="font-weight:400;color:#999;font-size:8px">HKD/股</span></div>';
+  html+='<table style="font-size:9px">';
+  html+='<tr><th>Year</th><th>H1</th><th>H2</th><th>Full</th></tr>';
+  (qt.dividends||[]).forEach(function(r){{
+    html+='<tr><td>'+r.year+'</td>';
+    html+='<td>'+(r.q1q2>0?r.q1q2.toFixed(3):'—')+'</td>';
+    html+='<td>'+(r.q3q4>0?r.q3q4.toFixed(3):'—')+'</td>';
+    html+='<td style="font-weight:700">'+(r.full>0?r.full.toFixed(3):'—')+'</td>';
+    html+='</tr>';
+  }});
+  html+='</table></div>';
+  html+='</div>';
 
   // ============================================================
   // 区域五: 营收结构
