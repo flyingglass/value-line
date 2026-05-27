@@ -11,14 +11,10 @@ import config
 
 # 财年结束月: 从 config 读取或默认 12-31
 def _fye(yr):
-    """返回该财年的报告日期 (例如 2025 → "2025-12-31" 或 "2026-03-31")"""
-    code = config.ACTIVE_STOCK
-    stock = config.STOCKS.get(code, {})
+    """返回该财年对应的报告日期 (eg. yr=2026,fye=03-31 → "2026-03-31")"""
+    stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
     fye = stock.get("fiscal_yr_end", "12-31")
-    # 若财年3月底结束, 年份+1, 例如 FY2024→2025-03-31
-    if fye == "03-31":
-        return f"{int(yr) + 1}-03-31"
-    return f"{yr}-12-31"
+    return f"{yr}-{fye}"
 
 
 class DataReader:
@@ -158,20 +154,25 @@ def build_metric_table(reader, years, market="hk"):
         row["WORKING_CAPITAL"] = ((ca - cl) / 1e8) if ca and cl else None
 
         lt = reader.financial_item("balance", "融资租赁负债(非流动)", rd)
-        ot = reader.financial_item("balance", "非流动负债合计", rd)
-        row["LT_DEBT"] = (lt / 1e8) if lt else None  # 仅取租赁负债，不用总非流动负债fallback
+        if not lt:
+            lt = reader.financial_item("balance", "长期贷款", rd)
+        row["LT_DEBT"] = (lt / 1e8) if lt else None
 
         eq = reader.financial_item("balance", "总权益", rd)
         row["TOTAL_EQUITY"] = eq / 1e8 if eq else None
         row["ROIC_YEARLY"] = ind.get("ROIC_YEARLY")
         row["ROE_AVG"] = ind.get("ROE_AVG")
 
-        if np_val and row["DPS"] and shares and eq:
-            retained = np_val - row["DPS"] * shares
-            row["RETAINED_RATIO"] = (retained / eq * 100) if eq else None
+        if np_val and shares and eq:
+            div_cost = (row["DPS"] or 0) * shares
+            retained = np_val - div_cost
+            if retained > 0:
+                row["RETAINED_RATIO"] = (retained / eq * 100) if eq else None
+            else:
+                row["RETAINED_RATIO"] = 0
         eps = ind.get("BASIC_EPS")
-        if eps and row["DPS"]:
-            row["PAYOUT_RATIO"] = (row["DPS"] / eps * 100) if eps else None
+        if eps:
+            row["PAYOUT_RATIO"] = ((row["DPS"] or 0) / eps * 100) if eps else 0
 
         row["DEBT_ASSET_RATIO"] = ind.get("DEBT_ASSET_RATIO")
 
@@ -360,7 +361,7 @@ def _detect_unit(raw_values):
     返回: (unit_str, divisor)
     """
     max_val = max([abs(v) for v in raw_values if v is not None and v > 0] or [0])
-    if max_val >= 1e12:
+    if max_val >= 1e13:
         return "万亿", 1e12
     elif max_val >= 1e8:
         return "亿", 1e8
@@ -392,6 +393,8 @@ def _build_capital_structure(reader, spot, latest_yr, metrics):
         raw[key] = v or 0
 
     lt = reader.financial_item("balance", "融资租赁负债(非流动)", rd)
+    if not lt:
+        lt = reader.financial_item("balance", "长期贷款", rd)
     raw["lt_debt"] = lt or 0
 
     debt_due_current = reader.financial_item("balance", "融资租赁负债(流动)", rd) or 0
@@ -643,11 +646,15 @@ def _calc_position(spot, kline, metrics, years):
 
 def _detect_rpt_ccy(reader, stock):
     """自动识别财报货币: 优先DB meta, 其次IS_CNY_CODE, 最后config"""
-    # 1. DB meta 优先 (fetcher 存的 CURRENCY 字段)
+    # 1. config 优先 (手工维护的货币信息最可靠)
+    cfg_ccy = stock.get("currency")
+    if cfg_ccy:
+        return cfg_ccy
+    # 2. DB meta 备选
     db_ccy = reader.db_meta("currency")
     if db_ccy:
         return db_ccy
-    # 2. IS_CNY_CODE 判断 (1=CNY, 0=非CNY)
+    # 3. IS_CNY_CODE (AKShare 港股接口对所有股票都标 HKD, 不太可靠)
     try:
         cny_rows = reader.conn.execute(
             "SELECT DISTINCT amount FROM indicators WHERE item_name='IS_CNY_CODE'"
@@ -914,7 +921,7 @@ def build_report(code=None):
     report = {
         "meta": {
             "code": code, "name": stock["name"], "name_en": stock["name_en"],
-            "market": stock["market"], "currency": reader.db_meta("currency", stock.get("currency", "CNY")),
+            "market": stock["market"], "currency": stock.get("currency", reader.db_meta("currency", "CNY")),
             "industry": stock.get("industry", ""),
             # 股价货币 & 市场指数 — 从 MARKET_CONFIG 驱动, 不硬编码
             "price_ccy": config.MARKET_CONFIG.get(stock.get("market", ""), {}).get("currency", "CNY"),
