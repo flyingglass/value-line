@@ -31,10 +31,14 @@ STOCKS = {
         "name_en": "POP MART",
         "market": "hk",
         "exchange": "SEHK",
-        "currency": "HKD",
+        "currency": "CNY",
         "org_id": "9900047555",
         "hkex_stock_id": "1000068054",  # 披露易内部ID
         "pfx": "hk",
+        "shares": 1341043150,          # 总股本(股数), 用于 CAPEX_PS / TOTAL_SHARES / Market Cap
+        "shares_str": "1,341,043,150",
+        "industry": "Consumer",
+        "business_desc": "",
     },
     "600519": {
         "name": "贵州茅台",
@@ -44,6 +48,51 @@ STOCKS = {
         "currency": "CNY",
         "org_id": "gssh0600519",      # 巨潮内部ID
         "pfx": "sh",
+        "shares": 1256197800,          # 总股本(股数), 约12.56亿股
+        "shares_str": "1,256,197,800",
+        "industry": "Consumer Staples",
+        "business_desc": "",
+    },
+}
+
+# ============================================================
+# 市场配置 (通用化: 兼容A股/H股/美股)
+# ============================================================
+MARKET_CONFIG = {
+    "hk": {
+        "name": "港股",
+        "currency": "HKD",
+        "index_name": "HSI",
+        "index_name_cn": "恒生指数",
+        "index_symbol": "HSI",
+        "index_akshare_func": "stock_hk_index_daily_sina",
+        "pe_estimate": {
+            "2013": 11.0, "2014": 10.5, "2015": 10.0, "2016": 11.5,
+            "2017": 12.5, "2018": 10.5, "2019": 11.0, "2020": 13.5,
+            "2021": 10.5, "2022": 7.5,  "2023": 9.0,  "2024": 8.5, "2025": 8.0,
+        },
+    },
+    "cn": {
+        "name": "A股",
+        "currency": "CNY",
+        "index_name": "CSI300",
+        "index_name_cn": "沪深300",
+        "index_symbol": "000300",
+        "index_akshare_func": "stock_zh_index_daily",
+        "pe_estimate": {
+            "2013": 12.0, "2014": 13.0, "2015": 18.0, "2016": 14.0,
+            "2017": 15.0, "2018": 12.0, "2019": 14.0, "2020": 16.0,
+            "2021": 15.0, "2022": 12.0, "2023": 13.0, "2024": 14.0, "2025": 14.0,
+        },
+    },
+    "us": {
+        "name": "美股",
+        "currency": "USD",
+        "index_name": "SPX",
+        "index_name_cn": "标普500",
+        "index_symbol": "SPX",
+        "index_akshare_func": "",
+        "pe_estimate": {},
     },
 }
 

@@ -233,6 +233,11 @@ def fetch_hk_financials(store, code):
                 pass
         store.upsert_indicators(rd, items)
     print(f"OK {len(df)}行")
+    # 保存币种信息到 meta
+    if len(df) > 0:
+        raw_currency = str(df.iloc[0].get("CURRENCY", ""))
+        if raw_currency:
+            store.set_meta("currency", raw_currency)
 
     # 分红
     print("  [hk_dividend] ", end="", flush=True)

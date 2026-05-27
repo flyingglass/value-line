@@ -4,15 +4,20 @@
     "name": "泡泡玛特",
     "name_en": "POP MART",
     "market": "hk",
-    "currency": "HKD",
-    "generated": "2026-05-26 19:30:03.257418"
+    "currency": "CNY",
+    "industry": "Consumer",
+    "price_ccy": "HKD",
+    "index_name": "HSI",
+    "index_name_cn": "恒生指数",
+    "rpt_ccy": "CNY",
+    "generated": "2026-05-27 17:46:26.363634"
   },
   "spot": {
     "price": 153.60001,
     "pe": 16.0,
     "pb": 9.25,
     "div_yield": 0.24,
-    "mkt_cap": 1.4,
+    "mkt_cap": 2062.8,
     "change_pct": 2.05981
   },
   "kline": [
@@ -545,7 +550,7 @@
       "volume": 287170771.0
     }
   ],
-  "hsi_kline": [
+  "index_kline": [
     {
       "date": "2013-08",
       "open": 22396.289,
@@ -1622,7 +1627,7 @@
       "open": 26138.34,
       "high": 26844.8,
       "low": 25341.73,
-      "close": 25606.03125
+      "close": 25599.44922
     }
   ],
   "years": [
@@ -1829,11 +1834,11 @@
       "BASIC_EPS": 0.01,
       "BPS": 0.058778123582,
       "DPS": 0,
-      "CAPEX_PS": null,
-      "TOTAL_SHARES": null,
+      "CAPEX_PS": 0.008616426697381064,
+      "TOTAL_SHARES": 1341.04315,
       "OPERATE_INCOME": 1.58074,
-      "OP_MARGIN": 47.606817060364,
-      "DEPRECIATION": null,
+      "OP_MARGIN": 2.8,
+      "DEPRECIATION": 0.23502,
       "HOLDER_PROFIT": 0.01569,
       "TAX_EBT": 30.972283326001,
       "NET_PROFIT_RATIO": 0.9925730987,
@@ -1853,11 +1858,11 @@
       "BASIC_EPS": 0.86,
       "BPS": 0.163178940215,
       "DPS": 0,
-      "CAPEX_PS": null,
-      "TOTAL_SHARES": null,
+      "CAPEX_PS": 0.02644955906154101,
+      "TOTAL_SHARES": 1341.04315,
       "OPERATE_INCOME": 5.14511,
-      "OP_MARGIN": 57.923931655494,
-      "DEPRECIATION": null,
+      "OP_MARGIN": 26.0,
+      "DEPRECIATION": 0.42392,
       "HOLDER_PROFIT": 0.99521,
       "TAX_EBT": 24.753515802208,
       "NET_PROFIT_RATIO": 19.3428323204,
@@ -1877,10 +1882,10 @@
       "BASIC_EPS": 0.39,
       "BPS": 0.442029773613,
       "DPS": 0,
-      "CAPEX_PS": 1279.8902439024391,
-      "TOTAL_SHARES": 0.082,
+      "CAPEX_PS": 0.8928770292808639,
+      "TOTAL_SHARES": 117.542502,
       "OPERATE_INCOME": 16.83434,
-      "OP_MARGIN": 64.768443550505,
+      "OP_MARGIN": 35.6,
       "DEPRECIATION": null,
       "HOLDER_PROFIT": 4.51118,
       "TAX_EBT": 24.609484019219,
@@ -1901,11 +1906,11 @@
       "BASIC_EPS": 0.44,
       "BPS": 4.570601624564,
       "DPS": 0.0,
-      "CAPEX_PS": 190.6652221018418,
-      "TOTAL_SHARES": 0.923,
+      "CAPEX_PS": 0.1255291293110738,
+      "TOTAL_SHARES": 1401.93755,
       "OPERATE_INCOME": 25.13471,
-      "OP_MARGIN": 63.422573803318,
-      "DEPRECIATION": null,
+      "OP_MARGIN": 28.6,
+      "DEPRECIATION": 2.45843,
       "HOLDER_PROFIT": 5.23505,
       "TAX_EBT": 26.023497214459,
       "NET_PROFIT_RATIO": 20.8202919389,
@@ -1925,11 +1930,11 @@
       "BASIC_EPS": 0.62,
       "BPS": 5.084237595188,
       "DPS": 0.1533,
-      "CAPEX_PS": 311.4864572047671,
-      "TOTAL_SHARES": 0.923,
+      "CAPEX_PS": 0.2050747552913466,
+      "TOTAL_SHARES": 1401.93755,
       "OPERATE_INCOME": 44.90651,
-      "OP_MARGIN": 61.430380584018,
-      "DEPRECIATION": null,
+      "OP_MARGIN": 25.6,
+      "DEPRECIATION": 4.35002,
       "HOLDER_PROFIT": 8.54339,
       "TAX_EBT": 27.034360749015,
       "NET_PROFIT_RATIO": 19.0299134803,
@@ -1938,7 +1943,7 @@
       "TOTAL_EQUITY": 68.20006,
       "ROIC_YEARLY": 39.311330790921,
       "ROE_AVG": 13.196915309731,
-      "RETAINED_RATIO": 12.524879070487621,
+      "RETAINED_RATIO": 9.375680513844124,
       "PAYOUT_RATIO": 24.725806451612904,
       "DEBT_ASSET_RATIO": 18.0644829549,
       "PE_AVG": 98.2,
@@ -1951,11 +1956,11 @@
       "BASIC_EPS": 0.35,
       "BPS": 5.192441421441,
       "DPS": 0.1472,
-      "CAPEX_PS": 293.0969162995595,
-      "TOTAL_SHARES": 0.908,
+      "CAPEX_PS": 0.19277376531967857,
+      "TOTAL_SHARES": 1380.54055,
       "OPERATE_INCOME": 46.17324,
-      "OP_MARGIN": 57.490940640076,
-      "DEPRECIATION": null,
+      "OP_MARGIN": 12.6,
+      "DEPRECIATION": 6.04817,
       "HOLDER_PROFIT": 4.7566,
       "TAX_EBT": 25.601340986883,
       "NET_PROFIT_RATIO": 10.3046916352,
@@ -1964,7 +1969,7 @@
       "TOTAL_EQUITY": 69.65325,
       "ROIC_YEARLY": 14.427967313068,
       "ROE_AVG": 6.902892071746,
-      "RETAINED_RATIO": 6.827051751354028,
+      "RETAINED_RATIO": 3.911438892513988,
       "PAYOUT_RATIO": 42.05714285714286,
       "DEBT_ASSET_RATIO": 18.819642562,
       "PE_AVG": 74.6,
@@ -1977,11 +1982,11 @@
       "BASIC_EPS": 0.81,
       "BPS": 5.793942573734,
       "DPS": 0.3096,
-      "CAPEX_PS": 366.3039548022599,
-      "TOTAL_SHARES": 0.885,
+      "CAPEX_PS": 0.24044550124359987,
+      "TOTAL_SHARES": 1348.24315,
       "OPERATE_INCOME": 63.01002,
-      "OP_MARGIN": 61.32470676886,
-      "DEPRECIATION": null,
+      "OP_MARGIN": 19.5,
+      "DEPRECIATION": 6.68565,
       "HOLDER_PROFIT": 10.82344,
       "TAX_EBT": 23.096086540397,
       "NET_PROFIT_RATIO": 17.2793311286,
@@ -1990,7 +1995,7 @@
       "TOTAL_EQUITY": 77.80382,
       "ROIC_YEARLY": 28.741371366813,
       "ROE_AVG": 14.692570494627,
-      "RETAINED_RATIO": 13.907671936930601,
+      "RETAINED_RATIO": 8.546211751042557,
       "PAYOUT_RATIO": 38.22222222222222,
       "DEBT_ASSET_RATIO": 21.9531655716,
       "PE_AVG": 25.4,
@@ -2003,11 +2008,11 @@
       "BASIC_EPS": 2.36,
       "BPS": 7.966563193735,
       "DPS": 0.997,
-      "CAPEX_PS": 422.52607709750566,
-      "TOTAL_SHARES": 0.882,
+      "CAPEX_PS": 0.27750095005883163,
+      "TOTAL_SHARES": 1342.94315,
       "OPERATE_INCOME": 130.37749,
-      "OP_MARGIN": 66.788868231778,
-      "DEPRECIATION": null,
+      "OP_MARGIN": 31.9,
+      "DEPRECIATION": 8.62823,
       "HOLDER_PROFIT": 31.25473,
       "TAX_EBT": 24.221542292705,
       "NET_PROFIT_RATIO": 25.3751241875,
@@ -2016,7 +2021,7 @@
       "TOTAL_EQUITY": 108.84639,
       "ROIC_YEARLY": 69.113251958622,
       "ROE_AVG": 33.874164979176,
-      "RETAINED_RATIO": 28.706451780348434,
+      "RETAINED_RATIO": 16.41357769835086,
       "PAYOUT_RATIO": 42.24576271186441,
       "DEBT_ASSET_RATIO": 26.8046595339,
       "PE_AVG": 18.3,
@@ -2029,11 +2034,11 @@
       "BASIC_EPS": 9.61,
       "BPS": 16.612243237662,
       "DPS": 0.363,
-      "CAPEX_PS": 1117.063492063492,
-      "TOTAL_SHARES": 0.882,
+      "CAPEX_PS": 0.7336498198006371,
+      "TOTAL_SHARES": 1342.94315,
       "OPERATE_INCOME": 371.20052,
-      "OP_MARGIN": 72.10365976858,
-      "DEPRECIATION": null,
+      "OP_MARGIN": 45.5,
+      "DEPRECIATION": 11.17965,
       "HOLDER_PROFIT": 127.75689,
       "TAX_EBT": 23.623110262117,
       "NET_PROFIT_RATIO": 35.0539433512,
@@ -2042,7 +2047,7 @@
       "TOTAL_EQUITY": 226.52367,
       "ROIC_YEARLY": 130.69029242409,
       "ROE_AVG": 77.519468320973,
-      "RETAINED_RATIO": 56.397500685027744,
+      "RETAINED_RATIO": 54.246872463923964,
       "PAYOUT_RATIO": 3.7773152965660772,
       "DEBT_ASSET_RATIO": 29.4348549909,
       "PE_AVG": 20.9,
@@ -2164,31 +2169,31 @@
   "cf_line": [
     {
       "date": "2019",
-      "value": 64.175382471945
+      "value": 64.18
     },
     {
       "date": "2020",
-      "value": 7.525563460365
+      "value": 7.53
     },
     {
       "date": "2021",
-      "value": 8.335931226045
+      "value": 8.34
     },
     {
       "date": "2022",
-      "value": 9.68122957344
+      "value": 9.68
     },
     {
       "date": "2023",
-      "value": 22.14655420278
+      "value": 22.15
     },
     {
       "date": "2024",
-      "value": 55.336147326855006
+      "value": 55.34
     },
     {
       "date": "2025",
-      "value": 121.35828683440499
+      "value": 121.36
     }
   ],
   "balance_summary": {
@@ -2273,7 +2278,7 @@
     ],
     "by_region": [
       {
-        "name": "中国内地",
+        "name": "中国",
         "value": 20852.0,
         "pct": 56.2
       },
@@ -2295,6 +2300,8 @@
     ]
   },
   "capital_structure": {
+    "unit": "亿",
+    "divisor": 100000000.0,
     "total_assets": 321.01354,
     "total_debt": 94.48987,
     "total_equity": 226.52367,
@@ -2305,11 +2312,22 @@
     "receivables": 9.2124,
     "non_current_liab": 22.80826,
     "lt_debt": 22.75301,
+    "due_in_5yr": 5.91799,
+    "total_int": 0.82471,
+    "coverage": ">25x",
+    "coverage_num": 204.8050102460259,
     "lt_debt_pct": 9.1,
-    "common_shares": 1341,
-    "common_shares_str": "1,341,043,150",
-    "mkt_cap": 2059.8,
-    "cap_label": "Large Cap"
+    "pension_assets": "N/A",
+    "pfd_stock": "None",
+    "common_shares": 1343.0,
+    "common_shares_str": "1,342,943,150",
+    "common_shares_raw": 1342943150,
+    "mkt_cap": 2062.8,
+    "cap_label": "Large Cap",
+    "business_desc": "泡泡玛特是中国领先的潮流文化娱乐公司。2025年全球化进程进一步提速，品牌知名度持续提升，IP运营与产品研发能力持续增强，推出多款深受全球消费者欢迎的新IP及新品系列，推动销售业绩实现高速增长。",
+    "employee_count": 10879,
+    "employee_year": "2025",
+    "mda_text": "【经营总览】\n2025年是泡泡玛特成立十五周年，全球化进程进一步提速，品牌知名度持续提升。\n全年实现营收371.2亿元，同比增长184.7%；归母净利润127.8亿元，同比增长308.8%。\nROE达77.5%，每股收益¥9.61，经营利润率45.5%。\n\n【IP运营】\n核心IP表现突出，THE MONSTERS(38.1%)、SKULLPANDA(9.5%)、其他IP(8.9%)为主要收入来源。\nTHE MONSTERS IP于十周年之际跻身百亿IP俱乐部，LABUBU系列产品全球发售引发广泛关注。\n公司持续加大产品设计创新力度，不断丰富产品种类与IP表达，加强IP与粉丝之间的情感连接。\n\n【产品创新】\n毛绒品类首次成为收入贡献最高的产品类别，同比增长560.6%，成为增长核心驱动力。\n持续探索多形态、多主题的产品线，包括手办、饰品（popop品牌）、甜品（POP BAKERY）等多元业态。\n\n【渠道发展】\n渠道结构持续优化：零售店(48.3%)、线上渠道(40.9%)、机器人商店(6.5%)。\n线上渠道同比增长207.4%，数字化能力持续提升。线下门店向叙事化、艺术化方向升级。\n会员运营体系持续完善，全渠道高质量协同发展。\n\n【分地区表现】\n收入区域分布：中国占56.2%，亚太占21.6%，美洲占18.3%，欧洲及其他占3.9%。\n海外市场收入占比达43.8%，成为重要增长极。\n亚太及美洲市场增长尤为显著，全球化成效突出。\n\n【成本与效率】\n折旧摊销11.2亿元，营运资金177.5亿元。\n员工规模达1.1万人，人均创收效率持续提升。\n\n【未来展望】\n公司将继续以IP为核心，深化IP运营体系与创意设计能力建设。\n持续推动全球化布局，积极拓展海外市场渠道与品牌影响力。\n探索多元化业务扩展路径，包括主题乐园、游戏、内容创作等新业态。\n加大产品研发与技术创新投入，提升消费者体验与运营效率。"
   },
   "current_position": {
     "years": [
@@ -2338,9 +2356,9 @@
       },
       {
         "name": "Other Current Assets",
-        "2023": 0,
-        "2024": 0,
-        "2025": 0
+        "2023": 43.79,
+        "2024": 41.25,
+        "2025": 47.45
       },
       {
         "name": "Current Assets",
@@ -2350,21 +2368,21 @@
       },
       {
         "name": "Accounts Payable",
-        "2023": 0,
-        "2024": 0,
-        "2025": 0
+        "2023": 4.44944,
+        "2024": 10.10109,
+        "2025": 18.58216
       },
       {
         "name": "Debt Due",
-        "2023": 0,
-        "2024": 0,
-        "2025": 0
+        "2023": 3.51799,
+        "2024": 3.63092,
+        "2025": 5.86274
       },
       {
         "name": "Other Current Liab",
-        "2023": 0,
-        "2024": 0,
-        "2025": 0
+        "2023": 9.37,
+        "2024": 19.97,
+        "2025": 47.24
       },
       {
         "name": "Current Liabilities",
@@ -2376,28 +2394,51 @@
   },
   "annual_rates": {
     "sales": {
-      "10yr": null,
+      "1yr": 184.7,
+      "3yr": 100.3,
       "5yr": 71.3,
-      "future": "TBD"
+      "10yr": null
     },
     "cashflow": {
-      "10yr": null,
+      "1yr": 119.3,
+      "3yr": 132.3,
       "5yr": 74.4,
-      "future": "TBD"
+      "10yr": null
     },
     "earnings": {
-      "10yr": null,
+      "1yr": 307.2,
+      "3yr": 201.7,
       "5yr": 85.3,
-      "future": "TBD"
+      "10yr": null
     },
     "dividends": {
-      "10yr": null,
+      "1yr": -63.6,
+      "3yr": 35.1,
       "5yr": null,
-      "future": "TBD"
-    }
+      "10yr": null
+    },
+    "book_value": {
+      "1yr": 108.5,
+      "3yr": 47.4,
+      "5yr": 29.4,
+      "10yr": null
+    },
+    "has_10yr": false
   },
   "quarterly": {
     "sales": [
+      {
+        "year": "2021",
+        "q1q2": 17.7,
+        "q3q4": 27.2,
+        "full": 44.9
+      },
+      {
+        "year": "2022",
+        "q1q2": 23.6,
+        "q3q4": 22.6,
+        "full": 46.2
+      },
       {
         "year": "2023",
         "q1q2": 28.1,
@@ -2419,6 +2460,18 @@
     ],
     "eps": [
       {
+        "year": "2021",
+        "q1q2": 0.26,
+        "q3q4": 0.36,
+        "full": 0.62
+      },
+      {
+        "year": "2022",
+        "q1q2": 0.24,
+        "q3q4": 0.11,
+        "full": 0.35
+      },
+      {
         "year": "2023",
         "q1q2": 0.35,
         "q3q4": 0.46,
@@ -2439,6 +2492,18 @@
     ],
     "dividends": [
       {
+        "year": "2021",
+        "q1q2": 0,
+        "q3q4": 0.1533,
+        "full": 0.1533
+      },
+      {
+        "year": "2022",
+        "q1q2": 0,
+        "q3q4": 0.1472,
+        "full": 0.1472
+      },
+      {
         "year": "2023",
         "q1q2": 0,
         "q3q4": 0.3096,
@@ -2458,6 +2523,50 @@
       }
     ]
   },
+  "yearly_hl": [
+    {
+      "year": "2020",
+      "high": 92.3,
+      "low": 58.6,
+      "month_high": "2020-12",
+      "month_low": "2020-12"
+    },
+    {
+      "year": "2021",
+      "high": 103.0,
+      "low": 39.2,
+      "month_high": "2021-02",
+      "month_low": "2021-12"
+    },
+    {
+      "year": "2022",
+      "high": 47.4,
+      "low": 9.6,
+      "month_high": "2022-01",
+      "month_low": "2022-10"
+    },
+    {
+      "year": "2023",
+      "high": 27.0,
+      "low": 15.6,
+      "month_high": "2023-01",
+      "month_low": "2023-05"
+    },
+    {
+      "year": "2024",
+      "high": 94.8,
+      "low": 16.4,
+      "month_high": "2024-12",
+      "month_low": "2024-02"
+    },
+    {
+      "year": "2025",
+      "high": 333.9,
+      "low": 77.8,
+      "month_high": "2025-08",
+      "month_low": "2025-01"
+    }
+  ],
   "position": {
     "pe": {
       "current": 16.0,
@@ -2491,61 +2600,208 @@
       {
         "year": "2019",
         "metric": "Revenue H1+H2=Annual",
+        "summary": "Revenue: H1+H2=16.8 vs Annual=16.8",
         "h1h2": 16.83,
         "annual": 16.83,
         "diff_pct": 0.0
       },
       {
+        "year": "2019",
+        "metric": "NetProfit H1+H2=Annual",
+        "summary": "NP: H1+H2=4.5 vs Annual=4.5",
+        "h1h2": 4.52,
+        "annual": 4.51,
+        "diff_pct": 0.22
+      },
+      {
+        "year": "2019",
+        "metric": "EPS H1+H2=Annual",
+        "summary": "EPS: H1+H2=0.39 vs Annual=0.39",
+        "h1h2": 0.39,
+        "annual": 0.39,
+        "diff_pct": 0.0
+      },
+      {
         "year": "2020",
         "metric": "Revenue H1+H2=Annual",
+        "summary": "Revenue: H1+H2=25.1 vs Annual=25.1",
         "h1h2": 25.14,
         "annual": 25.13,
         "diff_pct": 0.04
       },
       {
+        "year": "2020",
+        "metric": "NetProfit H1+H2=Annual",
+        "summary": "NP: H1+H2=5.2 vs Annual=5.2",
+        "h1h2": 5.23,
+        "annual": 5.24,
+        "diff_pct": 0.19
+      },
+      {
+        "year": "2020",
+        "metric": "EPS H1+H2=Annual",
+        "summary": "EPS: H1+H2=0.44 vs Annual=0.44",
+        "h1h2": 0.44,
+        "annual": 0.44,
+        "diff_pct": 0.0
+      },
+      {
         "year": "2021",
         "metric": "Revenue H1+H2=Annual",
+        "summary": "Revenue: H1+H2=44.9 vs Annual=44.9",
         "h1h2": 44.91,
         "annual": 44.91,
         "diff_pct": 0.0
       },
       {
+        "year": "2021",
+        "metric": "NetProfit H1+H2=Annual",
+        "summary": "NP: H1+H2=8.6 vs Annual=8.5",
+        "h1h2": 8.55,
+        "annual": 8.54,
+        "diff_pct": 0.12
+      },
+      {
+        "year": "2021",
+        "metric": "EPS H1+H2=Annual",
+        "summary": "EPS: H1+H2=0.62 vs Annual=0.62",
+        "h1h2": 0.62,
+        "annual": 0.62,
+        "diff_pct": 0.0
+      },
+      {
         "year": "2022",
         "metric": "Revenue H1+H2=Annual",
+        "summary": "Revenue: H1+H2=46.2 vs Annual=46.2",
         "h1h2": 46.18,
         "annual": 46.17,
         "diff_pct": 0.02
       },
       {
+        "year": "2022",
+        "metric": "NetProfit H1+H2=Annual",
+        "summary": "NP: H1+H2=4.8 vs Annual=4.8",
+        "h1h2": 4.76,
+        "annual": 4.76,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2022",
+        "metric": "EPS H1+H2=Annual",
+        "summary": "EPS: H1+H2=0.35 vs Annual=0.35",
+        "h1h2": 0.35,
+        "annual": 0.35,
+        "diff_pct": 0.0
+      },
+      {
         "year": "2023",
         "metric": "Revenue H1+H2=Annual",
+        "summary": "Revenue: H1+H2=63.0 vs Annual=63.0",
         "h1h2": 63.01,
         "annual": 63.01,
         "diff_pct": 0.0
       },
       {
+        "year": "2023",
+        "metric": "NetProfit H1+H2=Annual",
+        "summary": "NP: H1+H2=10.8 vs Annual=10.8",
+        "h1h2": 10.83,
+        "annual": 10.82,
+        "diff_pct": 0.09
+      },
+      {
+        "year": "2023",
+        "metric": "EPS H1+H2=Annual",
+        "summary": "EPS: H1+H2=0.81 vs Annual=0.81",
+        "h1h2": 0.81,
+        "annual": 0.81,
+        "diff_pct": 0.0
+      },
+      {
         "year": "2024",
         "metric": "Revenue H1+H2=Annual",
+        "summary": "Revenue: H1+H2=130.4 vs Annual=130.4",
         "h1h2": 130.38,
         "annual": 130.38,
         "diff_pct": 0.0
       },
       {
+        "year": "2024",
+        "metric": "NetProfit H1+H2=Annual",
+        "summary": "NP: H1+H2=31.2 vs Annual=31.2",
+        "h1h2": 31.25,
+        "annual": 31.25,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2024",
+        "metric": "EPS H1+H2=Annual",
+        "summary": "EPS: H1+H2=2.36 vs Annual=2.36",
+        "h1h2": 2.36,
+        "annual": 2.36,
+        "diff_pct": 0.0
+      },
+      {
         "year": "2025",
         "metric": "Revenue H1+H2=Annual",
+        "summary": "Revenue: H1+H2=371.2 vs Annual=371.2",
         "h1h2": 371.2,
         "annual": 371.2,
         "diff_pct": 0.0
+      },
+      {
+        "year": "2025",
+        "metric": "NetProfit H1+H2=Annual",
+        "summary": "NP: H1+H2=127.8 vs Annual=127.8",
+        "h1h2": 127.75,
+        "annual": 127.76,
+        "diff_pct": 0.01
+      },
+      {
+        "year": "2025",
+        "metric": "EPS H1+H2=Annual",
+        "summary": "EPS: H1+H2=9.61 vs Annual=9.61",
+        "h1h2": 9.61,
+        "annual": 9.61,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2025",
+        "metric": "AKShare↔PDF Revenue",
+        "summary": "AKShare=371.2B vs PDF=371.2B",
+        "akshare": 371.2,
+        "pdf": 371.2,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2025",
+        "metric": "Revenue by_ip sum=100%",
+        "summary": "by_ip: sum_pct=89.9% (gap=10.1%)",
+        "sum_pct": 89.9,
+        "diff_pct": 10.1
       }
     ],
-    "mismatches": [],
+    "mismatches": [
+      "2025 Revenue by_ip sum=100%: by_ip: sum_pct=89.9% (gap=10.1%) (10.1%)"
+    ],
+    "warnings": [
+      "2019 NetProfit H1+H2=Annual: NP: H1+H2=4.5 vs Annual=4.5 (0.2%)",
+      "2020 NetProfit H1+H2=Annual: NP: H1+H2=5.2 vs Annual=5.2 (0.2%)",
+      "2021 NetProfit H1+H2=Annual: NP: H1+H2=8.6 vs Annual=8.5 (0.1%)",
+      "2023 NetProfit H1+H2=Annual: NP: H1+H2=10.8 vs Annual=10.8 (0.1%)"
+    ],
     "sources": {
       "annual_indicators": "AKShare stock_financial_hk_analysis_indicator_em (年度指标)",
       "semi_annual_income": "AKShare stock_financial_hk_report_em 利润表 (06-30中报)",
       "dividend": "AKShare stock_hk_dividend_payout_em + 手动补充",
       "revenue_structure": "年报PDF提取 → SQLite revenue_structure 表",
-      "hsi_kline": "新浪 stock_hk_index_daily_sina"
+      "index_kline": "新浪 stock_hk_index_daily_sina"
     },
-    "status": "OK"
+    "status": "MISMATCH",
+    "pdf_years": [
+      "2025"
+    ],
+    "checks_passed": 22,
+    "checks_total": 23
   }
 }
