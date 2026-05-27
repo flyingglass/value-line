@@ -10,7 +10,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-05-27 17:46:26.363634"
+    "generated": "2026-05-27 19:15:25.751379"
   },
   "spot": {
     "price": 153.60001,
@@ -1654,7 +1654,7 @@
       "order": 2,
       "name_cn": "每股现金流",
       "name_en": "Cash Flow per sh",
-      "field": "PER_NETCASH_OPERATE",
+      "field": "PER_NETCASH",
       "unit": "元",
       "source": "indicators"
     },
@@ -1948,7 +1948,8 @@
       "DEBT_ASSET_RATIO": 18.0644829549,
       "PE_AVG": 98.2,
       "PE_RELATIVE": 9.35,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 0.3
     },
     "2022": {
       "PER_OI": 3.344576876065,
@@ -1974,7 +1975,8 @@
       "DEBT_ASSET_RATIO": 18.819642562,
       "PE_AVG": 74.6,
       "PE_RELATIVE": 9.95,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 0.6
     },
     "2023": {
       "PER_OI": 4.673490831383,
@@ -2000,7 +2002,8 @@
       "DEBT_ASSET_RATIO": 21.9531655716,
       "PE_AVG": 25.4,
       "PE_RELATIVE": 2.82,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 1.5
     },
     "2024": {
       "PER_OI": 9.708340222741,
@@ -2026,7 +2029,8 @@
       "DEBT_ASSET_RATIO": 26.8046595339,
       "PE_AVG": 18.3,
       "PE_RELATIVE": 2.15,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 2.3
     },
     "2025": {
       "PER_OI": 27.640821579082,
@@ -2052,7 +2056,8 @@
       "DEBT_ASSET_RATIO": 29.4348549909,
       "PE_AVG": 20.9,
       "PE_RELATIVE": 2.61,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 0.2
     }
   },
   "cagr": {

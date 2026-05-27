@@ -156,7 +156,7 @@ TITLE_BLACKLIST = [
 VL_METRICS = [
     # (行号, 中文名, 英文名, 数据字段, 单位, 来源表)
     (1,  "每股营收",     "Revenues per sh",        "PER_OI",               "元",   "indicators"),
-    (2,  "每股现金流",   "Cash Flow per sh",        "PER_NETCASH_OPERATE",  "元",   "indicators"),
+    (2,  "每股现金流",   "Cash Flow per sh",        "PER_NETCASH",  "元",   "indicators"),
     (3,  "每股收益",     "Earnings per sh",         "BASIC_EPS",            "元",   "indicators"),
     (4,  "每股股息",     "Div'ds Decl'd per sh",    "DPS",                  "元",   "dividend"),
     (5,  "每股资本支出", "Cap'l Exp'd per sh",      "CAPEX_PS",             "元",   "calculated"),

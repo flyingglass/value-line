@@ -203,6 +203,10 @@ def _compute_pe_metrics(table, reader, market="hk"):
         eps = row["BASIC_EPS"]
         if eps and eps > 0:
             row["PE_AVG"] = round(avg_price / eps, 1)
+        # 平均股息率 = DPS / 年均价
+        dps = row.get("DPS")
+        if dps and dps > 0 and avg_price > 0:
+            row["DIV_YIELD"] = round((dps / avg_price) * 100, 1)
 
     # 相对PE: PE_AVG / 市场PE (从 config.MARKET_CONFIG 获取)
     market_cfg = config.MARKET_CONFIG.get(market, {})
