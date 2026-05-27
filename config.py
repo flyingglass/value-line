@@ -33,11 +33,25 @@ STOCKS = {
         "exchange": "SEHK",
         "currency": "CNY",
         "org_id": "9900047555",
-        "hkex_stock_id": "1000068054",  # 披露易内部ID
+        "hkex_stock_id": "1000068054",
         "pfx": "hk",
-        "shares": 1341043150,          # 总股本(股数), 用于 CAPEX_PS / TOTAL_SHARES / Market Cap
+        "shares": 1341043150,
         "shares_str": "1,341,043,150",
         "industry": "Consumer",
+        "business_desc": "",
+    },
+    "09988": {
+        "name": "阿里巴巴",
+        "name_en": "Alibaba Group",
+        "market": "hk",
+        "exchange": "SEHK",
+        "currency": "CNY",
+        "org_id": "",
+        "pfx": "hk",
+        "fiscal_yr_end": "03-31",    # 3月底财年
+        "shares": 19000000000,
+        "shares_str": "19,000,000,000",
+        "industry": "Technology",
         "business_desc": "",
     },
     "600519": {
@@ -99,7 +113,7 @@ MARKET_CONFIG = {
 # ============================================================
 # 当前活跃标的
 # ============================================================
-ACTIVE_STOCK = "09992"
+ACTIVE_STOCK = "09988"
 
 # ============================================================
 # SQLite 路径

@@ -9,6 +9,17 @@ import warnings; warnings.filterwarnings("ignore")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import config
 
+# 财年结束月: 从 config 读取或默认 12-31
+def _fye(yr):
+    """返回该财年的报告日期 (例如 2025 → "2025-12-31" 或 "2026-03-31")"""
+    code = config.ACTIVE_STOCK
+    stock = config.STOCKS.get(code, {})
+    fye = stock.get("fiscal_yr_end", "12-31")
+    # 若财年3月底结束, 年份+1, 例如 FY2024→2025-03-31
+    if fye == "03-31":
+        return f"{int(yr) + 1}-03-31"
+    return f"{yr}-12-31"
+
 
 class DataReader:
     def __init__(self, code):
@@ -104,7 +115,7 @@ def build_metric_table(reader, years, market="hk"):
     total_shares = None
 
     for yr in years:
-        rd = f"{yr}-12-31"
+        rd = _fye(yr)
         ind = reader.indicators(rd)
         if not ind:
             continue
@@ -224,7 +235,7 @@ def build_semi_annual(reader, years, metrics):
     # STD_ITEM_CODE: 004001001=营收, 004025002=归母净利, 004027002=EPS
     for yr in years:
         h1_date = f"{yr}-06-30"
-        ann_date = f"{yr}-12-31"
+        ann_date = _fye(yr)
         h1_rev = reader.financial_item_by_code("income", "004001001", h1_date)
         h1_np  = reader.financial_item_by_code("income", "004025002", h1_date)
         h1_eps = reader.financial_item_by_code("income", "004027002", h1_date)
@@ -365,7 +376,7 @@ def _build_capital_structure(reader, spot, latest_yr, metrics):
           % of Capital, Pension Assets, Pfd Stock, Common Stock, Market Cap
     单位自动检测, 不硬编码
     """
-    rd = f"{latest_yr}-12-31"
+    rd = _fye(latest_yr)
     result = {}
 
     # 1. 先获取所有原始值 (不分除)
@@ -484,7 +495,7 @@ def _build_current_position(reader, years):
     for _, name_cn, name_en in items_def:
         row = {"name": name_en}
         for yr in recent_years:
-            rd = f"{yr}-12-31"
+            rd = _fye(yr)
             v = reader.financial_item("balance", name_cn, rd) if name_cn else None
             row[yr] = v / 1e8 if v else 0
         result["items"].append(row)
@@ -691,7 +702,9 @@ def build_report(code=None):
     report_dates = reader.conn.execute(
         "SELECT DISTINCT report_date FROM indicators ORDER BY report_date"
     ).fetchall()
-    years = [r[0][:4] for r in report_dates if r[0].endswith("-12-31")]
+    # 检测年度报告日期格式 (12-31 或 03-31)
+    fye = stock.get("fiscal_yr_end", "12-31")
+    years = [r[0][:4] for r in report_dates if r[0].endswith(f"-{fye}")]
 
     metrics = build_metric_table(reader, years, market)
 
@@ -709,7 +722,7 @@ def build_report(code=None):
             dps_latest = latest.get("DPS")
             if dps_latest and dps_latest > 0:
                 spot["div_yield"] = round(dps_latest / price * 100, 2)
-            shares_raw = reader.share_count(f"{years[-1]}-12-31") or config.STOCKS.get(code, {}).get("shares")
+            shares_raw = reader.share_count(_fye(years[-1])) or config.STOCKS.get(code, {}).get("shares")
             if shares_raw and shares_raw > 0:
                 spot["mkt_cap"] = round(price * shares_raw / 1e8, 1)  # 股数×股价÷1亿
 
@@ -746,7 +759,7 @@ def build_report(code=None):
     balance_summary = {}
     income_summary = {}
     if latest_yr:
-        rd = f"{latest_yr}-12-31"
+        rd = _fye(latest_yr)
         for item, key in [("总资产", "total_assets"), ("总负债", "total_liabilities"),
                           ("总权益", "total_equity"), ("流动资产合计", "current_assets"),
                           ("流动负债合计", "current_liabilities"),
@@ -857,7 +870,7 @@ def build_report(code=None):
     validation["pdf_years"] = pdf_years
 
     for pdf_yr in pdf_years:
-        pdf_rds = [f"{pdf_yr}-12-31"]
+        pdf_rds = [_fye(pdf_yr)]
         for rd in pdf_rds:
             # 2a. 营收总额: AKShare income.营业额 vs PDF revenue_structure by_region sum
             # 注意: income 存元, revenue_structure 存百万(1e6), 需统一为元
