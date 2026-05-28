@@ -47,7 +47,7 @@ body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;col
 /* Chart section */
 .chart-area{{margin:2px 0;border-bottom:1px solid #000}}
 .chart-title{{font-weight:700;font-size:9px;margin-bottom:0px}}
-.chart-row{{display:flex;gap:4px}}
+.chart-row{{display:flex}}
 .chart-box{{flex:1;height:150px}}
 .return-box{{width:150px;font-size:8.5px;padding:3px 5px}}
 .return-box table{{width:100%;border-collapse:collapse;margin-bottom:3px}}
@@ -57,11 +57,17 @@ body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;col
 
 /* 23-line table */
 .stat-table{{margin:2px 0;overflow-x:auto}}
-.stat-table table{{border-collapse:collapse;font-size:8.5px;width:100%}}
+.stat-table table{{border-collapse:collapse;font-size:8.5px;width:100%;table-layout:fixed}}
 .stat-table th,.stat-table td{{text-align:right;padding:2px 4px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.3}}
 .stat-table th{{background:#eee;font-weight:700;font-size:8px}}
-.stat-table td:first-child,.stat-table th:first-child{{text-align:left;min-width:100px;white-space:nowrap}}
+.stat-table td:first-child,.stat-table th:first-child{{text-align:left;width:110px;white-space:nowrap}}
 .stat-table tr:nth-child(even){{background:#fafafa}}
+
+/* 对齐表 — Yearly High/Low 和 K线轴年份 */
+.align-table{{margin:0;padding:1px 8px}}
+.align-table table{{border-collapse:collapse;font-size:8px;width:100%;table-layout:fixed}}
+.align-table th,.align-table td{{text-align:right;padding:0 3px;border-right:1px solid transparent}}
+.align-table th:first-child,.align-table td:first-child{{text-align:left;width:110px}}
 .stat-table .sep td{{border-bottom:2px solid #000;padding:0}}
 .stat-table .sep-sm td{{border-bottom:1px solid #999}}
 
@@ -79,10 +85,13 @@ body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;col
 var DATA = {DATA_JS};
 
 (function(){{
-  var d=DATA, M=d.metric_defs, Y=d.years, MT=d.data, SA=d.semi_annual,
+  var d=DATA, M=d.metric_defs, Y=d.years, MT=d.data, QT=d.quarterly,
       cs=d.capital_structure||{{}}, cp=d.current_position||{{}},
       ar=d.annual_rates||{{}}, qt=d.quarterly||{{}},
       yhl=d.yearly_hl||[], pos=d.position||{{}}, v=d.validation||{{}};
+  // 统一年份: 使用 indicators 全量, Yearly HL 缺失则空
+  var yhlMap={{}}; yhl.forEach(function(h){{yhlMap[h.year]=h;}});
+  var allY=Y.slice(-10);  // 最多10年 (不足则全部)
   var spot=d.spot||{{}};
   var latestYr=Y[Y.length-1], ly=MT[latestYr]||{{}};
   var meta=d.meta||{{}};
@@ -224,33 +233,47 @@ var DATA = {DATA_JS};
   }});
   html+='</table></div>';
 
-  // Quarterly Sales (港股用H1/H2)
-  html+='<div class="sec"><div class="sec-title">Quarterly Sales (亿)</div>';
-  html+='<table>';
-  html+='<tr><td></td><td class="r">H1</td><td class="r">H2</td><td class="r">Full Yr</td></tr>';
-  (qt.sales||[]).forEach(function(r){{
-    html+='<tr><td>'+r.year+'</td><td class="r">'+r.q1q2+'</td><td class="r">'+r.q3q4+'</td><td class="r b">'+r.full+'</td></tr>';
-  }});
-  html+='</table>';
-  html+='<div class="note" style="margin-top:1px">*部分市场仅披露半年报, 以H1/H2代替四季</div></div>';
+  // 渲染季度/半年度表
+  function renderQ(data, columns, title, decimal, annualOnly){{
+    if(!data||!data.length) return '';
+    var show=data.slice(-5);  // 仅最近5年
+    if(annualOnly){{
+      // 仅显示年度总额 (用于股息等只有年度数据的)
+      var h='<div class=\"sec\"><div class=\"sec-title\">'+title+'</div><table>';
+      h+='<tr><td></td><td class=\"r\">Annual</td></tr>';
+      show.forEach(function(r){{
+        h+='<tr><td>'+r.year+'</td><td class=\"r b\">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td></tr>';
+      }});
+      h+='</table></div>';
+      return h;
+    }}
+    var hasQ=show[0].has_quarter;
+    var cols=hasQ?['Q1','Q2','Q3','Q4','Full Yr']:['H1','H2','Full Yr'];
+    var h='<div class=\"sec\"><div class=\"sec-title\">'+title+'</div><table>';
+    h+='<tr><td></td>';
+    cols.forEach(function(c){{h+='<td class=\"r\">'+c+'</td>';}});
+    h+='</tr>';
+    show.forEach(function(r){{
+      h+='<tr><td>'+r.year+'</td>';
+      if(hasQ){{
+        var vs=[r.q1,r.q2,r.q3,r.q4,r.full];
+        vs.forEach(function(v){{h+='<td class=\"r'+(v===r.full?' b':'')+'\">'+(v!=null?v.toFixed(decimal):'—')+'</td>';}});
+      }}else{{
+        h+='<td class=\"r\">'+(r.q1!=null?r.q1.toFixed(decimal):'—')+'</td>';
+        h+='<td class=\"r\">'+(r.q3!=null?r.q3.toFixed(decimal):'—')+'</td>';
+        h+='<td class=\"r b\">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td>';
+      }}
+      h+='</tr>';
+    }});
+    h+='</table>';
+    if(!hasQ) h+='<div class=\"note\" style=\"margin-top:1px\">*部分市场仅披露半年报, 以H1/H2代替四季</div>';
+    h+='</div>';
+    return h;
+  }}
+  html+=renderQ(qt.sales, ['H1','H2'], 'Quarterly Sales (亿)', 1);
+  html+=renderQ(qt.eps, ['H1','H2'], 'Earnings Per Share', 2);
+  html+=renderQ(qt.dividends, ['H1','H2'], 'Quarterly Divs Paid (HKD)', 3);
 
-  // Quarterly EPS
-  html+='<div class="sec"><div class="sec-title">Earnings Per Share</div>';
-  html+='<table>';
-  html+='<tr><td></td><td class="r">H1</td><td class="r">H2</td><td class="r">Full Yr</td></tr>';
-  (qt.eps||[]).forEach(function(r){{
-    html+='<tr><td>'+r.year+'</td><td class="r">'+(r.q1q2!=null?r.q1q2.toFixed(2):'—')+'</td><td class="r">'+(r.q3q4!=null?r.q3q4.toFixed(2):'—')+'</td><td class="r b">'+(r.full!=null?r.full.toFixed(2):'—')+'</td></tr>';
-  }});
-  html+='</table></div>';
-
-  // Quarterly Dividends
-  html+='<div class="sec"><div class="sec-title">Quarterly Divs Paid</div>';
-  html+='<table>';
-  html+='<tr><td></td><td class="r">H1</td><td class="r">H2</td><td class="r">Full Yr</td></tr>';
-  (qt.dividends||[]).forEach(function(r){{
-    html+='<tr><td>'+r.year+'</td><td class="r">'+(r.q1q2>0?r.q1q2.toFixed(3):'—')+'</td><td class="r">'+(r.q3q4>0?r.q3q4.toFixed(3):'—')+'</td><td class="r b">'+(r.full>0?r.full.toFixed(3):'—')+'</td></tr>';
-  }});
-  html+='</table></div>';
 
   html+='</div>'; // end left-col
 
@@ -288,34 +311,32 @@ var DATA = {DATA_JS};
     return ((end/start-1)*100).toFixed(0)+'%';
   }}
 
-  // Yearly High/Low — 标题在表头, 删除下方重复标题
-  html+='<div style="margin:0;padding:1px 8px;font-size:8.5px">';
-  html+='<table style="border-collapse:collapse;font-size:8px;width:100%"><tr style="border-bottom:1px solid #ccc">';
-  html+='<th style="padding:0 3px">Yearly High / Low</th>';
-  var showYears=yhl.slice(-8);
-  showYears.forEach(function(hl){{
-    if(!hl) return;
-    html+='<th style="text-align:right;padding:0 3px">'+hl.year+'</th>';
+  // ========== 统一表格: Yearly High/Low + K线 + 23-line ==========
+  var showYears=allY;  // 最多10年
+  var yrCount=showYears.length;
+  html+='<table style="table-layout:fixed;width:100%;border-collapse:collapse;font-size:8.5px">';
+  var tdStyle='border-right:1px solid #ddd;padding:2px 4px', thStyle='border-right:1px solid #ddd;text-align:right;padding:2px 4px';
+  
+  // Row 1: Yearly High/Low 标题 — 无年份列, colspan整行
+  html+='<tr style="border-bottom:1px solid #ccc"><td style="width:110px;font-weight:700;padding:0 3px" colspan="'+(yrCount+1)+'">Yearly High / Low</td></tr>';
+  // Row 2: High
+  html+='<tr><td style="font-weight:700;padding:0 3px;'+tdStyle+'">High</td>';
+  showYears.forEach(function(yr){{
+    var hl=yhlMap[yr];
+    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.high:'—')+'</td>';
   }});
-  html+='</tr><tr>';
-  html+='<td style="font-weight:700;text-align:center;padding:0 3px">High</td>';
-  showYears.forEach(function(hl){{
-    if(!hl) return;
-    html+='<td style="text-align:right;padding:0 3px">'+hl.high+'</td>';
+  html+='</tr>';
+  // Row 3: Low
+  html+='<tr><td style="font-weight:700;padding:0 3px;'+tdStyle+'">Low</td>';
+  showYears.forEach(function(yr){{
+    var hl=yhlMap[yr];
+    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.low:'—')+'</td>';
   }});
-  html+='</tr><tr>';
-  html+='<td style="font-weight:700;text-align:center;padding:0 3px">Low</td>';
-  showYears.forEach(function(hl){{
-    if(!hl) return;
-    html+='<td style="text-align:right;padding:0 3px">'+hl.low+'</td>';
-  }});
-  html+='</tr></table>';
-  html+='</div>';
-
-  html+='<div class="chart-title">Monthly Price Ranges (Log Scale) + Cash Flow Line</div>';
-  html+='<div class="chart-row">';
-  // LEGENDS — 紧凑一行
-  html+='<div style="font-size:7px;line-height:1.4;padding:1px 3px;min-width:72px;border-right:1px solid #ccc">';
+  html+='</tr>';
+  
+  // Row 4: K线图行 — LEGENDS(第一列) + 图表(colspan)
+  html+='<tr><td style="padding:1px 3px;vertical-align:top;'+tdStyle+'">';
+  html+='<div style="font-size:7px;line-height:1.3">';
   html+='<div style="font-weight:700">LEGENDS</div>';
   html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
   html+='<div>15.0 x CF per Sh</div>';
@@ -323,45 +344,31 @@ var DATA = {DATA_JS};
   html+='<div>Rel Price Strength</div>';
   html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
   html+='<div>Splits: '+(meta.splits||'None')+'</div><div>Opt: '+(meta.options||'No')+'</div>';
-  html+='</div>';
-  html+='<div class="chart-box" id="chart_kline"></div>';
-  html+='<div class="return-box">';
-  html+='<div style="font-weight:700;font-size:9px;margin-bottom:2px">% Total Return</div>';
-  html+='<table><tr><th></th><th>1yr</th><th>3yr</th><th>5yr</th></tr>';
-  html+='<tr><td>'+(meta.name||'Stock')+'</td><td>'+totalReturn(12)+'</td><td>'+totalReturn(36)+'</td><td>'+totalReturn(60)+'</td></tr>';
-  html+='<tr><td>'+indexName+'</td><td>—</td><td>—</td><td>—</td></tr></table>';
-  html+='<div class="note">Log Scale / Monthly High-Low<br>';
-  html+='--- Cash Flow per Sh x15<br>';
-  html+='--- Relative Strength (vs '+indexName+')<br><br>';
-  html+='<div style="display:flex;gap:8px">';
-  html+='<div>';
-  html+='P/E (TTM): '+spot.pe+'x<br>';
-  html+='P/B: '+spot.pb+'x<br>';
-  html+='Div Yield: '+spot.div_yield+'%<br>';
-  html+='</div>';
-  // PE Range 并排右边
-  html+='<div>';
+  html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
+  html+='<div style="font-weight:700">% Total Return</div>';
+  html+='<div>1yr '+totalReturn(12)+'&nbsp; 3yr '+totalReturn(36)+'&nbsp; 5yr '+totalReturn(60)+'</div>';
+  html+='<div style="margin-top:2px">P/E '+spot.pe+'x&nbsp; P/B '+spot.pb+'x&nbsp; Yld '+spot.div_yield+'%</div>';
   if(pos.pe){{
-    html+='PE H: '+pos.pe.max+'x<br>';
-    html+='PE L: '+pos.pe.min+'x<br>';
-    html+='Avg: '+pos.pe.avg+'x<br>';
+    html+='<div>PE H:'+pos.pe.max+' L:'+pos.pe.min+' Avg:'+pos.pe.avg+'</div>';
   }}
-  html+='</div></div>';
-  html+='</div>';
-  html+='</div></div>';
-
-  // 23-line Statistical Array
-  html+='<div class="stat-table"><table>';
-  html+='<tr><th></th>';
-  Y.forEach(function(y){{html+='<th>'+y+'</th>';}});
+  html+='</div></td>';
+  html+='<td colspan="'+yrCount+'" style="padding:0">';
+  html+='<div class="chart-title">Monthly Price Ranges (Log Scale) + Cash Flow Line</div>';
+  html+='<div class="chart-box" id="chart_kline"></div>';
+  html+='</td></tr>';
+  
+  // Row 5: 年份基准线 — 在K线图和指标之间
+  html+='<tr style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"><td style="width:110px;font-size:7px;color:#666;padding:1px 3px;'+tdStyle+'">Year</td>';
+  showYears.forEach(function(y){{html+='<td style="text-align:center;font-size:7px;font-weight:700;padding:1px 3px;'+tdStyle+'">'+y+'</td>';}});
   html+='</tr>';
+  
+  // Row 6+: 23-line metrics
   M.forEach(function(m, idx){{
-    // Value Line separators: after rows 2(Cash Flow), 4(Dividends), 6(Book Value), 7(Shares), 10(Div Yield)
     var sepAfter=[2,4,6,7,10];
     var isHigh=(m.field==='DPS'||m.field==='PAYOUT_RATIO');
     html+='<tr'+(isHigh?' style="background:#fffde7"':'')+'>';
-    html+='<td style="white-space:nowrap">'+m.name_en+' <span style="font-size:7px;color:#999">'+m.name_cn+'</span></td>';
-    Y.forEach(function(y){{
+    html+='<td style="text-align:left;white-space:nowrap;'+tdStyle+'">'+m.name_en+' <span style="font-size:7px;color:#999">'+m.name_cn+'</span></td>';
+    showYears.forEach(function(y){{
       var v=(MT[y]||{{}})[m.field];
       var txt='—';
       if(v!=null){{
@@ -369,19 +376,18 @@ var DATA = {DATA_JS};
         else if(m.unit==='%')txt=v.toFixed(1)+'%';
         else if(m.unit==='元')txt=v.toFixed(2);
         else if(m.unit==='百万股')txt=v.toFixed(0);
-        else txt=v.toFixed(1);
+        else txt=v.toString();
       }}
-      html+='<td>'+txt+'</td>';
+      html+='<td style="text-align:right;'+tdStyle+'">'+txt+'</td>';
     }});
     html+='</tr>';
     if(sepAfter.indexOf(m.order)>=0){{
-      var cols=Y.length+1;
-      html+='<tr class="sep"><td colspan="'+cols+'"></td></tr>';
+      html+='<tr class="sep"><td colspan="'+(yrCount+1)+'" style="border-bottom:2px solid #000"></td></tr>';
     }}
   }});
-  html+='</table></div>';
-
-  // Business — 中栏, MDA上方
+  html+='</table>';
+  
+  // Business — MDA (表下方)
   html+='<div class="analyst"><b>BUSINESS</b>'+bizHtml+'</div>';
 
   // Management Discussion & Analysis (中栏, Business下方)
@@ -405,8 +411,17 @@ var DATA = {DATA_JS};
 
   // ECharts
   setTimeout(function(){{
-    var dates=kl.map(function(k){{return k.date;}}),
-        ohlc=kl.map(function(k){{return [k.open,k.close,k.low,k.high];}});
+    // 补齐K线起始前的空年份，对齐指标表列
+    var padMonths=[], padOHLC=[], firstKL=kl.length>0?kl[0].date:null;
+    if(firstKL && showYears.length>0){{
+      var beginYr=parseInt(showYears[0],10), endYr=parseInt(firstKL.substring(0,4),10), endMo=parseInt(firstKL.substring(5,7),10);
+      for(var y=beginYr; y<=endYr; y++){{
+        var maxM=(y===endYr)?endMo-1:12;
+        for(var m=1; m<=maxM; m++){{padMonths.push(y+'-'+(m<10?'0'+m:''+m));padOHLC.push([null,null,null,null]);}}
+      }}
+    }}
+    var dates=padMonths.concat(kl.map(function(k){{return k.date;}})),
+        ohlc=padOHLC.concat(kl.map(function(k){{return [k.open,k.close,k.low,k.high];}}));
 
     // RS line
     var rsStock=[], rsHsi=[], rsDates=[];
@@ -448,14 +463,24 @@ var DATA = {DATA_JS};
         lineStyle:{{color:'#999',width:1,type:'dotted'}},symbol:'none',yAxisIndex:1}});
     }}
 
+    // 年分隔线
+    var yearLines=[];
+    dates.forEach(function(d,i){{if(d.endsWith('-01'))yearLines.push({{xAxis:i,lineStyle:{{color:'#ccc',width:1,type:'solid'}}}});}});
+    series[0].markLine={{silent:true,animation:false,symbol:'none',data:yearLines,label:{{show:false}}}};
+
     echarts.init(document.getElementById('chart_kline')).setOption({{
       tooltip:{{trigger:'axis'}},
-      grid:{{left:45,right:50,top:2,bottom:18}},
-      xAxis:{{type:'category',data:dates,axisLabel:{{fontSize:6}}}},
+      grid:{{left:0,right:18,top:2,bottom:20}},
+      xAxis:{{type:'category',data:dates,boundaryGap:false,
+        axisLabel:{{fontSize:6.5,color:'#666',fontWeight:700,margin:2,
+          formatter:function(v){{return v&&v.endsWith('-01')?v.slice(0,4):'';}},
+          interval:0,showMinLabel:true,showMaxLabel:true}},
+        axisLine:{{show:true,lineStyle:{{color:'#999',width:0.5}}}},
+        axisTick:{{show:false}},
+        splitLine:{{show:true,lineStyle:{{color:'#ccc',width:0.5}}}}}},
       yAxis:[
-        {{type:'log',scale:true,axisLabel:{{fontSize:7}}}},
-        {{type:'value',axisLabel:{{fontSize:7}},splitLine:{{show:false}}}}
-      ],
+        {{type:'log',scale:true,axisLabel:{{fontSize:6}},position:'right'}},
+        {{type:'value',axisLabel:{{fontSize:6}},splitLine:{{show:false}},position:'right'}}],
       series:series
     }});
 
@@ -466,7 +491,13 @@ var DATA = {DATA_JS};
 </html>'''
 
 out_path = os.path.join(BASE, "report.html")
-with open(out_path, "w", encoding="utf-8") as f:
-    f.write(HTML)
+out_alt = os.path.join(os.environ.get("TEMP", os.environ.get("TMP", "/tmp")), "vl_report.html")
+try:
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(HTML)
+except Exception:
+    with open(out_alt, "w", encoding="utf-8") as f:
+        f.write(HTML)
+    out_path = out_alt
 print(f"Generated: {out_path} ({len(HTML)} chars)")
 print(f"  Layout: Left(275px) + Center(flex) — Value Line classic 2-column")

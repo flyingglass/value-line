@@ -242,15 +242,41 @@ def fetch_hk_financials(store, code):
     # 分红
     print("  [hk_dividend] ", end="", flush=True)
     df = ak.stock_hk_dividend_payout_em(symbol=code)
+    cols = df.columns.tolist()
+    # 列名编码乱码, 通过内容特征自动识别各列
+    col_fy = None   # 财政年度 (4位数字)
+    col_txt = None  # 分红方案 (含数字和"港"/"美"字)
+    date_cols = []
+    for i, c in enumerate(cols):
+        val = str(df.iloc[0][c])
+        if val.isdigit() and len(val) == 4:
+            col_fy = i
+        elif any(k in val for k in ["0.", "1.", "2.", "3."]):  # 包含小数点的文本列
+            col_txt = i
+        if val.count("-") == 2 and len(val) == 10:
+            date_cols.append(i)
+
+    # 收集所有行, 按财政年度汇总 (普通+特别合算)
+    div_map = {}
     for _, r in df.iterrows():
+        fy = str(r.iloc[col_fy]) if col_fy is not None else str(r.iloc[1])
+        txt = str(r.iloc[col_txt]) if col_txt is not None else ""
+        
+        nums = re.findall(r"([\d.]+)", txt)
+        dps_nums = [float(n) for n in nums if n.count(".") == 1]
+        dps = dps_nums[-1] if len(dps_nums) >= 2 else (dps_nums[0] if dps_nums else 0.0)
+        
+        if fy in div_map:
+            div_map[fy]["dps"] += dps  # 叠加特别股息
+        else:
+            ex = str(r.iloc[date_cols[0]]) if len(date_cols) > 0 else ""
+            pay = str(r.iloc[date_cols[-1]]) if len(date_cols) > 1 else ""
+            div_map[fy] = {"dps": dps, "ex": ex, "pay": pay}
+    
+    for fy, data in div_map.items():
         store.conn.execute(
             "INSERT OR REPLACE INTO dividend VALUES (?,?,?,?,?,?)",
-            (str(r.get("财政年度", "")),
-             float(r.get("每股派息", 0)) if "每股派息" in df.columns else 0,
-             0.0,
-             str(r.get("除净日", "")),
-             str(r.get("发放日", "")),
-             float(r.get("总派息", 0)) if "总派息" in df.columns else 0))
+            (fy, data["dps"], 0.0, data["ex"], data["pay"], 0.0))
     store.conn.commit()
     print(f"OK {len(df)}条")
 
@@ -264,6 +290,12 @@ def _supplement_dividend(store, code):
         "09992": {
             "2021": 0.1533, "2022": 0.1472, "2023": 0.3096,
             "2024": 0.9970, "2025": 0.3630,
+        },
+        "09988": {  # 阿里巴巴 年度股息(美元→HKD)
+            "2022": 0.976,   # 0.125 USD = 0.976 HKD
+            "2023": 1.571,   # 0.125+0.0825 USD = 1.571 HKD
+            "2024": 1.951,   # 0.13125+0.11875 USD = 1.951 HKD
+            "2025": 1.028,   # 0.13125 USD = 1.028 HKD
         }
     }
     if code not in KNOWN_DPS:

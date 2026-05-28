@@ -230,43 +230,151 @@ def _compute_pe_metrics(table, reader, market="hk"):
             row["PE_RELATIVE"] = round(pe_avg / mkt_pe, 2)
 
 
+def _detect_freq(reader, yr):
+    """检测该年度可用报告频率: 'quarterly' | 'semi_annual' | 'annual'"""
+    # 检查是否有03-31和09-30的季报数据
+    stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
+    fye = stock.get("fiscal_yr_end", "12-31")
+    # 9-30 和 03-31 两个季报点都存在则判断为有季报
+    q1 = None
+    for patch in ("-03-31", "-09-30"):
+        d = f"{yr}{patch}"
+        v = reader.financial_item_by_code("income", "004001001", d)
+        if v is not None:
+            q1 = patch
+        else:
+            break
+    return "quarterly" if q1 else None
+
+def _single_q(cumulative, prev):
+    """从累计值计算单季值"""
+    return (cumulative - prev) if cumulative is not None and prev is not None else None
+
+def _q_dates(yr, fye):
+    """返回该财年4个季度/半年报告日期列表 (从远到近)"""
+    y = int(yr)
+    if fye == "03-31":
+        # 3月底财年: Q1=06-30(上年), H1=09-30(上年), 9M=12-31(上年), FY=03-31(本年)
+        return [f"{y-1}-06-30", f"{y-1}-09-30", f"{y-1}-12-31", f"{y}-03-31"]
+    else:
+        # 标准财年: Q1=03-31, H1=06-30, 9M=09-30, FY=12-31
+        return [f"{y}-03-31", f"{y}-06-30", f"{y}-09-30", f"{y}-12-31"]
+
 def build_semi_annual(reader, years, metrics):
-    """从 income 表构建半年度数据 (H1/H2/Annual)"""
-    semi = {}
-    # STD_ITEM_CODE: 004001001=营收, 004025002=归母净利, 004027002=EPS
+    """从 income 表构建季度或半年度数据"""
+    qtr = {"sales": [], "eps": [], "dividends": []}
+    stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
+    fye = stock.get("fiscal_yr_end", "12-31")
+    
     for yr in years:
-        h1_date = f"{yr}-06-30"
-        ann_date = _fye(yr)
-        h1_rev = reader.financial_item_by_code("income", "004001001", h1_date)
-        h1_np  = reader.financial_item_by_code("income", "004025002", h1_date)
-        h1_eps = reader.financial_item_by_code("income", "004027002", h1_date)
-
-        if h1_rev is None or h1_np is None:
-            continue
-
+        qd = _q_dates(yr, fye)  # [q1, h1, 9m, fy]
+        c1 = reader.financial_item_by_code("income", "004001001", qd[0])  # Q1 cumulative
+        c2 = reader.financial_item_by_code("income", "004001001", qd[1])  # H1 cumulative
+        c3 = reader.financial_item_by_code("income", "004001001", qd[2])  # 9M cumulative
+        ca = reader.financial_item_by_code("income", "004001001", qd[3])  # FY cumulative
+        n1 = reader.financial_item_by_code("income", "004025002", qd[0])
+        n2 = reader.financial_item_by_code("income", "004025002", qd[1])
+        n3 = reader.financial_item_by_code("income", "004025002", qd[2])
+        na = reader.financial_item_by_code("income", "004025002", qd[3])
+        e1 = reader.financial_item_by_code("income", "004027002", qd[0])
+        e2 = reader.financial_item_by_code("income", "004027002", qd[1])
+        e3 = reader.financial_item_by_code("income", "004027002", qd[2])
+        ea = reader.financial_item_by_code("income", "004027002", qd[3])
+        
+        # 判断是否有季报：c1 和 c2 都存在
+        is_q = c1 is not None and c2 is not None
+        
+        if is_q:
+            # 单季营收
+            sq2 = _single_q(c2, c1)
+            sq3 = _single_q(c3, c2)
+            sq4 = _single_q(ca, c3)
+            # 单季净利
+            sn2 = _single_q(n2, n1)
+            sn3 = _single_q(n3, n2)
+            sn4 = _single_q(na, n3)
+            # 单季EPS
+            se2 = _single_q(e2, e1)
+            se3 = _single_q(e3, e2)
+            se4 = _single_q(ea, e3)
+            
+            ann_rev = (ca / 1e8) if ca else 0
+            ann_np  = (na / 1e8) if na else 0
+            
+            q1_rev = (c1 / 1e8) if c1 else None
+            q2_rev = (sq2 / 1e8) if sq2 is not None else None
+            q3_rev = (sq3 / 1e8) if sq3 is not None else None
+            q4_rev = (sq4 / 1e8) if sq4 is not None else None
+            
+            q1_eps = e1 if e1 is not None else None
+            q2_eps = se2 if se2 is not None else None
+            q3_eps = se3 if se3 is not None else None
+            q4_eps = se4 if se4 is not None else None
+            
+            if q1_rev is not None:
+                qtr["sales"].append({
+                    "year": yr, "has_quarter": True,
+                    "q1": round(q1_rev, 1), "q2": round(q2_rev, 1) if q2_rev is not None else None,
+                    "q3": round(q3_rev, 1) if q3_rev is not None else None, "q4": round(q4_rev, 1) if q4_rev is not None else None,
+                    "full": round(ann_rev, 1)
+                })
+            if q1_eps is not None:
+                qtr["eps"].append({
+                    "year": yr, "has_quarter": True,
+                    "q1": round(q1_eps, 2), "q2": round(q2_eps, 2) if q2_eps is not None else None,
+                    "q3": round(q3_eps, 2) if q3_eps is not None else None, "q4": round(q4_eps, 2) if q4_eps is not None else None,
+                    "full": round(ea, 2) if ea else 0
+                })
+        else:
+            # 半年度 (H1/H2) — 取中间点 qd[1] (06-30) 作为 H1
+            h1_d = qd[1]
+            h1_rev = reader.financial_item_by_code("income", "004001001", h1_d)
+            h1_np  = reader.financial_item_by_code("income", "004025002", h1_d)
+            h1_eps = reader.financial_item_by_code("income", "004027002", h1_d)
+            
+            if h1_rev is None or h1_np is None:
+                continue
+                
+            ann = metrics.get(yr, {})
+            ann_rev_metric = ann.get("OPERATE_INCOME")
+            ann_np_metric  = ann.get("HOLDER_PROFIT")
+            ann_eps_metric = ann.get("BASIC_EPS")
+            
+            h1_rev_b = h1_rev / 1e8
+            h1_np_b  = h1_np / 1e8
+            h2_rev_b = max(0, ann_rev_metric - h1_rev_b) if ann_rev_metric else 0
+            h2_np_b  = max(0, ann_np_metric - h1_np_b) if ann_np_metric else 0
+            
+            qtr["sales"].append({
+                "year": yr, "has_quarter": False,
+                "q1": round(h1_rev_b, 1), "q3": round(h2_rev_b, 1), "full": round(ann_rev_metric, 1)
+            })
+            if h1_eps and ann_eps_metric:
+                h1_eps_v = h1_eps
+                h2_eps_v = max(0, ann_eps_metric - h1_eps)
+                qtr["eps"].append({
+                    "year": yr, "has_quarter": False,
+                    "q1": round(h1_eps_v, 2), "q3": round(h2_eps_v, 2), "full": round(ann_eps_metric, 2)
+                })
+    
+    # 股息数据 (年度)
+    for yr in years:
+        if reader:
+            row = reader.conn.execute(
+                "SELECT cash_dps, total_amount FROM dividend WHERE report_year=?",
+                (yr,)
+            ).fetchone()
+        else:
+            row = None
+        dps_val = (row[0] or 0) if row else 0
         ann = metrics.get(yr, {})
-        ann_rev = ann.get("OPERATE_INCOME")
-        ann_np  = ann.get("HOLDER_PROFIT")
-        ann_eps = ann.get("BASIC_EPS")
-
-        h1_rev_b = h1_rev / 1e8  # 元→亿
-        h1_np_b  = h1_np / 1e8
-        h2_rev_b = max(0, ann_rev - h1_rev_b) if ann_rev else 0
-        h2_np_b  = max(0, ann_np - h1_np_b) if ann_np else 0
-
-        semi[yr] = {
-            "h1_revenue":       round(h1_rev_b, 2),
-            "h2_revenue":       round(h2_rev_b, 2),
-            "annual_revenue":   round(ann_rev, 2) if ann_rev else 0,
-            "h1_net_profit":    round(h1_np_b, 2),
-            "h2_net_profit":    round(h2_np_b, 2),
-            "annual_net_profit": round(ann_np, 2) if ann_np else 0,
-            "h1_eps":           round(h1_eps, 2) if h1_eps else None,
-            "h2_eps":           round(ann_eps - h1_eps, 2) if ann_eps and h1_eps else None,
-            "annual_eps":       ann_eps,
-        }
-    return semi
-
+        full = ann.get("DPS", 0) or 0
+        qtr["dividends"].append({
+            "year": yr, "has_quarter": False,
+            "q1": 0, "q3": round(full, 3), "full": round(full, 3)
+        })
+    
+    return qtr
 
 def calc_cagr(values, n_years):
     if len(values) < 2: return None
@@ -559,38 +667,6 @@ def _build_annual_rates(metrics, years):
     }
 
 
-def _build_quarterly(semi_annual, metrics, years):
-    """QUARTERLY TABLES — 港股用H1/H2代替Q1-Q4 (无季报)"""
-    # 最多显示5年
-    recent = years[-5:] if len(years) >= 5 else years
-    tables = {"sales": [], "eps": [], "dividends": []}
-
-    for yr in recent:
-        sa = semi_annual.get(yr, {})
-        ann = metrics.get(yr, {})
-        h1_eps = sa.get("h1_eps")
-        h2_eps = sa.get("h2_eps")
-        ann_eps = ann.get("BASIC_EPS")
-        h1_rev = sa.get("h1_revenue", 0)
-        h2_rev = sa.get("h2_revenue", 0)
-        ann_rev = sa.get("annual_revenue", 0)
-        dps_val = ann.get("DPS", 0) or 0
-
-        tables["sales"].append({
-            "year": yr, "q1q2": round(h1_rev, 1), "q3q4": round(h2_rev, 1),
-            "full": round(ann_rev, 1)
-        })
-        tables["eps"].append({
-            "year": yr, "q1q2": h1_eps, "q3q4": h2_eps, "full": ann_eps
-        })
-        # 股息只有年度数据
-        tables["dividends"].append({
-            "year": yr, "q1q2": 0, "q3q4": dps_val, "full": dps_val
-        })
-
-    return tables
-
-
 def _calc_position(spot, kline, metrics, years):
     """计算当前估值在历史区间的位置"""
     result = {}
@@ -791,7 +867,7 @@ def build_report(code=None):
     annual_rates = _build_annual_rates(metrics, years)
 
     # 4. QUARTERLY TABLES (港股: H1/H2代替)
-    quarterly = _build_quarterly(semi_annual, metrics, years)
+    quarterly = build_semi_annual(reader, years, metrics)
 
     # Current Position 估值定位 (图表用)
     position = _calc_position(spot, kline, metrics, years)
@@ -940,7 +1016,7 @@ def build_report(code=None):
                         for m in config.VL_METRICS],
         "data": metrics,
         "cagr": cagr,
-        "semi_annual": semi_annual,
+        "quarterly": semi_annual,
         "cf_line": cf_line,
         "balance_summary": balance_summary,
         "income_summary": income_summary,
@@ -955,15 +1031,23 @@ def build_report(code=None):
         "validation": validation,
     }
 
-    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "report_data.json")
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(report, f, ensure_ascii=False, indent=2, default=str)
-
+    out_dir = os.path.dirname(os.path.abspath(__file__))
+    out_path = os.path.join(out_dir, "report_data.json")
+    out_tmp = out_path + ".tmp"
+    try:
+        with open(out_tmp, "w", encoding="utf-8") as f:
+            json.dump(report, f, ensure_ascii=False, indent=2, default=str)
+        os.replace(out_tmp, out_path)
+    except Exception:
+        out_path2 = os.path.join(os.environ.get("TEMP", "/tmp"), "report_data.json")
+        with open(out_path2, "w", encoding="utf-8") as f:
+            json.dump(report, f, ensure_ascii=False, indent=2, default=str)
+        out_path = out_path2
     reader.close()
-    print(f"report_data.json 生成完成 ({len(json.dumps(report))} 字符)")
+    print(f"report_data.json 写入: {out_path}")
     print(f"  年数: {len(years)} ({years[0]}-{years[-1]})")
     print(f"  K线: {len(kline)} 个月 | HSI: {len(index_kline)} 个月")
-    print(f"  半年度: {len(semi_annual)} 年")
+    print(f"  季度/半年: {len(quarterly.get('sales',[]))} 年")
     return out_path
 
 

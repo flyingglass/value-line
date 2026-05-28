@@ -10,7 +10,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-05-27 20:01:22.746020"
+    "generated": "2026-05-28 15:55:42.369087"
   },
   "spot": {
     "price": 124.3,
@@ -1730,8 +1730,8 @@
       "date": "2026-05",
       "open": 26138.34,
       "high": 26844.8,
-      "low": 25341.73,
-      "close": 25599.44922
+      "low": 25258.03,
+      "close": 25328.23047
     }
   ],
   "years": [
@@ -2041,7 +2041,7 @@
       "PER_NETCASH": 6.582605462184,
       "BASIC_EPS": 2.87,
       "BPS": 49.920825707145,
-      "DPS": 0.0,
+      "DPS": 0.975932,
       "CAPEX_PS": 2.4580734985786066,
       "TOTAL_SHARES": 21687.3092,
       "OPERATE_INCOME": 8530.62,
@@ -2055,19 +2055,20 @@
       "TOTAL_EQUITY": 10821.93,
       "ROIC_YEARLY": 4.764450581138,
       "ROE_AVG": 6.537809362819,
-      "RETAINED_RATIO": 5.752116304577834,
-      "PAYOUT_RATIO": 0.0,
+      "RETAINED_RATIO": 3.7963340141569573,
+      "PAYOUT_RATIO": 34.00459930313589,
       "DEBT_ASSET_RATIO": 36.1746285725,
       "PE_AVG": 31.4,
       "PE_RELATIVE": 4.19,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 1.1
     },
     "2023": {
       "PER_OI": 42.321263295615,
       "PER_NETCASH": 9.73164901262,
       "BASIC_EPS": 3.46,
       "BPS": 52.076864099047,
-      "DPS": 0.0,
+      "DPS": 1.620841,
       "CAPEX_PS": 1.6725114672355497,
       "TOTAL_SHARES": 20526.017712,
       "OPERATE_INCOME": 8686.87,
@@ -2081,19 +2082,20 @@
       "TOTAL_EQUITY": 11229.21,
       "ROIC_YEARLY": 5.165307144976,
       "ROE_AVG": 7.435755847958,
-      "RETAINED_RATIO": 6.481577956062804,
-      "PAYOUT_RATIO": 0.0,
+      "RETAINED_RATIO": 3.5188217982978505,
+      "PAYOUT_RATIO": 46.84511560693642,
       "DEBT_ASSET_RATIO": 35.9445056713,
       "PE_AVG": 24.0,
       "PE_RELATIVE": 2.67,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 2.0
     },
     "2024": {
       "PER_OI": 48.341561597858,
       "PER_NETCASH": 9.378592086469,
       "BASIC_EPS": 3.95,
       "BPS": 51.959999013307,
-      "DPS": 0.0,
+      "DPS": 1.9510839999999998,
       "CAPEX_PS": 1.6480965002958914,
       "TOTAL_SHARES": 19469.126956,
       "OPERATE_INCOME": 9411.68,
@@ -2107,19 +2109,20 @@
       "TOTAL_EQUITY": 11125.99,
       "ROIC_YEARLY": 5.638548392155,
       "ROE_AVG": 8.013774128137,
-      "RETAINED_RATIO": 7.191180290473027,
-      "PAYOUT_RATIO": 0.0,
+      "RETAINED_RATIO": 3.777021002371897,
+      "PAYOUT_RATIO": 49.394531645569614,
       "DEBT_ASSET_RATIO": 36.9571216248,
       "PE_AVG": 19.6,
       "PE_RELATIVE": 2.31,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 2.5
     },
     "2025": {
       "PER_OI": 52.444042035501,
       "PER_NETCASH": 8.606512459196,
       "BASIC_EPS": 6.89,
       "BPS": 53.226028758476,
-      "DPS": 0.0,
+      "DPS": 1.027545,
       "CAPEX_PS": null,
       "TOTAL_SHARES": 18998.287724,
       "OPERATE_INCOME": 9963.47,
@@ -2133,12 +2136,13 @@
       "TOTAL_EQUITY": 10901.06,
       "ROIC_YEARLY": 8.698340877837,
       "ROE_AVG": 12.889461934385,
-      "RETAINED_RATIO": 11.93544480995426,
-      "PAYOUT_RATIO": 0.0,
+      "RETAINED_RATIO": 10.144646891278686,
+      "PAYOUT_RATIO": 14.913570391872277,
       "DEBT_ASSET_RATIO": 39.5804408204,
       "PE_AVG": 18.5,
       "PE_RELATIVE": 2.31,
-      "PE_TTM": null
+      "PE_TTM": null,
+      "DIV_YIELD": 0.8
     },
     "2026": {
       "PER_OI": 53.499908998205,
@@ -2187,8 +2191,8 @@
       "10yr": null
     },
     "dividend": {
-      "1yr": null,
-      "3yr": null,
+      "1yr": -47.3,
+      "3yr": 1.7,
       "5yr": null,
       "10yr": null
     },
@@ -2199,95 +2203,220 @@
       "10yr": null
     }
   },
-  "semi_annual": {
-    "2018": {
-      "h1_revenue": 809.2,
-      "h2_revenue": 1693.46,
-      "annual_revenue": 2502.66,
-      "h1_net_profit": 87.2,
-      "h2_net_profit": 553.73,
-      "annual_net_profit": 640.93,
-      "h1_eps": 0.42,
-      "h2_eps": 2.71,
-      "annual_eps": 3.13
-    },
-    "2019": {
-      "h1_revenue": 1149.24,
-      "h2_revenue": 2619.2,
-      "annual_revenue": 3768.44,
-      "h1_net_profit": 214.48,
-      "h2_net_profit": 664.38,
-      "annual_net_profit": 878.86,
-      "h1_eps": 1.02,
-      "h2_eps": 3.22,
-      "annual_eps": 4.24
-    },
-    "2020": {
-      "h1_revenue": 1537.51,
-      "h2_revenue": 3559.6,
-      "annual_revenue": 5097.11,
-      "h1_net_profit": 475.33,
-      "h2_net_profit": 1019.0,
-      "annual_net_profit": 1494.33,
-      "h1_eps": 2.21,
-      "h2_eps": 4.89,
-      "annual_eps": 7.1
-    },
-    "2021": {
-      "h1_revenue": 2057.4,
-      "h2_revenue": 5115.49,
-      "annual_revenue": 7172.89,
-      "h1_net_profit": 450.68,
-      "h2_net_profit": 1055.1,
-      "annual_net_profit": 1505.78,
-      "h1_eps": 2.08,
-      "h2_eps": 4.87,
-      "annual_eps": 6.95
-    },
-    "2022": {
-      "h1_revenue": 2055.55,
-      "h2_revenue": 6475.07,
-      "annual_revenue": 8530.62,
-      "h1_net_profit": 226.59,
-      "h2_net_profit": 395.9,
-      "annual_net_profit": 622.49,
-      "h1_eps": 1.07,
-      "h2_eps": 1.8,
-      "annual_eps": 2.87
-    },
-    "2023": {
-      "h1_revenue": 2341.56,
-      "h2_revenue": 6345.31,
-      "annual_revenue": 8686.87,
-      "h1_net_profit": 342.42,
-      "h2_net_profit": 385.41,
-      "annual_net_profit": 727.83,
-      "h1_eps": 1.68,
-      "h2_eps": 1.78,
-      "annual_eps": 3.46
-    },
-    "2024": {
-      "h1_revenue": 2432.36,
-      "h2_revenue": 6979.32,
-      "annual_revenue": 9411.68,
-      "h1_net_profit": 243.9,
-      "h2_net_profit": 556.19,
-      "annual_net_profit": 800.09,
-      "h1_eps": 1.26,
-      "h2_eps": 2.69,
-      "annual_eps": 3.95
-    },
-    "2025": {
-      "h1_revenue": 2476.52,
-      "h2_revenue": 7486.95,
-      "annual_revenue": 9963.47,
-      "h1_net_profit": 406.49,
-      "h2_net_profit": 894.6,
-      "annual_net_profit": 1301.09,
-      "h1_eps": 2.32,
-      "h2_eps": 4.57,
-      "annual_eps": 6.89
-    }
+  "quarterly": {
+    "sales": [
+      {
+        "year": "2019",
+        "has_quarter": true,
+        "q1": 809.2,
+        "q2": 851.5,
+        "q3": 1172.8,
+        "q4": 935.0,
+        "full": 3768.4
+      },
+      {
+        "year": "2020",
+        "has_quarter": true,
+        "q1": 1149.2,
+        "q2": 1190.2,
+        "q3": 1614.6,
+        "q4": 1143.1,
+        "full": 5097.1
+      },
+      {
+        "year": "2021",
+        "has_quarter": true,
+        "q1": 1537.5,
+        "q2": 1550.6,
+        "q3": 2210.8,
+        "q4": 1874.0,
+        "full": 7172.9
+      },
+      {
+        "year": "2022",
+        "has_quarter": true,
+        "q1": 2057.4,
+        "q2": 2006.9,
+        "q3": 2425.8,
+        "q4": 2040.5,
+        "full": 8530.6
+      },
+      {
+        "year": "2023",
+        "has_quarter": true,
+        "q1": 2055.6,
+        "q2": 2071.8,
+        "q3": 2477.6,
+        "q4": 2082.0,
+        "full": 8686.9
+      },
+      {
+        "year": "2024",
+        "has_quarter": true,
+        "q1": 2341.6,
+        "q2": 2247.9,
+        "q3": 2603.5,
+        "q4": 2218.7,
+        "full": 9411.7
+      },
+      {
+        "year": "2025",
+        "has_quarter": true,
+        "q1": 2432.4,
+        "q2": 2365.0,
+        "q3": 2801.5,
+        "q4": 2364.5,
+        "full": 9963.5
+      },
+      {
+        "year": "2026",
+        "has_quarter": true,
+        "q1": 2476.5,
+        "q2": 2477.9,
+        "q3": 2848.4,
+        "q4": 2433.8,
+        "full": 10236.7
+      }
+    ],
+    "eps": [
+      {
+        "year": "2019",
+        "has_quarter": true,
+        "q1": 0.42,
+        "q2": 0.97,
+        "q3": 1.6,
+        "q4": 1.25,
+        "full": 4.24
+      },
+      {
+        "year": "2020",
+        "has_quarter": true,
+        "q1": 1.02,
+        "q2": 3.49,
+        "q3": 2.49,
+        "q4": 0.1,
+        "full": 7.1
+      },
+      {
+        "year": "2021",
+        "has_quarter": true,
+        "q1": 2.21,
+        "q2": 1.33,
+        "q3": 3.67,
+        "q4": -0.26,
+        "full": 6.95
+      },
+      {
+        "year": "2022",
+        "has_quarter": true,
+        "q1": 2.08,
+        "q2": 0.25,
+        "q3": 1.29,
+        "q4": -0.75,
+        "full": 2.87
+      },
+      {
+        "year": "2023",
+        "has_quarter": true,
+        "q1": 1.07,
+        "q2": -0.97,
+        "q3": 2.22,
+        "q4": 1.14,
+        "full": 3.46
+      },
+      {
+        "year": "2024",
+        "has_quarter": true,
+        "q1": 1.68,
+        "q2": 1.36,
+        "q3": 0.72,
+        "q4": 0.19,
+        "full": 3.95
+      },
+      {
+        "year": "2025",
+        "has_quarter": true,
+        "q1": 1.26,
+        "q2": 2.32,
+        "q3": 2.62,
+        "q4": 0.69,
+        "full": 6.89
+      },
+      {
+        "year": "2026",
+        "has_quarter": true,
+        "q1": 2.32,
+        "q2": 1.13,
+        "q3": 0.88,
+        "q4": 1.37,
+        "full": 5.7
+      }
+    ],
+    "dividends": [
+      {
+        "year": "2018",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 0,
+        "full": 0
+      },
+      {
+        "year": "2019",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 0,
+        "full": 0
+      },
+      {
+        "year": "2020",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 0,
+        "full": 0
+      },
+      {
+        "year": "2021",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 0,
+        "full": 0
+      },
+      {
+        "year": "2022",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 0.976,
+        "full": 0.976
+      },
+      {
+        "year": "2023",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 1.621,
+        "full": 1.621
+      },
+      {
+        "year": "2024",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 1.951,
+        "full": 1.951
+      },
+      {
+        "year": "2025",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 1.028,
+        "full": 1.028
+      },
+      {
+        "year": "2026",
+        "has_quarter": false,
+        "q1": 0,
+        "q3": 0,
+        "full": 0
+      }
+    ]
   },
   "cf_line": [
     {
@@ -2454,8 +2583,8 @@
       "10yr": null
     },
     "dividends": {
-      "1yr": null,
-      "3yr": null,
+      "1yr": -47.3,
+      "3yr": 1.7,
       "5yr": null,
       "10yr": null
     },
@@ -2466,104 +2595,6 @@
       "10yr": null
     },
     "has_10yr": false
-  },
-  "quarterly": {
-    "sales": [
-      {
-        "year": "2022",
-        "q1q2": 2055.6,
-        "q3q4": 6475.1,
-        "full": 8530.6
-      },
-      {
-        "year": "2023",
-        "q1q2": 2341.6,
-        "q3q4": 6345.3,
-        "full": 8686.9
-      },
-      {
-        "year": "2024",
-        "q1q2": 2432.4,
-        "q3q4": 6979.3,
-        "full": 9411.7
-      },
-      {
-        "year": "2025",
-        "q1q2": 2476.5,
-        "q3q4": 7486.9,
-        "full": 9963.5
-      },
-      {
-        "year": "2026",
-        "q1q2": 0,
-        "q3q4": 0,
-        "full": 0
-      }
-    ],
-    "eps": [
-      {
-        "year": "2022",
-        "q1q2": 1.07,
-        "q3q4": 1.8,
-        "full": 2.87
-      },
-      {
-        "year": "2023",
-        "q1q2": 1.68,
-        "q3q4": 1.78,
-        "full": 3.46
-      },
-      {
-        "year": "2024",
-        "q1q2": 1.26,
-        "q3q4": 2.69,
-        "full": 3.95
-      },
-      {
-        "year": "2025",
-        "q1q2": 2.32,
-        "q3q4": 4.57,
-        "full": 6.89
-      },
-      {
-        "year": "2026",
-        "q1q2": null,
-        "q3q4": null,
-        "full": 5.7
-      }
-    ],
-    "dividends": [
-      {
-        "year": "2022",
-        "q1q2": 0,
-        "q3q4": 0,
-        "full": 0
-      },
-      {
-        "year": "2023",
-        "q1q2": 0,
-        "q3q4": 0,
-        "full": 0
-      },
-      {
-        "year": "2024",
-        "q1q2": 0,
-        "q3q4": 0,
-        "full": 0
-      },
-      {
-        "year": "2025",
-        "q1q2": 0,
-        "q3q4": 0,
-        "full": 0
-      },
-      {
-        "year": "2026",
-        "q1q2": 0,
-        "q3q4": 0,
-        "full": 0
-      }
-    ]
   },
   "yearly_hl": [
     {
@@ -2652,200 +2683,7 @@
     "recommendation": ""
   },
   "validation": {
-    "checked": [
-      {
-        "year": "2018",
-        "metric": "Revenue H1+H2=Annual",
-        "summary": "Revenue: H1+H2=2502.7 vs Annual=2502.7",
-        "h1h2": 2502.66,
-        "annual": 2502.66,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2018",
-        "metric": "NetProfit H1+H2=Annual",
-        "summary": "NP: H1+H2=640.9 vs Annual=640.9",
-        "h1h2": 640.93,
-        "annual": 640.93,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2018",
-        "metric": "EPS H1+H2=Annual",
-        "summary": "EPS: H1+H2=3.13 vs Annual=3.13",
-        "h1h2": 3.13,
-        "annual": 3.13,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2019",
-        "metric": "Revenue H1+H2=Annual",
-        "summary": "Revenue: H1+H2=3768.4 vs Annual=3768.4",
-        "h1h2": 3768.44,
-        "annual": 3768.44,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2019",
-        "metric": "NetProfit H1+H2=Annual",
-        "summary": "NP: H1+H2=878.9 vs Annual=878.9",
-        "h1h2": 878.86,
-        "annual": 878.86,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2019",
-        "metric": "EPS H1+H2=Annual",
-        "summary": "EPS: H1+H2=4.24 vs Annual=4.24",
-        "h1h2": 4.24,
-        "annual": 4.24,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2020",
-        "metric": "Revenue H1+H2=Annual",
-        "summary": "Revenue: H1+H2=5097.1 vs Annual=5097.1",
-        "h1h2": 5097.11,
-        "annual": 5097.11,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2020",
-        "metric": "NetProfit H1+H2=Annual",
-        "summary": "NP: H1+H2=1494.3 vs Annual=1494.3",
-        "h1h2": 1494.33,
-        "annual": 1494.33,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2020",
-        "metric": "EPS H1+H2=Annual",
-        "summary": "EPS: H1+H2=7.10 vs Annual=7.10",
-        "h1h2": 7.1,
-        "annual": 7.1,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2021",
-        "metric": "Revenue H1+H2=Annual",
-        "summary": "Revenue: H1+H2=7172.9 vs Annual=7172.9",
-        "h1h2": 7172.89,
-        "annual": 7172.89,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2021",
-        "metric": "NetProfit H1+H2=Annual",
-        "summary": "NP: H1+H2=1505.8 vs Annual=1505.8",
-        "h1h2": 1505.78,
-        "annual": 1505.78,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2021",
-        "metric": "EPS H1+H2=Annual",
-        "summary": "EPS: H1+H2=6.95 vs Annual=6.95",
-        "h1h2": 6.95,
-        "annual": 6.95,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2022",
-        "metric": "Revenue H1+H2=Annual",
-        "summary": "Revenue: H1+H2=8530.6 vs Annual=8530.6",
-        "h1h2": 8530.62,
-        "annual": 8530.62,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2022",
-        "metric": "NetProfit H1+H2=Annual",
-        "summary": "NP: H1+H2=622.5 vs Annual=622.5",
-        "h1h2": 622.49,
-        "annual": 622.49,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2022",
-        "metric": "EPS H1+H2=Annual",
-        "summary": "EPS: H1+H2=2.87 vs Annual=2.87",
-        "h1h2": 2.87,
-        "annual": 2.87,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2023",
-        "metric": "Revenue H1+H2=Annual",
-        "summary": "Revenue: H1+H2=8686.9 vs Annual=8686.9",
-        "h1h2": 8686.87,
-        "annual": 8686.87,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2023",
-        "metric": "NetProfit H1+H2=Annual",
-        "summary": "NP: H1+H2=727.8 vs Annual=727.8",
-        "h1h2": 727.83,
-        "annual": 727.83,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2023",
-        "metric": "EPS H1+H2=Annual",
-        "summary": "EPS: H1+H2=3.46 vs Annual=3.46",
-        "h1h2": 3.46,
-        "annual": 3.46,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2024",
-        "metric": "Revenue H1+H2=Annual",
-        "summary": "Revenue: H1+H2=9411.7 vs Annual=9411.7",
-        "h1h2": 9411.68,
-        "annual": 9411.68,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2024",
-        "metric": "NetProfit H1+H2=Annual",
-        "summary": "NP: H1+H2=800.1 vs Annual=800.1",
-        "h1h2": 800.09,
-        "annual": 800.09,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2024",
-        "metric": "EPS H1+H2=Annual",
-        "summary": "EPS: H1+H2=3.95 vs Annual=3.95",
-        "h1h2": 3.95,
-        "annual": 3.95,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2025",
-        "metric": "Revenue H1+H2=Annual",
-        "summary": "Revenue: H1+H2=9963.5 vs Annual=9963.5",
-        "h1h2": 9963.47,
-        "annual": 9963.47,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2025",
-        "metric": "NetProfit H1+H2=Annual",
-        "summary": "NP: H1+H2=1301.1 vs Annual=1301.1",
-        "h1h2": 1301.09,
-        "annual": 1301.09,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2025",
-        "metric": "EPS H1+H2=Annual",
-        "summary": "EPS: H1+H2=6.89 vs Annual=6.89",
-        "h1h2": 6.89,
-        "annual": 6.89,
-        "diff_pct": 0.0
-      }
-    ],
+    "checked": [],
     "mismatches": [],
     "warnings": [],
     "sources": {
@@ -2857,7 +2695,7 @@
     },
     "status": "OK",
     "pdf_years": [],
-    "checks_passed": 24,
-    "checks_total": 24
+    "checks_passed": 0,
+    "checks_total": 0
   }
 }
