@@ -192,10 +192,24 @@ generate_report.py → report_data.json → report.html
 1. config.py → ACTIVE_STOCK
 2. python pdf_downloader.py     (PDF)
 3. python fetcher.py            (数据)
-4. python extract_pdf_metadata.py  (营收结构)
-5. python engine.py             (指标)
-6. python generate_report.py    (生成)
+4. python extract_pdf_metadata.py  (Business描述+员工)
+5. python extract_mda.py         (管理层讨论与分析)
+6. python engine.py             (指标)
+7. python generate_report.py    (生成)
 ```
+
+### 生成后必查清单
+
+| 区域 | 位置 | 检查 |
+|------|------|------|
+| Quarterly Sales (亿) | 左栏 | 有H1/H2数据 |
+| Earnings Per Share | 左栏 | 有H1/H2数据 |
+| Quarterly Divs Paid | 左栏 | 有股息数据 |
+| Business | 中栏底部 | 有公司描述 |
+| MDA | 中栏底部 | 有7板块文本 |
+| K线 | 中栏上部 | 有年份标签 |
+
+任一空白 → 追查数据源，不忽略。
 
 ### 文件清单
 
@@ -204,7 +218,8 @@ generate_report.py → report_data.json → report.html
 | `config.py` | 股票定义、指标列表、市场配置 | 换股票时改 ACTIVE_STOCK + 添加 STOCKS 条目 |
 | `pdf_downloader.py` | HKEX/巨潮 PDF 下载 + 4层校验 | 不改 |
 | `fetcher.py` | 从 AKShare 抓行情/财报/股息 | 不改 |
-| `extract_pdf_metadata.py` | 从 PDF 提取营收结构/业务描述 → SQLite | 不改 |
+| `extract_pdf_metadata.py` | 从 PDF 提取业务描述/员工数 → SQLite | 不改 |
+| `extract_mda.py` | 从 PDF+财务数据生成管理层讨论 → SQLite | 不改 |
 | `engine.py` | 计算 23 行指标 + 季度数据 + 估值 | 不改 |
 | `generate_report.py` | 套模板生成单页 HTML | 不改 |
 | `.workbuddy/style-reference.md` | 样式参考文档 | 只读 |
