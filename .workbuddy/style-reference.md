@@ -162,3 +162,34 @@ series[0].markLine = {silent:true, animation:false, symbol:'none', data:yearLine
 | grid.bottom | 20px |
 | 最大年份数 | 10 |
 | 季度表最近年数 | 5 |
+
+---
+
+## 七、生成流程
+
+```
+config.py → ACTIVE_STOCK
+     │
+     ▼
+fetcher.py → AKShare API → SQLite (data/{code}.db)
+     │         + PDF 营收结构提取
+     │         + 股息手动补充
+     ▼
+engine.py  → SQLite → report_data.json
+     │         (指标计算、交叉校验、估值定位)
+     ▼
+generate_report.py → report_data.json → report.html
+                      (套用统一样式模板)
+```
+
+每次换股票只需改 `config.py` 的 `ACTIVE_STOCK`，重新跑三步。
+
+### 文件清单
+
+| 文件 | 作用 | 是否需修改 |
+|------|------|-----------|
+| `config.py` | 股票定义、指标列表、市场配置 | 换股票时改 ACTIVE_STOCK |
+| `fetcher.py` | 从 AKShare 抓数据 + PDF 解析 | 不改 |
+| `engine.py` | 计算 23 行指标 + 季度数据 + 估值 | 不改 |
+| `generate_report.py` | 套模板生成单页 HTML | 不改 |
+| `.workbuddy/style-reference.md` | 样式参考文档 | 只读 |
