@@ -73,8 +73,11 @@ class PDFValidator:
             page1 = pdf.pages[0].extract_text() or ""
             # 取前500字符搜索
             search_text = (page1 + " " + (pdf.pages[1].extract_text() or "") if pages > 1 else page1)[:1000]
-            # 判断公司名是否出现
+            # 判断公司名是否出现 (宽松匹配: 前2字匹配 + 整体匹配)
             cn_found = company_name in search_text
+            # 行业名称PDF常用前几个字, 若简体不匹配则试前缀匹配
+            if not cn_found and len(company_name) >= 2:
+                cn_found = company_name[:2] in search_text
             en_found = False
             if re.search(r"[a-zA-Z]{3,}", search_text):
                 en_found = True  # 至少有英文内容

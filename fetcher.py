@@ -5,7 +5,7 @@ fetcher.py — AKShare 数据获取, 存入 SQLite
   不加参数: 使用 config.ACTIVE_STOCK
   加参数:   python fetcher.py 600519
 """
-import os, sys, time, sqlite3, json
+import os, sys, time, sqlite3, json, re
 import warnings
 warnings.filterwarnings("ignore")
 

@@ -171,9 +171,14 @@ series[0].markLine = {silent:true, animation:false, symbol:'none', data:yearLine
 config.py → ACTIVE_STOCK
      │
      ▼
+pdf_downloader.py → HKEX/巨潮 → data/pdfs/{code}/
+     │         (年报+中报 PDF, 自动校验)
+     ▼
 fetcher.py → AKShare API → SQLite (data/{code}.db)
-     │         + PDF 营收结构提取
-     │         + 股息手动补充
+     │         (行情/财报/指标/股息)
+     ▼
+extract_pdf_metadata.py → PDF → SQLite (营收结构/业务描述)
+     │
      ▼
 engine.py  → SQLite → report_data.json
      │         (指标计算、交叉校验、估值定位)
@@ -182,14 +187,24 @@ generate_report.py → report_data.json → report.html
                       (套用统一样式模板)
 ```
 
-每次换股票只需改 `config.py` 的 `ACTIVE_STOCK`，重新跑三步。
+每次换股票步骤:
+```
+1. config.py → ACTIVE_STOCK
+2. python pdf_downloader.py     (PDF)
+3. python fetcher.py            (数据)
+4. python extract_pdf_metadata.py  (营收结构)
+5. python engine.py             (指标)
+6. python generate_report.py    (生成)
+```
 
 ### 文件清单
 
 | 文件 | 作用 | 是否需修改 |
 |------|------|-----------|
-| `config.py` | 股票定义、指标列表、市场配置 | 换股票时改 ACTIVE_STOCK |
-| `fetcher.py` | 从 AKShare 抓数据 + PDF 解析 | 不改 |
+| `config.py` | 股票定义、指标列表、市场配置 | 换股票时改 ACTIVE_STOCK + 添加 STOCKS 条目 |
+| `pdf_downloader.py` | HKEX/巨潮 PDF 下载 + 4层校验 | 不改 |
+| `fetcher.py` | 从 AKShare 抓行情/财报/股息 | 不改 |
+| `extract_pdf_metadata.py` | 从 PDF 提取营收结构/业务描述 → SQLite | 不改 |
 | `engine.py` | 计算 23 行指标 + 季度数据 + 估值 | 不改 |
 | `generate_report.py` | 套模板生成单页 HTML | 不改 |
 | `.workbuddy/style-reference.md` | 样式参考文档 | 只读 |
