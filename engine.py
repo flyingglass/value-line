@@ -17,10 +17,57 @@ def _fye(yr):
     return f"{yr}-{fye}"
 
 
+# ============================================================
+# THS A股字段映射
+# ============================================================
+THS_INDICATOR_MAP = {
+    "operating_income_total": "OPERATE_INCOME",
+    "parent_holder_net_profit": "HOLDER_PROFIT",
+    "basic_eps": "BASIC_EPS",
+    "index_weighted_avg_roe": "ROE_AVG",
+    "index_per_operating_cash_flow_net": "PER_NETCASH_OPERATE",
+    "calc_per_net_assets": "BPS",
+    "assets_debt_ratio": "DEBT_ASSET_RATIO",
+    "sale_gross_margin": "GROSS_MARGIN",
+    "sale_net_interest_ratio": "NET_PROFIT_RATIO",
+}
+THS_FINANCIAL_MAP = {
+    # balance
+    "assets_total": "总资产",
+    "total_debt": "总负债",
+    "holder_equity_total": "总权益",
+    "total_current_assets": "流动资产合计",
+    "current_total_debt": "流动负债合计",
+    "total_cash": "现金及等价物",
+    "inventory": "存货",
+    "accounts_receivable": "应收帐款",
+    "fixed_assets_total": "固定资产",
+    "construction_in_process": "在建工程",
+    "intangible_assets": "无形资产",
+    "goodwill": "商誉",
+    "short_term_loans": "短期贷款",
+    "long_term_loan": "长期贷款",
+    "long_term_payable_total": "长期应付款",
+    "lease_debt": "融资租赁负债(非流动)",
+    "year_non_current_debt": "融资租赁负债(流动)",
+    # income
+    "operating_income_total": "营业额",
+    "operating_profit": "经营溢利",
+    "financial_interest_expenses": "融资成本",
+    "gross_profit": "毛利",
+    "parent_holder_net_profit": "股东应占溢利",
+    "operating_costs_total": "营业成本",
+    # cashflow
+    "fixed_assets_net_cash": "购建固定资产",
+    "depreciation_etc": "加:折旧及摊销",
+}
+
 class DataReader:
     def __init__(self, code):
         self.conn = sqlite3.connect(config.db_path(code))
         self.code = code
+        stock = config.STOCKS.get(code, {})
+        self.market = stock.get("market", "hk")
 
     def spot(self):
         r = self.conn.execute(
@@ -55,22 +102,52 @@ class DataReader:
             "SELECT item_name, amount FROM indicators WHERE report_date=?",
             (report_date,)
         ).fetchall()
-        return dict(rows)
+        d = dict(rows)
+        if self.market == "cn":
+            for ths_name, eng_name in THS_INDICATOR_MAP.items():
+                if ths_name in d and eng_name not in d:
+                    d[eng_name] = d[ths_name]
+            # THS 不提供每股营收，自行计算
+            shares = config.STOCKS.get(self.code, {}).get("shares")
+            if "OPERATE_INCOME" in d and shares and "PER_OI" not in d:
+                d["PER_OI"] = d["OPERATE_INCOME"] / shares
+        return d
 
     def financial_item(self, table, item, report_date):
         r = self.conn.execute(
             f"SELECT amount FROM {table} WHERE item_name=? AND report_date=?",
             (item, report_date)
         ).fetchone()
-        return r[0] if r else None
+        if r: return r[0]
+        if self.market == "cn":
+            for ths_name, cn_name in THS_FINANCIAL_MAP.items():
+                if cn_name == item:
+                    r2 = self.conn.execute(
+                        f"SELECT amount FROM {table} WHERE item_name=? AND report_date=?",
+                        (ths_name, report_date)
+                    ).fetchone()
+                    if r2: return r2[0]
+                    break
+        return None
 
     def financial_item_by_code(self, table, item_code, report_date):
-        """通过 STD_ITEM_CODE 查询 (半年度数据)"""
+        """通过 STD_ITEM_CODE 查询 (半年度数据), A股fallback到item_name"""
         r = self.conn.execute(
             f"SELECT amount FROM {table} WHERE item_code=? AND report_date=?",
             (item_code, report_date)
         ).fetchone()
-        return r[0] if r else None
+        if r: return r[0]
+        # A股 THS 没有 item_code, 用 item_name 英文名回退
+        if self.market == "cn":
+            cn_map = {
+                "004001001": "operating_income_total",
+                "004025002": "parent_holder_net_profit",
+                "004027002": "basic_eps",
+            }
+            ths_name = cn_map.get(item_code)
+            if ths_name:
+                return self.financial_item(table, ths_name, report_date)
+        return None
 
     def dividends(self):
         rows = self.conn.execute(

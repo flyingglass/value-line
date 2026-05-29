@@ -272,7 +272,7 @@ var DATA = {DATA_JS};
   }}
   html+=renderQ(qt.sales, ['H1','H2'], 'Quarterly Sales (亿)', 1);
   html+=renderQ(qt.eps, ['H1','H2'], 'Earnings Per Share', 2);
-  html+=renderQ(qt.dividends, ['H1','H2'], 'Quarterly Divs Paid (HKD)', 3);
+  html+=renderQ(qt.dividends, ['H1','H2'], 'Quarterly Divs Paid ('+(meta.currency||'HKD')+')', 3);
 
 
   html+='</div>'; // end left-col
