@@ -50,6 +50,8 @@ THS_FINANCIAL_MAP = {
     "long_term_payable_total": "长期应付款",
     "lease_debt": "融资租赁负债(非流动)",
     "year_non_current_debt": "融资租赁负债(流动)",
+    "bonds_payable_total": "应付债券",
+    "non_current_liabilities_total": "非流动负债合计",
     # income
     "operating_income_total": "营业额",
     "operating_profit": "经营溢利",
@@ -57,9 +59,14 @@ THS_FINANCIAL_MAP = {
     "gross_profit": "毛利",
     "parent_holder_net_profit": "股东应占溢利",
     "operating_costs_total": "营业成本",
+    "sales_fee": "销售费用",
+    "manage_fee": "管理费用",
+    "research_and_development_expenses": "研发费用",
+    "taxes_and_surcharges": "税金及附加",
     # cashflow
     "fixed_assets_net_cash": "购建固定资产",
     "depreciation_etc": "加:折旧及摊销",
+    "pay_subsidiary_and_other_net_cash": "取得子公司及其他营业单位支付的现金净额",
 }
 
 class DataReader:
@@ -183,7 +190,7 @@ class DataReader:
 
 
 def build_metric_table(reader, years, market="hk"):
-    """构建23行指标表"""
+    """构建24行指标表 — Value Line 标准公式 (A股/H股双轨)"""
     table = {}
     total_shares = None
 
@@ -192,77 +199,117 @@ def build_metric_table(reader, years, market="hk"):
         ind = reader.indicators(rd)
         if not ind:
             continue
-        row = {}
-        row["PER_OI"]       = ind.get("PER_OI")
-        row["PER_NETCASH"]  = ind.get("PER_NETCASH_OPERATE")
-        row["BASIC_EPS"]    = ind.get("BASIC_EPS")
-        row["BPS"]          = ind.get("BPS")
 
-        # 每股股息 (有手动补充)
-        divs = reader.dividends()
-        row["DPS"] = divs.get(yr, 0)
-
-        # 每股资本支出
-        capex = reader.financial_item("cashflow", "购建固定资产", rd)
+        # ---- 基础数据提取 ----
+        rev = ind.get("OPERATE_INCOME")           # 总营收 (元)
+        np_val = ind.get("HOLDER_PROFIT")          # 归母净利润 (元)
         shares = reader.share_count(rd) or total_shares
         if shares:
             total_shares = shares
-            row["CAPEX_PS"] = (capex / shares) if capex else None
-        else:
-            row["CAPEX_PS"] = None
+        if not shares:
+            shares = total_shares
 
-        row["TOTAL_SHARES"] = shares / 1e6 if shares else None
-        rev = ind.get("OPERATE_INCOME")
-        row["OPERATE_INCOME"] = rev / 1e8 if rev else None
+        # 折旧摊销 (元)
+        dep = reader.financial_item("cashflow", "加:折旧及摊销", rd) or 0
+
+        # 经营溢利 (元)
         op_profit = reader.financial_item("income", "经营溢利", rd)
-        # 经营利润率 = 经营溢利 / 营收 × 100
-        row["OP_MARGIN"] = round((op_profit / rev) * 100, 1) if op_profit and rev else None
 
-        dep = reader.financial_item("cashflow", "加:折旧及摊销", rd)
-        row["DEPRECIATION"] = dep / 1e8 if dep else None
+        # ---- 1. 每股营收: Revenue / Shares ----
+        row = {}
+        row["PER_OI"] = round(rev / shares, 2) if rev and shares else None
 
-        np_val = ind.get("HOLDER_PROFIT")
-        row["HOLDER_PROFIT"] = np_val / 1e8 if np_val else None
+        # ---- 2. 每股现金流: (NetProfit + Depreciation) / Shares ----
+        row["PER_NETCASH"] = round((np_val + dep) / shares, 2) if np_val and shares else None
+
+        # ---- 3. 每股收益: 从indicators读取 (后续升级扣非) ----
+        row["BASIC_EPS"] = ind.get("BASIC_EPS")
+
+        # ---- 4. 每股股息: 从dividend表 ----
+        divs = reader.dividends()
+        row["DPS"] = divs.get(yr, 0) or 0
+
+        # ---- 5. 每股资本支出: (购建固定资产 + 收购子公司) / Shares ----
+        capex_fixed = reader.financial_item("cashflow", "购建固定资产", rd) or 0
+        capex_mna = reader.financial_item("cashflow", "取得子公司及其他营业单位支付的现金净额", rd) or 0
+        row["CAPEX_PS"] = round((capex_fixed + capex_mna) / shares, 2) if shares else None
+
+        # ---- 6. 每股账面价值: 从indicators读取 ----
+        row["BPS"] = ind.get("BPS")
+
+        # ---- 7. 发行在外股数 (百万股) ----
+        row["TOTAL_SHARES"] = round(shares / 1e6, 1) if shares else None
+
+        # ---- 8-10. PE/股息率 (后续补算) ----
+        row["PE_AVG"] = None
+        row["PE_RELATIVE"] = None
+        row["DIV_YIELD"] = None
+
+        # ---- 11. 总营收 (亿) ----
+        row["OPERATE_INCOME"] = round(rev / 1e8, 1) if rev else None
+
+        # ---- 12. 营业利润率 = EBITDA/Revenue = (OperatingProfit + D&A) / Revenue ----
+        ebitda = (op_profit or 0) + dep
+        row["OP_MARGIN"] = round((ebitda / rev) * 100, 1) if rev and ebitda else None
+
+        # ---- 13. 折旧摊销 (亿) ----
+        row["DEPRECIATION"] = round(dep / 1e8, 1) if dep else None
+
+        # ---- 14. 毛利率 = (Revenue - COGS) / Revenue ----
+        # H股: 销售成本, A股: 营业成本
+        cogs = reader.financial_item("income", "销售成本", rd) or reader.financial_item("income", "营业成本", rd)
+        row["GROSS_MARGIN"] = round(((rev - cogs) / rev) * 100, 1) if rev and cogs else None
+
+        # ---- 15. 净利润 (亿) ----
+        row["HOLDER_PROFIT"] = round(np_val / 1e8, 1) if np_val else None
+
+        # ---- 16. 所得税率 ----
         row["TAX_EBT"] = ind.get("TAX_EBT")
-        row["NET_PROFIT_RATIO"] = ind.get("NET_PROFIT_RATIO")
 
+        # ---- 17. 净利润率 = NetProfit / Revenue ----
+        row["NET_PROFIT_RATIO"] = round((np_val / rev) * 100, 1) if np_val and rev else None
+
+        # ---- 18. 营运资金 = CA - CL (亿) ----
         ca = reader.financial_item("balance", "流动资产合计", rd)
         cl = reader.financial_item("balance", "流动负债合计", rd)
-        row["WORKING_CAPITAL"] = ((ca - cl) / 1e8) if ca and cl else None
+        row["WORKING_CAPITAL"] = round((ca - cl) / 1e8, 1) if ca is not None and cl is not None else None
 
-        lt = reader.financial_item("balance", "融资租赁负债(非流动)", rd)
-        if not lt:
-            lt = reader.financial_item("balance", "长期贷款", rd)
-        row["LT_DEBT"] = (lt / 1e8) if lt else None
+        # ---- 19. 长期债务 = 长期贷款 + 应付债券 (亿, 有息债务) ----
+        long_loan = reader.financial_item("balance", "长期贷款", rd) or 0
+        bonds = reader.financial_item("balance", "应付债券", rd) or 0
+        row["LT_DEBT"] = round((long_loan + bonds) / 1e8, 1) if (long_loan or bonds) else None
 
+        # ---- 20. 股东权益 = 归母权益 (亿) ----
         eq = reader.financial_item("balance", "总权益", rd)
-        row["TOTAL_EQUITY"] = eq / 1e8 if eq else None
-        row["ROIC_YEARLY"] = ind.get("ROIC_YEARLY")
-        row["ROE_AVG"] = ind.get("ROE_AVG")
+        row["TOTAL_EQUITY"] = round(eq / 1e8, 1) if eq else None
 
-        if np_val and shares and eq:
-            div_cost = (row["DPS"] or 0) * shares
-            retained = np_val - div_cost
-            if retained > 0:
-                row["RETAINED_RATIO"] = (retained / eq * 100) if eq else None
-            else:
-                row["RETAINED_RATIO"] = 0
-        eps = ind.get("BASIC_EPS")
-        if eps:
-            row["PAYOUT_RATIO"] = ((row["DPS"] or 0) / eps * 100) if eps else 0
+        # ---- 21. ROIC = EBIT / (LT_Debt + Equity) ----
+        fin_cost = reader.financial_item("income", "融资成本", rd) or 0
+        ebit = (op_profit or 0) + fin_cost
+        invested_cap = (long_loan + bonds) + (eq or 0)
+        row["ROIC"] = round((ebit / invested_cap) * 100, 1) if ebit and invested_cap > 0 else None
 
-        row["DEBT_ASSET_RATIO"] = ind.get("DEBT_ASSET_RATIO")
+        # ---- 22. ROE: 从indicators读取 (后续升级扣非) ----
+        row["ROE"] = ind.get("ROE_AVG")
 
-        # 8 平均年化PE (从月线计算)
-        row["PE_AVG"] = None  # 后续补算
-        # 9 相对PE
-        row["PE_RELATIVE"] = None
-        # 补充: 当前PE(TTM)
-        row["PE_TTM"] = ind.get("PE_TTM")
+        # ---- 23. 留存利润占比 = (NetProfit - Dividends) / Common Equity ----
+        if np_val and eq and shares:
+            div_total = (row["DPS"] or 0) * shares
+            retained = np_val - div_total
+            row["RETAINED_RATIO"] = round((retained / eq) * 100, 1) if eq > 0 else None
+        else:
+            row["RETAINED_RATIO"] = None
+
+        # ---- 24. 股利支付率 = Total Dividends / Net Profit ----
+        if np_val and shares and np_val > 0:
+            div_total = (row["DPS"] or 0) * shares
+            row["PAYOUT_RATIO"] = round((div_total / np_val) * 100, 1)
+        else:
+            row["PAYOUT_RATIO"] = None
 
         table[yr] = row
 
-    # 补算 PE_AVG / PE_RELATIVE (需要月线数据)
+    # 补算 PE_AVG / PE_RELATIVE / DIV_YIELD
     _compute_pe_metrics(table, reader, market)
     return table
 

@@ -139,7 +139,7 @@ var DATA = {DATA_JS};
   if(ly.OPERATE_INCOME){{
     bizHtml+=revYr+'年营收'+ly.OPERATE_INCOME.toFixed(1)+'亿';
     if(ly.HOLDER_PROFIT) bizHtml+='，归母净利'+ly.HOLDER_PROFIT.toFixed(1)+'亿';
-    if(ly.ROE_AVG) bizHtml+='，ROE '+ly.ROE_AVG.toFixed(1)+'%';
+    if(ly.ROE) bizHtml+='，ROE '+ly.ROE.toFixed(1)+'%';
     bizHtml+='。';
   }}
   // 员工人数
@@ -166,9 +166,8 @@ var DATA = {DATA_JS};
   }}
   bizHtml+='</p>';
 
-  // Capital Structure — 2列网格布局 (参考图样式)
-  var cu=cs.unit||'';
-  html+='<div class="sec"><div class="sec-title">Capital Structure'+(cu?' ('+cu+')':'')+'</div>';
+  // Capital Structure — 2列网格布局 (VL标准名称)
+  html+='<div class="sec"><div class="sec-title">CAPITAL STRUCTURE</div>';
   function csHalf(label,val,cls,noteTxt){{
     var h='<div style="width:50%;display:inline-block;vertical-align:top;font-size:8px;line-height:1.6">';
     h+='<div style="display:flex;justify-content:space-between"><span>'+label+'</span><span class="'+(cls||'')+'">'+val+'</span></div>';
@@ -180,26 +179,26 @@ var DATA = {DATA_JS};
   html+=csHalf('Due in 5 Yrs',(cs.due_in_5yr||0).toFixed(1),'r');
   html+='<br>';
   html+=csHalf('LT Debt',(cs.lt_debt||0).toFixed(1),'r b',cs.lt_debt_pct+'% of Capital');
-  html+=csHalf('Total Int',(cs.total_int||0).toFixed(2),'r',cs.coverage);
+  html+=csHalf('LT Interest',(cs.total_int||0).toFixed(2),'r',cs.coverage);
   html+='<br>';
   html+=csHalf('Pension Assets',typeof cs.pension_assets==='number'?cs.pension_assets.toFixed(1):(cs.pension_assets||'—'),'r');
-  html+=csHalf('Pfd Stock',cs.pfd_stock||'—','r');
+  html+=csHalf('Pfd Stock',cs.pfd_stock||'None','r');
   html+='<br>';
   html+='<div style="border-top:1px solid #ddd;font-size:7.5px;margin:3px 0 1px 0;padding-top:2px;clear:both">Common Stock '+cs.common_shares_str+' shs</div>';
   html+=csHalf('MARKET CAP',(cs.mkt_cap||0).toFixed(0),'r b');
-  html+=csHalf('',cs.cap_label||'—','r');
+  html+=csHalf('',cs.cap_label||'','r');
   html+='<div style="clear:both"></div></div>';
 
-  // Current Position
-  html+='<div class="sec"><div class="sec-title">Current Position</div>';
+  // Current Position — VL标准名称
+  html+='<div class="sec"><div class="sec-title">CURRENT POSITION</div>';
   html+='<table>';
   var cpYears=cp.years||[];
-  html+='<tr><td><i>(亿)</i></td>';
+  html+='<tr><td><i>(亿元)</i></td>';
   cpYears.forEach(function(yr){{html+='<td class="r">'+yr+'</td>';}});
   html+='</tr>';
   var cpShort=[
-    ['Cash',0],['Receivables',1],['Inventory',2],['Other Cur.Assets',3],['<b>Current Assets</b>',4],
-    ['Accts Payable',5],['Debt Due',6],['Other Cur.Liab',7],['<b>Current Liab.</b>',8]
+    ['Cash Assets',0],['Receivables',1],['Inventory',2],['Other Current Assets',3],['<b>Current Assets</b>',4],
+    ['Accounts Payable',5],['Debt Due',6],['Other Current Liab',7],['<b>Current Liabilities</b>',8]
   ];
   cpShort.forEach(function(s){{
     var item=(cp.items||[])[s[1]];
@@ -210,17 +209,17 @@ var DATA = {DATA_JS};
   }});
   html+='</table></div>';
 
-  // Annual Rates of Change — 动态列: 有10年数据→10/5/3yr, 否则5/3/1yr
-  html+='<div class="sec"><div class="sec-title">Annual Rates of Change</div>';
+  // Annual Rates of Change — VL标准 (per sh, 复合增长率)
+  html+='<div class="sec"><div class="sec-title">ANNUAL RATES of change (per sh)</div>';
   var has10=ar.has_10yr;
   var colKeys=has10?['10yr','5yr','3yr']:['5yr','3yr','1yr'];
-  var colLabels=has10?['Past 10yr','Past 5yr','Past 3yr']:['Past 5yr','Past 3yr','Past 1yr'];
+  var colLabels=has10?['Past 10 Yrs.','Past 5 Yrs.','Past 3 Yrs.']:['Past 5 Yrs.','Past 3 Yrs.','Past 1 Yr.'];
   html+='<table>';
   html+='<tr><td></td>';
   colLabels.forEach(function(l){{html+='<td class="r">'+l+'</td>';}});
   html+='</tr>';
   var arData=[
-    ['Sales',ar.sales],['Cash Flow',ar.cashflow],['Earnings',ar.earnings],
+    ['Revenues',ar.sales],['"Cash Flow"',ar.cashflow],['Earnings',ar.earnings],
     ['Dividends',ar.dividends],['Book Value',ar.book_value]
   ];
   arData.forEach(function(a){{
@@ -270,9 +269,9 @@ var DATA = {DATA_JS};
     h+='</div>';
     return h;
   }}
-  html+=renderQ(qt.sales, ['H1','H2'], 'Quarterly Sales (亿)', 1);
-  html+=renderQ(qt.eps, ['H1','H2'], 'Earnings Per Share', 2);
-  html+=renderQ(qt.dividends, ['H1','H2'], 'Quarterly Divs Paid ('+(meta.currency||'HKD')+')', 3);
+  html+=renderQ(qt.sales, ['H1','H2'], 'QUARTERLY REVENUES (亿元)', 1);
+  html+=renderQ(qt.eps, ['H1','H2'], 'EARNINGS PER SHARE', 2);
+  html+=renderQ(qt.dividends, ['H1','H2'], 'QUARTERLY DIVIDENDS PAID ('+(meta.currency||'CNY')+')', 3);
 
 
   html+='</div>'; // end left-col
@@ -282,22 +281,26 @@ var DATA = {DATA_JS};
   // ========================
   html+='<div class="center-col">';
 
-  // Header
-  var beta='—'; // Beta (AKShare不覆盖所有市场)
+  // Header — VL标准格式: 左侧公司名 + 右侧价格信息
+  // 计算 Median PE (从历史PE_AVG取中位数)
+  var peHistory=[];
+  Y.forEach(function(y){{ var v=(MT[y]||{{}}).PE_AVG; if(v) peHistory.push(v); }});
+  peHistory.sort(function(a,b){{return a-b;}});
+  var medianPE=peHistory.length>0?peHistory[Math.floor(peHistory.length/2)]:null;
+  var trailingPE=spot.pe||ly.PE_AVG||null;
+  var relPE=ly.PE_RELATIVE||(pos.pe?pos.pe.avg:null);
+  var divYld=spot.div_yield||ly.DIV_YIELD;
+
   html+='<div class="header">';
   html+='<div><span class="code">'+stockName+'</span><br>';
   html+='<span style="font-size:8px">'+stockCode+'.'+stockMarket+'</span></div>';
-  html+='<div class="ratings">';
-  html+='<div>Timeliness<br><span>—</span></div>';
-  html+='<div>Industry<br><span>'+(meta.industry||'—')+'</span></div>';
-  html+='<div>Price<br><span>'+(meta.price_ccy||'—')+'</span></div>';
-  html+='<div>Report<br><span>'+(meta.rpt_ccy||'—')+'</span></div>';
-  html+='<div>Curr<br><span>'+((meta.currency||'').toUpperCase()||'CNY')+'</span></div>';
-  html+='</div>';
   html+='<div class="info">';
   html+='RECENT PRICE <span class="v">'+(spot.price?spot.price.toFixed(2):'—')+'</span><br>';
-  html+='PE RATIO <span class="v">'+(spot.pe||'—')+'</span><br>';
-  html+='52-Wk Range <span class="v">'+(pos.price?pos.price.min+' ~ '+pos.price.max:'—')+'</span>';
+  html+='P/E RATIO <span class="v">'+(trailingPE?trailingPE.toFixed(1):'—')+'</span>';
+  html+=' (Trailing: <span class="v">'+(trailingPE?trailingPE.toFixed(1):'—')+'</span>)<br>';
+  html+='Median: <span class="v">'+(medianPE?medianPE.toFixed(1):'—')+'</span><br>';
+  html+='RELATIVE P/E RATIO <span class="v">'+(relPE!=null?relPE.toFixed(2):'—')+'</span><br>';
+  html+='DIV\'D YLD <span class="v">'+(divYld!=null?divYld.toFixed(1)+'%':'—')+'</span>';
   html+='</div></div>';
 
   // Chart
@@ -353,8 +356,9 @@ var DATA = {DATA_JS};
   }}
   html+='</div></td>';
   html+='<td colspan="'+yrCount+'" style="padding:0">';
-  html+='<div class="chart-title">Monthly Price Ranges (Log Scale) + Cash Flow Line</div>';
+  html+='<div class="chart-title">Monthly Price Ranges + "Cash Flow" Line | RS vs '+indexNameCn+'</div>';
   html+='<div class="chart-box" id="chart_kline"></div>';
+  html+='<div id="chart_volume" style="height:30px;margin-top:0"></div>';
   html+='</td></tr>';
   
   // Row 5: 年份基准线 — 在K线图和指标之间
@@ -362,11 +366,10 @@ var DATA = {DATA_JS};
   showYears.forEach(function(y){{html+='<td style="text-align:center;font-size:7px;font-weight:700;padding:1px 3px;'+tdStyle+'">'+y+'</td>';}});
   html+='</tr>';
   
-  // Row 6+: 23-line metrics
+  // Row 6+: 24-line metrics — 分区分隔 (每股指标6|股本估值7-10|利润表11-17|资产负债18-20|回报率21-24)
   M.forEach(function(m, idx){{
-    var sepAfter=[2,4,6,7,10];
-    var isHigh=(m.field==='DPS'||m.field==='PAYOUT_RATIO');
-    html+='<tr'+(isHigh?' style="background:#fffde7"':'')+'>';
+    var sepAfter=[6,10,17,20];
+    html+='<tr>';
     html+='<td style="text-align:left;white-space:nowrap;'+tdStyle+'">'+m.name_en+' <span style="font-size:7px;color:#999">'+m.name_cn+'</span></td>';
     showYears.forEach(function(y){{
       var v=(MT[y]||{{}})[m.field];
@@ -484,13 +487,30 @@ var DATA = {DATA_JS};
       series:series
     }});
 
+    // Monthly Volume % — VL item 11
+    var volData=[], totalShM=ly.TOTAL_SHARES;
+    dates.forEach(function(dt){{
+      var k=kl.find(function(k){{return k.date===dt;}});
+      if(k&&k.volume&&totalShM){{
+        volData.push((k.volume/(totalShM*1e6)*100).toFixed(2));
+      }}else{{volData.push(null);}}
+    }});
+    echarts.init(document.getElementById('chart_volume')).setOption({{
+      grid:{{left:0,right:18,top:0,bottom:0}},
+      xAxis:{{type:'category',data:dates,show:false,boundaryGap:false}},
+      yAxis:{{type:'value',axisLabel:{{fontSize:6}},splitLine:{{show:false}},position:'right',
+        axisLabel:{{formatter:function(v){{return v+'%';}}}}}},
+      series:[{{name:'Vol%',type:'bar',data:volData,
+        itemStyle:{{color:'#1976D2'}},barWidth:'60%'}}]
+    }});
+
   }},300);
 }})();
 </script>
 </body>
 </html>'''
 
-out_path = os.path.join(BASE, "report.html")
+out_path = os.path.join(BASE, DATA['meta']['name_en'].replace(' ','_')+'.html')
 out_alt = os.path.join(os.environ.get("TEMP", os.environ.get("TMP", "/tmp")), "vl_report.html")
 try:
     with open(out_path, "w", encoding="utf-8") as f:

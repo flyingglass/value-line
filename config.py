@@ -242,33 +242,41 @@ TITLE_BLACKLIST = [
 ]
 
 # ============================================================
-# Value Line 23行指标定义
+# Value Line 24行指标定义 (完整复刻VL官方名称, A股/H股对齐)
+# Gross Margin 置于 Revenues 与 Operating Margin 之间
+# 分隔线: 每股(#6) | 估值(#10) | 利润表(#17) | 资产负债(#20)
 # ============================================================
 VL_METRICS = [
-    # (行号, 中文名, 英文名, 数据字段, 单位, 来源表)
-    (1,  "每股营收",     "Revenues per sh",        "PER_OI",               "元",   "indicators"),
-    (2,  "每股现金流",   "Cash Flow per sh",        "PER_NETCASH",  "元",   "indicators"),
-    (3,  "每股收益",     "Earnings per sh",         "BASIC_EPS",            "元",   "indicators"),
-    (4,  "每股股息",     "Div'ds Decl'd per sh",    "DPS",                  "元",   "dividend"),
-    (5,  "每股资本支出", "Cap'l Exp'd per sh",      "CAPEX_PS",             "元",   "calculated"),
-    (6,  "每股账面价值", "Book Value per sh",       "BPS",                  "元",   "indicators"),
-    (7,  "发行在外股数", "Common Shs Outst'g",      "TOTAL_SHARES",         "百万股","balance"),
-    (8,  "平均年化PE",   "Avg Ann'l P/E Ratio",     "PE_AVG",               "倍",   "calculated"),
-    (9,  "相对PE",       "Relative P/E Ratio",      "PE_RELATIVE",          "倍",   "calculated"),
-    (10, "平均股息率",   "Avg Ann'l Div'd Yield",   "DIV_YIELD",            "%",    "calculated"),
-    (11, "总营收",       "Revenues",                "OPERATE_INCOME",       "亿",   "indicators"),
-    (12, "营业利润率",   "Operating Margin",        "OP_MARGIN",            "%",    "calculated"),
-    (13, "折旧摊销",     "Depreciation",            "DEPRECIATION",         "亿",   "cashflow"),
-    (14, "净利润",       "Net Profit",              "HOLDER_PROFIT",        "亿",   "indicators"),
-    (15, "所得税率",     "Income Tax Rate",         "TAX_EBT",              "%",    "indicators"),
-    (16, "净利润率",     "Net Profit Margin",       "NET_PROFIT_RATIO",     "%",    "indicators"),
-    (17, "营运资金",     "Working Cap'l",           "WORKING_CAPITAL",      "亿",   "calculated"),
-    (18, "长期债务",     "Long-Term Debt",          "LT_DEBT",              "亿",   "balance"),
-    (19, "股东权益",     "Shr. Equity",             "TOTAL_EQUITY",         "亿",   "balance"),
-    (20, "总资本回报率", "Return on Total Cap'l",   "ROIC_YEARLY",          "%",    "indicators"),
-    (21, "股东权益回报率","Return on Shr. Equity",   "ROE_AVG",              "%",    "indicators"),
-    (22, "留存利润占比", "Retained to Com Eq",      "RETAINED_RATIO",       "%",    "calculated"),
-    (23, "股息支付率",   "All'd to Div'ds",         "PAYOUT_RATIO",         "%",    "calculated"),
+    # (行号, 中文名, 英文名(VL原文), 数据字段, 单位, 来源表)
+    # === 每股指标 (1-6) ===
+    (1,  "每股营收",     "Revenues per sh",         "PER_OI",               "元",   "calculated"),
+    (2,  "每股现金流",   '"Cash Flow" per sh',       "PER_NETCASH",          "元",   "calculated"),
+    (3,  "每股收益",     "Earnings per sh",          "BASIC_EPS",            "元",   "indicators"),
+    (4,  "每股股息",     "Div'ds Decl'd per sh",     "DPS",                  "元",   "dividend"),
+    (5,  "每股资本支出", "Cap'l Spending per sh",    "CAPEX_PS",             "元",   "calculated"),
+    (6,  "每股账面价值", "Book Value per sh",        "BPS",                  "元",   "indicators"),
+    # === 股本与估值 (7-10) ===
+    (7,  "发行在外股数", "Common Shs Outst'g",       "TOTAL_SHARES",         "百万股","calculated"),
+    (8,  "平均年化PE",   "Avg Ann'l P/E Ratio",      "PE_AVG",               "倍",   "calculated"),
+    (9,  "相对PE",       "Relative P/E Ratio",       "PE_RELATIVE",          "倍",   "calculated"),
+    (10, "平均股息率",   "Avg Ann'l Div'd Yield",    "DIV_YIELD",            "%",    "calculated"),
+    # === 利润表指标 (11-17, Gross Margin 置于 Revenues 与 Op Margin 之间) ===
+    (11, "总营收",       "Revenues ($mill)",         "OPERATE_INCOME",       "亿",   "indicators"),
+    (12, "毛利率",       "Gross Margin",             "GROSS_MARGIN",         "%",    "calculated"),
+    (13, "营业利润率",   "Operating Margin",         "OP_MARGIN",            "%",    "calculated"),
+    (14, "折旧摊销",     "Depreciation ($mill)",     "DEPRECIATION",         "亿",   "cashflow"),
+    (15, "净利润",       "Net Profit ($mill)",       "HOLDER_PROFIT",        "亿",   "indicators"),
+    (16, "所得税率",     "Income Tax Rate",          "TAX_EBT",              "%",    "indicators"),
+    (17, "净利润率",     "Net Profit Margin",        "NET_PROFIT_RATIO",     "%",    "calculated"),
+    # === 资产负债指标 (18-20) ===
+    (18, "营运资金",     "Working Cap'l ($mill)",    "WORKING_CAPITAL",      "亿",   "calculated"),
+    (19, "长期债务",     "Long-Term Debt ($mill)",   "LT_DEBT",              "亿",   "calculated"),
+    (20, "股东权益",     "Shr. Equity ($mill)",      "TOTAL_EQUITY",         "亿",   "calculated"),
+    # === 回报率指标 (21-24) ===
+    (21, "总资本回报率", "Return on Total Cap'l",    "ROIC",                 "%",    "calculated"),
+    (22, "股东权益回报率","Return on Shr. Equity",    "ROE",                  "%",    "indicators"),
+    (23, "留存利润占比", "Retained to Com Eq",       "RETAINED_RATIO",       "%",    "calculated"),
+    (24, "股息支付率",   "All Div'ds to Net Prof",   "PAYOUT_RATIO",         "%",    "calculated"),
 ]
 
 if __name__ == "__main__":
