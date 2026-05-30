@@ -45,6 +45,21 @@ generate_report.py → report.html (自包含)
 ## 用户偏好
 - A股涨红跌绿 (中国惯例)
 - 先对齐逻辑再实施
-- 给出方案→直接执行→确认结果→下一步
+- **先对齐需求 → 我确认 → 再动手。绝不在我确认前修改代码**
+- 给出方案→等我确认→执行→确认结果→下一步
 - 中报数据标记"仅AKShare"来源
 - Memory放项目repo可随git提交
+
+## 已知Bug模式
+- **单引号Bug**: `DIV'D` 等含 `'` 的词在 JS 单引号字符串中会截断。Python `\'` 在 f-string 中输出为字面量 `'`，必须改用 Unicode `\u2019`（右单引号）如 `DIV\u2019D`
+- **花括号Bug**: Python f-string 中 JS 代码的 `{` `}` 必须用 `{{` `}}` 转义
+
+## Header 最终布局 (generate_report.py)
+- **方案**: HTML `<table>` 2行, 10列, rowspan=2 值跨行居中
+- **公司名**: POP MART(18px bold) + 09992.HK(9px bold) 同行, padding 5px 10px
+- **标签**: RECENT/PRICE, P/E/RATIO, RELATIVE/P/E RATIO, DIV\u2019D/YLD — 9px bold #000, padding 2px 8px
+- **价格值**: 18px bold 居中; **其他值**: 17px bold 居中
+- **括号区**: (Trailing:xx) Row1 / (Median:xx) Row2, 9px bold, border-right 分隔
+- **竖线**: `border-right:1px solid #999` 在 公司名|价格|括号区|相对PE 后
+- **底部**: `border-bottom:2px solid #000`
+- **教训**: CSS Grid auto-flow 不可靠 → 改用 table; 括号跨行用 transform:scaleY → 失败改用每行独立括号

@@ -274,29 +274,38 @@ def build_metric_table(reader, years, market="hk"):
         cl = reader.financial_item("balance", "流动负债合计", rd)
         row["WORKING_CAPITAL"] = round((ca - cl) / 1e8, 1) if ca is not None and cl is not None else None
 
-        # ---- 19. 长期债务 = 长期贷款 + 应付债券 (亿, 有息债务) ----
+        # ---- 19. 长期债务 = 长期贷款 + 应付债券 + 融资租赁(非流动) + 长期应付款 (亿) ----
+        # VL: 所有有息长期债务 (含融资租赁, 不含一年内到期部分)
         long_loan = reader.financial_item("balance", "长期贷款", rd) or 0
         bonds = reader.financial_item("balance", "应付债券", rd) or 0
-        row["LT_DEBT"] = round((long_loan + bonds) / 1e8, 1) if (long_loan or bonds) else None
+        lease_lt = reader.financial_item("balance", "融资租赁负债(非流动)", rd) or 0
+        lt_payable = reader.financial_item("balance", "长期应付款", rd) or 0
+        lt_raw = long_loan + bonds + lease_lt + lt_payable
+        row["LT_DEBT"] = round(lt_raw / 1e8, 1) if lt_raw > 0 else None
 
-        # ---- 20. 股东权益 = 归母权益 (亿) ----
+        # ---- 20. 股东权益 = 总权益 (亿, 含少数股东) ----
         eq = reader.financial_item("balance", "总权益", rd)
         row["TOTAL_EQUITY"] = round(eq / 1e8, 1) if eq else None
+        # 归母权益: VL用于RETAINED_RATIO分母 (Common Equity)
+        com_eq = (reader.financial_item("balance", "股东权益", rd)
+                  or reader.financial_item("balance", "归属于母公司所有者权益", rd)
+                  or eq)
 
         # ---- 21. ROIC = EBIT / (LT_Debt + Equity) ----
         fin_cost = reader.financial_item("income", "融资成本", rd) or 0
         ebit = (op_profit or 0) + fin_cost
-        invested_cap = (long_loan + bonds) + (eq or 0)
+        invested_cap = lt_raw + (eq or 0)
         row["ROIC"] = round((ebit / invested_cap) * 100, 1) if ebit and invested_cap > 0 else None
 
         # ---- 22. ROE: 从indicators读取 (后续升级扣非) ----
         row["ROE"] = ind.get("ROE_AVG")
 
         # ---- 23. 留存利润占比 = (NetProfit - Dividends) / Common Equity ----
-        if np_val and eq and shares:
+        # VL: "net income less all dividends... divided by common shareholders' equity"
+        if np_val and com_eq and shares and com_eq > 0:
             div_total = (row["DPS"] or 0) * shares
             retained = np_val - div_total
-            row["RETAINED_RATIO"] = round((retained / eq) * 100, 1) if eq > 0 else None
+            row["RETAINED_RATIO"] = round((retained / com_eq) * 100, 1)
         else:
             row["RETAINED_RATIO"] = None
 
@@ -312,6 +321,59 @@ def build_metric_table(reader, years, market="hk"):
     # 补算 PE_AVG / PE_RELATIVE / DIV_YIELD
     _compute_pe_metrics(table, reader, market)
     return table
+
+
+def _compute_ttm_eps(reader, latest_yr):
+    """TTM EPS: 最近4季度滚动 (VL Trailing P/E 口径)
+    半年度股票: 尝试合并最近2半年; 否则回退年度EPS"""
+    stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
+    fye = stock.get("fiscal_yr_end", "12-31")
+    # 尝试最新2个半年报
+    qd_cur = _q_dates(str(latest_yr), fye)   # [q1, h1, 9m, fy]
+    qd_prev = _q_dates(str(int(latest_yr) - 1), fye)
+    # 方案A: 真实4季度(Q1+Q2+Q3+Q4 or H1+H2跨年)
+    fy_cur = reader.financial_item_by_code("income", "004027002", qd_cur[3])
+    h1_cur = reader.financial_item_by_code("income", "004027002", qd_cur[1])
+    h1_prev = reader.financial_item_by_code("income", "004027002", qd_prev[1])
+    fy_prev = reader.financial_item_by_code("income", "004027002", qd_prev[3])
+    # 季度数据 → TTM = Q1+Q2+Q3+Q4 = FY (暂无真季度)
+    # 半年数据 → TTM = H1当前 + (FY上一年 - H1上一年) = H1当前 + H2上一年
+    if h1_cur is not None and fy_prev is not None and h1_prev is not None:
+        h2_prev = fy_prev - h1_prev
+        if h2_prev > 0:
+            return h1_cur + h2_prev  # TTM = 最近2个半年
+    # 方案B: 最新年报EPS
+    if fy_cur is not None and fy_cur > 0:
+        return fy_cur
+    # 方案C: 去年年报
+    if fy_prev is not None and fy_prev > 0:
+        return fy_prev
+    return None
+
+
+def _median_pe_iqr(pe_values, years=10):
+    """VL Median P/E: 取过去N年PE, IQR过滤异常值后取中位数"""
+    if not pe_values:
+        return None
+    # VL取最多10年
+    vals = pe_values[-years:] if len(pe_values) > years else pe_values[:]
+    if len(vals) < 2:
+        return vals[0]
+    sorted_vals = sorted(vals)
+    # IQR异常值过滤
+    n = len(sorted_vals)
+    q1_idx = n // 4
+    q3_idx = (3 * n) // 4
+    q1 = sorted_vals[q1_idx]
+    q3 = sorted_vals[q3_idx]
+    iqr = q3 - q1
+    lower = q1 - 1.5 * iqr
+    upper = q3 + 1.5 * iqr
+    filtered = [v for v in sorted_vals if lower <= v <= upper]
+    if not filtered:
+        filtered = sorted_vals  # 全部被排除则回退
+    mid = len(filtered) // 2
+    return round(filtered[mid], 1) if len(filtered) % 2 == 1 else round((filtered[mid-1] + filtered[mid]) / 2, 1)
 
 
 def _compute_pe_metrics(table, reader, market="hk"):
@@ -632,7 +694,9 @@ def _build_capital_structure(reader, spot, latest_yr, metrics):
     debt_due_current = reader.financial_item("balance", "融资租赁负债(流动)", rd) or 0
     st_loan = reader.financial_item("balance", "短期贷款", rd) or 0
     lt_payable = reader.financial_item("balance", "长期应付款", rd) or 0
-    raw["due_in_5yr"] = debt_due_current + st_loan + lt_payable
+    non_cur_due_1yr = reader.financial_item("balance", "一年内到期的非流动负债", rd) or 0
+    # VL "Due in 5 Yrs": 所有5年内到期债务 (近似: 短期+1年内到期非流动+长期应付款)
+    raw["due_in_5yr"] = debt_due_current + st_loan + lt_payable + non_cur_due_1yr
 
     total_int = reader.financial_item("income", "融资成本", rd)
     raw["total_int"] = total_int or 0
@@ -659,7 +723,8 @@ def _build_capital_structure(reader, spot, latest_yr, metrics):
             result["coverage"] = f"{coverage:.1f}x"
             result["coverage_num"] = coverage
     else:
-        result["coverage"] = "N/A"
+        # VL: NMF = No Meaningful Figure (利息为0或极低时,覆盖倍数无意义)
+        result["coverage"] = "NMF"
         result["coverage_num"] = None
 
     # LT Debt % of total capital
@@ -723,7 +788,7 @@ def _build_current_position(reader, years):
         ("other_ca", None, "Other Current Assets"),
         ("total_ca", "流动资产合计", "Current Assets"),
         ("payables", "应付帐款", "Accounts Payable"),
-        ("debt_due", "融资租赁负债(流动)", "Debt Due"),
+        ("debt_due", None, "Debt Due"),
         ("other_cl", None, "Other Current Liab"),
         ("total_cl", "流动负债合计", "Current Liabilities"),
     ]
@@ -734,6 +799,14 @@ def _build_current_position(reader, years):
             v = reader.financial_item("balance", name_cn, rd) if name_cn else None
             row[yr] = v / 1e8 if v else 0
         result["items"].append(row)
+
+    # Third pass: Debt Due = 短期借款 + 一年内到期非流动负债 + 融资租赁(流动)
+    for yr in recent_years:
+        rd = _fye(yr)
+        st_borrow = reader.financial_item("balance", "短期贷款", rd) or 0
+        non_cur_1yr = reader.financial_item("balance", "一年内到期的非流动负债", rd) or 0
+        lease_cur = reader.financial_item("balance", "融资租赁负债(流动)", rd) or 0
+        result["items"][6][yr] = round((st_borrow + non_cur_1yr + lease_cur) / 1e8, 2)
 
     # Second pass: compute derived rows
     for yr in recent_years:
@@ -919,10 +992,16 @@ def build_report(code=None):
     if spot and years and metrics:
         latest = metrics.get(years[-1], {})
         price = spot.get("price")
+        # TTM EPS: VL Trailing P/E 口径 (最近4季度滚动)
+        ttm_eps = _compute_ttm_eps(reader, years[-1])
         if price:
-            eps_latest = latest.get("BASIC_EPS")
-            if eps_latest and eps_latest > 0:
-                spot["pe"] = round(price / eps_latest, 1)
+            if ttm_eps and ttm_eps > 0:
+                spot["pe"] = round(price / ttm_eps, 1)        # Trailing P/E
+                spot["eps_ttm"] = round(ttm_eps, 2)
+            else:
+                eps_latest = latest.get("BASIC_EPS")
+                if eps_latest and eps_latest > 0:
+                    spot["pe"] = round(price / eps_latest, 1)
             bps_latest = latest.get("BPS")
             if bps_latest and bps_latest > 0:
                 spot["pb"] = round(price / bps_latest, 2)
@@ -932,6 +1011,10 @@ def build_report(code=None):
             shares_raw = reader.share_count(_fye(years[-1])) or config.STOCKS.get(code, {}).get("shares")
             if shares_raw and shares_raw > 0:
                 spot["mkt_cap"] = round(price * shares_raw / 1e8, 1)  # 股数×股价÷1亿
+
+    # Median P/E: VL 10年PE中位数 (IQR过滤异常值)
+    pe_history = [metrics[y]["PE_AVG"] for y in years if y in metrics and metrics[y].get("PE_AVG")]
+    spot["median_pe"] = _median_pe_iqr(pe_history)
 
     # CAGR
     revenue = [metrics[y]["OPERATE_INCOME"] for y in years if y in metrics and metrics[y].get("OPERATE_INCOME")]

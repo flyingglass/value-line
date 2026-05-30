@@ -38,7 +38,7 @@ body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;col
 
 /* Header */
 .header{{display:flex;align-items:center;justify-content:space-between;padding:2px 8px;border-bottom:2px solid #000;margin:0 0 2px 0}}
-.header .code{{font-weight:700;font-size:14px;font-family:"Times New Roman",serif}}
+.header .code{{font-weight:700;font-size:17px;font-family:"Times New Roman",serif}}
 .header .info{{text-align:right;font-size:8.5px;line-height:1.3}}
 .header .info .v{{font-weight:700;font-size:10px}}
 .header .ratings{{display:flex;gap:10px;font-size:8px;text-align:center}}
@@ -58,7 +58,7 @@ body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;col
 /* 23-line table */
 .stat-table{{margin:2px 0;overflow-x:auto}}
 .stat-table table{{border-collapse:collapse;font-size:8.5px;width:100%;table-layout:fixed}}
-.stat-table th,.stat-table td{{text-align:right;padding:2px 4px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.3}}
+.stat-table th,.stat-table td{{text-align:right;padding:2px 8px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.3}}
 .stat-table th{{background:#eee;font-weight:700;font-size:8px}}
 .stat-table td:first-child,.stat-table th:first-child{{text-align:left;width:110px;white-space:nowrap}}
 .stat-table tr:nth-child(even){{background:#fafafa}}
@@ -197,20 +197,25 @@ var DATA = {DATA_JS};
   cpYears.forEach(function(yr){{html+='<td class="r">'+yr+'</td>';}});
   html+='</tr>';
   var cpShort=[
-    ['Cash Assets',0],['Receivables',1],['Inventory',2],['Other Current Assets',3],['<b>Current Assets</b>',4],
-    ['Accounts Payable',5],['Debt Due',6],['Other Current Liab',7],['<b>Current Liabilities</b>',8]
+    ['Cash Assets',0],['Receivables',1],['Inventory',2],['Other Current Assets',3],
+    ['Current Assets',4,true],
+    ['Accounts Payable',5],['Debt Due',6],['Other Current Liab',7],
+    ['Current Liabilities',8,true]
   ];
   cpShort.forEach(function(s){{
+    if(s[2]){{
+      html+='<tr style=\"border-top:1px solid #000\"><td><b>'+s[0]+'</b></td>';
+    }}else{{
+      html+='<tr><td>'+s[0]+'</td>';
+    }}
     var item=(cp.items||[])[s[1]];
-    if(!item) return;
-    html+='<tr><td>'+s[0]+'</td>';
-    cpYears.forEach(function(yr){{html+='<td class="r">'+(item[yr]||0).toFixed(1)+'</td>';}});
+    cpYears.forEach(function(yr){{html+='<td class=\"r\">'+(item&&item[yr]!=null?item[yr].toFixed(1):'—')+'</td>';}});
     html+='</tr>';
   }});
   html+='</table></div>';
 
   // Annual Rates of Change — VL标准 (per sh, 复合增长率)
-  html+='<div class="sec"><div class="sec-title">ANNUAL RATES of change (per sh)</div>';
+  html+='<div class="sec"><div class="sec-title">ANNUAL RATES</div>';
   var has10=ar.has_10yr;
   var colKeys=has10?['10yr','5yr','3yr']:['5yr','3yr','1yr'];
   var colLabels=has10?['Past 10 Yrs.','Past 5 Yrs.','Past 3 Yrs.']:['Past 5 Yrs.','Past 3 Yrs.','Past 1 Yr.'];
@@ -247,7 +252,8 @@ var DATA = {DATA_JS};
       return h;
     }}
     var hasQ=show[0].has_quarter;
-    var cols=hasQ?['Q1','Q2','Q3','Q4','Full Yr']:['H1','H2','Full Yr'];
+    // VL标准永远用 Q1/Q2/Q3/Q4
+    var cols=['Q1','Q2','Q3','Q4','Full Yr'];
     var h='<div class=\"sec\"><div class=\"sec-title\">'+title+'</div><table>';
     h+='<tr><td></td>';
     cols.forEach(function(c){{h+='<td class=\"r\">'+c+'</td>';}});
@@ -258,14 +264,17 @@ var DATA = {DATA_JS};
         var vs=[r.q1,r.q2,r.q3,r.q4,r.full];
         vs.forEach(function(v){{h+='<td class=\"r'+(v===r.full?' b':'')+'\">'+(v!=null?v.toFixed(decimal):'—')+'</td>';}});
       }}else{{
+        // 半年度数据: H1→Q1+Q2, H2→Q3+Q4 (分别显示在Q1和Q3位置, Q2/Q4为"—")
         h+='<td class=\"r\">'+(r.q1!=null?r.q1.toFixed(decimal):'—')+'</td>';
+        h+='<td class=\"r\">—</td>';
         h+='<td class=\"r\">'+(r.q3!=null?r.q3.toFixed(decimal):'—')+'</td>';
+        h+='<td class=\"r\">—</td>';
         h+='<td class=\"r b\">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td>';
       }}
       h+='</tr>';
     }});
     h+='</table>';
-    if(!hasQ) h+='<div class=\"note\" style=\"margin-top:1px\">*部分市场仅披露半年报, 以H1/H2代替四季</div>';
+    if(!hasQ) h+='<div class=\"note\" style=\"margin-top:1px\">*该市场仅披露半年报, Q2/Q4暂无数据</div>';
     h+='</div>';
     return h;
   }}
@@ -281,29 +290,48 @@ var DATA = {DATA_JS};
   // ========================
   html+='<div class="center-col">';
 
-  // Header — VL标准格式: 左侧公司名 + 右侧价格信息
-  // 计算 Median PE (从历史PE_AVG取中位数)
-  var peHistory=[];
-  Y.forEach(function(y){{ var v=(MT[y]||{{}}).PE_AVG; if(v) peHistory.push(v); }});
-  peHistory.sort(function(a,b){{return a-b;}});
-  var medianPE=peHistory.length>0?peHistory[Math.floor(peHistory.length/2)]:null;
+  // ===== VL Header: HTML table 2行, rowspan=2跨两行 =====
+  var medianPE=spot.median_pe||null;
   var trailingPE=spot.pe||ly.PE_AVG||null;
   var relPE=ly.PE_RELATIVE||(pos.pe?pos.pe.avg:null);
   var divYld=spot.div_yield||ly.DIV_YIELD;
 
-  html+='<div class="header">';
-  html+='<div><span class="code">'+stockName+'</span><br>';
-  html+='<span style="font-size:8px">'+stockCode+'.'+stockMarket+'</span></div>';
-  html+='<div class="info">';
-  html+='RECENT PRICE <span class="v">'+(spot.price?spot.price.toFixed(2):'—')+'</span><br>';
-  html+='P/E RATIO <span class="v">'+(trailingPE?trailingPE.toFixed(1):'—')+'</span>';
-  html+=' (Trailing: <span class="v">'+(trailingPE?trailingPE.toFixed(1):'—')+'</span>)<br>';
-  html+='Median: <span class="v">'+(medianPE?medianPE.toFixed(1):'—')+'</span><br>';
-  html+='RELATIVE P/E RATIO <span class="v">'+(relPE!=null?relPE.toFixed(2):'—')+'</span><br>';
-  html+='DIV\'D YLD <span class="v">'+(divYld!=null?divYld.toFixed(1)+'%':'—')+'</span>';
-  html+='</div></div>';
+  html+='<table class="header" style="border-collapse:collapse;border-bottom:2px solid #000;margin:0 0 2px 0;width:100%"><tr>';
+
+  // Row 1
+  html+='<td rowspan="2" style="vertical-align:middle;padding:5px 10px;border-right:1px solid #999">';
+  html+='<span class="code" style="font-size:18px;font-weight:700;line-height:1">'+(stockName||'N/A')+'</span> ';
+  html+='<span style="font-size:9px;font-weight:700;color:#000;line-height:1">'+stockCode+'.'+stockMarket+'</span></td>';
+
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RECENT</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'—')+'</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(trailingPE!=null?trailingPE.toFixed(1):'—')+'</td>';
+  // ⑥ (Trailing: xx 第一行
+  html+='<td style="vertical-align:bottom;padding:2px 8px;line-height:1;border-right:1px solid #999;font-size:9px;font-weight:700">';
+  if(trailingPE){{html+='(Trailing:'+trailingPE.toFixed(1)+')';}}
+  html+='</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RELATIVE</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:17px;font-weight:700">'+(relPE!=null?relPE.toFixed(2):'—')+'</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">DIV’D</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(divYld!=null?divYld.toFixed(1)+'%':'—')+'</td>';
+
+  html+='</tr><tr>';
+
+  // Row 2
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">PRICE</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RATIO</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;line-height:1;border-right:1px solid #999;font-size:9px;font-weight:700">';
+  if(medianPE){{html+='(Median:'+medianPE.toFixed(1)+')';}}
+  html+='</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E RATIO</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">YLD</td>';
+
+  html+='</tr></table>';
 
   // Chart
+
+
 
   // Chart
   var kl=d.kline, hsi=d.index_kline||[], lastIdx=kl.length-1;
@@ -318,11 +346,9 @@ var DATA = {DATA_JS};
   var showYears=allY;  // 最多10年
   var yrCount=showYears.length;
   html+='<table style="table-layout:fixed;width:100%;border-collapse:collapse;font-size:8.5px">';
-  var tdStyle='border-right:1px solid #ddd;padding:2px 4px', thStyle='border-right:1px solid #ddd;text-align:right;padding:2px 4px';
+  var tdStyle='border-right:1px solid #ddd;padding:2px 8px', thStyle='border-right:1px solid #ddd;text-align:right;padding:2px 8px';
   
-  // Row 1: Yearly High/Low 标题 — 无年份列, colspan整行
-  html+='<tr style="border-bottom:1px solid #ccc"><td style="width:110px;font-weight:700;padding:0 3px" colspan="'+(yrCount+1)+'">Yearly High / Low</td></tr>';
-  // Row 2: High
+  // Row 1: High
   html+='<tr><td style="font-weight:700;padding:0 3px;'+tdStyle+'">High</td>';
   showYears.forEach(function(yr){{
     var hl=yhlMap[yr];
@@ -356,7 +382,6 @@ var DATA = {DATA_JS};
   }}
   html+='</div></td>';
   html+='<td colspan="'+yrCount+'" style="padding:0">';
-  html+='<div class="chart-title">Monthly Price Ranges + "Cash Flow" Line | RS vs '+indexNameCn+'</div>';
   html+='<div class="chart-box" id="chart_kline"></div>';
   html+='<div id="chart_volume" style="height:30px;margin-top:0"></div>';
   html+='</td></tr>';

@@ -144,6 +144,32 @@ STOCKS = {
         "industry": "Energy",
         "business_desc": "",
     },
+    "01378": {
+        "name": "中国宏桥",
+        "name_en": "China Hongqiao",
+        "market": "hk",
+        "exchange": "SEHK",
+        "currency": "CNY",
+        "org_id": "",
+        "pfx": "hk",
+        "shares": 9481881123,
+        "shares_str": "9,481,881,123",
+        "industry": "Metals & Mining",
+        "business_desc": "",
+    },
+    "002532": {
+        "name": "天山铝业",
+        "name_en": "Tianshan Aluminum",
+        "market": "cn",
+        "exchange": "SZSE",
+        "currency": "CNY",
+        "org_id": "",
+        "pfx": "sz",
+        "shares": 4651885415,
+        "shares_str": "4,651,885,415",
+        "industry": "Metals & Mining",
+        "business_desc": "",
+    },
 }
 
 # ============================================================

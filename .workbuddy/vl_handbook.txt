@@ -1,0 +1,708 @@
+Total pages: 15
+
+=== PAGE 1 ===
+How to Read a Value Line Report
+VALUE LINE INVESTMENT EDUCATION
+Smart research. Smarter investing™.
+
+=== PAGE 2 ===
+©2017 Value Line, Inc. All Rights Reserved. Value Line, the Value Line logo, The Value Line Investment Survey, The Most Trusted Name in
+Investment Research, “Smart research. Smarter investing.”, Timeliness, and Safety are trademarks or registered trademarks of Value Line, Inc.
+and/or its affiliates in the United States and other countries. All other trademarks are the property of their respective owners. Factual material
+is obtained from sources believed to be reliable and any information contained herein is provided without warranties of any kind. VALUE
+LINE IS NOT RESPONSIBLE FOR ANY ERRORS OR OMISSIONS HEREIN OR ANY DAMAGES OR LOSSES ARISING FROM ANY USE OF
+THIS REPORT. This report is strictly for each subscriber’s own, non-commercial, internal use. No part of this report may be reproduced,
+resold, stored or transmitted in any printed, electronic or other form, or used for generating or marketing any printed or electronic publication,
+service or product. Nothing herein should be construed as an offer to buy or sell securities or to give individual investment advice. Value Line
+Arithmetic and Geometric indices calculated by Thomson Reuters. Information supplied by Thomson Reuters. 1503516
+
+=== PAGE 3 ===
+How to Read a
+Value Line Report
+In order to make the best use of Value Line products, you’ll
+Part1
+w co a n n t t e x to t. Th un i d s e g r u st i a d n e d w o a u s r d r e e s s i e g a n r e c d h t r o ep h o e r l t p s y a o n u d d p o u t j u th st e m th a i t n . THE ® A In L ves U tm E ent L Su I rv N ey E ® Su In m & d m ex ary Fi s le b h R i S n o a a u d u t t m e l i t d n h r m g . e b s L a e f a r r & y o r s e n t R & m t w e o I o e p n f v e o d e t k h r e d t ’ e x s s .
+May12,2017
+TABLEOFSUMMARY&INDEXCONTENTS Summary&Index
+Referring to this guide will assist you in using our services PageNumber
+ISN nto dot uce skw tsr o,ie ritns h , yainlRpaha lan pbk hea Ctbihceaa tln icog are lds oerrd .. e ....r ......... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ..... ... ... . ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ....... 2 .. 42.. --. 226 13
+as forecasters of relative stock price performance as well as SCREENS
+a th s a o t u w rc i e ll o a f s s i i n st t e y r o p u re i t n iv e sp a o n t a ti ly n s g i s t r a e n n d d h s. istorical information ITTCHSBBWW nii tie oi mm d g g oi o d s n u g h r c ee e ts s s ke e ll stP e yy t ss s r t r Pe i t tv SS e w D re ″ Da s f tt iF iro oo t t s , i f h iv rr cc o v c i em i nkke or dHe m ss u i e o n i S g n F i n i( r gn n t1 h d t d l o gs o e S c T& 3w Y r fS k t i - r o m ″ is o o 2 t et com f Co e l( k d c f1 Tlo as y k i5n B i r s s m & - l g I hy o a Pn l e e o sa 2 d S e G l a t ks iur t n f re f t1 oo so V e n3 cP 1 t rr sr a k e m 3 i r S s W e l sir u ca aa s W R e e et nf. o e a ee . c P. . r t n ke. . .ey s . . . o s k k. . .)) . . . t s. . . e . . . . .. . . . . . . n .. . . . . . . .. ... . . . . t .. ... . . . . i .. a ... . . . . .. ... . . . . .. l ... . . . . .. ... . . . . .. ... . . . . .. . ... . . . . .. . ... . . . . .. . ... . . . . .. . ... . . . . . ... . . . . . ... . . . . 32 . ... . . . . . ... . . . . 07 . ... . . . . -- 3 3 33 2 3 3 2 3 2 2 1 33 9 4 2 4 3 6 SSSSHBUHH tttt ai nii g gg oooo rt h hh cccc gim kkkk ee aR ssss ess ine tt l wwww y t DG Bu iiii S tttt i ar r hhhh v n o tsoid s w LHHH ece o m t iiiE k ggg hn w s ae hhh d e S rn eee ( n s 5Yt t sss o t e ttt i Sf ce d P o PA3 k t l or / d -o s /n EE c iP ntn n s k o s e u g. sT . r a5 . f o N .. . l o - .. . ty . . . .o T r a . . . . e m . . . .n o l . . . . a . . . .- C t a . . . .u ra . . . . n . . . . a t l . . . . D ic . . . . p l R . . . .i i et . . . . iv y . . . . t e ) . . . . ai . . . . dt S . . . . l u . . . . . e . . . . .t r . . . . . . n o n . . . . . . . . . . . . d c s . . . . . . . . . . . .k . . . . . . Y s . . . . . . . . . . . . . i. . . . . . . e. . . . . . .. . . . . . . . l . . . . . . . . d . . . . . . . .. . . . . . . .. . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 3 3 3 3 3 3 3 3 6 8 6 7 8 5 7 5 9
+I: GETTING STARTED A PRIoC T f h Ea e l-lE M stA e o 2 d cR i k a N 0 s n Iw o N . i f t 1 Gh Es eS t a im rRn a iAn te gT d sIOS (nep T xa Dt h y1i e I n V2g M ImD s e 2 to d E on i c a . Ntk n h 0 s Ds o )u % f on Y E fd I s eaE t rl i l m L rde D a ivv t S e iied d wend ec A o o n Pf o T a m Ph ull in Re c 1iv E7 E ee0 n Cs r0 vs t i iI er mAs o 3 tinnoTa m c tI t 5 e kO he s d en N % i thn M 3y Pt e ph t d oo Oet ia h5 VT e n aE ysl e ui PN za ee r r Ti ds c LIe i h An e eL nce C
+26 1AW 8g.o2 eeksMar 3 k 1-9 e 0- t .03 L 9 owMar 3 k 1- e 19 t -.16 H 7 igh 26 2A. W 3g%oeeksMar34 k-.9e 0-t %0L9owMar3k 2-e .10 t-%1H7igh 26 4AW 5g%oeeksMar31 k-89e 5-t0% L9owMar3k 3-e15 t-%1H7igh
+As a subscriber, you will receive three parts of The Value B ANALYSESOFINDUSTRIESINALPHABETICALORDERWITHPAGENUMBER
+Numeralinparenthesisaftertheindustryisrankforprobableperformance(next12months).
+L & & so i m n I R n e e e d p I n o e o x f v r , t e t s P s h . t a m e B r e w t e l n 2 o a t y w i S s s u w S to r e e v l e u e w c y s t ® i e i l o l e t n a d h c e & e h s m c O w r . i e b p e i e n k e i . a o P c n a h a r t n s e d 1 c t P i i s o a t r n h t a e 3 n S i d s u R m d a i m s t c i a u n r g s y s s * * A A DD CCC A A AA B CC E B BB E EEE B B C e u i d pu a - e ru l dll i a ir hho ah o r e ee o v C o u r t v pt nv i u n eem be me l c cc t oo To k g d o e ee a k c k mm lm t tt r e e m p s p r i r rr m r r a c s r P n a ( i ii pt (a r ( iiu i e u c cc h i4 t cc c i o M T s 7 g f n a m s i a g t l t a i o n 6 aa a t ee 7 e V s r i UU c i ei & ( n l M n o )e ll t l v d r ) rd p2 s e tt s g E e a l (( ( r ( w ii ( o4 o a S E / DS B c ll 4 / 7 C l . . ( i. D q P r) g ( t e t . .e (1 o ) x p a 1 i t y e S . . 9 u( 5 o v e y s e . . 2 c f C e s ) r . . .( ) i ( ) e t e . t f ( r p . . . . hi 6 ) w 3 i c ) e ( a . . . . Ee i c r r ( p m 8 . . . . . a 3 i 6v s n 6 l a . . . . . . .( n ) a a s h 9 .. . . . . . . n 9 ) i i ) s 5 e r .. . . . . . . t c fl ( s e ) .. . . . . . . t r g e i 4 e 9 ( ) ne .. . . . . . . ey ta 1 r .. . . . . .. . e . ) ) 7 ) ts .. . . . . .. . d a . l ( 1 ( .. . . . . .. .. ) s . 6 ( ) 7 .. . . . . .. . .. ) ( l . ( ) 4 s ( .. . . . . .. . . .. . 5 6 ( 9 2 .. . . . . .. . . ..( 7. ( 42 .. . . . . .. . . . .. . 8 9 8 ) 6 ( ) .. . . . . .. . . . .. 9. . 3) .. . . . . .. . . .. . 5 . .0 ) )7 .. . . . . .. . . . .. ). . ) .. . . . . .. . . . .. .3 . .) ) .. . . . . .. . . . . .. . . . .. . . . . .. . . . . . .. . . . ) . . .. . . . . .. . . . . . .. . . ... . . .. . . . . .. . . . . . .. . . . . . .. . . .. . . . . .. . . . . . .. . . . . . .. . . .. . . . . .. . . . .. . . . . . . . . .. . . .. . . . . .. . . . . . . .. . .. . . .. . . .. . . . . .. . . . . . . .. . .. . . .. . . .. . . . . .. . . . . . .. . . . . . . .. . . .. . . . . .. . . . . . . .. . .. . . .. . . .. . . . . .. . . . . . . .. . .. . . .. . . P .. . . . . .. . . . . . .. . . . . . . .. . . .. . . . . .. . . . . . .. . . . . . . .. . . A .. . . . . . .. .. 2 2 1 1 .2 . 1 . 1 1 . 1. . 21 2 2 1. 1 1 19 3 5 0 6 31 7 7 7 987 5 5 5 1 3 0 4 1 39 G 8 07 8 0 1 0 00 3 7 0 29 9 5 6 3 89 0 4 0 00 1 E 13 9 1 6 9 11 5 7 1 1 7 8 7 7 1 8 16 1 3 1 11 * * * I I HHHI II F I FFFHHH EEEEEEF I I n nn nn n T n oouu i llnnnn oou eeo v fd ss v n t ee o e ornr gttv S tum aam e uu e u a cc e n ee e r r d e i i s lv s rr s e s tt rn m n n i /t rr a le aa rr gr o /e Hhy tt tt t r c ioe e G P a n m b m aa r nn c va n n h c i o i ne t T l u ii a a r icc t a a m o nn ee c R o U m i ir ES ( ri l l ee o c m r l l imm e nn5 u c d d e n e e t S S le s n e s e i tt0 c e (( ii n g s l ee r nn v e i LP P k c I ) C s B (t v o S F t nn ( n c y gg 4 r i a t & r s 7 i r f u ao v u r tt & e c f s o o e 7 . l io o 3 ( . ( ri ( n n. er . r (T p c d ) )C . W ( 1 c 7 n n r )v 3 . E g k s 8 ( ( e / m e u . e 5 ( ) i i i o - C 4 D i. c s c 4 e q 9 s n c - c . . . s ) ( ( n a ) . . . ) e h s a )i s u 6 5 5 h t g . . . v . s ( s t . . . ( s i . t s i 4 ) 7 i 4 n . . . . . . ( . 4 ) p t o ( ( ) . . . . . . . . . 1) ) ( 1 g 8 . . . . . . ( 3 ) . . 0 n ( ( 5 . . . . . . . . . 4 ) ( ( 7 1 ) s 8 . . . . . . . 7 . . ) ( 4 8 4 . . . . . . . . . . . 8 9 ( 4 4 ) . . . . . . . . . ) . .5 5 ( ) 1 . . . . . . . . . . . . ) 3 ) ) . . . . . . . . . . . . 2 . .) )8 . . . . . . . . . . . . . . ) . . . . . . . . . . . . .. 3 . . . ) . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . .. .. . ) . . . . . . . . . . . . . . . .. . .. .. . . . . . . . . . . . . . . . .. . . .. .. . . . . . . . . . . . . . . . .. . . . . . .. . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . .. . . . . .. . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . P . . . . . . . . . . . . .. . . . . .. . . . . . . . . . . . . . . . . .. . . . . . .. . . . . . A . . . . . . 2 1 2 2 . . 1 . 1 1 1 1 2 . 1 1 . 2 22 1 1 1 . 1 6 2 6 3 1 3 8 4 9 8 6 1 1 5 57 9 3 8 2 3 1 0 2 G 4 0 0 3 5 5 7 0 0 4 3 3 2 8 55 3 8 1 2 2 2 4 0 3 1 E 8 2 1 9 1 1 3 1 0 6 3 3 7 14 4 5 7 1 0 4 8 7 9 0 * NM N IMM MM MM P PPP NO O PPP O P PPP n u hio aee a rru aaef ii e aa ee ee v p ll ee f f/ b a w ptt c b ttw e i t cr dt dd e iG rr uu c cc aa i ek l r e l oo hs ti e s i l i e ii rr m ci ll s i a c SS la os r t ll a m s a i n p d r ee n a m / h/ F i g s u uu E a F ll e oP a ( uu e le & i i a S s pp 4 e n c GG n on qp D r mm S r M b y i v pp 9 n g y rg ( ue M v Maa i e I e 2 r cs ) t L n ir a i S ss (( ( NI p ( r &s 8 c s e i t n IP C7 P 9 st n v r ( e n / t a / e . ) t o U( i 8 v t S 8 i E 6 . i r a b o s C D c r t r nt P . n o a 1 e ) i v u ) . t l u E uq . e ng s . . i o i ( - d ( r s ) i g l m . . v ptu s 5 I c F o q i g . . n i i u t n r . ( .. . . ( o v p e i y 1 d u o ) e a .. . . . 3 pt D c ( v( e .. . . . n a l s) u i 1 r n t i .. . . . 6 ) . i ( a t ( e i e ne .. . . . i y 2 c 7v 0 n t .. . . . 0 ( ( (( s s i gd .. . . . . 7 t . 9 2 79 5 ) g e .. . . . . . )i ( s ( ) v )) .. . . . . . 6 6 ) ) 02 3 ) n ( r .. . . . . . e ( 2 .. . . . . . . ( ) 6 (( )) 5 ) .. . . . . . . . 6 ( 3 12 1 .. . . . . . . . . .. ) 3 ) ( .. . . . . . . .. . . 1 ( 3 70 ) .. . . . .. . . . . . . .. 8 - 8 .. . . . .. . . . . . . .. ) - ) )) .. . . . .. . . . .. . . . . 2 . ) ).. . . . .. . . .. . . . . . . .. . . . .. . .. . . . . . .. ) . .. . . . .. . . . .. .. . . .. .. . . .. . . . .. . . . .. .. . . . .. .. . . . .. . . . .. . .. .. . . . . . .. .. . . . .. . . . .. . . . . .. . . . . .. . .. . . . .. . . . .. . . . .. .. . . .. . . .. . . . .. . . . .. . . .. .. . . . .. . . .. . . . .. . . . .. . .. . . .. . . . .. . .. . . . P .. . . . .. . .. . . .. . . .. . . .. . . . .. . . . .. . . . .. .. . . .. . . .. . . . A . . . .. . . . . . . . . 1. . 1 . .. 2 1 1 .2 . . 2 2 . 1. . .2 1 . 1 73 9 2 5 17 3 5 3 6 5 7 5 4 1 6 6 4 1 4 5 1 3 G 1 03 6 1 7 4 9 7 1 6 8 8 2 2 1 6 51 2 9 00 0 7 9 E 10 4 3 6 03 4 3 6 90 42 8 3 72 94 1 6 1 3 9 TT TT R TT R WW RRRRRRRRRSS SS T oh ee or e ee th a.eeeeeeeee u ia e E br ll r i l mmo i cistttttt ee l e i l e ct n e aaaaaa e . f r a e r t e cc I c t k o l sa ii l e iiiiii t . e c cc r llllll oo r o i T u / ( a u ( a ( n ci oo s W AB((S 9 5 * e mm U 3 m . r d r t HS g o s nn a 0 i a 2 s uu t 2 R t (o h .. o . o dd a i n ) ( / 2 n ) ti ) N ( (l n C l o e 5 o r SU i f u E u 8 8 rd c 7 t t te d e l v 5 y m l cc . .. 6o3 e e i e q t )( i ( . .. nl i i t n ) 1 tt 1 . .. ) )s i ( e lr s u w( o oo n . .. i g ( 1 v e 3 t 9 m 9 . .. a w . i 8 t rr y e . . .. o p . i 6s ) i 1 ) .. . . .. c l . S 7 v e e s e .. . . .. r (E m . )) (e ) .. . . .. . k e 6 ) u) d t .. . . . .. 3 . q ( s i .. . . . . .. i F e . 2 c p n 2 .. . . . . .. . 0 ( . ( u i .. . . . . .. .. . n . 2 o) s 8p n ( g 6 .. . . . . .. .. . ) . i .. . . . . .. .. . 3t . 2 o p )l ) .. . . . . .. .. . . ( y t .. . . . . .. .. . . 1 ( . ) d ( 2 h .. . . . . . .. .. . . . 6 ( 4 .. . . . . . .. .. . . ) . .( 5 5 i .. . . . . . .. .. .. . . . ) ( 4 5 s .. . . . . . .. .. .. . . . . ) 3 6 .. . . . . . .. .. .. . . . . ) 8 .. . . . . . . .. .. .. . . . . 9 ) w .. . . . . .. . .. .. .. . . . .) .. . . . . .. . . .. .. .. . . . . ) .. . . . . .. . . .. .. .. . . . . . e .. . . . . .. . . .. .. .. . . . . . . .. . . . . .. . . .. .. .. . . . . . .. e .. . . . . .. . . .. .. .. . . . . . . .. .. . . . . .. . . .. .. .. . . . . . . .. k .. . . . . .. . . .. .. .. . . . . . . .. .. . . . . .. . . .. .. .. . . . . . ’ . .. s .. . . . . .. . . .. .. .. . . . . . . .. .. . . . . .. . . .. .. .. . . . . . . .. .. . . . . .. . . .. .. .. . . . . . . .. P i .. . . . . .. . . .. .. .. . . . . . . .. s .. . . . . .. . . .. .. .. . . . . . . .. A . . . . . .. s 11 . . 1 . 1. 1 2 .2 2. 22 1 2 1 1 . 1 21 u 59 9 3 0 3 7 9 5 0 3 30 17 12 3 1 9 1 3 G 5 1 e 09 1 1 2 3 8 3 8 0 5 02 53 1 30 4 6 4 3 7 1 . E 1 1 3 8 8 4 9 1 9 8 6 1 13 49 8 20 7 3 5 8 9
+Part 1 — Summary & Index
+Inthreeparts:ThisisPart1,theSummary&Index.Part2isSelection&Opinion.Part3isRatings&Reports.VolumeLXXII,No.39.
+PublishedweeklybyVALUELINEPUBLISHINGLLC,551FifthAvenue,NewYork,NY10176
+We will start with the Summary & Index. The front cover ©RrSeEpe 2Sre 0 oP1 dO7 bucN a V eSa dc Il ,Bu k eLreE c L s i oo nFl e dO v , ,R e I s n r At c o .Nrfe AY od ll r Er o iRg irm Rh t tOr s ap Rn re o Ss s mr eOit r tt vR ae e dn dO. tiMn FI d aSa cS in tu s IyOa c lNpl m ro Sin a stHt eu eEd ri r,Ra e lEe i slIs eN .c.o tr bTo thn aii isc nepo durbfrlo oict m haetis roonf u oir rsc m es, stroibcr etllyi u e sfvoe erd det fao ocrhb g eseur n ebe lsi r aca brtii lbn eeg ar’nso d roiwm sna p,r r k one vot i ind n-e gcdoamw nmi y theo prcu rii tanlt w,e a dinrrtoea rrnntiae ell s euc ostr feo.a n nNic yop kpi u nab drlt. ic ToafH tiotEhni,sPU spe BurbL vli Iic SceaHtEiooR rnp ImS road Nyu Obc T te.
+contains a Table of Contents, three important market statis- Summary & Index
+tics, and a list of all the industries we follow in alphabetical
+potential 3 to 5 years into the future for the approximately
+order with their current industry rank shown next to the
+1,700 stocks in The Value Line Investment Survey, based on
+name. The page number is to the right. The market statistics
+Value Line’s hypothesized economic environment 3 to 5
+are found in three boxes. The first box (A) has the median
+years hence. A fairly good picture emerges of how the Value
+of estimated price/earnings ratios of all stocks with earnings
+Line universe is evaluated.
+covered in The Value Line Investment Survey (approximately
+1,700). The second box (B) shows the median of estimated What’s more, The Value Line Investment Survey comprises
+dividend yields (total dividends expected to be paid in the approximately 90% of the market capitalization of all eq-
+next 12 months divided by the recent price) of all dividend- uities traded in U.S. markets, and therefore represents the
+paying stocks in The Value Line Investment Survey. The third stock market as a whole quite well.
+box (C) contains the estimated median price appreciation
+How to Read a Value Line Report 1
+
+=== PAGE 4 ===
+Beginning on page 2, the Summary & Index also includes Part 3—Ratings & Reports
+an alphabetical listing of all stocks in the publication with Ratings & Reports is the core of The Value Line Investment
+references to their location in Part 3, Ratings & Reports. Survey with one-page reports on approximately 1,700
+The page number is shown in the right hand corner of each companies and one-page reports on approximately 100
+report. The index is updated each week to provide the most industries. The company reports contain our proprietary
+current data on all companies included in The Value Line ranks, our 3- to 5-year price forecast for the stock, income
+Investment Survey.
+and balance sheet data, up to 17 years of historical data,
+and analyst commentaries. Our reports also contain stock
+The far left column of the Summary & Index may include
+price charts and graphs; quarterly sales, earnings, and divi-
+another page number. This refers to recent Supplementary
+dend information; and a variety of other very useful data.
+Reports, if any, which are included on the back pages of
+Ratings & Reports. If two stars (HH) appear in that column, Each page in this section is updated every 13 weeks. When
+important news occurs during these 13 week intervals, a
+one Supplementary Report is included in the current Issue.
+Supplementary Report (appearing in the back section of
+There are many columns in the Summary & Index with Ratings & Reports) is published. If there is a Supplementary
+more information on each of the approximately 1,700 Report, its location will be shown in the Summary & Index.
+stocks we cover.
+Every week subscribers receive a new Issue of Ratings &
+There is also a wealth of information in the stock screens Reports containing approximately 130 company reports
+toward the back of the Summary & Index, beginning on grouped by industry, and a smaller number of industry
+page 24. reports. The industry reports precede the reports on the
+companies in that same industry. Over the course of three
+These screens are a good starting point for anyone seeking
+months, revised reports on all approximately 1,700 com-
+investment ideas or help in forming a strategy. The screens
+panies and nearly 100 industries are issued.
+are also useful for investors looking for a list of stocks relevant
+to their specific strategies.
+Part 2—Selection & Opinion
+ISSUE 13
+Selection & Opinion (S&O) contains Value Line’s weekly THE VALUE LINE Ra P t a i rt n 3 gs Pages 2500-2674
+economic and stock market commentary and investment Inve w st w m w. e v n al t u e S li u n r e. v co e m y® Rep & orts M File a i sin ps y rut e hev e it n o 1 h buue imn s 2 s d bias ee , ms rr u,i e 2 n er e n o b 0 m u r e d m o 1 a evrb r ii 7 e nno rggf .
+i i e m A P P Th a s m w d n t c n o r o h w e g o o a i d t e c c e a r e n d w s e k k a s S n a p e o , . d e e A v l t m m e g a t l i a e c p s a l o P l c o t a i i c l p u o t c fi o r , r o n i i r a e k d c c o c a m g e n l k e n e n i c s u n t d w m i t d & p n a P o e a S i t o . e d o n t c s t i c O h n t r k o o e t d o o t e r t s n c p f o m c a n s e k o i , o t n k r c n t s l a S . y r i i e o i w n m a o t o i n o l o d a n s n i , a o c t t r i d ( h r n k p S m S m k u l s t r g A e t e o s o y o a w o t t b . o c v s r c r i o k s t f I i i e k t d e t n v s h V a s t s p e e w t , a a f s L - w a i o a d l A s v i g o u t n c i r d a e v t i n e e d c h l s i e I u g t s L r n o e i . a - a a A o a i c T f I b g n v n c o b t r e e l a e h , m e e o r a D ’ r s s m V v l i i e s e n b e e o i a o a t v - u v P u l r y a A i u e i s c r d n t n s i v e o h i l n e t d c o c e f m n L e e l h o r u p - s a d P i k i e s n d g g e G o n Y r e h e f e d t t t o r i s e l e i o a p Y i i r n n l d f g y w e o d o e t t h e a s h i s u n t a a a r t t ) h e r s s - - t t . l B ★ F(★ ★ ★ DI A ★ ★ ★ ★ ★ ★ ★ ★ NI N VA ABBBBBBBCCCCEFFHJKMNPPRRSSSSTWWZ AAAAAAAAABBBCCCDEEFFFFFFFGGHIJK K n E P a o i it yu i ii i ii N e lr o i l a a l a e m a aaa iu o ef l r i m l a Ba a mos rI Z N i a e l e a a S o ee g & d rr d rr e a v r l l t o t a f r s o n a T a d n o R p s gy r M n n n s p n nnn m t n n y l l C y i t i r ss n i ss bl i & B c n I C e o c ee c e t C c b ee e l l u a C o w n l w u t e z l g uia Ti o C t i T tt a k kkk tt c k a N e e a k s t S o n i s k ll s O s o o a r G r r p a t o p n C F n f e r T r C v r k l s a o I l ii C a d t W n r n s fv g F c a i o i i o n n R D C t R t I r t a t a la l no B e D o ooo o A u S c o e R F r B cc p ( i l r t u t B p o a i o c u e r h y r y / o V F l C g s a n i i H H u r C r t e n e p f fff f a l e a a o r s o r F o & e P a s a r t d a n n s - p r s P L a , U r e e r a a e a O l B d d a p I La m H u p r D c S s A nn n t. i N t HM N NN o F t h n r a & o r C e , a F F n d . r I n s n F E , n e k a t F n B p u T . F S . p r o R B e L o t g n l m y S n , k o i & o n B e I . M m . e c I a o a a e i i o I EI k R d I d i o c , B p ( n i c s . e r u b . i D B o I i T a n n n m e C m t n l o e C r n m c n I w . A v E t n . . c t r t n t w e n a n i n t i . n c e d . I C. x d F a l . . ) t o a n a o n a . r s i c i a a a o i p n a c C a . R a t . . h ) & i cn, o h a F n r rh t i a o e o R s C a i p v . p . a . n n . . . . p w B C. o n c n . i l e f o c k Y n l n o n n . g . n n . r . . . . r t i a no I t n c n n n n k n Y I l , i e r . . . . u e i . S . . . . . o c w r c r ok a h r V e G p C o a o c e c n s n n . . c . . . i . B . . . ... i c g C . s N e c sa t a o a o r s i n a c p r . . . . . . . I. . . S .. o a r r c i i a g r o r i u n i . a e. . . . . e . . c . . . . .. s s . a , i‘ I t a s C i r , i n l a a a f ap ll n n p o c a o n . . . . . . B . a . . . . . . ... k t pa e D r l e a a o . o a C r l k C . . . . . . s . . . o . . . . ... n I n e t l l i I . n c t l . & l C N c p . . . . I o . t . . . F . I . . . . . .. . . r . r l g l r ’ l o n l c u i . . . . . . . n . . e . . . . . i .. . .. . s C H . c U M i n B a i n o J E v r k s G C C t . . . . . . . . . . o . . . . . . . s .. . .. . C a i i n a oa S B . r c i S . . . . . . . . p . . . . . . .. . . . .. . .. . c h rp e d ( n .c i f , o V n C . . . . . . . a . . . a . . . . .. . . . . . . ... . o S n S o s o . n ) r l G A e o c . o p e . . . . . . . . . . . . . . .. . . . . . . .. . . . . e. s k . ar a . . . . . l. .. I . n . l . . . . . . . .. . . . . . . . . .. . I . o . r e o a l r a . T F r & , . . . . . . . r . . . . . . . . . . . . .. . . . . . . . . . .. . . . d p . I D . r n n l n p . . . . u . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . p s . k . v l v d n o S . . . . . . . . . . . . . . . o .. . . .. . . i . . . . . . . . . . . . . . . . . i . I R O c c c . . . . . . . . . . . . . . . . . .. . . R .. . . . . . . . . . . . .. . . . . . . p . n i n i n n a G u C c . G . . . . . .. . . . . . . . . . . . . . . . .. . . . . . . . . . . .. . . . . . e . . c . i c . . . . . . .. . . . . . . . . . . . . . . Y . .. . . . . . . . . . . . . . . . . . . . . f ’ g . a ) c r . .e . . . . .. . . . . p . . . . . . . . . . . .. . . . .. . . . . . . . .. . . . . l . . . . . . e o r r . . . . . . .. . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . .. . . . . . . . . . . . vl C s . . . . . . .. . . . . s . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . o . o C . . . . . . . . . . . . . . . . . . . . . . . .. . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . i . . . u . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . u . . . . . . . . . o c . . . . . . . . . . . . . o . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . m . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . e p p r . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . p . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . m . . . . .. .. . .. . . . . . . . . .. . .. . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . .. . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . .. . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . P 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 222 2 2 2 2 2 2 A 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 55 5 5 5 55 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 55 5 5 5 5 5 5 G 0 0 2 4 6 0 4 2 3 1 3 6 3 5 0 1 3 3 5 2 0 5 1 2 2 3 1 0 3 0 2 5 4 2 4 4 1 2 3 5 6 3 1 2 5 3 5 4 1 5 4 0 4 5 6 5 6 0 6 1 2 1 4 4 1 E 7 5 9 4 9 5 5 3 4 5 5 2 5 6 0 0 1 8 8 8 4 8 7 2 4 01 3 1 0 1 4 8 4 7 9 7 0 3 9 3 3 6 9 6 7 7 2 9 4 3 6 0 2 8 2 6 5 1 1 2 2 3 1 6 CI ★ II★ N NT ★ ★★ ★ ★ ★ ★ ★ O ★ ★ D DS M LLLMMMNPPPSSSTVVVWWW AAACCCFFIMNOPPRSSSSTV AAAACCCCCDDEFFHIMMPS U UE n n o e P A u y E y L S y a o a a ia o arr io T a e i P i C m S d a u D o NuA e M c A S S r X a u e e G i a aa a R i S S s E r s t f t r t ii y m n c e r n g n z l g i a d y y n c & l d o M A t n t C P G I R o U v T u r a s cn e I e , C a a C W n rs n a o S r l de t T T w w a a V r X g I o o n P c c c o b t e s i e t i i E rr st n i l i I M c a d A C I H hT n C o L I Y x o W T i h s m e h d l r e p S I I y n t A e n e R R I i vy h S a n a s I S i n v e T F M C c n a s y c e z d ( S s I a n t n n r e C p e , ir r s s S I C E E e a , c l r T T e y c I S I l y o a u v s n e Y Yo f a a T c e S t I t in ( C t o n o C s & y x S y t c t a Cc e t I e n n e . t , a o n I J o s L a f e n . L c h s r e H t t R y E , n a r c e o k n . r y , . n s , C s ,. t L l t y n o r a t i a s c c w h l t o C I c a . a . s . . e . .U s R v p t c D c F ’ t I , t t s , c y d . . e M . .S . . . c I p I I e r o l s . . n o C I F t r o c r N n t d t cd n C . h n . . . e . n . . . e . , t o S e n n n . C m p o I i t w d n . I m . p l . . n . m . . . . . d . n e . C p T e m k c D e m i o. F . . s n . . . . . . . . . o n d c r c r e n c n I o e w c c c A O . s . . . n . . . . . m .. l . . . . . . t . i e . o m ) t i r i o p . s l n . s L . . . . . . .. . . . . m . . s a c i e r t o . i o a . . I I c ’ m i c d a . . . . . . . . o c m . . . . . . r . . . . ( . a l p ne s n r , w g F on p n & . . . . n . . . . .. . . . . . . . . . . . c . . l n . n . s S t A e h p W s l g e . . I . . . . . . . . . .s . . . . . . . . . . . . p . )n o s o gr n a u .a I , . . . . . . . . . . . . c .. . . . . . . . . . . . . . c n . t e c T , n o e o . y . D . . . . . . . . . . . g .. . . . . . . . . . . . . . . . r . . a n c sG s . n . A n . i a . . n . . . . . . . . . .. .. . I . . . . . . . . . . . . . . . . r n r c I t a P . W i i . S . . . . . . . . . . .. .. . . S . a . . . . . . . . . . . . . . . . t c n R k c . v t . . . . . . e . . . . . . i . . . . . . . . . n . . . . . . i . . . . e . . a . . . . . t r s C a i t. . . . . . . . . . . . . . . . . . . . l . . . . . . . . . . . . . . . . . . . .c a o r y s i c o r i o s s . s . . . . . . . . . . . . . . . . . . . . i . . . . . . . . . . l . . . . . . . . A c ) n a a o . . c . o . . . . . . l . . . . . . . . . o . . . . . . . . . . . . . . . . . . . . . . . . o t s. n n o u . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . u . . G le e c t n . t . R n . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . .c a C p . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . i. . e e t s s . . . i . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . r . . o t i E . . . . . . . . . . . . . . ,. . . . . . . . . s . . . . m . . . . . . . . . . . . . . . . . . . . . . a . P . o o o . i . . . . . . . . . . . . . . . . . . . . . . . . n . . . . . . . . . . . . . . . . . . . . . . . . . . . . s . . . . . . . . . . . . . . . . . . . . . . . . . . . . o . . . . . . . . . . . . . . . . . . . t . . s . . . .I u L n . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . s s i e n . n . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . n p , s , . C . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .s c . . . . . . . . . . . . . . . . . . . a . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . g I . , . . . . . . . . . . . . . . . . . . . . . . . . . I . . . . . . . . . . . . . . . . . . . . . . . . . . . .. C . . . . . . . . . . . . . l . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . n n , . . . . . . . . . . . . . . .. . . . . . . I . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . , . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . o n c c I . . . . . . . . . . . . . . . . . . . . . . . ... . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . I . . . . . . . . . . . .. . . . . . . . . . . . r .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . n . c n . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . p . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . .. c . . . . . . c . . . . . . . . . . . ... . . . . . . .. . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . .. . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 2 2 2 2 2 2 2 22 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 22 2 2 2 2 2 P 5 6 6 5 6 5 5 6 6 5 5 6 6 55 5 6 5 6 5 6 6 5 5 5 6 6 5 5 6 6 6 5 5 6 5 5 5 5 6 5 55 5 6 6 5 6 5 6 5 6 66 6 5 5 6 6 6 5 5 5 A 8 0 1 9 0 9 6 1 1 7 0 6 8 2 9 8 0 8 8 0 0 9 7 1 2 7 7 0 2 8 2 7 2 6 0 7 8 9 6 2 8 77 8 1 1 8 1 7 2 1 9 0 1 2 7 9 1 2 9 0 9 9 G 4 6 2 5 9 8 9 4 6 8 1 6 8 90 5 5 4 5 8 1 9 21 3 7 5 7 3 8 0 3 8 7 3 7 6 4 6 2 6 2 7 5 0 0 1 2 0 6 9 1 7 4 8 3 2 0 7 4 1 3 9 E S S i I O c p s p T S s c W t I PI★ S E t a n o t l h N N a r U n t n s h U ★★ ★ ★ ★ ★ ★★★ o ★★ o r e n i S t r a o T D g l a u c e P a a e ★★ d ★★★ B e ★★★ t ★★ e s m r e P k E ST AAABCeEFGIMN1OPPSSTTVXYYZ AABFGK r U p i d e P e c r p i L e l A n B - w ae n y r e i e no s a o ar O t m l ppl l at x R z l r K 2 v c RR b a e 8 E i l l S a L i a p i l I a r r i r h h C l r , s o u c a o n a l p i oo e t h e e b i s p I e p i c 0 5 e u t t C N i R i o v aa c d T a t h h d e t f e u E u o y G n ll p n r e d t / S p e c C n a e e e A r , s r 0 k l a t w ll i 9 I z b u nn t u s a r o i s / R d p h . i a l E o oo c e s s . e b M i u - n r I P I & s c I o s d x t Ii o c c t ! t v 8 b , T g p kk e F i o r I t s p r t n n o a f u n s o n on t Y T n o G o t t , oa v G c IG , R h e n a . e I I N i s n b E o o A u a L n e m c o e c c cm n c , C k . p n i n , f h 1 c d 2 l I t c G r ,I n t c , r . l i r b e s . k r p . I. I a e o o I g N O e M n v t , h e o n c c o I p h o . G c o s , o L A u o I I V e N n n I ( r ( w . . . . h . e g r n e . . m c s e b u I n . I mn . . u c . c o nI . W C a H n A T rI r o e e i v r c . A . s . . . . e w . n s e n , n c a D L o . e G n p L o . . . . . . c p m c u o c m m od b t s A 2 ae b t t n . . . u . . . . I , . i f e t m c T E l c I . l . s . . i . . . . c . . . , u m . v p r r d e g n i s U i p Y ’ o u . . . . 6 . . . . . . . v o n r P R . I l . p a h . . M . . . . i t . . o . . . . . E R t o A y p I e p e h g i c n . .. . . . . . . . . . . . e e . . a v d c 3 n e i s S m H , n t u . .. . . . . . . . . .. . . . . . Y . k . r a i S C n r c . s .. . . . . . . . . e . .. . . . . . . t a na e i m i ( e 4 I T . . r . c . . . . . .. . . p . E . g . . . . . . e N . o h e T n r i o . . . . . . . . . . . . . s . .. . . . . . n . l n a n t o g s . o i . R . . . . . C . . . . . . . .. . . . . . . . . g A lR n Q t e . . . . . . . . . . . . . . ... . . . . . . . e h v r v c e a d a C p n . . . . . . . . . . . . . . . ... . . . . . . C. q ) O O n s f t v E p . . . . . . . . . . . . . . . ... . . . . . . . . t Y s e g e i e U n . . . . . . . . . . . . . . . ... . . . . . . r . o p z u o n f h e . . . . . . . . . . . . . . . . ... . . . . . . . . e ) s G M e n p P d r o . o . . . . . . . . . . . . . . ... o . . . . . . . .r a T o l I g r . . . .. . . . . . . . . . . . . ... . . . . . . . . . r a e m e p . . . .. a . . . . . . . . . . . . .. p . . . f . . . . . i . . m r r T O a , y . . . .. . . . . . . . n . . . . . ... . . . . . . . s . . c . r o b o L E . . . . . . . . . . . . . . . . . ... . . . . . . . . .. e e g r t g Y s . . . . , . . . . . . . . . . . . . . T .. . . . . . . . . . I R a u t . . . . . . . . . . . . . . . . . . . . .. . . f . . . . . . .. n y t a h n a e g a . . e . . . . . . . . . . . e . . . . . . .. . . . . . . . . .. c w i W p d t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . T t t m c r r e . . ) . . . . . . . . . . . . . . .. . . . r . . . . . . . . . . l y i o 2 . h . . . . . . . . . . . . . . . . .. . . . . . . . . . . . . . t . . h l S o s L o n . . . . . . . .. . . . . . . . .. . . . . . . . . . . . . .. e e m . . . . . y . . O . .. . . . . . . . . .. e . . . . .. . . . . . . 6 .. o e . n . . . . . . . . . . . . . . . . . . . .. . . . .. . . w . . . . . r . i L c i . . . . . . . . . . . . . . . . . . . .. l . . . . . . . . . . . . .. n 4 c . . . s . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . n i p h , o C T . . . R . . . . . . . . . . .. . .. . . . . . . . . . . , . .. . . . . t h n 8 . . l . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . w o n h . . . . . . . . .. . . g . . . . . . . . . . . . . . . . .. . . . . n . u i m . . . . e . . . . .. . . . . . w .. . . . . . . . . . . . .. . . . . . . T n p . . . . . . . . .. . . . . . .. . . . . . .. . . . . .. . . . . . . o o s o . r r . . . . . s . . .. . . . . . .. . . . . . .. . . . . .. . . . . . . a W a f h u e f s o n l 2 2 2 H 2 2 2 2 2 2 22 2 2 2 2 2 2 22 2 2 2 22 2 2 2 2 2 2 22 2 2 2 2 f t o p . k n t i l 6 6 6 e 6 6 6 6 6 6 6 66 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 66 6 6 6 6 a r i c a g h e e r 3 7 5 3 4 5 2 t Y 3 4 4 33 5 3 4 6 5 5 4 6 3 3 5 6 4 6 5 4 5 4 4 34 5 3 5 g t e l h y o r s s r e s 1 4 7 9 1 9 2 7 8 2 456 3 9 3 3 5 1 0 0 1 8 4 5 2 2 6 6 7 4 09 8 3 0 l - . :
+In three parts: Part 1 is the Summary & Index. Part 2 is Selection & Opinion. This is Part 3, Ratings & Reports. Volume LXXII, No. 39
+Published weekly by VALUE LINE PUBLISHING LLC, 551 Fifth Avenue, New York, NY 10176.
+©RrSeE e p 2 e Sr 0 o P1 bd 7Oua cNV ce aS kd luI ,B c e rL o e LE vs i n eoFe lr Od , ,f RI n os cA rto . Nr A iem Yl d l r p Ei o gR or h r Rt t s trOa a rRn e nsSs tm e O d r i v tR it e es d dc O. l MF ion aI s Sc au tSn u ryIa e O l p s Nm r.iSa n t tHe e r dEi , aR l e Ei l s eI Nc o t.b rTo tahn iin isc e pd ou r fb r o olict m hae tsiroo nf u o r ricsm e s, s t ro bicr e tllu iye s vfeoe drd e f t oao rc bhg e es n rue ebl rsia acb tri lin ebg ea ro n’sr d o m isw anp r,r k one voti i n dng e-c doa wmny imt h peo rru icn ti taw el,d a i rnr o atren re tni l e easlc tuo rso f en a.i n cNy o p k upin bad lri . ct T aot Hfi otEhn i, Ps s Upe BurbL vli Iic SceaH tE oior Rn p mI r S oa d Nyu ObceT t.
+Ratings & Reports
+How to Read a Value Line Report 2
+
+=== PAGE 5 ===
+II: PLANNING AN if the title of a screen is not self-explanatory. There are, of
+INVESTMENT STRATEGY course, many more screens than the ones listed here, which
+are available in the back of the Summary & Index. Regard-
+When planning an investment strategy, it is important to
+less, this approach will provide you with a more focused
+consider a number of factors, including such aspects as
+and shorter list of companies to research.
+your age, current financial situation, and risk tolerance.
+Of course, there are myriad other considerations, and our For those who want more advice than a static screen, we
+tools will help investors make well informed decisions when have also created four model portfolios: Portfolio I (Stocks
+picking securities. with Above-Average Year-Ahead Price Potential), Portfolio
+II (Stocks for Income and Potential Price Appreciation),
+We have created a guide called Planning an Investment
+Portfolio III (Stocks with Long-Term Price Growth Poten-
+Strategy that you may wish to read before taking any port-
+tial), and Portfolio IV (Stocks with Above-Average Dividend
+folio action. As a quick summary, you should diversify your
+Yields). These portfolios are overseen by Value Line analysts
+portfolio both across asset classes (e.g., stocks, bonds, and
+and are updated weekly in Selection & Opinion. A fifth
+foreign securities) and within asset classes (i.e., owning a
+model portfolio (The Value Line $5–$15 Portfolio) is also
+variety of stocks and bonds).
+provided via weekly email. These portfolios offer another
+In addition, you do not have to manage every portion of convenient starting point for selecting stocks for inclusion
+your portfolio. Instead, you might hire someone else to in your portfolio.
+handle the components that you do not have the desire
+On an ongoing basis, we provide stock screens and Stock
+or experience to oversee. For example, you could buy a
+Highlights in Selection & Opinion. The screens go beyond
+diversified fixed-income mutual fund for the bond portion
+those included weekly in the Summary & Index and often
+of your portfolio, while maintaining a collection of stocks
+provide a different or unique investment approach. The
+yourself. The right mix of “outsourcing” and personal direc-
+Stock Highlights offer a more in-depth review of compa-
+tion is an individual decision, but in the end you should
+nies that we believe merit a second look. These features are
+create a portfolio that offers good returns at a level of risk
+critical in providing new and interesting investment ideas
+you can tolerate.
+down the road.
+Again, we encourage you to take the time to read through
+the Planning an Investment Strategy guide so that you can IV: RESEARCHING A STOCK USING THE
+start your portfolio on a solid foundation. VALUE LINE PAGE
+A sample Value Line report is included at the back of this
+III: CREATING A LIST OF STOCKS FOR
+guide. The numbers below reference back to the sample page.
+FURTHER RESEARCH
+To start studying a stock, we suggest that you concentrate
+Once you have decided on your portfolio approach, you
+on various features found on every company page of Rat-
+will begin selecting securities. There are many ways to use
+ings & Reports. Begin by using the Timeliness™, Safety™
+The Value Line Investment Survey to find the equities most
+and Technical ranks that appear in the upper left corner of
+appropriate for your goals. We include a number of stock
+each page (item 1). Next, look at the analyst’s commentary
+screens in the back of each Summary & Index to assist our
+in the bottom half of each report (item 13). Then review
+readers in narrowing the universe of stocks for further
+our various forecasts for financial data. Estimated financial
+consideration.
+data is shown on the right side (bold italic print) of the
+The screens are updated weekly and cover a broad range of Statistical Array (item 12). Growth rates are in the Annual
+investment options, including Conservative Stocks, Highest Rates box (item 17). A stock’s Target Price Range is on the
+Yielding Stocks, and Stocks with Highest 3- to 5-Year Ap- right-hand side of the graph (item 10), and 3- to 5-year
+preciation Potential. A description of the screens is provided stock price Projections are in the projections box (item 19).
+How to Read a Value Line Report 3
+
+=== PAGE 6 ===
+Finally, review the historical financial data appearing in the
+left side of the Statistical Array (item18). Illustrations and
+more details follow.
+Value Line Ranks
+Sample Financial/Stock Price Data
+(see item 1 on the sample page)
+A stock’s Price Growth Persistence and a company’s Earnings
+Timeliness
+Predictability are also included in the Ratings box. They
+The Timeliness rank is Val- do not factor into the Safety rank, but are useful statistics,
+ue Line’s projection of the nonetheless. Price Growth Persistence is a measure of the
+expected price performance consistency of relative stock price growth over the past 10
+of a stock for the coming six years. Earnings Predictability is a measure of the reliability
+to 12 months relative to our of an earnings forecast.
+Sample Ranks Box
+approximately 1,700 stock
+Technical
+universe. Stocks ranked 1 (Highest) or 2 (Above Average)
+are likely to outperform the Value Line universe over time. The Technical rank is primarily a predictor of a stock’s
+Stocks ranked 3 are likely to be average performers. And short term (three to six months) relative price change.
+those ranked 4 (Below Average) or 5 (Lowest) are expected It is based on a proprietary model which examines 10
+to underperform. relative price trends for a particular stock over different
+periods in the past year. It also takes into account the price
+At any one time, there are 100 stocks ranked 1; 300 ranked
+volatility of each stock. The Technical rank ranges from 1
+2; approximately 900 ranked 3; 300 ranked 4; and 100
+(Highest) to 5 (Lowest) as well. At any one time, about
+ranked 5.
+100 stocks are ranked 1; 300 ranked 2; 900 ranked 3; 300
+Safety ranked 4; and 100 ranked 5.
+The Safety rank is a measure of the total risk of one stock Beta
+compared to all others in our approximately 1,700 stock
+Beta is a measure of the volatility of a stock relative to the
+universe. As with the Timeliness rank, Value Line ranks
+overall stock market and is calculated by Value Line. A
+each stock from 1 (Highest) to 5 (Lowest). However,
+Beta of 1.00 suggests that a stock will move up and down
+unlike the Timeliness rank, the number of stocks in each
+roughly in lock-step with the market, so that a 3% increase
+category from 1 to 5 may vary. The Safety rank is derived
+or fall in the broader market would likely be accompanied
+from two measurements (weighted equally) found in the
+by a similar percentage move in the stock. A Beta higher
+Ratings box, on the lower right hand corner of each page
+than 1.00 means a stock tends to be more volatile than the
+(item 14): a Company’s Financial Strength and a Stock’s
+market, while a Beta lower than 1.00 suggests the stock’s
+Price Stability. Financial Strength is a measure of a com-
+price fluctuations will be more muted in relationship to
+pany’s financial condition, and is reported on a scale of
+the broader market.
+A++ (Highest) to C (Lowest). The largest companies with
+the strongest balance sheets often earn the highest scores. Industry Timeliness
+Price Stability is based on a ranking of the standard devia-
+Value Line also publishes ranks which show the expected
+tion (a measure of volatility) of weekly percent changes in
+performance of each industry, relative to the other. These
+the stock price over the last five years, and is reported on
+ranks are updated weekly and published on the front cover
+a scale of 100 (Highest) to 5 (Lowest) in increments of 5.
+and on page 24 of the Summary & Index. They also appear
+Generally speaking, stocks with Safety ranks of 1 or 2 are
+at the top of each Industry Report in Ratings & Reports.
+most suitable for conservative investors.
+How to Read a Value Line Report 4
+
+=== PAGE 7 ===
+Analyst’s Commentary
+Many readers think our commentary (item 13) is the
+most important section of the page. In the commentary,
+the analyst discusses his/her expectations for the company,
+and individual stock, over the near and long term. There
+are times when the raw numbers don’t tell the full story.
+The analyst uses the commentary to explain the forecast.
+The commentary is also particularly useful when a trend
+is shifting, or a change is about to occur. As an example, Sample Statistical Array
+a stock may have a below average Timeliness rank but the
+Historical Financial Data
+analyst thinks earnings could turn around in the future. In
+this case, the analyst may use this section to explain why he/ Many readers rely on the data in the Statistical Array (item
+she thinks conditions are likely to get better, thus giving the 18) for their own analysis. They, in particular, use the
+subscriber more insight into what is happening and why. historical data to evaluate how a company has performed
+over the long term. It’s worth pointing out that while all of
+the figures are important, readers may focus primarily on
+certain data depending on their investment goals.
+The numbers are very helpful in identifying trends. For
+example, a review of sales figures is useful in estimating the
+amount of revenue a company will bring in. The operating
+or net profit margins show how sales filter to the bottom
+line (earnings). Many readers also check the percentages
+near the bottom to see if the Return on Total Capital or the
+Return on Shareholders’ Equity have been rising, falling or
+remaining about the same.
+Sample Analyst’s Commentary Annual Rates Of Change
+(Also see item 13 on the sample page)
+The Annual Rates box (item 17) shows the compound
+annual growth percentages for sales, cash flow, and other
+Value Line Financial Data
+items for the past 5 and 10 years and also Value Line’s
+The Statistical Array in the center of the report (where most projections of growth for each item for the coming 3 to 5
+of the numbers are), Value Line provides both financial years. These numbers can also indicate important company
+projections (item 12) and historical data (item 18). trends. (Specific estimates for various data items for three
+to five years in the future can be found in bold italicized
+Financial Estimates
+type in the far right hand column of the Statistical Array.)
+Our analysts carefully review each company’s past perfor-
+mance, then focus on market dynamics and industry trends
+in their analysis. Many will derive the numbers in the
+Array (item 12) and Quarterly Projections (item 16) from
+carefully curated data maintained for each company stock.
+Forward-looking estimates are presented in bold italics.
+Sample Rates Box
+How to Read a Value Line Report 5
+
+=== PAGE 8 ===
+Target Price Range and 3- to 5-year Projections Putting Data in Perspective
+In the upper right-hand section of our Price chart/graph is Looking at the top of the page, we can see that Disney’s
+the 3- to 5-year Target Price Range (item 10). The range is stock price in May 2017 was $115.18 a share (item 5 on the
+based on our earnings projection for that period, multiplied sample page). By itself, the stock price means very little. In
+by the estimated price/earnings ratio in the Statistical Array. the line below the price, annual high and low prices for each
+The width of the high-low range depends on the stock’s year from 2006 through 2017 are indicated. Below the high
+Safety rank. A stock with a high Safety rank has a narrower and low annual prices is a price chart (graph) that shows
+range, one with a low rank, a wider one. monthly price ranges for essentially the same period, along
+with other useful information that we will discuss below.
+In the left hand column of each report, we include our 3-
+to 5-year Target Price Range (item 19) projections. There At the current quotation, is the stock undervalued, over-
+you can see the potential high and low average prices we valued or fairly valued? The fact that the “cash flow” line
+forecast, the percentage price changes we project, and the is below the price of the stock indicates that it appears to
+expected compound annual total returns (price apprecia- be slightly overvalued.
+tion plus dividend growth). To make these calculations,
+Price-Earnings Ratio — This is probably the most widely
+analysts compare the expected prices for the next three to
+used measure of stock valuation. Value Line shows a variety
+five years (as shown in the Target Price Range and Projec-
+of P/E ratios on every company page, as discussed below:
+tions box) with the recent quotation shown at the top of
+the report (item 5). The P/E ratio on the very top of the Value Line page (item
+6) is calculated by dividing the recent price of the stock
+Investors whose primary goal is long-term price apprecia-
+by its 12-month earnings (including one quarter of actual
+tion should study the 3- to 5-year projections carefully and
+earnings plus three quarters of estimated earnings).
+choose stocks with above-average capital gains potential.
+For comparative purposes, you can find the Estimated The Relative P/E ratio (item 8) compares the P/E of one
+Median Price Appreciation Potential for all approximately stock with the median of estimated P/E ratios of all stocks
+1,700 stocks on the front page of the Summary & Index. under Value Line review. As such, a relative P/E of more
+than 1 indicates that a stock’s P/E ratio is currently higher
+than that of the Value Line universe.
+The Trailing P/E ratio (item 7) is calculated by dividing the
+recent stock price by the past 12 months of actual (reported)
+earnings. This figure is often reported in newspapers and
+financial web sites.
+The Median P/E ratio (item 7) is the average annual P/E
+ratio of a stock over the past 10 years, with certain statistical
+Sample Target Price Range
+adjustments made for unusually low or high ratios.
+V: EXAMINING A VALUE LINE PAGE IN
+The Average Annual P/E ratio (items 12 and 18) is cal-
+MORE DETAIL
+culated by dividing the average price for each year by the
+In the following section, we are going to examine a Value actual reported earnings for the same year and is shown in
+Line page, with the objectives of interpreting the array of the Statistical Array.
+statistical data presented and weighing the data and the ac-
+The Relative (Annual) P/E ratio (items 12 and 18) is
+companying comment against your needs. We have chosen
+calculated by dividing the Average Annual P/E of a stock
+a report on The Walt Disney Company, a multinational
+with the Average Annual P/E of all stocks under Value Line
+mass-media and entertainment conglomerate and member
+review in the same year.
+of the Dow Jones Industrial Average.
+How to Read a Value Line Report 6
+
+=== PAGE 9 ===
+To gauge the significance of the stock’s recent value, the 12 years, Disney’s stock has traded within reach of the
+reader should look at the price in relation to a variety of Cash Flow line.
+data. As far as P/Es are concerned, the current P/E ratio
+Finally, note the Relative Price Strength line (item 4), the
+and relative P/E ratio for Disney’s stock, are below those
+faint small dotted line, toward the bottom of the chart. This
+of most stocks in the Value Line universe.
+shows the relative performance of Disney stock versus the
+Low P/E ratios may mean that the stock is underpriced, entire universe of Value Line stocks; when the Relative Price
+unless there are factors indicating that there will be a sig- Strength line is rising, it means a stock is outperforming
+nificant decline in the company’s fundamentals. Is this the the universe. When it is falling, a stock is lagging the Value
+case with Disney? Probably not, since management has been Line universe.
+very vigilant in its efforts to maximize returns from its busi-
+At the very bottom of the chart, we show monthly trading
+nesses, and the Value Line analyst is expecting continued
+volume (item 11) as a percentage of total shares outstand-
+profit growth over the next three to five years. Disney’s
+ing. The Legends box (item 2) in the upper left of the price
+relative P/E ratio of 0.97 (item 8), a lower valuation than
+chart contains, among other things, information on the cash
+found in the average stock followed by Value Line, likely
+flow multiple, a record of stock splits, and whether or not
+reflects the fact that the company’s upward earnings trend
+there are options traded.
+over the past 15 years has recently moderated.
+The Target Price Range (item 10) in the upper right cor-
+The Dividend Yield (item 9) shows the expected return
+ner of the price chart indicates the Value Line forecast for
+from cash dividends on the stock over the next 12 months,
+the stock’s price range over the 3- to 5-year period. This
+as a percentage of the recent price. Disney’s yield of 1.4%
+box should be viewed in conjunction with the Projections
+is below the median of all dividend-paying stocks in the
+box (item 19) near the top left-hand corner of the page,
+Value Line universe. (The median is shown each week on
+which also gives our 3- to 5-year projections. For Disney,
+the cover of the Summary & Index section.) We also see
+we expect the average price to hover between 110 and 135,
+that the company has changed its dividend policy and now
+which would be between -5% and 15% above the level in
+pays dividends semi-annually. Value Line’s analyst thinks
+May 2017.
+that Disney stock dividends will increase over the next ten
+years. Many investors view regular increases in a dividend Just above the Projections box is a section containing the
+very positively. Value Line Timeliness, Safety, and Technical ranks, plus
+a Beta calculation (item 1). Disney’s Beta of 1.00 reveals
+The Price Chart
+that this stock is likely to move in unison with the typical
+Next, look at Disney’s price chart (or graph) at the top of stock in the broader market. If you are looking for stability,
+the report (item 11). The first thing one should note is the a stock like Disney, with an average Beta, is a good option.
+price history, shown by the small vertical bars in the center
+The ‘‘Cash Flow’’ Line
+of the graph, which show the high and low monthly prices
+for the stock (adjusted for any subsequent stock splits or The price chart at the top of the Disney page contains,
+dividends). Looking at the bars, you can see that the stock among other things, a monthly price history for the stock
+price climbed to new highs in 2015, gave back some of (the vertical bars) overlaid by a solid line that we call the
+these gains in 2016, but has gained ground since. “cash flow” line (sometimes also called the “Value Line”)
+(item 3). To plot the line, we multiply cash flow per share
+Now review the Cash Flow line, the solid line running from
+(net income plus depreciation and amortization less preferred
+2005 through the middle of 2016 (more fully described
+dividends divided by the number of shares outstanding at
+below). The dashed line from mid-2016 to mid-2018,
+the end of the year) by a number (multiple) determined by
+which is an extension of the Cash Flow line, is Value Line’s
+our analyst — the multiple is noted in our graph legend
+projection of the line for those years. For most of the past
+(item 2). The goal is to create a line that closely matches
+the stock price history and will ultimately extend to our
+How to Read a Value Line Report 7
+
+=== PAGE 10 ===
+projected 3- to 5-year Target Price Range. In the case of to 28% over the next few years. The larger capitalization
+Disney, the “cash flow” multiple is now 12.0. (The multiple stocks followed by Value Line typically pay out 25%-30%
+can, and often does, change over time.) Stocks tend to trade of their net profits.
+at or near their “Cash Flow” line.
+Capital Spending per share (fifth line) is the amount that
+Historical Results and Estimates a company spends on new plants and equipment, divided
+by its shares outstanding including funds used for acquisi-
+When available, our historical array includes per-share data
+tions of other companies which most analysts do not use
+dating back up to 17 years. The historical data (item 18)
+in their projected budgets.
+appear on the left side and are presented in regular type.
+We also project statistical data (item 12) for the current Book Value per share (sixth line) is common shareholders’
+fiscal year, next fiscal year, as well as three to five years into equity determined on a per-share basis. It includes both
+the future. These projections are presented in bold italics. tangible assets, like plant and receivables and inventories,
+as well as intangibles, like the value of patents or brand
+Highlights from the Statistical Array (items 12 and 18):
+names, known as ‘‘goodwill.’’ Any significant intangibles
+Revenues per share (first line), or how much revenue the will normally be indicated in a footnote (item 15). If all
+company generated from its operations, divided by its assets could be liquidated at the value stated on the com-
+share count. pany’s books, all liabilities such as accounts payable, taxes,
+and long-term debt paid, and all preferred stockholders
+Cash flow per share (second line), as commonly used by
+compensated, the book value is what would be left for the
+analysts, is the sum of reported earnings plus depreciation,
+common stockholders.
+less any preferred dividends, calculated on a per-share basis.
+It is an indicator of a company’s internal cash-generating The number of Common Shares Outstanding (seventh
+ability—the amount of cash it earns to expand or replace line) is also listed in the Statistical Array. Sometimes net
+plant and equipment, to provide working capital, to pay income rises, but earnings per share do not, because the
+dividends, or to repurchase stock. Disney’s cash flow per number of shares outstanding has increased. This may
+share has almost quadrupled since 2001. happen because a company is issuing stock to pay for
+acquisitions or to fund internal growth. As a result, sales
+Earnings per share (third line) are shown by Value Line as
+and profits may soar, while per-share sales and earnings lag.
+they were reported to stockholders, excluding nonrecurring
+On the other hand, when cash-rich companies buy their
+items and adjusted for any subsequent stock splits or stock
+own shares, earnings per share can rise even if net income
+dividends. Value Line will usually use diluted earnings per
+is stable, or decreasing.
+share. This metric includes dilution (stemming from options
+or warrants, etc.) rather than relying on the weighted aver- The Average Annual P/E Ratio (eighth line) shows Disney’s
+age of outstanding shares. Details, including nonrecurring average annual P/E was at unusually high levels in 2001
+items excluded from our earnings presentation are included and 2002 when entertainment stocks were in favor; it has
+in the footnotes section (item 15). narrowed considerably over the past 13 years.
+Disney’s, earnings per share increased steadily between The Relative P/E Ratio (ninth line) shows how the stock’s
+2002 and 2016. price-earnings ratio relates to those of all stocks in the
+Value Line universe. Disney’s relative P/E of 0.97 in May
+Dividends Declared per share (fourth line). Directors
+2017 was below that of the typical stock in the Value Line
+of growth-oriented companies often prefer to pay small
+universe. The Value Line analyst thinks it will be average
+or “token” dividends, or none at all, so they can reinvest
+in the 2020–2022 period.
+earnings in the business. Disney paid 25% of its earnings
+in dividends in 2016 and invested the remainder in the The Average Annual Dividend Yield (10th line) is of spe-
+business; and the percentage is likely to increase slightly cial interest to income-oriented investors, many of whom
+are more concerned with a stock’s yield, rather than its
+How to Read a Value Line Report 8
+
+=== PAGE 11 ===
+appreciation potential. Income-oriented investors should most important thing, and rising margins are favorable. It
+look for stocks with higher than average yields — shown is often worthwhile to compare the net margin with the
+each week in the center box of the front cover of the Sum- operating margin. Usually the two metrics move in line
+mary & Index, but they should also look at dividend trends with on another, though not always. Depreciation charges,
+over time. Steady increases are attractive to many investors. interest expense, income taxes, and other costs are deducted
+Investors should also look carefully at a company’s free cash from (and other income added to) operating income in the
+flow to ensure that the company will be able to continue determination of net profit. Where there is a disparity in the
+to pay the dividend. Disney recently changed its payment trends of the net and operating margins, it may be worth
+schedule from an annual to semi-annual one. The histori- taking a second look. (If depreciation, interest charges, or
+cal payment dates are included in the Footnotes (item 15). tax rates move sharply in any direction, there will be an
+And dividends are recorded on the bottom left of the page impact on net profits, and it would be worthwhile to try
+(item 16). to determine why the change occurred.)
+Company Financial Data We expect that Disney’s net profit margin will increase
+nicely over the next three to five years.
+The Sales or Revenues figure (11th line) a common measure
+given when referring to a company’s size. Disney’s revenues Working Capital (17th line), the company’s current assets
+have grown significantly over the past several years. less current liabilities, indicate the liquid assets available for
+running the business on a day-to-day basis. The higher a
+The Operating Margin (12th line) indicates what per-
+company’s sales, the more working capital it typically has
+centage of sales is being converted into operating income.
+and needs. But we caution that a number of large compa-
+(Operating income is total sales minus the cost of goods
+nies with steady revenue streams no longer believe large
+sold and selling, general and administrative expenses. It is
+amounts of working capital are necessary. In those cases,
+also referred to as EBITDA, or earnings before interest,
+a negative working capital may be perfectly acceptable
+taxes, depreciation, and amortization.) At Disney, this figure
+because a company can meet normal operating expenses
+has increased steadily since 2009 and is poised to continue
+from consistent cash receipts.
+upward in 2017 and beyond.
+Long-term Debt (18th line) is debt obligations (exclud-
+Depreciation (13th line) is the reduction in the value of a
+ing short-term debt due in the coming year). In the case
+company’s assets. This figure reflects the aging of a company’s
+of Disney, the amount is quite low relative to total capital.
+plant and equipment.
+Shareholders’ Equity (19th line), also known as net worth,
+Net Profit, or income, (14th line) is the amount the com-
+is the total stockholders’ interest (preferred and common)
+pany earned after all expenses including taxes, excluding
+in the company after all liabilities have been deducted
+nonrecurring gains or losses and the results of discontinued
+from the total assets. All intangible assets such as goodwill,
+operations. Disney’s net profit has grown considerably
+patents, and, sometimes, deferred charges are included in
+since 2009.
+shareholders’ equity — and often noted in the footnotes
+Disney’s Income Tax Rate (15th line) has bounced around (item 15). Disney’s equity has grown appreciably over the
+from 37.2% in 2007 and the Value Line analyst thinks years, primarily from retained earnings.
+it will be 32.0% in the foreseeable future. Income tax
+Return on Total Capital (20th line) measures the percentage
+rates will normally remain steady unless the federal tax
+a company earns on its shareholders’ equity and long-term
+rate changes in the U.S. or unless a company increases
+debt obligations. When a company’s return on total capital
+or decreases the percentage of business it does overseas,
+goes up, there should also be an increase in the return on
+where tax rates differ.
+shareholders’ equity (see below). If not, it simply means
+Net Profit Margin (16th line) shows net income as a
+percentage of sales (or revenues). Here, the trend is the
+How to Read a Value Line Report 9
+
+=== PAGE 12 ===
+that the company is borrowing more and paying interest, Retained to Common Equity (22nd line) also known as the
+but not earning more for the stockholders on their equity ‘‘plowback ratio,’’ is net income less all dividends (common
+in the company’s assets. Unless a company can earn more and preferred), divided by common shareholders’ equity
+than the interest cost of its debt over time, the risk of bor- and is expressed as a percentage. It measures the extent to
+rowing is not worthwhile. which a company has internally generated resources to
+invest for future growth. A high plowback ratio and rapidly
+Return on Shareholders’ Equity (21st line) reveals how
+growing book value are positive investment characteristics.
+much has been earned (in percentage terms) every year for
+the stockholders (common and preferred). Higher figures All Dividends to Net Profit, or ‘‘payout ratio,’’ (23rd
+are usually desirable, often indicating greater productivity line) measures the proportion of a company’s profits that
+and efficiency. Disney’s percent earned on net worth hit a is distributed as dividends to all shareholders—both com-
+lull in 2009, but has since grown steadily except for a dip mon and preferred. Young, fast-growing companies often
+in 2013. reinvest most of their profits internally. Mature companies
+usually pay out a large share of earnings. Disney paid out
+Trends in both this ratio and the return on total capital—
+25% of its profits in the form of cash dividends in fiscal
+two key gauges of corporate performance—say a great deal
+2016. By way of comparison, the typical large-cap com-
+about the skill of management.
+pany in the Value Line universe usually pays out about
+25%-30% of its profits in dividends.
+How to Read a Value Line Report 10
+
+=== PAGE 13 ===
+SAMPLE RESEARCH REPORT
+1 2 3 4 5 6 7 8 9
+DISNEY(WALT) RECENT115.18 P/E 19.5(Trailing:20.8)RELATIVE 0.97DIVʼD 1.4% VALUE
+NYSE-DIS PRICE RATIO Median:16.0 P/ERATIO YLD LINE
+TIMELINESS 3Lowered3/11/16 High: 34.9 36.8 35.0 32.8 38.0 44.3 53.4 76.5 95.9 122.1 106.8 115.5 TargetPriceRange
+S TE A C FE H T N Y ICAL 1 3 R R a a i i s s e e d d 2 4 / / 1 2 3 1 / / 0 1 9 7 . L . L . E o . G w E : 1 R 2N e . l 0 a D ti xS v 2 e ″ 3 C P . a r 8 i s c h e F S lo tr 3 w en 0 ″ g . p 7 th sh 18.6 15.1 28.7 28.2 37.9 50.2 69.9 90.0 86.3 105.2 2020 2021 2 2 0 0 2 0 2
+Options:Yes 160
+BETA 1.00 (1.00=Market) Shadedareaindicatesrecession 10
+19 2020-22PROJECTIONS 100
+AnnʼlTotal 80
+Price Gain Return
+High 135 (+15%) 6% 60
+Low 110 (-5%) 1% 50
+InsiderDecisions 40
+J J A S O N D J F 30
+toBuy 0 0 0 0 0 0 0 0 0
+Options 010 1 010 1 715 3 20
+toSell 0 0 0 0 0 3 2 1 3 %TOT.RETURN3/17
+InstitutionalDecisions THIS VLARITH.*
+t t H o o ld B S ʼs e u ( l y l 000)93 2 8 Q 7 8 7 2 0 0 3 8 1 7 0 3 6 90 3 9 Q 8 8 7 2 3 0 2 9 1 7 8 5 6 96 4 2 Q 0 9 8 2 2 0 1 1 1 6 5 1 6 P s tr h a e a d rc r e e e d s nt 3 2 1 0 0 0 1 3 5 y y y r r r . . . S 1 T 1 4 7 O 5 7 6 C . . . 9 3 9 K I 2 2 7 N 0 2 8 D . . . E 2 0 0 X 11
+2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 ©VALUELINEPUB.LLC20-22
+12.52 12.40 13.23 15.05 15.91 16.61 18.10 20.76 19.88 20.07 23.21 23.49 25.02 28.71 32.79 34.77 36.20 37.65 RevenuespershA 40.50
+1.89 1.06 1.19 1.70 2.03 2.32 2.81 3.28 2.77 3.03 3.79 4.26 4.63 5.76 6.71 7.45 7.90 8.25 ʻʻCashFlowʼʼpersh 9.40
+.98 .55 .66 1.09 1.31 1.61 1.92 2.26 1.82 2.07 2.54 3.13 3.38 4.26 4.90 5.73 5.90 6.35 EarningspershAB 7.60
+.21 .21 .21 .21 .24 .27 .31 .35 .35 .35 .40 .60 .75 .86 1.81 1.42 1.56 1.72 DivʼdsDeclʼdpershC 2.10
+18 .89 .53 .51 .70 .91 .63 .80 .87 .96 1.11 2.02 2.10 1.55 1.95 2.67 2.98 3.00 3.00 CapʼlSpendingpersh 3.00
+11.23 11.48 11.63 12.77 13.06 15.42 15.67 17.73 18.55 19.78 21.22 22.09 25.24 26.45 27.83 27.04 28.35 30.80 BookValuepershD 41.25
+2019.0 2042.0 2045.0 2043.0 2007.2 2064.0 1962.2 1822.9 1818.3 1896.9 1762.2 1800.0 1800.0 1700.0 1600.0 1600.0 1575.0 1570.0 CommonShsOutstʼgE 1550.0
+30.4 37.2 28.0 21.8 20.4 17.1 17.8 14.2 12.5 15.7 15.1 13.6 17.1 18.6 20.9 17.7 Boldfiguresare AvgAnnʼlP/ERatio 16.0
+1.56 2.03 1.60 1.15 1.09 .92 .94 .85 .83 1.00 .95 .87 .96 .98 1.05 .93 ValueLine RelativeP/ERatio 1.00
+.7% 1.0% 1.1% .9% .9% 1.0% .9% 1.1% 1.5% 1.1% 1.0% 1.4% 1.3% 1.1% 1.8% 1.4% estimates AvgAnnʼlDivʼdYield 1.7%
+CAPITALSTRUCTUREasof12/31/16 35510 37843 36149 38063 40893 42278 45041 48813 52465 55632 57000 59100 Revenues($mill)A 62750 12
+TotalDebt$20490mill.Duein5Yrs$11275mill. 23.3% 23.7% 20.3% 22.2% 23.5% 25.7% 25.8% 28.3% 29.7% 30.4% 31.5% 32.0% OperatingMargin 33.0%
+LTDebt$14792mill. LTInterest$600mill. 1491.0 1582.0 1631.0 1713.0 1841.0 1987.0 2192.0 2288.0 2354.0 2527.0 2600 2625 Depreciation($mill) 2800
+(Totalinterestcoverage:NMF)
+(24%ofCapʼl) 4014.0 4405.0 3408.0 4035.0 4839.0 5682.0 6136.0 7501.0 8382.0 9391.0 9840 10365 NetProfit($mill) 11780
+Leases,UncapitalizedAnnualrentals477.0mill. 37.2% 36.6% 36.1% 35.1% 34.5% 33.3% 31.0% 34.6% 36.2% 34.2% 32.0% 32.0% IncomeTaxRate 32.0%
+PensionAssets-10/16$10.41bill. 11.3% 11.6% 9.4% 10.6% 11.8% 13.4% 13.6% 15.4% 16.0% 16.9% 16.9% 17.6% NetProfitMargin 18.8%
+Oblig.$14.48bill. d77.0 75.0 2955.0 1225.0 1669.0 896.0 2405.0 1884.0 424.0 124.0 124 175 WorkingCapʼl($mill) 585
+11892 11110 11495 10130 10922 10697 12776 12676 12773 16483 16000 16000 Long-TermDebt($mill) 16000
+PfdStockNone
+CommonStock1,581,248,242shs. 30753 32323 33734 37519 37385 39759 45429 44958 44525 43265 44640 48350 Shr.Equity($mill) 63950
+asof2/1/17 10.0% 10.8% 8.1% 8.9% 10.4% 11.6% 10.8% 13.0% 14.7% 15.9% 16.0% 15.0% ReturnonTotalCapʼl 12.5%
+13.1% 13.6% 10.1% 10.8% 12.9% 14.3% 13.5% 16.7% 18.8% 21.7% 22.0% 21.5% ReturnonShr.Equity 18.5%
+MARKETCAP:$182billion(LargeCap) 11.0% 11.6% 8.2% 9.0% 10.9% 11.6% 10.6% 13.3% 11.9% 16.4% 16.5% 16.0% RetainedtoComEq 13.5%
+CURRENTPOSITION 2015 2016 12/31/16 16% 15% 19% 16% 16% 19% 22% 20% 37% 25% 25% 26% AllDivʼdstoNetProf 28%
+($MILL.)
+CashAssets 4269 4610 3736 BUSINESS:TheWaltDisneyCompanyoperatesMediaNetworks, HongKongDisneyland.Acq.Pixar,5/06;Marvel,12/09;Lucas-
+Receivables 8019 9065 9878 incl.ABCandESPN(43%ofʼ16revs.);ParksandResorts:Dis- Films,12/12.Div.ABCRadio,6/07.ʼ16depr.rate:4.7%.Employs
+I O n t v h e e n r tory(AvgCst) 1 2 5 8 7 9 1 9 1 1 3 9 9 0 0 1 1 1 2 7 9 5 9 2 neyland,WaltDisneyWorld(MagicKingdom,Epcot,Hollywood 195,000.Off.anddir.,lessthan1%ofcommonstock;Vanguard,
+CurrentAssets 16758 16966 16665 Studios,AnimalKingdom),andacruiseline(30%);StudioEnter- 5.5%(1/17proxy).Chairman/CEO:RobertA.Iger.Inc.:DE.Ad-
+AcctsPayable 7844 9130 9979 tainment(17%);ConsumerProductsandInteractiveMedia(10%). dress:500S.BuenaVistaSt.,Burbank,CA91521-7320.Tele-
+DebtDue 4563 3687 5698 EarnsTokyoDisneylandroyalties.ManagesDisneylandParisand phone:818-560-1000.Internet:www.thewaltdisneycompany.com.
+Other 3927 4025 3640 Will The Walt Disney Company’s tent.Overthelastfewyears,thecompany
+CurrentLiab. 16334 16842 19317 growth begin to moderate this year? has expanded its Parks & Resorts seg-
+17 ANNUALRATES Past Past Estʼdʼ14-ʼ16 The media conglomerate got off toaslug- ment, opening Shanghai Disney, and will
+ofchange(persh) 10Yrs. 5Yrs. toʼ20-ʼ22 gish start in fiscal 2017 (year ended Sep- likelyfurtherexpanditsinternationaland
+R ʻʻC e a v s e h nu F e lo s wʼʼ 12 7 . . 5 5 % % 15 9 . . 5 0 % % 6 4 . . 0 0 % % tember30th).Infact,thecompanyexperi- domestic theme parks in the coming
+Earnings 14.0% 18.5% 7.5% encedsoftnessinallofitscategories,save months.Too,weimaginethecompanywill
+Dividends 19.0% 30.0% 7.5% for its Parks & Resorts segment. In all, focus on technological innovation, espe-
+BookValue 7.0% 6.5% 7.0% share earnings decreased 10%, to $1.55, ciallyto supportits MediaNetworks divi-
+Fiscal QUARTERLYREVENUES($mill.)A Full fortheDecemberperiod,ona3%revenue sion.DisneyplanstolaunchanewESPN
+E Y n e d a s r Dec.PerMar.PerJun.PerSep.Per F Y is e c a a r l decline. That said, some of the soft com- streaming service, with the help of its 13
+2014 12309 11649 12466 12389 48813 parisons may be due to the tremendous BAMTech partnership, and we would not
+2015 13391 12461 13101 13512 52465 gains Disney experienced in the year-ago be surprised if the company concentrated
+2016 15244 12969 14277 13142 55632 period,spurredbytheboxofficesuccessof onstrengtheningitsmobilecapabilitiesor
+2017 14784 13436 14750 14030 57000 Star Wars Episode VII. And we imagine multiplatform opportunities to capture
+2018 15000 14575 14850 14675 59100 the tailwinds from the Jedi franchiseand cord-cutting viewers. Meanwhile, the
+F E Y i n s e d c a a s r l Dec.P EA e R r N M IN a G r. S Pe P r ER Ju S n H . A P R e E rS A e B p.Per F Y F is e u c a ll a r l F su r b oz s e id n e, m bu e t rc t h h a e nd r i e s b in oo g t o w f il B l ea c u o t n y ti a n n u d e th to e b sh oa a r r d eh w ol i d ll er lik r e e l t y ur a n ls s o t u h s r e ou fu gh nd s s to to ck im re p p ro u v r e -
+16 2014 1.03 1.08 1.28 .87 4.26 Beast, and a strong summer movie slate chasesanddividends.
+2015 1.27 1.23 1.45 .95 4.90 mayoffsetsomeofthatdeclineintheback Thesequalitysharesarefairlyvalued
+2016 1.73 1.30 1.59 1.10 5.73 half of the year. Even so, we look for the atthisjuncture.AlthoughDISstockhas
+2017 1.55 1.40 1.70 1.25 5.90 top and bottom lines to eke out 2%-3% trended up nicely over the past few
+2018 1.75 1.45 1.75 1.40 6.35 gains for fiscal 2017. On the other hand, months,itisrankedtoperformintandem
+Cal- QUARTERLYDIVIDENDSPAIDC Full wethinkthepacewillpickupagainnext with the broader market averages in the
+endar Mar.PerJun.PerSep.PerDec.Per Year year,andsharenetwillclimb5%-10%,on year ahead. Furthermore, much of the
+2013 -- -- -- -- -- a3%-5%revenueadvance. good news we anticipate from the mature
+2014 .86 -- -- -- .86 The company is strategically invest- company out to 2020-2022 is already
+2015 1.15 -- .66 -- 1.81 ing in its business. Indeed, Disney has bakedintotherecentquotation.
+2016 .71 -- .71 -- 1.42 been bolstering its core brands and con- OrlySeidman May5,2017
+2017 .78
+(A)FiscalyearendsSaturdayclosesttoSept. ʼ06,3¢;ʼ07,32¢;ʼ08,2¢;ʼ09,6¢;ʼ10,(4¢);ʼ11, paidincalendar2012.Initiatedsemi-annual CompanyʼsFinancialStrength A++
+15 3 (B 0 ) th D . i F l. is e c g a s l . 2 E 0 x 0 c 9 l. c n o o n n t r a e in cu e r d rin 5 g 3 g w a e i e n k s s /( . losses): ( d 2 u ¢ e ). e E a x rl c y l. M d a is y c . .ops.:ʼ07,1¢.Nextegs.report d (D iv ) id In e c n l d .i i n n ta J n u g ly ., ʼ1 in 5 f . iscalʼ16:$34.8bill., S P t r o ic c e kʼ G s r P o r w ic th e P S e ta r b si i s li t t e y nce 1 9 0 0 0 14
+ʼ01,($1.00);ʼ02,8¢;ʼ03,(4¢);ʼ04,4¢;ʼ05,(9¢); (C)Divʼdshist.paidinmid-Jan.Twodivʼds $21.75/sh.(E)Inmillions. EarningsPredictability 100
+© THE 20 P 1 U 7 BL V I a S lu H e ER Li I n S e, NO In T c. R A E l S l P r O ig N ht S s IB r L e E se F rv O e R d. AN F Y ac E tu R a R l O m R a S te O ria R l O is MI o S b S ta IO in N ed SH fr E om REI s N o . u T rc h e is s p b u e b l l i i e ca ve tio d n t i o ss b tr e ictl r y el f i o a r bl s e ub a s n c d ribe is r’s p o ro w v n id , e n d on- w c i o th m o m ut er w ci a a r l, ra in n t t e ie rn s al o u f se a . n N y o k p in a d r . t Tosubscribecall1-800-VALUELINE
+ofitmaybereproduced,resold,storedortransmittedinanyprinted,electronicorotherform,orusedforgeneratingormarketinganyprintedorelectronicpublication,serviceorproduct.
+How to Read a Value Line Report 11
+
+=== PAGE 14 ===
+SAMPLE RESEARCH REPORT
+1 Value Line Ranks — the rank for Timeliness; the rank for Safety; the Technical rank. Beta, the stock’s sensitivity to
+fluctuations of the market as a whole, is included in this box, but is not one of our proprietary ranks.
+2 The Legends box contains the “cash flow” multiple, the amounts and dates of recent stock splits, and an indication
+if options on the stock are traded.
+3 The Cash Flow line — reported earnings plus depreciation (“cash flow”) multiplied by a number selected to correlate
+the stock’s 3- to 5-year projected target price, with “cash flow” projected out over the same period.
+4 Relative Price Strength describes the stock’s past price performance relative to the Value Line (Arithmetic)
+Average of approximately 1,700 stocks. (A rising line indicates the stock price has been rising more than the Value
+Line universe.)
+5 Recent Price — Price as of the date listed on page 2 under Index to Stocks of this issue’s Summary & Index
+6 P/E Ratio — the recent price divided by the latest six months’ earnings per share plus earnings estimated for the
+next six months.
+7 Trailing and Median P/E — the first is the recent price divided by the sum of reported earnings for the past four
+reported quarters; the second is an average of the price/earnings ratios over the past 10 years.
+8 Relative P/E ratio — the stock’s current P/E divided by the median P/E for the approximately 1,700 stocks under
+Value Line review.
+9 Dividend Yield — cash dividends estimated to be declared in the next 12 months divided by the recent price.
+10 Target Price Range — the range in which a stock price is likely to trade in the 3- to 5-year projection period.
+Also shown in the “Projections” box on the left.
+11 The percent of shares traded monthly — the number of shares traded each month as a % of the total outstanding.
+12 Statistical Array — Value Line estimates and projections appearing in the area on the right side are in bold italics.
+13 Analyst’s Commentary — A 300 – 400 word report on recent developments and prospects — issued every three
+months on a regular schedule. Supplementary reports are issued when there is important news.
+14 Value Line Ratings for Financial Strength, Price Stability, Price Growth Persistence, and Earnings Predictability.
+(See Glossary valueline.com for definitions.)
+15 Footnotes explain a number of things, such as the way earnings are reported, whether basic or diluted.
+16 Quarterly Sales are shown on a gross basis. Quarterly earnings on a per-share basis (estimates in bold type). Quarterly
+Dividends Paid are actual payments. The total of dividends paid in four quarters may not equal the figure shown in
+the annual series on dividends declared in the Historical and Statistical Arrays. (Sometimes a dividend declared at
+the end of the year will be paid in the first quarter of the following year.)
+17 Annual Rates of Change (on a compound per-share basis). Actual for each of the past 5 and 10 years, estimated for
+the next three to five years.
+18 Historical Array — historical financial data appear in regular type.
+19 Projected stock price in 3 to 5 years. Also, the total expected percent gain/loss before dividends and the Annual Total
+Return (percent including dividends).
+How to Read a Value Line Report 12
+
+=== PAGE 15 ===
+Value Line Publishing LLC
+551 Fifth Avenue
+New York, NY 10176
+vlcr@valueline.com
+www.valueline.com www.valuelinepro.com 1-800-VALUELINE (1-800-825-8354)
+1A-2-3
