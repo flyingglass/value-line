@@ -35,7 +35,7 @@ body{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;colo
 .chart-area{margin:2px 0;border-bottom:1px solid #000}
 .chart-title{font-weight:700;font-size:9px;margin-bottom:0px}
 .chart-row{display:flex}
-.chart-box{flex:1;height:150px}
+.chart-box{flex:1;height:260px}
 .return-box{width:150px;font-size:8.5px;padding:3px 5px}
 .return-box table{width:100%;border-collapse:collapse;margin-bottom:3px}
 .return-box td,.return-box th{padding:1px 3px;text-align:right;font-size:8px}
@@ -344,42 +344,41 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   });
   html+='</tr>';
   
-  // Row 4: K线图行 — LEGENDS(第一列) + 图表(colspan)
-  html+='<tr><td style="padding:1px 3px;vertical-align:top;'+tdStyle+'">';
-  html+='<div style="font-size:7px;line-height:1.3">';
-  html+='<div style="font-weight:700">LEGENDS</div>';
-  html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
-  html+='<div style="font-size:9px;color:#1976D2;line-height:1">━━━</div>';
+  // Row 4: K线图行 — LEGENDS + % TOT. RETURN(左) + 图表(右)
+  html+='<tr><td style="padding:0 3px;vertical-align:top;'+tdStyle+'">';
+  html+='<div style="font-size:8px;line-height:1.4">';
+  html+='<div style="font-weight:700;font-size:8.5px;margin:2px 0 1px 0">LEGENDS</div>';
+  html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
+  html+='<div style="font-size:10px;color:#1976D2;line-height:1.1">━━━</div>';
   html+='<div>15.0 x "Cash Flow" p sh</div>';
-  html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
-  html+='<div style="font-size:9px;color:#ef232a;line-height:1">···</div>';
+  html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
+  html+='<div style="font-size:10px;color:#ef232a;line-height:1.1">···</div>';
   html+='<div>Relative Price Strength</div>';
-  html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
+  html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
   html+='<div>Splits: '+(meta.splits||'None')+'</div><div>Options: '+(meta.options||'No')+'</div>';
-  html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
-  html+='<div style="font-weight:700;font-size:7.5px">% TOT. RETURN</div>';
-  var tr=d.total_returns||{};
-  var trStock=tr.stock||{};
-  var trIndex=tr.index||{};
-  html+='<table style="width:100%;border-collapse:collapse;font-size:7px;line-height:1.3;margin:2px 0">';
+  html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
+  html+='<div style="font-weight:700;font-size:8.5px;margin-bottom:1px">% TOT. RETURN</div>';
+  var trR2=d.total_returns||{};
+  var trStock2=trR2.stock||{};
+  var trIndex2=trR2.index||{};
+  html+='<table style="width:100%;border-collapse:collapse;font-size:7.5px;line-height:1.35;margin:1px 0">';
   html+='<tr><td></td><td style="text-align:right;font-weight:700">THIS</td><td style="text-align:right;font-weight:700">'+indexName+'</td></tr>';
   html+='<tr><td></td><td style="text-align:right">STOCK</td><td style="text-align:right"></td></tr>';
-  html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock['1yr']!=null?trStock['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex['1yr']!=null?trIndex['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
-  html+='<tr><td>3 yr.</td><td style="text-align:right">'+(trStock['3yr']!=null?trStock['3yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex['3yr']!=null?trIndex['3yr'].toFixed(1)+'%':'—')+'</td></tr>';
-  html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock['5yr']!=null?trStock['5yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex['5yr']!=null?trIndex['5yr'].toFixed(1)+'%':'—')+'</td></tr>';
-  html+='</table>';
-  html+='</div></td>';
+  html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock2['1yr']!=null?trStock2['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['1yr']!=null?trIndex2['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>3 yr.</td><td style="text-align:right">'+(trStock2['3yr']!=null?trStock2['3yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['3yr']!=null?trIndex2['3yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock2['5yr']!=null?trStock2['5yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['5yr']!=null?trIndex2['5yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='</table></div></td>';
   html+='<td colspan="'+yrCount+'" style="padding:0">';
   html+='<div class="chart-box" id="chart_kline"></div>';
   html+='<div id="chart_volume" style="height:30px;margin-top:0"></div>';
   html+='</td></tr>';
   
-  // Row 5: 年份基准线 — 在K线图和指标之间
-  html+='<tr style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"><td style="width:110px;font-size:7px;color:#666;padding:1px 3px;'+tdStyle+'">Year</td>';
+  // Row 5: 年份行
+  html+='<tr style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"><td style="font-size:7px;color:#666;padding:1px 3px;'+tdStyle+'">Year</td>';
   showYears.forEach(function(y){html+='<td style="text-align:center;font-size:7px;font-weight:700;padding:1px 3px;'+tdStyle+'">'+y+'</td>';});
   html+='</tr>';
   
-  // Row 6+: 24-line metrics — 分区分隔 (每股指标6|股本估值7-10|利润表11-17|资产负债18-20|回报率21-24)
+  // Row 6+: 24-line metrics
   M.forEach(function(m, idx){
     var sepAfter=[6,10,17,20];
     html+='<tr>';
@@ -437,7 +436,7 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
       }
     }
     var dates=padMonths.concat(kl.map(function(k){return k.date;})),
-        ohlc=padOHLC.concat(kl.map(function(k){return [k.open,k.close,k.low,k.high];}));
+        ohlc=padOHLC.concat(kl.map(function(k){return [Math.log(k.open),Math.log(k.close),Math.log(k.low),Math.log(k.high)];}));
 
     // RS line
     var rsStock=[], rsHsi=[], rsDates=[];
@@ -466,7 +465,8 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
     cfData.forEach(function(c){cfMap[c.date]=c.value;});
     var cfSeries=dates.map(function(dt){
       var yr=dt.substring(0,4);
-      return cfMap[yr]||null;
+      var v=cfMap[yr];
+      return v!=null?Math.log(v):null;
     });
     if(cfSeries.some(function(v){return v!=null;})){
       series.push({name:'15x CF',type:'line',data:cfSeries,
@@ -484,19 +484,38 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
     dates.forEach(function(d,i){if(d.endsWith('-01'))yearLines.push({xAxis:i,lineStyle:{color:'#ccc',width:1,type:'solid'}});});
     series[0].markLine={silent:true,animation:false,symbol:'none',data:yearLines,label:{show:false}};
 
+    // 对数Y轴范围: 种子序列 [1,1.6,2.4,4,6] × 10^k + 4%缓冲区
+    var pVals=kl.map(function(k){return k.close;}).filter(function(v){return v>0;});
+    var pMin=Math.min.apply(null,pVals), pMax=Math.max.apply(null,pVals);
+    var lnMin=Math.log(pMin), lnMax=Math.log(pMax), lnDl=lnMax-lnMin;
+    var lnBuf=lnDl*0.04;
+    var yMin=lnMin-lnBuf, yMax=lnMax+lnBuf;
+    // 种子序列生成刻度标签 (自然对数统一)
+    var tLo=Math.exp(yMin), tHi=Math.exp(yMax);
+    var seeds=[1,1.6,2.4,4,6];
+    var ticks=[], pow=Math.pow(10,Math.floor(Math.log(tLo)/Math.LN10)-1);
+    while(pow<=tHi*1.1){
+      seeds.forEach(function(m){
+        var v=pow*m; if(v>=tLo&&v<=tHi) ticks.push(v);
+      });
+      pow*=10;
+    }
+    var logTicks=ticks.map(function(v){return Math.log(v);});
     echarts.init(document.getElementById('chart_kline')).setOption({
-      tooltip:{trigger:'axis'},
-      grid:{left:0,right:18,top:2,bottom:20},
+      tooltip:{trigger:'axis',valueFormatter:function(v){return v!=null?'$'+Math.exp(Number(v)).toFixed(2):'-';}},
+      grid:{left:0,right:28,top:4,bottom:24},
       xAxis:{type:'category',data:dates,boundaryGap:false,
-        axisLabel:{fontSize:6.5,color:'#666',fontWeight:700,margin:2,
+        axisLabel:{fontSize:7,color:'#333',fontWeight:700,margin:2,
           formatter:function(v){return v&&v.endsWith('-01')?v.slice(0,4):'';},
           interval:0,showMinLabel:true,showMaxLabel:true},
         axisLine:{show:true,lineStyle:{color:'#999',width:0.5}},
         axisTick:{show:false},
         splitLine:{show:true,lineStyle:{color:'#ccc',width:0.5}}},
       yAxis:[
-        {type:'log',scale:true,axisLabel:{fontSize:6},position:'right'},
-        {type:'value',axisLabel:{fontSize:6},splitLine:{show:false},position:'right'}],
+        {type:'value',min:yMin,max:yMax,
+          axisLabel:{fontSize:9,color:'#000',
+            formatter:function(v){var p=Math.exp(v);return p>=100?Math.round(p):p>=10?p.toFixed(0):p.toFixed(1);}},position:'right'},
+        {type:'value',axisLabel:{fontSize:8,color:'#999'},splitLine:{show:false},position:'left'}],
       series:series
     });
 
@@ -509,10 +528,9 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
       }else{volData.push(null);}
     });
     echarts.init(document.getElementById('chart_volume')).setOption({
-      grid:{left:0,right:18,top:0,bottom:0},
+      grid:{left:0,right:28,top:0,bottom:0},
       xAxis:{type:'category',data:dates,show:false,boundaryGap:false},
-      yAxis:{type:'value',axisLabel:{fontSize:6},splitLine:{show:false},position:'right',
-        axisLabel:{formatter:function(v){return v+'%';}}},
+      yAxis:{type:'value',axisLabel:{fontSize:8,color:'#000',formatter:function(v){return v+'%';}},splitLine:{show:false},position:'right'},
       series:[{name:'Vol%',type:'bar',data:volData,
         itemStyle:{color:'#1976D2'},barWidth:'60%'}]
     });

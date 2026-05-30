@@ -280,6 +280,54 @@ POP MART 09992.HK │ RECENT │ 153.60 │ P/E │ 30.1 │ (Trailing:30.1) │
 2. **预测虚线段** — "Cash Flow"线的虚线延伸部分是VL分析师预测。当前无预测, 硬停在实际数据末尾。
 3. **Target Price Range 缺失** — 需要预测EPS+PE才能绘制。
 
+### 图表技术实现
+
+#### Y轴: Ratio Scale (对数刻度)
+
+VL 使用 Ratio Scale (比例/对数刻度)，而非线性刻度。手册 P.9:
+> "The price chart uses a 'ratio scale'... equal percentage changes are represented by equal vertical distances."
+
+**实现方案:**
+
+| 项 | 值 |
+|---|---|
+| 图表库 | ECharts 5.5.0 |
+| 数据变换 | `Math.log(price)` — 自然对数 |
+| Y轴类型 | `type:'value'` — log空间中线性轴 |
+| 刻度生成 | 种子序列 `[1, 1.6, 2.4, 4, 6]` × 10^k + 4%缓冲区 |
+| 范围计算 | `yMin=ln(pMin)-4%， yMax=ln(pMax)+4%` |
+| 标签还原 | `Math.exp(v)` — exp反变换为真实价格 |
+| tooltip | `Math.exp(v).toFixed(2)` |
+| 图表高度 | chart-box: 260px, volume: 30px |
+| Grid | `left:0, right:28, top:4, bottom:24` |
+| K线颜色 | 红涨绿跌 (#ef232a / #14b143) — 中国惯例 |
+
+**种子序列说明:**
+```javascript
+seeds = [1, 1.6, 2.4, 4, 6]
+// log空间间距 ≈ 0.2, 视觉均匀
+// 示例: 10, 16, 24, 40, 60, 100, 160, 240, 400, ...
+```
+
+**CF 线:**
+- 固态 `#1976D2`, 宽度 1.2px
+- 数据同样做 log 变换
+- 按年度映射(非月度), 全年统一值
+
+**Relative Price Strength 线:**
+- 个股: 红色虚线 `#ef232a`, `dotted`, yAxisIndex:1 (右侧线性轴)
+- 指数(HSI): 灰色虚线 `#999`, `dotted`, yAxisIndex:1
+- 基期100, 百分比值, 独立线性Y轴
+
+**Volume % 图:**
+- 独立 ECharts 实例, 位于K线图下方(30px)
+- 柱状图 `#1976D2`, barWidth: 60%
+- 值 = 月成交量 ÷ 总股本 × 100%
+
+**年度 High/Low 表格:**
+- 位于 K线图上方, 每列对应一年
+- 从月K线按年聚合最高/最低价
+
 ---
 
 ## 区域 5: Statistical Array (统计数组) — 项目核心
