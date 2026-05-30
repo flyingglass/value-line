@@ -334,13 +334,7 @@ var DATA = {DATA_JS};
 
 
   // Chart
-  var kl=d.kline, hsi=d.index_kline||[], lastIdx=kl.length-1;
-  function totalReturn(n){{
-    if(kl.length<=n) return '—';
-    var start=kl[kl.length-1-n].close, end=kl[lastIdx].close;
-    if(!start||!end) return '—';
-    return ((end/start-1)*100).toFixed(0)+'%';
-  }}
+  var kl=d.kline, hsi=d.index_kline||[];
 
   // ========== 统一表格: Yearly High/Low + K线 + 23-line ==========
   var showYears=allY;  // 最多10年
@@ -349,14 +343,14 @@ var DATA = {DATA_JS};
   var tdStyle='border-right:1px solid #ddd;padding:2px 8px', thStyle='border-right:1px solid #ddd;text-align:right;padding:2px 8px';
   
   // Row 1: High
-  html+='<tr><td style="font-weight:700;padding:0 3px;'+tdStyle+'">High</td>';
+  html+='<tr><td style="padding:0 3px;'+tdStyle+'">High</td>';
   showYears.forEach(function(yr){{
     var hl=yhlMap[yr];
     html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.high:'—')+'</td>';
   }});
   html+='</tr>';
   // Row 3: Low
-  html+='<tr><td style="font-weight:700;padding:0 3px;'+tdStyle+'">Low</td>';
+  html+='<tr><td style="padding:0 3px;'+tdStyle+'">Low</td>';
   showYears.forEach(function(yr){{
     var hl=yhlMap[yr];
     html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.low:'—')+'</td>';
@@ -368,18 +362,25 @@ var DATA = {DATA_JS};
   html+='<div style="font-size:7px;line-height:1.3">';
   html+='<div style="font-weight:700">LEGENDS</div>';
   html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
-  html+='<div>15.0 x CF per Sh</div>';
+  html+='<div style="font-size:9px;color:#1976D2;line-height:1">\u2501\u2501\u2501</div>';
+  html+='<div>15.0 x \"Cash Flow\" p sh</div>';
   html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
-  html+='<div>Rel Price Strength</div>';
+  html+='<div style="font-size:9px;color:#ef232a;line-height:1">\u00B7\u00B7\u00B7</div>';
+  html+='<div>Relative Price Strength</div>';
   html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
-  html+='<div>Splits: '+(meta.splits||'None')+'</div><div>Opt: '+(meta.options||'No')+'</div>';
+  html+='<div>Splits: '+(meta.splits||'None')+'</div><div>Options: '+(meta.options||'No')+'</div>';
   html+='<div style="border-bottom:1px solid #000;margin:1px 0"></div>';
-  html+='<div style="font-weight:700">% Total Return</div>';
-  html+='<div>1yr '+totalReturn(12)+'&nbsp; 3yr '+totalReturn(36)+'&nbsp; 5yr '+totalReturn(60)+'</div>';
-  html+='<div style="margin-top:2px">P/E '+spot.pe+'x&nbsp; P/B '+spot.pb+'x&nbsp; Yld '+spot.div_yield+'%</div>';
-  if(pos.pe){{
-    html+='<div>PE H:'+pos.pe.max+' L:'+pos.pe.min+' Avg:'+pos.pe.avg+'</div>';
-  }}
+  html+='<div style="font-weight:700;font-size:7.5px">% TOT. RETURN</div>';
+  var tr=d.total_returns||{{}};
+  var trStock=tr.stock||{{}};
+  var trIndex=tr.index||{{}};
+  html+='<table style="width:100%;border-collapse:collapse;font-size:7px;line-height:1.3;margin:2px 0">';
+  html+='<tr><td></td><td style="text-align:right;font-weight:700">THIS</td><td style="text-align:right;font-weight:700">'+indexName+'</td></tr>';
+  html+='<tr><td></td><td style="text-align:right">STOCK</td><td style="text-align:right"></td></tr>';
+  html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock['1yr']!=null?trStock['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex['1yr']!=null?trIndex['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>3 yr.</td><td style="text-align:right">'+(trStock['3yr']!=null?trStock['3yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex['3yr']!=null?trIndex['3yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock['5yr']!=null?trStock['5yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex['5yr']!=null?trIndex['5yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='</table>';
   html+='</div></td>';
   html+='<td colspan="'+yrCount+'" style="padding:0">';
   html+='<div class="chart-box" id="chart_kline"></div>';
@@ -482,11 +483,11 @@ var DATA = {DATA_JS};
     }});
     if(cfSeries.some(function(v){{return v!=null;}})){{
       series.push({{name:'15x CF',type:'line',data:cfSeries,
-        lineStyle:{{type:'dashed',color:'#1976D2',width:1.2}},symbol:'none'}});
+        lineStyle:{{type:'solid',color:'#1976D2',width:1.2}},symbol:'none'}});
     }}
     if(rsStock.length>0){{
       series.push({{name:stockName+' (idx)',type:'line',data:rsStock,
-        lineStyle:{{color:'#ef232a',width:1.2}},symbol:'none',yAxisIndex:1}});
+        lineStyle:{{color:'#ef232a',width:1.2,type:'dotted'}},symbol:'none',yAxisIndex:1}});
       series.push({{name:indexName+' (idx)',type:'line',data:rsHsi,
         lineStyle:{{color:'#999',width:1,type:'dotted'}},symbol:'none',yAxisIndex:1}});
     }}

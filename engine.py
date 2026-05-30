@@ -1085,6 +1085,45 @@ def build_report(code=None):
     index_kline = fetch_market_index(market)
 
     # ================================================================
+    # % Total Return 计算 (个股 + 指数, 含股息)
+    # 公式: (期末价 - 期初价 + 累计股息) / 期初价 × 100
+    # ================================================================
+    total_returns = {"stock": {}, "index": {}}
+    # 取股息数据 (年度DPS)
+    div_years = []
+    for q in semi_annual.get("dividends", []):
+        if q.get("full") > 0:
+            div_years.append((str(q["year"]), q["full"]))
+    div_map = dict(div_years)
+
+    def _calc_return(prices, periods, div_map):
+        """prices: [{date, close}], periods: [12, 36, 60] months, div_map: {year: dps}"""
+        result = {}
+        if not prices:
+            return {}
+        last = prices[-1]
+        end_close = last["close"]
+        for n in periods:
+            if len(prices) <= n:
+                continue
+            start = prices[-(n+1)]
+            start_close = start["close"]
+            if not start_close or start_close == 0:
+                continue
+            # 累计股息: 按年加总覆盖期间
+            start_yr = int(start["date"][:4])
+            end_yr = int(last["date"][:4])
+            cum_div = sum(div_map.get(str(y), 0) for y in range(start_yr, end_yr + 1))
+            # 如果有当前年的部分股息, 按比例估算
+            total_ret = (end_close - start_close + cum_div) / start_close * 100
+            label = f"{n//12}yr"
+            result[label] = round(total_ret, 1)
+        return result
+
+    total_returns["stock"] = _calc_return(kline, [12, 36, 60], div_map)
+    total_returns["index"] = _calc_return(index_kline, [12, 36, 60], {})  # 指数不含股息
+
+    # ================================================================
     # 交叉校验 (3层: AKShare内部一致性, AKShare↔PDF, 营收结构完整性)
     # ================================================================
     validation = {
@@ -1217,6 +1256,7 @@ def build_report(code=None):
         "spot": spot,
         "kline": kline,
         "index_kline": index_kline,
+        "total_returns": total_returns,
         "years": years,
         "metric_defs": [{"order": m[0], "name_cn": m[1], "name_en": m[2],
                           "field": m[3], "unit": m[4], "source": m[5]}

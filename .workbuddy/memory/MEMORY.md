@@ -49,6 +49,7 @@ generate_report.py → report.html (自包含)
 - 给出方案→等我确认→执行→确认结果→下一步
 - 中报数据标记"仅AKShare"来源
 - Memory放项目repo可随git提交
+- **CF倍数交互**: 新股生成时询问"CF倍数默认15.0"，不指定即用默认
 
 ## 已知Bug模式
 - **单引号Bug**: `DIV'D` 等含 `'` 的词在 JS 单引号字符串中会截断。Python `\'` 在 f-string 中输出为字面量 `'`，必须改用 Unicode `\u2019`（右单引号）如 `DIV\u2019D`

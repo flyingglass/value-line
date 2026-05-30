@@ -81,39 +81,87 @@
 
 ## 区域 2: Legends Box (图例框)
 
-**VL 原文位置:** 手册 P.7-8, 样本报告图表左上 (item 2)
+**VL 原文位置:** 手册 P.14 Item 2, 样本报告图表左上
 
-### VL 定义
+**VL 原文:**
+> *"The Legends box contains the 'cash flow' multiple, the amounts and dates of recent stock splits, and an indication if options on the stock are traded."*
 
-| 内容 | VL 说明 |
-|------|--------|
-| **"Cash Flow" Multiple** | 现金流倍数, 如 "15.0 x CF per Sh" |
-| **Stock Splits** | 历史股票分拆记录 |
-| **Options** | 是否有期权交易 (Yes/No) |
-| **% Total Return** | 1yr/3yr/5yr 总回报 (含股息) |
-| **PE / PB / Yld** | 当前PE/PB/股息率快览 |
+### 指标对比与含义
 
-### A/H 股实现状态
+| # | VL 原版指标 | VL 公式 / 含义 | 当前实现 | 数据来源 | 样式 | 差距 |
+|---|---|---|---|---|---|---|
+| 1 | **CF Multiple** | 分析师选定倍数 × 每股现金流(盈利+折旧-优先股息)，使 CF 线对齐 3-5 年目标价。倍数不固定，股价偏离线太远会调整 | `cf_line = PER_NETCASH × 15`，硬编码 15 倍 | `engine.py` → ECharts | `━━━` 蓝实线 (#1976D2) → K线图 CF 线 `solid` | ⚠️ 硬编码15，非动态 |
+| 2 | **Rel Price Strength** | 个股价格 ÷ VL 全样本(~1700只)算术平均。线上涨=跑赢大市，线下跌=跑输 | RS 线=个股(基期100) ÷ 恒指/CSI300(基期100) 双线对比 | `index_kline` + `kline` → ECharts | `···` 红虚线 (#ef232a) → K线图 RS 个股线 `dotted` | ⚠️ 对标从 VL 全样本→市场指数 |
+| 3 | **Options** | 该股是否有对应期权产品在交易所交易 | `meta.options` (No/Yes) | `config.py` 手动配置 | 纯文本，无图例 | ✅ A/H 股多数为 No |
+| 4 | **Stock Splits** | 历史拆股/送股的日期和比例。无拆分显示 None | `meta.splits` (None/具体) | `config.py` 手动配置 | 纯文本，无图例 | ✅ |
+| 5 | **Shaded area** | 图表灰色阴影=美国 NBER 衰退期 | 无 | — | — | ❌ A/H 不适用 |
 
-| 内容 | 实现状态 | 当前方案 | 差距 |
-|------|---------|---------|------|
-| CF Multiple | ✅ 已实现 | `cf_line` ×15 显示在图表上 | Legends框内显示15.0 |
-| Stock Splits | ⚠️ 占位 | 显示 `meta.splits` 或 "None" | 需手动录入 |
-| Options | ⚠️ 占位 | 显示 "No" | A/H股期权 ≠ 美股 |
-| % Total Return | ✅ 已实现 | 从K线计算1yr/3yr/5yr | 正确 |
-| PE/PB/Yld | ✅ 已实现 | 从spot和metrics读取 | 正确 |
+### 非 LEGENDS 指标 (在 VL 报告中位于 LEGENDS 下方独立区域)
 
-**VL原文 (P.14):**
-> "The Legends box contains the 'cash flow' multiple, the amounts and dates of recent stock splits, and an indication if options on the stock are traded."
+| 指标 | VL 实际位置 | 含义 |
+|---|---|---|
+| **% Total Return** (1yr/3yr/5yr) | 图表左下角独立 | 股价涨跌 + 股息 = 总回报，与 VL 算术平均指数对比 |
+| **P/E P/B Yld** | LEGENDS 下方 | 当前估值快照 |
+| **PE H/L/Avg** | LEGENDS 下方 | 年度 PE 历史区间 |
 
-**CF Multiple 说明 (P.7-8):**
-> "To plot the [Cash Flow] line, we multiply cash flow per share... by a number (multiple) determined by our analyst... the goal is to create a line that closely matches the stock price history."
+### 最终样式规格
+
+```
+LEGENDS                         ← 7px 粗体
+━━━━━━━━━━━━━━━━━━━━━━━━
+━━━  (blue实线, 9px, #1976D2)    ← 图例标记
+15.0 x "Cash Flow" p sh          ← 指标名 (7px)
+━━━━━━━━━━━━━━━━━━━━━━━━
+···  (red虚线, 9px, #ef232a)       ← 图例标记
+Relative Price Strength          ← 指标名 (7px)
+━━━━━━━━━━━━━━━━━━━━━━━━
+Splits: None / Options: No       ← 补充信息 (7px)
+```
+
+**K 线图同步:**
+- CF 线: `type: 'solid'`, #1976D2, width 1.2 (实线，对应 LEGENDS `━━━`)
+- RS 个股线: `type: 'dotted'`, #ef232a, width 1.2 (虚线，对应 LEGENDS `···`)
+- RS 基准线: `type: 'dotted'`, #999, width 1 (保持虚线)
 
 **当前实现分析:**
 - 固定使用 15.0 倍 (generate_report.py L.347: `15.0 x CF per Sh`)
 - VL 原版使用分析师选择的倍数 (迪士尼用12.0), 会随时间变化
 - 🔴 差距: 当前硬编码15.0, VL是分析师动态调整的
 - 建议: 短期保持15.0固定, 长期可设为config参数
+
+## 区域 2B: % Total Return (总回报)
+
+**VL 原文位置:** 图表左下角，LEGENDS 下方独立区域
+
+**VL 公式 (Item 19):**
+> *"Annual Total Return (percent including dividends)"*
+
+`% Total Return = (期末价 - 期初价 + 累计股息) / 期初价 × 100`
+
+- 累计回报，非年化
+- 包含股息
+- 双列对比：THIS STOCK vs VL Arithmetic Index
+
+### 当前实现
+
+| 指标 | VL 原版 | 当前实现 | 数据来源 | 差距 |
+|---|---|---|---|---|
+| **公式** | (期末-期初+股息)/期初 ×100 | 同公式，含年度DPS | `engine.py:_calc_return()` | ✅ |
+| **期间** | 1yr / 3yr / 5yr | 最近 12/36/60 个月 | K线月线 close | ✅ |
+| **个股** | THIS STOCK | 含股息累计回报 | kline + dividend DPS | ✅ |
+| **对比基准** | VL Arithmetic Index (~1700只) | HSI (港股) / CSI300 (A股) | `index_kline` 月线 close | ⚠️ 对标改为市场指数 |
+| **格式** | 双列表格 (THIS | VL ARITH.) | 双列表格 (THIS | HSI/CSI300) | ✅ |
+
+### 最终样式
+
+```
+% TOT. RETURN
+              THIS     HSI
+              STOCK
+  1 yr.      -30.3%    8.1%
+  3 yr.      812.2%    38.1%
+  5 yr.      129.3%   -13.6%
+```
 
 ---
 
