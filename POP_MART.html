@@ -62,8 +62,6 @@ body{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;colo
 .analyst{margin:4px 0;padding:4px 6px;font-size:9px;line-height:1.35;border-top:1px solid #000}
 .analyst b{display:block;margin-bottom:2px}
 .analyst p{margin-bottom:3px}
-
-.footer{text-align:center;color:#bbb;font-size:8px;padding:3px;border-top:1px solid #eee;margin:6px 0 0 0}
 </style>
 </head>
 <body>
@@ -401,17 +399,10 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock2['5yr']!=null?trStock2['5yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['5yr']!=null?trIndex2['5yr'].toFixed(1)+'%':'—')+'</td></tr>';
   html+='</table>';
   html+='</div>';
-  html+='<div style="margin-top:auto">';
-  html+='<table id="volScale" style="width:100%;font-size:8.5px;font-weight:700;line-height:1.25;padding-left:3px">';
-  html+='<tr><td>Percent</td><td style="text-align:right"><span id="vs3">—</span></td></tr>';
-  html+='<tr><td>shares</td><td style="text-align:right"><span id="vs2">—</span></td></tr>';
-  html+='<tr><td>traded</td><td style="text-align:right"><span id="vs1">—</span></td></tr>';
-  html+='</table>';
-  html+='</div>';
   html+='</div></td>';
   html+='<td colspan="'+yrCount+'" style="padding:0">';
   html+='<div class="chart-box" id="chart_kline"></div>';
-  html+='<div id="chart_volume" style="height:30px;margin-top:0"></div>';
+  html+='<div id="chart_volume" style="height:50px;margin-top:0;position:relative"></div>';
   
   // Row 5: 年份行
   html+='<tr style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"><td style="font-size:8.5px;color:#000;padding:2px 3px;'+tdStyle+'">Year</td>';
@@ -455,11 +446,6 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   html+='<p style="text-align:justify;margin:4px 0">'+commentary[2]+'</p>';
   html+='<p style="text-align:justify;margin:4px 0">'+commentary[3]+'</p>';
   html+='</div>';
-
-  // Footer — 校验结果汇总
-  var vSt=v.status==='OK'?'✅ 全通过':'⚠️ '+(v.checks_passed||0)+'/'+(v.checks_total||0)+' 通过';
-  var pdfNote=(v.pdf_years||[]).length>0?' | PDF: FY'+(v.pdf_years||[]).join(',FY'):' | PDF: 无';
-  html+='<div class="footer">AKShare + Annual Report | Checks: '+vSt+pdfNote+'</div>';
 
   html+='</div>'; // end center-col
 
@@ -594,10 +580,17 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
                 {yAxis:step,name:'',lineStyle:{color:'#000',width:0.5,type:'solid'}}]
         }}]
     });
-    // 动态更新左侧刻度值
-    document.getElementById('vs3').textContent=Math.round(ceilVol);
-    document.getElementById('vs2').textContent=Math.round(step*2);
-    document.getElementById('vs1').textContent=Math.round(step);
+    // 动态创建左侧刻度标签，绝对定位于 chart_volume 内
+    var vsDiv=document.createElement('div');
+    vsDiv.style.cssText='position:absolute;left:-72px;width:68px;height:50px;top:0;pointer-events:none;z-index:1';
+    var vLabels=[['Percent','vs3',ceilVol],['shares','vs2',step*2],['traded','vs1',step]];
+    vLabels.forEach(function(l){
+      var d=document.createElement('div');
+      d.style.cssText='position:absolute;left:0;right:0;top:'+((ceilVol-l[2])/ceilVol*50)+'px;font-size:8.5px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
+      d.innerHTML='<span>'+l[0]+'</span><span id="'+l[1]+'">'+Math.round(l[2])+'</span>';
+      vsDiv.appendChild(d);
+    });
+    document.getElementById('chart_volume').appendChild(vsDiv);
 
   },300);
 })();
