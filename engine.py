@@ -1251,6 +1251,17 @@ def build_report(code=None):
     print(f"  交叉校验: {validation['checks_passed']}/{validation['checks_total']} 通过 "
           f"({len(validation['mismatches'])} 失败, {len(validation['warnings'])} 警告)")
 
+    # Business 描述: 优先 PDF提取 > SQLite meta > config
+    business = cap_struct.get("business_desc", "") or stock.get("business_desc", "")
+    
+    # Analyst Commentary: 从 config 读取(手动维护) 或 生成默认占位
+    analyst_cfg = stock.get("analyst", {})
+    analyst = {
+        "business": business,
+        "commentary": analyst_cfg.get("commentary", ["数据生成中", "请通过 config 配置对应标的的 analyst 数据", "", ""]),
+        "recommendation": analyst_cfg.get("recommendation", ""),
+    }
+
     report = {
         "meta": {
             "code": code, "name": stock["name"], "name_en": stock["name_en"],
@@ -1288,7 +1299,7 @@ def build_report(code=None):
         "quarterly": quarterly,
         "yearly_hl": yearly_hl,
         "position": position,
-        "analyst": {"business": "", "commentary": "", "recommendation": ""},
+        "analyst": analyst,
         "validation": validation,
     }
 

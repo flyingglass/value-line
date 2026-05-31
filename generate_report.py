@@ -453,11 +453,11 @@ var DATA = {DATA_JS};
   html+='</table>';
   
   // Analyst Commentary — VL标准 300-400字三段式 (占位，后续LLM生成)
-  var commentary=[
-    '泡泡玛特增速见顶？股价从高点腰斩后何去何从',
-    '2026年5月31日 — 泡泡玛特2025年报交出史诗级成绩：营收371.2亿（+185%），每股收益9.58元（+308%），ROE高达57%。但股价自2025年高点HKD 334已回落近半，当前HKD 173.4。是市场提前消化逆天的增长，还是回调创造了入场机会？',
-    '细看结构，海外收入占比从20%跃至44%（亚太21.6%+美洲18.3%），"中国IP全球输出"的故事正在兑现。THE MONSTERS独占38%，SKULLPANDA及其他IP形成第二梯队。但2025年的爆发式增长受益于海外门店从0到1的渠道红利——当基数上升后，2026年的增速几乎必然放缓。我们的预测：营收增20%-30%、EPS增15%-25%，取决于拉美和欧洲新市场的爬坡速度。',
-    '当前股价对应PE约17倍（经汇率调整），处于历史估值区间的最低10%分位——这在三年营收CAGR 100%的公司中极为罕见。PB 10.4倍位于中位，ROE 57%则属顶级。公司净现金状态，无财务风险，折旧率仅3%。2025年派息CNY 2.38/股，股息率约1.4%，尚有提升空间。综合判断：估值已回归合理甚至偏低，但高基数下增速放缓是必然，建议关注2026年中报的海外同店增速作为验证信号。'
+  var commentary=d.analyst&&d.analyst.commentary&&d.analyst.commentary.length?d.analyst.commentary:[
+    '暂无数据',
+    '数据暂不可用',
+    '请先运行 engine.py 生成完整数据',
+    ''
   ];
   html+='<div class="analyst" style="font-size:10px">';
   html+='<span style="font-size:12px;font-weight:700">AI Commentary: '+commentary[0]+'</span>';
