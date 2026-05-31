@@ -585,6 +585,16 @@ MARKET CAP:   2,063 亿 (Large Cap)             ← 10px bold, flex
 - % of Cap'l: LT_Debt ÷ (LT_Debt + 总权益) × 100
 - 去掉 Leases/Pension (港股不适用)
 
+**市值分类标准 (Market Cap Label):**
+
+| 标签 | 市值范围 | 说明 |
+|------|---------|------|
+| Large Cap | >$100亿 (~>700亿 ¥) | 大市值，稳定，流动性好 |
+| Mid Cap | $20-100亿 | 中等市值 |
+| Small Cap | <$20亿 | 小市值，波动大 |
+
+泡泡玛特 2,063亿 ≈ $284亿 → **Large Cap**。
+
 ---
 
 ## 区域 8: Current Position (短期资产负债)
@@ -596,36 +606,55 @@ MARKET CAP:   2,063 亿 (Large Cap)             ← 10px bold, flex
 ```
 CURRENT POSITION      2015   2016  12/31/16
 ($MILL.)
-Cash Assets           4269   4610    3736
-Receivables           8019   9065    9878
-Inventory(AvgCst)     1575   1562    1390
-Other Current Assets  895    729    1661
-Current Assets       16758  16966   16665
-Accounts Payable      7844   9130    9979
-Debt Due              4563   3687    5698
-Other Current Liab    3927   4025    3640
-Current Liabilities  16334  16842   19317
+Cash Assets           4269   4610   3736
+Receivables           8019   9065   9878
+Inventory (Avg Cst)   1571   1390   1299
+Other                 2899   1901   1752
+Current Assets       16758  16966  16665     ← bold + 数据列顶线
+Accts Payable         7844   9130   9979
+Debt Due              4563   3687   5698
+Other                 3927   4025   3640
+Current Liab.        16334  16842  19317     ← bold + 数据列顶线
 ```
 
-### A/H 股实现状态
+### A/H 股实现 (2026-05-31 最终版)
 
-| 行 | 实现状态 | 数据来源 | 差距 |
-|---|---------|---------|------|
-| Cash Assets | ✅ | balance.现金及等价物 | ✅ |
-| Receivables | ✅ | balance.应收帐款 | ✅ |
-| Inventory | ✅ | balance.存货 | ✅ VL标记AvgCst (平均成本法) |
-| Other CA | ✅ | 流动资产合计 - (现金+应收+存货) | ✅ |
-| Current Assets | ✅ | balance.流动资产合计 | ✅ |
-| Accounts Payable | ✅ | balance.应付帐款 | ⚠️ 字段名是否需要映射确认 |
-| Debt Due | ⚠️ 近似 | balance.融资租赁负债(流动) | VL的Debt Due=一年内到期长期债务 |
-| Other CL | ✅ | 流动负债合计 - (应付+DebtDue) | ✅ |
-| Current Liabilities | ✅ | balance.流动负债合计 | ✅ |
+| 行 | VL标签 | 本项目 | 数据源 | 状态 |
+|---|--------|--------|--------|------|
+| Cash Assets | Cash Assets | 137.8 亿 | balance.现金及等价物 | ✅ |
+| Receivables | Receivables | 9.2 亿 | balance.应收帐款 | ✅ |
+| Inventory | Inventory (Avg Cst) | 54.7 亿 | balance.存货 | ✅ |
+| Other CA | Other | 47.5 亿 | CA - Cash - Recv - Inv | ✅ |
+| Current Assets | Current Assets | 249.1 亿 | balance.流动资产合计 | ✅ |
+| Accts Payable | Accts Payable | 18.6 亿 | balance.应付帐款 | ✅ |
+| Debt Due | Debt Due | 5.9 亿 | 短期贷款+1年内到期+融资租赁(流) | ✅ |
+| Other CL | Other | 47.2 亿 | CL - Payable - DebtDue | ✅ |
+| Current Liab. | Current Liab. | 71.7 亿 | balance.流动负债合计 | ✅ |
 
-**当前实现:** `_build_current_position()` engine.py L.712-750, 最近3年
+### 最终样式 (2026-05-31)
 
-**🔴 关键差异:**
-1. **Debt Due 口径** — VL是"一年内到期的长期债务", 当前使用"融资租赁负债(流动)"。应包含: 一年内到期长期借款 + 一年内到期应付债券 + 融资租赁负债(流动)。
-2. **Inventory 标记 Average Cost** — VL标注存货计价方法, 本项目无此标注。
+```
+CURRENT POSITION        2023     2024     2025-12-31     ← 10px bold, 标题+列名同行
+(亿元)                                                   ← 8px bold
+Cash Assets            20.8     61.1     137.8
+Receivables             3.2      4.8       9.2
+Inventory (Avg Cst)     9.0     15.2      54.7
+Other                  43.8     41.2      47.5
+                    ─────    ─────    ─────              ← 数据列顶部1px #000
+Current Assets         76.8    122.4     249.1           ← bold
+Accts Payable           4.4     10.1      18.6
+Debt Due                3.7      3.6       5.9
+Other                   9.2     20.0      47.2
+                    ─────    ─────    ─────              ← 数据列顶部1px #000
+Current Liab.          17.3     33.7      71.7           ← bold
+──── 1px #000 底部分割线 ────
+```
+
+**字号:** 10px, 合计行 bold。
+**分割线:** 顶线仅在数据 `<td>` 上 (border-top), 不横跨标签列。
+**最后列:** `YYYY-12-31` 格式。
+**标签:** `Inventory (Avg Cst)`, `Accts Payable`, `Current Liab.`, `Other`(简洁)。
+**数据:** 最近3年, 单位亿元, 1位小数。
 
 ---
 

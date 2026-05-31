@@ -174,27 +174,44 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   html+='<div style="border-bottom:1px solid #000;margin-top:4px"></div>';
   html+='</div>';
 
-  // Current Position — VL标准名称
-  html+='<div class="sec"><div class="sec-title">CURRENT POSITION</div>';
-  html+='<table>';
+  // Current Position — VL格式
   var cpYears=cp.years||[];
-  html+='<tr><td><i>(亿元)</i></td>';
-  cpYears.forEach(function(yr){html+='<td class="r">'+yr+'</td>';});
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:4px;margin-bottom:6px">';
+  html+='<div style="margin-bottom:2px"></div>';
+  // 标题行: 标题 + 列名同行
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.4">';
+  html+='<tr style="font-weight:700">';
+  html+='<td style="white-space:nowrap">CURRENT POSITION</td>';
+  cpYears.forEach(function(yr, i){
+    var label=(i===cpYears.length-1)?yr+'-12-31':yr;
+    html+='<td style="text-align:right">'+label+'</td>';
+  });
   html+='</tr>';
-  var cpShort=[
-    ['Cash Assets',0],['Receivables',1],['Inventory',2],['Other Current Assets',3],
-    ['Current Assets',4,true],
-    ['Accounts Payable',5],['Debt Due',6],['Other Current Liab',7],
-    ['Current Liabilities',8,true]
+  // 单位行
+  html+='<tr><td style="font-size:8px;color:#000;font-weight:700">(亿元)</td>';
+  cpYears.forEach(function(){html+='<td></td>';});
+  html+='</tr>';
+  // 数据行
+  var cpDef=[
+    ['Cash Assets',0,0],['Receivables',1,0],['Inventory (Avg Cst)',2,0],['Other',3,0],
+    ['Current Assets',4,1],
+    ['Accts Payable',5,0],['Debt Due',6,0],['Other',7,0],
+    ['Current Liab.',8,1]
   ];
-  cpShort.forEach(function(s){
-    if(s[2]){
-      html+='<tr style="border-top:1px solid #000"><td><b>'+s[0]+'</b></td>';
+  var cpItems=cp.items||[];
+  cpDef.forEach(function(d){
+    var label=d[0], idx=d[1], isBold=d[2];
+    if(isBold){
+      html+='<tr style="font-weight:700">';
     }else{
-      html+='<tr><td>'+s[0]+'</td>';
+      html+='<tr>';
     }
-    var item=(cp.items||[])[s[1]];
-    cpYears.forEach(function(yr){html+='<td class="r">'+(item&&item[yr]!=null?item[yr].toFixed(1):'—')+'</td>';});
+    html+='<td style="white-space:nowrap">'+label+'</td>';
+    var item=cpItems[idx];
+    cpYears.forEach(function(yr){
+      var v=(item&&item[yr]!=null)?item[yr].toFixed(1):'—';
+      html+='<td style="text-align:right;'+(isBold?'border-top:1px solid #000':'')+'">'+v+'</td>';
+    });
     html+='</tr>';
   });
   html+='</table></div>';
