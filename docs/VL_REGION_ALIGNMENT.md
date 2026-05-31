@@ -543,28 +543,47 @@ Common Stock 1,581,248,242 shs.  as of 2/1/17
 MARKET CAP: $182 billion (Large Cap)
 ```
 
-### A/H 股实现状态
+### A/H 股实现状态 (2026-05-31 最终版)
 
-| VL行 | 含义 | 实现状态 | 数据来源 | 差距 |
-|------|------|---------|---------|------|
-| Total Debt | 总负债 | ✅ | balance.总负债 | ✅ |
-| Due in 5 Yrs | 5年内到期 | ⚠️ 近似 | 融资租赁(流)+短期贷款+长期应付款 | 需确认VL口径 |
-| LT Debt | 长期债务 | ✅ | 融资租赁(非流) → 长期贷款 | ✅ |
-| LT Interest | 长期利息 | ⚠️ 近似 | income.融资成本 | ✅ 近似 |
-| Coverage | 利息覆盖倍数 | ✅ | 经营溢利÷利息支出 | ✅ |
-| % of Capital | LT Debt占比 | ✅ | LT_Debt÷(LT_Debt+Equity) | ✅ |
-| Leases | 未资本化租赁 | ❌ | 不在中国准则常见披露中 | 中美准则差异 |
-| Pension | 养老金资产/义务 | ❌ | 中美差异, 不适用 | 可能不适用 |
-| Pfd Stock | 优先股 | ⚠️ 占位 | "None" | A/H股基本无优先股 |
-| Common Stock | 普通股股数 | ✅ | config.shares/动态计算 | ✅ |
-| MARKET CAP | 市值 | ✅ | price×shares | ✅ |
+| VL行 | 含义 | 本项目 | 数据源 | 状态 |
+|------|------|--------|--------|------|
+| Total Debt | 总负债 | 94.5 亿 | balance.总负债 | ✅ |
+| Due in 5 Yrs | 5年内到期 | 5.9 亿 (融资租赁流动+短期贷款+长期应付款+1年内到期非流动) | balance | ✅ |
+| LT Debt | 长期债务 | 22.8 亿 | balance.融资租赁(非流动)/长期贷款 | ✅ |
+| LT Interest | 年利息支出 | 0.82 亿 | income.融资成本 | ✅ |
+| Coverage | 利息覆盖 | 经营溢利÷利息 = >25x | income | ✅ |
+| % of Cap'l | LT Debt占比 | LT_Debt÷(LT_Debt+总权益) = 9.1% | balance | ✅ |
+| Leases | 未资本化租赁 | — 中美准则差异, 港股不适用 | — | ⬜ 跳过 |
+| Pension | 养老金 | — DC制无DB披露, 港股不适用 | — | ⬜ 跳过 |
+| Pfd Stock | 优先股 | None (A/H股普遍无) | — | ✅ |
+| Common Stock | 普通股股数 | 1,342,943,150 shs. | config/动态计算 | ✅ |
+| MARKET CAP | 市值 | 2,063 亿 (Large Cap) | price×shares | ✅ |
 
-**当前实现:** `_build_capital_structure()` 在 engine.py L.606-709, 自动检测单位(万亿/亿/万)
+### 最终样式 (2026-05-31)
 
-**🔴 关键差异:**
-1. **Leases** — VL专门列出未资本化经营租赁。中国准则下经营租赁也已上表(新租赁准则), 差异缩小。
-2. **Pension** — 美国的DB养老金计划披露, 中国通常为DC计划, 不适用。
-3. **% of Capital** — VL展示为 `(24% of Cap'l)`, 指 LT Debt ÷ (LT Debt + Equity)。已实现。
+```
+──── 1px 实线 ────
+CAPITAL STRUCTURE as of 2025-12-31     ← 10px bold
+Total Debt    94.5 亿  Due in 5 Yrs  5.9 亿   ← 10px bold, 两列表格
+LT Debt      22.8 亿  LT Interest   0.82 亿
+(Total interest coverage: >25x)                ← 10px, 左对齐
+                                    (9.1% of Cap'l)  ← 10px, 右对齐
+Pfd Stock    None                              ← 表格行
+Common Stock   1,342,943,150 shs.              ← 10px bold, flex
+as of 2025-12-31                               ← 10px bold, 左对齐
+MARKET CAP:   2,063 亿 (Large Cap)             ← 10px bold, flex
+──── 1px 实线 ────
+```
+
+**字号:** 统⼀ 10px bold。
+**布局:** `<table>` 5列(标签|值|间距|标签|值), 注释行 colspan=5。
+**分割线:** 顶部1px `#000`, 底部1px `#000`。
+
+**数据口径:**
+- 单位自动检测(万亿/亿/万), 默认"亿"
+- coverage: 经营溢利÷融资成本, >25时显示 ">25x", 0时显示 "NMF"
+- % of Cap'l: LT_Debt ÷ (LT_Debt + 总权益) × 100
+- 去掉 Leases/Pension (港股不适用)
 
 ---
 

@@ -98,16 +98,6 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   // ========================
   html+='<div class="left-col">';
 
-  // Insider Decisions (占位)
-  html+='<div class="sec"><div class="sec-title">Insider Decisions</div>';
-  html+='<table><tr><td></td><td class="r">Buys</td><td class="r">Sells</td></tr>';
-  html+='<tr><td>N/A</td><td class="r">—</td><td class="r">—</td></tr></table></div>';
-
-  // Institutional Decisions (占位)
-  html+='<div class="sec"><div class="sec-title">Institutional Decisions</div>';
-  html+='<table><tr><td></td><td class="r">Buys</td><td class="r">Sells</td></tr>';
-  html+='<tr><td>N/A</td><td class="r">—</td><td class="r">—</td></tr></table></div>';
-
   // Business — 中文业务简介, 数据驱动 (营收结构来自PDF财报 + SQLite元数据)
   var rev=d.revenue_structure||{};
   var ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]);
@@ -153,28 +143,36 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   }
   bizHtml+='</p>';
 
-  // Capital Structure — 2列网格布局 (VL标准名称)
-  html+='<div class="sec"><div class="sec-title">CAPITAL STRUCTURE</div>';
-  function csHalf(label,val,cls,noteTxt){
-    var h='<div style="width:50%;display:inline-block;vertical-align:top;font-size:8px;line-height:1.6">';
-    h+='<div style="display:flex;justify-content:space-between"><span>'+label+'</span><span class="'+(cls||'')+'">'+val+'</span></div>';
-    if(noteTxt) h+='<div style="text-align:right;font-size:7px;color:#666;line-height:1.2">('+noteTxt+')</div>';
-    h+='</div>';
-    return h;
-  }
-  html+=csHalf('Total Debt',(cs.total_debt||0).toFixed(1),'r b');
-  html+=csHalf('Due in 5 Yrs',(cs.due_in_5yr||0).toFixed(1),'r');
-  html+='<br>';
-  html+=csHalf('LT Debt',(cs.lt_debt||0).toFixed(1),'r b',cs.lt_debt_pct+'% of Capital');
-  html+=csHalf('LT Interest',(cs.total_int||0).toFixed(2),'r',cs.coverage);
-  html+='<br>';
-  html+=csHalf('Pension Assets',typeof cs.pension_assets==='number'?cs.pension_assets.toFixed(1):(cs.pension_assets||'—'),'r');
-  html+=csHalf('Pfd Stock',cs.pfd_stock||'None','r');
-  html+='<br>';
-  html+='<div style="border-top:1px solid #ddd;font-size:7.5px;margin:3px 0 1px 0;padding-top:2px;clear:both">Common Stock '+cs.common_shares_str+' shs</div>';
-  html+=csHalf('MARKET CAP',(cs.mkt_cap||0).toFixed(0),'r b');
-  html+=csHalf('',cs.cap_label||'','r');
-  html+='<div style="clear:both"></div></div>';
+  // Capital Structure — 完全参考VL截图布局
+  var csDate=Y[Y.length-1]+'-12-31', csUnit=cs.unit||'亿';
+  html+='<div class="sec">';
+  html+='<div style="border-bottom:1px solid #000;margin-bottom:2px"></div>';
+  html+='<div style="font-size:10px;font-weight:700;margin-bottom:2px">CAPITAL STRUCTURE as of '+csDate+'</div>';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.5">';
+  // Row 1: Total Debt | Due in 5 Yrs
+  html+='<tr><td style="white-space:nowrap;font-weight:700">Total Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.total_debt||0).toFixed(1)+' '+csUnit+'</td>';
+  html+='<td style="width:8px"></td><td style="white-space:nowrap;font-weight:700">Due in 5 Yrs</td><td style="text-align:right;font-weight:700">'+(cs.due_in_5yr||0).toFixed(1)+' '+csUnit+'</td></tr>';
+  // Row 2: LT Debt | LT Interest
+  html+='<tr><td style="white-space:nowrap;font-weight:700">LT Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.lt_debt||0).toFixed(1)+' '+csUnit+'</td>';
+  html+='<td></td><td style="white-space:nowrap;font-weight:700">LT Interest</td><td style="text-align:right;font-weight:700">'+(cs.total_int||0).toFixed(2)+' '+csUnit+'</td></tr>';
+  // Row 3: (coverage)
+  html+='<tr><td colspan="5" style="font-size:10px;color:#000;padding-left:0">(Total interest coverage: '+cs.coverage+')</td></tr>';
+  // Row 4: (% of Cap'l) — 右对齐
+  html+='<tr><td colspan="5" style="text-align:right;font-size:10px;color:#000;padding-left:0">('+cs.lt_debt_pct+'% of Cap’l)</td></tr>';
+  // Row 5: Pfd Stock | None (Leases/Pension不适用港股)
+  html+='<tr><td style="white-space:nowrap;font-weight:700">Pfd Stock</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.pfd_stock||'None')+'</td><td></td><td></td><td></td></tr>';
+  html+='</table>';
+  // Common Stock 单独块
+  html+='<div style="margin-top:4px;font-size:10px;line-height:1.4">';
+  html+='<div style="display:flex;justify-content:space-between"><span style="font-weight:700">Common Stock</span><span style="font-weight:700;margin-left:2px">'+cs.common_shares_str+' shs.</span></div>';
+  html+='<div style="text-align:left;font-weight:700">as of '+csDate+'</div>';
+  html+='</div>';
+  // MARKET CAP
+  html+='<div style="margin-top:4px;font-size:10px;line-height:1.4">';
+  html+='<div style="display:flex;justify-content:space-between;font-weight:700"><span>MARKET CAP:</span><span>'+(cs.mkt_cap||0).toFixed(0)+' '+csUnit+' ('+cs.cap_label+')</span></div>';
+  html+='</div>';
+  html+='<div style="border-bottom:1px solid #000;margin-top:4px"></div>';
+  html+='</div>';
 
   // Current Position — VL标准名称
   html+='<div class="sec"><div class="sec-title">CURRENT POSITION</div>';
