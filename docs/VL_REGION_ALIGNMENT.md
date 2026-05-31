@@ -697,20 +697,20 @@ Book Value            7.0%     6.5%    7.0%
 ### 最终样式 (2026-05-31)
 
 ```
-ANNUAL RATES                                    ← 10px bold
-of change (per sh)                              ← 8px 副标题
-                Past 5 Yrs. Past 3 Yrs. Past 1 Yr.
-Revenues             71.4%     100.3%     184.7%
-"Cash Flow"          80.1%     137.4%     248.8%
-Earnings             85.2%     201.4%     307.7%
-Dividends              —        35.1%     -63.6%
-Book Value           29.4%      47.4%     108.4%
+ANNUAL RATES          Past     Past     Past        ← 10px bold
+of change (per sh)   5 Yrs.  3 Yrs.  1 Yr.          ← 9px #666
+Revenues             71.4%   100.3%  184.7%
+"Cash Flow"          80.1%   137.4%  248.8%
+Earnings             85.2%   201.4%  307.7%
+Dividends              —      35.1%  -63.6%
+Book Value           29.4%    47.4%  108.4%
 ──── 1px #000 ────
 ```
 
-**字号:** 标题10px bold, 副标题8px, 标签bold, 值常规。
+**字号:** 标题10px bold, 副标题9px #666, 列名分两行(Row1:"Past" / Row2:"5 Yrs."等), 标签bold, 值常规。
 **底部分割线:** 1px solid #000。
 **空值:** `—`。
+**预测列:** Est'd 不可实现, Past 1 Yr. 替代。
 
 ---
 
