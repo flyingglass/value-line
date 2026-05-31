@@ -264,7 +264,8 @@ def fetch_hk_financials(store, code):
         
         nums = re.findall(r"([\d.]+)", txt)
         dps_nums = [float(n) for n in nums if n.count(".") == 1]
-        dps = dps_nums[-1] if len(dps_nums) >= 2 else (dps_nums[0] if dps_nums else 0.0)
+        # 取第一个数字(宣告金额, CNY), 非最后一个(HKD等值)
+        dps = dps_nums[0] if dps_nums else 0.0
         
         if fy in div_map:
             div_map[fy]["dps"] += dps  # 叠加特别股息
@@ -279,38 +280,6 @@ def fetch_hk_financials(store, code):
             (fy, data["dps"], 0.0, data["ex"], data["pay"], 0.0))
     store.conn.commit()
     print(f"OK {len(df)}条")
-
-    # 股息补充: AKShare港股股息经常返回0, 用已知数据覆盖
-    _supplement_dividend(store, code)
-
-
-def _supplement_dividend(store, code):
-    """补充股息数据 (AKShare港股缺口)"""
-    KNOWN_DPS = {
-        "09992": {
-            "2021": 0.1533, "2022": 0.1472, "2023": 0.3096,
-            "2024": 0.9970, "2025": 0.3630,
-        },
-        "09988": {  # 阿里巴巴 年度股息(美元→HKD)
-            "2022": 0.976,   # 0.125 USD = 0.976 HKD
-            "2023": 1.571,   # 0.125+0.0825 USD = 1.571 HKD
-            "2024": 1.951,   # 0.13125+0.11875 USD = 1.951 HKD
-            "2025": 1.028,   # 0.13125 USD = 1.028 HKD
-        }
-    }
-    if code not in KNOWN_DPS:
-        return
-    for yr, dps in KNOWN_DPS[code].items():
-        existing = store.conn.execute(
-            "SELECT cash_dps FROM dividend WHERE report_year=?",
-            (yr,)).fetchone()
-        if existing and existing[0] > 0:
-            continue
-        store.conn.execute(
-            "INSERT OR REPLACE INTO dividend (report_year, cash_dps, special_dps) VALUES (?,?,0)",
-            (yr, dps))
-    store.conn.commit()
-    print(f"  [dividend_supp] OK {len(KNOWN_DPS[code])}年股息已补充")
 
 # ============================================================
 # A股财务数据 (同花顺 + 巨潮)

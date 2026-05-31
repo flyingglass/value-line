@@ -718,38 +718,48 @@ Book Value           29.4%    47.4%  108.4%
 
 **VL 原文位置:** 手册 P.10-11, 样本报告左栏底部 (items 16)
 
-### VL 定义 (迪士尼样本)
+### VL 定义
 
-VL左栏底部有三个季度表:
+> "Quarterly Sales are shown on a gross basis. Quarterly earnings on a per-share basis (estimates in bold type). Quarterly Dividends Paid are actual payments. The total of dividends paid in four quarters may not equal the figure shown in the annual series on dividends declared..."
 
-1. **QUARTERLY REVENUES ($mill.)** — 按财年季度 (Mar/Jun/Sep/Dec) + Full Year
-2. **EARNINGS PER SHARE** — 季度EPS (含预估, 粗体)
-3. **QUARTERLY DIVIDENDS PAID** — 实际支付股息 (按日历年)
+三表紧排: QUARTERLY REVENUES / EARNINGS PER SHARE / QUARTERLY DIVIDENDS PAID
 
-> VL原文 (P.14, item 16):
-> "Quarterly Sales are shown on a gross basis. Quarterly earnings on a per-share basis (estimates in bold type). Quarterly Dividends Paid are actual payments. The total of dividends paid in four quarters may not equal the figure shown in the annual series on dividends declared... (Sometimes a dividend declared at the end of the year will be paid in the first quarter of the following year.)"
+### A/H 股实现 (2026-05-31 最终版)
 
-### A/H 股实现状态
+| 表 | 数据 | 来源 | 状态 |
+|----|------|------|------|
+| Sales | 半年报 H1/H2 → Q2/Q4 | income表 | ✅ |
+| Earnings | 半年报 H1/H2 → Q2/Q4 | income表 | ✅ |
+| Dividends | 年度DPS, AKShare宣告货币 | dividend表 | ✅ |
 
-| 季度表 | 实现状态 | 数据来源 | 差距 |
-|--------|---------|---------|------|
-| Quarterly Revenues | ⚠️ 半年度 | income表 STD_ITEM_CODE | VL为4季度, 港股仅2半年 |
-| Quarterly EPS | ⚠️ 半年度 | income表 STD_ITEM_CODE | 同上 |
-| Quarterly Dividends | ⚠️ 年度 | dividend表 | VL有季度拆分, 当前仅年度总额 |
+**Dividends Declared vs Paid:** 手册区分宣告(stat array #4)和实付(季度表)。港股半年报无季度拆分，股息仅年度总额。
 
-**当前实现:** `build_semi_annual()` engine.py L.387-499
-- 有季报(Q1/Q2/Q3/Q4) → 4季度+全年
-- 仅半年报 → H1/H2/Full Yr (港股标准)
-- 股息: 仅显示年度DPS (无季度拆分)
+### 最终样式 (2026-05-31)
 
-**VL Quarterly Sales 说明 (P.14, item 16):**
-> "Quarterly Sales are shown on a gross basis. Quarterly earnings on a per-share basis (estimates in bold type)."
+```
+Year | Q1    Q2    Q3    Q4  | Full Year              ← 10px, 表头底部1px线
+     | QUARTERLY REVENUES (亿)|                         ← 标题夹在竖线间
+2021 |  —   17.7    —   27.2  | 44.9
+2022 |  —   23.6    —   22.6  | 46.2
+...                            |
+────────────────────────────── 细线
+     | EARNINGS PER SHARE     |
+2021 |  —   0.26    —   0.36  | 0.62
+...
+────────────────────────────── 细线
+     |QUARTERLY DIVIDENDS PAID|
+2021 |  —      0    —   0.15  | 0.15
+...
+──── 1px #000 ────
+*港股仅披露半年报，Q2/Q4暂无数据。
+──── 1px #000 ────
+```
 
-**🔴 关键差异:**
-1. **季度 vs 半年度** — VL原版是4季度报告, A股理论支持, 港股仅半年。
-2. **预测列缺失** — VL的季度EPS表有粗体预测, 当前全为历史。
-3. **股息表结构差异** — VL有实际支付日期(日历拆分), 当前仅年度总额。
-4. **Dividends Declared vs Paid** — VL区分宣告股息(行4)和支付股息(季度表), 当前两者都读同一数据源。
+**字号:** 标题/表头/数据 10px bold，脚注 8px #666。
+**竖线:** 2px #000 (Year后 + Full Year前)，贯穿全表。
+**水平分割:** 三区间 1px #999 细线；表头底部 1px #000。
+**列宽:** Q1-Q4 各14%，Full Year 16%，Year 16%。
+**半年度:** Q2填H1，Q4填H2，Q1/Q3灰色"—"。
 
 ---
 

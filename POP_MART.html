@@ -188,7 +188,7 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   });
   html+='</tr>';
   // 单位行
-  html+='<tr><td style="font-size:8px;color:#000;font-weight:700">(亿元)</td>';
+  html+='<tr><td style="font-size:8px;color:#000;font-weight:700">(亿)</td>';
   cpYears.forEach(function(){html+='<td></td>';});
   html+='</tr>';
   // 数据行
@@ -223,7 +223,7 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
     var m=k.match(/^(\d+)(yr)$/);
     return m?[m[1]+' Yrs.']:[k];
   });
-  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:4px;margin-bottom:6px">';
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:0;margin-bottom:0">';
   html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.3">';
   // 标题行: ANNUAL RATES + 列名第一行
   html+='<tr><td style="white-space:nowrap;font-weight:700">ANNUAL RATES</td>';
@@ -249,51 +249,57 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   });
   html+='</table></div>';
 
-  // 渲染季度/半年度表
-  function renderQ(data, columns, title, decimal, annualOnly){
+  // 季度/半年度表 — VL三表紧排, 单 table + 垂直分割线
+  var hasQ=(qt.sales||[])[0]&&qt.sales[0].has_quarter;
+  function renderQSection(title, data, decimal, hasQq, isFirst){
     if(!data||!data.length) return '';
-    var show=data.slice(-5);  // 仅最近5年
-    if(annualOnly){
-      // 仅显示年度总额 (用于股息等只有年度数据的)
-      var h='<div class="sec"><div class="sec-title">'+title+'</div><table>';
-      h+='<tr><td></td><td class="r">Annual</td></tr>';
-      show.forEach(function(r){
-        h+='<tr><td>'+r.year+'</td><td class="r b">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td></tr>';
-      });
-      h+='</table></div>';
-      return h;
-    }
-    var hasQ=show[0].has_quarter;
-    // VL标准永远用 Q1/Q2/Q3/Q4
-    var cols=['Q1','Q2','Q3','Q4','Full Yr'];
-    var h='<div class="sec"><div class="sec-title">'+title+'</div><table>';
-    h+='<tr><td></td>';
-    cols.forEach(function(c){h+='<td class="r">'+c+'</td>';});
-    h+='</tr>';
+    var show=data.slice(-5);
+    // Section title
+    var sepStyle=isFirst?'':'border-top:1px solid #999;';
+    var h='<tr><td style="font-weight:700;'+sepStyle+'padding-top:4px">Year</td>';
+    h+='<td colspan="4" style="text-align:center;font-weight:700;border-left:2px solid #000;border-right:2px solid #000;'+sepStyle+'padding-top:4px">'+title+'</td>';
+    h+='<td style="border-left:2px solid #000;'+sepStyle+'padding-top:4px"></td></tr>';
+    // Header
+    h+='<tr style="font-weight:700">';
+    h+='<td style="width:16%;border-bottom:1px solid #000"></td>';
+    var qLabels=['Q1','Q2','Q3','Q4'];
+    qLabels.forEach(function(l,i){
+      var s='width:14%;text-align:right;padding-right:3px;border-bottom:1px solid #000';
+      if(i===0) s+=';border-left:2px solid #000;padding-left:3px';
+      h+='<td style="'+s+'">'+l+'</td>';
+    });
+    h+='<td style="width:16%;text-align:right;padding-right:3px;font-weight:700;border-left:2px solid #000;border-bottom:1px solid #000">Full Year</td></tr>';
+    // Data rows
     show.forEach(function(r){
-      h+='<tr><td>'+r.year+'</td>';
-      if(hasQ){
+      h+='<tr>';
+      h+='<td style="font-weight:700">'+r.year+'</td>';
+      if(hasQq){
         var vs=[r.q1,r.q2,r.q3,r.q4,r.full];
-        vs.forEach(function(v){h+='<td class="r'+(v===r.full?' b':'')+'">'+(v!=null?v.toFixed(decimal):'—')+'</td>';});
+        vs.forEach(function(v,i){
+          var s='text-align:right;padding-right:3px';
+          if(i===0) s+=';border-left:2px solid #000;padding-left:3px';
+          if(i===4) s+=';font-weight:700;border-left:2px solid #000;padding-left:3px';
+          h+='<td style="'+s+'">'+(v!=null?v.toFixed(decimal):'—')+'</td>';
+        });
       }else{
-        // 半年度数据: H1→Q1+Q2, H2→Q3+Q4 (分别显示在Q1和Q3位置, Q2/Q4为"—")
-        h+='<td class="r">'+(r.q1!=null?r.q1.toFixed(decimal):'—')+'</td>';
-        h+='<td class="r">—</td>';
-        h+='<td class="r">'+(r.q3!=null?r.q3.toFixed(decimal):'—')+'</td>';
-        h+='<td class="r">—</td>';
-        h+='<td class="r b">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td>';
+        h+='<td style="text-align:right;color:#999;border-left:2px solid #000;padding-left:3px;padding-right:3px">—</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q1!=null?r.q1.toFixed(decimal):'—')+'</td>';
+        h+='<td style="text-align:right;color:#999;padding-right:3px">—</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q3!=null?r.q3.toFixed(decimal):'—')+'</td>';
+        h+='<td style="text-align:right;font-weight:700;border-left:2px solid #000;padding-left:3px;padding-right:3px">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td>';
       }
       h+='</tr>';
     });
-    h+='</table>';
-    if(!hasQ) h+='<div class="note" style="margin-top:1px">*该市场仅披露半年报, Q2/Q4暂无数据</div>';
-    h+='</div>';
     return h;
   }
-  html+=renderQ(qt.sales, ['H1','H2'], 'QUARTERLY REVENUES (亿元)', 1);
-  html+=renderQ(qt.eps, ['H1','H2'], 'EARNINGS PER SHARE', 2);
-  html+=renderQ(qt.dividends, ['H1','H2'], 'QUARTERLY DIVIDENDS PAID ('+(meta.currency||'CNY')+')', 3);
-
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:2px;margin-bottom:2px">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.3">';
+  html+=renderQSection('QUARTERLY REVENUES (亿)', qt.sales, 1, hasQ, true);
+  html+=renderQSection('EARNINGS PER SHARE', qt.eps, 2, hasQ, false);
+  html+=renderQSection('QUARTERLY DIVIDENDS PAID', qt.dividends, 3, hasQ, false);
+  html+='</table>';
+  if(!hasQ) html+='<div style="border-top:1px solid #000;font-size:8px;color:#666;margin-top:3px;padding-top:3px">*港股仅披露半年报，Q2/Q4暂无数据。</div>';
+  html+='</div>';
 
   html+='</div>'; // end left-col
 
