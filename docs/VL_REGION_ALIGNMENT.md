@@ -665,34 +665,52 @@ Current Liab.          17.3     33.7      71.7           ← bold
 ### VL 定义 (迪士尼样本)
 
 ```
-ANNUAL RATES          Past     Past    Est'd
-of change (per sh)   10 Yrs.  5 Yrs.  '14-'16 to '20-'22
-Revenues              7.5%     9.5%    6.0%
-"Cash Flow"           12.5%    15.0%   4.0%
-Earnings              14.0%    18.5%   7.5%
-Dividends             19.0%    30.0%   7.5%
+ANNUAL RATES          Past     Past    Est'd '14-'16
+of change (per sh)   10 Yrs.  5 Yrs.  to '20-'22
+Revenues              7.5%     9.0%    4.0%
+"Cash Flow"          12.5%    15.5%    6.0%
+Earnings             14.0%    18.5%    7.5%
+Dividends            19.0%    30.0%    7.5%
 Book Value            7.0%     6.5%    7.0%
 ```
 
-### A/H 股实现状态
+### A/H 股实现 (2026-05-31 最终版)
 
-| 指标 | 实现状态 | 计算方式 | 预测列 |
-|------|---------|---------|--------|
-| Revenues (per sh) | ✅ | OPERATE_INCOME CAGR | ❌ |
-| "Cash Flow" (per sh) | ✅ | PER_NETCASH CAGR | ❌ |
-| Earnings (per sh) | ✅ | BASIC_EPS CAGR | ❌ |
-| Dividends (per sh) | ✅ | DPS CAGR | ❌ |
-| Book Value (per sh) | ✅ | BPS CAGR | ❌ |
+| 指标 | 公式 | 数据源 | 状态 |
+|------|------|--------|------|
+| Revenues (per sh) | PER_OI CAGR | AKShare | ✅ |
+| "Cash Flow" (per sh) | PER_NETCASH CAGR | 自算 | ✅ |
+| Earnings (per sh) | BASIC_EPS CAGR | AKShare | ✅ |
+| Dividends (per sh) | DPS CAGR | dividend | ✅ |
+| Book Value (per sh) | BPS CAGR | AKShare | ✅ |
 
-**当前实现:** `_build_annual_rates()` engine.py L.753-791
-- 有10年数据→显示 10yr/5yr/3yr
-- 不足10年→显示 5yr/3yr/1yr
-- **预测列未实现** — VL有 "Est'd '14-'16 to '20-'22" 列
+**年份规则:**
 
-**VL原文 (P.7):**
-> "The Annual Rates box (item 17) shows the compound annual growth percentages for sales, cash flow, and other items for the past 5 and 10 years and also Value Line's projections of growth for each item for the coming 3 to 5 years."
+| 条件 | 显示列 | 说明 |
+|------|--------|------|
+| `len(rev) > 10` | Past 10 Yrs. / 5 Yrs. / 3 Yrs. / 1 Yr. | 4列, Past 1 Yr. 替代 Est'd |
+| 不足 10 年 | Past 5 Yrs. / 3 Yrs. / 1 Yr. | 3列 |
 
-**🔴 差距:** VL的Annual Rates包含3列 (Past 10 Yrs / Past 5 Yrs / Estimated 3-5yr), 当前只有历史无预测。
+**CAGR 公式:** `(end/begin)^(1/n) - 1 × 100`, begin>0 且 end>0。
+**预测列:** VL "Est'd 3-5yr" 不可实现, 用 Past 1 Yr. 替代。
+
+### 最终样式 (2026-05-31)
+
+```
+ANNUAL RATES                                    ← 10px bold
+of change (per sh)                              ← 8px 副标题
+                Past 5 Yrs. Past 3 Yrs. Past 1 Yr.
+Revenues             71.4%     100.3%     184.7%
+"Cash Flow"          80.1%     137.4%     248.8%
+Earnings             85.2%     201.4%     307.7%
+Dividends              —        35.1%     -63.6%
+Book Value           29.4%      47.4%     108.4%
+──── 1px #000 ────
+```
+
+**字号:** 标题10px bold, 副标题8px, 标签bold, 值常规。
+**底部分割线:** 1px solid #000。
+**空值:** `—`。
 
 ---
 
