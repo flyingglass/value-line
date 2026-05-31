@@ -20,7 +20,7 @@ HTML = f'''<!DOCTYPE html>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;color:#000;width:1280px;margin:0 auto;background:#fff}}
+body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;color:#000;width:1280px;margin:0 auto;background:#fff;-webkit-text-size-adjust:100%}}
 .container{{display:grid;grid-template-columns:275px 1fr;min-height:100vh;border-top:1px solid #000;border-bottom:1px solid #000;padding:4px 0}}
 
 /* ===== 左栏 ===== */
@@ -265,11 +265,12 @@ var DATA = {DATA_JS};
     var show=data.slice(-5);
     // Section title
     var sepStyle=isFirst?'':'border-top:1px solid #999;';
-    var h='<tr><td style="font-weight:700;'+sepStyle+'padding-top:4px">Year</td>';
-    h+='<td colspan="4" style="text-align:center;font-weight:700;border-left:2px solid #000;border-right:2px solid #000;'+sepStyle+'padding-top:4px">'+title+'</td>';
-    h+='<td style="border-left:2px solid #000;'+sepStyle+'padding-top:4px"></td></tr>';
+    sepStyle+='line-height:1;';
+    var h='<tr><td style="font-weight:700;'+sepStyle+'padding-top:3px">Year</td>';
+    h+='<td colspan="4" style="text-align:center;font-weight:700;border-left:2px solid #000;border-right:2px solid #000;'+sepStyle+'padding-top:3px">'+title+'</td>';
+    h+='<td style="border-left:2px solid #000;'+sepStyle+'padding-top:3px"></td></tr>';
     // Header
-    h+='<tr style="font-weight:700">';
+    h+='<tr style="font-weight:700;line-height:1">';
     h+='<td style="width:16%;border-bottom:1px solid #000"></td>';
     var qLabels=['Q1','Q2','Q3','Q4'];
     qLabels.forEach(function(l,i){{
@@ -637,7 +638,7 @@ var DATA = {DATA_JS};
 </body>
 </html>'''
 
-out_path = os.path.join(BASE, DATA['meta']['name_en'].replace(' ','_')+'.html')
+out_path = os.path.join(BASE, 'report', DATA['meta']['name_en'].replace(' ','_')+'.html')
 out_alt = os.path.join(os.environ.get("TEMP", os.environ.get("TMP", "/tmp")), "vl_report.html")
 try:
     with open(out_path, "w", encoding="utf-8") as f:
