@@ -375,9 +375,9 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   // Row 4: K线图行 — LEGENDS + % TOT. RETURN(左) + 图表(右)
   // chart 260px + volume 30px = 290px flex容器, Percent用margin-top:auto沉底
   html+='<tr><td style="padding:0 3px;vertical-align:top;'+tdStyle+'">';
-  html+='<div style="display:flex;flex-direction:column;height:290px;font-size:8px;line-height:1.4">';
+  html+='<div style="display:flex;flex-direction:column;height:290px;font-size:9px;line-height:1.4">';
   html+='<div>';
-  html+='<div style="font-weight:700;font-size:8.5px;margin:2px 0 1px 0">LEGENDS</div>';
+  html+='<div style="font-weight:700;font-size:10px;margin:2px 0 1px 0">LEGENDS</div>';
   html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
   html+='<div style="font-size:10px;color:#1976D2;line-height:1.1">━━━</div>';
   html+='<div>15.0 x "Cash Flow" p sh</div>';
@@ -387,12 +387,12 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   html+='<div style="margin:3px 0"></div>';
   html+='<div>Splits: '+(meta.splits||'None')+'</div><div>Options: '+(meta.options||'No')+'</div>';
   html+='<div style="margin:15px 0 2px 0"></div>';
-  html+='<div style="font-weight:700;font-size:8.5px;margin-bottom:2px">% HIST. RETURN</div>';
+  html+='<div style="font-weight:700;font-size:10px;margin-bottom:2px">% HIST. RETURN</div>';
   html+='<div style="border-bottom:1px solid #000;margin:0 0 2px 0"></div>';
   var trR2=d.total_returns||{};
   var trStock2=trR2.stock||{};
   var trIndex2=trR2.index||{};
-  html+='<table style="width:100%;border-collapse:collapse;font-size:8.5px;line-height:1.35;margin:1px 0">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:9px;line-height:1.35;margin:1px 0">';
   html+='<tr><td></td><td style="text-align:right;font-weight:700">THIS</td><td style="text-align:right;font-weight:700">'+indexName+'</td></tr>';
   html+='<tr><td></td><td style="text-align:right;font-weight:700">STOCK</td><td style="text-align:right"></td></tr>';
   html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock2['1yr']!=null?trStock2['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['1yr']!=null?trIndex2['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
@@ -539,6 +539,7 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
       tooltip:{trigger:'axis',axisPointer:{label:{show:false}},valueFormatter:function(v){return v!=null?'$'+Math.exp(Number(v)).toFixed(2):'-';}},
       grid:{left:0,right:28,top:4,bottom:24},
       xAxis:{type:'category',data:dates,boundaryGap:false,
+        axisPointer:{label:{show:false}},
         axisLabel:{fontSize:7,color:'#333',fontWeight:700,margin:2,
           formatter:function(v){return v&&v.endsWith('-01')?v.slice(0,4):'';},
           interval:0,showMinLabel:true,showMaxLabel:true},
@@ -578,7 +579,7 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
           return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle"></span>PST: '+(p[0].value!=null?p[0].value.toFixed(2)+'%':'-');}},
       grid:{left:0,right:28,top:0,bottom:0,containLabel:false},
       xAxis:{type:'category',data:dates,show:false,boundaryGap:false,
-        axisPointer:{show:true,type:'shadow',shadowStyle:{color:'rgba(25,118,210,.08)'},label:{show:false}}},
+        axisPointer:{show:true,type:'shadow',shadowStyle:{color:'rgba(25,118,210,.08)'},label:{show:false,formatter:''},handle:{show:false}}},
       yAxis:{type:'value',position:'left',min:0,max:ceilVol,splitNumber:3,
         axisLabel:{show:false},
         splitLine:{show:false},
@@ -601,7 +602,7 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
     vals.forEach(function(v,i){
       var py=volChart.convertToPixel({yAxisIndex:0},v);
       var d=document.createElement('div');
-      d.style.cssText='position:absolute;left:0;right:0;top:'+(py||0)+'px;font-size:8.5px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
+      d.style.cssText='position:absolute;left:0;right:0;top:'+(py||0)+'px;font-size:10px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
       d.innerHTML='<span>'+labels[i]+'</span><span>'+Math.round(v)+'</span>';
       vsDiv.appendChild(d);
     });
@@ -616,7 +617,6 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
     });
     // click 成交量图空白 → 取消高亮
     volChart.getZr().on('click',function(e){if(!e.target)volChart.dispatchAction({type:'downplay',seriesIndex:0});});
-    klineChart.group='vl'; volChart.group='vl'; echarts.connect('vl');
 
   },300);
 })();
