@@ -1252,6 +1252,9 @@ def build_report(code=None):
             "code": code, "name": stock["name"], "name_en": stock["name_en"],
             "market": stock["market"], "currency": stock.get("currency", reader.db_meta("currency", "CNY")),
             "industry": stock.get("industry", ""),
+            "ceo": stock.get("ceo", ""),
+            "inc": stock.get("inc", ""),
+            "website": stock.get("website", ""),
             # 股价货币 & 市场指数 — 从 MARKET_CONFIG 驱动, 不硬编码
             "price_ccy": config.MARKET_CONFIG.get(stock.get("market", ""), {}).get("currency", "CNY"),
             "index_name": config.MARKET_CONFIG.get(stock.get("market", ""), {}).get("index_name", "Index"),

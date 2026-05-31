@@ -21,7 +21,7 @@ HTML = f'''<!DOCTYPE html>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;color:#000;width:1280px;margin:0 auto;background:#fff}}
-.container{{display:grid;grid-template-columns:275px 1fr;min-height:100vh;overflow:auto}}
+.container{{display:grid;grid-template-columns:275px 1fr;min-height:100vh;border-top:1px solid #000;border-bottom:1px solid #000;padding:4px 0}}
 
 /* ===== 左栏 ===== */
 .left-col{{border-right:1px solid #000;padding:4px 5px;font-size:9px}}
@@ -111,50 +111,48 @@ var DATA = {DATA_JS};
   // ========================
   html+='<div class="left-col">';
 
-  // Business — 中文业务简介, 数据驱动 (营收结构来自PDF财报 + SQLite元数据)
-  var rev=d.revenue_structure||{{}};
-  var ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]);
-  var revYr=latestYr;
-  // 从SQLite读取的业务描述 + 员工数 (PDF提取一次存库)
-  var bizDesc=cs.business_desc||'';
-  var empCount=cs.employee_count;
-  var bizHtml='<p>';
-  if(bizDesc){{
-    bizHtml+=bizDesc;
-  }}else{{
-    bizHtml+=stockName+'（'+meta.name+'）';
-    if(meta.industry) bizHtml+=meta.industry+'行业。';
+  // Business — VL风格，分段可读
+  var rev=d.revenue_structure||{{}}, ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]);
+  var desc=cs.business_desc||'';
+  var bizP=[], bizHtml='';
+  // P1: 业务描述
+  if(desc){{
+    var dot=desc.indexOf('。');
+    bizP.push(dot>0?desc.substring(0,dot):desc.substring(0,80));
   }}
-  // 补充关键指标
-  if(ly.OPERATE_INCOME){{
-    bizHtml+=revYr+'年营收'+ly.OPERATE_INCOME.toFixed(1)+'亿';
-    if(ly.HOLDER_PROFIT) bizHtml+='，归母净利'+ly.HOLDER_PROFIT.toFixed(1)+'亿';
-    if(ly.ROE) bizHtml+='，ROE '+ly.ROE.toFixed(1)+'%';
-    bizHtml+='。';
-  }}
-  // 员工人数
-  if(empCount){{
-    bizHtml+='员工共计'+(empCount/10000).toFixed(1)+'万人'+(cs.employee_year?'（'+cs.employee_year+'年）':'')+'。';
-  }}
-  // 渠道结构
-  if(ch.length>0){{
-    var chStr=ch.slice(0,4).map(function(c){{return c.name+'（'+c.pct+'%）';}}).join('、');
-    bizHtml+='业务渠道：'+chStr+'。';
-  }}
-  // 核心IP
+  // P2: IP+渠道+地域 (营收结构)
+  var p2=[];
   if(ip.length>0){{
-    var ipTop=ip.slice(0,5);
-    var ipStr=ipTop.map(function(c){{return c.name+'（'+c.pct+'%）';}}).join('、');
-    bizHtml+='核心IP：'+ipStr;
-    if(ip.length>5) bizHtml+='等';
-    bizHtml+='。';
+    var ipTop=ip.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');
+    p2.push('核心IP：'+ipTop);
   }}
-  // 地域分布
+  if(ch.length>0){{
+    var chTop=ch.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');
+    p2.push('渠道：'+chTop);
+  }}
   if(rg.length>0){{
-    var rgStr=rg.map(function(c){{return c.name+'（'+c.pct+'%）';}}).join('、');
-    bizHtml+='地域分布：'+rgStr+'。';
+    var rgTop=rg.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');
+    p2.push('地域：'+rgTop);
   }}
-  bizHtml+='</p>';
+  if(p2.length) bizP.push(p2.join('；'));
+  // P3: 折旧/员工/CEO/注册地/网站
+  // P3: 折旧/员工
+  var p3=[];
+  var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
+  if(depr&&revs) p3.push('折旧率'+(depr/revs*100).toFixed(1)+'%');
+  if(cs.employee_count) p3.push('员工'+(cs.employee_count/10000).toFixed(1)+'万人（'+latestYr+'）');
+  if(p3.length) bizP.push(p3.join('。'));
+  // P4: CEO/注册地/网站
+  var p4=[];
+  if(meta.ceo) p4.push('首席执行官：'+meta.ceo);
+  if(meta.inc) p4.push('注册地：'+meta.inc);
+  if(meta.website) p4.push(meta.website);
+  if(p4.length) bizP.push(p4.join('。'));
+  bizHtml='<span style="font-weight:700">BUSINESS:</span> '+bizP[0];
+  if(bizP[1]) bizHtml+='<br>'+bizP[1];
+  if(bizP[2]) bizHtml+='<br>'+bizP[2];
+  if(bizP[3]) bizHtml+='<br>'+bizP[3];
+  html+='<div style="font-size:10px;line-height:1.4;margin-bottom:4px">'+bizHtml+'</div>';
 
   // Capital Structure — 完全参考VL截图布局
   var csDate=Y[Y.length-1]+'-12-31', csUnit=cs.unit||'亿';
@@ -457,9 +455,6 @@ var DATA = {DATA_JS};
   }});
   html+='</table>';
   
-  // Business — MDA (表下方)
-  html+='<div class="analyst"><b>BUSINESS</b>'+bizHtml+'</div>';
-
   // Management Discussion & Analysis (中栏, Business下方)
   var mdaText=cs.mda_text||'';
   if(mdaText){{
