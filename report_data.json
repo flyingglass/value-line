@@ -10,7 +10,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-05-31 14:45:46.440515"
+    "generated": "2026-05-31 14:54:24.150183"
   },
   "spot": {
     "price": 153.60001,
@@ -1659,7 +1659,7 @@
     {
       "order": 1,
       "name_cn": "每股营收",
-      "name_en": "Revenues per sh (¥)",
+      "name_en": "Revenues per sh",
       "field": "PER_OI",
       "unit": "元",
       "source": "calculated"
@@ -1667,7 +1667,7 @@
     {
       "order": 2,
       "name_cn": "每股现金流",
-      "name_en": "\"Cash Flow\" per sh (¥)",
+      "name_en": "\"Cash Flow\" per sh",
       "field": "PER_NETCASH",
       "unit": "元",
       "source": "calculated"
@@ -1675,7 +1675,7 @@
     {
       "order": 3,
       "name_cn": "每股收益*",
-      "name_en": "Earnings per sh (¥)",
+      "name_en": "Earnings per sh",
       "field": "BASIC_EPS",
       "unit": "元",
       "source": "indicators"
@@ -1683,7 +1683,7 @@
     {
       "order": 4,
       "name_cn": "每股股息†",
-      "name_en": "Div'ds Decl'd per sh (¥)",
+      "name_en": "Div'ds Decl'd per sh",
       "field": "DPS",
       "unit": "元",
       "source": "dividend"
@@ -1691,7 +1691,7 @@
     {
       "order": 5,
       "name_cn": "每股资本支出",
-      "name_en": "Cap'l Spending per sh (¥)",
+      "name_en": "Cap'l Spending per sh",
       "field": "CAPEX_PS",
       "unit": "元",
       "source": "calculated"
@@ -1699,7 +1699,7 @@
     {
       "order": 6,
       "name_cn": "每股账面价值",
-      "name_en": "Book Value per sh (¥)",
+      "name_en": "Book Value per sh",
       "field": "BPS",
       "unit": "元",
       "source": "indicators"
@@ -1707,7 +1707,7 @@
     {
       "order": 7,
       "name_cn": "发行在外股数",
-      "name_en": "Common Shs Outst'g (mil)",
+      "name_en": "Common Shs Outst'g",
       "field": "TOTAL_SHARES",
       "unit": "百万股",
       "source": "calculated"
@@ -1731,7 +1731,7 @@
     {
       "order": 10,
       "name_cn": "平均股息率",
-      "name_en": "Avg Ann'l Div'd Yield (%)",
+      "name_en": "Avg Ann'l Div'd Yield",
       "field": "DIV_YIELD",
       "unit": "%",
       "source": "calculated"
@@ -1739,7 +1739,7 @@
     {
       "order": 11,
       "name_cn": "总营收",
-      "name_en": "Revenues (¥亿)",
+      "name_en": "Revenues (亿)",
       "field": "OPERATE_INCOME",
       "unit": "亿",
       "source": "indicators"
@@ -1747,7 +1747,7 @@
     {
       "order": 12,
       "name_cn": "毛利率",
-      "name_en": "Gross Margin (%)",
+      "name_en": "Gross Margin",
       "field": "GROSS_MARGIN",
       "unit": "%",
       "source": "calculated"
@@ -1755,7 +1755,7 @@
     {
       "order": 13,
       "name_cn": "营业利润率",
-      "name_en": "Operating Margin (%)",
+      "name_en": "Operating Margin",
       "field": "OP_MARGIN",
       "unit": "%",
       "source": "calculated"
@@ -1763,7 +1763,7 @@
     {
       "order": 14,
       "name_cn": "折旧摊销",
-      "name_en": "Depreciation (¥亿)",
+      "name_en": "Depreciation (亿)",
       "field": "DEPRECIATION",
       "unit": "亿",
       "source": "cashflow"
@@ -1771,7 +1771,7 @@
     {
       "order": 15,
       "name_cn": "净利润*",
-      "name_en": "Net Profit (¥亿)",
+      "name_en": "Net Profit (亿)",
       "field": "HOLDER_PROFIT",
       "unit": "亿",
       "source": "indicators"
@@ -1779,7 +1779,7 @@
     {
       "order": 16,
       "name_cn": "所得税率",
-      "name_en": "Income Tax Rate (%)",
+      "name_en": "Income Tax Rate",
       "field": "TAX_EBT",
       "unit": "%",
       "source": "indicators"
@@ -1787,7 +1787,7 @@
     {
       "order": 17,
       "name_cn": "净利润率",
-      "name_en": "Net Profit Margin (%)",
+      "name_en": "Net Profit Margin",
       "field": "NET_PROFIT_RATIO",
       "unit": "%",
       "source": "calculated"
@@ -1795,7 +1795,7 @@
     {
       "order": 18,
       "name_cn": "营运资金",
-      "name_en": "Working Cap'l (¥亿)",
+      "name_en": "Working Cap'l (亿)",
       "field": "WORKING_CAPITAL",
       "unit": "亿",
       "source": "calculated"
@@ -1803,7 +1803,7 @@
     {
       "order": 19,
       "name_cn": "长期债务",
-      "name_en": "Long-Term Debt (¥亿)",
+      "name_en": "Long-Term Debt (亿)",
       "field": "LT_DEBT",
       "unit": "亿",
       "source": "calculated"
@@ -1811,7 +1811,7 @@
     {
       "order": 20,
       "name_cn": "股东权益",
-      "name_en": "Shr. Equity (¥亿)",
+      "name_en": "Shr. Equity (亿)",
       "field": "TOTAL_EQUITY",
       "unit": "亿",
       "source": "calculated"
@@ -1819,7 +1819,7 @@
     {
       "order": 21,
       "name_cn": "总资本回报率",
-      "name_en": "Return on Total Cap'l (%)",
+      "name_en": "Return on Total Cap'l",
       "field": "ROIC",
       "unit": "%",
       "source": "calculated"
@@ -1827,7 +1827,7 @@
     {
       "order": 22,
       "name_cn": "股东权益回报率",
-      "name_en": "Return on Shr. Equity (%)",
+      "name_en": "Return on Shr. Equity",
       "field": "ROE",
       "unit": "%",
       "source": "indicators"
@@ -1835,7 +1835,7 @@
     {
       "order": 23,
       "name_cn": "留存利润占比",
-      "name_en": "Retained to Com Eq (%)",
+      "name_en": "Retained to Com Eq",
       "field": "RETAINED_RATIO",
       "unit": "%",
       "source": "calculated"
@@ -1843,7 +1843,7 @@
     {
       "order": 24,
       "name_cn": "股息支付率",
-      "name_en": "All Div'ds to Net Prof (%)",
+      "name_en": "All Div'ds to Net Prof",
       "field": "PAYOUT_RATIO",
       "unit": "%",
       "source": "calculated"
