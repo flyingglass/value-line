@@ -331,27 +331,26 @@ def build_metric_table(reader, years, market="hk"):
 
 
 def _compute_ttm_eps(reader, latest_yr):
-    """TTM EPS: 最近4季度滚动 (VL Trailing P/E 口径)
-    半年度股票: 尝试合并最近2半年; 否则回退年度EPS"""
+    """TTM EPS: 最近12个月滚动 (Trailing P/E 口径)
+    - 优先最新年报EPS (若已发布)
+    - 仅年报未出时才拼半年: H1_cur + H2_prev
+    - 兼容 A股(季度) / 港股(半年)"""
     stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
     fye = stock.get("fiscal_yr_end", "12-31")
-    # 尝试最新2个半年报
     qd_cur = _q_dates(str(latest_yr), fye)   # [q1, h1, 9m, fy]
     qd_prev = _q_dates(str(int(latest_yr) - 1), fye)
-    # 方案A: 真实4季度(Q1+Q2+Q3+Q4 or H1+H2跨年)
     fy_cur = reader.financial_item_by_code("income", "004027002", qd_cur[3])
     h1_cur = reader.financial_item_by_code("income", "004027002", qd_cur[1])
     h1_prev = reader.financial_item_by_code("income", "004027002", qd_prev[1])
     fy_prev = reader.financial_item_by_code("income", "004027002", qd_prev[3])
-    # 季度数据 → TTM = Q1+Q2+Q3+Q4 = FY (暂无真季度)
-    # 半年数据 → TTM = H1当前 + (FY上一年 - H1上一年) = H1当前 + H2上一年
+    # 方案A: 最新年报已发布 → 直接用 (港股/美股/A股统一)
+    if fy_cur is not None and fy_cur > 0:
+        return fy_cur
+    # 方案B: 仅半年报(年报未出) → TTM = H1_cur + H2_prev
     if h1_cur is not None and fy_prev is not None and h1_prev is not None:
         h2_prev = fy_prev - h1_prev
         if h2_prev > 0:
-            return h1_cur + h2_prev  # TTM = 最近2个半年
-    # 方案B: 最新年报EPS
-    if fy_cur is not None and fy_cur > 0:
-        return fy_cur
+            return h1_cur + h2_prev
     # 方案C: 去年年报
     if fy_prev is not None and fy_prev > 0:
         return fy_prev

@@ -13,16 +13,16 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-05-31 19:27:03.120196"
+    "generated": "2026-06-01 00:24:43.611807"
   },
   "spot": {
     "price": 173.39999,
-    "pe": 34.0,
+    "pe": 18.0,
     "pb": 10.44,
     "div_yield": 1.37,
     "mkt_cap": 2328.7,
     "change_pct": 7.36842,
-    "eps_ttm": 5.11,
+    "eps_ttm": 9.61,
     "median_pe": 50.0
   },
   "kline": [
@@ -2602,11 +2602,11 @@
   ],
   "position": {
     "pe": {
-      "current": 34.0,
+      "current": 18.0,
       "min": 18.3,
       "max": 172.4,
       "avg": 68.3,
-      "pct": 10.0
+      "pct": -0.0
     },
     "price": {
       "current": 173.4,
