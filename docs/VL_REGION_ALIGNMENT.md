@@ -116,16 +116,16 @@ LEGENDS                         ← 8.5px 粗体
 Relative Price Strength          ← 指标名 (8px)
       ← 空白间隔 3px
 Splits: None / Options: No       ← 补充信息 (8px)
-────── 实线 1px #000
+      ← 空白间隔 15px
 % TOT. RETURN                    ← 8.5px 粗体
+────── 实线 1px #000
+THIS (bold)  STOCK (bold)  HSI   ← 8.5px 表格
+1 yr.        -30.3%       8.1%
+3 yr.        812.2%       38.1%
+5 yr.        129.3%       -13.6%
 ```
 
 **布局:** 左侧列 flex 容器 height:290px，LEGENDS+% TOT. RETURN 在上部，Percent/shares/traded 用 margin-top:auto 沉底。
-
-**K 线图同步:**
-- CF 线: `type: 'solid'`, #1976D2, width 1.2 (实线)
-- RS 个股线: `type: 'dotted'`, #ef232a, width 1.2 (虚线)
-- RS 基准线: `type: 'dotted'`, #999, width 1 (虚线)
 
 ## 区域 2B: % Total Return (总回报)
 
@@ -153,13 +153,21 @@ Splits: None / Options: No       ← 补充信息 (8px)
 ### 最终样式
 
 ```
-% TOT. RETURN
-              THIS     HSI
-              STOCK
-  1 yr.      -30.3%    8.1%
-  3 yr.      812.2%    38.1%
-  5 yr.      129.3%   -13.6%
+                    ← 15px 空白
+% TOT. RETURN       ← 8.5px 粗体
+────── 实线 1px #000
+          THIS   STOCK   HSI/CSI300  ← 8.5px 表格, THIS/STOCK/指数名 bold
+  1 yr.  -30.3%         8.1%
+  3 yr.  812.2%        38.1%
+  5 yr.  129.3%       -13.6%
 ```
+
+**数据来源:**
+- `engine.py:_calc_return()` — 含股息累计回报
+- K线月线 `close` 最近 12/36/60 个月
+- 个股价差 + 累计 `DPS`
+- 指数不含股息 (仅价差)
+- 表格字号 8.5px, line-height 1.35
 
 ---
 
