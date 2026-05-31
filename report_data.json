@@ -10,7 +10,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-05-30 19:12:08.476607"
+    "generated": "2026-05-31 14:45:46.440515"
   },
   "spot": {
     "price": 153.60001,
@@ -1659,7 +1659,7 @@
     {
       "order": 1,
       "name_cn": "每股营收",
-      "name_en": "Revenues per sh",
+      "name_en": "Revenues per sh (¥)",
       "field": "PER_OI",
       "unit": "元",
       "source": "calculated"
@@ -1667,23 +1667,23 @@
     {
       "order": 2,
       "name_cn": "每股现金流",
-      "name_en": "\"Cash Flow\" per sh",
+      "name_en": "\"Cash Flow\" per sh (¥)",
       "field": "PER_NETCASH",
       "unit": "元",
       "source": "calculated"
     },
     {
       "order": 3,
-      "name_cn": "每股收益",
-      "name_en": "Earnings per sh",
+      "name_cn": "每股收益*",
+      "name_en": "Earnings per sh (¥)",
       "field": "BASIC_EPS",
       "unit": "元",
       "source": "indicators"
     },
     {
       "order": 4,
-      "name_cn": "每股股息",
-      "name_en": "Div'ds Decl'd per sh",
+      "name_cn": "每股股息†",
+      "name_en": "Div'ds Decl'd per sh (¥)",
       "field": "DPS",
       "unit": "元",
       "source": "dividend"
@@ -1691,7 +1691,7 @@
     {
       "order": 5,
       "name_cn": "每股资本支出",
-      "name_en": "Cap'l Spending per sh",
+      "name_en": "Cap'l Spending per sh (¥)",
       "field": "CAPEX_PS",
       "unit": "元",
       "source": "calculated"
@@ -1699,7 +1699,7 @@
     {
       "order": 6,
       "name_cn": "每股账面价值",
-      "name_en": "Book Value per sh",
+      "name_en": "Book Value per sh (¥)",
       "field": "BPS",
       "unit": "元",
       "source": "indicators"
@@ -1707,7 +1707,7 @@
     {
       "order": 7,
       "name_cn": "发行在外股数",
-      "name_en": "Common Shs Outst'g",
+      "name_en": "Common Shs Outst'g (mil)",
       "field": "TOTAL_SHARES",
       "unit": "百万股",
       "source": "calculated"
@@ -1722,7 +1722,7 @@
     },
     {
       "order": 9,
-      "name_cn": "相对PE",
+      "name_cn": "相对PE‡",
       "name_en": "Relative P/E Ratio",
       "field": "PE_RELATIVE",
       "unit": "倍",
@@ -1731,7 +1731,7 @@
     {
       "order": 10,
       "name_cn": "平均股息率",
-      "name_en": "Avg Ann'l Div'd Yield",
+      "name_en": "Avg Ann'l Div'd Yield (%)",
       "field": "DIV_YIELD",
       "unit": "%",
       "source": "calculated"
@@ -1739,7 +1739,7 @@
     {
       "order": 11,
       "name_cn": "总营收",
-      "name_en": "Revenues ($mill)",
+      "name_en": "Revenues (¥亿)",
       "field": "OPERATE_INCOME",
       "unit": "亿",
       "source": "indicators"
@@ -1747,7 +1747,7 @@
     {
       "order": 12,
       "name_cn": "毛利率",
-      "name_en": "Gross Margin",
+      "name_en": "Gross Margin (%)",
       "field": "GROSS_MARGIN",
       "unit": "%",
       "source": "calculated"
@@ -1755,7 +1755,7 @@
     {
       "order": 13,
       "name_cn": "营业利润率",
-      "name_en": "Operating Margin",
+      "name_en": "Operating Margin (%)",
       "field": "OP_MARGIN",
       "unit": "%",
       "source": "calculated"
@@ -1763,15 +1763,15 @@
     {
       "order": 14,
       "name_cn": "折旧摊销",
-      "name_en": "Depreciation ($mill)",
+      "name_en": "Depreciation (¥亿)",
       "field": "DEPRECIATION",
       "unit": "亿",
       "source": "cashflow"
     },
     {
       "order": 15,
-      "name_cn": "净利润",
-      "name_en": "Net Profit ($mill)",
+      "name_cn": "净利润*",
+      "name_en": "Net Profit (¥亿)",
       "field": "HOLDER_PROFIT",
       "unit": "亿",
       "source": "indicators"
@@ -1779,7 +1779,7 @@
     {
       "order": 16,
       "name_cn": "所得税率",
-      "name_en": "Income Tax Rate",
+      "name_en": "Income Tax Rate (%)",
       "field": "TAX_EBT",
       "unit": "%",
       "source": "indicators"
@@ -1787,7 +1787,7 @@
     {
       "order": 17,
       "name_cn": "净利润率",
-      "name_en": "Net Profit Margin",
+      "name_en": "Net Profit Margin (%)",
       "field": "NET_PROFIT_RATIO",
       "unit": "%",
       "source": "calculated"
@@ -1795,7 +1795,7 @@
     {
       "order": 18,
       "name_cn": "营运资金",
-      "name_en": "Working Cap'l ($mill)",
+      "name_en": "Working Cap'l (¥亿)",
       "field": "WORKING_CAPITAL",
       "unit": "亿",
       "source": "calculated"
@@ -1803,7 +1803,7 @@
     {
       "order": 19,
       "name_cn": "长期债务",
-      "name_en": "Long-Term Debt ($mill)",
+      "name_en": "Long-Term Debt (¥亿)",
       "field": "LT_DEBT",
       "unit": "亿",
       "source": "calculated"
@@ -1811,7 +1811,7 @@
     {
       "order": 20,
       "name_cn": "股东权益",
-      "name_en": "Shr. Equity ($mill)",
+      "name_en": "Shr. Equity (¥亿)",
       "field": "TOTAL_EQUITY",
       "unit": "亿",
       "source": "calculated"
@@ -1819,7 +1819,7 @@
     {
       "order": 21,
       "name_cn": "总资本回报率",
-      "name_en": "Return on Total Cap'l",
+      "name_en": "Return on Total Cap'l (%)",
       "field": "ROIC",
       "unit": "%",
       "source": "calculated"
@@ -1827,7 +1827,7 @@
     {
       "order": 22,
       "name_cn": "股东权益回报率",
-      "name_en": "Return on Shr. Equity",
+      "name_en": "Return on Shr. Equity (%)",
       "field": "ROE",
       "unit": "%",
       "source": "indicators"
@@ -1835,7 +1835,7 @@
     {
       "order": 23,
       "name_cn": "留存利润占比",
-      "name_en": "Retained to Com Eq",
+      "name_en": "Retained to Com Eq (%)",
       "field": "RETAINED_RATIO",
       "unit": "%",
       "source": "calculated"
@@ -1843,7 +1843,7 @@
     {
       "order": 24,
       "name_cn": "股息支付率",
-      "name_en": "All Div'ds to Net Prof",
+      "name_en": "All Div'ds to Net Prof (%)",
       "field": "PAYOUT_RATIO",
       "unit": "%",
       "source": "calculated"
@@ -1856,7 +1856,7 @@
       "BASIC_EPS": 0.01,
       "DPS": 0,
       "CAPEX_PS": 0.01,
-      "BPS": 0.058778123582,
+      "BPS": 0.06,
       "TOTAL_SHARES": 1341.0,
       "PE_AVG": null,
       "PE_RELATIVE": null,
@@ -1866,13 +1866,13 @@
       "DEPRECIATION": 0.2,
       "GROSS_MARGIN": 47.6,
       "HOLDER_PROFIT": 0.0,
-      "TAX_EBT": 30.972283326001,
+      "TAX_EBT": 31.0,
       "NET_PROFIT_RATIO": 1.0,
       "WORKING_CAPITAL": 0.2,
       "LT_DEBT": 0.2,
       "TOTAL_EQUITY": 0.8,
       "ROIC": 6.3,
-      "ROE": 1.990510504415,
+      "ROE": 2.0,
       "RETAINED_RATIO": 2.0,
       "PAYOUT_RATIO": 0.0
     },
@@ -1882,7 +1882,7 @@
       "BASIC_EPS": 0.86,
       "DPS": 0,
       "CAPEX_PS": 0.03,
-      "BPS": 0.163178940215,
+      "BPS": 0.16,
       "TOTAL_SHARES": 1341.0,
       "PE_AVG": null,
       "PE_RELATIVE": null,
@@ -1892,13 +1892,13 @@
       "DEPRECIATION": 0.4,
       "GROSS_MARGIN": 57.9,
       "HOLDER_PROFIT": 1.0,
-      "TAX_EBT": 24.753515802208,
+      "TAX_EBT": 24.8,
       "NET_PROFIT_RATIO": 19.3,
       "WORKING_CAPITAL": 1.1,
       "LT_DEBT": 0.4,
       "TOTAL_EQUITY": 2.2,
       "ROIC": 53.5,
-      "ROE": 66.870258756812,
+      "ROE": 45.5,
       "RETAINED_RATIO": 45.5,
       "PAYOUT_RATIO": 0.0
     },
@@ -1908,7 +1908,7 @@
       "BASIC_EPS": 0.39,
       "DPS": 0,
       "CAPEX_PS": 0.89,
-      "BPS": 0.442029773613,
+      "BPS": 0.44,
       "TOTAL_SHARES": 117.5,
       "PE_AVG": null,
       "PE_RELATIVE": null,
@@ -1918,13 +1918,13 @@
       "DEPRECIATION": null,
       "GROSS_MARGIN": 64.8,
       "HOLDER_PROFIT": 4.5,
-      "TAX_EBT": 24.609484019219,
+      "TAX_EBT": 24.6,
       "NET_PROFIT_RATIO": 26.8,
       "WORKING_CAPITAL": 3.4,
       "LT_DEBT": 0.9,
       "TOTAL_EQUITY": 5.9,
       "ROIC": 88.3,
-      "ROE": 111.166063545221,
+      "ROE": 76.1,
       "RETAINED_RATIO": 76.1,
       "PAYOUT_RATIO": 0.0
     },
@@ -1934,7 +1934,7 @@
       "BASIC_EPS": 0.44,
       "DPS": 0,
       "CAPEX_PS": 0.13,
-      "BPS": 4.570601624564,
+      "BPS": 4.57,
       "TOTAL_SHARES": 1401.9,
       "PE_AVG": 172.4,
       "PE_RELATIVE": 12.77,
@@ -1943,15 +1943,15 @@
       "OP_MARGIN": 38.4,
       "DEPRECIATION": 2.5,
       "GROSS_MARGIN": 63.4,
-      "HOLDER_PROFIT": 5.2,
-      "TAX_EBT": 26.023497214459,
-      "NET_PROFIT_RATIO": 20.8,
+      "HOLDER_PROFIT": 5.3,
+      "TAX_EBT": 26.0,
+      "NET_PROFIT_RATIO": 21.2,
       "WORKING_CAPITAL": 55.9,
       "LT_DEBT": 1.7,
       "TOTAL_EQUITY": 61.3,
       "ROIC": 11.6,
-      "ROE": 15.575511127012,
-      "RETAINED_RATIO": 8.5,
+      "ROE": 8.7,
+      "RETAINED_RATIO": 8.7,
       "PAYOUT_RATIO": 0.0
     },
     "2021": {
@@ -1960,7 +1960,7 @@
       "BASIC_EPS": 0.62,
       "DPS": 0.1533,
       "CAPEX_PS": 0.21,
-      "BPS": 5.084237595188,
+      "BPS": 5.08,
       "TOTAL_SHARES": 1401.9,
       "PE_AVG": 98.2,
       "PE_RELATIVE": 9.35,
@@ -1970,13 +1970,13 @@
       "DEPRECIATION": 4.4,
       "GROSS_MARGIN": 61.4,
       "HOLDER_PROFIT": 8.5,
-      "TAX_EBT": 27.034360749015,
+      "TAX_EBT": 27.0,
       "NET_PROFIT_RATIO": 19.0,
       "WORKING_CAPITAL": 56.6,
       "LT_DEBT": 4.1,
       "TOTAL_EQUITY": 68.2,
       "ROIC": 16.2,
-      "ROE": 13.196915309731,
+      "ROE": 12.5,
       "RETAINED_RATIO": 9.4,
       "PAYOUT_RATIO": 25.2
     },
@@ -1986,7 +1986,7 @@
       "BASIC_EPS": 0.35,
       "DPS": 0.1472,
       "CAPEX_PS": 0.19,
-      "BPS": 5.192441421441,
+      "BPS": 5.19,
       "TOTAL_SHARES": 1380.5,
       "PE_AVG": 74.6,
       "PE_RELATIVE": 9.95,
@@ -1996,13 +1996,13 @@
       "DEPRECIATION": 6.0,
       "GROSS_MARGIN": 57.5,
       "HOLDER_PROFIT": 4.8,
-      "TAX_EBT": 25.601340986883,
+      "TAX_EBT": 25.6,
       "NET_PROFIT_RATIO": 10.3,
       "WORKING_CAPITAL": 54.8,
       "LT_DEBT": 4.7,
       "TOTAL_EQUITY": 69.7,
       "ROIC": 8.4,
-      "ROE": 6.902892071746,
+      "ROE": 6.8,
       "RETAINED_RATIO": 3.9,
       "PAYOUT_RATIO": 42.7
     },
@@ -2012,7 +2012,7 @@
       "BASIC_EPS": 0.81,
       "DPS": 0.3096,
       "CAPEX_PS": 0.24,
-      "BPS": 5.793942573734,
+      "BPS": 5.79,
       "TOTAL_SHARES": 1348.2,
       "PE_AVG": 25.4,
       "PE_RELATIVE": 2.82,
@@ -2022,23 +2022,23 @@
       "DEPRECIATION": 6.7,
       "GROSS_MARGIN": 61.3,
       "HOLDER_PROFIT": 10.8,
-      "TAX_EBT": 23.096086540397,
+      "TAX_EBT": 23.1,
       "NET_PROFIT_RATIO": 17.2,
       "WORKING_CAPITAL": 59.5,
       "LT_DEBT": 4.4,
       "TOTAL_EQUITY": 77.8,
       "ROIC": 15.4,
-      "ROE": 14.692570494627,
+      "ROE": 13.9,
       "RETAINED_RATIO": 8.6,
       "PAYOUT_RATIO": 38.6
     },
     "2024": {
       "PER_OI": 9.71,
-      "PER_NETCASH": 2.97,
-      "BASIC_EPS": 2.36,
+      "PER_NETCASH": 2.99,
+      "BASIC_EPS": 2.35,
       "DPS": 0.997,
       "CAPEX_PS": 0.28,
-      "BPS": 7.966563193735,
+      "BPS": 7.97,
       "TOTAL_SHARES": 1342.9,
       "PE_AVG": 18.3,
       "PE_RELATIVE": 2.15,
@@ -2047,41 +2047,41 @@
       "OP_MARGIN": 38.5,
       "DEPRECIATION": 8.6,
       "GROSS_MARGIN": 66.8,
-      "HOLDER_PROFIT": 31.3,
-      "TAX_EBT": 24.221542292705,
-      "NET_PROFIT_RATIO": 24.0,
+      "HOLDER_PROFIT": 31.5,
+      "TAX_EBT": 24.2,
+      "NET_PROFIT_RATIO": 24.2,
       "WORKING_CAPITAL": 88.7,
       "LT_DEBT": 6.2,
       "TOTAL_EQUITY": 108.8,
       "ROIC": 36.5,
-      "ROE": 33.874164979176,
-      "RETAINED_RATIO": 16.7,
-      "PAYOUT_RATIO": 42.8
+      "ROE": 28.9,
+      "RETAINED_RATIO": 17.0,
+      "PAYOUT_RATIO": 42.5
     },
     "2025": {
       "PER_OI": 27.64,
-      "PER_NETCASH": 10.35,
-      "BASIC_EPS": 9.61,
+      "PER_NETCASH": 10.43,
+      "BASIC_EPS": 9.58,
       "DPS": 0.363,
       "CAPEX_PS": 0.73,
-      "BPS": 16.612243237662,
+      "BPS": 16.61,
       "TOTAL_SHARES": 1342.9,
-      "PE_AVG": 20.9,
-      "PE_RELATIVE": 2.61,
+      "PE_AVG": 21.0,
+      "PE_RELATIVE": 2.62,
       "DIV_YIELD": 0.2,
       "OPERATE_INCOME": 371.2,
       "OP_MARGIN": 48.5,
       "DEPRECIATION": 11.2,
       "GROSS_MARGIN": 72.1,
-      "HOLDER_PROFIT": 127.8,
-      "TAX_EBT": 23.623110262117,
-      "NET_PROFIT_RATIO": 34.4,
+      "HOLDER_PROFIT": 128.9,
+      "TAX_EBT": 23.6,
+      "NET_PROFIT_RATIO": 34.7,
       "WORKING_CAPITAL": 177.5,
       "LT_DEBT": 22.8,
       "TOTAL_EQUITY": 226.5,
       "ROIC": 68.1,
-      "ROE": 77.519468320973,
-      "RETAINED_RATIO": 55.2,
+      "ROE": 56.9,
+      "RETAINED_RATIO": 55.7,
       "PAYOUT_RATIO": 3.8
     }
   },
@@ -2093,15 +2093,15 @@
       "10yr": null
     },
     "eps": {
-      "1yr": 307.2,
-      "3yr": 201.7,
-      "5yr": 85.3,
+      "1yr": 307.7,
+      "3yr": 201.4,
+      "5yr": 85.2,
       "10yr": null
     },
     "cashflow": {
-      "1yr": 248.5,
-      "3yr": 136.7,
-      "5yr": 79.9,
+      "1yr": 248.8,
+      "3yr": 137.4,
+      "5yr": 80.1,
       "10yr": null
     },
     "dividend": {
@@ -2209,15 +2209,15 @@
         "year": "2024",
         "has_quarter": false,
         "q1": 0.69,
-        "q3": 1.67,
-        "full": 2.36
+        "q3": 1.66,
+        "full": 2.35
       },
       {
         "year": "2025",
         "has_quarter": false,
         "q1": 3.44,
-        "q3": 6.17,
-        "full": 9.61
+        "q3": 6.14,
+        "full": 9.58
       }
     ],
     "dividends": [
@@ -2317,11 +2317,11 @@
     },
     {
       "date": "2024",
-      "value": 44.55
+      "value": 44.85
     },
     {
       "date": "2025",
-      "value": 155.25
+      "value": 156.45
     }
   ],
   "balance_summary": {
@@ -2528,15 +2528,15 @@
       "10yr": null
     },
     "cashflow": {
-      "1yr": 248.5,
-      "3yr": 136.7,
-      "5yr": 79.9,
+      "1yr": 248.8,
+      "3yr": 137.4,
+      "5yr": 80.1,
       "10yr": null
     },
     "earnings": {
-      "1yr": 307.2,
-      "3yr": 201.7,
-      "5yr": 85.3,
+      "1yr": 307.7,
+      "3yr": 201.4,
+      "5yr": 85.2,
       "10yr": null
     },
     "dividends": {
@@ -2546,7 +2546,7 @@
       "10yr": null
     },
     "book_value": {
-      "1yr": 108.5,
+      "1yr": 108.4,
       "3yr": 47.4,
       "5yr": 29.4,
       "10yr": null

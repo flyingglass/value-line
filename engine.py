@@ -211,12 +211,20 @@ def build_metric_table(reader, years, market="hk"):
         # 经营溢利 (元)
         op_profit = reader.financial_item("income", "经营溢利", rd)
 
+        # ---- VL口径净利: 扣除非经常性损益 ----
+        _tax = ind.get("TAX_EBT")
+        tax_rate = (_tax / 100) if _tax else 0.25
+        other_gain = reader.financial_item("income", "其他收益", rd) or 0
+        impair = reader.financial_item("income", "减值及拨备", rd) or 0
+        nonrecur_adj = (other_gain + impair) * (1 - tax_rate) if (other_gain < 0 or impair < 0) else 0
+        adj_np = np_val - nonrecur_adj if np_val else None
+
         # ---- 1. 每股营收: Revenue / Shares ----
         row = {}
         row["PER_OI"] = round(rev / shares, 2) if rev and shares else None
 
-        # ---- 2. 每股现金流: (NetProfit + Depreciation) / Shares ----
-        row["PER_NETCASH"] = round((np_val + dep) / shares, 2) if np_val and shares else None
+        # ---- 2. 每股现金流: (AdjNetProfit + Depreciation) / Shares ----
+        row["PER_NETCASH"] = round((adj_np + dep) / shares, 2) if adj_np and shares else None
 
         # ---- 3. 每股收益: VL用稀释EPS, 扣除非经常性 ----
         _eps = ind.get("DILUTED_EPS") or ind.get("BASIC_EPS")
@@ -260,14 +268,13 @@ def build_metric_table(reader, years, market="hk"):
         row["GROSS_MARGIN"] = round(((rev - cogs) / rev) * 100, 1) if rev and cogs else None
 
         # ---- 15. 净利润 (亿) ----
-        row["HOLDER_PROFIT"] = round(np_val / 1e8, 1) if np_val else None
+        row["HOLDER_PROFIT"] = round(adj_np / 1e8, 1) if adj_np else None
 
         # ---- 16. 所得税率 ----
-        _tax = ind.get("TAX_EBT")
         row["TAX_EBT"] = round(_tax, 1) if _tax is not None else None
 
-        # ---- 17. 净利润率 = NetProfit / Revenue ----
-        row["NET_PROFIT_RATIO"] = round((np_val / rev) * 100, 1) if np_val and rev else None
+        # ---- 17. 净利润率 = AdjNetProfit / Revenue ----
+        row["NET_PROFIT_RATIO"] = round((adj_np / rev) * 100, 1) if adj_np and rev else None
 
         # ---- 18. 营运资金 = CA - CL (亿) ----
         ca = reader.financial_item("balance", "流动资产合计", rd)
@@ -297,22 +304,22 @@ def build_metric_table(reader, years, market="hk"):
         invested_cap = lt_raw + (eq or 0)
         row["ROIC"] = round((ebit / invested_cap) * 100, 1) if ebit and invested_cap > 0 else None
 
-        # ---- 22. ROE = NI / Total Equity (VL: for common + preferred stockholders) ----
-        row["ROE"] = round((np_val / eq) * 100, 1) if np_val and eq else None
+        # ---- 22. ROE = AdjNI / Total Equity (VL: for common + preferred stockholders) ----
+        row["ROE"] = round((adj_np / eq) * 100, 1) if adj_np and eq else None
 
-        # ---- 23. 留存利润占比 = (NetProfit - Dividends) / Common Equity ----
+        # ---- 23. 留存利润占比 = (AdjNetProfit - Dividends) / Common Equity ----
         # VL: "net income less all dividends... divided by common shareholders' equity"
-        if np_val and com_eq and shares and com_eq > 0:
+        if adj_np and com_eq and shares and com_eq > 0:
             div_total = (row["DPS"] or 0) * shares
-            retained = np_val - div_total
+            retained = adj_np - div_total
             row["RETAINED_RATIO"] = round((retained / com_eq) * 100, 1)
         else:
             row["RETAINED_RATIO"] = None
 
-        # ---- 24. 股利支付率 = Total Dividends / Net Profit ----
-        if np_val and shares and np_val > 0:
+        # ---- 24. 股利支付率 = Total Dividends / AdjNet Profit ----
+        if adj_np and shares and adj_np > 0:
             div_total = (row["DPS"] or 0) * shares
-            row["PAYOUT_RATIO"] = round((div_total / np_val) * 100, 1)
+            row["PAYOUT_RATIO"] = round((div_total / adj_np) * 100, 1)
         else:
             row["PAYOUT_RATIO"] = None
 
