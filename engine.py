@@ -219,7 +219,8 @@ def build_metric_table(reader, years, market="hk"):
         row["PER_NETCASH"] = round((np_val + dep) / shares, 2) if np_val and shares else None
 
         # ---- 3. 每股收益: VL用稀释EPS, 扣除非经常性 ----
-        row["BASIC_EPS"] = ind.get("DILUTED_EPS") or ind.get("BASIC_EPS")
+        _eps = ind.get("DILUTED_EPS") or ind.get("BASIC_EPS")
+        row["BASIC_EPS"] = round(_eps, 2) if _eps is not None else None
 
         # ---- 4. 每股股息: 从dividend表 ----
         divs = reader.dividends()
@@ -232,7 +233,8 @@ def build_metric_table(reader, years, market="hk"):
 
         # ---- 6. 每股账面价值: VL = Common Equity / Share (含无形资产) ----
         # 优先AKShare BPS, 后续与PDF年报交叉校验
-        row["BPS"] = ind.get("BPS")
+        _bps = ind.get("BPS")
+        row["BPS"] = round(_bps, 2) if _bps else None
 
         # ---- 7. 发行在外股数 (百万股) ----
         row["TOTAL_SHARES"] = round(shares / 1e6, 1) if shares else None
@@ -261,7 +263,8 @@ def build_metric_table(reader, years, market="hk"):
         row["HOLDER_PROFIT"] = round(np_val / 1e8, 1) if np_val else None
 
         # ---- 16. 所得税率 ----
-        row["TAX_EBT"] = ind.get("TAX_EBT")
+        _tax = ind.get("TAX_EBT")
+        row["TAX_EBT"] = round(_tax, 1) if _tax is not None else None
 
         # ---- 17. 净利润率 = NetProfit / Revenue ----
         row["NET_PROFIT_RATIO"] = round((np_val / rev) * 100, 1) if np_val and rev else None
