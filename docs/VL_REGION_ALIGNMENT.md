@@ -140,45 +140,30 @@ THIS (bold)  STOCK (bold)  HSI   ← 8.5px 表格
 - 包含股息
 - 双列对比：THIS STOCK vs VL Arithmetic Index
 
-### 当前实现
+### 当前实现 (2026-05-31 最终版)
 
-| 指标 | VL 原版 | 当前实现 | 数据来源 | 差距 |
-|---|---|---|---|---|
-| **公式** | (期末-期初+股息)/期初 ×100 | 同公式，含年度DPS | `engine.py:_calc_return()` | ✅ |
-| **期间** | 1yr / 3yr / 5yr | 最近 12/36/60 个月 | K线月线 close | ✅ |
-| **个股** | THIS STOCK | 含股息累计回报 | kline + dividend DPS | ✅ |
-| **对比基准** | VL Arithmetic Index (~1700只) | HSI (港股) / CSI300 (A股) | `index_kline` 月线 close | ⚠️ 对标改为市场指数 |
-| **格式** | 双列表格 (THIS | VL ARITH.) | 双列表格 (THIS | HSI/CSI300) | ✅ |
+| 指标 | 实现 | 说明 |
+|---|---|---|
+| **公式** | `(Dec(n) - Dec(n-1)) / Dec(n-1) × 100` | 自然年12月→12月收盘价 |
+| **期间** | 1yr=2025vs2024, 3yr=2025vs2022, 5yr=2025vs2020 | 最新完整自然年 |
+| **价格** | K线月线 前复权(qfq) close | 已含股息调整，不加 cum_div |
+| **个股** | kline 月线 | THIS STOCK |
+| **基准** | HSI (港股) / CSI300 (A股) | index_kline 月线 |
+| **标题** | `% HIST. RETURN` | 无预测，仅历史 |
 
 ### 最终样式
 
 ```
-                    ← 15px 空白
-% TOT. RETURN       ← 8.5px 粗体
-as of 2026-05-31    ← 8px 灰色 (待修复: 混币+前复权重息)
+% HIST. RETURN      ← 8.5px 粗体
 ────── 实线 1px #000
-          THIS   STOCK   HSI/CSI300  ← 8.5px 表格, THIS/STOCK/指数名 bold
-  1 yr.  -18.8%         8.1%
-  3 yr.  960.3%        38.1%
-  5 yr.  166.3%       -13.6%
+          THIS   STOCK   HSI     ← 8.5px 表格
+  1 yr.  110.2%        27.8%
+  3 yr.  864.6%        29.6%
+  5 yr.  136.9%        -5.9%
 ```
 
-### ⚠️ 待修复
-
-| 问题 | 影响 | 
-|------|------|
-| HKD股价 + CNY股息混币 | 1yr股息多计约0.3% | 
-| 前复权可能已含股息 | cum_div 重复计算 |
-| 缺截止日期标注 | 应显示基准日 |
-
-**公式:** `(期末价 - 期初价) / 期初价 × 100`（前复权已含息），不再手动加 cum_div。
-
-**数据来源:**
-- `engine.py:_calc_return()` — 含股息累计回报
-- K线月线 `close` 最近 12/36/60 个月
-- 个股价差 + 累计 `DPS`
-- 指数不含股息 (仅价差)
-- 表格字号 8.5px, line-height 1.35
+**字号:** 8.5px, THIS/STOCK/HSI bold。
+**公式:** 自然年 Dec→Dec，前复权已含息，零重计。
 
 ---
 
