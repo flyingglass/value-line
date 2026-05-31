@@ -319,10 +319,57 @@ seeds = [1, 1.6, 2.4, 4, 6]
 - 指数(HSI): 灰色虚线 `#999`, `dotted`, yAxisIndex:1
 - 基期100, 百分比值, 独立线性Y轴
 
-**Volume % 图:**
-- 独立 ECharts 实例, 位于K线图下方(30px)
-- 柱状图 `#1976D2`, barWidth: 60%
-- 值 = 月成交量 ÷ 总股本 × 100%
+**Volume % (Percent shares traded) 图:**
+
+VL Item 11 — 月换手率柱状图，位于K线图下方volume区域。
+
+**数据计算:**
+```
+月换手率(%) = 月成交股数(k.volume) ÷ (当年TOTAL_SHARES × 10^6) × 100
+```
+- 分母按年份匹配股本 `MT[y].TOTAL_SHARES`，历史月份用当时股本(非最新)
+- fallback: `showYears`最后一年
+- 数据通过 `.toFixed(2)` 保留两位，前缀 `+` 转为数字(避免JS字符串比较Bug)
+
+**Y轴刻度算法 (自适应):**
+```javascript
+vMax     = volData 数值最大值
+maxVol   = vMax × 1.2                         // 20% 比例缓冲
+interval = maxVol≤5 ? 1 : maxVol≤50 ? 5 : 10 // 自适应刻度间距
+ceilVol  = ceil(maxVol/interval) × interval   // 向上取整到nice number
+step     = ceilVol / 3                        // 三等分
+```
+| vMax范围 | interval | 示例 |
+|---------|----------|------|
+| ≤4.2% | 1 | max=3 → ceilVol=4 → 刻度 4,3,1 |
+| ≤41.7% | 5 | max=35 → ceilVol=45 → 刻度 45,30,15 |
+| >41.7% | 10 | max=50 → ceilVol=60 → 刻度 60,40,20 |
+
+**样式参数:**
+
+| 参数 | 值 |
+|------|----|
+| 图表高度 | 30px |
+| grid | left:0, right:0, top:0, bottom:0 |
+| 柱颜色(普通月) | `#1976D2` (蓝色) |
+| 柱颜色(1月) | `#ff6600` (橙色) |
+| barWidth | 60% |
+| Y轴刻度 | 隐藏 (axisLabel: false) |
+| splitLine | 关闭，改用 markLine 手动绘制 |
+
+**网格线 (markLine):**
+| 位置 | 线型 | 宽度 | 颜色 |
+|------|------|------|------|
+| 顶线 (ceilVol) | 实线 solid | **3.0px** 加粗 | #000 |
+| 中线 (step×2) | 实线 solid | 0.5px | #000 |
+| 底线 (step) | 实线 solid | 0.5px | #000 |
+| 0线 | 不绘制 | — | — |
+
+**左侧标签:**
+- 表格3行: `Percent | 刻度值` / `shares | 刻度值` / `traded | 刻度值`
+- 字体 8.5px bold, 右对齐
+- 刻度值由 JS 动态更新 (`document.getElementById('vs1'/'vs2'/'vs3')`)
+- 位于 LEGENDS 列 flex 容器底部 (margin-top:auto, height:290px)
 
 **年度 High/Low 表格:**
 - 位于 K线图上方, 每列对应一年

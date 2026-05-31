@@ -345,8 +345,10 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   html+='</tr>';
   
   // Row 4: K线图行 — LEGENDS + % TOT. RETURN(左) + 图表(右)
+  // chart 260px + volume 30px = 290px flex容器, Percent用margin-top:auto沉底
   html+='<tr><td style="padding:0 3px;vertical-align:top;'+tdStyle+'">';
-  html+='<div style="font-size:8px;line-height:1.4">';
+  html+='<div style="display:flex;flex-direction:column;height:290px;font-size:8px;line-height:1.4">';
+  html+='<div>';
   html+='<div style="font-weight:700;font-size:8.5px;margin:2px 0 1px 0">LEGENDS</div>';
   html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
   html+='<div style="font-size:10px;color:#1976D2;line-height:1.1">━━━</div>';
@@ -367,11 +369,19 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
   html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock2['1yr']!=null?trStock2['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['1yr']!=null?trIndex2['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
   html+='<tr><td>3 yr.</td><td style="text-align:right">'+(trStock2['3yr']!=null?trStock2['3yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['3yr']!=null?trIndex2['3yr'].toFixed(1)+'%':'—')+'</td></tr>';
   html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock2['5yr']!=null?trStock2['5yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['5yr']!=null?trIndex2['5yr'].toFixed(1)+'%':'—')+'</td></tr>';
-  html+='</table></div></td>';
+  html+='</table>';
+  html+='</div>';
+  html+='<div style="margin-top:auto">';
+  html+='<table id="volScale" style="width:100%;font-size:8.5px;font-weight:700;line-height:1.25;padding-left:3px">';
+  html+='<tr><td>Percent</td><td style="text-align:right"><span id="vs3">—</span></td></tr>';
+  html+='<tr><td>shares</td><td style="text-align:right"><span id="vs2">—</span></td></tr>';
+  html+='<tr><td>traded</td><td style="text-align:right"><span id="vs1">—</span></td></tr>';
+  html+='</table>';
+  html+='</div>';
+  html+='</div></td>';
   html+='<td colspan="'+yrCount+'" style="padding:0">';
   html+='<div class="chart-box" id="chart_kline"></div>';
   html+='<div id="chart_volume" style="height:30px;margin-top:0"></div>';
-  html+='</td></tr>';
   
   // Row 5: 年份行
   html+='<tr style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"><td style="font-size:7px;color:#666;padding:1px 3px;'+tdStyle+'">Year</td>';
@@ -519,21 +529,43 @@ var DATA = {"meta": {"code": "09992", "name": "泡泡玛特", "name_en": "POP MA
       series:series
     });
 
-    // Monthly Volume % — VL item 11
+    // Monthly Volume % — VL item 11: 按年份匹配股本
     var volData=[], totalShM=ly.TOTAL_SHARES;
+    var shByYear={};
+    showYears.forEach(function(y){shByYear[y]=(MT[y]||{}).TOTAL_SHARES;});
+    var shFallback=shByYear[showYears[showYears.length-1]]||totalShM;
     dates.forEach(function(dt){
       var k=kl.find(function(k){return k.date===dt;});
-      if(k&&k.volume&&totalShM){
-        volData.push((k.volume/(totalShM*1e6)*100).toFixed(2));
+      var yr=dt.substring(0,4);
+      var sh=shByYear[yr]||shFallback;
+      if(k&&k.volume&&sh){
+        volData.push(+(k.volume/(sh*1e6)*100).toFixed(2));
       }else{volData.push(null);}
     });
+    var vMax=0;
+    volData.forEach(function(v){if(v!=null&&v>vMax)vMax=v;});
+    // Y轴刻度: 比例缓冲+自适应interval, 向上取整到nice number
+    var maxVol=vMax*1.2, interval=maxVol<=5?1:maxVol<=50?5:10;
+    var ceilVol=Math.ceil(maxVol/interval)*interval||interval, step=ceilVol/3;
     echarts.init(document.getElementById('chart_volume')).setOption({
-      grid:{left:0,right:28,top:0,bottom:0},
+      grid:{left:0,right:0,top:0,bottom:0},
       xAxis:{type:'category',data:dates,show:false,boundaryGap:false},
-      yAxis:{type:'value',axisLabel:{fontSize:8,color:'#000',formatter:function(v){return v+'%';}},splitLine:{show:false},position:'right'},
+      yAxis:{type:'value',position:'left',min:0,max:ceilVol,splitNumber:3,
+        axisLabel:{show:false},
+        splitLine:{show:false},
+        axisLine:{show:false},axisTick:{show:false}},
       series:[{name:'Vol%',type:'bar',data:volData,
-        itemStyle:{color:'#1976D2'},barWidth:'60%'}]
+        itemStyle:{color:function(p){var d=dates[p.dataIndex];return d&&d.endsWith('-01')?'#ff6600':'#1976D2';}},barWidth:'60%',
+        markLine:{silent:true,symbol:'none',animation:false,
+          data:[{yAxis:ceilVol,name:'',lineStyle:{color:'#000',width:3.0,type:'solid'}},
+                {yAxis:step*2,name:'',lineStyle:{color:'#000',width:0.5,type:'solid'}},
+                {yAxis:step,name:'',lineStyle:{color:'#000',width:0.5,type:'solid'}}]
+        }}]
     });
+    // 动态更新左侧刻度值
+    document.getElementById('vs3').textContent=Math.round(ceilVol);
+    document.getElementById('vs2').textContent=Math.round(step*2);
+    document.getElementById('vs1').textContent=Math.round(step);
 
   },300);
 })();
