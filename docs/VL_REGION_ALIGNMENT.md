@@ -107,19 +107,19 @@
 ### 最终样式规格
 
 ```
-LEGENDS                         ← 8.5px 粗体
+LEGENDS                         ← 10px 粗体 (2026-05-31)
 ────── 实线 1px #000
 ━━━  (蓝色实线, 10px, #1976D2)    ← 图例标记
-15.0 x "Cash Flow" p sh          ← 指标名 (8px)
+15.0 x "Cash Flow" p sh          ← 指标名 (9px)
       ← 空白间隔 4px
 ······ (红色点, 10px, #ef232a, 6个·) ← 图例标记
-Relative Price Strength          ← 指标名 (8px)
+Relative Price Strength          ← 指标名 (9px)
       ← 空白间隔 3px
-Splits: None / Options: No       ← 补充信息 (8px)
+Splits: None / Options: No       ← 补充信息 (9px)
       ← 空白间隔 15px
-% TOT. RETURN                    ← 8.5px 粗体
+% HIST. RETURN                   ← 10px 粗体 (2026-05-31)
 ────── 实线 1px #000
-THIS (bold)  STOCK (bold)  HSI   ← 8.5px 表格
+THIS (bold)  STOCK (bold)  HSI   ← 9px 表格
 1 yr.        -30.3%       8.1%
 3 yr.        812.2%       38.1%
 5 yr.        129.3%       -13.6%
@@ -154,15 +154,15 @@ THIS (bold)  STOCK (bold)  HSI   ← 8.5px 表格
 ### 最终样式
 
 ```
-% HIST. RETURN      ← 8.5px 粗体
+% HIST. RETURN      ← 10px 粗体 (2026-05-31)
 ────── 实线 1px #000
-          THIS   STOCK   HSI     ← 8.5px 表格
+          THIS   STOCK   HSI     ← 9px 表格
   1 yr.  110.2%        27.8%
   3 yr.  864.6%        29.6%
   5 yr.  136.9%        -5.9%
 ```
 
-**字号:** 8.5px, THIS/STOCK/HSI bold。
+**字号:** THIS/STOCK/HSI 9px bold，数据 9px。标题 10px bold。
 **公式:** 自然年 Dec→Dec，前复权已含息，零重计。
 
 ---
@@ -347,17 +347,25 @@ step     = ceilVol / 3                        // 三等分
 | ≤41.7% | 5 | max=35 → ceilVol=45 → 刻度 45,30,15 |
 | >41.7% | 10 | max=50 → ceilVol=60 → 刻度 60,40,20 |
 
-**样式参数:**
+**样式参数 (2026-05-31 最终):**
 
 | 参数 | 值 |
 |------|----|
-| 图表高度 | 30px |
-| grid | left:0, right:0, top:0, bottom:0 |
+| 图表高度 | 50px |
+| margin-top | 6px (与K线图视觉分隔) |
+| grid | left:0, right:28, top:0, bottom:0 (right:28 与K线图对齐) |
 | 柱颜色(普通月) | `#1976D2` (蓝色) |
-| 柱颜色(1月) | `#ff6600` (橙色) |
+| 柱颜色(1月) | `#7b1fa2` (紫色) |
+| 柱颜色(hover) | `#ff6600` (橙色) — emphasis |
 | barWidth | 60% |
-| Y轴刻度 | 隐藏 (axisLabel: false) |
-| splitLine | 关闭，改用 markLine 手动绘制 |
+| Y轴 | 隐藏 (axisLabel/splitLine/axisLine/axisTick 全关) |
+| splitLine | 关闭，改用 markLine 手动绘制网格线 |
+
+**K线图 ↔ 成交量图联动 (2026-05-31):**
+- `echarts.connect('vl')` — hover K线图自动同步成交量图 tooltip
+- click K线 → `dispatchAction highlight` + `showTip` 选中对应月份成交量柱
+- 成交量 tooltip: `PST: x%` 格式，涨月 🔴红点(#ef232a)、跌月 🟢绿点(#14b143)
+- axisPointer: shadow 类型 + 标签隐藏
 
 **网格线 (markLine):**
 | 位置 | 线型 | 宽度 | 颜色 |
@@ -367,11 +375,11 @@ step     = ceilVol / 3                        // 三等分
 | 底线 (step) | 实线 solid | 0.5px | #000 |
 | 0线 | 不绘制 | — | — |
 
-**左侧标签:**
-- 表格3行: `Percent | 刻度值` / `shares | 刻度值` / `traded | 刻度值`
-- 字体 8.5px bold, 右对齐
-- 刻度值由 JS 动态更新 (`document.getElementById('vs1'/'vs2'/'vs3')`)
-- 位于 LEGENDS 列 flex 容器底部 (margin-top:auto, height:290px)
+**左侧标签 (2026-05-31):**
+- DOM 元素 + `convertToPixel` (官方 API) 定位，`overflow:visible`
+- 3行: `Percent | ceilVol` / `shares | step×2` / `traded | step`
+- 字体 **10px bold**，`display:flex; justify-content:space-between`
+- 位于 `div#chart_volume` 内 `position:absolute; left:-72px`
 
 **年度 High/Low 表格:**
 - 位于 K线图上方, 每列对应一年
