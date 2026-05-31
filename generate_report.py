@@ -398,15 +398,15 @@ var DATA = {DATA_JS};
   html+='<div id="chart_volume" style="height:30px;margin-top:0"></div>';
   
   // Row 5: 年份行
-  html+='<tr style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"><td style="font-size:7px;color:#666;padding:1px 3px;'+tdStyle+'">Year</td>';
-  showYears.forEach(function(y){{html+='<td style="text-align:center;font-size:7px;font-weight:700;padding:1px 3px;'+tdStyle+'">'+y+'</td>';}});
+  html+='<tr style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"><td style="font-size:8.5px;color:#000;padding:2px 3px;'+tdStyle+'">Year</td>';
+  showYears.forEach(function(y){{html+='<td style="text-align:center;font-size:8.5px;font-weight:700;padding:2px 3px;'+tdStyle+'">'+y+'</td>';}});
   html+='</tr>';
   
   // Row 6+: 24-line metrics
   M.forEach(function(m, idx){{
     var sepAfter=[6,10,17,20];
     html+='<tr>';
-    html+='<td style="text-align:left;white-space:nowrap;'+tdStyle+'">'+m.name_en+' <span style="font-size:7px;color:#999">'+m.name_cn+'</span></td>';
+    html+='<td style="text-align:left;white-space:nowrap;font-size:9px;font-weight:700;'+tdStyle+'">'+m.name_en+' <span style="font-size:7.5px;color:#666;font-weight:400">'+m.name_cn+'</span></td>';
     showYears.forEach(function(y){{
       var v=(MT[y]||{{}})[m.field];
       var txt='—';
@@ -417,7 +417,7 @@ var DATA = {DATA_JS};
         else if(m.unit==='百万股')txt=v.toFixed(0);
         else txt=v.toString();
       }}
-      html+='<td style="text-align:right;'+tdStyle+'">'+txt+'</td>';
+      html+='<td style="text-align:right;font-size:8.5px;'+tdStyle+'">'+txt+'</td>';
     }});
     html+='</tr>';
     if(sepAfter.indexOf(m.order)>=0){{

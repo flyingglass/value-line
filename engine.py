@@ -163,11 +163,7 @@ class DataReader:
         return {r[0]: r[1] for r in rows}
 
     def share_count(self, report_date=None):
-        """返回原始股数 — 动态计算, 不硬编码
-        优先级: 
-        1. OI/PER_OI → 营收/每股营收 (最可靠, 覆盖A/H/美股)
-        2. 从 config 读取 (fallback)
-        """
+        """返回原始股数"""
         if report_date:
             oi = self.financial_item("indicators", "OPERATE_INCOME", report_date)
             psi = self.financial_item("indicators", "PER_OI", report_date)
@@ -222,8 +218,8 @@ def build_metric_table(reader, years, market="hk"):
         # ---- 2. 每股现金流: (NetProfit + Depreciation) / Shares ----
         row["PER_NETCASH"] = round((np_val + dep) / shares, 2) if np_val and shares else None
 
-        # ---- 3. 每股收益: 从indicators读取 (后续升级扣非) ----
-        row["BASIC_EPS"] = ind.get("BASIC_EPS")
+        # ---- 3. 每股收益: VL用稀释EPS, 扣除非经常性 ----
+        row["BASIC_EPS"] = ind.get("DILUTED_EPS") or ind.get("BASIC_EPS")
 
         # ---- 4. 每股股息: 从dividend表 ----
         divs = reader.dividends()
@@ -234,7 +230,8 @@ def build_metric_table(reader, years, market="hk"):
         capex_mna = reader.financial_item("cashflow", "取得子公司及其他营业单位支付的现金净额", rd) or 0
         row["CAPEX_PS"] = round((capex_fixed + capex_mna) / shares, 2) if shares else None
 
-        # ---- 6. 每股账面价值: 从indicators读取 ----
+        # ---- 6. 每股账面价值: VL = Common Equity / Share (含无形资产) ----
+        # 优先AKShare BPS, 后续与PDF年报交叉校验
         row["BPS"] = ind.get("BPS")
 
         # ---- 7. 发行在外股数 (百万股) ----
@@ -286,10 +283,10 @@ def build_metric_table(reader, years, market="hk"):
         # ---- 20. 股东权益 = 总权益 (亿, 含少数股东) ----
         eq = reader.financial_item("balance", "总权益", rd)
         row["TOTAL_EQUITY"] = round(eq / 1e8, 1) if eq else None
-        # 归母权益: VL用于RETAINED_RATIO分母 (Common Equity)
-        com_eq = (reader.financial_item("balance", "股东权益", rd)
-                  or reader.financial_item("balance", "归属于母公司所有者权益", rd)
-                  or eq)
+        # 归母权益(Common Equity): VL用于RETAINED_RATIO分母
+        _com_eq = (reader.financial_item("balance", "股东权益", rd)
+                   or reader.financial_item("balance", "归属于母公司所有者权益", rd))
+        com_eq = _com_eq or eq
 
         # ---- 21. ROIC = EBIT / (LT_Debt + Equity) ----
         fin_cost = reader.financial_item("income", "融资成本", rd) or 0
@@ -297,8 +294,8 @@ def build_metric_table(reader, years, market="hk"):
         invested_cap = lt_raw + (eq or 0)
         row["ROIC"] = round((ebit / invested_cap) * 100, 1) if ebit and invested_cap > 0 else None
 
-        # ---- 22. ROE: 从indicators读取 (后续升级扣非) ----
-        row["ROE"] = ind.get("ROE_AVG")
+        # ---- 22. ROE = NI / Total Equity (VL: for common + preferred stockholders) ----
+        row["ROE"] = round((np_val / eq) * 100, 1) if np_val and eq else None
 
         # ---- 23. 留存利润占比 = (NetProfit - Dividends) / Common Equity ----
         # VL: "net income less all dividends... divided by common shareholders' equity"
