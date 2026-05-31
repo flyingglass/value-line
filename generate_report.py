@@ -274,7 +274,8 @@ var DATA = {DATA_JS};
     var qLabels=['Q1','Q2','Q3','Q4'];
     qLabels.forEach(function(l,i){{
       var s='width:14%;text-align:right;padding-right:3px;border-bottom:1px solid #000';
-      if(i===0) s+=';border-left:2px solid #000;padding-left:3px';
+      if(i===0) s+=';border-left:2px solid #000;padding-left:3px;text-align:left';
+      if(i===3) s+=';padding-right:3px';
       h+='<td style="'+s+'">'+l+'</td>';
     }});
     h+='<td style="width:16%;text-align:right;padding-right:3px;font-weight:700;border-left:2px solid #000;border-bottom:1px solid #000">Full Year</td></tr>';
@@ -286,12 +287,12 @@ var DATA = {DATA_JS};
         var vs=[r.q1,r.q2,r.q3,r.q4,r.full];
         vs.forEach(function(v,i){{
           var s='text-align:right;padding-right:3px';
-          if(i===0) s+=';border-left:2px solid #000;padding-left:3px';
+          if(i===0) s='text-align:left;border-left:2px solid #000;padding-left:3px';
           if(i===4) s+=';font-weight:700;border-left:2px solid #000;padding-left:3px';
           h+='<td style="'+s+'">'+(v!=null?v.toFixed(decimal):'—')+'</td>';
         }});
       }}else{{
-        h+='<td style="text-align:right;color:#999;border-left:2px solid #000;padding-left:3px;padding-right:3px">—</td>';
+        h+='<td style="text-align:left;color:#999;border-left:2px solid #000;padding-left:3px;padding-right:3px">—</td>';
         h+='<td style="text-align:right;padding-right:3px">'+(r.q1!=null?r.q1.toFixed(decimal):'—')+'</td>';
         h+='<td style="text-align:right;color:#999;padding-right:3px">—</td>';
         h+='<td style="text-align:right;padding-right:3px">'+(r.q3!=null?r.q3.toFixed(decimal):'—')+'</td>';
