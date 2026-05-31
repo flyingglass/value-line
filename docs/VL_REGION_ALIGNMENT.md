@@ -813,35 +813,30 @@ BUSINESS: 泡泡玛特是中国领先的潮流文化娱乐公司    ← 10px bol
 
 ### VL 定义
 
-> VL原文 (P.5):
-> "Many readers think our commentary (item 13) is the most important section of the page."
-> "A 300–400 word report on recent developments and prospects—issued every three months."
+> "A 300–400 word report on recent developments and prospects—issued every three months on a regular schedule. Supplementary reports are issued when there is important news."
 
-内容结构 (以迪士尼为例):
-- 近期业绩表现归因
-- 业务板块表现拆解
-- 战略投资方向
-- 未来展望和风险
-- 估值观点及投资建议
+三段论模板：
+```
+[提问式标题 hook]
+[日期] — [业绩回顾：营收/EPS/ROE数字+结构拆解+高基数预警]
+[战略展望：渠道/市场/产品布局+财务健康+分红派息]
+[估值判断：PE分位/PB位置/ROE级别+贵或便宜+风险+先行指标]
+```
 
-### A/H 股实现状态
+### 生成规则 (2026-05-31)
 
-| 内容 | 实现状态 | 当前方案 | 差距 |
-|------|---------|---------|------|
-| 近期业绩 | ⚠️ 自动生成 | MDA从PDF提取或财务数据动态生成 | 无分析师观点, 仅是数据陈述 |
-| 业务分拆 | ⚠️ 部分 | 营收结构表自动生成 | 无深度分析 |
-| 战略分析 | ❌ | 通用模板文本 | 无公司定制 |
-| 未来展望 | ❌ | 通用模板 | 无预测 |
-| 估值观点 | ❌ | — | 无 |
+| 要素 | 来源 | 说明 |
+|------|------|------|
+| 标题 | LLM 设问式 | 增速见顶？全球化能否持续？ |
+| 日期 | 报告日 | 自动取当前日期 |
+| 业绩回顾 | #1-6/11/12 + 季度表 | 具体数字+结构+同比 |
+| 战略展望 | BUSINESS段落+IP/渠道/地域 | 布局+财务+分红 |
+| 估值判断 | #7-10 + PE/PB历史分位 | PE经汇率调整 |
+| 署名 | — | VL风格脚注 |
 
-**当前实现:**
-- `extract_mda.py` — 从PDF提取中英文句子, 按6类分类(overview/product/channel/region/cost/outlook)
-- PDF提取失败时 `build_mda_from_data()` 用财务数据动态生成
+### 实现状态
 
-**VL原文 (P.5):**
-> "The analyst uses the commentary to explain the forecast. The commentary is also particularly useful when a trend is shifting, or a change is about to occur."
-
-**🔴 差距:** VL的Analyst Commentary是分析师手写的300-400字深度分析, 包含预测逻辑和投资观点。当前实现仅是PDF关键字提取或数据陈述, 本质上是 "摘要" 而非 "分析"。
+当前为占位静态文本，后续由 LLM 动态生成。已替换原 MDA 区域。
 
 ---
 

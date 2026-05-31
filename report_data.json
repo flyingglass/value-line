@@ -6,19 +6,22 @@
     "market": "hk",
     "currency": "CNY",
     "industry": "Consumer",
+    "ceo": "王宁",
+    "inc": "开曼群岛",
+    "website": "www.popmart.com",
     "price_ccy": "HKD",
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-05-31 14:56:41.530901"
+    "generated": "2026-05-31 17:36:07.831452"
   },
   "spot": {
-    "price": 153.60001,
-    "pe": 30.1,
-    "pb": 9.25,
-    "div_yield": 0.24,
-    "mkt_cap": 2062.8,
-    "change_pct": 2.05981,
+    "price": 173.39999,
+    "pe": 34.0,
+    "pb": 10.44,
+    "div_yield": 1.37,
+    "mkt_cap": 2328.7,
+    "change_pct": 7.36842,
     "eps_ttm": 5.11,
     "median_pe": 50.0
   },
@@ -546,10 +549,10 @@
     {
       "date": "2026-05",
       "open": 156.3299,
-      "high": 172.3461,
-      "low": 147.6,
-      "close": 150.5,
-      "volume": 287170771.0
+      "high": 181.0,
+      "low": 144.0,
+      "close": 173.4,
+      "volume": 425293482.0
     }
   ],
   "index_kline": [
@@ -1634,9 +1637,9 @@
   ],
   "total_returns": {
     "stock": {
-      "1yr": -30.3,
-      "3yr": 812.2,
-      "5yr": 129.3
+      "1yr": -18.8,
+      "3yr": 960.3,
+      "5yr": 166.3
     },
     "index": {
       "1yr": 8.1,
@@ -1932,13 +1935,13 @@
       "PER_OI": 1.79,
       "PER_NETCASH": 0.55,
       "BASIC_EPS": 0.44,
-      "DPS": 0,
+      "DPS": 0.1494,
       "CAPEX_PS": 0.13,
       "BPS": 4.57,
       "TOTAL_SHARES": 1401.9,
       "PE_AVG": 172.4,
       "PE_RELATIVE": 12.77,
-      "DIV_YIELD": null,
+      "DIV_YIELD": 0.2,
       "OPERATE_INCOME": 25.1,
       "OP_MARGIN": 38.4,
       "DEPRECIATION": 2.5,
@@ -1951,14 +1954,14 @@
       "TOTAL_EQUITY": 61.3,
       "ROIC": 11.6,
       "ROE": 8.7,
-      "RETAINED_RATIO": 8.7,
-      "PAYOUT_RATIO": 0.0
+      "RETAINED_RATIO": 5.3,
+      "PAYOUT_RATIO": 39.4
     },
     "2021": {
       "PER_OI": 3.2,
       "PER_NETCASH": 0.92,
       "BASIC_EPS": 0.62,
-      "DPS": 0.1533,
+      "DPS": 0.1524,
       "CAPEX_PS": 0.21,
       "BPS": 5.08,
       "TOTAL_SHARES": 1401.9,
@@ -1978,19 +1981,19 @@
       "ROIC": 16.2,
       "ROE": 12.5,
       "RETAINED_RATIO": 9.4,
-      "PAYOUT_RATIO": 25.2
+      "PAYOUT_RATIO": 25.0
     },
     "2022": {
       "PER_OI": 3.34,
       "PER_NETCASH": 0.78,
       "BASIC_EPS": 0.35,
-      "DPS": 0.1472,
+      "DPS": 0.087,
       "CAPEX_PS": 0.19,
       "BPS": 5.19,
       "TOTAL_SHARES": 1380.5,
       "PE_AVG": 74.6,
       "PE_RELATIVE": 9.95,
-      "DIV_YIELD": 0.6,
+      "DIV_YIELD": 0.3,
       "OPERATE_INCOME": 46.2,
       "OP_MARGIN": 25.7,
       "DEPRECIATION": 6.0,
@@ -2003,20 +2006,20 @@
       "TOTAL_EQUITY": 69.7,
       "ROIC": 8.4,
       "ROE": 6.8,
-      "RETAINED_RATIO": 3.9,
-      "PAYOUT_RATIO": 42.7
+      "RETAINED_RATIO": 5.1,
+      "PAYOUT_RATIO": 25.3
     },
     "2023": {
       "PER_OI": 4.67,
       "PER_NETCASH": 1.3,
       "BASIC_EPS": 0.81,
-      "DPS": 0.3096,
+      "DPS": 0.2821,
       "CAPEX_PS": 0.24,
       "BPS": 5.79,
       "TOTAL_SHARES": 1348.2,
       "PE_AVG": 25.4,
       "PE_RELATIVE": 2.82,
-      "DIV_YIELD": 1.5,
+      "DIV_YIELD": 1.4,
       "OPERATE_INCOME": 63.0,
       "OP_MARGIN": 30.1,
       "DEPRECIATION": 6.7,
@@ -2029,20 +2032,20 @@
       "TOTAL_EQUITY": 77.8,
       "ROIC": 15.4,
       "ROE": 13.9,
-      "RETAINED_RATIO": 8.6,
-      "PAYOUT_RATIO": 38.6
+      "RETAINED_RATIO": 9.0,
+      "PAYOUT_RATIO": 35.1
     },
     "2024": {
       "PER_OI": 9.71,
       "PER_NETCASH": 2.99,
       "BASIC_EPS": 2.35,
-      "DPS": 0.997,
+      "DPS": 0.8146,
       "CAPEX_PS": 0.28,
       "BPS": 7.97,
       "TOTAL_SHARES": 1342.9,
       "PE_AVG": 18.3,
       "PE_RELATIVE": 2.15,
-      "DIV_YIELD": 2.3,
+      "DIV_YIELD": 1.9,
       "OPERATE_INCOME": 130.4,
       "OP_MARGIN": 38.5,
       "DEPRECIATION": 8.6,
@@ -2055,20 +2058,20 @@
       "TOTAL_EQUITY": 108.8,
       "ROIC": 36.5,
       "ROE": 28.9,
-      "RETAINED_RATIO": 17.0,
-      "PAYOUT_RATIO": 42.5
+      "RETAINED_RATIO": 19.3,
+      "PAYOUT_RATIO": 34.7
     },
     "2025": {
       "PER_OI": 27.64,
       "PER_NETCASH": 10.43,
       "BASIC_EPS": 9.58,
-      "DPS": 0.363,
+      "DPS": 2.3817,
       "CAPEX_PS": 0.73,
       "BPS": 16.61,
       "TOTAL_SHARES": 1342.9,
       "PE_AVG": 21.0,
       "PE_RELATIVE": 2.62,
-      "DIV_YIELD": 0.2,
+      "DIV_YIELD": 1.2,
       "OPERATE_INCOME": 371.2,
       "OP_MARGIN": 48.5,
       "DEPRECIATION": 11.2,
@@ -2081,8 +2084,8 @@
       "TOTAL_EQUITY": 226.5,
       "ROIC": 68.1,
       "ROE": 56.9,
-      "RETAINED_RATIO": 55.7,
-      "PAYOUT_RATIO": 3.8
+      "RETAINED_RATIO": 43.5,
+      "PAYOUT_RATIO": 24.8
     }
   },
   "cagr": {
@@ -2105,9 +2108,9 @@
       "10yr": null
     },
     "dividend": {
-      "1yr": -63.6,
-      "3yr": 35.1,
-      "5yr": null,
+      "1yr": 192.4,
+      "3yr": 201.4,
+      "5yr": 74.0,
       "10yr": null
     },
     "equity": {
@@ -2246,43 +2249,43 @@
         "year": "2020",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0,
-        "full": 0
+        "q3": 0.149,
+        "full": 0.149
       },
       {
         "year": "2021",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.153,
-        "full": 0.153
+        "q3": 0.152,
+        "full": 0.152
       },
       {
         "year": "2022",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.147,
-        "full": 0.147
+        "q3": 0.087,
+        "full": 0.087
       },
       {
         "year": "2023",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.31,
-        "full": 0.31
+        "q3": 0.282,
+        "full": 0.282
       },
       {
         "year": "2024",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.997,
-        "full": 0.997
+        "q3": 0.815,
+        "full": 0.815
       },
       {
         "year": "2025",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.363,
-        "full": 0.363
+        "q3": 2.382,
+        "full": 2.382
       }
     ]
   },
@@ -2450,7 +2453,7 @@
     "common_shares": 1343.0,
     "common_shares_str": "1,342,943,150",
     "common_shares_raw": 1342943150,
-    "mkt_cap": 2062.8,
+    "mkt_cap": 2328.7,
     "cap_label": "Large Cap",
     "business_desc": "泡泡玛特是中国领先的潮流文化娱乐公司。2025年全球化进程进一步提速，品牌知名度持续提升，IP运营与产品研发能力持续增强，推出多款深受全球消费者欢迎的新IP及新品系列，推动销售业绩实现高速增长。",
     "employee_count": 10879,
@@ -2540,9 +2543,9 @@
       "10yr": null
     },
     "dividends": {
-      "1yr": -63.6,
-      "3yr": 35.1,
-      "5yr": null,
+      "1yr": 192.4,
+      "3yr": 201.4,
+      "5yr": 74.0,
       "10yr": null
     },
     "book_value": {
@@ -2599,25 +2602,25 @@
   ],
   "position": {
     "pe": {
-      "current": 30.1,
+      "current": 34.0,
       "min": 18.3,
       "max": 172.4,
       "avg": 68.3,
-      "pct": 8.0
+      "pct": 10.0
     },
     "price": {
-      "current": 153.6,
+      "current": 173.4,
       "min": 9.8,
       "max": 316.8,
-      "avg": 79.6,
-      "pct": 47.0
+      "avg": 79.9,
+      "pct": 53.0
     },
     "pb": {
-      "current": 9.25,
+      "current": 10.44,
       "min": 3.6,
       "max": 16.6,
       "avg": 9.1,
-      "pct": 43.0
+      "pct": 53.0
     }
   },
   "analyst": {

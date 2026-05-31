@@ -55,6 +55,13 @@ generate_report.py → report.html (自包含)
 - **单引号Bug**: `DIV'D` 等含 `'` 的词在 JS 单引号字符串中会截断。Python `\'` 在 f-string 中输出为字面量 `'`，必须改用 Unicode `\u2019`（右单引号）如 `DIV\u2019D`
 - **花括号Bug**: Python f-string 中 JS 代码的 `{` `}` 必须用 `{{` `}}` 转义
 
+## 汇率数据
+- `data/fx_rates.db` → 表 `daily_rates`（date, usd_cny, hkd_cny）
+- 数据源: AKShare `currency_boc_safe`（国家外汇管理局官方中间价）
+- 1994-01-01 ~ 最新交易日, 每日粒度，7973条
+- 单位: 100外币兑CNY（如 usd_cny=681.76 即 1USD=6.8176CNY）
+- engine.py 中港股数据需按日期查询该表换算CNY
+
 ## Header 最终布局 (generate_report.py)
 - **方案**: HTML `<table>` 2行, 10列, rowspan=2 值跨行居中
 - **公司名**: POP MART(18px bold) + 09992.HK(9px bold) 同行, padding 5px 10px
