@@ -107,27 +107,25 @@
 ### 最终样式规格
 
 ```
-LEGENDS                         ← 7px 粗体
-━━━━━━━━━━━━━━━━━━━━━━━━
-━━━  (blue实线, 9px, #1976D2)    ← 图例标记
-15.0 x "Cash Flow" p sh          ← 指标名 (7px)
-━━━━━━━━━━━━━━━━━━━━━━━━
-···  (red虚线, 9px, #ef232a)       ← 图例标记
-Relative Price Strength          ← 指标名 (7px)
-━━━━━━━━━━━━━━━━━━━━━━━━
-Splits: None / Options: No       ← 补充信息 (7px)
+LEGENDS                         ← 8.5px 粗体
+────── 实线 1px #000
+━━━  (蓝色实线, 10px, #1976D2)    ← 图例标记
+15.0 x "Cash Flow" p sh          ← 指标名 (8px)
+      ← 空白间隔 4px
+······ (红色点, 10px, #ef232a, 6个·) ← 图例标记
+Relative Price Strength          ← 指标名 (8px)
+      ← 空白间隔 3px
+Splits: None / Options: No       ← 补充信息 (8px)
+────── 实线 1px #000
+% TOT. RETURN                    ← 8.5px 粗体
 ```
 
-**K 线图同步:**
-- CF 线: `type: 'solid'`, #1976D2, width 1.2 (实线，对应 LEGENDS `━━━`)
-- RS 个股线: `type: 'dotted'`, #ef232a, width 1.2 (虚线，对应 LEGENDS `···`)
-- RS 基准线: `type: 'dotted'`, #999, width 1 (保持虚线)
+**布局:** 左侧列 flex 容器 height:290px，LEGENDS+% TOT. RETURN 在上部，Percent/shares/traded 用 margin-top:auto 沉底。
 
-**当前实现分析:**
-- 固定使用 15.0 倍 (generate_report.py L.347: `15.0 x CF per Sh`)
-- VL 原版使用分析师选择的倍数 (迪士尼用12.0), 会随时间变化
-- 🔴 差距: 当前硬编码15.0, VL是分析师动态调整的
-- 建议: 短期保持15.0固定, 长期可设为config参数
+**K 线图同步:**
+- CF 线: `type: 'solid'`, #1976D2, width 1.2 (实线)
+- RS 个股线: `type: 'dotted'`, #ef232a, width 1.2 (虚线)
+- RS 基准线: `type: 'dotted'`, #999, width 1 (虚线)
 
 ## 区域 2B: % Total Return (总回报)
 
