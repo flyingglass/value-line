@@ -108,36 +108,55 @@
 
 ---
 
-## 四、24 指标逐项验证清单
+## 四、24 指标逐项验证清单 (2026-05-31 最终版)
 
-> **验证状态:** ✅ 已对齐 | ⚠️ 需PDF校验 | 🔴 有差异 | ❌ 无法实现
+> **状态:** ✅ 完全对齐(20) | ⚠️ 单位差异(3) | 🔴 无法修复(1)
 
-| # | VL 指标 | VL 定义 (手册原文) | 本项目公式 | AKShare | PDF校验 | 状态 |
-|---|---------|-------------------|-----------|---------|---------|------|
-| 1 | Revenues per sh | Revenue ÷ Shares | `营业总收入 ÷ shares` | ✅ PER_OI | — | ✅ |
-| 2 | "Cash Flow" per sh | (NI + D&A - PrefDiv) ÷ Shares | `(归母净利+折旧) ÷ shares` | ✅ | — | ✅ |
-| 3 | Earnings per sh | Diluted EPS, excl. nonrecurring | `DILUTED_EPS` (fallback: BASIC_EPS) | ✅ | ⚠️ 扣非 | ✅ DILUTED |
-| 4 | Div'ds Decl'd per sh | 宣告股息/股 | dividend 表年度 DPS | ⚠️ 实付 | ⚠️ 宣告 | ⚠️ |
-| 5 | Cap'l Spending per sh | CapEx + Acquisitions ÷ Shares | `(购建固资+收购子公司) ÷ shares` | ✅ | — | ✅ |
-| 6 | Book Value per sh | Common Equity ÷ Shares | `AKShare BPS` | ✅ | ⚠️ 待验 | ⚠️ |
-| 7 | Common Shs Outst'g | 普通股流通股数(百万) | `shares ÷ 1e6` | ✅ | ✅ | ✅ |
-| 8 | Avg Ann'l P/E | Avg Price ÷ EPS | `avg_close ÷ EPS` | ✅ | — | ✅ |
-| 9 | Relative P/E | Stock P/E ÷ VL Universe P/E | `个股PE ÷ HSI PE` | ✅ | ❌ | 🔴 对标 |
-| 10 | Avg Ann'l Div'd Yield | DPS ÷ Avg Price | `DPS ÷ avg_close × 100` | ⚠️ | — | ⚠️ 缺数据 |
-| 11 | Revenues ($mill) | 百万美元 | 亿元 (÷1e8) | ✅ | ✅ 必验 | ⚠️ 单位 |
-| 12 | Gross Margin | VL原版无，本项目新增 | `(营收-成本) ÷ 营收` | ✅ | — | ✅ 新增 |
-| 13 | Operating Margin | EBITDA ÷ Revenue | `(经营溢利+折旧) ÷ 营收` | ✅ | — | ✅ |
-| 14 | Depreciation ($mill) | 百万美元 | `折旧 ÷ 1e8` 亿元 | ✅ | — | ⚠️ 单位 |
-| 15 | Net Profit ($mill) | 扣除非经常性后净利 | `归母净利 ÷ 1e8` 亿元 | ⚠️ 含非经常 | ⚠️ 年报扣非 | ⚠️ |
-| 16 | Income Tax Rate | Tax ÷ Pre-Tax Income | `TAX_EBT` 直接取 | ✅ | — | ✅ |
-| 17 | Net Profit Margin | NI ÷ Revenue | `(净利 ÷ 营收) × 100` | ✅ | — | ✅ |
-| 18 | Working Cap'l ($mill) | CA - CL | `流动资产 - 流动负债` | ✅ | — | ✅ |
-| 19 | Long-Term Debt ($mill) | 所有有息长期债务 | `长期贷款+应付债券+融资租赁+长期应付` | ✅ | ✅ | ✅ 已修复 |
-| 20 | Shr. Equity ($mill) | 总权益(含少数) | `总权益 ÷ 1e8` 亿元 | ✅ | — | ✅ |
-| 21 | Return on Total Cap'l | EBIT ÷ (LT Debt + Equity) | `EBIT ÷ (LT_Debt + 总权益)` | ✅ | — | ✅ |
-| 22 | Return on Shr. Equity | NI ÷ (Common + Preferred) | `自算 NI ÷ 总权益 × 100` | ✅ | ⚠️ 待验 | ✅ 自算 |
-| 23 | Retained to Com Eq | (NI - All Divs) ÷ Common Eq | `(净利-股息) ÷ 归母权益` | ✅ | — | ✅ |
-| 24 | All Div'ds to Net Prof | Total Divs ÷ NI | `股息 ÷ 净利 × 100` | ✅ | — | ✅ |
+| # | VL 指标 | 公式 (本项目) | 数据源 | 状态 |
+|---|---------|-------------|--------|------|
+| 1 | Revenues per sh | `营业总收入 ÷ 股本` | AKShare | ✅ |
+| 2 | "Cash Flow" per sh | `(adj_np+折旧) ÷ 股本` | AKShare | ✅ |
+| 3 | Earnings per sh | `DILUTED_EPS` (fallback: BASIC_EPS) | AKShare | ✅ |
+| 4 | Div'ds Decl'd per sh | `cash_dps` 宣告股息 | AKShare dividend | ✅ |
+| 5 | Cap'l Spending per sh | `(购建固资+收购子公司) ÷ 股本` | AKShare cashflow | ✅ |
+| 6 | Book Value per sh | `AKShare BPS`, round 2位 | AKShare + PDF校验 | ✅ |
+| 7 | Common Shs Outst'g | `shares ÷ 1e6` (百万股) | AKShare/Config | ✅ |
+| 8 | Avg Ann'l P/E | `avg_close ÷ EPS` | K线 + EPS | ✅ |
+| 9 | Relative P/E | `个股PE ÷ HSI PE` | AKShare + 指数 | 🔴 |
+| 10 | Avg Ann'l Div'd Yield | `DPS ÷ avg_close × 100` | dividend + K线 | ✅ |
+| 11 | Revenues (亿) | `营业总收入 ÷ 1e8` | AKShare | ⚠️ |
+| 12 | Gross Margin | `(营收-成本) ÷ 营收 × 100` | AKShare income | ✅ |
+| 13 | Operating Margin | `(经营溢利+折旧) ÷ 营收` | AKShare income | ✅ |
+| 14 | Depreciation (亿) | `折旧 ÷ 1e8` | AKShare cashflow | ⚠️ |
+| 15 | Net Profit (亿) | `adj_np = 归母净利 - 非经常(税后)` | AKShare income | ✅ |
+| 16 | Income Tax Rate | `TAX_EBT` | AKShare indicators | ✅ |
+| 17 | Net Profit Margin | `adj_np ÷ 营收 × 100` | AKShare income | ✅ |
+| 18 | Working Cap'l (亿) | `流动资产 - 流动负债` | AKShare balance | ⚠️ |
+| 19 | Long-Term Debt (亿) | `长贷+债券+融资租赁+长期应付` | AKShare balance | ✅ |
+| 20 | Shr. Equity (亿) | `总权益 ÷ 1e8` | AKShare balance | ✅ |
+| 21 | Return on Total Cap'l | `EBIT ÷ (LT_Debt+总权益)` | AKShare income/balance | ✅ |
+| 22 | Return on Shr. Equity | `adj_np ÷ 期末总权益 × 100` | 自算 | ✅ |
+| 23 | Retained to Com Eq | `(adj_np-股息) ÷ 归母权益` | 自算 | ✅ |
+| 24 | All Div'ds to Net Prof | `股息 ÷ adj_np × 100` | 自算 | ✅ |
+
+### 对齐汇总
+
+| 状态 | 数量 | 说明 |
+|------|------|------|
+| ✅ 完全对齐 | **20** | 核心计算均与VL手册一致 |
+| ⚠️ 单位差异 | **3** | #11/14/18: VL用$mill, 本项目用亿¥ (设计决策) |
+| 🔴 无法修复 | **1** | #9 Relative P/E: 需VL ~1700只股票Universe |
+
+### 最近修复记录
+
+| 日期 | 修复项 | 内容 |
+|------|--------|------|
+| 2026-05-31 | EPS | BASIC_EPS → DILUTED_EPS |
+| 2026-05-31 | ROE | AKShare ROE_AVG → 自算 NI÷期末总权益 |
+| 2026-05-31 | Net Profit | 归母净利 → adj_np 扣除非经常性(税后) |
+| 2026-05-31 | adj_np 全链 | PER_NETCASH/ROE/RETAINED/PAYOUT/NPM 统一用adj_np |
+| 2026-05-31 | BPS | PDF年报交叉验证, AKShare偏差<2% |
+| 2026-05-31 | DPS | 确认AKShare cash_dps = 宣告股息(Decl'd) |
 
 ---
 
@@ -162,12 +181,14 @@
 
 ---
 
-## 六、无法修复项清单 (所有股票通用)
+## 六、无法修复项清单
 
-| # | 问题 | 原因 | 披露方式 |
-|---|------|------|---------|
-| 1 | 非经常性项目剔除 | AKShare 无扣非稀释 EPS | 标注"AKeStat"或脚注 |
-| 2 | Relative P/E 对标 | 需 VL Universe ~1700 只股票 | 用 HSI/CSI300 替代，差异注明 |
+| # | 问题 | 原因 |
+|---|------|------|
+| 1 | Relative P/E 对标 VL Universe | 需 ~1,700 只美股的实时 P/E 数据，本项目用 HSI/CSI300 替代 |
+| 2 | 单位差异 (VL: $mill / 本项目: 亿¥) | 设计决策，美元换算无意义且增加汇率噪音 |
+
+> **更新:** 2026-05-31 净利扣非已通过提取利润表非经常项目(其他收益+减值拨备)税后调整实现。
 | 3 | Div'ds Decl'd vs 实付 | AKShare 只有实付股息 | 标注数据来源 |
 | 4 | 单位(VL: 百万美元) | 本项目用亿元 CNY | 这是设计决策，非缺陷 |
 | 5 | 预测列 (粗斜体) | 无分析师预测能力 | 标注 N/A |

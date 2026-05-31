@@ -10,7 +10,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-05-31 14:54:24.150183"
+    "generated": "2026-05-31 14:56:41.530901"
   },
   "spot": {
     "price": 153.60001,
@@ -1674,7 +1674,7 @@
     },
     {
       "order": 3,
-      "name_cn": "每股收益*",
+      "name_cn": "每股收益",
       "name_en": "Earnings per sh",
       "field": "BASIC_EPS",
       "unit": "元",
@@ -1682,7 +1682,7 @@
     },
     {
       "order": 4,
-      "name_cn": "每股股息†",
+      "name_cn": "每股股息",
       "name_en": "Div'ds Decl'd per sh",
       "field": "DPS",
       "unit": "元",
@@ -1722,7 +1722,7 @@
     },
     {
       "order": 9,
-      "name_cn": "相对PE‡",
+      "name_cn": "相对PE",
       "name_en": "Relative P/E Ratio",
       "field": "PE_RELATIVE",
       "unit": "倍",
@@ -1770,7 +1770,7 @@
     },
     {
       "order": 15,
-      "name_cn": "净利润*",
+      "name_cn": "净利润",
       "name_en": "Net Profit (亿)",
       "field": "HOLDER_PROFIT",
       "unit": "亿",

@@ -452,6 +452,36 @@ VL 手册 P.8-10 逐行定义了23个指标(本项目增加毛利率为24行):
 **🔴 最大差距: 无预测列。**
 VL报告的核心价值之一是分析师预测(未来3-5年)。当前项目仅展示历史数据, 缺失"右侧粗斜体预测列"。这是本项目与VL原版最本质的功能差距。
 
+### 当前实现样式规格
+
+```
+Year                           2017   2018   2019   ...    ← 8.5px bold #000, border-top/bottom #ccc
+Revenues per sh      每股营收   27.64  9.71   4.67   ...    ← 英文名: 9px bold, 中文名: 7.5px #666
+"Cash Flow" per sh   每股现金流  10.43  2.99   1.30   ...
+Earnings per sh      每股收益     9.58   2.35   0.81   ...
+────────────────────  分区线 (2px solid #000)  ──────────
+Common Shs Outst'g   发行在外股数  ...
+Avg Ann'l P/E Ratio  平均年化PE   ...
+...
+```
+
+**样式参数:**
+| 参数 | 值 |
+|------|----|
+| 英文指标名 | 9px, bold, #000 |
+| 中文指标名 | 7.5px, normal, #666 |
+| 数据值 | 8.5px, right-align |
+| 年份行 | 8.5px, bold, border-top/bottom: 1px solid #ccc |
+| 分区线 | 2px solid #000 (每6/4/7/3/4行一组) |
+| 列分隔 | 1px solid #ddd |
+| 空值 | "—" |
+
+**数据口径:**
+- EPS: DILUTED_EPS, AKShare
+- 净利: adj_np = 归母净利 - 非经常性项目(税后)
+- ROE: adj_np ÷ 期末总权益
+- 全链使用 adj_np: PER_NETCASH, ROE, RETAINED, PAYOUT, NET_PROFIT_MARGIN
+
 ---
 
 ## 区域 6: Business Description (业务描述)

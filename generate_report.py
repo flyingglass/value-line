@@ -426,14 +426,6 @@ var DATA = {DATA_JS};
   }});
   html+='</table>';
   
-  // Footnotes
-  html+='<div style=\"font-size:7px;color:#666;line-height:1.4;margin:3px 0\">';
-  html+='<div>* Diluted EPS, AKShare</div>';
-  html+='<div>&dagger; Declared dividends</div>';
-  html+='<div>&Dagger; Vs. '+indexName+'; VL: ~1,700 stocks</div>';
-  html+='<div>Per share (元), Aggregate (亿), Ratio (%)</div>';
-  html+='</div>';
-  
   // Business — MDA (表下方)
   html+='<div class="analyst"><b>BUSINESS</b>'+bizHtml+'</div>';
 
