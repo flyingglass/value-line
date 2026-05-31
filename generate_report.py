@@ -485,8 +485,8 @@ var DATA = {DATA_JS};
     var dates=padMonths.concat(kl.map(function(k){{return k.date;}})),
         ohlc=padOHLC.concat(kl.map(function(k){{return [Math.log(k.open),Math.log(k.close),Math.log(k.low),Math.log(k.high)];}}));
 
-    // RS line
-    var rsStock=[], rsHsi=[], rsDates=[];
+    // RS line — VL 原生: (个股价/基期) ÷ (指数/基期) × 100, >100跑赢
+    var rsData=[];
     if(hsi.length>0){{
       var hsiMap={{}};
       hsi.forEach(function(h){{hsiMap[h.date]=h.close;}});
@@ -496,12 +496,10 @@ var DATA = {DATA_JS};
         var hc=hsiMap[dt];
         if(sc&&hc){{
           if(baseS===null){{baseS=sc.close;baseH=hc;}}
-          rsStock.push(baseS?(sc.close/baseS*100).toFixed(1):100);
-          rsHsi.push(baseH?(hc/baseH*100).toFixed(1):100);
+          rsData.push(baseS?+((sc.close/baseS)/(hc/baseH)*100).toFixed(1):100);
         }}
       }});
     }}
-
     var series=[
       {{name:stockName,type:'candlestick',data:ohlc,
         itemStyle:{{color:'#ef232a',color0:'#14b143',borderColor:'#ef232a',borderColor0:'#14b143'}}}}
@@ -519,11 +517,9 @@ var DATA = {DATA_JS};
       series.push({{name:'15x CF',type:'line',data:cfSeries,
         lineStyle:{{type:'solid',color:'#1976D2',width:1.2}},symbol:'none'}});
     }}
-    if(rsStock.length>0){{
-      series.push({{name:stockName+' (idx)',type:'line',data:rsStock,
+    if(rsData.length>0){{
+      series.push({{name:'Rel Strength',type:'line',data:rsData,
         lineStyle:{{color:'#ef232a',width:1.2,type:'dotted'}},symbol:'none',yAxisIndex:1}});
-      series.push({{name:indexName+' (idx)',type:'line',data:rsHsi,
-        lineStyle:{{color:'#999',width:1,type:'dotted'}},symbol:'none',yAxisIndex:1}});
     }}
 
     // 年分隔线
@@ -549,8 +545,9 @@ var DATA = {DATA_JS};
     }}
     var logTicks=ticks.map(function(v){{return Math.log(v);}});
     var klineChart=echarts.init(document.getElementById('chart_kline'));
+    var tooltipFmt=function(p){{var h=p[0].axisValue,r='<b>'+h+'</b>';for(var i=0;i<p.length;i++){{var v=p[i].value,n=p[i].seriesName;if(v==null)continue;var fv=n==='Rel Strength'?Number(v).toFixed(1):'$'+Math.exp(Number(v)).toFixed(2);if(n.indexOf('15x CF')>-1)fv='$'+Math.exp(Number(v)).toFixed(2);r+=p[i].marker+' '+n+': '+fv+'<br/>';}}return r;}};
     klineChart.setOption({{
-      tooltip:{{trigger:'axis',axisPointer:{{label:{{show:false}}}},valueFormatter:function(v){{return v!=null?'$'+Math.exp(Number(v)).toFixed(2):'-';}}}},
+      tooltip:{{trigger:'axis',axisPointer:{{label:{{show:false}}}},formatter:tooltipFmt}},
       grid:{{left:0,right:28,top:4,bottom:24}},
       xAxis:{{type:'category',data:dates,boundaryGap:false,
         axisPointer:{{label:{{show:false}}}},
