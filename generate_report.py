@@ -399,7 +399,8 @@ var DATA = {DATA_JS};
   html+='<div style="margin:3px 0"></div>';
   html+='<div>Splits: '+(meta.splits||'None')+'</div><div>Options: '+(meta.options||'No')+'</div>';
   html+='<div style="margin:15px 0 2px 0"></div>';
-  html+='<div style="font-weight:700;font-size:8.5px;margin-bottom:2px">% TOT. RETURN</div>';
+  html+='<div style="font-weight:700;font-size:8.5px;margin-bottom:1px">% TOT. RETURN</div>';
+  html+='<div style="font-size:7px;color:#666;margin-bottom:2px">as of '+Y[Y.length-1]+'-12</div>';
   html+='<div style="border-bottom:1px solid #000;margin:0 0 2px 0"></div>';
   var trR2=d.total_returns||{{}};
   var trStock2=trR2.stock||{{}};
@@ -418,13 +419,17 @@ var DATA = {DATA_JS};
   html+='<div id="chart_volume" style="height:50px;margin-top:0;position:relative"></div>';
   
   // Row 5: 年份行
-  html+='<tr style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"><td style="font-size:8.5px;color:#000;padding:2px 3px;'+tdStyle+'">Year</td>';
-  showYears.forEach(function(y){{html+='<td style="text-align:center;font-size:8.5px;font-weight:700;padding:2px 3px;'+tdStyle+'">'+y+'</td>';}});
+  html+='<tr style="border-top:1px solid #000;border-bottom:1px solid #000"><td style="font-size:10px;color:#000;padding:2px 3px;'+tdStyle+'">Year</td>';
+  showYears.forEach(function(y){{html+='<td style="text-align:center;font-size:10px;font-weight:700;padding:2px 3px;'+tdStyle+'">'+y+'</td>';}});
   html+='</tr>';
   
   // Row 6+: 24-line metrics
   M.forEach(function(m, idx){{
-    var sepAfter=[6,10,17,20];
+    var sepBefore=[5];
+    var sepAfter=[6,7,10,13,15,17,20,22];
+    if(sepBefore.indexOf(m.order)>=0){{
+      html+='<tr class="sep"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
+    }}
     html+='<tr>';
     html+='<td style="text-align:left;white-space:nowrap;font-size:9px;font-weight:700;'+tdStyle+'">'+m.name_en+' <span style="font-size:7.5px;color:#666;font-weight:400">'+m.name_cn+'</span></td>';
     showYears.forEach(function(y){{
@@ -441,7 +446,7 @@ var DATA = {DATA_JS};
     }});
     html+='</tr>';
     if(sepAfter.indexOf(m.order)>=0){{
-      html+='<tr class="sep"><td colspan="'+(yrCount+1)+'" style="border-bottom:2px solid #000"></td></tr>';
+      html+='<tr class="sep"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
     }}
   }});
   html+='</table>';
@@ -578,8 +583,9 @@ var DATA = {DATA_JS};
     // Y轴刻度: 比例缓冲+自适应interval, 向上取整到nice number
     var maxVol=vMax*1.2, interval=maxVol<=5?1:maxVol<=50?5:10;
     var ceilVol=Math.ceil(maxVol/interval)*interval||interval, step=ceilVol/3;
-    echarts.init(document.getElementById('chart_volume')).setOption({{
-      grid:{{left:0,right:0,top:0,bottom:0}},
+    var volChart=echarts.init(document.getElementById('chart_volume'));
+    volChart.setOption({{
+      grid:{{left:0,right:0,top:0,bottom:0,containLabel:false}},
       xAxis:{{type:'category',data:dates,show:false,boundaryGap:false}},
       yAxis:{{type:'value',position:'left',min:0,max:ceilVol,splitNumber:3,
         axisLabel:{{show:false}},
@@ -593,14 +599,16 @@ var DATA = {DATA_JS};
                 {{yAxis:step,name:'',lineStyle:{{color:'#000',width:0.5,type:'solid'}}}}]
         }}}}]
     }});
-    // 动态创建左侧刻度标签，绝对定位于 chart_volume 内
+    // 用 convertToPixel 取 yAxis 值的精确像素位置
+    var yPx=volChart.getModel().getComponent('yAxis').axis.scale;
+    var vals=[ceilVol,step*2,step], labels=['Percent','shares','traded'], ids=['vs3','vs2','vs1'];
     var vsDiv=document.createElement('div');
     vsDiv.style.cssText='position:absolute;left:-72px;width:68px;height:50px;top:0;pointer-events:none;z-index:1';
-    var vLabels=[['Percent','vs3',ceilVol],['shares','vs2',step*2],['traded','vs1',step]];
-    vLabels.forEach(function(l){{
+    vals.forEach(function(v,i){{
       var d=document.createElement('div');
-      d.style.cssText='position:absolute;left:0;right:0;top:'+((ceilVol-l[2])/ceilVol*50)+'px;font-size:8.5px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
-      d.innerHTML='<span>'+l[0]+'</span><span id="'+l[1]+'">'+Math.round(l[2])+'</span>';
+      var topPx=Math.round((1-(v-yPx._extent[0])/(yPx._extent[1]-yPx._extent[0]))*50);
+      d.style.cssText='position:absolute;left:0;right:0;top:'+topPx+'px;font-size:8.5px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
+      d.innerHTML='<span>'+labels[i]+'</span><span id="'+ids[i]+'">'+Math.round(v)+'</span>';
       vsDiv.appendChild(d);
     }});
     document.getElementById('chart_volume').appendChild(vsDiv);

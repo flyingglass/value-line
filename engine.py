@@ -1103,32 +1103,37 @@ def build_report(code=None):
             div_years.append((str(q["year"]), q["full"]))
     div_map = dict(div_years)
 
-    def _calc_return(prices, periods, div_map):
-        """prices: [{date, close}], periods: [12, 36, 60] months, div_map: {year: dps}"""
+    def _calc_return(prices, n_years):
+        """自然年回报: Dec(year-n) → Dec(latest_complete_year)
+        prices: [{date, close}] 月线; n_years: [1,3,5]"""
         result = {}
         if not prices:
             return {}
-        last = prices[-1]
-        end_close = last["close"]
-        for n in periods:
-            if len(prices) <= n:
+        # 找最近完整年份的12月收盘
+        yr_close = {}
+        for p in prices:
+            yr = int(p["date"][:4])
+            m = int(p["date"][5:7])
+            if m == 12:
+                yr_close[yr] = p["close"]
+        if not yr_close:
+            return {}
+        last_yr = max(yr_close.keys())
+        end_close = yr_close[last_yr]
+        for n in n_years:
+            start_yr = last_yr - n
+            if start_yr not in yr_close:
                 continue
-            start = prices[-(n+1)]
-            start_close = start["close"]
+            start_close = yr_close[start_yr]
             if not start_close or start_close == 0:
                 continue
-            # 累计股息: 按年加总覆盖期间
-            start_yr = int(start["date"][:4])
-            end_yr = int(last["date"][:4])
-            cum_div = sum(div_map.get(str(y), 0) for y in range(start_yr, end_yr + 1))
-            # 如果有当前年的部分股息, 按比例估算
-            total_ret = (end_close - start_close + cum_div) / start_close * 100
-            label = f"{n//12}yr"
-            result[label] = round(total_ret, 1)
+            # 前复权价格已含股息调整
+            total_ret = (end_close - start_close) / start_close * 100
+            result[f"{n}yr"] = round(total_ret, 1)
         return result
 
-    total_returns["stock"] = _calc_return(kline, [12, 36, 60], div_map)
-    total_returns["index"] = _calc_return(index_kline, [12, 36, 60], {})  # 指数不含股息
+    total_returns["stock"] = _calc_return(kline, [1, 3, 5])
+    total_returns["index"] = _calc_return(index_kline, [1, 3, 5])
 
     # ================================================================
     # 交叉校验 (3层: AKShare内部一致性, AKShare↔PDF, 营收结构完整性)
