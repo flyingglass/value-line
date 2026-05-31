@@ -195,11 +195,15 @@ THIS (bold)  STOCK (bold)  HSI   ← 9px 表格
 
 ### 详细计算公式
 
-**TTM EPS** (`_compute_ttm_eps(reader, latest_yr)`):
+**TTM EPS** (`_compute_ttm_eps(reader, latest_yr)`) — 2026-06-01 修复:
 ```
-if 半年报可用: TTM_EPS = 最新H1_EPS + (上年FY_EPS - 上年H1_EPS)
-else: 回退为最新年报EPS
+方案A(优先): 最新FY_EPS (年报已发布 → 直接使用)
+方案B(兜底): H1_cur + (FY_prev - H1_prev) = H1_cur + H2_prev (年报未出)
+方案C(兜底): FY_prev (去年年报)
 ```
+- 修复前: 方案A/B顺序相反，港股始终取跨年拼接(旧数据)
+- 修复后: 优先取最新年报，港股PE从34→18 (泡泡玛特)
+- A股/港股/美股统一逻辑
 数据来源: `income` 表 STD_ITEM_CODE 004027002 (基本每股收益)
 
 **Median P/E** (`_median_pe_iqr(pe_values, years=10)`):
@@ -228,7 +232,7 @@ A股来源: 同花顺分红数据
 HTML `<table>` 2行布局:
 
 ```
-POP MART 09992.HK │ RECENT │ 153.60 │ P/E │ 30.1 │ (Trailing:30.1) │ RELATIVE │ 0.97 │ DIV'D │ 1.4%
+POP MART 09992.HK │ RECENT │ 173.40 │ P/E │ 18.0 │ (Trailing:18.0) │ RELATIVE │ 0.97 │ DIV'D │ 1.4%
                   │ PRICE  │        │RATIO│      │ (Median:50.0)  │P/E RATIO │      │ YLD   │
 ```
 
@@ -266,7 +270,7 @@ POP MART 09992.HK │ RECENT │ 153.60 │ P/E │ 30.1 │ (Trailing:30.1) │
 |------|---------|---------|-----------|
 | Monthly Price Bars | ✅ | ECharts candlestick (红涨绿跌) | ✅ 符合中国惯例 |
 | Cash Flow Line | ✅ | 15×CF per sh (实线+虚线) | ⚠️ 无预测部分虚线 |
-| Relative Price Strength | ⚠️ 替代 | 个股vs HSI/CSI300 指数线 | VL对~1700只美股, 当前对市场指数 |
+| Relative Price Strength | ✅ 单线RS | RS = (个股价÷基期) ÷ (指数÷基期) ×100 | 对标从VL 1700只→HSI/CSI300, 公式一致 |
 | Monthly Volume % | ✅ | 成交量÷股本×100% | ✅ |
 | Yearly High/Low | ✅ | 从月K线聚合 | ✅ |
 | Target Price Range | ❌ | — | 需3-5年预测EPS+PE |
@@ -316,10 +320,16 @@ seeds = [1, 1.6, 2.4, 4, 6]
 - 数据同样做 log 变换
 - 按年度映射(非月度), 全年统一值
 
-**Relative Price Strength 线:**
-- 个股: 红色虚线 `#ef232a`, `dotted`, yAxisIndex:1 (右侧线性轴)
-- 指数(HSI): 灰色虚线 `#999`, `dotted`, yAxisIndex:1
-- 基期100, 百分比值, 独立线性Y轴
+**Relative Price Strength (RS) 线 (2026-06-01 改为VL原生单线):**
+```
+RS = (个股价 ÷ 个股基期价) ÷ (指数价 ÷ 指数基期价) × 100
+   = (sc.close / baseS) / (hc / baseH) × 100
+```
+- 红色虚线 `#ef232a`, `dotted`, yAxisIndex:1 (左侧线性轴)
+- 基期 = K线+HSI第一个重叠月(泡泡玛特: 2020-12)
+- RS > 100 = 跑赢市场, RS < 100 = 跑输
+- 泡泡玛特最新: RS = 240.9 (2026-05), 大幅跑赢恒指
+- 与 dates 等长, 缺失月份填 null 避免 tooltip 索引错位
 
 **Volume % (Percent shares traded) 图:**
 
@@ -380,6 +390,20 @@ step     = ceilVol / 3                        // 三等分
 - 3行: `Percent | ceilVol` / `shares | step×2` / `traded | step`
 - 字体 **10px bold**，`display:flex; justify-content:space-between`
 - 位于 `div#chart_volume` 内 `position:absolute; left:-72px`
+
+**统一 Tooltip (2026-06-01):**
+K线图 tooltip 统一显示 OHLC + CF + RS + PST，成交量图 tooltip 关闭。
+```
+2024-01
+● POP MART
+ open: 19.32  close: 36.34  low: 19.32  high: 37.10
+● 15x CF: 13.90
+● RS: 70.2
+  ● PST: 11.30%
+```
+- OHLC 从原始 `kl` 数据读取(避免 ECharts candlestick 内部格式问题)
+- PST 带涨跌圆点(涨红#ef232a / 跌绿#14b143)
+- 各系列 `p[i].marker` 保留原生颜色标记
 
 **年度 High/Low 表格:**
 - 位于 K线图上方, 每列对应一年
@@ -986,7 +1010,7 @@ A股有高管增减持数据 (巨潮), 港股有披露权益数据 (港交所), 
 | **🔴 P0** | Analyst Commentary | **无分析师观点**, 仅数据摘要 | VL最受欢迎的区域 |
 | **🟡 P1** | Header PE | P/E公式差异 (历史 vs Forward) | 估值锚定 |
 | **🟡 P1** | Header Relative PE | 对标错误 (HSI vs VL universe) | 相对估值 |
-| **🟡 P1** | RS Line | 对标错误 (HSI vs VL universe) | 相对强弱 |
+| **🟢 P2** | RS Line | ✅ 已修复为VL单线, 对标仍是HSI | 相对强弱 |
 | **🟡 P1** | Target Price Range | **完全缺失** | 投资决策直接参考 |
 | **🟡 P1** | Projections Box | **完全缺失** | 投资总回报预期 |
 | **🟡 P1** | Footnotes | **缺失** (EPS口径/非经常性等) | 数据可靠性 |
@@ -1021,3 +1045,18 @@ A股有高管增减持数据 (巨潮), 港股有披露权益数据 (港交所), 
 | 历史年份数 | THS约10-15年 | EM约5-10年 |
 | 股息 | ✅ 巨潮分红 | ⚠️ EM大量0值 |
 | 货币 | 固定CNY | CNY/HKD混合 |
+
+---
+
+## 变更记录
+
+| 日期 | 变更 | 说明 |
+|------|------|------|
+| 2026-06-01 | TTM EPS 修复 | 优先取最新年报; POP MART PE 34→18 |
+| 2026-06-01 | RS 单线 | VL原生公式: (个股价/基期)÷(指数/基期)×100 |
+| 2026-06-01 | 统一 Tooltip | OHLC+CF+RS+PST 一行一个值, 带标记 |
+| 2026-06-01 | LEGENDS/volScale 字体 | 标题10px, 内容9px, volScale 10px |
+| 2026-05-31 | Q1/Q4 对齐修复 | Q1 left-align + padding-left:3px |
+| 2026-05-31 | K线↔成交量联动 | echarts.connect + click高亮 |
+| 2026-05-31 | HTML 输出路径 | report/ 目录 |
+| 2026-05-31 | iOS 适配 | -webkit-text-size-adjust:100% + line-height:1
