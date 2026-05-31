@@ -231,17 +231,20 @@ var DATA = {DATA_JS};
 
   // Annual Rates of Change — VL标准 (per sh, 复合增长率)
   var has10=ar.has_10yr;
-  // 列: Est'd 无法预测, 用 Past 1 Yr. 代替
   var colKeys=has10?['10yr','5yr','3yr','1yr']:['5yr','3yr','1yr'];
-  var colLabels=has10?['Past 10 Yrs.','Past 5 Yrs.','Past 3 Yrs.','Past 1 Yr.']:['Past 5 Yrs.','Past 3 Yrs.','Past 1 Yr.'];
+  var colParts=colKeys.map(function(k){{
+    var m=k.match(/^(\\d+)(yr)$/);
+    return m?[m[1]+' Yrs.']:[k];
+  }});
   html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:4px;margin-bottom:6px">';
-  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.4">';
-  // 标题双行
-  html+='<tr><td style="font-weight:700" colspan="'+(colKeys.length+1)+'">ANNUAL RATES</td></tr>';
-  html+='<tr><td style="font-size:8px;color:#000" colspan="'+(colKeys.length+1)+'">of change (per sh)</td></tr>';
-  // 列名
-  html+='<tr><td></td>';
-  colLabels.forEach(function(l){{html+='<td style="text-align:right;font-weight:700">'+l+'</td>';}});
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.3">';
+  // 标题行: ANNUAL RATES + 列名第一行
+  html+='<tr><td style="white-space:nowrap;font-weight:700">ANNUAL RATES</td>';
+  colParts.forEach(function(p){{html+='<td style="text-align:right;font-weight:700">Past</td>';}});
+  html+='</tr>';
+  // 副标题行: of change (per sh) + 列名第二行
+  html+='<tr><td style="font-size:9px;color:#666">of change (per sh)</td>';
+  colParts.forEach(function(p){{html+='<td style="text-align:right;font-weight:700">'+p[0]+'</td>';}});
   html+='</tr>';
   // 数据行
   var arData=[
