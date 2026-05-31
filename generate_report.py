@@ -416,7 +416,7 @@ var DATA = {DATA_JS};
   html+='</div></td>';
   html+='<td colspan="'+yrCount+'" style="padding:0">';
   html+='<div class="chart-box" id="chart_kline"></div>';
-  html+='<div id="chart_volume" style="height:50px;margin-top:0;position:relative"></div>';
+  html+='<div id="chart_volume" style="height:50px;margin-top:6px;position:relative"></div>';
   
   // Row 5: 年份行
   html+='<tr style="border-top:1px solid #000;border-bottom:1px solid #000"><td style="font-size:10px;color:#000;padding:2px 3px;'+tdStyle+'">Year</td>';
@@ -547,8 +547,9 @@ var DATA = {DATA_JS};
       pow*=10;
     }}
     var logTicks=ticks.map(function(v){{return Math.log(v);}});
-    echarts.init(document.getElementById('chart_kline')).setOption({{
-      tooltip:{{trigger:'axis',valueFormatter:function(v){{return v!=null?'$'+Math.exp(Number(v)).toFixed(2):'-';}}}},
+    var klineChart=echarts.init(document.getElementById('chart_kline'));
+    klineChart.setOption({{
+      tooltip:{{trigger:'axis',axisPointer:{{label:{{show:false}}}},valueFormatter:function(v){{return v!=null?'$'+Math.exp(Number(v)).toFixed(2):'-';}}}},
       grid:{{left:0,right:28,top:4,bottom:24}},
       xAxis:{{type:'category',data:dates,boundaryGap:false,
         axisLabel:{{fontSize:7,color:'#333',fontWeight:700,margin:2,
@@ -585,33 +586,50 @@ var DATA = {DATA_JS};
     var ceilVol=Math.ceil(maxVol/interval)*interval||interval, step=ceilVol/3;
     var volChart=echarts.init(document.getElementById('chart_volume'));
     volChart.setOption({{
-      grid:{{left:0,right:0,top:0,bottom:0,containLabel:false}},
-      xAxis:{{type:'category',data:dates,show:false,boundaryGap:false}},
+      tooltip:{{trigger:'axis',
+        formatter:function(p){{var k=kl[p[0].dataIndex],up=k&&k.close>k.open;
+          return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle"></span>PST: '+(p[0].value!=null?p[0].value.toFixed(2)+'%':'-');}}}},
+      grid:{{left:0,right:28,top:0,bottom:0,containLabel:false}},
+      xAxis:{{type:'category',data:dates,show:false,boundaryGap:false,
+        axisPointer:{{show:true,type:'shadow',shadowStyle:{{color:'rgba(25,118,210,.08)'}},label:{{show:false}}}}}},
       yAxis:{{type:'value',position:'left',min:0,max:ceilVol,splitNumber:3,
         axisLabel:{{show:false}},
         splitLine:{{show:false}},
         axisLine:{{show:false}},axisTick:{{show:false}}}},
       series:[{{name:'Vol%',type:'bar',data:volData,
-        itemStyle:{{color:function(p){{var d=dates[p.dataIndex];return d&&d.endsWith('-01')?'#ff6600':'#1976D2';}}}},barWidth:'60%',
+        emphasis:{{itemStyle:{{color:'#ff6600'}}}},
+        itemStyle:{{color:function(p){{var d=dates[p.dataIndex];return d&&d.endsWith('-01')?'#7b1fa2':'#1976D2';}}}},barWidth:'60%',
         markLine:{{silent:true,symbol:'none',animation:false,
           data:[{{yAxis:ceilVol,name:'',lineStyle:{{color:'#000',width:3.0,type:'solid'}}}},
                 {{yAxis:step*2,name:'',lineStyle:{{color:'#000',width:0.5,type:'solid'}}}},
                 {{yAxis:step,name:'',lineStyle:{{color:'#000',width:0.5,type:'solid'}}}}]
         }}}}]
     }});
-    // 用 convertToPixel 取 yAxis 值的精确像素位置
-    var yPx=volChart.getModel().getComponent('yAxis').axis.scale;
-    var vals=[ceilVol,step*2,step], labels=['Percent','shares','traded'], ids=['vs3','vs2','vs1'];
+    // DOM 标签画左侧 Percent/shares/traded — convertToPixel 取刻度 y 像素, 放在 chart_volume 外
+    var volCnt=document.getElementById('chart_volume');
+    volCnt.style.overflow='visible';
+    var vals=[ceilVol,step*2,step], labels=['Percent','shares','traded'];
     var vsDiv=document.createElement('div');
-    vsDiv.style.cssText='position:absolute;left:-72px;width:68px;height:50px;top:0;pointer-events:none;z-index:1';
+    vsDiv.style.cssText='position:absolute;left:-72px;width:68px;top:0;bottom:0;pointer-events:none;z-index:1';
     vals.forEach(function(v,i){{
+      var py=volChart.convertToPixel({{yAxisIndex:0}},v);
       var d=document.createElement('div');
-      var topPx=Math.round((1-(v-yPx._extent[0])/(yPx._extent[1]-yPx._extent[0]))*50);
-      d.style.cssText='position:absolute;left:0;right:0;top:'+topPx+'px;font-size:8.5px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
-      d.innerHTML='<span>'+labels[i]+'</span><span id="'+ids[i]+'">'+Math.round(v)+'</span>';
+      d.style.cssText='position:absolute;left:0;right:0;top:'+(py||0)+'px;font-size:8.5px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
+      d.innerHTML='<span>'+labels[i]+'</span><span>'+Math.round(v)+'</span>';
       vsDiv.appendChild(d);
     }});
-    document.getElementById('chart_volume').appendChild(vsDiv);
+    volCnt.appendChild(vsDiv);
+    // K线图 ↔ 成交量图联动
+    klineChart.group='vl'; volChart.group='vl'; echarts.connect('vl');
+    // click K线 → 成交量柱高亮 + tooltip
+    klineChart.on('click',function(p){{
+      volChart.dispatchAction({{type:'downplay',seriesIndex:0}});
+      volChart.dispatchAction({{type:'highlight',seriesIndex:0,dataIndex:p.dataIndex}});
+      volChart.dispatchAction({{type:'showTip',seriesIndex:0,dataIndex:p.dataIndex}});
+    }});
+    // click 成交量图空白 → 取消高亮
+    volChart.getZr().on('click',function(e){{if(!e.target)volChart.dispatchAction({{type:'downplay',seriesIndex:0}});}});
+    klineChart.group='vl'; volChart.group='vl'; echarts.connect('vl');
 
   }},300);
 }})();
