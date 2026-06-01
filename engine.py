@@ -274,7 +274,7 @@ def build_metric_table(reader, years, market="hk"):
         row["BPS"] = round(_bps, 2) if _bps else None
 
         # ---- 7. 发行在外股数 (百万股) ----
-        row["TOTAL_SHARES"] = round(shares / 1e6, 1) if shares else None
+        row["TOTAL_SHARES"] = int(shares) if shares else None  # raw count, not 百万
 
         # ---- 8-10. PE/股息率 (后续补算) ----
         row["PE_AVG"] = None
