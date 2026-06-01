@@ -398,19 +398,29 @@ def _compute_pe_metrics(table, reader, market="hk"):
         yr = d[:4]
         yearly_closes[yr].append(c)
 
-    # 计算每年均价和PE
+    # 计算每年均价和PE (汇率调整: avg_price HKD → CNY)
+    price_ccy = config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
+    need_fx = (price_ccy != "CNY")  # 港股价格 HKD, 财报 CNY — 需要换算
     for yr, row in table.items():
         closes = yearly_closes.get(yr, [])
         if not closes or not row.get("BASIC_EPS"):
             continue
-        avg_price = sum(closes) / len(closes)
+        avg_price = sum(closes) / len(closes)  # 交易货币(HKD)
+        row["AVG_PRICE"] = round(avg_price, 2)
+        # 汇率换算: avg_price(HKD) → CNY
+        fx_yr = None
+        if need_fx:
+            fx_yr = _get_fx_rate(f"{yr}-12-31")
+        fx = (fx_yr or 1.0) if fx_yr and fx_yr > 0 else 1.0
+        avg_price_cny = avg_price / fx
         eps = row["BASIC_EPS"]
         if eps and eps > 0:
-            row["PE_AVG"] = round(avg_price / eps, 1)
-        # 平均股息率 = DPS / 年均价
+            row["PE_AVG"] = round(avg_price_cny / eps, 1)
+            row["PE_AVG_HKD"] = round(avg_price / eps, 1)  # 原始混合值
+        # 平均股息率 = DPS(CNY) / 年均价(CNY)
         dps = row.get("DPS")
-        if dps and dps > 0 and avg_price > 0:
-            row["DIV_YIELD"] = round((dps / avg_price) * 100, 1)
+        if dps and dps > 0 and avg_price_cny > 0:
+            row["DIV_YIELD"] = round((dps / avg_price_cny) * 100, 1)
 
     # 相对PE: PE_AVG / 市场PE (从 config.MARKET_CONFIG 获取)
     market_cfg = config.MARKET_CONFIG.get(market, {})
@@ -1093,8 +1103,8 @@ def build_report(code=None):
         if data:
             revenue_structure[dim] = data
 
-    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * 15 / fx, 2)}
-               for y in years if y in metrics and metrics[y].get("PER_NETCASH") and fx > 0]
+    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * 15, 2)}
+               for y in years if y in metrics and metrics[y].get("PER_NETCASH")]
 
     # Capital Structure
     balance_summary = {}
