@@ -2,7 +2,7 @@
 generate_report.py — 从 report_data.json 生成自包含 HTML (Value Line 标准三栏布局)
 参照: Timberland Co. 价值线标准版
 """
-import json, os
+import json, os, datetime
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -467,8 +467,8 @@ var DATA = {DATA_JS};
   html+='</div>';
 
   html+='</div>'; // end center-col
-
   html+='</div>'; // end container
+  html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: HKD | 财报数据: CNY | {datetime.date.today().isoformat()}</div>';
   app.innerHTML=html;
 
   // ECharts
@@ -549,7 +549,7 @@ var DATA = {DATA_JS};
     var logTicks=ticks.map(function(v){{return Math.log(v);}});
     var klineChart=echarts.init(document.getElementById('chart_kline'));
     // 统一 tooltip: 日期 → OHLC(从原始kl读) → CF → RS → PST
-    var tooltipFmt=function(p){{var di=p[0].dataIndex,h=p[0].axisValue,r='<b>'+h+'</b>',mk=p[0].marker;var dk=kl.find(function(k){{return k.date===h;}});if(dk)r+='<br/>'+mk+' '+stockName+'<br/> open:'+dk.open.toFixed(2)+' HKD<br/> close:'+dk.close.toFixed(2)+' HKD<br/> low:'+dk.low.toFixed(2)+' HKD<br/> high:'+dk.high.toFixed(2)+' HKD';for(var i=1;i<p.length;i++){{var v=p[i].value,n=p[i].seriesName;if(v==null)continue;if(n==='RS')r+='<br/>'+p[i].marker+' '+n+': '+(v!=null?Number(v).toFixed(1):'-');else if(n.indexOf('15x CF')>-1)r+='<br/>'+p[i].marker+' '+n+': '+Math.exp(Number(v)).toFixed(2);}}var pv=volData[di];if(pv!=null){{var up=dk&&dk.close>dk.open;r+='<br/><span style=\"display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle\"></span>PST: '+pv.toFixed(2)+'%';}}return r;}};
+    var tooltipFmt=function(p){{var di=p[0].dataIndex,h=p[0].axisValue,r='<b>'+h+' HKD</b>',mk=p[0].marker;var dk=kl.find(function(k){{return k.date===h;}});if(dk)r+='<br/>'+mk+' '+stockName+'<br/> open:'+dk.open.toFixed(2)+'<br/> close:'+dk.close.toFixed(2)+'<br/> low:'+dk.low.toFixed(2)+'<br/> high:'+dk.high.toFixed(2);for(var i=1;i<p.length;i++){{var v=p[i].value,n=p[i].seriesName;if(v==null)continue;if(n==='RS')r+='<br/>'+p[i].marker+' '+n+': '+(v!=null?Number(v).toFixed(1):'-');else if(n.indexOf('15x CF')>-1)r+='<br/>'+p[i].marker+' '+n+': '+Math.exp(Number(v)).toFixed(2);}}var pv=volData[di];if(pv!=null){{var up=dk&&dk.close>dk.open;r+='<br/><span style=\"display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle\"></span>PST: '+pv.toFixed(2)+'%';}}return r;}};
     klineChart.setOption({{
       tooltip:{{trigger:'axis',axisPointer:{{label:{{show:false}}}},formatter:tooltipFmt}},
       grid:{{left:0,right:28,top:4,bottom:24}},
@@ -634,7 +634,6 @@ var DATA = {DATA_JS};
   }},300);
 }})();
 </script>
-<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: HKD | 财报数据: CNY | 汇率: 报表日 HKD/CNY</div>
 </body>
 </html>'''
 
