@@ -1047,8 +1047,8 @@ def build_report(code=None):
             eps_in_price_ccy = ttm_eps / fx if ttm_eps and fx and fx != 1.0 else ttm_eps
             if eps_in_price_ccy and eps_in_price_ccy > 0:
                 spot["pe"] = round(price / eps_in_price_ccy, 1)
-                spot["eps_ttm"] = round(eps_in_price_ccy, 2)
-                spot["eps_ttm_cny"] = round(ttm_eps, 2)
+                spot["eps_ttm"] = round(ttm_eps, 2)        # 原始 CNY EPS
+                spot["eps_ttm_hkd"] = round(eps_in_price_ccy, 2)  # HKD 换算
             else:
                 eps_latest = latest.get("BASIC_EPS")
                 if eps_latest and eps_latest > 0:
