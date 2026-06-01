@@ -178,7 +178,7 @@ var DATA = {DATA_JS};
   html+='</div>';
   // MARKET CAP
   html+='<div style="margin-top:4px;font-size:10px;line-height:1.4">';
-  html+='<div style="display:flex;justify-content:space-between;font-weight:700"><span>MARKET CAP:</span><span>'+(cs.mkt_cap||0).toFixed(0)+' '+csUnit+' ('+cs.cap_label+')</span></div>';
+  html+='<div style="display:flex;justify-content:space-between;font-weight:700"><span>MARKET CAP:</span><span>'+(cs.mkt_cap||0).toFixed(0)+' '+csUnit+' CNY ('+cs.cap_label+')</span></div>';
   html+='</div>';
   html+='<div style="border-bottom:1px solid #000;margin-top:4px"></div>';
   html+='</div>';
@@ -333,7 +333,7 @@ var DATA = {DATA_JS};
   html+='<span style="font-size:9px;font-weight:700;color:#000;line-height:1">'+stockCode+'.'+stockMarket+'</span></td>';
 
   html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RECENT</td>';
-  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'—')+'</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'—')+' HKD</td>';
   html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E</td>';
   html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(trailingPE!=null?trailingPE.toFixed(1):'—')+'</td>';
   // ⑥ (Trailing: xx 第一行
@@ -549,7 +549,7 @@ var DATA = {DATA_JS};
     var logTicks=ticks.map(function(v){{return Math.log(v);}});
     var klineChart=echarts.init(document.getElementById('chart_kline'));
     // 统一 tooltip: 日期 → OHLC(从原始kl读) → CF → RS → PST
-    var tooltipFmt=function(p){{var di=p[0].dataIndex,h=p[0].axisValue,r='<b>'+h+'</b>',mk=p[0].marker;var dk=kl.find(function(k){{return k.date===h;}});if(dk)r+='<br/>'+mk+' '+stockName+'<br/> open:'+dk.open.toFixed(2)+'<br/> close:'+dk.close.toFixed(2)+'<br/> low:'+dk.low.toFixed(2)+'<br/> high:'+dk.high.toFixed(2);for(var i=1;i<p.length;i++){{var v=p[i].value,n=p[i].seriesName;if(v==null)continue;if(n==='RS')r+='<br/>'+p[i].marker+' '+n+': '+(v!=null?Number(v).toFixed(1):'-');else if(n.indexOf('15x CF')>-1)r+='<br/>'+p[i].marker+' '+n+': '+Math.exp(Number(v)).toFixed(2);}}var pv=volData[di];if(pv!=null){{var up=dk&&dk.close>dk.open;r+='<br/><span style=\"display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle\"></span>PST: '+pv.toFixed(2)+'%';}}return r;}};
+    var tooltipFmt=function(p){{var di=p[0].dataIndex,h=p[0].axisValue,r='<b>'+h+'</b>',mk=p[0].marker;var dk=kl.find(function(k){{return k.date===h;}});if(dk)r+='<br/>'+mk+' '+stockName+'<br/> open:'+dk.open.toFixed(2)+' HKD<br/> close:'+dk.close.toFixed(2)+' HKD<br/> low:'+dk.low.toFixed(2)+' HKD<br/> high:'+dk.high.toFixed(2)+' HKD';for(var i=1;i<p.length;i++){{var v=p[i].value,n=p[i].seriesName;if(v==null)continue;if(n==='RS')r+='<br/>'+p[i].marker+' '+n+': '+(v!=null?Number(v).toFixed(1):'-');else if(n.indexOf('15x CF')>-1)r+='<br/>'+p[i].marker+' '+n+': '+Math.exp(Number(v)).toFixed(2);}}var pv=volData[di];if(pv!=null){{var up=dk&&dk.close>dk.open;r+='<br/><span style=\"display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle\"></span>PST: '+pv.toFixed(2)+'%';}}return r;}};
     klineChart.setOption({{
       tooltip:{{trigger:'axis',axisPointer:{{label:{{show:false}}}},formatter:tooltipFmt}},
       grid:{{left:0,right:28,top:4,bottom:24}},
@@ -634,6 +634,7 @@ var DATA = {DATA_JS};
   }},300);
 }})();
 </script>
+<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: HKD | 财报数据: CNY | 汇率: 报表日 HKD/CNY</div>
 </body>
 </html>'''
 
