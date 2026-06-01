@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-01 10:28:42.470907"
+    "generated": "2026-06-01 10:39:49.933287"
   },
   "spot": {
     "price": 173.39999,
@@ -2466,7 +2466,7 @@
     "common_shares": 1343.0,
     "common_shares_str": "1,342,943,150",
     "common_shares_raw": 1342943150,
-    "mkt_cap": 2578.2,
+    "mkt_cap": 2103.3,
     "cap_label": "Large Cap",
     "business_desc": "泡泡玛特是中国领先的潮流文化娱乐公司。2025年全球化进程进一步提速，品牌知名度持续提升，IP运营与产品研发能力持续增强，推出多款深受全球消费者欢迎的新IP及新品系列，推动销售业绩实现高速增长。",
     "employee_count": 10879,
@@ -2615,11 +2615,11 @@
   ],
   "position": {
     "pe": {
-      "current": 20.0,
+      "current": 16.3,
       "min": 19.8,
       "max": 204.8,
       "avg": 79.9,
-      "pct": 0.0
+      "pct": -2.0
     },
     "price": {
       "current": 173.4,

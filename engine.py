@@ -774,9 +774,9 @@ def _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate=None):
 
     # Market Cap (价格(交易货币) × 股数 → 换算为报表货币 CNY)
     price = spot.get("price", 0) if spot else 0
-    # 汇率换算: price(HKD) → CNY
+    # 汇率换算: price(HKD) → CNY. 1 HKD = fx CNY, 所以 price_cny = price * fx
     fx_mc = fx_rate if fx_rate and fx_rate > 0 and fx_rate != 1.0 else 1.0
-    price_cny = price / fx_mc
+    price_cny = price * fx_mc
     mkt_cap_raw = price_cny * result["common_shares_raw"] if result["common_shares_raw"] else 0
     result["mkt_cap"] = round(mkt_cap_raw / divisor, 1) if divisor else 0
     # Market cap label
@@ -892,28 +892,24 @@ def _build_annual_rates(metrics, years):
     }
 
 
-def _calc_position(spot, kline, metrics, years, fx_rate=None):
+def _calc_position(spot, kline, metrics, years):
     """计算当前估值在历史区间的位置 (统一 CNY)"""
     result = {}
     price = spot.get("price", 0) if spot else 0  # HKD
-    pe_ttm = spot.get("pe", 0) if spot else 0    # HKD-based
-    pb = spot.get("pb", 0) if spot else 0        # HKD-based
-    fx = fx_rate if fx_rate and fx_rate > 0 else 1.0
+    pe_ttm = spot.get("pe", 0) if spot else 0    # PE = 价格/收益，币种无关
+    pb = spot.get("pb", 0) if spot else 0
 
-    # PE区间: PE_AVG(CNY) vs spot.pe(HKD) → 统一转为 CNY
-    # PE_HKD = price(HKD) / eps(HKD) = price(HKD) / (eps(CNY)/fx) = price(HKD)×fx/eps(CNY)
-    # PE_CNY = price(CNY) / eps(CNY) = (price(HKD)/fx) / eps(CNY) = PE_HKD / fx²
+    # PE区间: PE 是价格/收益比值，与货币无关 (分子分母同币种抵消)
     pe_vals = [metrics[y]["PE_AVG"] for y in years if y in metrics and metrics[y].get("PE_AVG")]
-    pe_ttm_cny = pe_ttm / (fx * fx) if fx != 1.0 else pe_ttm
     if pe_vals:
         result["pe"] = {
-            "current": round(pe_ttm_cny, 1),  # CNY
+            "current": round(pe_ttm, 1),
             "min": round(min(pe_vals), 1),
             "max": round(max(pe_vals), 1),
             "avg": round(sum(pe_vals) / len(pe_vals), 1),
         }
         rng = result["pe"]["max"] - result["pe"]["min"]
-        result["pe"]["pct"] = round((pe_ttm_cny - result["pe"]["min"]) / rng * 100, 0) if rng > 0 else 50
+        result["pe"]["pct"] = round((pe_ttm - result["pe"]["min"]) / rng * 100, 0) if rng > 0 else 50
 
     # 价格区间 (从月K线)
     if kline and price:
@@ -1154,7 +1150,7 @@ def build_report(code=None):
     quarterly = build_semi_annual(reader, years, metrics)
 
     # Current Position 估值定位 (图表用)
-    position = _calc_position(spot, kline, metrics, years, fx_rate)
+    position = _calc_position(spot, kline, metrics, years)
 
     # Yearly High/Low (从月K线)
     yearly_hl = _build_yearly_hl(kline, years)
