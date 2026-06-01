@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-01 10:39:49.933287"
+    "generated": "2026-06-01 10:55:02.321804"
   },
   "spot": {
     "price": 173.39999,
@@ -24,7 +24,7 @@
     "change_pct": 7.36842,
     "eps_ttm": 9.61,
     "eps_ttm_hkd": 10.64,
-    "median_pe": 55.8
+    "median_pe": 44.8
   },
   "kline": [
     {
@@ -1940,8 +1940,8 @@
       "CAPEX_PS": 0.13,
       "BPS": 4.57,
       "TOTAL_SHARES": 1401.9,
-      "PE_AVG": 204.8,
-      "PE_RELATIVE": 15.17,
+      "PE_AVG": 145.1,
+      "PE_RELATIVE": 10.75,
       "DIV_YIELD": 0.2,
       "OPERATE_INCOME": 25.1,
       "OP_MARGIN": 38.4,
@@ -1968,9 +1968,9 @@
       "CAPEX_PS": 0.21,
       "BPS": 5.08,
       "TOTAL_SHARES": 1401.9,
-      "PE_AVG": 120.1,
-      "PE_RELATIVE": 11.44,
-      "DIV_YIELD": 0.2,
+      "PE_AVG": 80.3,
+      "PE_RELATIVE": 7.65,
+      "DIV_YIELD": 0.3,
       "OPERATE_INCOME": 44.9,
       "OP_MARGIN": 35.3,
       "DEPRECIATION": 4.4,
@@ -1996,9 +1996,9 @@
       "CAPEX_PS": 0.19,
       "BPS": 5.19,
       "TOTAL_SHARES": 1380.5,
-      "PE_AVG": 83.5,
-      "PE_RELATIVE": 11.13,
-      "DIV_YIELD": 0.3,
+      "PE_AVG": 66.6,
+      "PE_RELATIVE": 8.88,
+      "DIV_YIELD": 0.4,
       "OPERATE_INCOME": 46.2,
       "OP_MARGIN": 25.7,
       "DEPRECIATION": 6.0,
@@ -2024,9 +2024,9 @@
       "CAPEX_PS": 0.24,
       "BPS": 5.79,
       "TOTAL_SHARES": 1348.2,
-      "PE_AVG": 28.1,
-      "PE_RELATIVE": 3.12,
-      "DIV_YIELD": 1.2,
+      "PE_AVG": 23.1,
+      "PE_RELATIVE": 2.57,
+      "DIV_YIELD": 1.5,
       "OPERATE_INCOME": 63.0,
       "OP_MARGIN": 30.1,
       "DEPRECIATION": 6.7,
@@ -2052,9 +2052,9 @@
       "CAPEX_PS": 0.28,
       "BPS": 7.97,
       "TOTAL_SHARES": 1342.9,
-      "PE_AVG": 19.8,
-      "PE_RELATIVE": 2.33,
-      "DIV_YIELD": 1.8,
+      "PE_AVG": 17.0,
+      "PE_RELATIVE": 2.0,
+      "DIV_YIELD": 2.0,
       "OPERATE_INCOME": 130.4,
       "OP_MARGIN": 38.5,
       "DEPRECIATION": 8.6,
@@ -2080,9 +2080,9 @@
       "CAPEX_PS": 0.73,
       "BPS": 16.61,
       "TOTAL_SHARES": 1342.9,
-      "PE_AVG": 23.2,
-      "PE_RELATIVE": 2.9,
-      "DIV_YIELD": 1.1,
+      "PE_AVG": 18.9,
+      "PE_RELATIVE": 2.36,
+      "DIV_YIELD": 1.3,
       "OPERATE_INCOME": 371.2,
       "OP_MARGIN": 48.5,
       "DEPRECIATION": 11.2,
@@ -2616,10 +2616,10 @@
   "position": {
     "pe": {
       "current": 16.3,
-      "min": 19.8,
-      "max": 204.8,
-      "avg": 79.9,
-      "pct": -2.0
+      "min": 17.0,
+      "max": 145.1,
+      "avg": 58.5,
+      "pct": -1.0
     },
     "price": {
       "current": 173.4,
@@ -2630,10 +2630,10 @@
     },
     "pb": {
       "current": 9.43,
-      "min": 3.9,
-      "max": 19.7,
-      "avg": 10.5,
-      "pct": 35.0
+      "min": 3.2,
+      "max": 14.0,
+      "avg": 7.9,
+      "pct": 58.0
     }
   },
   "analyst": {

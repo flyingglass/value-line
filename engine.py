@@ -412,7 +412,7 @@ def _compute_pe_metrics(table, reader, market="hk"):
         if need_fx:
             fx_yr = _get_fx_rate(f"{yr}-12-31")
         fx = (fx_yr or 1.0) if fx_yr and fx_yr > 0 else 1.0
-        avg_price_cny = avg_price / fx
+        avg_price_cny = avg_price * fx   # HKD × fx(HKD→CNY) = CNY
         eps = row["BASIC_EPS"]
         if eps and eps > 0:
             row["PE_AVG"] = round(avg_price_cny / eps, 1)
