@@ -36,7 +36,7 @@ class PDFValidator:
     MAX_PAGES = 500
 
     @staticmethod
-    def validate(path, company_name, report_type, fiscal_year):
+    def validate(path, company_name, report_type, fiscal_year, alt_names=None):
         """返回 (通过, 详情)"""
         checks = []
         # 1. 文件存在+大小
@@ -73,11 +73,16 @@ class PDFValidator:
             page1 = pdf.pages[0].extract_text() or ""
             # 取前500字符搜索
             search_text = (page1 + " " + (pdf.pages[1].extract_text() or "") if pages > 1 else page1)[:1000]
-            # 判断公司名是否出现 (宽松匹配: 前2字匹配 + 整体匹配)
+            # 判断公司名是否出现 (简体/繁体/变体模糊匹配)
             cn_found = company_name in search_text
-            # 行业名称PDF常用前几个字, 若简体不匹配则试前缀匹配
             if not cn_found and len(company_name) >= 2:
                 cn_found = company_name[:2] in search_text
+            # 股票变体名 (繁体/简称等)
+            if not cn_found:
+                for an in (alt_names or []):
+                    if an in search_text:
+                        cn_found = True
+                        break
             en_found = False
             if re.search(r"[a-zA-Z]{3,}", search_text):
                 en_found = True  # 至少有英文内容
@@ -167,7 +172,8 @@ def download_cninfo(code, periods=None):
                 adj = a.get("adjunctUrl", "")
                 pdf_url = CNINFO_STATIC + adj if adj.startswith("/") else CNINFO_STATIC + "/" + adj
                 print(f"    下载: {fy} {title_clean[:50]}")
-                ok = _download_and_validate(pdf_url, out, stock["name"], period, fy)
+                ok = _download_and_validate(pdf_url, out, stock["name"], period, fy,
+                    stock.get("alt_names"))
                 if ok: results["OK"] += 1
                 else: results["FAIL"] += 1
                 time.sleep(0.5)
@@ -212,7 +218,7 @@ def _search_hkex(stock_id, t2code, lang="zh"):
         "stockId": stock_id, "searchType": "1", "documentType": "-1",
         "t1code": "40000", "t2code": t2code, "t2Gcode": "-2",
         "fromDate": "20200101", "toDate": "20261231",
-        "MB-Daterange": "0", "rowRange": "50",
+        "MB-Daterange": "0", "rowRange": "200",
         "sortByOptions": "DateTime", "sortDir": "0",
     }
     r = _S.get(HKEX_SEARCH, params=params, timeout=20)
@@ -280,7 +286,8 @@ def download_hkex(code, periods=None):
 
                 pdf_url = fl if fl.startswith("http") else HKEX_BASE + fl
                 print(f"    下载: {fy} {title[:50]}")
-                ok = _download_and_validate(pdf_url, out, stock["name"], period, fy)
+                ok = _download_and_validate(pdf_url, out, stock["name"], period, fy,
+                    stock.get("alt_names"))
                 if ok: results["OK"] += 1
                 else: results["FAIL"] += 1
                 time.sleep(0.5)
@@ -293,7 +300,7 @@ def download_hkex(code, periods=None):
 # ============================================================
 # 通用下载+校验
 # ============================================================
-def _download_and_validate(url, path, company_name, report_type, fiscal_year):
+def _download_and_validate(url, path, company_name, report_type, fiscal_year, alt_names=None):
     try:
         r = _S.get(url, timeout=60, allow_redirects=True)
     except Exception as e:
@@ -310,7 +317,7 @@ def _download_and_validate(url, path, company_name, report_type, fiscal_year):
         f.write(r.content)
 
     # 严格校验
-    ok, detail = PDFValidator.validate(path, company_name, report_type, fiscal_year)
+    ok, detail = PDFValidator.validate(path, company_name, report_type, fiscal_year, alt_names)
     if ok:
         # 计算sha256
         sha = hashlib.sha256(r.content).hexdigest()[:16]
@@ -321,8 +328,11 @@ def _download_and_validate(url, path, company_name, report_type, fiscal_year):
     else:
         print(f"      FAIL 校验: {detail}")
         _write_validation_log(path, url, company_name, report_type, fiscal_year, False, detail)
-        # 删除无效文件
-        os.remove(path)
+        # 仅删除结构性损坏的文件(大小/PDF头/页数), 公司名/内容不匹配则保留
+        if "文件过小" in detail or "非PDF" in detail or "页数过少" in detail:
+            os.remove(path)
+        else:
+            print(f"      (文件已保留: {os.path.basename(path)})")
         return False
 
 def _write_validation_log(pdf_path, source_url, company, rtype, fy, ok, detail):

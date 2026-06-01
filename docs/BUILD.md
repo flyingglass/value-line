@@ -1,195 +1,176 @@
-# Value Line 报告生成流程（强制8步）
+# Value Line 报告生成流程（强制8步，无豁免）
 
-> 泡泡玛特(09992)作为模板标杆。新增标的必须走完完整8步，不允许跳过。
-
-## 前置条件
-- `config.py` 中标的已配置（STOCKS + analyst.commentary + business_desc）
-- AKShare 网络可达（港股 Sina 源，A 股 East Money 源）
+> **唯一入口：`python build.py <代码> --cf <倍数> [--years N]`**
 
 ---
 
-## 第1步：数据拉取
+## 0. 确认页（强制交互）
 
-```bash
-# 修改 config.py ACTIVE_STOCK 为目标代码
-PYTHONIOENCODING=utf-8 python fetcher.py
+```
+python build.py <代码> --cf <倍数> [--years N]
+
+============================================================
+  Value Line 报告生成 — 确认页
+============================================================
+  企业:      [名称]              ← config 自动读
+  代码:      [代码].[交易所]
+  市场:      [港股(H股) / A股]
+  行业:      [行业]
+  报表币种:   [CNY/HKD]
+  数据年份:   YYYY-YYYY (共X年, 默认N年。--years N 可调整)
+  CF 倍数:    [N]x               ← --cf 必填
+============================================================
 ```
 
-**产出：** `data/{code}.db`
-- spot（行情）
-- kline（日K/月K 前复权）
-- income（利润表，年报+中报）
-- balance（资产负债表，年报+中报）
-- cashflow（现金流量表）
-- indicators（年度分析指标，24行基础数据）
-- dividend（分红）
-- meta（code, market, currency, last_fetch）
+**拒绝条件：**
 
----
+| 条件 | 行为 |
+|------|------|
+| 缺 `--cf` | argparse 拒绝 |
+| `--cf` ≤ 0 | argparse 拒绝 |
+| 代码不在 config.STOCKS | 拒绝 |
+| 市场不是 hk/cn | 拒绝 |
+| `--years` < 3 | argparse 拒绝 |
 
-## 第2步：年报PDF下载
+**确认页不出现 = 拒绝执行。**
 
-```bash
-PYTHONIOENCODING=utf-8 python pdf_downloader.py
+### 年份规则
+
+```
+--years 未指定:
+  ├─ 可用 > 10年 → 默认 min(15, 可用)
+  └─ 可用 ≤ 10年 → 全用
+
+--years N 指定:
+  └─ N = min(N, 可用)  (不超过实际)
 ```
 
-**产出：** `data/pdfs/{code}/*.pdf`
-- 港股：港交所 hkexnews.hk
-- A股：巨潮资讯 / 交易所
-- 默认下载最近3年年报
+### 输入项
+
+| 参数 | 必填 | 默认 | 说明 |
+|------|------|------|------|
+| `<代码>` | ✅ | — | 股票代码，如 09992 00700 |
+| `--cf N` | ✅ | — | CF 倍数，如 15.0 |
+| `--years N` | — | 15/全用 | 使用最近N年 |
+| `--force` | ❌ | — | **已禁用** |
 
 ---
 
-## 第3步：MD&A 提取
+## 8步流水线（全阻断）
 
-```bash
-PYTHONIOENCODING=utf-8 python extract_mda.py
+| Step | 操作 | 脚本 | 缺则 | 自愈 |
+|------|------|------|------|------|
+| 0 | config 完整性检查 | — | **BLOCK** | 缺 name_en 才阻断; business_desc/commentary 仅 INFO |
+| 1 | 数据拉取 | fetcher.py | **BLOCK** | 自动下载 |
+| 2 | 年报PDF下载 | pdf_downloader.py | **BLOCK** | 自动下载 (≥3年) |
+| 3 | MD&A 提取 | extract_mda.py | **BLOCK** | 自动提取 → mda_text |
+| 4 | 营收拆分入库 | insert_revenue.py | **BLOCK** | **手动补** |
+| 5 | config final | — | **BLOCK** | — |
+| 6 | **指标计算 + mda解析 + 交叉验证** | engine.py | **BLOCK** | _parse_mda_text() 解析为 BUSINESS/Commentary |
+| 7 | HTML 生成 | generate_report.py | **BLOCK** | BUSINESS/Commentary 优先 mda_text → config fallback |
+| 8 | **72项逐字段 + 交叉校验阻断** | build.py | **BLOCK** | — |
+
+---
+
+## 数据源（5层 + 回退计算）
+
+| 层 | 源 | 内容 | 年份范围 |
+|----|-----|------|---------|
+| 1 | AKShare `analysis_indicator_em` | 年度预计算指标 (PE/BPS/ROE等) | **最近9年** (上游限制) |
+| 2 | AKShare `financial_report_em` | 利润表/资产负债/现金流 原始数据 | **2001+** (全量) |
+| 3 | AKShare 股息 + 手动 | dividend 表 | 2004+ |
+| 4 | 年报 PDF → SQLite | 营收拆分 revenue_structure | **需手动维护** |
+| 5 | 新浪 index | HSI 指数 | 全量 |
+
+> **回退计算** (`engine.py`): 当 indicators 表缺某年数据时，自动从 income/balance/cashflow 原始表当面计算全部 24 项指标。税率用 `item_code` (004012001=税项, 004011999=除税前利润) 代替 `item_name` 以避免编码乱码。
+
+## Step 6 内置交叉验证
+
+> **原则：** 页面显示多少年数据 → 验证覆盖多少年。每一年的每个输入字段必须有第二源对比。
+
+### 验证体系
+
+```
+交叉校验: 68/68 (0 mismatch)
+  覆盖年份: 15/15 (100%)
+  三源年份: 2017-2025 (9年, indicators↔income↔PDF)
+  双源年份: 2011-2016 (6年, income↔balance↔PDF, 当面算 per-share)
+  单源字段: DPS, Price (无第二数据源, 标记未验)
 ```
 
-**产出：** DB meta 表新增 `mda_text` 键
-- 从PDF提取管理层讨论与分析
-- 存入 SQLite meta 表，engine 自动读取
-- engine 中 `_build_capital_structure` 读取 `mda_text` 写入 mda_text 字段
+### 验证项（7项）
 
----
+| 验证项 | 方式 | 阈值 | 覆盖 |
+|--------|------|------|------|
+| AKShare↔PDF Revenue | income vs PDF by_region sum | 5% (早年25%) | 15年 |
+| AKShare↔Income Revenue | indicators vs income.004001001 | 3% | 9年 |
+| AKShare↔Cashflow Dep | indicators vs cashflow | 1% | 8年 |
+| PerSh OI consistency | PER_OI vs Rev/Sh 当面算 | 0.5% | 15年 |
+| PerSh BPS consistency | BPS vs Eq/Sh 当面算 | 10% | 15年 |
+| SHARES: Rev/PER_OI 反算 | TOTAL_SHARES vs Rev÷PER_OI | 0.5% | 15年 |
+| SHARES: Eq/BPS 反算 | TOTAL_SHARES vs Eq÷BPS | 10% | 15年 |
 
-## 第4步：营收结构提取
+> NetProfit / TotalAssets / Equity 三项全 15 年 0% 差异（内部过滤输出）。
 
-```bash
-PYTHONIOENCODING=utf-8 python insert_revenue.py
+### 验证方式说明
+
+| 方式 | 含义 |
+|------|------|
+| **双表对照** | 同一指标在两张不同表中取值对比 (indicators vs income) |
+| **当面计算** | 用原始数据按公式反推，与既有值对比 (PER_OI vs Rev/Sh) |
+| **三源交叉** | 一条数据从三条独立路径推算验证 (TOTAL_SHARES) |
+| **PDF 营收交叉** | AKShare 营收总额 vs 年报人工拆分的 by_region 汇总 |
+| **H1+H2 自洽** | 半年 + 半年 = 全年的一致性 |
+
+### Step 8 校验规则
+
 ```
-
-**产出：** DB revenue_structure 表
-- 按产品/地区/渠道等维度拆分营收
-- 写入 `revenue_structure(code, year, dim_type, dim_name, amount, pct)`
-- engine 读取后写入 report_data.json 的 revenue_structure 字段
-
----
-
-## 第5步：Config 检查
-
-确认 `config.py` 中标的配置完整：
-
-```python
-STOCKS = {
-    "09992": {
-        "name": "泡泡玛特",         # 中文名
-        "name_en": "POP MART",      # 英文名（用于文件名）
-        "market": "hk",             # hk / cn
-        "exchange": "SEHK",         # SEHK / SSE / SZSE
-        "currency": "CNY",          # 报表货币
-        "shares": 1341043150,       # 总股本（先填近似，API会覆盖）
-        "shares_str": "1,341,043,150",
-        "fiscal_yr_end": "12-31",   # 财年结束日
-        "industry": "Consumer",     # 行业
-        "analyst": {                # AI Commentary（必须）
-            "commentary": [
-                "标题",
-                "日期+导语",
-                "分析段落1",
-                "分析段落2",
-            ]
-        },
-        "business_desc": "...",     # Business 区块描述（必须）
-    }
-}
-```
-
----
-
-## 第6步：Engine 计算
-
-```bash
-PYTHONIOENCODING=utf-8 python engine.py
-```
-
-**产出：** `report_data.json`
-- spot（Header 数据：price, pe, pb, div_yield, median_pe, mkt_cap 等）
-- data（24行 Statistical Array 各年指标）
-- kline（月K线数据）
-- index_kline（指数月线，港股 HSI / A股 CSI300）
-- cf_line（15×CF per share HKD）
-- capital_structure（资本结构完整数据）
-- current_position（3年短期资产负债）
-- annual_rates（CAGR 1/3/5/10yr）
-- quarterly（半年度/季度数据）
-- revenue_structure（营收拆分）
-- balance_summary / income_summary
-- yearly_hl（年度最高最低价）
-- position（估值定位）
-- total_returns（% HIST.RETURN）
-- analyst（AI Commentary）
-- validation（交叉校验）
-- meta（元数据）
-
-**验证：** 控制台输出应显示 `年数: N | K线: M个月 | 季度/半年: K年`
-
----
-
-## 第7步：HTML 生成
-
-```bash
-PYTHONIOENCODING=utf-8 python generate_report.py
-```
-
-**产出：** `report/{Name_En}.html`
-- 1280px 自包含 HTML
-- ECharts 5.5 CDN 引入
-- 样式对齐 VL_REGION_ALIGNMENT.md
-
----
-
-## 第8步：本地预览
-
-```bash
-# 启动 HTTP 服务（如未运行）
-python -m http.server 8899 &
-```
-
-访问：`http://192.168.0.115:8899/report/`
-
-验证项：
-- [ ] Header 所有数值有数据
-- [ ] K线图+成交量图正常渲染
-- [ ] 24行统计表全部有值
-- [ ] Capital Structure 数据完整
-- [ ] Annual Rates 有百分比
-- [ ] Quarterly Data 有数字
-- [ ] Business + AI Commentary 有文字
-- [ ] Revenue Structure 有营收拆分（如有）
-- [ ] 页脚显示货币声明+日期
-
----
-
-## 批量生成脚本
-
-```python
-import os, sys, re
-
-stocks = ['09992', '09988', '00700', ...]
-for code in stocks:
-    # 切换标的
-    with open('config.py', 'r', encoding='utf-8') as f:
-        content = f.read()
-    content = re.sub(r'ACTIVE_STOCK = "[^"]*"', f'ACTIVE_STOCK = "{code}"', content)
-    with open('config.py', 'w', encoding='utf-8') as f:
-        f.write(content)
-    # 执行各步
-    os.system(f'{sys.executable} engine.py')
-    os.system(f'{sys.executable} generate_report.py')
+validation.mismatches > 0  →  BLOCK (不生成报告)
+validation.status != "OK"  →  BLOCK
 ```
 
 ---
 
-## 数据完整性检查清单
+## BUSINESS & AI Commentary 生成链路 (2026-06-01)
 
-| 步骤 | 检查项 | 确认 |
-|------|--------|------|
-| 1 | `data/{code}.db` 存在且 ≥200KB | [ ] |
-| 2 | `data/pdfs/{code}/` 有PDF文件 | [ ] |
-| 3 | DB meta 表有 `mda_text` 键 | [ ] |
-| 4 | DB 有 revenue_structure 表且不为空 | [ ] |
-| 5 | config 有 analyst.commentary + business_desc | [ ] |
-| 6 | engine 输出年数/K线月数/季度年数 | [ ] |
-| 7 | `report/{Name_En}.html` 产生 | [ ] |
-| 8 | 浏览器可访问，各区域有数据 | [ ] |
+```
+extract_mda.py → PDF文本 → _is_narrative()过滤财务数据句
+    ↓  scoring-based classify_sentences()
+    ↓  质量评分: categories≥3 + total≥10 + overview<70%
+    ↓
+    ├─ quality=1 → mda_text (按【章节】分段)
+    └─ quality=0 → build_mda_from_data() (数据动态生成)
+         ↓ SQLite meta.mda_text + meta.mda_quality
+engine.py
+    ↓  _parse_mda_text() if quality=1
+    ├─ OK  → business_summary + mda_sections → 报告使用
+    └─ None → _build_business_from_data() [自生成]
+             → _build_commentary_from_data() [自生成]
+         ↓ 纯财务数据 (营收/利润/ROE/地域/业务拆分/CAGR/PE)
+generate_report.py → 渲染 BUSINESS + AI Commentary
+```
+
+**零 config.py 依赖** — 所有股票加入后自动从财务数据生成，无需手动维护 business_desc / analyst.commentary。
+
+## 关键原则（不可违反）
+
+1. **页面显示 N 年 → 验证 N 年。**
+2. **每步阻断先溯源。** 脚本问题修脚本做兼容，数据问题确认后手补。
+3. **PDF 校验宽容。** 结构损坏才删，繁简体不匹配保留。
+4. **数据源兼容优先。** 毛利率：毛利直取 > COGS 回退。
+5. **AKShare 港股 indicators 仅 9 年。** 早于 2017 年的年份 engine 自动回退到 income/balance/cashflow 当面计算，含税率 (item_code 004012001/004011999)、BPS (总权益/股数)、shares (config 兜底)。前台 `showYears` 截取后 15 年（`Y.slice(-15)`）。
+
+---
+
+## 阻断诊断
+
+```
+BUILD FAILED →
+  ├─ Step 0: 补 config.py 的 analyst + business_desc
+  ├─ Step 1: 检查 AKShare 网络
+  ├─ Step 2: PDF < 3 → HKEX 搜索参数 / stockId / 繁简体
+  ├─ Step 3: mda_text < 100chars → PDF 存在但提取失败
+  ├─ Step 4: revenue_structure 空 → 手动 insert_revenue.py
+  ├─ Step 6: engine 报错 → 字段映射兼容
+  └─ Step 8: validation.mismatches > 0 → 交叉校验不通过
+```

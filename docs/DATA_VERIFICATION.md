@@ -73,7 +73,7 @@
 |----|------|------|
 | `spot` | `stock_hk_spot` (港股) / `stock_zh_a_spot` (A股) | 行情快照 |
 | `kline` | `stock_hk_daily` (港股, 前复权) | 月K线/成交量 |
-| `indicators` | `stock_financial_hk_analysis_indicator_em` (港股年报) | 分析指标(EPS/BPS/ROE等) |
+| `indicators` | `stock_financial_hk_analysis_indicator_em` (港股年报) | 分析指标(EPS/BPS/ROE等) — **仅2017+，早年回退原始表计算** |
 | `income` | `stock_financial_hk_report_em` (港股利润表, 含中报) | 营收/成本/利润/税率 |
 | `balance` | `stock_financial_hk_report_em` (港股资产负债表) | 资产负债/权益 |
 | `cashflow` | `stock_financial_hk_report_em` (港股现金流量表) | 折旧/资本支出 |
@@ -227,6 +227,29 @@
 
 ---
 
-> **最后更新:** 2026-05-31
+> **最后更新:** 2026-06-01
 > **维护者:** AI Agent + 用户
 > **相关文档:** `VL_REGION_ALIGNMENT.md`, `VL_INDICATORS_SPEC.md`
+
+---
+
+## 八、BUSINESS & AI Commentary 数据源 (2026-06-01)
+
+> BUSINESS 和 AI Commentary 为**叙事性内容**，不做数值交叉校验，但需验证来源完整性。
+
+### 优先级链
+
+```
+1. PDF 年报提取 (extract_mda.py, quality=1 时)
+   ├─ _is_narrative() 过滤财务数据句
+   ├─ scoring-based classify_sentences()
+   └─ 质量门: categories>=3 + total>=10 + overview<70% + >=300chars
+
+2. 财务数据自生成 (engine.py, quality=0 时)  <- 默认路径
+   ├─ _build_business_from_data()   -> 营收/利润/ROE/地域/业务
+   └─ _build_commentary_from_data() -> 业绩/结构/财务/增长
+
+3. config.py fallback (仅前两者均失败时)
+```
+
+验证: Step 8 校验 `Commentary` 和 `Business` 字段非空即 PASS。

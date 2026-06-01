@@ -26,6 +26,9 @@ HK_PDF_URLS = {
 }
 
 STOCKS = {
+    # ⚠️ business_desc 和 analyst.commentary 为 fallback:
+    #    优先从年报 PDF 提取 (extract_mda.py → engine.py 解析),
+    #    仅在 PDF 提取失败时使用以下静态配置。
     "09992": {
         "name": "泡泡玛特",
         "name_en": "POP MART",
@@ -49,7 +52,7 @@ STOCKS = {
         "shares": 1341043150,
         "shares_str": "1,341,043,150",
         "industry": "Consumer",
-        "business_desc": "",
+        "business_desc": "泡泡玛特是中国领先的潮流文化娱乐公司，以IP为核心，业务涵盖艺术家发掘、IP运营、产品设计制造、全球零售及粉丝社区运营。旗下IP包括THE MONSTERS(LABUBU)、SKULLPANDA、MOLLY、DIMOO等。2025年海外收入占比达44%。",
     },
     "09988": {
         "name": "阿里巴巴",
@@ -209,6 +212,7 @@ STOCKS = {
         "shares_str": "9,180,000,000",
         "fiscal_yr_end": "12-31",
         "industry": "Technology",
+        "alt_names": ["騰訊控股", "腾讯", "Tencent"],
         "business_desc": "腾讯控股是中国最大的互联网科技公司之一，核心业务涵盖社交(微信/QQ)、游戏(国内+国际)、金融科技(微信支付/理财通)、云服务及企业服务。微信月活13亿+，是全球最大的社交平台之一。2025年营收超7,000亿元，游戏+社交为基本盘，AI大模型及企业服务为增长极。",
         "analyst": {
             "commentary": [

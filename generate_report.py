@@ -15,13 +15,13 @@ HTML = f'''<!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=1360">
 <title>Value Line — {DATA['meta']['name_en']} {DATA['meta']['code']}.{DATA['meta']['market']}</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;color:#000;width:1280px;margin:0 auto;background:#fff;-webkit-text-size-adjust:100%}}
-.container{{display:grid;grid-template-columns:275px 1fr;min-height:100vh;border-top:1px solid #000;border-bottom:1px solid #000;padding:4px 0}}
+body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;color:#000;width:1360px;margin:0 auto;background:#fff;-webkit-text-size-adjust:100%}}
+.container{{display:grid;grid-template-columns:245px 1fr;min-height:100vh;border-top:1px solid #000;border-bottom:1px solid #000;padding:4px 0}}
 
 /* ===== 左栏 ===== */
 .left-col{{border-right:1px solid #000;padding:4px 5px;font-size:9px}}
@@ -48,8 +48,8 @@ body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;col
 .chart-area{{margin:2px 0;border-bottom:1px solid #000}}
 .chart-title{{font-weight:700;font-size:9px;margin-bottom:0px}}
 .chart-row{{display:flex}}
-.chart-box{{flex:1;height:260px}}
-.return-box{{width:150px;font-size:8.5px;padding:3px 5px}}
+.chart-box{{flex:1;height:240px}}
+.return-box{{width:140px;font-size:8.5px;padding:3px 5px}}
 .return-box table{{width:100%;border-collapse:collapse;margin-bottom:3px}}
 .return-box td,.return-box th{{padding:1px 3px;text-align:right;font-size:8px}}
 .return-box th{{border-bottom:1px solid #999}}
@@ -57,17 +57,17 @@ body{{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;col
 
 /* 23-line table */
 .stat-table{{margin:2px 0;overflow-x:auto}}
-.stat-table table{{border-collapse:collapse;font-size:8.5px;width:100%;table-layout:fixed}}
-.stat-table th,.stat-table td{{text-align:right;padding:2px 8px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.3}}
-.stat-table th{{background:#eee;font-weight:700;font-size:8px}}
-.stat-table td:first-child,.stat-table th:first-child{{text-align:left;width:110px;white-space:nowrap}}
+.stat-table table{{border-collapse:collapse;font-size:8px;width:100%;table-layout:fixed}}
+.stat-table th,.stat-table td{{text-align:right;padding:1px 4px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.3}}
+.stat-table th{{background:#eee;font-weight:700;font-size:7.5px}}
+.stat-table td:first-child,.stat-table th:first-child{{text-align:left;width:130px;white-space:nowrap}}
 .stat-table tr:nth-child(even){{background:#fafafa}}
 
 /* 对齐表 — Yearly High/Low 和 K线轴年份 */
 .align-table{{margin:0;padding:1px 8px}}
 .align-table table{{border-collapse:collapse;font-size:8px;width:100%;table-layout:fixed}}
 .align-table th,.align-table td{{text-align:right;padding:0 3px;border-right:1px solid transparent}}
-.align-table th:first-child,.align-table td:first-child{{text-align:left;width:110px}}
+.align-table th:first-child,.align-table td:first-child{{text-align:left;width:130px}}
 .stat-table .sep td{{border-bottom:2px solid #000;padding:0}}
 .stat-table .sep-sm td{{border-bottom:1px solid #999}}
 
@@ -89,12 +89,14 @@ var DATA = {DATA_JS};
       yhl=d.yearly_hl||[], pos=d.position||{{}}, v=d.validation||{{}};
   // 统一年份: 使用 indicators 全量, Yearly HL 缺失则空
   var yhlMap={{}}; yhl.forEach(function(h){{yhlMap[h.year]=h;}});
-  var allY=Y.slice(-10);  // 最多10年 (不足则全部)
+  var allY=Y.slice(-15);  // 最多15年 (不足则全部)
   var spot=d.spot||{{}};
   var latestYr=Y[Y.length-1], ly=MT[latestYr]||{{}};
   var meta=d.meta||{{}};
   var stockName=meta.name_en||meta.name||'N/A';
   var stockCode=meta.code||'';
+  var cfMult=d.cf_multiplier||15;
+  var cfLabel=cfMult+'x CF';
   var stockMarket=meta.market||'';
   var currency=meta.currency||'¥';
   var indexName=meta.index_name||'HSI';
@@ -111,7 +113,7 @@ var DATA = {DATA_JS};
 
   // Business — VL风格，分段可读
   var rev=d.revenue_structure||{{}}, ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]);
-  var desc=cs.business_desc||'';
+  var desc=(d.analyst&&d.analyst.business)||cs.business_desc||'';
   var bizP=[], bizHtml='';
   // P1: 业务描述
   if(desc){{
@@ -267,7 +269,7 @@ var DATA = {DATA_JS};
     var sepStyle=isFirst?'':'border-top:1px solid #999;';
     sepStyle+='line-height:1;';
     var h='<tr><td style="font-weight:700;'+sepStyle+'padding-top:3px">Year</td>';
-    h+='<td colspan="4" style="text-align:center;font-weight:700;border-left:2px solid #000;border-right:2px solid #000;'+sepStyle+'padding-top:3px">'+title+'</td>';
+    h+='<td colspan="4" style="text-align:center;font-weight:700;border-left:2px solid #000;border-right:2px solid #000;'+sepStyle+'padding-top:3px;white-space:nowrap;font-size:9.5px">'+title+'</td>';
     h+='<td style="border-left:2px solid #000;'+sepStyle+'padding-top:3px"></td></tr>';
     // Header
     h+='<tr style="font-weight:700;line-height:1">';
@@ -369,6 +371,9 @@ var DATA = {DATA_JS};
   var showYears=allY;  // 最多10年
   var yrCount=showYears.length;
   html+='<table style="table-layout:fixed;width:100%;border-collapse:collapse;font-size:8.5px">';
+  html+='<colgroup><col style="width:130px">';
+  showYears.forEach(function(){{ html+='<col>'; }});
+  html+='</colgroup>';
   var tdStyle='border-right:1px solid #ddd;padding:2px 8px', thStyle='border-right:1px solid #ddd;text-align:right;padding:2px 8px';
   
   // Row 1: High
@@ -388,13 +393,13 @@ var DATA = {DATA_JS};
   
   // Row 4: K线图行 — LEGENDS + % TOT. RETURN(左) + 图表(右)
   // chart 260px + volume 30px = 290px flex容器, Percent用margin-top:auto沉底
-  html+='<tr><td style="padding:0 3px;vertical-align:top;'+tdStyle+'">';
+  html+='<tr><td style="width:200px;padding:0 4px;vertical-align:top;border-right:1px solid #ddd">';
   html+='<div style="display:flex;flex-direction:column;height:290px;font-size:9px;line-height:1.4">';
   html+='<div>';
   html+='<div style="font-weight:700;font-size:10px;margin:2px 0 1px 0">LEGENDS</div>';
   html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
   html+='<div style="font-size:10px;color:#1976D2;line-height:1.1">\u2501\u2501\u2501</div>';
-  html+='<div>15.0 x \"Cash Flow\" p sh</div>';
+  html+='<div>'+cfMult.toFixed(1)+' x \"Cash Flow\" p sh</div>';
   html+='<div style="margin:4px 0"></div>';
   html+='<div style="font-size:10px;color:#ef232a;line-height:1.1">\u00B7\u00B7\u00B7\u00B7\u00B7\u00B7</div>';
   html+='<div>Relative Price Strength</div>';
@@ -420,7 +425,7 @@ var DATA = {DATA_JS};
   html+='<div id="chart_volume" style="height:50px;margin-top:6px;position:relative"></div>';
   
   // Row 5: 年份行
-  html+='<tr style="border-top:1px solid #000;border-bottom:1px solid #000"><td style="font-size:10px;color:#000;padding:2px 3px;'+tdStyle+'">Year</td>';
+  html+='<tr style="border-top:1px solid #000;border-bottom:1px solid #000"><td style="width:40px;font-size:10px;color:#000;padding:2px 4px;border-right:1px solid #ddd">Year</td>';
   showYears.forEach(function(y){{html+='<td style="text-align:center;font-size:10px;font-weight:700;padding:2px 3px;'+tdStyle+'">'+y+'</td>';}});
   html+='</tr>';
   
@@ -452,18 +457,22 @@ var DATA = {DATA_JS};
   }});
   html+='</table>';
   
-  // Analyst Commentary — VL标准 300-400字三段式 (占位，后续LLM生成)
+  // AI Commentary — PDF提取(mda) > 数据自生成 (零config依赖)
   var commentary=d.analyst&&d.analyst.commentary&&d.analyst.commentary.length?d.analyst.commentary:[
-    '暂无数据',
-    '数据暂不可用',
-    '请先运行 engine.py 生成完整数据',
-    ''
+    '暂无数据', '数据暂不可用', '请先运行 engine.py 生成完整数据', ''
   ];
+  var fromMda=d.analyst&&d.analyst.commentary_from_mda;
   html+='<div class="analyst" style="font-size:10px">';
-  html+='<span style="font-size:12px;font-weight:700">AI Commentary: '+commentary[0]+'</span>';
-  html+='<p style="text-align:justify;margin:4px 0">'+commentary[1]+'</p>';
-  html+='<p style="text-align:justify;margin:4px 0">'+commentary[2]+'</p>';
-  html+='<p style="text-align:justify;margin:4px 0">'+commentary[3]+'</p>';
+  if(fromMda){{
+    html+='<span style="font-size:12px;font-weight:700">AI Commentary: '+(stockName+' MD&A Analysis')+'</span>';
+  }}else{{
+    html+='<span style="font-size:12px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+'</span>';
+  }}
+  for(var ci=(fromMda?1:0);ci<commentary.length;ci++){{
+    if(commentary[ci]&&commentary[ci].length>5){{
+      html+='<p style="text-align:justify;margin:4px 0">'+commentary[ci]+'</p>';
+    }}
+  }}
   html+='</div>';
 
   html+='</div>'; // end center-col
@@ -473,7 +482,10 @@ var DATA = {DATA_JS};
 
   // ECharts
   setTimeout(function(){{
-    // 补齐K线起始前的空年份，对齐指标表列
+    // 裁剪K线到指标年份范围 (与 showYears 对齐, 最多15年)
+    var minYr=showYears.length>0?parseInt(showYears[0],10):0;
+    kl=kl.filter(function(k){{return parseInt(k.date.substring(0,4),10)>=minYr;}});
+    // 补齐K线起始前的空月份，对齐指标表列
     var padMonths=[], padOHLC=[], firstKL=kl.length>0?kl[0].date:null;
     if(firstKL && showYears.length>0){{
       var beginYr=parseInt(showYears[0],10), endYr=parseInt(firstKL.substring(0,4),10), endMo=parseInt(firstKL.substring(5,7),10);
@@ -517,7 +529,7 @@ var DATA = {DATA_JS};
       return v!=null?Math.log(v):null;
     }});
     if(cfSeries.some(function(v){{return v!=null;}})){{
-      series.push({{name:'15x CF',type:'line',data:cfSeries,
+      series.push({{name:cfLabel,type:'line',data:cfSeries,
         lineStyle:{{type:'solid',color:'#1976D2',width:1.2}},symbol:'none'}});
     }}
     if(rsData.length>0){{
@@ -549,7 +561,7 @@ var DATA = {DATA_JS};
     var logTicks=ticks.map(function(v){{return Math.log(v);}});
     var klineChart=echarts.init(document.getElementById('chart_kline'));
     // 统一 tooltip: 日期 → OHLC(从原始kl读) → CF → RS → PST
-    var tooltipFmt=function(p){{var di=p[0].dataIndex,h=p[0].axisValue,r='<b>'+h+' HKD</b>',mk=p[0].marker;var dk=kl.find(function(k){{return k.date===h;}});if(dk)r+='<br/>'+mk+' '+stockName+'<br/> open:'+dk.open.toFixed(2)+'<br/> close:'+dk.close.toFixed(2)+'<br/> low:'+dk.low.toFixed(2)+'<br/> high:'+dk.high.toFixed(2);for(var i=1;i<p.length;i++){{var v=p[i].value,n=p[i].seriesName;if(v==null)continue;if(n==='RS')r+='<br/>'+p[i].marker+' '+n+': '+(v!=null?Number(v).toFixed(1):'-');else if(n.indexOf('15x CF')>-1)r+='<br/>'+p[i].marker+' '+n+': '+Math.exp(Number(v)).toFixed(2);}}var pv=volData[di];if(pv!=null){{var up=dk&&dk.close>dk.open;r+='<br/><span style=\"display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle\"></span>PST: '+pv.toFixed(2)+'%';}}return r;}};
+    var tooltipFmt=function(p){{var di=p[0].dataIndex,h=p[0].axisValue,r='<b>'+h+' HKD</b>',mk=p[0].marker;var dk=kl.find(function(k){{return k.date===h;}});if(dk)r+='<br/>'+mk+' '+stockName+'<br/> open:'+dk.open.toFixed(2)+'<br/> close:'+dk.close.toFixed(2)+'<br/> low:'+dk.low.toFixed(2)+'<br/> high:'+dk.high.toFixed(2);for(var i=1;i<p.length;i++){{var v=p[i].value,n=p[i].seriesName;if(v==null)continue;if(n==='RS')r+='<br/>'+p[i].marker+' '+n+': '+(v!=null?Number(v).toFixed(1):'-');else if(n.indexOf('x CF')>-1)r+='<br/>'+p[i].marker+' '+n+': '+Math.exp(Number(v)).toFixed(2);}}var pv=volData[di];if(pv!=null){{var up=dk&&dk.close>dk.open;r+='<br/><span style=\"display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle\"></span>PST: '+pv.toFixed(2)+'%';}}return r;}};
     klineChart.setOption({{
       tooltip:{{trigger:'axis',axisPointer:{{label:{{show:false}}}},formatter:tooltipFmt}},
       grid:{{left:0,right:28,top:4,bottom:24}},

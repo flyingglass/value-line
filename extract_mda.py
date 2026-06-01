@@ -1,15 +1,38 @@
 """
 extract_mda.py — 生成管理层讨论与分析(MD&A)中文总结
-策略: PDF文本提取 → 失败则用财务数据+营收结构动态生成
-通用版本: 无硬编码公司信息
+策略: PDF文本提取 → 质量评分 → 低质量用财务数据动态生成
+通用版本: 无硬编码公司信息, 兼容所有A股/港股年报
 """
 import pdfplumber, re, sqlite3, sys, json, os
 sys.path.insert(0, ".")
 import config
 
 
+def _numeric_ratio(text):
+    """计算文本中数字/日期/货币字符的密度 (0~1)"""
+    if not text:
+        return 0
+    numeric = len(re.findall(r'[\d.%%万亿千百港元美人民币亿兆]', text))
+    return numeric / max(len(text), 1)
+
+
+def _is_narrative(s, max_ratio=0.22):
+    """判断句子是否为叙事性文本 (非财务数据句)"""
+    # 财务数据句特征: 高数字密度 + 增长率/同比/环比等关键词
+    finance_terms = ["增长", "下降", "同比", "环比", "增加", "减少",
+                     "上升", "下跌", "扩大", "收缩", "变动", "波动"]
+    num_ratio = _numeric_ratio(s)
+    if num_ratio > max_ratio:
+        return False
+    # 含>=2个财务术语 + 高数字密度 → 数据句
+    fin_count = sum(1 for t in finance_terms if t in s)
+    if fin_count >= 2 and num_ratio > 0.12:
+        return False
+    return True
+
+
 def extract_chinese_sentences(text):
-    """从PDF文本中提取中文句子（>20中文字符，过滤表头/英文）"""
+    """从PDF文本中提取叙事性中文句子（>20中文字符，过滤财务数据句）"""
     parts = re.split(r'[。！？\n]', text)
     results = []
     for p in parts:
@@ -22,35 +45,59 @@ def extract_chinese_sentences(text):
         p = p.strip()
         if ';(' in p or '),(' in p or len(re.findall(r'[；;]', p)) > 2:
             continue
-        if len(p) > 25:
-            results.append(p)
+        if len(p) <= 25:
+            continue
+        # 过滤财务数据句 (通用, 不绑定公司)
+        if not _is_narrative(p):
+            continue
+        results.append(p)
     return results
 
 
+def _score_sentence(s, keywords):
+    """给句子对某分类的匹配度打分 (通用关键词)"""
+    score = 0
+    for kw in keywords:
+        if kw in s:
+            score += 1
+    # 长句更可能是完整叙事
+    if len(s) > 50:
+        score += 0.5
+    # 惩罚高数字密度
+    nr = _numeric_ratio(s)
+    if nr > 0.15:
+        score -= 1
+    if nr > 0.10:
+        score -= 0.5
+    return score
+
+
 def classify_sentences(sentences):
-    """通用关键词分类（不绑定任何公司）"""
-    sections = {
-        "overview": [],
-        "product": [],
-        "channel": [],
-        "region": [],
-        "cost": [],
-        "outlook": [],
+    """打分分类: 每句归入得分最高的类别 (通用关键词, 不绑定公司)"""
+    categories = {
+        "overview": ["业务", "经营", "公司", "本集团", "市场地位"],
+        "product":  ["产品", "服務", "服务", "IP", "品类", "品牌", "平台", "内容"],
+        "channel":  ["渠道", "门店", "线上", "零售", "会员", "用户", "流量", "活跃"],
+        "region":   ["中国", "海外", "国际", "亚太", "美洲", "欧洲", "全球", "地区", "境内", "境外"],
+        "cost":     ["成本", "费用", "效率", "研发", "技术", "创新", "人才", "组织"],
+        "outlook":  ["展望", "未来", "战略", "布局", "目标", "计划", "方向", "愿景", "使命"],
     }
+
+    sections = {k: [] for k in categories}
+    quality = {k: 0 for k in categories}  # 每个类别匹配的句数
+
     for s in sentences:
-        if any(k in s for k in ["展望", "未來", "布局", "戰略", "策略", "将", "將"]):
-            sections["outlook"].append(s)
-        elif any(k in s for k in ["渠道", "门店", "線上", "電商", "电商", "会员", "會員", "零售"]):
-            sections["channel"].append(s)
-        elif any(k in s for k in ["中國", "海外", "亞太", "美洲", "歐洲", "地区", "地區", "市場"]):
-            sections["region"].append(s)
-        elif any(k in s for k in ["产品", "產品", "品類", "品类", "品牌"]):
-            sections["product"].append(s)
-        elif any(k in s for k in ["成本", "開支", "毛利率", "費用", "效率", "运营", "運營"]):
-            sections["cost"].append(s)
-        else:
-            sections["overview"].append(s)
-    return sections
+        best_cat, best_score = None, -99
+        for cat, kws in categories.items():
+            sc = _score_sentence(s, kws)
+            if sc > best_score:
+                best_score = sc
+                best_cat = cat
+        if best_cat and best_score >= 0.5:
+            sections[best_cat].append(s)
+            quality[best_cat] += 1
+
+    return sections, quality
 
 
 def build_mda_from_data(code):
@@ -165,6 +212,7 @@ def main(code="09992"):
     pdfs = sorted(glob.glob(os.path.join(pdf_dir, f"{code}_*_年报.pdf")), reverse=True)
 
     mda_text = None
+    quality_ok = False
 
     # 尝试从PDF提取
     if pdfs:
@@ -179,13 +227,19 @@ def main(code="09992"):
         pdf.close()
 
         extracted = extract_chinese_sentences(full_text)
-        print(f"  提取中文句: {len(extracted)}")
+        print(f"  提取叙事句: {len(extracted)}")
 
-        sections = classify_sentences(extracted)
-        total = sum(len(v) for v in sections.values())
-        print(f"  分类: {dict((k, len(v)) for k, v in sections.items() if v)}")
+        sections, quality = classify_sentences(extracted)
+        total = sum(quality.values())
+        print(f"  分类: {quality} (共{total}句)")
 
-        if total >= 6:
+        # 质量评分: 覆盖≥3个类别 + 总句数≥10 + overview不能一家独大
+        categories_covered = sum(1 for v in quality.values() if v > 0)
+        overview_pct = quality.get("overview", 0) / max(total, 1)
+        quality_ok = (categories_covered >= 3 and total >= 10
+                      and overview_pct < 0.70)  # overview >70% → 分类太偏
+
+        if quality_ok:
             titles = {
                 "overview": "【经营总览】", "product": "【产品/业务结构】",
                 "channel": "【渠道发展】", "region": "【分地区表现】",
@@ -199,10 +253,17 @@ def main(code="09992"):
                     parts.append("")
             mda_text = "\n".join(parts)
 
-    # Fallback: 从数据动态生成
-    if not mda_text or len(mda_text) < 400:
-        print("  -> PDF提取不足，使用财务数据动态生成")
-        mda_text = build_mda_from_data(code)
+    # Fallback: PDF提取不足 → 从数据动态生成
+    if not mda_text or len(mda_text) < 300:
+        print("  -> PDF提取不足(或过短)，使用财务数据动态生成")
+        fallback = build_mda_from_data(code)
+        if fallback:
+            mda_text = fallback
+            quality_ok = False
+        else:
+            # report_data.json 不存在 (Step 3 在 engine 之前运行)
+            print("  -> 动态生成也失败(report_data.json不存在)，保留PDF提取并标记低质量")
+            quality_ok = False
 
     if not mda_text:
         print("  [ERROR] 无法生成MD&A文本")
@@ -212,6 +273,7 @@ def main(code="09992"):
     conn = sqlite3.connect(db_path)
     conn.execute("CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT)")
     conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", ("mda_text", mda_text))
+    conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", ("mda_quality", "1" if quality_ok else "0"))
     conn.commit()
     conn.close()
 

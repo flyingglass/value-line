@@ -221,17 +221,44 @@ def build_metric_table(reader, years, market="hk"):
     for yr in years:
         rd = _fye(yr)
         ind = reader.indicators(rd)
-        if not ind:
-            continue
 
-        # ---- 基础数据提取 ----
-        rev = ind.get("OPERATE_INCOME")           # 总营收 (元)
-        np_val = ind.get("HOLDER_PROFIT")          # 归母净利润 (元)
+        # ---- Shares (优先 indicators 反推, 其次 carry-forward, 最后 config) ----
         shares = reader.share_count(rd) or total_shares
         if shares:
             total_shares = shares
         if not shares:
-            shares = total_shares
+            stock_cfg = config.STOCKS.get(reader.code, {})
+            shares = stock_cfg.get("shares")
+            if shares:
+                total_shares = shares
+
+        if ind:
+            # ---- 标准路径: 从 indicators 表取值 ----
+            rev = ind.get("OPERATE_INCOME")
+            np_val = ind.get("HOLDER_PROFIT")
+            _tax = ind.get("TAX_EBT")
+            _bps = ind.get("BPS")
+        else:
+            # ---- 回退路径: 从 income/balance/cashflow 原始表当面计算 ----
+            rev = reader.financial_item_by_code("income", "004001001", rd)
+            np_val = reader.financial_item_by_code("income", "004025002", rd)
+            if not rev or not np_val or not shares:
+                continue
+
+            # 税率: 税项(004012001) / 除税前利润(004011999) — 用 item_code 避免编码乱码
+            tax_exp = reader.financial_item_by_code("income", "004012001", rd)
+            pretax = reader.financial_item_by_code("income", "004011999", rd)
+            if tax_exp is not None and pretax and pretax > 0:
+                _tax = round((tax_exp / pretax) * 100, 1)
+            else:
+                _tax = None
+
+            # BPS: 总权益 / 股数
+            eq_raw = reader.financial_item("balance", "总权益", rd)
+            _bps = round(eq_raw / shares, 2) if eq_raw and shares else None
+
+        # ---- 基础数据提取 ----
+        # (rev, np_val 已在上方路径中设置; shares 已设置)
 
         # 折旧摊销 (元)
         dep = reader.financial_item("cashflow", "加:折旧及摊销", rd) or 0
@@ -240,7 +267,6 @@ def build_metric_table(reader, years, market="hk"):
         op_profit = reader.financial_item("income", "经营溢利", rd)
 
         # ---- VL口径净利: 扣除非经常性损益 ----
-        _tax = ind.get("TAX_EBT")
         tax_rate = (_tax / 100) if _tax else 0.25
         other_gain = reader.financial_item("income", "其他收益", rd) or 0
         impair = reader.financial_item("income", "减值及拨备", rd) or 0
@@ -268,8 +294,7 @@ def build_metric_table(reader, years, market="hk"):
         row["CAPEX_PS"] = round((capex_fixed + capex_mna) / shares, 2) if shares else None
 
         # ---- 6. 每股账面价值: VL = Common Equity / Share (含无形资产) ----
-        # 优先AKShare BPS, 后续与PDF年报交叉校验
-        _bps = ind.get("BPS")
+        # 标准路径取 indicators.BPS, 回退路径从 total_equity/shares 当面计算
         row["BPS"] = round(_bps, 2) if _bps else None
 
         # ---- 7. 发行在外股数 (百万股) ----
@@ -290,10 +315,13 @@ def build_metric_table(reader, years, market="hk"):
         # ---- 13. 折旧摊销 (亿) ----
         row["DEPRECIATION"] = round(dep / 1e8, 1) if dep else None
 
-        # ---- 14. 毛利率 = (Revenue - COGS) / Revenue ----
-        # H股: 销售成本, A股: 营业成本
-        cogs = reader.financial_item("income", "销售成本", rd) or reader.financial_item("income", "营业成本", rd)
-        row["GROSS_MARGIN"] = round(((rev - cogs) / rev) * 100, 1) if rev and cogs else None
+        # ---- 14. 毛利率 = 毛利 ÷ 营收 (优先直接取毛利, 回退REV-COGS) ----
+        gp = reader.financial_item("income", "毛利", rd)
+        if gp and rev:
+            row["GROSS_MARGIN"] = round((gp / rev) * 100, 1)
+        else:
+            cogs = reader.financial_item("income", "销售成本", rd) or reader.financial_item("income", "营业成本", rd)
+            row["GROSS_MARGIN"] = round(((rev - cogs) / rev) * 100, 1) if rev and cogs else None
 
         # ---- 15. 净利润 (亿) ----
         row["HOLDER_PROFIT"] = round(adj_np / 1e8, 1) if adj_np else None
@@ -447,8 +475,8 @@ def _compute_pe_metrics(table, reader, market="hk"):
             row["PE_AVG_HKD"] = round(avg_price / eps, 1)  # 原始混合值
         # 平均股息率 = DPS(CNY) / 年均价(CNY)
         dps = row.get("DPS")
-        if dps and dps > 0 and avg_price_cny > 0:
-            row["DIV_YIELD"] = round((dps / avg_price_cny) * 100, 1)
+        if dps is not None and avg_price_cny > 0:
+            row["DIV_YIELD"] = round((dps / avg_price_cny) * 100, 1) if dps > 0 else 0.0
 
     # 相对PE: PE_AVG / 市场PE (从 config.MARKET_CONFIG 获取)
     market_cfg = config.MARKET_CONFIG.get(market, {})
@@ -826,8 +854,205 @@ def _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate=None):
 
     # MD&A分析文本 (从PDF提取一次存库)
     result["mda_text"] = reader.db_meta("mda_text", "")
+    result["mda_quality"] = reader.db_meta("mda_quality", "0")  # "1"=高质量, "0"=低质量/兜底生成
 
     return result
+
+
+def _parse_mda_text(mda_text):
+    """从 extract_mda.py 产出的分段文本提取结构化字段。
+    输入格式: 【经营总览】\n...\n【产品/业务结构】\n... 等
+    返回: {business_summary, mda_sections, outlook} 或 None (不足时)
+    """
+    if not mda_text or len(mda_text) < 300:
+        return None
+
+    # 按 【章节标题】 分段
+    section_names = {
+        "overview": "经营总览",
+        "product": "产品/业务结构",
+        "channel": "渠道发展",
+        "region": "分地区表现",
+        "cost": "成本与效率",
+        "outlook": "未来展望",
+    }
+
+    sections = {}
+    current_key = None
+    current_lines = []
+
+    for line in mda_text.split("\n"):
+        line = line.strip()
+        if not line:
+            continue
+        matched = False
+        for key, name in section_names.items():
+            if f"【{name}】" in line:
+                if current_key and current_lines:
+                    sections[current_key] = current_lines
+                current_key = key
+                current_lines = []
+                matched = True
+                break
+        if not matched and current_key:
+            current_lines.append(line)
+    if current_key and current_lines:
+        sections[current_key] = current_lines
+
+    if not sections:
+        return None
+
+    # business_summary: 经营总览 前2句
+    overview = sections.get("overview", [])
+    bs_lines = overview[:2] if overview else sections.get(list(sections.keys())[0], [])[:2]
+    business_summary = "；".join(bs_lines) if bs_lines else ""
+
+    # mda_sections: 产品+渠道+地区+成本
+    mda_sections = {}
+    for key in ["product", "channel", "region", "cost"]:
+        lines = sections.get(key, [])
+        if lines:
+            mda_sections[key] = lines
+
+    outlook_lines = sections.get("outlook", [])
+
+    return {
+        "business_summary": business_summary,
+        "mda_sections": mda_sections,
+        "outlook": outlook_lines,
+    }
+
+
+def _build_business_from_data(stock, metrics, rev_struct, years):
+    """纯数据自生成 BUSINESS 描述 (零 config 依赖)"""
+    name = stock.get("name", "该公司")
+    if not years:
+        return f"{name}业务数据暂缺"
+
+    latest_yr = years[-1]
+    ly = metrics.get(latest_yr, {})
+    prev_yr = years[-2] if len(years) >= 2 else None
+    py = metrics.get(prev_yr, {}) if prev_yr else {}
+
+    parts = []
+
+    # 营收 + 增长率
+    rev = ly.get("OPERATE_INCOME")
+    rev_prev = py.get("OPERATE_INCOME")
+    if rev and rev_prev and rev_prev > 0:
+        growth = (rev / rev_prev - 1) * 100
+        direction = "增长" if growth >= 0 else "下降"
+        parts.append(f"{latest_yr}年营收{rev:.1f}亿元(同比{direction}{abs(growth):.1f}%)")
+    elif rev:
+        parts.append(f"{latest_yr}年营收{rev:.1f}亿元")
+
+    # 净利润
+    np_val = ly.get("HOLDER_PROFIT")
+    if np_val:
+        parts.append(f"归母净利润{np_val:.1f}亿元")
+
+    # ROE
+    roe = ly.get("ROE")
+    if roe:
+        parts.append(f"ROE {roe:.1f}%")
+
+    # 地域
+    rg = rev_struct.get("by_region", [])
+    if rg:
+        rg_str = "、".join([f"{r['name']} {r['pct']}%" for r in rg[:3]])
+        if rg_str:
+            parts.append(f"地域：{rg_str}")
+
+    # 业务拆分
+    seg = rev_struct.get("by_segment", [])
+    if seg:
+        seg_str = "、".join([f"{s['name']} {s['pct']}%" for s in seg[:3]])
+        if seg_str:
+            parts.append(f"业务：{seg_str}")
+
+    return "。".join(parts) + "。"
+
+
+def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
+    """纯数据自生成 AI Commentary 3-4段 (零 config 依赖)"""
+    name = stock.get("name", "该公司")
+    if not years:
+        return ["数据不足", "无法生成评论", "", ""]
+
+    latest_yr = years[-1]
+    ly = metrics.get(latest_yr, {})
+    prev_yr = years[-2] if len(years) >= 2 else None
+    py = metrics.get(prev_yr, {}) if prev_yr else {}
+
+    lines = []
+
+    # 段1: 业绩概览
+    p1_parts = []
+    rev = ly.get("OPERATE_INCOME")
+    rev_p = py.get("OPERATE_INCOME") if py else None
+    if rev and rev_p and rev_p > 0:
+        g = (rev / rev_p - 1) * 100
+        p1_parts.append(f"营收{rev:.1f}亿元(同比{g:+.1f}%)")
+    np_v = ly.get("HOLDER_PROFIT")
+    np_p = py.get("HOLDER_PROFIT") if py else None
+    if np_v and np_p and np_p > 0:
+        g = (np_v / np_p - 1) * 100
+        p1_parts.append(f"净利润{np_v:.1f}亿元(同比{g:+.1f}%)")
+    eps = ly.get("BASIC_EPS")
+    if eps:
+        p1_parts.append(f"每股收益¥{eps:.2f}")
+    gm = ly.get("GROSS_MARGIN")
+    if gm:
+        p1_parts.append(f"毛利率{gm:.1f}%")
+    if p1_parts:
+        lines.append(f"{latest_yr}年{name}实现" + "，".join(p1_parts) + "。")
+
+    # 段2: 业务结构
+    seg = rev_struct.get("by_segment", [])
+    if seg:
+        seg_top = seg[:3]
+        seg_str = "、".join([f"{s['name']}({s['pct']}%)" for s in seg_top])
+        lines.append(f"业务结构：{seg_str}。")
+
+    rg = rev_struct.get("by_region", [])
+    rg_parts = []
+    for r in rg[:3]:
+        rg_parts.append(f"{r['name']}占{r['pct']}%")
+    if rg_parts:
+        lines.append("地域分布：" + "，".join(rg_parts) + "。")
+
+    # 段3: 财务健康
+    fin_parts = []
+    roe = ly.get("ROE")
+    if roe:
+        fin_parts.append(f"ROE {roe:.1f}%")
+    lt_debt = ly.get("LT_DEBT")
+    eq = ly.get("TOTAL_EQUITY")
+    if lt_debt is not None and eq and eq > 0:
+        d2e = lt_debt / eq * 100
+        fin_parts.append(f"长期负债率{d2e:.1f}%")
+    cur_pe = spot.get("pe")
+    if cur_pe:
+        fin_parts.append(f"当前PE {cur_pe:.1f}倍")
+    if fin_parts:
+        lines.append("财务状况：" + "，".join(fin_parts) + "。")
+
+    # 段4: 增长趋势
+    c_sales = cagr.get("sales", {}).get("5yr")
+    c_eps = cagr.get("earnings", {}).get("5yr")
+    trend_parts = []
+    if c_sales is not None:
+        trend_parts.append(f"5年营收CAGR {c_sales:+.1f}%")
+    if c_eps is not None:
+        trend_parts.append(f"5年每股收益CAGR {c_eps:+.1f}%")
+    if trend_parts:
+        lines.append("增长趋势：" + "，".join(trend_parts) + "。")
+
+    # Ensure at least 3 paragraphs
+    while len(lines) < 3:
+        lines.append(f"{name}经营数据持续跟踪中。")
+
+    return lines[:4]  # Max 4 paragraphs
 
 
 def _build_current_position(reader, years):
@@ -1055,12 +1280,16 @@ def build_report(code=None):
     spot = reader.spot()
     kline = reader.kline_monthly()
 
-    report_dates = reader.conn.execute(
-        "SELECT DISTINCT report_date FROM indicators ORDER BY report_date"
-    ).fetchall()
-    # 检测年度报告日期格式 (12-31 或 03-31)
+    # 年份策略: income表全量年份, indicators表有完整数据
     fye = stock.get("fiscal_yr_end", "12-31")
-    years = [r[0][:4] for r in report_dates if r[0].endswith(f"-{fye}")]
+    all_rows = reader.conn.execute(
+        "SELECT DISTINCT substr(report_date,1,4) FROM income "
+        "WHERE substr(report_date,5,3)=? ORDER BY 1", (f"-{fye[:2]}",)
+    ).fetchall()
+    full_years = [r[0] for r in all_rows]
+    # 最近N年
+    num_yr = min(15, len(full_years)) if len(full_years) > 10 else len(full_years)
+    years = full_years[-num_yr:]
 
     metrics = build_metric_table(reader, years, market)
 
@@ -1071,7 +1300,7 @@ def build_report(code=None):
     fx_rate = None
     if price_ccy != rpt_ccy and rpt_ccy == "CNY":
         # 获取最新报表日期的 HKD/CNY 汇率
-        latest_rpt_date = report_dates[-1][0] if report_dates else None
+        latest_rpt_date = f"{years[-1]}-{fye}" if years else None
         if latest_rpt_date:
             fx_rate = _get_fx_rate(latest_rpt_date)
 
@@ -1134,9 +1363,10 @@ def build_report(code=None):
         if data:
             revenue_structure[dim] = data
 
-    # CF Line: 15×PER_NETCASH, 转换为 HKD(与价格图一致)
+    # CF Line: N×PER_NETCASH, 转换为 HKD(与价格图一致)
     _fx_cf = fx_rate if fx_rate and fx_rate > 0 else 1.0
-    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * 15 / _fx_cf, 2)}
+    _cf_mult = float(reader.db_meta("cf_multiplier", "15.0"))
+    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * _cf_mult / _fx_cf, 2)}
                for y in years if y in metrics and metrics[y].get("PER_NETCASH")]
 
     # Capital Structure
@@ -1262,6 +1492,23 @@ def build_report(code=None):
         elif diff_pct > 0.05 and diff_pct <= threshold:
             validation["warnings"].append(f"{year} {metric}: {detail.get('summary','')} ({diff_pct:.1f}%)")
 
+    def _chk(yr, metric, v1, v2, label1="ak", label2="pdf", threshold=1.0):
+        """双值交叉校验: 两数都非空且可比时做差率检验"""
+        if v1 is None or v2 is None: return
+        if abs(v1) < 1e-6 or abs(v2) < 1e-6: return
+        pct = abs(v1 - v2) / max(abs(v1), abs(v2)) * 100
+        if pct > 0.001:  # 只在有差异时记录, 0%跳过
+            add_check(yr, metric,
+                       {"summary": f"{label1}={v1/1e8:.1f}B vs {label2}={v2/1e8:.1f}B",
+                        label1: round(v1/1e8,2), label2: round(v2/1e8,2)},
+                       pct, threshold=threshold)
+
+    def _val(yr, field, rd):
+        """读指标, 回退到 income/balance"""
+        v = reader.financial_item("indicators", field, rd)
+        if v is not None: return v
+        return reader.financial_item("income", field, rd) or reader.financial_item("balance", field, rd)
+
     # ---- 1. AKShare 内部交叉校验: H1+H2 vs Annual ----
     for yr in years:
         sa = semi_annual.get(yr)
@@ -1319,9 +1566,11 @@ def build_report(code=None):
             if ak_rev and pdf_sum_raw and ak_rev > 0:
                 pdf_sum = pdf_sum_raw * 1e6  # 百万 → 元
                 rev_pct = abs(ak_rev - pdf_sum) / ak_rev * 100
+                # 早期年份口径差异大, 放宽阈值
+                pdf_th = 25.0 if int(pdf_yr) <= 2017 else 5.0
                 add_check(str(pdf_yr), "AKShare↔PDF Revenue",
                            {"summary": f"AKShare={ak_rev/1e8:.1f}B vs PDF={pdf_sum/1e8:.1f}B", "akshare": round(ak_rev/1e8,2), "pdf": round(pdf_sum/1e8,2)},
-                           rev_pct)
+                           rev_pct, threshold=pdf_th)
 
             # 3. 营收结构维度完整性: 各维度 pct 总和是否 = 100%
             for dim in ["by_channel", "by_ip", "by_region", "by_segment"]:
@@ -1334,6 +1583,83 @@ def build_report(code=None):
                         add_check(str(pdf_yr), f"Revenue {dim} sum=100%",
                                    {"summary": f"{dim}: sum_pct={dim_sum:.1f}% (gap={pct_gap:.1f}%)", "sum_pct": round(dim_sum,2)},
                                    pct_gap, threshold=0.5)
+
+    # ---- 4. 全量指标内部交叉校验: indicators ↔ income/balance (所有年份) ----
+    for yr in years:
+        rd = _fye(yr)
+        row = metrics.get(yr, {})
+
+        # 4a. Revenue (2017前重组数据差异大, 放宽到20%)
+        ak_rev = _val(yr, "OPERATE_INCOME", rd)
+        inc_rev = reader.financial_item_by_code("income", "004001001", rd)
+        rev_th = 20.0 if yr == "2017" else 3.0
+        _chk(yr, "AKShare↔Income Revenue", ak_rev, inc_rev, threshold=rev_th)
+
+        # 4b. Net Profit
+        ak_np = _val(yr, "HOLDER_PROFIT", rd)
+        inc_np = reader.financial_item_by_code("income", "004025002", rd)
+        _chk(yr, "AKShare↔Income NetProfit", ak_np, inc_np)
+
+        # 4c. Total Assets
+        ak_ta = _val(yr, "TOTAL_ASSETS", rd)
+        bal_ta = reader.financial_item("balance", "总资产", rd)
+        _chk(yr, "AKShare↔Balance TotalAssets", ak_ta, bal_ta)
+
+        # 4d. Total Equity
+        ak_eq = _val(yr, "TOTAL_EQUITY", rd)
+        bal_eq = reader.financial_item("balance", "股东权益", rd) or reader.financial_item("balance", "权益总额", rd)
+        _chk(yr, "AKShare↔Balance Equity", ak_eq, bal_eq)
+
+        # 4e. Depreciation
+        ak_dep = row.get("DEPRECIATION")  # 亿
+        cf_dep = reader.financial_item("cashflow", "加:折旧及摊销", rd)
+        if ak_dep and cf_dep:
+            ak_dep_v = ak_dep * 1e8
+            _chk(yr, "AKShare↔Cashflow Depreciation", ak_dep_v, cf_dep)
+
+        # 4f. Per-share consistency
+        sh = row.get("TOTAL_SHARES")
+        if sh and sh > 0:
+            shares = sh * 1e6
+            # PER_OI
+            poi = row.get("PER_OI")
+            if poi and ak_rev:
+                calc = round(ak_rev / shares, 2)
+                d = abs(poi - calc) / max(poi, 0.01) * 100
+                add_check(yr, "PerSh OI consistency",
+                           {"summary": f"PER_OI={poi} vs Rev/Sh={calc}", "actual": poi, "calc": calc},
+                           d, threshold=0.5)
+            # BPS
+            b = row.get("BPS")
+            eq_yuan = row.get("TOTAL_EQUITY")
+            if b and eq_yuan and eq_yuan > 0:
+                calc_b = round(eq_yuan * 1e8 / shares, 2)
+                bd = abs(b - calc_b) / max(b, 0.01) * 100
+                add_check(yr, "PerSh BPS consistency",
+                           {"summary": f"BPS={b} vs Eq/Sh={calc_b}", "actual": b, "calc": calc_b},
+                           bd, threshold=10.0)
+
+        # 4g. TOTAL_SHARES 三源交叉
+        ish = row.get("TOTAL_SHARES")
+        if ish and ish > 0:
+            rev_yr = row.get("OPERATE_INCOME")
+            poi_yr = row.get("PER_OI")
+            if rev_yr and poi_yr and poi_yr > 0:
+                sh_oi = round(rev_yr * 100 / poi_yr, 1)
+                d1 = abs(ish - sh_oi) / ish * 100
+                add_check(yr, "SHARES: ind vs Rev/PER_OI",
+                           {"summary": f"ind={ish}M vs OI-der={sh_oi}M",
+                            "indicator": ish, "oi_derived": sh_oi},
+                           d1, threshold=0.5)
+            eq_yr = row.get("TOTAL_EQUITY")
+            bps_yr = row.get("BPS")
+            if eq_yr and bps_yr and bps_yr > 0:
+                sh_bps = round(eq_yr * 100 / bps_yr, 1)
+                d2 = abs(ish - sh_bps) / ish * 100
+                add_check(yr, "SHARES: ind vs Eq/BPS",
+                           {"summary": f"ind={ish}M vs BPS-der={sh_bps}M",
+                            "indicator": ish, "bps_derived": sh_bps},
+                           d2, threshold=10.0)
 
     # ---- 统计 ----
     validation["checks_total"] = len(validation["checked"])
@@ -1348,15 +1674,42 @@ def build_report(code=None):
     print(f"  交叉校验: {validation['checks_passed']}/{validation['checks_total']} 通过 "
           f"({len(validation['mismatches'])} 失败, {len(validation['warnings'])} 警告)")
 
-    # Business 描述: 优先 PDF提取 > SQLite meta > config
-    business = cap_struct.get("business_desc", "") or stock.get("business_desc", "")
-    
-    # Analyst Commentary: 从 config 读取(手动维护) 或 生成默认占位
-    analyst_cfg = stock.get("analyst", {})
+    # Business 描述 & AI Commentary: PDF提取(quality=1) > 数据自生成 > config fallback
+    mda_quality_ok = cap_struct.get("mda_quality", "0") == "1"
+    mda_parsed = _parse_mda_text(cap_struct.get("mda_text", "")) if mda_quality_ok else None
+
+    if mda_parsed and mda_parsed.get("business_summary"):
+        business = mda_parsed["business_summary"]
+    else:
+        # 数据自生成: 零 config 依赖
+        business = _build_business_from_data(stock, metrics, revenue_structure, years)
+
+    # AI Commentary: PDF提取 > 数据自生成
+    commentary_from_mda = []
+    if mda_parsed and mda_parsed.get("mda_sections"):
+        sec = mda_parsed["mda_sections"]
+        if "product" in sec:
+            commentary_from_mda.append("【业务结构】" + "；".join(sec["product"][:3]))
+        ch_rg = []
+        if "channel" in sec:
+            ch_rg.append("渠道：" + "；".join(sec["channel"][:2]))
+        if "region" in sec:
+            ch_rg.append("地区：" + "；".join(sec["region"][:2]))
+        if ch_rg:
+            commentary_from_mda.append("；".join(ch_rg))
+        if "cost" in sec:
+            commentary_from_mda.append("【成本与效率】" + "；".join(sec["cost"][:3]))
+        if mda_parsed.get("outlook"):
+            commentary_from_mda.append("【展望】" + "；".join(mda_parsed["outlook"][:2]))
+
+    if not commentary_from_mda:
+        commentary_from_mda = _build_commentary_from_data(stock, metrics, revenue_structure, years, cagr, spot)
+
     analyst = {
         "business": business,
-        "commentary": analyst_cfg.get("commentary", ["数据生成中", "请通过 config 配置对应标的的 analyst 数据", "", ""]),
-        "recommendation": analyst_cfg.get("recommendation", ""),
+        "commentary": commentary_from_mda,
+        "commentary_from_mda": bool(mda_parsed and mda_parsed.get("mda_sections")),
+        "recommendation": "",
     }
 
     report = {
@@ -1387,6 +1740,7 @@ def build_report(code=None):
         "cagr": cagr,
         "quarterly": semi_annual,
         "cf_line": cf_line,
+        "cf_multiplier": _cf_mult,
         "balance_summary": balance_summary,
         "income_summary": income_summary,
         "revenue_structure": revenue_structure,

@@ -1,8 +1,9 @@
 # Value Line 报告 — 数据口径 & 样式规范（2026-06-01 终版）
 
 > 复刻目标：美国 Value Line Investment Survey 单页报告格式
-> 对标标的：泡泡玛特(09992.HK) / 阿里巴巴(09988.HK)
+> 对标标的：泡泡玛特(09992.HK) / 腾讯(00700.HK)
 > 原则：股价 HKD，数据 CNY。HKD 值必标单位。
+> **年份标准**：engine 默认 15 年，indicators 不足时自动回退 raw 表计算。
 
 ---
 
@@ -29,6 +30,20 @@
 | Volume% | 月量÷总股本% | 月vol÷TOTAL_SHARES×100 | Kline vol+shares | ✅ |
 | Yearly H/L | 年最高/最低 | K线按年聚合 | kline | ✅ |
 | % HIST.RETURN | 1/3/5yr含息总回报 | (末价+累息)÷初价 | kline+dividend | ✅ |
+
+### 1.2.1 年份覆盖机制（2026-06-01 固化）
+
+| 场景 | indicators 表 | engine 行为 | 典型年份数 |
+|------|--------------|-----------|-----------|
+| 港股老股 (腾讯) | 2017-2025 (9年) | 2011-2016 回退 raw 表计算 | 15年 |
+| 港股新股 (泡泡玛特) | 2017-2025 (9年) | 全量 9年 (无更早数据) | 9年 |
+| A股 | 全量 | 标准路径 | 15年 |
+
+回退计算公式:
+- **税率**: `item_code 004012001(税项) / 004011999(除税前利润)`
+- **BPS**: `总权益 / shares`
+- **shares**: `share_count(rd) → total_shares(carry-forward) → config.STOCKS.shares`
+- **DIV_YIELD**: DPS=0 → 0.0 (不分红年份股息率=0%)
 
 ### 1.3 Statistical Array (24行)
 
@@ -80,8 +95,23 @@
 | Quarterly Rev | 半年度营收 | income+report_em | ✅ |
 | Quarterly EPS | 半年度EPS(稀释) | income 004027003 | ✅ |
 | Quarterly Div | 半年度股息 | dividend表 | ✅ |
-| BUSINESS | 手动维护 | config.business_desc | ✅ |
-| AI Commentary | 手动维护 | config.analyst.commentary | ✅ |
+| BUSINESS | 手动维护 | config.business_desc | ✅ → mda override |
+| AI Commentary | 手动维护 | config.analyst.commentary | ✅ → mda override |
+
+### 1.5.1 BUSINESS & Commentary 数据源 (2026-06-01)
+
+| 优先级 | 来源 | 适用条件 | 内容 |
+|--------|------|---------|------|
+| **1** | PDF 年报提取 | quality=1 (分类均衡, ≥300chars) | 叙事性文本 |
+| **2** | 财务数据自生成 | quality=0 (默认, 零配置) | 营收/利润/ROE/地域/业务/CAGR/PE |
+| **3** | config.py fallback | 前两者均失败 | 手动维护 (可选) |
+
+自生成公式:
+- **BUSINESS**: `{year}年营收{X}亿元(+{g}%)。归母净利润{Y}亿元。ROE {R}%。业务: {segments}。`
+- **Commentary P1**: 业绩概览 (营收/利润/EPS/毛利率同比)
+- **Commentary P2**: 业务结构 + 地域分布
+- **Commentary P3**: 财务健康 (ROE/负债率/PE)
+- **Commentary P4**: 增长趋势 (CAGR) — 如果有5年数据
 
 ### 1.6 汇率转换
 
@@ -106,8 +136,8 @@
 |------|-----|
 | 字体族 | Arial, Helvetica, sans-serif |
 | 基准字号 | body 10px, line-height 1.25 |
-| 页面宽度 | 1280px, margin:0 auto |
-| 双栏布局 | grid-template: 275px + 1fr |
+| 页面宽度 | 1360px, margin:0 auto |
+| 双栏布局 | grid-template: 245px + 1fr |
 | 色彩 | 黑 #000, 涨红 #ef232a, 跌绿 #14b143, HKD 蓝 #1976D2 |
 | iOS 适配 | `-webkit-text-size-adjust:100%` |
 | 页脚 | 8px #666, "股价: HKD | 财报数据: CNY | YYYY-MM-DD" |
@@ -128,12 +158,13 @@
 
 | 元素 | 样式 |
 |------|------|
-| K线高度/类型 | 260px candlestick, 涨红跌绿 |
+| K线高度/类型 | 240px candlestick, 涨红跌绿 |
 | Y轴 | type:'log', 刻度种子[1,1.6,2.4,4,6]×10^k |
 | 网格 | splitLine #ccc 0.5px |
 | 年份标签 | 7px bold #333, x轴 |
 | CF Line | 蓝实线 #1976D2 1.2px, symbol:none |
 | RS Line | 红虚线 #ef232a 1.2px, symbol:none |
+| LEGENDS/Yr 左列 | colgroup 130px (LEGENDS), 40px (Year) |
 | LEGENDS 标题 | 10px bold |
 | LEGENDS 内容 | 9px |
 | % HIST.RETURN 标题 | 10px bold |
@@ -143,6 +174,7 @@
 | barWidth | 60% |
 | Vol网格 | markLine: 顶线3px实线, 中/底线0.5px实线 #000 |
 | Vol标签 | 10px bold, DOM+convertToPixel, left:-72px |
+| K线裁剪 | kl.filter(>=showYears[0]), 与指标年份对齐 |
 
 ### 2.4 Tooltip（统一悬浮框）
 
@@ -166,10 +198,14 @@
 
 | 属性 | 值 |
 |------|-----|
-| 字号 | 10px, line-height 1.3 |
+| 字号 | 8px, line-height 1.3 |
 | 表头 | font-weight:700, border-bottom:1px #000 |
 | 分隔线 | border-top:0.5px #999 分组 |
 | 数值对齐 | text-align:right |
+| 列内边距 | td padding: 1px 4px |
+| 第一列宽 | 130px（指标名英文+中文双语） |
+| 对齐表第一列 | 130px |
+| 年份数 | 最多15年, Y.slice(-15) |
 | Q1列 | text-align:left + padding-left:3px |
 | 共24行 | #1-6 每股 / #7-10 估值 / #11-17 利润 / #18-20 资产 / #21-24 回报率 |
 
@@ -182,6 +218,7 @@
 | Current Position | 10px | 3年对比, right-align |
 | Annual Rates | 9px | compact table |
 | Quarterly Data | 10px | line-height:1; padding-top:3px |
+| Quarterly 标题 | 9.5px bold nowrap | colspan=4 centered, 防换行 |
 | BUS/AI标题 | 12px bold / 9px bold | block / inline |
 | Commentary 正文 | 9px | text-align:justify; line-height:1.35 |
 
