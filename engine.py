@@ -1106,7 +1106,9 @@ def build_report(code=None):
         if data:
             revenue_structure[dim] = data
 
-    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * 15, 2)}
+    # CF Line: 15×PER_NETCASH, 转换为 HKD(与价格图一致)
+    _fx_cf = fx_rate if fx_rate and fx_rate > 0 else 1.0
+    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * 15 / _fx_cf, 2)}
                for y in years if y in metrics and metrics[y].get("PER_NETCASH")]
 
     # Capital Structure
