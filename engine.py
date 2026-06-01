@@ -956,6 +956,26 @@ def _detect_rpt_ccy(reader, stock):
     return stock.get("currency", "CNY")
 
 
+def _get_fx_rate(date_str):
+    """获取 HKD/CNY 汇率 (100 HKD = ? CNY)，失败返回 None"""
+    import sqlite3, os
+    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "fx_rates.db")
+    if not os.path.exists(db_path):
+        return None
+    try:
+        conn = sqlite3.connect(db_path)
+        # 先精确匹配日期，否则取最近一天
+        row = conn.execute("SELECT hkd_cny FROM daily_rates WHERE date=?", (date_str,)).fetchone()
+        if not row:
+            row = conn.execute("SELECT hkd_cny FROM daily_rates WHERE date<=? ORDER BY date DESC LIMIT 1", (date_str,)).fetchone()
+        conn.close()
+        if row:
+            return row[0] / 100.0  # 100 HKD = X CNY → 1 HKD = X/100 CNY
+    except Exception:
+        pass
+    return None
+
+
 def _build_yearly_hl(kline, years):
     """从月K线计算每年最高/最低价 — Yearly High/Low 表格"""
     from collections import defaultdict
@@ -1003,26 +1023,42 @@ def build_report(code=None):
 
     metrics = build_metric_table(reader, years, market)
 
-    # 补算 Header PE(TTM) / PB / 股息率 / 市值
+    # 补算 Header PE(TTM) / PB / 股息率 / 市值 + 汇率转换
+    # price_ccy = 交易货币(HKD), rpt_ccy = 报表货币(CNY), 不一致时换算
+    price_ccy = config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
+    rpt_ccy = _detect_rpt_ccy(reader, stock)
+    fx_rate = None
+    if price_ccy != rpt_ccy and rpt_ccy == "CNY":
+        # 获取最新报表日期的 HKD/CNY 汇率
+        latest_rpt_date = report_dates[-1][0] if report_dates else None
+        if latest_rpt_date:
+            fx_rate = _get_fx_rate(latest_rpt_date)
+
     if spot and years and metrics:
         latest = metrics.get(years[-1], {})
-        price = spot.get("price")
+        price = spot.get("price")  # 交易货币(HKD)
+        # 汇率调整系数: rpt_ccy(CNY) → price_ccy(HKD)
+        fx = fx_rate if fx_rate and fx_rate > 0 else 1.0
         # TTM EPS: VL Trailing P/E 口径 (最近4季度滚动)
         ttm_eps = _compute_ttm_eps(reader, years[-1])
         if price:
-            if ttm_eps and ttm_eps > 0:
-                spot["pe"] = round(price / ttm_eps, 1)        # Trailing P/E
-                spot["eps_ttm"] = round(ttm_eps, 2)
+            # EPS 单位: rpt_ccy(CNY) → 需转为 price_ccy(HKD) 同币种后计算 PE
+            # fx = CNY/HKD (1 HKD = fx CNY), 所以 CNY ÷ fx = HKD
+            eps_in_price_ccy = ttm_eps / fx if ttm_eps and fx and fx != 1.0 else ttm_eps
+            if eps_in_price_ccy and eps_in_price_ccy > 0:
+                spot["pe"] = round(price / eps_in_price_ccy, 1)
+                spot["eps_ttm"] = round(eps_in_price_ccy, 2)
+                spot["eps_ttm_cny"] = round(ttm_eps, 2)
             else:
                 eps_latest = latest.get("BASIC_EPS")
                 if eps_latest and eps_latest > 0:
-                    spot["pe"] = round(price / eps_latest, 1)
+                    spot["pe"] = round(price / (eps_latest / fx if fx and fx != 1.0 else eps_latest), 1)
             bps_latest = latest.get("BPS")
             if bps_latest and bps_latest > 0:
-                spot["pb"] = round(price / bps_latest, 2)
+                spot["pb"] = round(price / (bps_latest / fx if fx and fx != 1.0 else bps_latest), 2)
             dps_latest = latest.get("DPS")
             if dps_latest and dps_latest > 0:
-                spot["div_yield"] = round(dps_latest / price * 100, 2)
+                spot["div_yield"] = round((dps_latest / fx if fx and fx != 1.0 else dps_latest) / price * 100, 2)
             shares_raw = reader.share_count(_fye(years[-1])) or config.STOCKS.get(code, {}).get("shares")
             if shares_raw and shares_raw > 0:
                 spot["mkt_cap"] = round(price * shares_raw / 1e8, 1)  # 股数×股价÷1亿
@@ -1057,8 +1093,8 @@ def build_report(code=None):
         if data:
             revenue_structure[dim] = data
 
-    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * 15, 2)}
-               for y in years if y in metrics and metrics[y].get("PER_NETCASH")]
+    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * 15 / fx, 2)}
+               for y in years if y in metrics and metrics[y].get("PER_NETCASH") and fx > 0]
 
     # Capital Structure
     balance_summary = {}
