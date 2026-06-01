@@ -681,7 +681,7 @@ def _detect_unit(raw_values):
         return "", 1
 
 
-def _build_capital_structure(reader, spot, latest_yr, metrics):
+def _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate=None):
     """CAPITAL STRUCTURE — 资本结构明细 (参照 Timberland Co. Value Line 标准)
     覆盖: Total Debt, Due in 5 Yrs, LT Debt, Total Int, Coverage,
           % of Capital, Pension Assets, Pfd Stock, Common Stock, Market Cap
@@ -772,9 +772,12 @@ def _build_capital_structure(reader, spot, latest_yr, metrics):
         result["common_shares_str"] = "N/A"
         result["common_shares_raw"] = 0
 
-    # Market Cap (价格 × 股数, 用同一个单位)
+    # Market Cap (价格(交易货币) × 股数 → 换算为报表货币 CNY)
     price = spot.get("price", 0) if spot else 0
-    mkt_cap_raw = price * result["common_shares_raw"] if result["common_shares_raw"] else 0
+    # 汇率换算: price(HKD) → CNY
+    fx_mc = fx_rate if fx_rate and fx_rate > 0 and fx_rate != 1.0 else 1.0
+    price_cny = price / fx_mc
+    mkt_cap_raw = price_cny * result["common_shares_raw"] if result["common_shares_raw"] else 0
     result["mkt_cap"] = round(mkt_cap_raw / divisor, 1) if divisor else 0
     # Market cap label
     mkt_cap_b = result["mkt_cap"]  # 亿
@@ -889,24 +892,28 @@ def _build_annual_rates(metrics, years):
     }
 
 
-def _calc_position(spot, kline, metrics, years):
-    """计算当前估值在历史区间的位置"""
+def _calc_position(spot, kline, metrics, years, fx_rate=None):
+    """计算当前估值在历史区间的位置 (统一 CNY)"""
     result = {}
-    price = spot.get("price", 0) if spot else 0
-    pe_ttm = spot.get("pe", 0) if spot else 0
-    pb = spot.get("pb", 0) if spot else 0
+    price = spot.get("price", 0) if spot else 0  # HKD
+    pe_ttm = spot.get("pe", 0) if spot else 0    # HKD-based
+    pb = spot.get("pb", 0) if spot else 0        # HKD-based
+    fx = fx_rate if fx_rate and fx_rate > 0 else 1.0
 
-    # PE区间
+    # PE区间: PE_AVG(CNY) vs spot.pe(HKD) → 统一转为 CNY
+    # PE_HKD = price(HKD) / eps(HKD) = price(HKD) / (eps(CNY)/fx) = price(HKD)×fx/eps(CNY)
+    # PE_CNY = price(CNY) / eps(CNY) = (price(HKD)/fx) / eps(CNY) = PE_HKD / fx²
     pe_vals = [metrics[y]["PE_AVG"] for y in years if y in metrics and metrics[y].get("PE_AVG")]
+    pe_ttm_cny = pe_ttm / (fx * fx) if fx != 1.0 else pe_ttm
     if pe_vals:
         result["pe"] = {
-            "current": pe_ttm,
+            "current": round(pe_ttm_cny, 1),  # CNY
             "min": round(min(pe_vals), 1),
             "max": round(max(pe_vals), 1),
             "avg": round(sum(pe_vals) / len(pe_vals), 1),
         }
         rng = result["pe"]["max"] - result["pe"]["min"]
-        result["pe"]["pct"] = round((pe_ttm - result["pe"]["min"]) / rng * 100, 0) if rng > 0 else 50
+        result["pe"]["pct"] = round((pe_ttm_cny - result["pe"]["min"]) / rng * 100, 0) if rng > 0 else 50
 
     # 价格区间 (从月K线)
     if kline and price:
@@ -1135,7 +1142,7 @@ def build_report(code=None):
                 income_summary[key] = v / 1e8
 
     # 1. CAPITAL STRUCTURE 资本结构明细
-    cap_struct = _build_capital_structure(reader, spot, latest_yr, metrics)
+    cap_struct = _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate)
 
     # 2. CURRENT POSITION 短期资产负债 (3年对比)
     cur_pos = _build_current_position(reader, years)
@@ -1147,7 +1154,7 @@ def build_report(code=None):
     quarterly = build_semi_annual(reader, years, metrics)
 
     # Current Position 估值定位 (图表用)
-    position = _calc_position(spot, kline, metrics, years)
+    position = _calc_position(spot, kline, metrics, years, fx_rate)
 
     # Yearly High/Low (从月K线)
     yearly_hl = _build_yearly_hl(kline, years)
