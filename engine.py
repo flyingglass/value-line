@@ -254,9 +254,8 @@ def build_metric_table(reader, years, market="hk"):
         # ---- 2. 每股现金流: (AdjNetProfit + Depreciation) / Shares ----
         row["PER_NETCASH"] = round((adj_np + dep) / shares, 2) if adj_np and shares else None
 
-        # ---- 3. 每股收益: VL用稀释EPS (income表004027003), 回退BASIC_EPS ----
-        diluted_eps = reader.financial_item_by_code("income", "004027003", rd)
-        _eps = diluted_eps if diluted_eps is not None else (ind.get("DILUTED_EPS") or ind.get("BASIC_EPS"))
+        # ---- 3. 每股收益: VL = 扣非稀释EPS = adj_np / shares ----
+        _eps = round(adj_np / shares, 2) if adj_np and shares else None
         row["BASIC_EPS"] = round(_eps, 2) if _eps is not None else None
 
         # ---- 4. 每股股息: 从dividend表 ----

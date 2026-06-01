@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-01 14:08:43.099453"
+    "generated": "2026-06-01 14:13:41.887935"
   },
   "spot": {
     "price": 173.39999,
@@ -24,7 +24,7 @@
     "change_pct": 7.36842,
     "eps_ttm": 9.58,
     "eps_ttm_hkd": 10.61,
-    "median_pe": 44.8
+    "median_pe": 45.9
   },
   "kline": [
     {
@@ -1857,7 +1857,7 @@
     "2017": {
       "PER_OI": 0.12,
       "PER_NETCASH": 0.02,
-      "BASIC_EPS": 0.01,
+      "BASIC_EPS": 0.0,
       "DPS": 0,
       "CAPEX_PS": 0.01,
       "BPS": 0.06,
@@ -1883,7 +1883,7 @@
     "2018": {
       "PER_OI": 0.38,
       "PER_NETCASH": 0.11,
-      "BASIC_EPS": 0.86,
+      "BASIC_EPS": 0.07,
       "DPS": 0,
       "CAPEX_PS": 0.03,
       "BPS": 0.16,
@@ -1909,7 +1909,7 @@
     "2019": {
       "PER_OI": 14.32,
       "PER_NETCASH": 3.84,
-      "BASIC_EPS": 0.39,
+      "BASIC_EPS": 3.84,
       "DPS": 0,
       "CAPEX_PS": 0.89,
       "BPS": 0.44,
@@ -1935,13 +1935,13 @@
     "2020": {
       "PER_OI": 1.79,
       "PER_NETCASH": 0.55,
-      "BASIC_EPS": 0.44,
+      "BASIC_EPS": 0.38,
       "DPS": 0.1494,
       "CAPEX_PS": 0.13,
       "BPS": 4.57,
       "TOTAL_SHARES": 1401.9,
-      "PE_AVG": 145.1,
-      "PE_RELATIVE": 10.75,
+      "PE_AVG": 168.0,
+      "PE_RELATIVE": 12.44,
       "DIV_YIELD": 0.2,
       "OPERATE_INCOME": 25.1,
       "OP_MARGIN": 38.4,
@@ -1958,18 +1958,18 @@
       "RETAINED_RATIO": 5.3,
       "PAYOUT_RATIO": 39.4,
       "AVG_PRICE": 75.84,
-      "PE_AVG_HKD": 172.4
+      "PE_AVG_HKD": 199.6
     },
     "2021": {
       "PER_OI": 3.2,
       "PER_NETCASH": 0.92,
-      "BASIC_EPS": 0.62,
+      "BASIC_EPS": 0.61,
       "DPS": 0.1524,
       "CAPEX_PS": 0.21,
       "BPS": 5.08,
       "TOTAL_SHARES": 1401.9,
-      "PE_AVG": 80.3,
-      "PE_RELATIVE": 7.65,
+      "PE_AVG": 81.6,
+      "PE_RELATIVE": 7.77,
       "DIV_YIELD": 0.3,
       "OPERATE_INCOME": 44.9,
       "OP_MARGIN": 35.3,
@@ -1986,18 +1986,18 @@
       "RETAINED_RATIO": 9.4,
       "PAYOUT_RATIO": 25.0,
       "AVG_PRICE": 60.88,
-      "PE_AVG_HKD": 98.2
+      "PE_AVG_HKD": 99.8
     },
     "2022": {
       "PER_OI": 3.34,
       "PER_NETCASH": 0.78,
-      "BASIC_EPS": 0.35,
+      "BASIC_EPS": 0.34,
       "DPS": 0.087,
       "CAPEX_PS": 0.19,
       "BPS": 5.19,
       "TOTAL_SHARES": 1380.5,
-      "PE_AVG": 66.6,
-      "PE_RELATIVE": 8.88,
+      "PE_AVG": 68.6,
+      "PE_RELATIVE": 9.15,
       "DIV_YIELD": 0.4,
       "OPERATE_INCOME": 46.2,
       "OP_MARGIN": 25.7,
@@ -2014,18 +2014,18 @@
       "RETAINED_RATIO": 5.1,
       "PAYOUT_RATIO": 25.3,
       "AVG_PRICE": 26.11,
-      "PE_AVG_HKD": 74.6
+      "PE_AVG_HKD": 76.8
     },
     "2023": {
       "PER_OI": 4.67,
       "PER_NETCASH": 1.3,
-      "BASIC_EPS": 0.81,
+      "BASIC_EPS": 0.8,
       "DPS": 0.2821,
       "CAPEX_PS": 0.24,
       "BPS": 5.79,
       "TOTAL_SHARES": 1348.2,
-      "PE_AVG": 23.1,
-      "PE_RELATIVE": 2.57,
+      "PE_AVG": 23.3,
+      "PE_RELATIVE": 2.59,
       "DIV_YIELD": 1.5,
       "OPERATE_INCOME": 63.0,
       "OP_MARGIN": 30.1,
@@ -2042,7 +2042,7 @@
       "RETAINED_RATIO": 9.0,
       "PAYOUT_RATIO": 35.1,
       "AVG_PRICE": 20.61,
-      "PE_AVG_HKD": 25.4
+      "PE_AVG_HKD": 25.8
     },
     "2024": {
       "PER_OI": 9.71,
@@ -2075,7 +2075,7 @@
     "2025": {
       "PER_OI": 27.64,
       "PER_NETCASH": 10.43,
-      "BASIC_EPS": 9.58,
+      "BASIC_EPS": 9.6,
       "DPS": 2.3817,
       "CAPEX_PS": 0.73,
       "BPS": 16.61,
@@ -2098,7 +2098,7 @@
       "RETAINED_RATIO": 43.5,
       "PAYOUT_RATIO": 24.8,
       "AVG_PRICE": 200.86,
-      "PE_AVG_HKD": 21.0
+      "PE_AVG_HKD": 20.9
     }
   },
   "cagr": {
@@ -2109,9 +2109,9 @@
       "10yr": null
     },
     "eps": {
-      "1yr": 307.7,
-      "3yr": 201.4,
-      "5yr": 85.2,
+      "1yr": 308.5,
+      "3yr": 204.5,
+      "5yr": 90.8,
       "10yr": null
     },
     "cashflow": {
@@ -2190,36 +2190,36 @@
         "year": "2019",
         "has_quarter": false,
         "q1": 0.98,
-        "q3": 0,
-        "full": 0.39
+        "q3": 2.86,
+        "full": 3.84
       },
       {
         "year": "2020",
         "has_quarter": false,
         "q1": 0.12,
-        "q3": 0.32,
-        "full": 0.44
+        "q3": 0.26,
+        "full": 0.38
       },
       {
         "year": "2021",
         "has_quarter": false,
         "q1": 0.26,
-        "q3": 0.36,
-        "full": 0.62
+        "q3": 0.35,
+        "full": 0.61
       },
       {
         "year": "2022",
         "has_quarter": false,
         "q1": 0.24,
-        "q3": 0.11,
-        "full": 0.35
+        "q3": 0.1,
+        "full": 0.34
       },
       {
         "year": "2023",
         "has_quarter": false,
         "q1": 0.35,
-        "q3": 0.46,
-        "full": 0.81
+        "q3": 0.45,
+        "full": 0.8
       },
       {
         "year": "2024",
@@ -2232,8 +2232,8 @@
         "year": "2025",
         "has_quarter": false,
         "q1": 3.43,
-        "q3": 6.15,
-        "full": 9.58
+        "q3": 6.17,
+        "full": 9.6
       }
     ],
     "dividends": [
@@ -2550,9 +2550,9 @@
       "10yr": null
     },
     "earnings": {
-      "1yr": 307.7,
-      "3yr": 201.4,
-      "5yr": 85.2,
+      "1yr": 308.5,
+      "3yr": 204.5,
+      "5yr": 90.8,
       "10yr": null
     },
     "dividends": {
@@ -2617,9 +2617,9 @@
     "pe": {
       "current": 16.3,
       "min": 17.0,
-      "max": 145.1,
-      "avg": 58.5,
-      "pct": -1.0
+      "max": 168.0,
+      "avg": 62.9,
+      "pct": -0.0
     },
     "price": {
       "current": 173.4,
