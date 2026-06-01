@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-01 13:46:00.879961"
+    "generated": "2026-06-01 13:55:38.808640"
   },
   "spot": {
     "price": 173.39999,
@@ -1711,7 +1711,7 @@
     {
       "order": 7,
       "name_cn": "发行在外股数",
-      "name_en": "Common Shs Outst'g",
+      "name_en": "Common Shs Outst'g (百万股)",
       "field": "TOTAL_SHARES",
       "unit": "百万股",
       "source": "calculated"
