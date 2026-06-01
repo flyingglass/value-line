@@ -254,8 +254,9 @@ def build_metric_table(reader, years, market="hk"):
         # ---- 2. 每股现金流: (AdjNetProfit + Depreciation) / Shares ----
         row["PER_NETCASH"] = round((adj_np + dep) / shares, 2) if adj_np and shares else None
 
-        # ---- 3. 每股收益: VL用稀释EPS, 扣除非经常性 ----
-        _eps = ind.get("DILUTED_EPS") or ind.get("BASIC_EPS")
+        # ---- 3. 每股收益: VL用稀释EPS (income表004027003), 回退BASIC_EPS ----
+        diluted_eps = reader.financial_item_by_code("income", "004027003", rd)
+        _eps = diluted_eps if diluted_eps is not None else (ind.get("DILUTED_EPS") or ind.get("BASIC_EPS"))
         row["BASIC_EPS"] = round(_eps, 2) if _eps is not None else None
 
         # ---- 4. 每股股息: 从dividend表 ----
@@ -367,10 +368,10 @@ def _compute_ttm_eps(reader, latest_yr):
     fye = stock.get("fiscal_yr_end", "12-31")
     qd_cur = _q_dates(str(latest_yr), fye)   # [q1, h1, 9m, fy]
     qd_prev = _q_dates(str(int(latest_yr) - 1), fye)
-    fy_cur = reader.financial_item_by_code("income", "004027002", qd_cur[3])
-    h1_cur = reader.financial_item_by_code("income", "004027002", qd_cur[1])
-    h1_prev = reader.financial_item_by_code("income", "004027002", qd_prev[1])
-    fy_prev = reader.financial_item_by_code("income", "004027002", qd_prev[3])
+    fy_cur = reader.financial_item_by_code("income", "004027003", qd_cur[3])
+    h1_cur = reader.financial_item_by_code("income", "004027003", qd_cur[1])
+    h1_prev = reader.financial_item_by_code("income", "004027003", qd_prev[1])
+    fy_prev = reader.financial_item_by_code("income", "004027003", qd_prev[3])
     # 方案A: 最新年报已发布 → 直接用 (港股/美股/A股统一)
     if fy_cur is not None and fy_cur > 0:
         return fy_cur
@@ -506,10 +507,10 @@ def build_semi_annual(reader, years, metrics):
         n2 = reader.financial_item_by_code("income", "004025002", qd[1])
         n3 = reader.financial_item_by_code("income", "004025002", qd[2])
         na = reader.financial_item_by_code("income", "004025002", qd[3])
-        e1 = reader.financial_item_by_code("income", "004027002", qd[0])
-        e2 = reader.financial_item_by_code("income", "004027002", qd[1])
-        e3 = reader.financial_item_by_code("income", "004027002", qd[2])
-        ea = reader.financial_item_by_code("income", "004027002", qd[3])
+        e1 = reader.financial_item_by_code("income", "004027003", qd[0]) or reader.financial_item_by_code("income", "004027002", qd[0])
+        e2 = reader.financial_item_by_code("income", "004027003", qd[1]) or reader.financial_item_by_code("income", "004027002", qd[1])
+        e3 = reader.financial_item_by_code("income", "004027003", qd[2]) or reader.financial_item_by_code("income", "004027002", qd[2])
+        ea = reader.financial_item_by_code("income", "004027003", qd[3]) or reader.financial_item_by_code("income", "004027002", qd[3])
         
         # 判断是否有季报：c1 和 c2 都存在
         is_q = c1 is not None and c2 is not None
@@ -560,7 +561,7 @@ def build_semi_annual(reader, years, metrics):
             h1_d = qd[1]
             h1_rev = reader.financial_item_by_code("income", "004001001", h1_d)
             h1_np  = reader.financial_item_by_code("income", "004025002", h1_d)
-            h1_eps = reader.financial_item_by_code("income", "004027002", h1_d)
+            h1_eps = reader.financial_item_by_code("income", "004027003", h1_d) or reader.financial_item_by_code("income", "004027002", h1_d)
             
             if h1_rev is None or h1_np is None:
                 continue
