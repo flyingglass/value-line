@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-01 00:39:36.495474"
+    "generated": "2026-06-01 10:01:54.600041"
   },
   "spot": {
     "price": 122.0,
@@ -2483,14 +2483,65 @@
     "total_equity": 11262.7,
     "current_assets": 6107.69,
     "current_liabilities": 4763.98,
-    "cash": 1315.3
+    "cash": 1315.3,
+    "receivables": 2518.37
   },
   "income_summary": {
     "revenue": 10236.7,
     "gross_profit": 4075.34,
     "net_profit": 1035.92
   },
-  "revenue_structure": {},
+  "revenue_structure": {
+    "by_region": [
+      {
+        "name": "中国",
+        "value": 820717.0,
+        "pct": 80.1
+      },
+      {
+        "name": "国际",
+        "value": 202983.0,
+        "pct": 19.9
+      }
+    ],
+    "by_segment": [
+      {
+        "name": "中国商业",
+        "value": 608350.0,
+        "pct": 59.4
+      },
+      {
+        "name": "云智能",
+        "value": 116698.0,
+        "pct": 11.4
+      },
+      {
+        "name": "国际商业",
+        "value": 109722.0,
+        "pct": 10.7
+      },
+      {
+        "name": "菜鸟",
+        "value": 101851.0,
+        "pct": 9.9
+      },
+      {
+        "name": "本地生活",
+        "value": 61937.0,
+        "pct": 6.1
+      },
+      {
+        "name": "数字媒体娱乐",
+        "value": 27920.0,
+        "pct": 2.7
+      },
+      {
+        "name": "其他",
+        "value": 5412.0,
+        "pct": 0.5
+      }
+    ]
+  },
   "capital_structure": {
     "unit": "亿",
     "divisor": 100000000.0,
@@ -2501,7 +2552,7 @@
     "current_liabilities": 4763.98,
     "cash": 1315.3,
     "inventory": 0,
-    "receivables": 0,
+    "receivables": 2518.37,
     "non_current_liab": 3069.02,
     "lt_debt": 474.5,
     "due_in_5yr": 282.24,
@@ -2519,7 +2570,7 @@
     "business_desc": "阿里巴巴集团是全球领先的电子商务及科技公司。旗下核心业务涵盖中国商业（淘宝、天猫、1688）、国际商业（AliExpress、Lazada）、本地生活（饿了么）、云计算（阿里云）、数字媒体及娱乐等。2025财年集团持续聚焦用户为先、AI驱动战略，云计算业务实现盈利增长，国际业务快速扩张。",
     "employee_count": 198000,
     "employee_year": "2025",
-    "mda_text": ""
+    "mda_text": "【经营总览】\n天貓超市通過淘寶APP提供日用品、快消品和普通商品，並提供當日或次日達服務\n的技術能力和消費者洞察，天貓超市促進了線下合作夥伴的數字化轉型，增強它們的供應鏈管理能\n我們致力通過有吸引力的內容和優質的服務為消費者提供沉浸式和個性化的購物體驗\n平台每天發生的大量的用戶和商家活動形成了重要的消費者洞察\n整合和建立深入的消費者洞察以提供更準確的搜索結果和相關的信息流推薦，提高消費者的購物體驗\n\n【产品/业务结构】\n天貓是為消費者追求更高質量的產品、追求極致購物體驗的需求而打造的\n我們不斷推出交互功能和創新形式，促進用戶對品牌、商家及內容創作者的互動\n形式外，我們的具備相關性和互動性的娛樂內容在消費者的產品發現及購物過程中發揮重要作用，並提\n• 品牌建設和變現平台－阿里媽媽，我們的自有變現平台\n的Choice通過更好的產品選擇、價格和質量，與更快的物流速度和更出色的客戶支持相結合，為消費者提供更佳的\n\n【渠道发展】\n和零售商入駐和運營設置嚴格標準，在天貓開店已成為質量認證，使商家、品牌和零售商得以借助\n牌和零售商進行數字化轉型，包括實現數字化運營，提升消費者參與度，獲取並留存消費者，提高品牌\n促銷產品，以幫助商家、品牌和零售商實現快速獲客，提升品牌認知度，並上線新產品\n上經營的商家、品牌和零售商可以輕鬆創建店舖及上架商品\n通過自有技術匹配我們的生態體系內所有平台上的商家、品牌和零售商的\n\n【分地区表现】\n天貓國際滿足了中國消費者對於國際產品與品牌日益旺盛的需求\n立運營主體即可借助天貓國際作為首要平台，觸達中國消費者、打造品牌知名度並積累寶貴的消費\n在2025財年，我們推出一款新的AI驅動的全平台市場營銷工具「全站推廣」，具備自動出價、\n因商家從其使用的便捷性和市場營銷效率的提升中獲益，我\nP4P營銷服務在我們交易市場上展現的搜索結果排名基於我們的自有算法，該算法綜合考慮關鍵詞競拍價\n\n【成本与效率】\n在商家端，我們專注於改善商家的營運環境，幫助他們提升運營效率\n一系列商家友好的舉措，例如「退貨寶」（一項改善退貨流程的訂閱制服務），以降低商家的成本並支持他\n送給用戶，進而助力商家提高他們的效率並確保他們在我們平台上的可持續發展\n在2025財年，1688.推出了多款AI工具助力買賣雙方的日常運營\n賣家可以藉助AI數字員工和智能賣點生成等創新應用優化店舖運營與商品上架流程\n\n【未来展望】\n淘寶成為眾多用戶購物旅程的起點和終點，並作為頂級流量入口將\n對支付和物流服務採取更開放的策略，為平台上更多消費者提供更便捷的消費體驗\n成的洞察具有相關性和全面性，阿里媽媽借此可以將最相關的信息通過引人入勝的內容和有效的形式推\nTANX平台幫助媒體將其移動APP及網站的媒體資源變現\n場的收入僅佔中國GDP的0.2%，顯著低於美國，未來增長空間較大\n"
   },
   "current_position": {
     "years": [
@@ -2709,8 +2760,42 @@
     "recommendation": ""
   },
   "validation": {
-    "checked": [],
-    "mismatches": [],
+    "checked": [
+      {
+        "year": "2025",
+        "metric": "AKShare↔PDF Revenue",
+        "summary": "AKShare=9963.5B vs PDF=9963.5B",
+        "akshare": 9963.47,
+        "pdf": 9963.5,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2025",
+        "metric": "Revenue by_segment sum=100%",
+        "summary": "by_segment: sum_pct=100.7% (gap=0.7%)",
+        "sum_pct": 100.7,
+        "diff_pct": 0.7
+      },
+      {
+        "year": "2026",
+        "metric": "AKShare↔PDF Revenue",
+        "summary": "AKShare=10236.7B vs PDF=10237.0B",
+        "akshare": 10236.7,
+        "pdf": 10237.0,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2026",
+        "metric": "Revenue by_segment sum=100%",
+        "summary": "by_segment: sum_pct=100.7% (gap=0.7%)",
+        "sum_pct": 100.7,
+        "diff_pct": 0.7
+      }
+    ],
+    "mismatches": [
+      "2025 Revenue by_segment sum=100%: by_segment: sum_pct=100.7% (gap=0.7%) (0.7%)",
+      "2026 Revenue by_segment sum=100%: by_segment: sum_pct=100.7% (gap=0.7%) (0.7%)"
+    ],
     "warnings": [],
     "sources": {
       "annual_indicators": "AKShare stock_financial_hk_analysis_indicator_em (年度指标)",
@@ -2719,9 +2804,12 @@
       "revenue_structure": "年报PDF提取 → SQLite revenue_structure 表",
       "index_kline": "新浪 stock_hk_index_daily_sina"
     },
-    "status": "OK",
-    "pdf_years": [],
-    "checks_passed": 0,
-    "checks_total": 0
+    "status": "MISMATCH",
+    "pdf_years": [
+      "2025",
+      "2026"
+    ],
+    "checks_passed": 2,
+    "checks_total": 4
   }
 }

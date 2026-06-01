@@ -691,6 +691,15 @@ def _build_capital_structure(reader, spot, latest_yr, metrics):
     ]:
         v = reader.financial_item("balance", item, rd)
         raw[key] = v or 0
+    # 兜底: item_code 查找 — 阿里巴巴等港股 item_name 不同
+    for item_code, item_name, key in [
+        ("004002005", "预付款按金及其他应收款", "receivables"),
+        ("005032022", "存货", "inventory"),
+        ("005032003", "应收帐款", "receivables"),
+    ]:
+        if raw.get(key, 0) == 0:
+            v = reader.financial_item_by_code("balance", item_code, rd)
+            raw[key] = v or 0
 
     lt = reader.financial_item("balance", "融资租赁负债(非流动)", rd)
     if not lt:
@@ -1043,7 +1052,7 @@ def build_report(code=None):
     # 营收结构 (从 SQLite revenue_structure 表读取)
     revenue_structure = {}
     latest_yr = years[-1] if years else "2025"
-    for dim in ["by_channel", "by_ip", "by_region"]:
+    for dim in ["by_channel", "by_ip", "by_region", "by_segment"]:
         data = reader.revenue_structure(latest_yr, dim)
         if data:
             revenue_structure[dim] = data
@@ -1064,6 +1073,15 @@ def build_report(code=None):
             v = reader.financial_item("balance", item, rd)
             if v:
                 balance_summary[key] = v / 1e8
+        # 兜底: item_code 查找
+        for item_code, item_name, key in [
+            ("004002005", "预付款按金及其他应收款", "receivables"),
+            ("005032022", "存货", "inventory"),
+        ]:
+            if key not in balance_summary:
+                v = reader.financial_item_by_code("balance", item_code, rd)
+                if v:
+                    balance_summary[key] = v / 1e8
         for item, key in [("营业额", "revenue"), ("毛利", "gross_profit"),
                           ("股东应占溢利", "net_profit")]:
             v = reader.financial_item("income", item, rd)
@@ -1227,7 +1245,7 @@ def build_report(code=None):
                            rev_pct)
 
             # 3. 营收结构维度完整性: 各维度 pct 总和是否 = 100%
-            for dim in ["by_channel", "by_ip", "by_region"]:
+            for dim in ["by_channel", "by_ip", "by_region", "by_segment"]:
                 dim_sum = reader.conn.execute(
                     "SELECT SUM(pct) FROM revenue_structure WHERE code=? AND year=? AND dim_type=?",
                     (code, str(pdf_yr), dim)).fetchone()[0]
