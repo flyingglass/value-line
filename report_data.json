@@ -13,14 +13,14 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-01 13:43:09.771581"
+    "generated": "2026-06-01 13:46:00.879961"
   },
   "spot": {
     "price": 173.39999,
     "pe": 16.3,
     "pb": 9.43,
     "div_yield": 1.52,
-    "mkt_cap": 2325.4,
+    "mkt_cap": 2328.7,
     "change_pct": 7.36842,
     "eps_ttm": 9.61,
     "eps_ttm_hkd": 10.64,
@@ -1713,7 +1713,7 @@
       "name_cn": "发行在外股数",
       "name_en": "Common Shs Outst'g",
       "field": "TOTAL_SHARES",
-      "unit": "shs.",
+      "unit": "百万股",
       "source": "calculated"
     },
     {
@@ -1861,7 +1861,7 @@
       "DPS": 0,
       "CAPEX_PS": 0.01,
       "BPS": 0.06,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 1341.0,
       "PE_AVG": null,
       "PE_RELATIVE": null,
       "DIV_YIELD": null,
@@ -1887,7 +1887,7 @@
       "DPS": 0,
       "CAPEX_PS": 0.03,
       "BPS": 0.16,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 1341.0,
       "PE_AVG": null,
       "PE_RELATIVE": null,
       "DIV_YIELD": null,
@@ -1907,13 +1907,13 @@
       "PAYOUT_RATIO": 0.0
     },
     "2019": {
-      "PER_OI": 1.26,
-      "PER_NETCASH": 0.34,
+      "PER_OI": 14.32,
+      "PER_NETCASH": 3.84,
       "BASIC_EPS": 0.39,
       "DPS": 0,
-      "CAPEX_PS": 0.08,
+      "CAPEX_PS": 0.89,
       "BPS": 0.44,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 117.5,
       "PE_AVG": null,
       "PE_RELATIVE": null,
       "DIV_YIELD": null,
@@ -1933,13 +1933,13 @@
       "PAYOUT_RATIO": 0.0
     },
     "2020": {
-      "PER_OI": 1.87,
-      "PER_NETCASH": 0.58,
+      "PER_OI": 1.79,
+      "PER_NETCASH": 0.55,
       "BASIC_EPS": 0.44,
       "DPS": 0.1494,
       "CAPEX_PS": 0.13,
       "BPS": 4.57,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 1401.9,
       "PE_AVG": 145.1,
       "PE_RELATIVE": 10.75,
       "DIV_YIELD": 0.2,
@@ -1955,19 +1955,19 @@
       "TOTAL_EQUITY": 61.3,
       "ROIC": 11.6,
       "ROE": 8.7,
-      "RETAINED_RATIO": 5.4,
-      "PAYOUT_RATIO": 37.7,
+      "RETAINED_RATIO": 5.3,
+      "PAYOUT_RATIO": 39.4,
       "AVG_PRICE": 75.84,
       "PE_AVG_HKD": 172.4
     },
     "2021": {
-      "PER_OI": 3.35,
-      "PER_NETCASH": 0.96,
+      "PER_OI": 3.2,
+      "PER_NETCASH": 0.92,
       "BASIC_EPS": 0.62,
       "DPS": 0.1524,
       "CAPEX_PS": 0.21,
       "BPS": 5.08,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 1401.9,
       "PE_AVG": 80.3,
       "PE_RELATIVE": 7.65,
       "DIV_YIELD": 0.3,
@@ -1983,19 +1983,19 @@
       "TOTAL_EQUITY": 68.2,
       "ROIC": 16.2,
       "ROE": 12.5,
-      "RETAINED_RATIO": 9.5,
-      "PAYOUT_RATIO": 23.9,
+      "RETAINED_RATIO": 9.4,
+      "PAYOUT_RATIO": 25.0,
       "AVG_PRICE": 60.88,
       "PE_AVG_HKD": 98.2
     },
     "2022": {
-      "PER_OI": 3.44,
-      "PER_NETCASH": 0.81,
+      "PER_OI": 3.34,
+      "PER_NETCASH": 0.78,
       "BASIC_EPS": 0.35,
       "DPS": 0.087,
-      "CAPEX_PS": 0.2,
+      "CAPEX_PS": 0.19,
       "BPS": 5.19,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 1380.5,
       "PE_AVG": 66.6,
       "PE_RELATIVE": 8.88,
       "DIV_YIELD": 0.4,
@@ -2011,19 +2011,19 @@
       "TOTAL_EQUITY": 69.7,
       "ROIC": 8.4,
       "ROE": 6.8,
-      "RETAINED_RATIO": 5.2,
-      "PAYOUT_RATIO": 24.5,
+      "RETAINED_RATIO": 5.1,
+      "PAYOUT_RATIO": 25.3,
       "AVG_PRICE": 26.11,
       "PE_AVG_HKD": 74.6
     },
     "2023": {
-      "PER_OI": 4.7,
-      "PER_NETCASH": 1.31,
+      "PER_OI": 4.67,
+      "PER_NETCASH": 1.3,
       "BASIC_EPS": 0.81,
       "DPS": 0.2821,
       "CAPEX_PS": 0.24,
       "BPS": 5.79,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 1348.2,
       "PE_AVG": 23.1,
       "PE_RELATIVE": 2.57,
       "DIV_YIELD": 1.5,
@@ -2039,19 +2039,19 @@
       "TOTAL_EQUITY": 77.8,
       "ROIC": 15.4,
       "ROE": 13.9,
-      "RETAINED_RATIO": 9.1,
-      "PAYOUT_RATIO": 35.0,
+      "RETAINED_RATIO": 9.0,
+      "PAYOUT_RATIO": 35.1,
       "AVG_PRICE": 20.61,
       "PE_AVG_HKD": 25.4
     },
     "2024": {
-      "PER_OI": 9.72,
+      "PER_OI": 9.71,
       "PER_NETCASH": 2.99,
       "BASIC_EPS": 2.35,
       "DPS": 0.8146,
       "CAPEX_PS": 0.28,
       "BPS": 7.97,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 1342.9,
       "PE_AVG": 17.0,
       "PE_RELATIVE": 2.0,
       "DIV_YIELD": 2.0,
@@ -2073,13 +2073,13 @@
       "PE_AVG_HKD": 18.3
     },
     "2025": {
-      "PER_OI": 27.68,
-      "PER_NETCASH": 10.44,
+      "PER_OI": 27.64,
+      "PER_NETCASH": 10.43,
       "BASIC_EPS": 9.58,
       "DPS": 2.3817,
       "CAPEX_PS": 0.73,
       "BPS": 16.61,
-      "TOTAL_SHARES": 1341043150,
+      "TOTAL_SHARES": 1342.9,
       "PE_AVG": 18.9,
       "PE_RELATIVE": 2.36,
       "DIV_YIELD": 1.3,
@@ -2115,9 +2115,9 @@
       "10yr": null
     },
     "cashflow": {
-      "1yr": 249.2,
-      "3yr": 134.5,
-      "5yr": 78.3,
+      "1yr": 248.8,
+      "3yr": 137.4,
+      "5yr": 80.1,
       "10yr": null
     },
     "dividend": {
@@ -2313,23 +2313,23 @@
     },
     {
       "date": "2019",
-      "value": 5.65
+      "value": 63.77
     },
     {
       "date": "2020",
-      "value": 9.63
+      "value": 9.13
     },
     {
       "date": "2021",
-      "value": 15.94
+      "value": 15.28
     },
     {
       "date": "2022",
-      "value": 13.45
+      "value": 12.95
     },
     {
       "date": "2023",
-      "value": 21.76
+      "value": 21.59
     },
     {
       "date": "2024",
@@ -2337,7 +2337,7 @@
     },
     {
       "date": "2025",
-      "value": 173.38
+      "value": 173.21
     }
   ],
   "balance_summary": {
@@ -2463,10 +2463,10 @@
     "lt_debt_pct": 9.1,
     "pension_assets": "N/A",
     "pfd_stock": "None",
-    "common_shares": 1341.0,
-    "common_shares_str": "1,341,043,150",
-    "common_shares_raw": 1341043150,
-    "mkt_cap": 2100.3,
+    "common_shares": 1343.0,
+    "common_shares_str": "1,342,943,150",
+    "common_shares_raw": 1342943150,
+    "mkt_cap": 2103.3,
     "cap_label": "Large Cap",
     "business_desc": "泡泡玛特是中国领先的潮流文化娱乐公司。2025年全球化进程进一步提速，品牌知名度持续提升，IP运营与产品研发能力持续增强，推出多款深受全球消费者欢迎的新IP及新品系列，推动销售业绩实现高速增长。",
     "employee_count": 10879,
@@ -2544,9 +2544,9 @@
       "10yr": null
     },
     "cashflow": {
-      "1yr": 249.2,
-      "3yr": 134.5,
-      "5yr": 78.3,
+      "1yr": 248.8,
+      "3yr": 137.4,
+      "5yr": 80.1,
       "10yr": null
     },
     "earnings": {

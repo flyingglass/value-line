@@ -440,7 +440,7 @@ var DATA = {DATA_JS};
         if(m.unit==='亿')txt=v.toFixed(1);
         else if(m.unit==='%')txt=v.toFixed(1)+'%';
         else if(m.unit==='元')txt=v.toFixed(2);
-        else if(m.unit==='shs.')txt=v.toLocaleString();
+        else if(m.unit==='百万股')txt=v.toFixed(0);
         else txt=v.toString();
       }}
       html+='<td style="text-align:right;font-size:8.5px;'+tdStyle+'">'+txt+'</td>';
@@ -579,7 +579,7 @@ var DATA = {DATA_JS};
       var yr=dt.substring(0,4);
       var sh=shByYear[yr]||shFallback;
       if(k&&k.volume&&sh){{
-        volData.push(+(k.volume/sh*100).toFixed(2));
+        volData.push(+(k.volume/(sh*1e6)*100).toFixed(2));
       }}else{{volData.push(null);}}
     }});
     var vMax=0;

@@ -302,7 +302,7 @@ VL_METRICS = [
     (5,  "每股资本支出", "Cap'l Spending per sh",      "CAPEX_PS",             "元",   "calculated"),
     (6,  "每股账面价值", "Book Value per sh",          "BPS",                  "元",   "indicators"),
     # === 股本与估值 (7-10) ===
-    (7,  "发行在外股数", "Common Shs Outst'g",         "TOTAL_SHARES",         "shs.",  "calculated"),
+    (7,  "发行在外股数", "Common Shs Outst'g",         "TOTAL_SHARES",         "百万股","calculated"),
     (8,  "平均年化PE",   "Avg Ann'l P/E Ratio",        "PE_AVG",               "倍",   "calculated"),
     (9,  "相对PE",       "Relative P/E Ratio",         "PE_RELATIVE",          "倍",   "calculated"),
     (10, "平均股息率",   "Avg Ann'l Div'd Yield",      "DIV_YIELD",            "%",    "calculated"),

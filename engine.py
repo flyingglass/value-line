@@ -163,26 +163,31 @@ class DataReader:
         return {r[0]: r[1] for r in rows}
 
     def share_count(self, report_date=None):
-        """返回原始股数（优先东方财富API直取，失败回退计算）"""
-        # 先查缓存
+        """返回原始股数。
+        - 无 report_date: 优先东方财富API → 缓存 → config 兜底 (用于市值等)
+        - 有 report_date: 直接用 OPERATE_INCOME/PER_OI 计算当年股本
+        """
+        if report_date:
+            oi = self.financial_item("indicators", "OPERATE_INCOME", report_date)
+            psi = self.financial_item("indicators", "PER_OI", report_date)
+            if oi and psi and psi > 0:
+                return round(oi / psi)
+        # 通用查询: 先查缓存
         cached = self.db_meta("total_shares")
         if cached:
             try:
                 return int(cached)
             except (ValueError, TypeError):
                 pass
-        # 东方财富 API 直取
+        # 东方财富 API
         try:
-            import requests, json
+            import requests
             stock_cfg = config.STOCKS.get(self.code, {})
             market = stock_cfg.get("market", "hk")
-            # secid: 116=港股, 1=上交所, 0=深交所
             secid_map = {"hk": "116", "cn": {"SSE": "1", "SZSE": "0"}.get(stock_cfg.get("exchange", ""), "0")}
             secid = secid_map.get(market, "116")
-            if isinstance(secid, str):
-                secid_full = f"{secid}.{self.code}"
-            url = f"https://push2.eastmoney.com/api/qt/stock/get?secid={secid_full}&fields=f84"
-            r = requests.get(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://quote.eastmoney.com/"}, 
+            url = f"https://push2.eastmoney.com/api/qt/stock/get?secid={secid}.{self.code}&fields=f84"
+            r = requests.get(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://quote.eastmoney.com/"},
                           timeout=10, proxies={"http": None, "https": None})
             data = r.json()
             shares = data.get("data", {}).get("f84")
@@ -192,12 +197,6 @@ class DataReader:
                 return int(shares)
         except Exception:
             pass
-        # 回退：计算值
-        if report_date:
-            oi = self.financial_item("indicators", "OPERATE_INCOME", report_date)
-            psi = self.financial_item("indicators", "PER_OI", report_date)
-            if oi and psi and psi > 0:
-                return round(oi / psi)
         stock = config.STOCKS.get(self.code, {})
         return stock.get("shares")
 
@@ -274,7 +273,7 @@ def build_metric_table(reader, years, market="hk"):
         row["BPS"] = round(_bps, 2) if _bps else None
 
         # ---- 7. 发行在外股数 (百万股) ----
-        row["TOTAL_SHARES"] = int(shares) if shares else None  # raw count, not 百万
+        row["TOTAL_SHARES"] = round(shares / 1e6, 1) if shares else None  # 百万股
 
         # ---- 8-10. PE/股息率 (后续补算) ----
         row["PE_AVG"] = None
