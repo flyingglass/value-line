@@ -37,9 +37,9 @@ market-specific settings driven by config.py MARKET_CONFIG.
 │ Current      │ 23-LINE STATISTICAL ARRAY             │
 │ Position     │ (9 years × 23 metrics, 含%单位后缀)    │
 │ Annual Rates ├───────────────────────────────────────┤
-│ Quarterly    │ BUSINESS (中文, 渠道/IP/地区/员工)     │
+│ Quarterly    │ BUSINESS (4段式: P1数据摘要+P2营收结构+P3折旧员工+P4CEO/注册地) │
 │ Sales/EPS    ├───────────────────────────────────────┤
-│ / Dividends  │ Management Discussion & Analysis      │
+│ / Dividends  │ AI Commentary (3段分析师评论)          │
 │              │ (7板块中文总结, 紧凑排版)              │
 └──────────────┴───────────────────────────────────────┘
 ```
@@ -60,6 +60,8 @@ insert_revenue.py ──┘                           (computation)          (se
 | `engine.py` | Read SQLite → compute metrics, CAGR, semi-annual, position, validation → report_data.json. Shares computed dynamically from OI/PER_OI, not hardcoded. |
 | `generate_report.py` | Read report_data.json → self-contained 2-column HTML. Uses meta.index_name for RS line label (not hardcoded HSI). |
 | `pdf_downloader.py` | Download annual/semi-annual report PDFs |
+| `extract_business.py` | Extract business_desc + employee_count from PDF → SQLite meta |
+| `extract_mda.py` | Extract Management Discussion & Analysis from PDF → SQLite meta |
 | `insert_revenue.py` | Insert revenue structure data from PDF into SQLite |
 
 ## Config: MARKET_CONFIG
@@ -120,7 +122,7 @@ Results and data source list shown in report footer.
 - **数据层**
   - 股数: 完全动态化(OI/PER_OI), 去掉所有config硬编码
   - 市场配置: 新增 MARKET_CONFIG, 驱动 index/currency/PE基准
-  - PDF元数据: 新增 extract_pdf_metadata.py, business_desc+employee_count→SQLite
+  - PDF元数据: 新增 extract_business.py, business_desc+employee_count→SQLite
   - MD&A: 新增 extract_mda.py, 7板块中文管理层讨论与分析
   - 营收结构: "中国内地"→"中国", 与PDF原文一致
 
@@ -136,5 +138,35 @@ Results and data source list shown in report footer.
   - engine.py: market参数化, 动态单位检测, _detect_unit()
   - generate_report.py: 布局重排, 中文业务简介, 2列Capital Structure
   - config.py: 新增 MARKET_CONFIG, currency/index/pe_estimate
-  - 新增: extract_pdf_metadata.py, extract_mda.py
+  - 新增: extract_business.py, extract_mda.py
+
+## BUSINESS 区域模板 (2026-06-02)
+
+BUSINESS 区域采用 4 段式 Pop Mart 风格：
+
+```
+P1: {year}年营收{X}亿元(同比±{g}%)，归母净利润{Y}亿元，毛利率{G}%，ROE {R}%。
+     {一句话业务描述，含核心数据(规模/覆盖/触达)}
+
+P2: 产品：{by_product top3}；行业：{by_industry top5}
+     (具体维度取决于 revenue_structure: by_product/by_industry/by_channel/by_ip/by_region)
+
+P3: 折旧率{D}%。员工{E}万人（{year}）
+
+P4: 首席执行官：{ceo}。注册地：{inc}。{website}
+```
+
+**生成后必须检查：4 段全部有数据，P1 不截断（generate_report.py 已禁用 substring）。**
+
+## AI Commentary 模板 (2026-06-02 — VL 原生叙事风格)
+
+采用 3 段连续叙事体（总 300-400 字），无分节标题：
+
+```
+P1: {日期} — {业绩快照+同比}。{趋势判断：什么在变、为什么重要}。
+P2: {深度分析：业务变化、竞争格局、财务质地}。{估值快照 vs 历史中位}。
+P3: {催化剂+风险}。关注{1-2个验证信号}。
+```
+
+**原则：不罗列数据，解释"为什么"，指出"什么在变"，给出验证信号。**
 

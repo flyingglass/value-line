@@ -68,6 +68,17 @@ config.py: business_desc / analyst.commentary 仅作为最后兜底 (可选)
 - 004001001 = 营业总收入
 - 004025002 = 归母净利润  
 - 004027002 = 基本每股收益
+- 004027003 = 稀释每股收益 (A股→basic_eps, 港股→diluted_eps)
+- 004012001 = 所得税费用 (A股→income_tax_expense)
+- 004011999 = 利润总额/除税前利润 (A股→profit_total)
+
+## A股 vs 港股差异 (2026-06-02 固化)
+- **item_code**: A股 income/balance/cashflow 表的 item_code 为空, 全部用 item_name(英文) 查询
+- **cn_map 兜底**: financial_item_by_code() 对A股通过 cn_map 将 STD_ITEM_CODE 映射为英文 item_name
+- **TAX_EBT**: A股 indicators 表无此字段, engine在 indicators 路径末尾回退到 income 表当面计算
+- **EPS HKD**: A股无效, build.py step_8 仅对港股检查
+- **revenue_structure dim**: A股用 by_product + by_industry (不含 by_channel/by_ip)
+- **早年验证**: A股借壳上市股票(如002027)2018年前数据 mismatch 仅警告不阻断
 
 ## 用户偏好
 - A股涨红跌绿 (中国惯例)
@@ -89,7 +100,7 @@ config.py: business_desc / analyst.commentary 仅作为最后兜底 (可选)
 - 单位: 100外币兑CNY（如 usd_cny=681.76 即 1USD=6.8176CNY）
 - engine.py 中港股数据需按日期查询该表换算CNY
 
-## 页面布局 (2026-06-01 终版)
+## 页面布局 (2026-06-02 终版)
 - **页面宽度**: 1360px
 - **左栏**: 245px (grid-template: 245px + 1fr)
 - **K线高度**: 240px, legend表 colgroup: 130px + 40px + 15col
@@ -97,3 +108,26 @@ config.py: business_desc / analyst.commentary 仅作为最后兜底 (可选)
 - **align表第一列**: 130px
 - **K线年限**: kl.filter(>=showYears[0])
 - **年份数**: showYears = Y.slice(-15)
+
+## BUSINESS 区域模板 (2026-06-02 固化 — Pop Mart 风格)
+```
+P1: {year}年营收{X}亿元(同比±{g}%)，归母净利润{Y}亿元，毛利率{G}%，ROE {R}%。
+     {一句话业务描述(规模/覆盖/触达)}
+P2: 产品：{by_product top3}；行业：{by_industry top5}
+P3: 折旧率{D}%。员工{E}万人（{year}）
+P4: 首席执行官：{ceo}。注册地：{inc}。{website}
+```
+- P1 全文渲染，禁用截断 (generate_report.py bizP.push(desc))
+- P2 支持全部维度: by_ip/by_channel/by_region/by_product/by_industry
+- P4 来源: config.STOCKS → ceo/inc/website → engine meta
+- 新股票 config 需填 ceo/inc/website
+- **年份数**: showYears = Y.slice(-15)
+
+## AI Commentary 模板 (2026-06-02 — VL 原生叙事风格)
+```
+P1: {日期} — {业绩快照+同比}。{趋势判断：什么在变、为什么重要}。
+P2: {深度分析：业务变化、竞争格局、财务质地}。{估值快照 vs 历史中位}。
+P3: {催化剂+风险}。关注{1-2个验证信号}。
+```
+- 总 300-400 字，3 段连续散文，无分节标题
+- 原则：不罗列数据，解释"为什么"，指出"什么在变"

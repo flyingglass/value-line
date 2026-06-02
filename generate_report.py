@@ -112,13 +112,13 @@ var DATA = {DATA_JS};
   html+='<div class="left-col">';
 
   // Business — VL风格，分段可读
-  var rev=d.revenue_structure||{{}}, ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]);
+  var rev=d.revenue_structure||{{}}, ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]),
+      prod=(rev.by_product||[]), ind=(rev.by_industry||[]);
   var desc=(d.analyst&&d.analyst.business)||cs.business_desc||'';
   var bizP=[], bizHtml='';
   // P1: 业务描述
   if(desc){{
-    var dot=desc.indexOf('。');
-    bizP.push(dot>0?desc.substring(0,dot):desc.substring(0,80));
+    bizP.push(desc);
   }}
   // P2: IP+渠道+地域 (营收结构)
   var p2=[];
@@ -133,6 +133,14 @@ var DATA = {DATA_JS};
   if(rg.length>0){{
     var rgTop=rg.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');
     p2.push('地域：'+rgTop);
+  }}
+  if(prod.length>0){{
+    var prodTop=prod.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');
+    p2.push('产品：'+prodTop);
+  }}
+  if(ind.length>0){{
+    var indTop=ind.slice(0,5).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');
+    p2.push('行业：'+indTop);
   }}
   if(p2.length) bizP.push(p2.join('；'));
   // P3: 折旧/员工/CEO/注册地/网站
@@ -462,15 +470,17 @@ var DATA = {DATA_JS};
     '暂无数据', '数据暂不可用', '请先运行 engine.py 生成完整数据', ''
   ];
   var fromMda=d.analyst&&d.analyst.commentary_from_mda;
-  html+='<div class="analyst" style="font-size:10px">';
+  html+='<div class="analyst" style="font-size:10px;column-count:2;column-gap:16px;column-rule:1px solid #ccc;flex:1">';
+  html+='<div style="column-span:all">';
   if(fromMda){{
-    html+='<span style="font-size:12px;font-weight:700">AI Commentary: '+(stockName+' MD&A Analysis')+'</span>';
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+(stockName+' MD&A Analysis')+'</span>';
   }}else{{
-    html+='<span style="font-size:12px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+'</span>';
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+'</span>';
   }}
+  html+='</div>';
   for(var ci=(fromMda?1:0);ci<commentary.length;ci++){{
     if(commentary[ci]&&commentary[ci].length>5){{
-      html+='<p style="text-align:justify;margin:4px 0">'+commentary[ci]+'</p>';
+      html+='<p style="text-align:justify;margin:4px 0;font-size:12px">'+commentary[ci]+'</p>';
     }}
   }}
   html+='</div>';

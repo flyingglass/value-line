@@ -98,20 +98,65 @@
 | BUSINESS | 手动维护 | config.business_desc | ✅ → mda override |
 | AI Commentary | 手动维护 | config.analyst.commentary | ✅ → mda override |
 
-### 1.5.1 BUSINESS & Commentary 数据源 (2026-06-01)
+### 1.5.1 BUSINESS 区域模板 (2026-06-02 — Pop Mart 风格固化)
 
-| 优先级 | 来源 | 适用条件 | 内容 |
-|--------|------|---------|------|
-| **1** | PDF 年报提取 | quality=1 (分类均衡, ≥300chars) | 叙事性文本 |
-| **2** | 财务数据自生成 | quality=0 (默认, 零配置) | 营收/利润/ROE/地域/业务/CAGR/PE |
-| **3** | config.py fallback | 前两者均失败 | 手动维护 (可选) |
+BUSINESS 区域采用 **4段式** 结构，对标 Pop Mart(09992) 报告：
 
-自生成公式:
-- **BUSINESS**: `{year}年营收{X}亿元(+{g}%)。归母净利润{Y}亿元。ROE {R}%。业务: {segments}。`
-- **Commentary P1**: 业绩概览 (营收/利润/EPS/毛利率同比)
-- **Commentary P2**: 业务结构 + 地域分布
-- **Commentary P3**: 财务健康 (ROE/负债率/PE)
-- **Commentary P4**: 增长趋势 (CAGR) — 如果有5年数据
+```
+P1: {year}年营收{X}亿元(同比±{g}%)，归母净利润{Y}亿元(同比±{h}%)，
+    毛利率{G}%，ROE {R}%。{一句话业务描述，含核心数据(规模/覆盖/触达)}。
+
+P2: 产品：{by_product top3 name+pct}；
+    行业：{by_industry top5 name+pct}
+    (具体维度取决于 revenue_structure 可用数据: by_product/by_industry/
+     by_channel/by_ip/by_region，按优先级全部渲染)
+
+P3: 折旧率{D}%。员工{E}万人（{最新年份}）
+
+P4: 首席执行官：{ceo}。注册地：{inc}。{website}
+```
+
+**数据源优先级：**
+
+| 段 | 数据源 | fallback |
+|----|--------|---------|
+| P1 | `analyst.business` (手写) | config.business_desc |
+| P2 | `revenue_structure` 表 | 空 (不显示) |
+| P3 | 折旧率: `DEPRECIATION/OPERATE_INCOME`; 员工: `meta.employee_count` | 空 |
+| P4 | `meta.ceo/inc/website` (来自 config.STOCKS) | 空 |
+
+**关键约束：**
+- P1 不截断 (generate_report.py 中 `bizP.push(desc)` 保留全文，禁用 `substring`)
+- P2 支持全部维度: `by_ip/by_channel/by_region/by_product/by_industry`
+- CEO/inc/website 在 config.py STOCKS 中配置，engine.py 自动传入 meta
+
+### 1.5.2 AI Commentary 模板 (2026-06-02 — VL 原生叙事风格)
+
+参考 VL 官方手册：*"The analyst discusses recent performance and expectations for the future, explains why the forecast is what it is, and is particularly useful when a change in trend is occurring."*
+
+采用 **3 段叙事体**（总 300-400 字），无分节标题，连续散文：
+
+```
+P1: {日期} — {1-2句业绩快照，含同比变化}。{1-2句趋势判断：什么在变、为什么重要}。
+
+P2: {2-3句深度分析：业务变化、竞争格局、财务质地}。
+    {估值快照：PE/PB vs 历史中位数对比}。
+
+P3: {催化剂+风险总结}。关注{1-2个未来验证信号}。
+```
+
+**关键原则：**
+- ❌ 不罗列数据（不是仪表盘，是分析师观点）
+- ✅ 解释"为什么"——why the numbers are what they are
+- ✅ 指出"什么在变"——trend change is the most valuable insight
+- ✅ 结尾给出验证信号——what to watch for next
+
+示例（分众传媒）：
+> 2026年6月2日 — 分众传媒2025年营收127.6亿元(+4.1%)，归母净利润29.5亿元(-42.8%)。利润下滑主因2024年一次性投资收益高基数，核心广告业务保持稳健。值得关注的是客户结构正在发生质变：日用消费品广告占比从2021年的42.7%跃升至61.9%，互联网客户从28.5%降至9.2%——收入底盘正从"烧钱换增长的互联网"转向"稳健投放的品牌消费品"，客户质量和抗周期能力大幅提升。
+>
+> 公司全面拥抱AI：营销智能体"众小智"覆盖创意生成到投放优化全链路，"千楼千面"实现分楼宇精准投放，传统户外广告正升级为"可精准、可归因、可互动、可优化"的数智化营销。毛利率70.5%、ROE 20.2%、负债率仅0.3%，财务质地优秀。当前PE 27.7倍，高于10年中位数19.1倍，但考虑到2025年低基数效应，前瞻估值更具参考意义。
+>
+> AI降本增效+消费品客户升级+海外拓展构成三重催化剂。关注2026年中报核心广告业务利润增速及AI工具实效数据——这是验证公司"第二增长曲线"叙事的关键节点。
 
 ### 1.6 汇率转换
 

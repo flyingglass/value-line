@@ -140,26 +140,29 @@ def fetch_spot_hk(store, code):
     print(f"OK 股价={r['最新价']}")
 
 def fetch_spot_cn(store, code, pfx):
-    """A股实时行情 (新浪)"""
+    """A股实时行情 (新浪, 容错: 外网不通时跳过)"""
     print("  [spot_cn] ", end="", flush=True)
-    df = ak.stock_zh_a_spot()
-    full_code = f"{pfx}{code}"
-    row = df[df["代码"] == full_code]
-    if row.empty:
-        print("未找到")
-        return
-    r = row.iloc[0]
-    store.conn.execute("DELETE FROM spot")
-    store.conn.execute(
-        "INSERT INTO spot VALUES (?,?,?,?,?,?,?,?,?,?)",
-        (str(pd.Timestamp.now().date()), float(r.get("最新价", 0)),
-         float(r.get("市盈率", 0)) if "市盈率" in df.columns else 0,
-         float(r.get("市净率", 0)) if "市净率" in df.columns else 0,
-         0.0, 0.0,
-         float(r.get("涨跌幅", 0)), float(r.get("成交量", 0)),
-         0.0, 0.0))
-    store.conn.commit()
-    print(f"OK 股价={r['最新价']}")
+    try:
+        df = ak.stock_zh_a_spot()
+        full_code = f"{pfx}{code}"
+        row = df[df["代码"] == full_code]
+        if row.empty:
+            print("未找到")
+            return
+        r = row.iloc[0]
+        store.conn.execute("DELETE FROM spot")
+        store.conn.execute(
+            "INSERT INTO spot VALUES (?,?,?,?,?,?,?,?,?,?)",
+            (str(pd.Timestamp.now().date()), float(r.get("最新价", 0)),
+             float(r.get("市盈率", 0)) if "市盈率" in df.columns else 0,
+             float(r.get("市净率", 0)) if "市净率" in df.columns else 0,
+             0.0, 0.0,
+             float(r.get("涨跌幅", 0)), float(r.get("成交量", 0)),
+             0.0, 0.0))
+        store.conn.commit()
+        print(f"OK 股价={r['最新价']}")
+    except Exception as e:
+        print(f"跳过 (API不可用: {str(e)[:60]})")
 
 # ============================================================
 # K线数据
@@ -284,6 +287,31 @@ def fetch_hk_financials(store, code):
 # ============================================================
 # A股财务数据 (同花顺 + 巨潮)
 # ============================================================
+def _parse_cn_amount(val):
+    """解析带中文单位的金额: '29.15亿'→2915000000, '5677.30万'→56773000"""
+    if val is None:
+        return None
+    s = str(val).strip()
+    if not s:
+        return None
+    try:
+        return float(s)
+    except ValueError:
+        pass
+    # 处理中文单位
+    multipliers = {"亿": 1e8, "万": 1e4, "千": 1e3, "元": 1.0, "%": 1.0}
+    for unit, mult in multipliers.items():
+        if s.endswith(unit):
+            try:
+                return float(s[:-len(unit)]) * mult
+            except ValueError:
+                return None
+    # 尝试直接转换(可能含有逗号等)
+    try:
+        return float(s.replace(",", ""))
+    except ValueError:
+        return None
+
 def fetch_cn_financials(store, code):
     """A股三大表 (同花顺) + 指标 + 分红 (巨潮)"""
     # 三大表 - 同花顺
@@ -291,53 +319,67 @@ def fetch_cn_financials(store, code):
                        ("balance", ak.stock_financial_debt_ths),
                        ("cashflow", ak.stock_financial_cash_ths)]:
         print(f"  [cn_{table}] ", end="", flush=True)
+        try:
+            df = fn(symbol=code)
+        except Exception as e:
+            print(f"跳过 (API不可用: {str(e)[:60]})")
+            continue
         # 同花顺接口返回的列名不同, 统一处理
         df = fn(symbol=code)
         # 宽表→长表
         for idx, row in df.iterrows():
             item = row.get("报告期", str(idx))
             for col in df.columns[1:]:
-                try:
-                    amt = float(row[col])
-                except (ValueError, TypeError):
+                amt = _parse_cn_amount(row[col])
+                if amt is None:
                     continue
                 store.conn.execute(
-                    f"INSERT OR REPLACE INTO {table} VALUES (?,?,?)",
-                    (str(item), str(col), amt))
+                    f"INSERT OR REPLACE INTO {table} VALUES (?,?,?,?)",
+                    (str(item), str(col), amt, None))
         store.conn.commit()
         print(f"OK {len(df)}行")
 
-    # 分析指标 - 同花顺新版
+    # 分析指标 - 同花顺新版 (长表格式)
     print("  [cn_indicators] ", end="", flush=True)
     df = ak.stock_financial_abstract_new_ths(
         symbol=code, indicator="按报告期")
+    # 新版API返回长表: report_date, metric_name, value, ...
     for _, row in df.iterrows():
-        item = str(row.get("报告期", ""))
-        for col in df.columns:
-            if col in ("报告期",):
-                continue
-            try:
-                amt = float(row[col])
-                store.conn.execute(
-                    "INSERT OR REPLACE INTO indicators VALUES (?,?,?)",
-                    (item, str(col), amt))
-            except (ValueError, TypeError):
-                pass
+        rd = str(row.get("report_date", ""))
+        metric = str(row.get("metric_name", ""))
+        val = row.get("value")
+        if not rd or not metric:
+            continue
+        try:
+            amt = float(val)
+        except (ValueError, TypeError):
+            continue
+        store.conn.execute(
+            "INSERT OR REPLACE INTO indicators VALUES (?,?,?)",
+            (rd, metric, amt))
     store.conn.commit()
     print(f"OK {len(df)}行")
 
-    # 分红 - 巨潮
+    # 分红 - 巨潮 (新API格式: 派息比例=每10股派息金额)
     print("  [cn_dividend] ", end="", flush=True)
     df = ak.stock_dividend_cninfo(symbol=code)
     for _, r in df.iterrows():
         try:
+            # "报告时间" 格式: "2004年报" → 提取年份
+            rpt_time = str(r.get("报告时间", ""))
+            fy = rpt_time[:4] if rpt_time and rpt_time[0].isdigit() else ""
+            if not fy:
+                continue
+            # 派息比例 = 每10股派息(元), 转增比例 = 每10股转增(股)
+            dps = float(r.get("派息比例", 0) or 0)  # 每10股金额
+            cash_dps = round(dps / 10.0, 4) if dps > 0 else 0.0  # 每股息
+            trans = float(r.get("转增比例", 0) or 0)
             store.conn.execute(
                 "INSERT OR REPLACE INTO dividend VALUES (?,?,?,?,?,?)",
-                (str(r.get("分红年度", "")),
-                 float(r.get("每股转增", 0) or 0),
-                 0.0,
-                 str(r.get("除权除息日", "")),
-                 str(r.get("分红发放日", "")),
+                (fy, cash_dps,
+                 0.0,  # special_dps
+                 str(r.get("除权日", "")),
+                 str(r.get("派息日", "")),
                  0.0))
         except Exception:
             pass

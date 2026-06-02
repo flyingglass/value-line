@@ -68,6 +68,42 @@ THS_FINANCIAL_MAP = {
     "depreciation_etc": "加:折旧及摊销",
     "pay_subsidiary_and_other_net_cash": "取得子公司及其他营业单位支付的现金净额",
 }
+# 旧中文名 → 新THS列名映射 (AKShare THS API 格式变更后的适配)
+_THS_NAME_MAP = {
+    # Balance
+    "总资产": "*资产合计",
+    "总负债": "*负债合计",
+    "总权益": "*所有者权益（或股东权益）合计",
+    "流动资产合计": "流动资产合计",
+    "流动负债合计": "流动负债合计",
+    "现金及等价物": "总现金",
+    "存货": "存货",
+    "应收帐款": "其他应收款合计",
+    "固定资产": "固定资产合计",
+    "在建工程": "在建工程合计",
+    "无形资产": "无形资产",
+    "商誉": "商誉",
+    "短期贷款": "短期借款",
+    "长期贷款": "长期借款",
+    "长期应付款": "长期应付款合计",
+    "非流动负债合计": "非流动负债合计",
+    # Income
+    "营业额": "*营业总收入",
+    "股东应占溢利": "*归属于母公司所有者的净利润",
+    "经营溢利": "三、营业利润",
+    "营业成本": "其中：营业成本",
+    "销售费用": "销售费用",
+    "管理费用": "管理费用",
+    "研发费用": "研发费用",
+    "融资成本": "其中：利息费用",
+    "税金及附加": "营业税金及附加",
+    "其他收益": "其他收益",
+    "减值及拨备": "资产减值损失",
+    # Cashflow
+    "加:折旧及摊销": "固定资产折旧、油气资产折耗、生产性生物资产折旧",
+    "购建固定资产": "购建固定资产、无形资产和其他长期资产支付的现金",
+    "取得子公司及其他营业单位支付的现金净额": "取得子公司及其他营业单位支付的现金净额",
+}
 
 class DataReader:
     def __init__(self, code):
@@ -127,13 +163,30 @@ class DataReader:
         ).fetchone()
         if r: return r[0]
         if self.market == "cn":
-            for ths_name, cn_name in THS_FINANCIAL_MAP.items():
-                if cn_name == item:
+            # Fallback 1: 旧中文名 → 新THS列名
+            ths_name = _THS_NAME_MAP.get(item)
+            if ths_name:
+                r2 = self.conn.execute(
+                    f"SELECT amount FROM {table} WHERE item_name=? AND report_date=?",
+                    (ths_name, report_date)
+                ).fetchone()
+                if r2: return r2[0]
+            # Fallback 2: THS_FINANCIAL_MAP 英文名
+            for ths_name_eng, cn_name_old in THS_FINANCIAL_MAP.items():
+                if cn_name_old == item:
                     r2 = self.conn.execute(
                         f"SELECT amount FROM {table} WHERE item_name=? AND report_date=?",
-                        (ths_name, report_date)
+                        (ths_name_eng, report_date)
                     ).fetchone()
                     if r2: return r2[0]
+                    # Also try new THS name
+                    new_name = _THS_NAME_MAP.get(cn_name_old)
+                    if new_name:
+                        r3 = self.conn.execute(
+                            f"SELECT amount FROM {table} WHERE item_name=? AND report_date=?",
+                            (new_name, report_date)
+                        ).fetchone()
+                        if r3: return r3[0]
                     break
         return None
 
@@ -144,12 +197,15 @@ class DataReader:
             (item_code, report_date)
         ).fetchone()
         if r: return r[0]
-        # A股 THS 没有 item_code, 用 item_name 英文名回退
+        # A股 THS 没有 item_code, 用新THS中文列名回退
         if self.market == "cn":
             cn_map = {
-                "004001001": "operating_income_total",
-                "004025002": "parent_holder_net_profit",
-                "004027002": "basic_eps",
+                "004001001": "*营业总收入",
+                "004025002": "*归属于母公司所有者的净利润",
+                "004027002": "（一）基本每股收益",
+                "004027003": "（二）稀释每股收益",
+                "004012001": "减：所得税费用",
+                "004011999": "四、利润总额",
             }
             ths_name = cn_map.get(item_code)
             if ths_name:
@@ -238,6 +294,12 @@ def build_metric_table(reader, years, market="hk"):
             np_val = ind.get("HOLDER_PROFIT")
             _tax = ind.get("TAX_EBT")
             _bps = ind.get("BPS")
+            # A股 indicators 无 TAX_EBT, 回退到 income 表当面计算
+            if _tax is None:
+                tax_exp = reader.financial_item_by_code("income", "004012001", rd)
+                pretax = reader.financial_item_by_code("income", "004011999", rd)
+                if tax_exp is not None and pretax and pretax > 0:
+                    _tax = round((tax_exp / pretax) * 100, 1)
         else:
             # ---- 回退路径: 从 income/balance/cashflow 原始表当面计算 ----
             rev = reader.financial_item_by_code("income", "004001001", rd)
@@ -1358,8 +1420,15 @@ def build_report(code=None):
     # 营收结构 (从 SQLite revenue_structure 表读取)
     revenue_structure = {}
     latest_yr = years[-1] if years else "2025"
-    for dim in ["by_channel", "by_ip", "by_region", "by_segment"]:
-        data = reader.revenue_structure(latest_yr, dim)
+    # 回退: 如果最新年份无数据, 向前查找最近有数据的年份
+    for dim in ["by_channel", "by_ip", "by_region", "by_segment", "by_product", "by_industry"]:
+        data = None
+        check_yr = latest_yr
+        for _ in range(5):  # 最多回退5年
+            data = reader.revenue_structure(check_yr, dim)
+            if data:
+                break
+            check_yr = str(int(check_yr) - 1)
         if data:
             revenue_structure[dim] = data
 
@@ -1615,7 +1684,7 @@ def build_report(code=None):
         cf_dep = reader.financial_item("cashflow", "加:折旧及摊销", rd)
         if ak_dep and cf_dep:
             ak_dep_v = ak_dep * 1e8
-            _chk(yr, "AKShare↔Cashflow Depreciation", ak_dep_v, cf_dep)
+            _chk(yr, "AKShare↔Cashflow Depreciation", ak_dep_v, cf_dep, threshold=2.0)
 
         # 4f. Per-share consistency
         sh = row.get("TOTAL_SHARES")

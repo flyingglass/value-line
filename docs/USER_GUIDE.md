@@ -99,13 +99,19 @@ cd report && python -m http.server 8899
 > 2. 执行 `python build.py <新代码> --cf <倍数>`
 > 3. Step 4 会在第一次运行时阻断，需要手动补 revenue_structure 数据
 
-### Q: BUSINESS 和 AI Commentary 内容从哪来？
-> **零手动配置**，按优先级自动决策：
-> 1. PDF 年报提取 (extract_mda.py, quality=1 时)
-> 2. 财务数据自生成 (engine.py `_build_business_from_data` / `_build_commentary_from_data`)
-> 3. config.py fallback (仅在前两者都失败时)
+### Q: BUSINESS 区域格式是什么？
+> **4 段式 Pop Mart 风格** (2026-06-02 固化)：
+> - **P1**: 年份+营收+净利润+毛利率+ROE+一句话业务描述（手写，存入 `analyst.business`）
+> - **P2**: 产品/行业/渠道/IP/地域营收结构（从 revenue_structure 表自动读取）
+> - **P3**: 折旧率+员工数（数据自动计算）
+> - **P4**: CEO+注册地+网站（从 config.py STOCKS 读取）
 >
-> 任何新股票加入系统后无需手动写 business_desc 或 analyst.commentary。
+> 详细模板见 `docs/VL_REGION_ALIGNMENT.md §1.5.1`。
+
+### Q: BUSINESS 和 AI Commentary 内容从哪来？
+> BUSINESS 和 Commentary 建议手写高质量内容（参考 Pop Mart/分众传媒 报告）。
+> 自动生成质量较低，仅作为初始占位。写完后存入 `report_data.json` 的
+> `analyst.business` 和 `analyst.commentary` 字段。
 
 ### Q: 数据年份怎么调？
 > `--years N`，默认规则：>10年可用 → 15年；≤10年 → 全用。不超过实际可用年份。

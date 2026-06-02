@@ -263,6 +263,9 @@ def main(code="09992"):
         else:
             # report_data.json 不存在 (Step 3 在 engine 之前运行)
             print("  -> 动态生成也失败(report_data.json不存在)，保留PDF提取并标记低质量")
+            # 保留PDF中提取的原始文本(即使质量不足)
+            if extracted and len(extracted) >= 5:
+                mda_text = "\n".join(extracted)
             quality_ok = False
 
     if not mda_text:
