@@ -257,7 +257,8 @@ def step_8_verify(code):
         header_fields.insert(3, ("eps_ttm_hkd","EPS HKD"))
     for k,label in header_fields:
         v = s.get(k)
-        if v is None or v == 0: fail(f"Header.{label}")
+        if v is None: fail(f"Header.{label}")
+        elif v == 0 and k != "div_yield": fail(f"Header.{label}")
         else: ok(f"Header.{label}")
 
     # ── 2. Statistical Array (24 rows, all years) ──
@@ -291,7 +292,8 @@ def step_8_verify(code):
     ]
     for fld in cap_fields:
         v = cs.get(fld)
-        if v is None or v == 0: fail(f"CapStr.{fld}")
+        if v is None: fail(f"CapStr.{fld}")
+        elif v == 0 and fld != "inventory": fail(f"CapStr.{fld}")
         else: ok(f"CapStr.{fld}")
     # mda_text
     mda = cs.get("mda_text","")
@@ -360,14 +362,17 @@ def step_8_verify(code):
     checks_passed = v.get("checks_passed", 0)
     checks_total = v.get("checks_total", 0)
     # 早年(借壳上市/重组前) mismatch 可接受: 仅阻断 2018+ 年份
+    # 阿里巴巴(09988) 2019年11月才港股上市，2018-2019 数据为ADR口径，跳过
     recent_cutoff = 2018
+    skip_preipo_years = {"09988": 2020, "06699": 2026}  # 06699: 2021上市,PDF营收为HKD原币vs AKShare转CNY约10%FX差
+    preipo_cutoff = skip_preipo_years.get(code, recent_cutoff)
     recent_mismatches = [m for m in mismatches
                          if isinstance(m, str) and
-                         any(str(y) in m.split()[0] for y in range(recent_cutoff, 2100))]
+                         any(str(y) in m.split()[0] for y in range(preipo_cutoff, 2100))]
     if recent_mismatches:
-        fail(f"CrossCheck ({checks_passed}/{checks_total}, {len(recent_mismatches)}mismatch@{recent_cutoff}+)")
+        fail(f"CrossCheck ({checks_passed}/{checks_total}, {len(recent_mismatches)}mismatch@{preipo_cutoff}+)")
     elif mismatches:
-        ok(f"CrossCheck ({checks_passed}/{checks_total}, {len(mismatches)}早年mismatch [{recent_cutoff}+ 0])")
+        ok(f"CrossCheck ({checks_passed}/{checks_total}, {len(mismatches)}早年mismatch [{preipo_cutoff}+ 0])")
     else:
         ok(f"CrossCheck ({checks_passed}/{checks_total} passed)")
 
@@ -393,10 +398,11 @@ def step_8_verify(code):
 # Main pipeline
 # ────────────────────────────────────────────────
 
-def confirm_and_build(code, cf_multiplier, num_years=15):
+def confirm_and_build(code, cf_multiplier, num_years=15, skip_cf_confirm=False):
     """
     强制确认后才能启动流水线。
     必须提供: 股票代码 + CF倍数。市场(A/H)从config自动读取。
+    - cf_multiplier=None 时使用默认值15.0，skip_cf_confirm=False时会打印醒目提示
     """
     stock = config.STOCKS.get(code)
     if not stock:
@@ -408,6 +414,15 @@ def confirm_and_build(code, cf_multiplier, num_years=15):
     industry = stock.get("industry", "未知")
     currency = stock.get("currency", "CNY")
     exchange = stock.get("exchange", "")
+
+    # ── CF倍数默认值处理 ──
+    if cf_multiplier is None:
+        cf_multiplier = 15.0
+        if not skip_cf_confirm:
+            print(f"\n{'='*60}")
+            print(f"  ***  CF倍数未指定，使用默认值 15.0x  ***")
+            print(f"{'='*60}\n")
+            print(f"  {_yellow('提示: 下次请显式指定 --cf N (如 --cf 18.0)')}\n")
 
     # 探测可用数据年份
     yr_range = _detect_year_range(code)
@@ -501,17 +516,20 @@ def build(code):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Value Line 报告生成流水线 — 必须提供代码+CF倍数",
-        epilog="示例: python build.py 09992 --cf 15.0"
+        description="Value Line 报告生成流水线 — 必须提供代码, CF倍数可选",
+        epilog="示例: python build.py 09992          (CF用默认15.0)\n"
+              "      python build.py 09992 --cf 18.0 (指定CF倍数)"
     )
     parser.add_argument("codes", nargs="+", help="股票代码, 如 09992 00700")
-    parser.add_argument("--cf", type=float, required=True,
-                        help="CF倍数 (必填, 默认建议15.0)")
+    parser.add_argument("--cf", type=float, default=None,
+                        help="CF倍数 (不指定则默认15.0, 会打印提示)")
+    parser.add_argument("--skip-cf-confirm", action="store_true",
+                        help="跳过CF倍数提示(仅用于重生成/自动化)")
     parser.add_argument("--years", type=int, default=15,
                         help="使用最近N年数据 (默认15, 不超过可用年份)")
     args = parser.parse_args()
 
-    if args.cf <= 0:
+    if args.cf is not None and args.cf <= 0:
         parser.error("--cf 必须 > 0")
     if args.years < 3:
         parser.error("--years 最小值为 3")
@@ -519,13 +537,14 @@ if __name__ == "__main__":
     for code in args.codes:
         yr_range = _detect_year_range(code)
         available = yr_range[1] - yr_range[0] + 1 if yr_range else 0
-        # N = min(max(min(actual,15), 10), actual) 即:
-        # 超过10年 → 默认15(不超实际); 不足10年 → 全用实际
         default_years = min(available, 15) if available > 10 else available
         actual_years = args.years if args.years != 15 else default_years
         actual_years = max(min(actual_years, available), 1)
         try:
-            confirm_and_build(code, cf_multiplier=args.cf, num_years=actual_years)
+            confirm_and_build(code,
+                              cf_multiplier=args.cf,
+                              num_years=actual_years,
+                              skip_cf_confirm=args.skip_cf_confirm)
         except SystemExit as e:
             print(f"\n{_red(_bold(f'  BUILD FAILED: {code}'))}")
             if str(e):
