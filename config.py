@@ -90,6 +90,22 @@ STOCKS = {
         "industry": "Consumer Staples",
         "business_desc": "",
     },
+    "002014": {
+        "name": "永新股份",
+        "name_en": "Yongxin Co.",
+        "market": "cn",
+        "exchange": "SZSE",
+        "currency": "CNY",
+        "ceo": "待补充",
+        "inc": "中国安徽黄山",
+        "website": "www.yongxin-group.com",
+        "pfx": "sz",
+        "shares": 612000000,
+        "shares_str": "612,000,000",
+        "industry": "Packaging",
+        "fiscal_yr_end": "12-31",
+        "business_desc": "永新股份是中国领先的塑料软包装企业，主营食品、日化、医药等领域的复合软包装材料，客户覆盖宝洁、联合利华、雀巢等国际品牌。",
+    },
     "00883": {
         "name": "中国海洋石油",
         "name_en": "CNOOC Ltd",
@@ -376,7 +392,7 @@ MARKET_CONFIG = {
 # ============================================================
 # 当前活跃标的
 # ============================================================
-ACTIVE_STOCK = "00883"
+ACTIVE_STOCK = "01698"
 
 # ============================================================
 # SQLite 路径

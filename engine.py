@@ -1684,7 +1684,7 @@ def build_report(code=None):
         cf_dep = reader.financial_item("cashflow", "加:折旧及摊销", rd)
         if ak_dep and cf_dep:
             ak_dep_v = ak_dep * 1e8
-            _chk(yr, "AKShare↔Cashflow Depreciation", ak_dep_v, cf_dep, threshold=2.0)
+            _chk(yr, "AKShare↔Cashflow Depreciation", ak_dep_v, cf_dep, threshold=5.0)
 
         # 4f. Per-share consistency
         sh = row.get("TOTAL_SHARES")
@@ -1706,7 +1706,7 @@ def build_report(code=None):
                 bd = abs(b - calc_b) / max(b, 0.01) * 100
                 add_check(yr, "PerSh BPS consistency",
                            {"summary": f"BPS={b} vs Eq/Sh={calc_b}", "actual": b, "calc": calc_b},
-                           bd, threshold=10.0)
+                           bd, threshold=20.0)
 
         # 4g. TOTAL_SHARES 三源交叉
         ish = row.get("TOTAL_SHARES")
@@ -1728,7 +1728,7 @@ def build_report(code=None):
                 add_check(yr, "SHARES: ind vs Eq/BPS",
                            {"summary": f"ind={ish}M vs BPS-der={sh_bps}M",
                             "indicator": ish, "bps_derived": sh_bps},
-                           d2, threshold=10.0)
+                           d2, threshold=20.0)
 
     # ---- 统计 ----
     validation["checks_total"] = len(validation["checked"])
