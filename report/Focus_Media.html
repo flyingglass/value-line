@@ -329,8 +329,9 @@ var DATA = {"meta": {"code": "002027", "name": "分众传媒", "name_en": "Focus
   html+='<span class="code" style="font-size:18px;font-weight:700;line-height:1">'+(stockName||'N/A')+'</span> ';
   html+='<span style="font-size:9px;font-weight:700;color:#000;line-height:1">'+stockCode+'.'+stockMarket+'</span></td>';
 
+  var priceCcy=meta.price_ccy||meta.currency||(stockMarket==='hk'?'HKD':'CNY');
   html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RECENT</td>';
-  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'—')+' HKD</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'—')+' '+priceCcy+'</td>';
   html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E</td>';
   html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(trailingPE!=null?trailingPE.toFixed(1):'—')+'</td>';
   // ⑥ (Trailing: xx 第一行
@@ -474,7 +475,7 @@ var DATA = {"meta": {"code": "002027", "name": "分众传媒", "name_en": "Focus
 
   html+='</div>'; // end center-col
   html+='</div>'; // end container
-  html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: HKD | 财报数据: CNY | 2026-06-02</div>';
+  html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: '+priceCcy+' | 财报数据: '+(meta.rpt_ccy||'CNY')+' | 2026-06-03</div>';
   app.innerHTML=html;
 
   // ECharts
