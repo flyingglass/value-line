@@ -293,7 +293,7 @@ def step_8_verify(code):
     for fld in cap_fields:
         v = cs.get(fld)
         if v is None: fail(f"CapStr.{fld}")
-        elif v == 0 and fld != "inventory": fail(f"CapStr.{fld}")
+        elif v == 0 and fld not in ("inventory", "lt_debt", "lt_debt_pct"): fail(f"CapStr.{fld}")
         else: ok(f"CapStr.{fld}")
     # mda_text
     mda = cs.get("mda_text","")
@@ -405,15 +405,14 @@ def confirm_and_build(code, cf_multiplier, num_years=15, skip_cf_confirm=False):
     - cf_multiplier=None 时使用默认值15.0，skip_cf_confirm=False时会打印醒目提示
     """
     stock = config.STOCKS.get(code)
-    if not stock:
-        raise SystemExit(_red(f"  REFUSED: {code} 不在 config.STOCKS 中, 请先配置"))
 
-    name = stock.get("name", code)
-    market = stock.get("market", "hk")
+    # 显示用字段 (未配置时用占位值)
+    name = stock.get("name", code) if stock else code
+    market = stock.get("market", "hk") if stock else "hk"
     market_label = "A股" if market == "cn" else "港股(H股)"
-    industry = stock.get("industry", "未知")
-    currency = stock.get("currency", "CNY")
-    exchange = stock.get("exchange", "")
+    industry = stock.get("industry", "未知") if stock else "未知"
+    currency = stock.get("currency", "CNY") if stock else "CNY"
+    exchange = stock.get("exchange", "") if stock else ""
 
     # ── CF倍数默认值处理 ──
     if cf_multiplier is None:
@@ -432,7 +431,7 @@ def confirm_and_build(code, cf_multiplier, num_years=15, skip_cf_confirm=False):
         if total_yrs > num_years:
             yr_note = f" (共{total_yrs}年, 使用最近{num_years}年。--years N 可调整)"
 
-    # ── 确认页 ──
+    # ── 确认页 (先显示，后校验) ──
     print(f"\n{_bold('='*60)}")
     print(f"{_bold('  Value Line 报告生成 — 确认页')}")
     print(f"{_bold('='*60)}")
@@ -443,7 +442,13 @@ def confirm_and_build(code, cf_multiplier, num_years=15, skip_cf_confirm=False):
     print(f"  报表币种:   {currency}")
     print(f"  数据年份:   {yr_range[0]}-{yr_range[1]}{yr_note}" if yr_range else "  数据年份:   未探测")
     print(f"  CF 倍数:    {cf_multiplier}x")
+    if not stock:
+        print(f"  {_red('状态:  未在 config.STOCKS 中配置!')}")
     print(f"{_bold('='*60)}")
+
+    # ── 校验 (确认页之后) ──
+    if not stock:
+        raise SystemExit(_red(f"\n  REFUSED: {code} 不在 config.STOCKS 中, 请先配置\n  提示: 编辑 config.py, 在 STOCKS 字典中添加该股票信息"))
 
     if cf_multiplier <= 0:
         raise SystemExit(_red("  REFUSED: CF倍数必须 > 0, 默认15.0"))
