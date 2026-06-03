@@ -1,2 +1,5 @@
-/data/pdfs/
 .venv/
+pdfs_archive/
+data/pdfs
+weiyun_upload_pdfs.py
+report_data.json
