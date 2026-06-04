@@ -8,7 +8,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;color:#000;width:1360px;margin:0 auto;background:#fff;-webkit-text-size-adjust:100%}
-.container{display:grid;grid-template-columns:245px 1fr;min-height:100vh;border-top:1px solid #000;border-bottom:1px solid #000;padding:4px 0}
+.container{display:grid;grid-template-columns:245px 1fr;border-top:1px solid #000;padding:4px 0}
 
 /* ===== 左栏 ===== */
 .left-col{border-right:1px solid #000;padding:4px 5px;font-size:9px}
@@ -35,7 +35,7 @@ body{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;colo
 .chart-area{margin:2px 0;border-bottom:1px solid #000}
 .chart-title{font-weight:700;font-size:9px;margin-bottom:0px}
 .chart-row{display:flex}
-.chart-box{flex:1;height:240px}
+.chart-box{flex:1;height:220px}
 .return-box{width:140px;font-size:8.5px;padding:3px 5px}
 .return-box table{width:100%;border-collapse:collapse;margin-bottom:3px}
 .return-box td,.return-box th{padding:1px 3px;text-align:right;font-size:8px}
@@ -45,7 +45,7 @@ body{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;colo
 /* 23-line table */
 .stat-table{margin:2px 0;overflow-x:auto}
 .stat-table table{border-collapse:collapse;font-size:8px;width:100%;table-layout:fixed}
-.stat-table th,.stat-table td{text-align:right;padding:1px 4px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.3}
+.stat-table th,.stat-table td{text-align:right;padding:1px 4px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.35}
 .stat-table th{background:#eee;font-weight:700;font-size:7.5px}
 .stat-table td:first-child,.stat-table th:first-child{text-align:left;width:130px;white-space:nowrap}
 .stat-table tr:nth-child(even){background:#fafafa}
@@ -103,61 +103,9 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
   // ========================
   html+='<div class="left-col">';
 
-  // Business — VL风格，分段可读
-  var rev=d.revenue_structure||{}, ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]),
-      prod=(rev.by_product||[]), ind=(rev.by_industry||[]);
-  var desc=(d.analyst&&d.analyst.business)||cs.business_desc||'';
-  var bizP=[], bizHtml='';
-  // P1: 业务描述
-  if(desc){
-    bizP.push(desc);
-  }
-  // P2: IP+渠道+地域 (营收结构)
-  var p2=[];
-  if(ip.length>0){
-    var ipTop=ip.slice(0,3).map(function(c){return c.name+' '+c.pct+'%';}).join('、');
-    p2.push('核心IP：'+ipTop);
-  }
-  if(ch.length>0){
-    var chTop=ch.slice(0,3).map(function(c){return c.name+' '+c.pct+'%';}).join('、');
-    p2.push('渠道：'+chTop);
-  }
-  if(rg.length>0){
-    var rgTop=rg.slice(0,3).map(function(c){return c.name+' '+c.pct+'%';}).join('、');
-    p2.push('地域：'+rgTop);
-  }
-  if(prod.length>0){
-    var prodTop=prod.slice(0,3).map(function(c){return c.name+' '+c.pct+'%';}).join('、');
-    p2.push('产品：'+prodTop);
-  }
-  if(ind.length>0){
-    var indTop=ind.slice(0,5).map(function(c){return c.name+' '+c.pct+'%';}).join('、');
-    p2.push('行业：'+indTop);
-  }
-  if(p2.length) bizP.push(p2.join('；'));
-  // P3: 折旧/员工/CEO/注册地/网站
-  // P3: 折旧/员工
-  var p3=[];
-  var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
-  if(depr&&revs) p3.push('折旧率'+(depr/revs*100).toFixed(1)+'%');
-  if(cs.employee_count) p3.push('员工'+(cs.employee_count/10000).toFixed(1)+'万人（'+latestYr+'）');
-  if(p3.length) bizP.push(p3.join('。'));
-  // P4: CEO/注册地/网站
-  var p4=[];
-  if(meta.ceo) p4.push('首席执行官：'+meta.ceo);
-  if(meta.inc) p4.push('注册地：'+meta.inc);
-  if(meta.website) p4.push(meta.website);
-  if(p4.length) bizP.push(p4.join('。'));
-  bizHtml='<span style="font-weight:700">BUSINESS:</span> '+bizP[0];
-  if(bizP[1]) bizHtml+='<br>· '+bizP[1];
-  if(bizP[2]) bizHtml+='<br>· '+bizP[2];
-  if(bizP[3]) bizHtml+='<br>· '+bizP[3];
-  html+='<div style="font-size:11px;line-height:1.55;margin-bottom:4px">'+bizHtml+'</div>';
-
   // Capital Structure — 完全参考VL截图布局
   var csDate=Y[Y.length-1]+'-12-31', csUnit=cs.unit||'亿';
   html+='<div class="sec">';
-  html+='<div style="border-bottom:1px solid #000;margin-bottom:2px"></div>';
   html+='<div style="font-size:10px;font-weight:700;margin-bottom:2px">CAPITAL STRUCTURE as of '+csDate+'</div>';
   html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.5">';
   // Row 1: Total Debt | Due in 5 Yrs
@@ -372,7 +320,7 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
   var showYears=allY;  // 最多10年
   var yrCount=showYears.length;
   html+='<table style="table-layout:fixed;width:100%;border-collapse:collapse;font-size:8.5px">';
-  html+='<colgroup><col style="width:130px">';
+  html+='<colgroup><col style="width:140px">';
   showYears.forEach(function(){ html+='<col>'; });
   html+='</colgroup>';
   var tdStyle='border-right:1px solid #ddd;padding:2px 8px', thStyle='border-right:1px solid #ddd;text-align:right;padding:2px 8px';
@@ -393,9 +341,9 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
   html+='</tr>';
   
   // Row 4: K线图行 — LEGENDS + % TOT. RETURN(左) + 图表(右)
-  // chart 260px + volume 30px = 290px flex容器, Percent用margin-top:auto沉底
+  // chart 220px + volume 42px = 262px flex容器, Percent用margin-top:auto沉底
   html+='<tr><td style="width:200px;padding:0 4px;vertical-align:top;border-right:1px solid #ddd">';
-  html+='<div style="display:flex;flex-direction:column;height:290px;font-size:9px;line-height:1.4">';
+  html+='<div style="display:flex;flex-direction:column;height:260px;font-size:9px;line-height:1.4">';
   html+='<div>';
   html+='<div style="font-weight:700;font-size:10px;margin:2px 0 1px 0">LEGENDS</div>';
   html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
@@ -412,7 +360,7 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
   var trR2=d.total_returns||{};
   var trStock2=trR2.stock||{};
   var trIndex2=trR2.index||{};
-  html+='<table style="width:100%;border-collapse:collapse;font-size:9px;line-height:1.35;margin:1px 0">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.35;margin:1px 0">';
   html+='<tr><td></td><td style="text-align:right;font-weight:700">THIS</td><td style="text-align:right;font-weight:700">'+indexName+'</td></tr>';
   html+='<tr><td></td><td style="text-align:right;font-weight:700">STOCK</td><td style="text-align:right"></td></tr>';
   html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock2['1yr']!=null?trStock2['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['1yr']!=null?trIndex2['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
@@ -423,7 +371,7 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
   html+='</div></td>';
   html+='<td colspan="'+yrCount+'" style="padding:0">';
   html+='<div class="chart-box" id="chart_kline"></div>';
-  html+='<div id="chart_volume" style="height:50px;margin-top:6px;position:relative"></div>';
+  html+='<div id="chart_volume" style="height:42px;margin-top:6px;position:relative"></div>';
   
   // Row 5: 年份行
   html+='<tr style="border-top:1px solid #000;border-bottom:1px solid #000"><td style="width:40px;font-size:10px;color:#000;padding:2px 4px;border-right:1px solid #ddd">Year</td>';
@@ -435,10 +383,11 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
     var sepBefore=[5];
     var sepAfter=[6,7,10,13,15,17,20,22];
     if(sepBefore.indexOf(m.order)>=0){
-      html+='<tr class="sep"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
+      html+='<tr class="sep" style="height:4px"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
     }
-    html+='<tr>';
-    html+='<td style="text-align:left;white-space:nowrap;font-size:9px;font-weight:700;'+tdStyle+'">'+m.name_en+' <span style="font-size:7.5px;color:#666;font-weight:400">'+m.name_cn+'</span></td>';
+    var rowBg=(idx%2===0)?'background:#fafafa;':'';
+    html+='<tr style="line-height:1.35;'+rowBg+'">';
+    html+='<td style="text-align:left;white-space:nowrap;font-size:9.5px;font-weight:700;'+tdStyle+'">'+m.name_en+' <span style="font-size:8px;color:#444;font-weight:400">'+m.name_cn+'</span></td>';
     showYears.forEach(function(y){
       var v=(MT[y]||{})[m.field];
       var txt='—';
@@ -449,23 +398,63 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
         else if(m.unit==='百万股')txt=v.toFixed(0);
         else txt=v.toString();
       }
-      html+='<td style="text-align:right;font-size:8.5px;'+tdStyle+'">'+txt+'</td>';
+      html+='<td style="text-align:right;font-size:9px;'+tdStyle+'">'+txt+'</td>';
     });
     html+='</tr>';
     if(sepAfter.indexOf(m.order)>=0){
-      html+='<tr class="sep"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
+      html+='<tr class="sep" style="height:4px"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
     }
   });
   html+='</table>';
   
-  // AI Commentary: per-stock脚本 > PDF提取(mda) > 数据自生成 (4段VL风格)
+  html+='</div>'; // end center-col
+  html+='</div>'; // end container
+
+  // ========================
+  // 底部全宽: Business + AI Commentary
+  // ========================
+
+  // Business — VL风格，分段可读 (全宽)
+  var rev=d.revenue_structure||{}, ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]),
+      prod=(rev.by_product||[]), ind=(rev.by_industry||[]);
+  var desc=(d.analyst&&d.analyst.business)||cs.business_desc||'';
+  var bizP=[], bizHtml='';
+  if(desc){bizP.push(desc);}
+  var p2=[];
+  if(ip.length>0){var ipTop=ip.slice(0,3).map(function(c){return c.name+' '+c.pct+'%';}).join('、');p2.push('核心IP：'+ipTop);}
+  if(ch.length>0){var chTop=ch.slice(0,3).map(function(c){return c.name+' '+c.pct+'%';}).join('、');p2.push('渠道：'+chTop);}
+  if(rg.length>0){var rgTop=rg.slice(0,3).map(function(c){return c.name+' '+c.pct+'%';}).join('、');p2.push('地域：'+rgTop);}
+  if(prod.length>0){var prodTop=prod.slice(0,3).map(function(c){return c.name+' '+c.pct+'%';}).join('、');p2.push('产品：'+prodTop);}
+  if(ind.length>0){var indTop=ind.slice(0,5).map(function(c){return c.name+' '+c.pct+'%';}).join('、');p2.push('行业：'+indTop);}
+  if(p2.length) bizP.push(p2.join('；'));
+  var p3=[];var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
+  if(depr&&revs) p3.push('折旧率'+(depr/revs*100).toFixed(1)+'%');
+  if(cs.employee_count) p3.push('员工'+(cs.employee_count/10000).toFixed(1)+'万人（'+latestYr+'）');
+  if(p3.length) bizP.push(p3.join('。'));
+  var p4=[];
+  if(meta.ceo) p4.push('首席执行官：'+meta.ceo);
+  if(meta.inc) p4.push('注册地：'+meta.inc);
+  if(meta.website) p4.push(meta.website);
+  if(p4.length) bizP.push(p4.join('。'));
+  bizHtml='<span style="font-weight:700">BUSINESS:</span>';
+  bizHtml+='<div style="column-count:2;column-gap:24px;margin-top:4px">';
+  var left=[bizP[0]];
+  if(bizP[1]) left.push('· '+bizP[1]);
+  var right=[];
+  if(bizP[2]) right.push('· '+bizP[2]);
+  if(bizP[3]) right.push('· '+bizP[3]);
+  bizHtml+='<div>'+left.join('<br>')+'</div>';
+  bizHtml+='<div>'+right.join('<br>')+'</div>';
+  bizHtml+='</div>';
+  html+='<div style="border-top:1px solid #000;padding:6px 12px;font-size:11px;line-height:1.55">'+bizHtml+'</div>';
+
+  // AI Commentary: per-stock脚本 > PDF提取(mda) > 数据自生成 (4段VL风格, 全宽)
   var commentary=d.analyst&&d.analyst.commentary&&d.analyst.commentary.length?d.analyst.commentary:[
     '暂无数据', '数据暂不可用', '请先运行 engine.py 生成完整数据', ''
   ];
   var fromMda=d.analyst&&d.analyst.commentary_from_mda;
   var fromScript=d.analyst&&d.analyst.commentary_from_script;
-  html+='<div class="analyst" style="font-size:10px;flex:1">';
-  html+='<div style="column-span:all">';
+  html+='<div style="border-top:1px solid #000;padding:6px 12px 10px 12px;font-size:10px;line-height:1.35">';
   if(fromScript){
     html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+' (Custom)</span>';
   }else if(fromMda){
@@ -473,16 +462,15 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
   }else{
     html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+'</span>';
   }
-  html+='</div>';
+  html+='<div style="column-count:2;column-gap:24px;margin-top:6px">';
   for(var ci=0;ci<commentary.length;ci++){
     if(commentary[ci]&&commentary[ci].length>5){
-      html+='<p style="text-align:justify;margin:4px 0;font-size:12px">'+commentary[ci]+'</p>';
+      html+='<p style="text-align:justify;margin:0 0 8px 0;font-size:12px;break-inside:avoid">'+commentary[ci]+'</p>';
     }
   }
   html+='</div>';
+  html+='</div>';
 
-  html+='</div>'; // end center-col
-  html+='</div>'; // end container
   html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: '+priceCcy+' | 财报数据: '+(meta.rpt_ccy||'CNY')+' | 2026-06-04</div>';
   app.innerHTML=html;
 
@@ -573,7 +561,7 @@ var DATA = {"meta": {"code": "01114", "name": "华晨中国", "name_en": "Brilli
       grid:{left:0,right:28,top:4,bottom:24},
       xAxis:{type:'category',data:dates,boundaryGap:false,
         axisPointer:{label:{show:false}},
-        axisLabel:{fontSize:7,color:'#333',fontWeight:700,margin:2,
+        axisLabel:{fontSize:8,color:'#333',fontWeight:700,margin:2,
           formatter:function(v){return v&&v.endsWith('-01')?v.slice(0,4):'';},
           interval:0,showMinLabel:true,showMaxLabel:true},
         axisLine:{show:true,lineStyle:{color:'#999',width:0.5}},
