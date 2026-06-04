@@ -163,10 +163,10 @@ var DATA = {DATA_JS};
   if(meta.website) p4.push(meta.website);
   if(p4.length) bizP.push(p4.join('。'));
   bizHtml='<span style="font-weight:700">BUSINESS:</span> '+bizP[0];
-  if(bizP[1]) bizHtml+='<br>'+bizP[1];
-  if(bizP[2]) bizHtml+='<br>'+bizP[2];
-  if(bizP[3]) bizHtml+='<br>'+bizP[3];
-  html+='<div style="font-size:10px;line-height:1.4;margin-bottom:4px">'+bizHtml+'</div>';
+  if(bizP[1]) bizHtml+='<br>· '+bizP[1];
+  if(bizP[2]) bizHtml+='<br>· '+bizP[2];
+  if(bizP[3]) bizHtml+='<br>· '+bizP[3];
+  html+='<div style="font-size:11px;line-height:1.55;margin-bottom:4px">'+bizHtml+'</div>';
 
   // Capital Structure — 完全参考VL截图布局
   var csDate=Y[Y.length-1]+'-12-31', csUnit=cs.unit||'亿';
@@ -472,22 +472,25 @@ var DATA = {DATA_JS};
   }});
   html+='</table>';
   
-  // AI Commentary — PDF提取(mda) > 数据自生成 (零config依赖)
+  // AI Commentary: per-stock脚本 > PDF提取(mda) > 数据自生成 (4段VL风格)
   var commentary=d.analyst&&d.analyst.commentary&&d.analyst.commentary.length?d.analyst.commentary:[
     '暂无数据', '数据暂不可用', '请先运行 engine.py 生成完整数据', ''
   ];
   var fromMda=d.analyst&&d.analyst.commentary_from_mda;
+  var fromScript=d.analyst&&d.analyst.commentary_from_script;
   html+='<div class="analyst" style="font-size:10px;column-count:2;column-gap:16px;column-rule:1px solid #ccc;flex:1">';
   html+='<div style="column-span:all">';
-  if(fromMda){{
+  if(fromScript){{
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+' (Custom)</span>';
+  }}else if(fromMda){{
     html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+(stockName+' MD&A Analysis')+'</span>';
   }}else{{
     html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+'</span>';
   }}
   html+='</div>';
-  for(var ci=(fromMda?1:0);ci<commentary.length;ci++){{
+  for(var ci=0;ci<commentary.length;ci++){{
     if(commentary[ci]&&commentary[ci].length>5){{
-      html+='<p style="text-align:justify;margin:4px 0;font-size:12px">'+commentary[ci]+'</p>';
+      html+='<p style="text-align:justify;margin:4px 0;font-size:12px;break-inside:avoid">'+commentary[ci]+'</p>';
     }}
   }}
   html+='</div>';
