@@ -478,7 +478,7 @@ var DATA = {DATA_JS};
   ];
   var fromMda=d.analyst&&d.analyst.commentary_from_mda;
   var fromScript=d.analyst&&d.analyst.commentary_from_script;
-  html+='<div class="analyst" style="font-size:10px;column-count:2;column-gap:16px;column-rule:1px solid #ccc;flex:1">';
+  html+='<div class="analyst" style="font-size:10px;flex:1">';
   html+='<div style="column-span:all">';
   if(fromScript){{
     html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+' (Custom)</span>';
@@ -490,7 +490,7 @@ var DATA = {DATA_JS};
   html+='</div>';
   for(var ci=0;ci<commentary.length;ci++){{
     if(commentary[ci]&&commentary[ci].length>5){{
-      html+='<p style="text-align:justify;margin:4px 0;font-size:12px;break-inside:avoid">'+commentary[ci]+'</p>';
+      html+='<p style="text-align:justify;margin:4px 0;font-size:12px">'+commentary[ci]+'</p>';
     }}
   }}
   html+='</div>';

@@ -250,7 +250,7 @@ def step_3_mda(code):
     return True
 
 def step_4_revenue(code):
-    """Step 4: 营收结构。缺失即阻断。"""
+    """Step 4: 营收结构。缺失则尝试自动运行 scripts/<code>/insert_revenue.py。"""
     db = _db_path(code)
     conn = sqlite3.connect(db)
     try:
@@ -263,8 +263,23 @@ def step_4_revenue(code):
         pass  # table may not exist
     conn.close()
 
+    # 尝试自动运行个股专属脚本
+    script = os.path.join(BASE, "scripts", code, "insert_revenue.py")
+    if os.path.exists(script):
+        print(f"  Step 4: 运行 {script}")
+        ok, out = _run(f"{PYTHON} {script}")
+        if ok:
+            # 验证是否写入成功
+            conn2 = sqlite3.connect(db)
+            cnt2 = conn2.execute("SELECT COUNT(*) FROM revenue_structure WHERE code=?", (code,)).fetchone()[0]
+            conn2.close()
+            if cnt2 > 0:
+                print(f"  Step 4: {_green('OK')} ({cnt2}条)")
+                return True
+        print(f"  {out[-500:]}")
+    
     raise SystemExit(_red(
-        f"  FAIL: revenue_structure为空, 需手动执行 insert_revenue.py"))
+        f"  FAIL: revenue_structure为空, 需检查 scripts/{code}/insert_revenue.py"))
 
 def step_5_config_final(code, stock):
     """Step 5: 最终 config 检查 + 切回标的。"""
