@@ -2,7 +2,8 @@
 generate_report.py — 从 report_data.json 生成自包含 HTML (Value Line 标准三栏布局)
 参照: Timberland Co. 价值线标准版
 """
-import json, os, datetime
+import json, os, datetime, sys
+if sys.platform == 'win32': sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -96,7 +97,12 @@ var DATA = {DATA_JS};
   var stockName=meta.name_en||meta.name||'N/A';
   var stockCode=meta.code||'';
   var cfMult=d.cf_multiplier||15;
-  var cfLabel=cfMult+'x CF';
+  var pbMult=d.pb_multiplier||1;
+  var valMethod=d.valuation_method||'cf';
+  var cfLabelStr='x "Cash Flow" p sh';
+  var pbLabelStr='x "Book Value" p sh';
+  var valLabel=valMethod==='pb'?(pbMult.toFixed(2)+'x PB'):(cfMult.toFixed(1)+'x CF');
+  var legendLine=valMethod==='pb'?(pbMult.toFixed(2)+' '+pbLabelStr):(cfMult.toFixed(1)+' '+cfLabelStr);
   var stockMarket=meta.market||'';
   var currency=meta.currency||'¥';
   var indexName=meta.index_name||'HSI';
@@ -408,7 +414,7 @@ var DATA = {DATA_JS};
   html+='<div style="font-weight:700;font-size:10px;margin:2px 0 1px 0">LEGENDS</div>';
   html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
   html+='<div style="font-size:10px;color:#1976D2;line-height:1.1">\u2501\u2501\u2501</div>';
-  html+='<div>'+cfMult.toFixed(1)+' x \"Cash Flow\" p sh</div>';
+  html+='<div>'+legendLine+'</div>';
   html+='<div style="margin:4px 0"></div>';
   html+='<div style="font-size:10px;color:#ef232a;line-height:1.1">\u00B7\u00B7\u00B7\u00B7\u00B7\u00B7</div>';
   html+='<div>Relative Price Strength</div>';
@@ -531,16 +537,16 @@ var DATA = {DATA_JS};
         itemStyle:{{color:'#ef232a',color0:'#14b143',borderColor:'#ef232a',borderColor0:'#14b143'}}}}
     ];
 
-    var cfData=d.cf_line||[];
-    var cfMap={{}};
-    cfData.forEach(function(c){{cfMap[c.date]=c.value;}});
-    var cfSeries=dates.map(function(dt){{
+    var valLine=d.valuation_line||d.cf_line||[];
+    var valMap={{}};
+    valLine.forEach(function(c){{valMap[c.date]=c.value;}});
+    var valSeries=dates.map(function(dt){{
       var yr=dt.substring(0,4);
-      var v=cfMap[yr];
+      var v=valMap[yr];
       return v!=null?Math.log(v):null;
     }});
-    if(cfSeries.some(function(v){{return v!=null;}})){{
-      series.push({{name:cfLabel,type:'line',data:cfSeries,
+    if(valSeries.some(function(v){{return v!=null;}})){{
+      series.push({{name:valLabel,type:'line',data:valSeries,
         lineStyle:{{type:'solid',color:'#1976D2',width:1.2}},symbol:'none'}});
     }}
     if(rsData.length>0){{

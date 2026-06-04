@@ -5,6 +5,7 @@ engine.py — 从 SQLite 计算 Value Line 指标, 输出 report_data.json
 """
 import os, sys, sqlite3, json, math, requests
 import warnings; warnings.filterwarnings("ignore")
+if sys.platform == 'win32': sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import config
@@ -1036,85 +1037,145 @@ def _build_business_from_data(stock, metrics, rev_struct, years):
 
 
 def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
-    """纯数据自生成 AI Commentary 3-4段 (零 config 依赖)"""
+    """自动生成 AI Commentary — VL 原生叙事风格: 解释「为什么」、指出「什么在变」、给出验证信号"""
     name = stock.get("name", "该公司")
+    name_short = name.replace("中国", "").replace("集团", "").replace("控股", "").replace("股份", "").replace("有限", "").replace("公司", "")
     if not years:
-        return ["数据不足", "无法生成评论", "", ""]
+        return ["数据不足", "", ""]
 
     latest_yr = years[-1]
     ly = metrics.get(latest_yr, {})
     prev_yr = years[-2] if len(years) >= 2 else None
     py = metrics.get(prev_yr, {}) if prev_yr else {}
-
+    yr3 = years[-4] if len(years) >= 4 else years[0] if years else None
+    y3 = metrics.get(yr3, {}) if yr3 else {}
     lines = []
+    today = __import__("datetime").date.today().strftime("%Y年%m月%d日")
 
-    # 段1: 业绩概览
-    p1_parts = []
-    rev = ly.get("OPERATE_INCOME")
-    rev_p = py.get("OPERATE_INCOME") if py else None
-    if rev and rev_p and rev_p > 0:
-        g = (rev / rev_p - 1) * 100
-        p1_parts.append(f"营收{rev:.1f}亿元(同比{g:+.1f}%)")
-    np_v = ly.get("HOLDER_PROFIT")
-    np_p = py.get("HOLDER_PROFIT") if py else None
-    if np_v and np_p and np_p > 0:
-        g = (np_v / np_p - 1) * 100
-        p1_parts.append(f"净利润{np_v:.1f}亿元(同比{g:+.1f}%)")
-    eps = ly.get("BASIC_EPS")
+    # ── 辅助：趋势判定 ──
+    def _chg(cur, prev):  return (cur / prev - 1) * 100 if cur and prev and prev > 0 else None
+    def _dir(cur, prev):  return "增长" if (cur or 0) > (prev or 0) else "下降" if cur != prev else "持平"
+    def _dir_pct(cur, prev, label=""):
+        c = _chg(cur, prev)
+        if c is None: return ""
+        d = "增长" if c > 0 else "下降"
+        return f"{label}{d}{abs(c):.1f}%"
+
+    rev, rev_p = ly.get("OPERATE_INCOME"), py.get("OPERATE_INCOME") if py else None
+    np_v, np_p = ly.get("HOLDER_PROFIT"), py.get("HOLDER_PROFIT") if py else None
+    eps, eps_p = ly.get("BASIC_EPS"), py.get("BASIC_EPS") if py else None
+    gm, gm_p = ly.get("GROSS_MARGIN"), py.get("GROSS_MARGIN") if py else None
+    roe, roe_p = ly.get("ROE"), py.get("ROE") if py else None
+    npm = ly.get("NET_PROFIT_RATIO")
+    pe = spot.get("pe", 0)
+    pb = spot.get("pb", 0)
+    div_y = spot.get("div_yield", 0)
+
+    # 计算 PE 中位数 (全量年份)
+    pe_vals = [v for yr in years for v in [metrics.get(yr, {}).get("PE_AVG")] if v]
+    med_pe = sorted(pe_vals)[len(pe_vals) // 2] if pe_vals else None
+
+    # ── 段1: 业绩快照 + 为什么变化 ──
+    p1 = f"{today} — {name_short}{latest_yr}年营收{rev:.1f}亿元({_dir_pct(rev,rev_p)})" if rev else ""
+    if np_v is not None:
+        p1 += f"，归母净利润{np_v:.1f}亿元({_dir_pct(np_v,np_p)})"
     if eps:
-        p1_parts.append(f"每股收益¥{eps:.2f}")
-    gm = ly.get("GROSS_MARGIN")
-    if gm:
-        p1_parts.append(f"毛利率{gm:.1f}%")
-    if p1_parts:
-        lines.append(f"{latest_yr}年{name}实现" + "，".join(p1_parts) + "。")
+        p1 += f"，每股收益¥{eps:.2f}"
+    # 解释净利润变化原因
+    rev_c = _chg(rev, rev_p)
+    np_c = _chg(np_v, np_p)
+    if np_c is not None and rev_c is not None and (abs(np_c - rev_c) > 10):
+        if np_c < rev_c:
+            p1 += f"。利润增速落后营收主因毛利率从{gm_p:.1f}%降至{gm:.1f}%，费用端承压" if gm_p and gm and gm < gm_p else ""
+        else:
+            p1 += f"。利润超营收增长反映经营杠杆改善，净利润率{npm:.1f}%" if npm else ""
+    elif gm is not None:
+        p1 += f"，毛利率{gm:.1f}%({_dir_pct(gm,gm_p) if gm_p else ''})"
+    if roe is not None:
+        p1 += f"，ROE {roe:.1f}%"
+    lines.append(p1 + "。")
 
-    # 段2: 业务结构
-    seg = rev_struct.get("by_segment", [])
-    if seg:
-        seg_top = seg[:3]
-        seg_str = "、".join([f"{s['name']}({s['pct']}%)" for s in seg_top])
-        lines.append(f"业务结构：{seg_str}。")
+    # ── 段2: 深度分析 — 业务质地 + 估值 vs 历史 ──
+    p2_parts = []
+    # 业务结构简述
+    seg = rev_struct.get("by_segment", []) or rev_struct.get("by_product", [])
+    if seg and len(seg) >= 2:
+        top2 = seg[:2]
+        # 提取简短业务名: 按 / 或及 或 - 拆分取首段, 不超过6字
+        def _short(s):
+            t = s.split('/')[0].split('及')[0].split('-')[0].split('（')[0].strip()
+            return t[:6] if len(t) > 6 else t
+        names = [_short(s['name']) for s in top2]
+        p2_parts.append(f"以{'和'.join(names)}为主(合计{sum(s['pct'] for s in top2):.0f}%营收)")
 
-    rg = rev_struct.get("by_region", [])
-    rg_parts = []
-    for r in rg[:3]:
-        rg_parts.append(f"{r['name']}占{r['pct']}%")
-    if rg_parts:
-        lines.append("地域分布：" + "，".join(rg_parts) + "。")
+    # 财务质地
+    lt_debt = ly.get("LT_DEBT", 0) or 0
+    if lt_debt == 0:
+        p2_parts.append("公司零长期负债")
+    else:
+        eq = ly.get("TOTAL_EQUITY", 0)
+        p2_parts.append(f"负债率仅{lt_debt/eq*100:.0f}%" if eq > 0 else "")
 
-    # 段3: 财务健康
-    fin_parts = []
-    roe = ly.get("ROE")
-    if roe:
-        fin_parts.append(f"ROE {roe:.1f}%")
-    lt_debt = ly.get("LT_DEBT")
-    eq = ly.get("TOTAL_EQUITY")
-    if lt_debt is not None and eq and eq > 0:
-        d2e = lt_debt / eq * 100
-        fin_parts.append(f"长期负债率{d2e:.1f}%")
-    cur_pe = spot.get("pe")
-    if cur_pe:
-        fin_parts.append(f"当前PE {cur_pe:.1f}倍")
-    if fin_parts:
-        lines.append("财务状况：" + "，".join(fin_parts) + "。")
+    # 估值 vs 历史
+    if pe and med_pe:
+        vs = "低于" if pe < med_pe else "高于"
+        p2_parts.append(f"当前PE {pe:.1f}倍({vs}历史中位数{med_pe:.1f}倍)")
+    if pb is not None:
+        p2_parts.append(f"PB {pb:.2f}倍")
+    if div_y and div_y > 0:
+        p2_parts.append(f"股息率{div_y:.1f}%")
+    if roe is not None:
+        roe_str = f"ROE {roe:.1f}%"
+        if roe_p:
+            trend = "提升" if roe > roe_p else "下滑"
+            roe_str += f"(同比{trend})"
+        p2_parts.append(roe_str)
 
-    # 段4: 增长趋势
-    c_sales = cagr.get("sales", {}).get("5yr")
-    c_eps = cagr.get("earnings", {}).get("5yr")
-    trend_parts = []
-    if c_sales is not None:
-        trend_parts.append(f"5年营收CAGR {c_sales:+.1f}%")
-    if c_eps is not None:
-        trend_parts.append(f"5年每股收益CAGR {c_eps:+.1f}%")
-    if trend_parts:
-        lines.append("增长趋势：" + "，".join(trend_parts) + "。")
+    lines.append("，".join([p for p in p2_parts if p]) + "。")
 
-    # Ensure at least 3 paragraphs
-    while len(lines) < 3:
-        lines.append(f"{name}经营数据持续跟踪中。")
+    # ── 段3: 趋势判断 + 验证信号 ──
+    p3_parts = []
+    # 营收趋势
+    rev_1yr = cagr.get("revenue", {}).get("1yr")
+    rev_3yr = cagr.get("revenue", {}).get("3yr")
+    eps_1yr = cagr.get("eps", {}).get("1yr")
+    if rev_1yr is not None and rev_3yr is not None:
+        if rev_1yr > rev_3yr:
+            p3_parts.append(f"营收增速加速({rev_1yr:+.1f}%/1年 vs {rev_3yr:+.1f}%/3年)")
+        elif rev_1yr < rev_3yr and rev_1yr > 0:
+            p3_parts.append(f"营收增速放缓({rev_1yr:+.1f}%/1年 vs {rev_3yr:+.1f}%/3年)")
 
-    return lines[:4]  # Max 4 paragraphs
+    # ROE趋势 (近3年)
+    roe_3y = [metrics.get(str(y), {}).get("ROE") for y in years[-3:]]
+    roe_3y = [v for v in roe_3y if v is not None]
+    if len(roe_3y) >= 2 and roe_3y[-2]:
+        if roe_3y[-1] < roe_3y[0] * 0.8:
+            p3_parts.append(f"ROE从{roe_3y[0]:.1f}%降至{roe_3y[-1]:.1f}%反映盈利质量压力")
+        elif roe_3y[-1] > roe_3y[0] * 1.1:
+            p3_parts.append(f"ROE持续提升({roe_3y[0]:.1f}%→{roe_3y[-1]:.1f}%)")
+
+    # 验证信号
+    watch = []
+    if eps_1yr is not None and eps_1yr < 0:
+        watch.append(f"关注{int(latest_yr)+1}年盈利能否企稳回升")
+    if pe and med_pe and pe < med_pe * 0.6:
+        watch.append("估值处于历史低位但需业绩拐点确认")
+    elif pe and med_pe and pe > med_pe * 1.5 and pe > 15:
+        watch.append("估值高于历史中枢需盈利增长验证")
+    if not watch:
+        watch.append(f"关注{int(latest_yr)+1}年中报营收增速作为趋势验证信号")
+    p3_parts.append("；".join(watch))
+
+    lines.append("，".join([p for p in p3_parts if p]) + "。")
+
+    # 去重、确保至少3段
+    result = []
+    for line in lines:
+        if result and len(line) > 30 and line[:30] == result[-1][:30]:
+            continue
+        result.append(line)
+
+    return result
 
 
 def _build_current_position(reader, years):
@@ -1432,11 +1493,20 @@ def build_report(code=None):
         if data:
             revenue_structure[dim] = data
 
-    # CF Line: N×PER_NETCASH, 转换为 HKD(与价格图一致)
+    # ── 估值线: CF模式或PB模式 ──
     _fx_cf = fx_rate if fx_rate and fx_rate > 0 else 1.0
+    _val_method = reader.db_meta("valuation_method", "cf")
     _cf_mult = float(reader.db_meta("cf_multiplier", "15.0"))
-    cf_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * _cf_mult / _fx_cf, 2)}
-               for y in years if y in metrics and metrics[y].get("PER_NETCASH")]
+    _pb_mult = float(reader.db_meta("pb_multiplier", "1.0"))
+
+    if _val_method == "pb":
+        # PB Line: N×BPS, 转换为 HKD(与价格图一致)
+        valuation_line = [{"date": y, "value": round(metrics[y].get("BPS", 0) * _pb_mult / _fx_cf, 2)}
+                          for y in years if y in metrics and metrics[y].get("BPS")]
+    else:
+        # CF Line: N×PER_NETCASH, 转换为 HKD(与价格图一致)
+        valuation_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * _cf_mult / _fx_cf, 2)}
+                          for y in years if y in metrics and metrics[y].get("PER_NETCASH")]
 
     # Capital Structure
     balance_summary = {}
@@ -1808,8 +1878,10 @@ def build_report(code=None):
         "data": metrics,
         "cagr": cagr,
         "quarterly": semi_annual,
-        "cf_line": cf_line,
+        "valuation_line": valuation_line,
+        "valuation_method": _val_method,
         "cf_multiplier": _cf_mult,
+        "pb_multiplier": _pb_mult,
         "balance_summary": balance_summary,
         "income_summary": income_summary,
         "revenue_structure": revenue_structure,

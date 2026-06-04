@@ -4,15 +4,29 @@
 Value Line 报告生成流水线 — 强制8步，一步不可少。
 
 用法:
-    python build.py 09992          # 单股全流程
-    python build.py 09988 00700    # 多股批量
-    python build.py --force 002027 # 跳过PDF联网步骤(A股备用)
+    python build.py 09992 --cf 15.0           # CF估值 (消费/科技/成长股)
+    python build.py 01114 --pb 0.8            # PB估值 (银行/保险/资产型)
+    python build.py 00700 --method cf --cf 10.0
+    python build.py 02328 --method pb --pb 1.0
+
+估值方法:
+    cf: CF倍数 × 每股现金流 (适合消费/科技/成长股)
+    pb: PB倍数 × 每股净资产 (适合银行/保险/周期股/资产型标的)
+    --cf / --pb 为必填参数，不指定即阻断。
+    --skip-cf-confirm 仅限自动化场景 (CF默认15.0x, PB默认1.0x).
+    优先级: CLI --method > CLI --pb > config.STOCKS[code].valuation_method > 默认 "cf"
+
+确认页自动显示历史PE/PB均值作为估值参考。
 
 每一步有前置检查，不满足立即终止。
 """
 
 import os, sys, json, sqlite3, subprocess, argparse, time, re
 from datetime import date
+
+# Windows 终端中文乱码修复: 强制 stdout 为 UTF-8
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 from pathlib import Path
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -75,6 +89,70 @@ def _report_path(code):
 # ────────────────────────────────────────────────
 # Step runners
 # ────────────────────────────────────────────────
+
+def _get_hist_valuation_ref(code, method):
+    """从 DB 读取历史 PE/PB 均值，作为估值参考。
+    返回 (label, avg_val) 或 None。
+    """
+    db = _db_path(code)
+    if not os.path.exists(db):
+        return None
+    try:
+        conn = sqlite3.connect(db)
+        # 取 BPS / EPS / PE_AVG / 年末收盘价
+        bps_rows = conn.execute(
+            "SELECT report_date, amount FROM indicators WHERE item_name='BPS' AND report_date LIKE '%-12-31'"
+        ).fetchall()
+        eps_rows = conn.execute(
+            "SELECT report_date, amount FROM indicators WHERE item_name='BASIC_EPS' AND report_date LIKE '%-12-31'"
+        ).fetchall()
+        pe_avg_rows = conn.execute(
+            "SELECT report_date, amount FROM indicators WHERE item_name='PE_AVG' AND report_date LIKE '%-12-31'"
+        ).fetchall()
+        kl_rows = conn.execute(
+            "SELECT date, close FROM kline WHERE date LIKE '%-12-%' ORDER BY date"
+        ).fetchall()
+
+        # 年末收盘价: 取每年12月最后一天
+        yr_price = {}
+        for d, c in kl_rows:
+            yr_price[d[:4]] = c
+        yr_bps = {d[:4]: v for d, v in bps_rows if v and v > 0}
+        yr_eps = {d[:4]: v for d, v in eps_rows if v and v > 0}
+        yr_pe_avg = {d[:4]: v for d, v in pe_avg_rows if v and v > 0}
+
+        # 取共同年份
+        years = sorted(set(yr_bps) & set(yr_eps) & set(yr_price))
+
+        if method == "pb" and years:
+            pbs = [yr_price[y] / yr_bps[y] for y in years if yr_bps[y] > 0]
+            if pbs:
+                avg = sum(pbs) / len(pbs)
+                rng = f"{years[0]}-{years[-1]}"
+                conn.close()
+                return (f"历史PB均值 ({rng})", round(avg, 2))
+
+        if method == "cf" and years:
+            # 优先 PE_AVG, 否则用 年末价/EPS
+            if len(yr_pe_avg) >= 3:
+                pes = list(yr_pe_avg.values())
+                avg = sum(pes) / len(pes)
+                rng = f"{min(yr_pe_avg)}{'-'}{max(yr_pe_avg)}" if yr_pe_avg else ""
+                conn.close()
+                return (f"历史PE均值 ({rng})" if rng else "历史PE均值", round(avg, 1))
+            else:
+                pes = [yr_price[y] / yr_eps[y] for y in years if yr_eps[y] > 0]
+                if pes:
+                    avg = sum(pes) / len(pes)
+                    rng = f"{years[0]}-{years[-1]}"
+                    conn.close()
+                    return (f"历史PE均值 ({rng})", round(avg, 1))
+
+        conn.close()
+    except Exception:
+        pass
+    return None
+
 
 def step_0_check_config(code):
     """Step 0: 检查 config 完整性。"""
@@ -331,10 +409,12 @@ def step_8_verify(code):
     if ik: ok(f"Index ({len(ik)}m)")
     else: fail("Index: 空")
 
-    # ── 8. CF Line & Yearly H/L ──
-    cf = d.get("cf_line", [])
-    if cf: ok(f"CF Line ({len(cf)}pts)")
-    else: fail("CF Line: 空")
+    # ── 8. Valuation Line & Yearly H/L ──
+    val = d.get("valuation_line") or d.get("cf_line", [])
+    vmethod = d.get("valuation_method", "cf")
+    vlabel = "PB Line" if vmethod == "pb" else "CF Line"
+    if val: ok(f"{vlabel} ({len(val)}pts)")
+    else: fail(f"{vlabel}: 空")
     yhl = d.get("yearly_hl", [])
     if yhl: ok(f"Yr H/L ({len(yhl)}y)")
     else: fail("Yr H/L: 空")
@@ -398,11 +478,15 @@ def step_8_verify(code):
 # Main pipeline
 # ────────────────────────────────────────────────
 
-def confirm_and_build(code, cf_multiplier, num_years=15, skip_cf_confirm=False):
+def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
+                      valuation_method=None, num_years=15, skip_cf_confirm=False):
     """
     强制确认后才能启动流水线。
-    必须提供: 股票代码 + CF倍数。市场(A/H)从config自动读取。
-    - cf_multiplier=None 时使用默认值15.0，skip_cf_confirm=False时会打印醒目提示
+    估值方法:
+    - cf: CF倍数 × 每股现金流 (默认, 适合消费/科技/成长股)
+    - pb: PB倍数 × 每股净资产 (适合银行/保险/周期股)
+    valuation_method=None 时从 config.STOCKS[code].valuation_method 读取, 默认 "cf".
+    --pb 参数 > 0 时自动切换为 "pb" 模式.
     """
     stock = config.STOCKS.get(code)
 
@@ -414,14 +498,41 @@ def confirm_and_build(code, cf_multiplier, num_years=15, skip_cf_confirm=False):
     currency = stock.get("currency", "CNY") if stock else "CNY"
     exchange = stock.get("exchange", "") if stock else ""
 
-    # ── CF倍数默认值处理 ──
-    if cf_multiplier is None:
-        cf_multiplier = 15.0
-        if not skip_cf_confirm:
-            print(f"\n{'='*60}")
-            print(f"  ***  CF倍数未指定，使用默认值 15.0x  ***")
-            print(f"{'='*60}\n")
-            print(f"  {_yellow('提示: 下次请显式指定 --cf N (如 --cf 18.0)')}\n")
+    # ── 估值方法确定 ──
+    # 优先级: CLI --method > CLI --pb > config valuation_method > 默认 "cf"
+    if valuation_method is None:
+        if pb_multiplier is not None and pb_multiplier > 0:
+            valuation_method = "pb"
+        elif stock:
+            valuation_method = stock.get("valuation_method", "cf")
+        else:
+            valuation_method = "cf"
+
+    # ── 估值倍数校验: 非自动化场景下, 未显式指定即阻断 ──
+    if valuation_method == "pb":
+        if pb_multiplier is None:
+            if skip_cf_confirm:
+                pb_multiplier = 1.0  # 自动化场景默认
+            else:
+                print(f"\n{_red('='*60)}")
+                print(_red(f"  REFUSED: {name} 已配置为PB估值, 但未提供 --pb 参数"))
+                print(_red(f"  用法: python build.py {code} --pb N (如 --pb 0.8)"))
+                print(_red(f"  或:   python build.py {code} --skip-cf-confirm (使用默认 1.0x)"))
+                print(_red(f"{'='*60}"))
+                raise SystemExit(1)
+        method_label = f"PB={pb_multiplier}x"
+    else:
+        if cf_multiplier is None:
+            if skip_cf_confirm:
+                cf_multiplier = 15.0  # 自动化场景默认
+            else:
+                print(f"\n{_red('='*60)}")
+                print(_red(f"  REFUSED: {name} 未提供 --cf 参数"))
+                print(_red(f"  用法: python build.py {code} --cf N (如 --cf 15.0)"))
+                print(_red(f"  或:   python build.py {code} --skip-cf-confirm (使用默认 15.0x)"))
+                print(_red(f"{'='*60}"))
+                raise SystemExit(1)
+        method_label = f"CF={cf_multiplier}x"
 
     # 探测可用数据年份
     yr_range = _detect_year_range(code)
@@ -441,7 +552,12 @@ def confirm_and_build(code, cf_multiplier, num_years=15, skip_cf_confirm=False):
     print(f"  行业:      {industry}")
     print(f"  报表币种:   {currency}")
     print(f"  数据年份:   {yr_range[0]}-{yr_range[1]}{yr_note}" if yr_range else "  数据年份:   未探测")
-    print(f"  CF 倍数:    {cf_multiplier}x")
+    print(f"  估值方法:   {method_label}")
+    # 历史估值参考
+    hist_ref = _get_hist_valuation_ref(code, valuation_method)
+    if hist_ref:
+        label, val = hist_ref
+        print(f"  历史参考:   {label} = {val}x")
     if not stock:
         print(f"  {_red('状态:  未在 config.STOCKS 中配置!')}")
     print(f"{_bold('='*60)}")
@@ -450,27 +566,36 @@ def confirm_and_build(code, cf_multiplier, num_years=15, skip_cf_confirm=False):
     if not stock:
         raise SystemExit(_red(f"\n  REFUSED: {code} 不在 config.STOCKS 中, 请先配置\n  提示: 编辑 config.py, 在 STOCKS 字典中添加该股票信息"))
 
-    if cf_multiplier <= 0:
-        raise SystemExit(_red("  REFUSED: CF倍数必须 > 0, 默认15.0"))
-
     if market not in ("hk", "cn"):
         raise SystemExit(_red(f"  REFUSED: 未知市场 '{market}', 请设为 'hk' 或 'cn'"))
 
-    # Write CF multiplier to config temp override
-    _write_cf(code, cf_multiplier)
+    # 校验估值倍数
+    if valuation_method == "pb":
+        if pb_multiplier is None or pb_multiplier <= 0:
+            raise SystemExit(_red("  REFUSED: PB倍数必须 > 0"))
+    else:
+        if cf_multiplier is None or cf_multiplier <= 0:
+            raise SystemExit(_red("  REFUSED: CF倍数必须 > 0, 默认15.0"))
+
+    # Write valuation meta to DB
+    _write_valuation_meta(code, cf_multiplier or 15.0, pb_multiplier or 1.0, valuation_method)
 
     # ── 执行 ──
-    print(f"\n{_bold(f'  >>> 开始生成 {name} ({code}), CF={cf_multiplier}x <<<')}")
+    print(f"\n{_bold(f'  >>> 开始生成 {name} ({code}), {method_label} <<<')}")
     return build(code)
 
 
-def _write_cf(code, cf):
-    """写 CF 倍数到 DB meta, engine 自动读取。"""
+def _write_valuation_meta(code, cf_mult, pb_mult, method):
+    """写估值相关 meta 到 DB, engine 自动读取。"""
     db = _db_path(code)
     if os.path.exists(db):
         conn = sqlite3.connect(db)
         conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)",
-                     ("cf_multiplier", str(cf)))
+                     ("cf_multiplier", str(cf_mult)))
+        conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)",
+                     ("pb_multiplier", str(pb_mult)))
+        conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)",
+                     ("valuation_method", method))
         conn.commit()
         conn.close()
 
@@ -521,21 +646,30 @@ def build(code):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Value Line 报告生成流水线 — 必须提供代码, CF倍数可选",
-        epilog="示例: python build.py 09992          (CF用默认15.0)\n"
-              "      python build.py 09992 --cf 18.0 (指定CF倍数)"
+        description="Value Line 报告生成流水线",
+        epilog="示例: python build.py 09992                    (CF默认15.0)\n"
+              "      python build.py 09992 --cf 18.0           (指定CF倍数)\n"
+              "      python build.py 00388 --pb 0.8            (PB估值模式)\n"
+              "      python build.py 02328 --method pb --pb 1.0 (显式PB)\n"
+              "      python build.py 00700 --method cf --cf 10.0(显式CF)"
     )
     parser.add_argument("codes", nargs="+", help="股票代码, 如 09992 00700")
     parser.add_argument("--cf", type=float, default=None,
-                        help="CF倍数 (不指定则默认15.0, 会打印提示)")
+                        help="CF倍数 (CF估值模式, 默认15.0)")
+    parser.add_argument("--pb", type=float, default=None,
+                        help="PB倍数 (PB估值模式, 默认1.0, 设置后自动切换为PB模式)")
+    parser.add_argument("--method", choices=["cf", "pb"], default=None,
+                        help="估值方法 (cf/PB, 默认从config读取或自动推断)")
     parser.add_argument("--skip-cf-confirm", action="store_true",
-                        help="跳过CF倍数提示(仅用于重生成/自动化)")
+                        help="跳过估值倍数提示(仅用于重生成/自动化)")
     parser.add_argument("--years", type=int, default=15,
                         help="使用最近N年数据 (默认15, 不超过可用年份)")
     args = parser.parse_args()
 
     if args.cf is not None and args.cf <= 0:
         parser.error("--cf 必须 > 0")
+    if args.pb is not None and args.pb <= 0:
+        parser.error("--pb 必须 > 0")
     if args.years < 3:
         parser.error("--years 最小值为 3")
 
@@ -548,6 +682,8 @@ if __name__ == "__main__":
         try:
             confirm_and_build(code,
                               cf_multiplier=args.cf,
+                              pb_multiplier=args.pb,
+                              valuation_method=args.method,
                               num_years=actual_years,
                               skip_cf_confirm=args.skip_cf_confirm)
         except SystemExit as e:

@@ -4,6 +4,7 @@ extract_mda.py — 生成管理层讨论与分析(MD&A)中文总结
 通用版本: 无硬编码公司信息, 兼容所有A股/港股年报
 """
 import pdfplumber, re, sqlite3, sys, json, os
+if sys.platform == 'win32': sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, ".")
 import config
 

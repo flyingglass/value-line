@@ -8,6 +8,7 @@ fetcher.py — AKShare 数据获取, 存入 SQLite
 import os, sys, time, sqlite3, json, re
 import warnings
 warnings.filterwarnings("ignore")
+if sys.platform == 'win32': sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 # 项目路径
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

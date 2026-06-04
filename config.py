@@ -29,6 +29,9 @@ STOCKS = {
     # ⚠️ business_desc 和 analyst.commentary 为 fallback:
     #    优先从年报 PDF 提取 (extract_mda.py → engine.py 解析),
     #    仅在 PDF 提取失败时使用以下静态配置。
+    # ⚠️ valuation_method: 估值方法, 默认 "cf" (CF倍数×每股现金流)。
+    #    "cf" 适合消费/科技/成长股; "pb" 适合银行/保险/周期股/资产型标的 (PB倍数×每股净资产)。
+    #    可通过 CLI --method cf|pb 或 --cf N / --pb N 覆盖。
     "09992": {
         "name": "泡泡玛特",
         "name_en": "POP MART",
@@ -321,6 +324,7 @@ STOCKS = {
         "shares_str": "5,045,000,000",
         "fiscal_yr_end": "12-31",
         "industry": "Automotive",
+        "valuation_method": "pb",  # 资产型控股公司，PB 0.5x，适合PB估值
         "business_desc": "华晨中国汽车控股有限公司主要通过其合资企业华晨宝马（与宝马集团50:50合资）获得主要利润贡献。华晨宝马在中国生产销售宝马3系、5系、X3、X5等车型。公司同时制造及销售轻型客车及汽车零部件。受宝马股权转让（华晨宝马2022年转让25%股权）影响，持股降至25%，但品牌溢价和高端车需求仍为利润核心。",
         "analyst": {
             "commentary": [
@@ -477,6 +481,7 @@ STOCKS = {
         "shares_str": "22,242,765,303",
         "industry": "Insurance",
         "fiscal_yr_end": "12-31",
+        "valuation_method": "pb",  # 保险股适合PB估值
         "business_desc": "中国财险是中国最大的财产保险公司，主营机动车辆保险、企业财产保险、责任保险、意外伤害保险等业务，市场份额长期保持行业第一。公司隶属于中国人民保险集团，H股香港上市。",
     },
     "02099": {
@@ -541,6 +546,7 @@ STOCKS = {
         "shares_str": "1,270,000,000",
         "industry": "Financial Services",
         "fiscal_yr_end": "12-31",
+        "valuation_method": "pb",  # 交易所属于资产密集型，适合PB估值
         "business_desc": "香港交易所是全球主要交易所集团之一，运营香港联合交易所、香港期货交易所和伦敦金属交易所(LME)。核心收入来自交易费、结算费、上市费和数据服务，是亚洲最重要的国际金融基础设施。",
     },
     "09633": {
