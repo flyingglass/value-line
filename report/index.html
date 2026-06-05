@@ -1,146 +1,533 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Value Line — 投资报告索引</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>价值线+阅读报告 · Value Line Research</title>
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
-         max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; background:#f8f9fa; color:#212529; }
-  .header { text-align:center; margin-bottom:36px; border-bottom:3px solid #1976D2; padding-bottom:20px; }
-  .header h1 { font-size:26px; color:#1976D2; margin-bottom:6px; }
-  .header .sub { font-size:14px; color:#666; }
-  .header .count { margin-top:8px; font-size:13px; color:#999; }
-  .section { margin-bottom:28px; }
-  .section-title { font-size:16px; font-weight:700; color:#1565C0; border-bottom:2px solid #BBDEFB; padding-bottom:6px; margin-bottom:12px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:8px; }
-  .card { background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:14px 16px;
-          transition:all .15s; display:flex; flex-direction:column; }
-  .card:hover { border-color:#1976D2; box-shadow:0 2px 8px rgba(25,118,210,.15); transform:translateY(-1px); }
-  .card a { text-decoration:none; color:#1976D2; font-weight:600; font-size:15px; }
-  .card a:hover { color:#0D47A1; }
-  .card .meta { font-size:12px; color:#888; margin-top:4px; display:flex; justify-content:space-between; align-items:center; }
-  .card .code { font-family:'SF Mono','Consolas',monospace; }
-  .card .market { font-size:11px; padding:1px 6px; border-radius:3px; }
-  .market-hk { background:#e3f2fd; color:#1565C0; }
-  .market-cn { background:#fce4ec; color:#c62828; }
-  .footer { text-align:center; margin-top:40px; padding-top:16px; border-top:1px solid #ddd; color:#999; font-size:12px; }
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-muted: #6c757d;
+    --border: #e9ecef;
+    --blue: #2563eb;
+    --green: #059669;
+    --hk: #e03131;
+    --cn: #e8590c;
+    --us: #2f9e44;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; }
+  header { text-align: center; padding: 48px 0 32px; }
+  header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  header h1 span { color: var(--blue); }
+  header p { color: var(--text-muted); margin-top: 8px; font-size: 14px; }
+  .stats { display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 13px; color: var(--text-muted); }
+  .stats strong { color: var(--text); }
+
+  .section-title {
+    font-size: 16px; font-weight: 600; margin: 36px 0 12px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s;
+  }
+  .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+  .card-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 10px; }
+  .code { font-family: "SF Mono", "Consolas", monospace; font-size: 12px; color: var(--text-muted); }
+  .badge { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 4px; color: #fff; }
+  .badge-hk { background: var(--hk); }
+  .badge-cn { background: var(--cn); }
+  .badge-us { background: var(--us); }
+
+  .card-links { display: flex; gap: 6px; }
+  .pill {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 3px 10px; border-radius: 20px; text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .pill:hover { opacity: 0.85; }
+  .pill-blue { background: #dbeafe; color: #1e40af; }
+  .pill-green { background: #d1fae5; color: #065f46; }
+
+  footer {
+    text-align: center; padding: 40px 0 20px; color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 20px 12px 60px; }
+    header h1 { font-size: 22px; }
+    .grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>📊 Value Line 投资报告</h1>
-  <p class="sub">基于年报提取的标准化财务分析 · 对标 Value Line Survey 格式</p>
-  <p class="count" id="updateTime"></p>
-</div>
+<div class="container">
+  <header>
+    <h1><span>价值线+</span>阅读报告</h1>
+    <p>基于年报提取的标准化财务分析 · 对标 Value Line Survey</p>
+    <div class="stats">
+      <span>共 <strong>35</strong> 只标的</span>
+      <span>·</span>
+      <span>15 个行业</span>
+      <span>·</span>
+      <span>更新: 2026-06-05</span>
+    </div>
+  </header>
 
-<!-- Consumer -->
-<div class="section">
-  <div class="section-title">🛍 消费</div>
-  <div class="grid">
-    <div class="card"><a href="POP_MART.html">Pop Mart · 泡泡玛特</a><div class="meta"><span class="code">09992</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Mixue_Group.html">Mixue Group · 蜜雪集团</a><div class="meta"><span class="code">02097</span><span class="market market-hk">港股</span></div></div>
-  </div>
-</div>
+    <h3 class="section-title">🎯 消费</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">POP MART · 泡泡玛特</div>
+        <div class="card-meta">
+          <span class="code">09992</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="POP_MART.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/09992.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Xtep Int'l · 特步国际</div>
+        <div class="card-meta">
+          <span class="code">01368</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Xtep_Int'l.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/01368.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Mixue Group · 蜜雪集团</div>
+        <div class="card-meta">
+          <span class="code">02097</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Mixue_Group.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/02097.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 必需消费</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Kweichow Moutai · 贵州茅台</div>
+        <div class="card-meta">
+          <span class="code">600519</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Kweichow_Moutai.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/600519.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Nongfu Spring · 农夫山泉</div>
+        <div class="card-meta">
+          <span class="code">09633</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Nongfu_Spring.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/09633.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Eastroc Beverage · 东鹏饮料</div>
+        <div class="card-meta">
+          <span class="code">605499</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Eastroc_Beverage.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/605499.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 科技</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Alibaba Group · 阿里巴巴</div>
+        <div class="card-meta">
+          <span class="code">09988</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Alibaba_Group.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/09988.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Tencent Holdings · 腾讯控股</div>
+        <div class="card-meta">
+          <span class="code">00700</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Tencent_Holdings.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/00700.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Tencent Music · 腾讯音乐</div>
+        <div class="card-meta">
+          <span class="code">01698</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Tencent_Music.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/01698.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">TravelSky Technology · 中国民航信息网络</div>
+        <div class="card-meta">
+          <span class="code">00696</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="TravelSky_Technology.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/00696.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">CATL · 宁德时代</div>
+        <div class="card-meta">
+          <span class="code">300750</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="CATL.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/300750.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 能源</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">CNOOC Ltd · 中国海洋石油</div>
+        <div class="card-meta">
+          <span class="code">00883</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="CNOOC_Ltd.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/00883.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">SPIC Energy · 电投能源</div>
+        <div class="card-meta">
+          <span class="code">002128</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="SPIC_Energy.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/002128.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Shaanxi Coal · 陕西煤业</div>
+        <div class="card-meta">
+          <span class="code">601225</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Shaanxi_Coal.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/601225.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">China Shenhua · 中国神华</div>
+        <div class="card-meta">
+          <span class="code">01088</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="China_Shenhua.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/01088.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 金属与矿业</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Yunnan Aluminium · 云铝股份</div>
+        <div class="card-meta">
+          <span class="code">000807</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Yunnan_Aluminium.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/000807.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Shenhuo · 神火股份</div>
+        <div class="card-meta">
+          <span class="code">000933</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Shenhuo.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/000933.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Zhongfu Industrial · 中孚实业</div>
+        <div class="card-meta">
+          <span class="code">600595</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Zhongfu_Industrial.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/600595.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">China Hongqiao · 中国宏桥</div>
+        <div class="card-meta">
+          <span class="code">01378</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="China_Hongqiao.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/01378.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Tianshan Aluminum · 天山铝业</div>
+        <div class="card-meta">
+          <span class="code">002532</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Tianshan_Aluminum.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/002532.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Zangge Mining · 藏格矿业</div>
+        <div class="card-meta">
+          <span class="code">000408</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Zangge_Mining.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/000408.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Zijin Mining · 紫金矿业</div>
+        <div class="card-meta">
+          <span class="code">02899</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Zijin_Mining.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/02899.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">China Gold Intl · 中国黄金国际</div>
+        <div class="card-meta">
+          <span class="code">02099</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="China_Gold_Intl.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/02099.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 传媒</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Focus Media · 分众传媒</div>
+        <div class="card-meta">
+          <span class="code">002027</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Focus_Media.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/002027.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 包装</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Yongxin Co. · 永新股份</div>
+        <div class="card-meta">
+          <span class="code">002014</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Yongxin_Co..html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/002014.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 汽车</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Brilliance China · 华晨中国</div>
+        <div class="card-meta">
+          <span class="code">01114</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Brilliance_China.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/01114.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Fuyao Glass · 福耀玻璃</div>
+        <div class="card-meta">
+          <span class="code">03606</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Fuyao_Glass.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/03606.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 医疗健康</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Angelalign · 时代天使</div>
+        <div class="card-meta">
+          <span class="code">06699</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Angelalign.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/06699.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 制药</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Lingrui Pharma · 羚锐制药</div>
+        <div class="card-meta">
+          <span class="code">600285</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Lingrui_Pharma.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/600285.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Livzon Pharma · 丽珠集团</div>
+        <div class="card-meta">
+          <span class="code">01513</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="Livzon_Pharma.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/01513.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 家电</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Gree Electric · 格力电器</div>
+        <div class="card-meta">
+          <span class="code">000651</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Gree_Electric.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/000651.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 建材</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">BNBM Group · 北新建材</div>
+        <div class="card-meta">
+          <span class="code">000786</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="BNBM_Group.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/000786.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 公用事业</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Yangtze Power · 长江电力</div>
+        <div class="card-meta">
+          <span class="code">600900</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="Yangtze_Power.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/600900.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 保险</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">PICC P&C · 中国财险</div>
+        <div class="card-meta">
+          <span class="code">02328</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="PICC_P&C.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/02328.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title">🎯 金融服务</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">HKEX · 香港交易所</div>
+        <div class="card-meta">
+          <span class="code">00388</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="HKEX.html" class="pill pill-blue">VL 图表</a>
+          <a href="../reading/00388.md" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>
+    </div>
 
-<!-- Consumer Staples -->
-<div class="section">
-  <div class="section-title">🏪 必需消费品</div>
-  <div class="grid">
-    <div class="card"><a href="Kweichow_Moutai.html">Kweichow Moutai · 贵州茅台</a><div class="meta"><span class="code">600519</span><span class="market market-cn">A股</span></div></div>
-    <div class="card"><a href="Nongfu_Spring.html">Nongfu Spring · 农夫山泉</a><div class="meta"><span class="code">09633</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Eastroc_Beverage.html">Eastroc Beverage · 东鹏饮料</a><div class="meta"><span class="code">605499</span><span class="market market-cn">A股</span></div></div>
-  </div>
+  <footer>
+    Value Line Research · 不构成投资建议
+  </footer>
 </div>
-
-<!-- Technology -->
-<div class="section">
-  <div class="section-title">💻 科技</div>
-  <div class="grid">
-    <div class="card"><a href="Tencent_Holdings.html">Tencent Holdings · 腾讯控股</a><div class="meta"><span class="code">00700</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Alibaba_Group.html">Alibaba Group · 阿里巴巴</a><div class="meta"><span class="code">09988</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Tencent_Music.html">Tencent Music · 腾讯音乐</a><div class="meta"><span class="code">01698</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="TravelSky_Technology.html">TravelSky Technology · 中航信</a><div class="meta"><span class="code">00696</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="CATL.html">CATL · 宁德时代</a><div class="meta"><span class="code">300750</span><span class="market market-cn">A股</span></div></div>
-  </div>
-</div>
-
-<!-- Energy -->
-<div class="section">
-  <div class="section-title">⚡ 能源</div>
-  <div class="grid">
-    <div class="card"><a href="China_Shenhua.html">China Shenhua · 中国神华</a><div class="meta"><span class="code">01088</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="CNOOC_Ltd.html">CNOOC Ltd · 中国海油</a><div class="meta"><span class="code">00883</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Shaanxi_Coal.html">Shaanxi Coal · 陕西煤业</a><div class="meta"><span class="code">601225</span><span class="market market-cn">A股</span></div></div>
-  </div>
-</div>
-
-<!-- Metals & Mining -->
-<div class="section">
-  <div class="section-title">⛏ 矿产</div>
-  <div class="grid">
-    <div class="card"><a href="Zijin_Mining.html">Zijin Mining · 紫金矿业</a><div class="meta"><span class="code">02899</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="China_Gold_Intl.html">China Gold Intl · 中国黄金国际</a><div class="meta"><span class="code">02099</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Zangge_Mining.html">Zangge Mining · 藏格矿业</a><div class="meta"><span class="code">000408</span><span class="market market-cn">A股</span></div></div>
-  </div>
-</div>
-
-<!-- Utilities -->
-<div class="section">
-  <div class="section-title">🏭 公用事业</div>
-  <div class="grid">
-    <div class="card"><a href="Yangtze_Power.html">Yangtze Power · 长江电力</a><div class="meta"><span class="code">600900</span><span class="market market-cn">A股</span></div></div>
-  </div>
-</div>
-
-<!-- Healthcare & Pharma -->
-<div class="section">
-  <div class="section-title">💊 医疗健康</div>
-  <div class="grid">
-    <div class="card"><a href="Angelalign.html">Angelalign · 时代天使</a><div class="meta"><span class="code">06699</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Livzon_Pharma.html">Livzon Pharma · 丽珠集团</a><div class="meta"><span class="code">01513</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Lingrui_Pharma.html">Lingrui Pharma · 羚锐制药</a><div class="meta"><span class="code">600285</span><span class="market market-cn">A股</span></div></div>
-  </div>
-</div>
-
-<!-- Automotive -->
-<div class="section">
-  <div class="section-title">🚗 汽车</div>
-  <div class="grid">
-    <div class="card"><a href="Brilliance_China.html">Brilliance China · 华晨中国</a><div class="meta"><span class="code">01114</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="Fuyao_Glass.html">Fuyao Glass · 福耀玻璃</a><div class="meta"><span class="code">03606</span><span class="market market-hk">港股</span></div></div>
-  </div>
-</div>
-
-<!-- Financial -->
-<div class="section">
-  <div class="section-title">💰 金融</div>
-  <div class="grid">
-    <div class="card"><a href="HKEX.html">HKEX · 香港交易所</a><div class="meta"><span class="code">00388</span><span class="market market-hk">港股</span></div></div>
-    <div class="card"><a href="PICC_P&C.html">PICC P&C · 中国财险</a><div class="meta"><span class="code">02328</span><span class="market market-hk">港股</span></div></div>
-  </div>
-</div>
-
-<!-- Industrial & Others -->
-<div class="section">
-  <div class="section-title">🏗 工业 / 其他</div>
-  <div class="grid">
-    <div class="card"><a href="Gree_Electric.html">Gree Electric · 格力电器</a><div class="meta"><span class="code">000651</span><span class="market market-cn">A股</span></div></div>
-    <div class="card"><a href="BNBM_Group.html">BNBM Group · 北新建材</a><div class="meta"><span class="code">000786</span><span class="market market-cn">A股</span></div></div>
-    <div class="card"><a href="Yongxin_Co..html">Yongxin Co. · 永新股份</a><div class="meta"><span class="code">002014</span><span class="market market-cn">A股</span></div></div>
-    <div class="card"><a href="Focus_Media.html">Focus Media · 分众传媒</a><div class="meta"><span class="code">002027</span><span class="market market-cn">A股</span></div></div>
-  </div>
-</div>
-
-<div class="footer">
-  <p>共 29 只标的 · 自动生成于 <span id="genDate"></span> · Powered by Value Line Pipeline</p>
-  <p style="margin-top:4px;">数据来源: AKShare · 港交所披露易 · 巨潮资讯 · 个股年报PDF</p>
-</div>
-
-<script>
-document.getElementById('genDate').textContent = new Date().toISOString().slice(0,10);
-document.getElementById('updateTime').textContent = '共计 ' + document.querySelectorAll('.card').length + ' 只标的 · 最后更新: ' + new Date().toISOString().slice(0,10);
-</script>
 </body>
 </html>
