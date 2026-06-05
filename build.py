@@ -679,6 +679,8 @@ if __name__ == "__main__":
                         help="跳过估值倍数提示(仅用于重生成/自动化)")
     parser.add_argument("--years", type=int, default=15,
                         help="使用最近N年数据 (默认15, 不超过可用年份)")
+    parser.add_argument("--publish", action="store_true",
+                        help="生成后自动 git commit + push，触发 GitHub Pages 发布")
     args = parser.parse_args()
 
     if args.cf is not None and args.cf <= 0:
@@ -707,5 +709,22 @@ if __name__ == "__main__":
                 print(f"  {e}\n")
             _set_active("09992")
             sys.exit(1)
+
+    # ── publish to GitHub Pages ──
+    if args.publish:
+        print(f"\n{_bold('=' * 60)}")
+        print(f"{_bold('  Publishing to GitHub Pages...')}")
+        print(f"{_bold('=' * 60)}")
+        _run("git add report/", timeout=30)
+        codes_str = ", ".join(args.codes)
+        ok, out = _run(f'git commit -m "update: {codes_str} report"', timeout=30)
+        if ok:
+            ok2, out2 = _run("git push origin master", timeout=60)
+            if ok2:
+                print(_green(f"  [publish] 已推送至 GitHub. Actions 将自动部署到 Pages."))
+            else:
+                print(_yellow(f"  [publish] git push 失败 (网络问题?): {out2[-200:]}"))
+        else:
+            print(_yellow(f"  [publish] 没有变更需要推送"))
 
     _set_active("09992")
