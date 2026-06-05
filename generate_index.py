@@ -34,6 +34,8 @@ INDUSTRY_CN = {
 MARKET_LABEL = {"hk": "港股", "cn": "A股", "us": "美股"}
 MARKET_CLASS = {"hk": "hk", "cn": "cn", "us": "us"}
 
+GITHUB_REPO = "https://github.com/flyingglass/value-line"
+
 # 行业展示顺序
 INDUSTRY_ORDER = [
     "Consumer", "Consumer Staples",
@@ -102,7 +104,7 @@ def build_index_html():
             cards_html += '        </div>\n'
             cards_html += '        <div class="card-links">\n'
             cards_html += f'          <a href="{rpt_file}" class="pill pill-blue">VL 图表</a>\n'
-            cards_html += f'          <a href="../reading/{code}.md" class="pill pill-green">阅读报告</a>\n'
+            cards_html += f'          <a href="{GITHUB_REPO}/blob/master/reading/{code}.md" target="_blank" class="pill pill-green">阅读报告</a>\n'
             cards_html += '        </div>\n'
             cards_html += '      </div>\n'
 
