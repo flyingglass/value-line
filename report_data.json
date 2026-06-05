@@ -1,671 +1,567 @@
 {
   "meta": {
-    "code": "09988",
-    "name": "阿里巴巴",
-    "name_en": "Alibaba Group",
+    "code": "09992",
+    "name": "泡泡玛特",
+    "name_en": "POP MART",
     "market": "hk",
     "currency": "CNY",
-    "industry": "Technology",
-    "ceo": "",
-    "inc": "",
-    "website": "",
+    "industry": "Consumer",
+    "ceo": "王宁",
+    "inc": "开曼群岛",
+    "website": "www.popmart.com",
     "price_ccy": "HKD",
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-05 18:56:27.180792"
+    "generated": "2026-06-05 23:17:13.548908"
   },
   "spot": {
-    "price": 122.8,
-    "pe": 22.3,
-    "pb": 2.21,
-    "div_yield": 0.0,
-    "mkt_cap": 23496.6,
-    "change_pct": 1.57155,
-    "eps_ttm": 5.5,
-    "eps_ttm_hkd": 5.5,
-    "median_pe": 25.9
+    "price": 179.3,
+    "pe": 18.7,
+    "pb": 10.72,
+    "div_yield": 1.33,
+    "mkt_cap": 2407.9,
+    "change_pct": 0.05581,
+    "eps_ttm": 9.58,
+    "eps_ttm_hkd": 9.58,
+    "median_pe": 53.7
   },
   "kline": [
     {
-      "date": "2019-11",
-      "open": 177.5772,
-      "high": 194.4802,
-      "low": 177.5772,
-      "close": 188.4027,
-      "volume": 206493184.0
-    },
-    {
-      "date": "2019-12",
-      "open": 188.0229,
-      "high": 202.8368,
-      "low": 179.0016,
-      "close": 196.7593,
-      "volume": 249626806.0
-    },
-    {
-      "date": "2020-01",
-      "open": 197.519,
-      "high": 215.9414,
-      "low": 189.5423,
-      "close": 190.302,
-      "volume": 312795117.0
-    },
-    {
-      "date": "2020-02",
-      "open": 191.0616,
-      "high": 208.1546,
-      "low": 189.4473,
-      "close": 189.9221,
-      "volume": 431751886.0
-    },
-    {
-      "date": "2020-03",
-      "open": 191.0616,
-      "high": 197.7089,
-      "low": 159.1547,
-      "close": 174.1586,
-      "volume": 652218921.0
-    },
-    {
-      "date": "2020-04",
-      "open": 176.0578,
-      "high": 201.1275,
-      "low": 171.9745,
-      "close": 187.0733,
-      "volume": 336233235.0
-    },
-    {
-      "date": "2020-05",
-      "open": 180.2361,
-      "high": 201.1275,
-      "low": 177.4822,
-      "close": 184.5093,
-      "volume": 519879589.0
-    },
-    {
-      "date": "2020-06",
-      "open": 189.9221,
-      "high": 213.4724,
-      "low": 189.4473,
-      "close": 199.0384,
-      "volume": 556329190.0
-    },
-    {
-      "date": "2020-07",
-      "open": 201.1275,
-      "high": 250.5073,
-      "low": 199.6081,
-      "close": 233.6042,
-      "volume": 683253032.0
-    },
-    {
-      "date": "2020-08",
-      "open": 232.4647,
-      "high": 273.108,
-      "low": 226.0073,
-      "close": 268.5499,
-      "volume": 502040168.0
-    },
-    {
-      "date": "2020-09",
-      "open": 264.9413,
-      "high": 277.2863,
-      "low": 242.5305,
-      "close": 261.7127,
-      "volume": 555268634.0
-    },
-    {
-      "date": "2020-10",
-      "open": 270.639,
-      "high": 293.8095,
-      "low": 263.422,
-      "close": 278.4258,
-      "volume": 375606226.0
-    },
-    {
-      "date": "2020-11",
-      "open": 283.3638,
-      "high": 286.4025,
-      "low": 232.6546,
-      "close": 248.2282,
-      "volume": 842680281.0
-    },
-    {
       "date": "2020-12",
-      "open": 243.86,
-      "high": 253.1662,
-      "low": 196.7593,
-      "close": 220.8794,
-      "volume": 581587291.0
+      "open": 73.7716,
+      "high": 92.2863,
+      "low": 58.558,
+      "close": 77.8382,
+      "volume": 206886626.0
     },
     {
       "date": "2021-01",
-      "open": 213.4724,
-      "high": 256.3948,
-      "low": 205.4957,
-      "close": 234.3639,
-      "volume": 842861890.0
+      "open": 77.7903,
+      "high": 84.6795,
+      "low": 69.6573,
+      "close": 70.8055,
+      "volume": 92363064.0
     },
     {
       "date": "2021-02",
-      "open": 233.6042,
-      "high": 255.8251,
-      "low": 219.1701,
-      "close": 220.6895,
-      "volume": 590360732.0
+      "open": 70.4227,
+      "high": 102.955,
+      "low": 69.3702,
+      "close": 86.0191,
+      "volume": 68898997.0
     },
     {
       "date": "2021-03",
-      "open": 222.9686,
-      "high": 226.5771,
-      "low": 203.2167,
-      "close": 208.9143,
-      "volume": 647654263.0
+      "open": 89.0331,
+      "high": 95.5874,
+      "low": 44.6361,
+      "close": 56.7879,
+      "volume": 170837257.0
     },
     {
       "date": "2021-04",
-      "open": 211.7632,
-      "high": 229.4259,
-      "low": 205.8756,
-      "close": 213.6624,
-      "volume": 467653567.0
+      "open": 56.7879,
+      "high": 67.7436,
+      "low": 54.1566,
+      "close": 61.5242,
+      "volume": 64342263.0
     },
     {
       "date": "2021-05",
-      "open": 213.6624,
-      "high": 215.3717,
-      "low": 190.112,
-      "close": 200.3678,
-      "volume": 461010412.0
+      "open": 61.6677,
+      "high": 67.8393,
+      "low": 52.243,
+      "close": 66.4997,
+      "volume": 47739068.0
     },
     {
       "date": "2021-06",
-      "open": 202.8368,
-      "high": 213.6624,
-      "low": 191.0616,
-      "close": 208.9143,
-      "volume": 445826394.0
+      "open": 66.4997,
+      "high": 74.9612,
+      "low": 58.3191,
+      "close": 73.8581,
+      "volume": 85959175.0
     },
     {
       "date": "2021-07",
-      "open": 205.3058,
-      "high": 205.3058,
-      "low": 165.707,
-      "close": 179.4764,
-      "volume": 676613286.0
+      "open": 73.8581,
+      "high": 74.0979,
+      "low": 52.3242,
+      "close": 54.5783,
+      "volume": 82273553.0
     },
     {
       "date": "2021-08",
-      "open": 179.4764,
-      "high": 187.643,
-      "low": 143.5811,
-      "close": 157.1605,
-      "volume": 727602759.0
+      "open": 54.866,
+      "high": 58.0314,
+      "low": 47.9598,
+      "close": 56.3528,
+      "volume": 137816922.0
     },
     {
       "date": "2021-09",
-      "open": 155.2613,
-      "high": 164.6625,
-      "low": 133.8951,
-      "close": 135.0346,
-      "volume": 628931988.0
+      "open": 56.3528,
+      "high": 61.0529,
+      "low": 49.4945,
+      "close": 51.0772,
+      "volume": 99532573.0
     },
     {
       "date": "2021-10",
-      "open": 136.2691,
-      "high": 170.8349,
-      "low": 125.3486,
-      "close": 154.7865,
-      "volume": 665825352.0
+      "open": 51.0772,
+      "high": 54.6742,
+      "low": 43.3077,
+      "close": 44.0751,
+      "volume": 67297486.0
     },
     {
       "date": "2021-11",
-      "open": 152.9823,
-      "high": 158.49,
-      "low": 117.3719,
-      "close": 120.8854,
-      "volume": 712797457.0
+      "open": 44.0751,
+      "high": 58.9906,
+      "low": 43.4516,
+      "close": 51.7007,
+      "volume": 208552650.0
     },
     {
       "date": "2021-12",
-      "open": 118.7013,
-      "high": 120.6005,
-      "low": 103.6975,
-      "close": 112.9087,
-      "volume": 973658187.0
+      "open": 51.1731,
+      "high": 53.5232,
+      "low": 39.1832,
+      "close": 42.8761,
+      "volume": 89407398.0
     },
     {
       "date": "2022-01",
-      "open": 111.1044,
-      "high": 128.1974,
-      "low": 102.5579,
-      "close": 108.2556,
-      "volume": 822958232.0
+      "open": 42.8761,
+      "high": 47.3843,
+      "low": 35.5862,
+      "close": 36.8811,
+      "volume": 137040858.0
     },
     {
       "date": "2022-02",
-      "open": 113.9533,
-      "high": 117.7517,
-      "low": 95.6258,
-      "close": 98.9494,
-      "volume": 621979839.0
+      "open": 37.4087,
+      "high": 41.0536,
+      "low": 32.9484,
+      "close": 37.5525,
+      "volume": 97027611.0
     },
     {
       "date": "2022-03",
-      "open": 97.0502,
-      "high": 113.3835,
-      "low": 67.4223,
-      "close": 106.4513,
-      "volume": 1606763460.0
+      "open": 37.5525,
+      "high": 40.622,
+      "low": 26.3299,
+      "close": 32.9964,
+      "volume": 207795641.0
     },
     {
       "date": "2022-04",
-      "open": 101.4184,
-      "high": 108.8254,
-      "low": 77.1084,
-      "close": 96.9552,
-      "volume": 738945748.0
+      "open": 32.0372,
+      "high": 36.8331,
+      "low": 29.3994,
+      "close": 34.7229,
+      "volume": 111420597.0
     },
     {
       "date": "2022-05",
-      "open": 94.9611,
-      "high": 97.9048,
-      "low": 75.6365,
-      "close": 91.4,
-      "volume": 1121485641.0
+      "open": 34.7229,
+      "high": 35.5382,
+      "low": 26.7136,
+      "close": 29.0157,
+      "volume": 210548235.0
     },
     {
       "date": "2022-06",
-      "open": 91.1626,
-      "high": 114.3331,
-      "low": 86.4146,
-      "close": 106.2614,
-      "volume": 1557649920.0
+      "open": 29.3514,
+      "high": 38.5373,
+      "low": 29.2555,
+      "close": 36.5598,
+      "volume": 172898767.0
     },
     {
       "date": "2022-07",
-      "open": 105.9765,
-      "high": 115.8525,
-      "low": 87.0793,
-      "close": 88.4087,
-      "volume": 1005973004.0
+      "open": 36.5598,
+      "high": 37.4762,
+      "low": 16.9391,
+      "close": 17.3635,
+      "volume": 319417779.0
     },
     {
       "date": "2022-08",
-      "open": 83.6607,
-      "high": 92.7295,
-      "low": 81.1917,
-      "close": 89.5483,
-      "volume": 1014611866.0
+      "open": 17.2477,
+      "high": 20.0645,
+      "low": 16.3024,
+      "close": 19.7269,
+      "volume": 191693204.0
     },
     {
       "date": "2022-09",
-      "open": 89.1209,
-      "high": 90.7353,
-      "low": 70.6985,
-      "close": 74.0221,
-      "volume": 847805681.0
+      "open": 19.6786,
+      "high": 20.1127,
+      "low": 13.7558,
+      "close": 13.9294,
+      "volume": 127086293.0
     },
     {
       "date": "2022-10",
-      "open": 73.9747,
-      "high": 80.3371,
-      "low": 57.214,
-      "close": 58.3536,
-      "volume": 1174706937.0
+      "open": 13.9294,
+      "high": 16.1288,
+      "low": 9.5982,
+      "close": 9.8007,
+      "volume": 203947316.0
     },
     {
       "date": "2022-11",
-      "open": 59.8729,
-      "high": 79.2925,
-      "low": 59.4456,
-      "close": 75.8739,
-      "volume": 1841110193.0
+      "open": 9.9358,
+      "high": 16.7268,
+      "low": 9.7814,
+      "close": 16.7268,
+      "volume": 249402968.0
     },
     {
       "date": "2022-12",
-      "open": 81.2867,
-      "high": 88.5037,
-      "low": 78.2954,
-      "close": 81.9039,
-      "volume": 1266732551.0
+      "open": 17.3635,
+      "high": 21.8491,
+      "low": 16.013,
+      "close": 19.1191,
+      "volume": 254389584.0
     },
     {
       "date": "2023-01",
-      "open": 81.3816,
-      "high": 112.5288,
-      "low": 80.3371,
-      "close": 102.1781,
-      "volume": 1447790490.0
+      "open": 19.0034,
+      "high": 27.0099,
+      "low": 18.6754,
+      "close": 24.4536,
+      "volume": 167074637.0
     },
     {
       "date": "2023-02",
-      "open": 103.5075,
-      "high": 106.6413,
-      "low": 81.714,
-      "close": 82.1413,
-      "volume": 1041529287.0
+      "open": 24.5983,
+      "high": 26.4311,
+      "low": 19.8233,
+      "close": 21.0291,
+      "volume": 134098502.0
     },
     {
       "date": "2023-03",
-      "open": 82.3312,
-      "high": 96.8603,
-      "low": 74.1646,
-      "close": 95.3409,
-      "volume": 1536804077.0
+      "open": 21.2703,
+      "high": 23.6819,
+      "low": 17.1899,
+      "close": 20.6433,
+      "volume": 183406377.0
     },
     {
       "date": "2023-04",
-      "open": 94.0114,
-      "high": 96.3855,
-      "low": 76.7285,
-      "close": 77.9155,
-      "volume": 807533809.0
+      "open": 20.8362,
+      "high": 20.9809,
+      "low": 16.476,
+      "close": 18.2703,
+      "volume": 89177305.0
     },
     {
       "date": "2023-05",
-      "open": 79.4349,
-      "high": 84.7053,
-      "low": 71.9805,
-      "close": 73.9747,
-      "volume": 1119074499.0
+      "open": 18.5018,
+      "high": 19.5822,
+      "low": 15.6155,
+      "close": 16.6824,
+      "volume": 96623439.0
     },
     {
       "date": "2023-06",
-      "open": 73.1675,
-      "high": 88.0289,
-      "low": 73.0251,
-      "close": 77.1084,
-      "volume": 1002114924.0
+      "open": 16.6824,
+      "high": 18.3894,
+      "low": 15.7319,
+      "close": 16.8958,
+      "volume": 101832586.0
     },
     {
       "date": "2023-07",
-      "open": 77.8681,
-      "high": 94.7237,
-      "low": 76.4436,
-      "close": 92.587,
-      "volume": 900744007.0
+      "open": 17.1286,
+      "high": 22.4533,
+      "low": 16.178,
+      "close": 21.2895,
+      "volume": 147551688.0
     },
     {
       "date": "2023-08",
-      "open": 94.6762,
-      "high": 94.9611,
-      "low": 80.8593,
-      "close": 85.6549,
-      "volume": 911131669.0
+      "open": 21.047,
+      "high": 26.0905,
+      "low": 19.5921,
+      "close": 24.7326,
+      "volume": 156508807.0
     },
     {
       "date": "2023-09",
-      "open": 88.2663,
-      "high": 89.2634,
-      "low": 78.0105,
-      "close": 81.2867,
-      "volume": 693747444.0
+      "open": 24.8296,
+      "high": 25.7995,
+      "low": 21.8229,
+      "close": 22.4533,
+      "volume": 96205568.0
     },
     {
       "date": "2023-10",
-      "open": 79.9097,
-      "high": 82.5212,
-      "low": 73.1675,
-      "close": 76.0163,
-      "volume": 587654986.0
+      "open": 22.3564,
+      "high": 24.2477,
+      "low": 20.562,
+      "close": 20.9015,
+      "volume": 79627672.0
     },
     {
       "date": "2023-11",
-      "open": 76.0638,
-      "high": 80.6694,
-      "low": 68.0396,
-      "close": 69.0842,
-      "volume": 1136485506.0
+      "open": 20.9015,
+      "high": 24.4417,
+      "low": 20.5135,
+      "close": 22.7443,
+      "volume": 76334686.0
     },
     {
       "date": "2023-12",
-      "open": 68.9417,
-      "high": 73.3114,
-      "low": 64.3836,
-      "close": 72.7819,
-      "volume": 958423760.0
+      "open": 22.1624,
+      "high": 22.7443,
+      "low": 18.1373,
+      "close": 19.6406,
+      "volume": 78413445.0
     },
     {
       "date": "2024-01",
-      "open": 73.2633,
-      "high": 73.3595,
-      "low": 62.1919,
-      "close": 66.9574,
-      "volume": 1130416300.0
+      "open": 19.3981,
+      "high": 19.9801,
+      "low": 16.469,
+      "close": 16.9928,
+      "volume": 103906584.0
     },
     {
       "date": "2024-02",
-      "open": 67.5832,
-      "high": 74.1779,
-      "low": 65.5133,
-      "close": 70.1826,
-      "volume": 916975737.0
+      "open": 16.9928,
+      "high": 19.8831,
+      "low": 16.3914,
+      "close": 18.9908,
+      "volume": 59772414.0
     },
     {
       "date": "2024-03",
-      "open": 69.3161,
-      "high": 72.3968,
-      "low": 65.9466,
-      "close": 67.6313,
-      "volume": 982594941.0
+      "open": 18.9714,
+      "high": 28.3213,
+      "low": 18.8938,
+      "close": 27.8848,
+      "volume": 159313120.0
     },
     {
       "date": "2024-04",
-      "open": 68.9791,
-      "high": 73.167,
-      "low": 63.3472,
-      "close": 71.5785,
-      "volume": 983360902.0
+      "open": 28.3213,
+      "high": 34.4317,
+      "low": 27.3514,
+      "close": 32.8798,
+      "volume": 188999798.0
     },
     {
       "date": "2024-05",
-      "open": 70.7602,
-      "high": 83.083,
-      "low": 70.6158,
-      "close": 72.108,
-      "volume": 1395449373.0
+      "open": 32.3464,
+      "high": 37.6256,
+      "low": 32.2494,
+      "close": 36.3046,
+      "volume": 151689772.0
     },
     {
       "date": "2024-06",
-      "open": 73.6484,
-      "high": 75.5257,
-      "low": 69.3422,
-      "close": 69.3422,
-      "volume": 773972413.0
+      "open": 36.6471,
+      "high": 39.9742,
+      "low": 35.1792,
+      "close": 37.4299,
+      "volume": 102739068.0
     },
     {
       "date": "2024-07",
-      "open": 68.6537,
-      "high": 77.4075,
-      "low": 68.6537,
-      "close": 76.0305,
-      "volume": 885670961.0
+      "open": 37.4299,
+      "high": 41.3931,
+      "low": 33.6625,
+      "close": 40.5613,
+      "volume": 115262702.0
     },
     {
       "date": "2024-08",
-      "open": 75.9321,
-      "high": 82.5713,
-      "low": 71.6044,
-      "close": 80.1123,
-      "volume": 1119585130.0
+      "open": 40.6103,
+      "high": 47.2155,
+      "low": 35.7175,
+      "close": 44.867,
+      "volume": 150074233.0
     },
     {
       "date": "2024-09",
-      "open": 80.014,
-      "high": 110.9475,
-      "low": 76.3747,
-      "close": 108.1934,
-      "volume": 1964202559.0
+      "open": 45.0138,
+      "high": 53.8208,
+      "low": 44.3777,
+      "close": 52.1083,
+      "volume": 113759502.0
     },
     {
       "date": "2024-10",
-      "open": 108.5869,
-      "high": 116.7506,
-      "low": 91.9644,
-      "close": 92.9972,
-      "volume": 2023307136.0
+      "open": 55.729,
+      "high": 76.3277,
+      "low": 51.3744,
+      "close": 68.9885,
+      "volume": 261580504.0
     },
     {
       "date": "2024-11",
-      "open": 94.1775,
-      "high": 97.8659,
-      "low": 78.5878,
-      "close": 82.2762,
-      "volume": 1458814749.0
+      "open": 68.4992,
+      "high": 90.2233,
+      "low": 66.0528,
+      "close": 87.9236,
+      "volume": 170753364.0
     },
     {
       "date": "2024-12",
-      "open": 82.8663,
-      "high": 89.8989,
-      "low": 78.0468,
-      "close": 81.0467,
-      "volume": 1208689756.0
+      "open": 88.0215,
+      "high": 94.8225,
+      "low": 80.5844,
+      "close": 87.7279,
+      "volume": 129274670.0
     },
     {
       "date": "2025-01",
-      "open": 81.0467,
-      "high": 87.0465,
-      "low": 76.0797,
-      "close": 86.8498,
-      "volume": 949890220.0
+      "open": 87.8747,
+      "high": 93.9418,
+      "low": 77.7955,
+      "close": 91.9847,
+      "volume": 126045749.0
     },
     {
       "date": "2025-02",
-      "open": 91.03,
-      "high": 138.586,
-      "low": 88.9153,
-      "close": 125.406,
-      "volume": 3878941866.0
+      "open": 91.1529,
+      "high": 112.0452,
+      "low": 89.049,
+      "close": 101.966,
+      "volume": 139569060.0
     },
     {
       "date": "2025-03",
-      "open": 127.6683,
-      "high": 143.5038,
-      "low": 122.4553,
-      "close": 125.8978,
-      "volume": 2571586798.0
+      "open": 101.966,
+      "high": 156.5697,
+      "low": 101.6724,
+      "close": 153.1447,
+      "volume": 249607350.0
     },
     {
       "date": "2025-04",
-      "open": 126.9798,
-      "high": 129.8321,
-      "low": 94.1283,
-      "close": 115.5703,
-      "volume": 2776073695.0
+      "open": 153.1447,
+      "high": 194.7335,
+      "low": 116.253,
+      "close": 189.645,
+      "volume": 334936459.0
     },
     {
       "date": "2025-05",
-      "open": 117.2423,
-      "high": 129.7338,
-      "low": 110.9475,
-      "close": 112.0294,
-      "volume": 1839196306.0
+      "open": 187.0029,
+      "high": 229.9617,
+      "low": 173.0095,
+      "close": 216.5626,
+      "volume": 232980491.0
     },
     {
       "date": "2025-06",
-      "open": 110.1606,
-      "high": 119.0,
-      "low": 107.9967,
-      "close": 109.8,
-      "volume": 1571911056.0
+      "open": 219.7069,
+      "high": 278.4658,
+      "low": 218.3313,
+      "close": 261.9583,
+      "volume": 368258956.0
     },
     {
       "date": "2025-07",
-      "open": 111.7,
-      "high": 122.0,
-      "low": 101.8,
-      "close": 115.7,
-      "volume": 2160147901.0
+      "open": 263.3339,
+      "high": 267.2642,
+      "low": 235.6249,
+      "close": 241.7169,
+      "volume": 243764474.0
     },
     {
       "date": "2025-08",
-      "open": 117.8,
-      "high": 126.0,
-      "low": 114.6,
-      "close": 115.7,
-      "volume": 1807380200.0
+      "open": 241.3239,
+      "high": 333.8838,
+      "low": 231.3015,
+      "close": 316.7867,
+      "volume": 223734247.0
     },
     {
       "date": "2025-09",
-      "open": 133.0,
-      "high": 178.0,
-      "low": 128.1,
-      "close": 177.0,
-      "volume": 3648495992.0
+      "open": 312.6599,
+      "high": 313.839,
+      "low": 247.2194,
+      "close": 262.1548,
+      "volume": 346996523.0
     },
     {
       "date": "2025-10",
-      "open": 179.7,
-      "high": 186.2,
-      "low": 153.0,
-      "close": 165.1,
-      "volume": 2256138424.0
+      "open": 263.3339,
+      "high": 286.3265,
+      "low": 216.3661,
+      "close": 217.7418,
+      "volume": 391452255.0
     },
     {
       "date": "2025-11",
-      "open": 164.9,
-      "high": 166.3,
-      "low": 146.9,
-      "close": 151.5,
-      "volume": 2014898766.0
+      "open": 216.1696,
+      "high": 227.9607,
+      "low": 188.6571,
+      "close": 220.886,
+      "volume": 303834002.0
     },
     {
       "date": "2025-12",
-      "open": 153.0,
-      "high": 160.1,
-      "low": 141.6,
-      "close": 142.8,
-      "volume": 1395992103.0
+      "open": 222.6547,
+      "high": 224.0303,
+      "low": 181.386,
+      "close": 184.432,
+      "volume": 228669407.0
     },
     {
       "date": "2026-01",
-      "open": 143.2,
-      "high": 174.2,
-      "low": 141.0,
-      "close": 169.2,
-      "volume": 2145689910.0
+      "open": 186.2006,
+      "high": 231.891,
+      "low": 171.2653,
+      "close": 219.7069,
+      "volume": 329959641.0
     },
     {
       "date": "2026-02",
-      "open": 164.7,
-      "high": 167.9,
-      "low": 142.2,
-      "close": 142.9,
-      "volume": 1209222750.0
+      "open": 219.9034,
+      "high": 269.4259,
+      "low": 219.3139,
+      "close": 225.799,
+      "volume": 220097597.0
     },
     {
       "date": "2026-03",
-      "open": 139.6,
-      "high": 140.5,
-      "low": 117.7,
-      "close": 119.0,
-      "volume": 2219661035.0
+      "open": 218.1348,
+      "high": 226.7816,
+      "low": 137.6607,
+      "close": 141.0998,
+      "volume": 562784520.0
     },
     {
       "date": "2026-04",
-      "open": 123.3,
-      "high": 138.4,
-      "low": 117.5,
-      "close": 126.0,
-      "volume": 1491747963.0
+      "open": 146.7006,
+      "high": 166.4506,
+      "low": 138.2503,
+      "close": 154.463,
+      "volume": 412324972.0
     },
     {
       "date": "2026-05",
-      "open": 128.8,
-      "high": 144.0,
-      "low": 120.0,
-      "close": 120.9,
-      "volume": 1694997200.0
+      "open": 156.3299,
+      "high": 181.0,
+      "low": 144.0,
+      "close": 173.4,
+      "volume": 425293482.0
     },
     {
       "date": "2026-06",
-      "open": 121.3,
-      "high": 124.2,
-      "low": 121.2,
-      "close": 122.8,
-      "volume": 64910941.0
+      "open": 175.6,
+      "high": 186.5,
+      "low": 174.5,
+      "close": 179.2,
+      "volume": 59831001.0
     }
   ],
   "index_kline": [
@@ -1751,15 +1647,15 @@
       "date": "2026-06",
       "open": 25180.05,
       "high": 26045.07,
-      "low": 25174.3,
-      "close": 25253.40039
+      "low": 24928.14,
+      "close": 24961.95117
     }
   ],
   "total_returns": {
     "stock": {
-      "1yr": 76.2,
-      "3yr": 74.4,
-      "5yr": -35.3
+      "1yr": 110.2,
+      "3yr": 864.6,
+      "5yr": 136.9
     },
     "index": {
       "1yr": 27.8,
@@ -1776,8 +1672,7 @@
     "2022",
     "2023",
     "2024",
-    "2025",
-    "2026"
+    "2025"
   ],
   "metric_defs": [
     {
@@ -1975,311 +1870,281 @@
   ],
   "data": {
     "2017": {
-      "PER_OI": 8.25,
-      "PER_NETCASH": 3.03,
-      "BASIC_EPS": 2.28,
+      "PER_OI": 0.12,
+      "PER_NETCASH": 0.02,
+      "BASIC_EPS": 0.0,
       "DPS": 0,
-      "CAPEX_PS": 0.3,
-      "BPS": 16.89,
-      "TOTAL_SHARES": 19193.1,
+      "CAPEX_PS": 0.01,
+      "BPS": 0.06,
+      "TOTAL_SHARES": 1341.0,
       "PE_AVG": null,
       "PE_RELATIVE": null,
       "DIV_YIELD": null,
-      "OPERATE_INCOME": 1582.7,
-      "OP_MARGIN": 39.6,
-      "DEPRECIATION": 145.6,
-      "GROSS_MARGIN": 62.4,
-      "HOLDER_PROFIT": 436.8,
-      "TAX_EBT": 25.0,
-      "NET_PROFIT_RATIO": 27.6,
-      "WORKING_CAPITAL": 883.0,
-      "LT_DEBT": 309.6,
-      "TOTAL_EQUITY": 3241.2,
-      "ROIC": 14.3,
-      "ROE": 13.5,
-      "RETAINED_RATIO": 15.5,
+      "OPERATE_INCOME": 1.6,
+      "OP_MARGIN": 2.8,
+      "DEPRECIATION": 0.2,
+      "GROSS_MARGIN": 47.6,
+      "HOLDER_PROFIT": 0.0,
+      "TAX_EBT": 31.0,
+      "NET_PROFIT_RATIO": 0.8,
+      "WORKING_CAPITAL": 0.2,
+      "LT_DEBT": 0.2,
+      "TOTAL_EQUITY": 0.8,
+      "ROIC": 6.3,
+      "ROE": 1.6,
+      "RETAINED_RATIO": 1.6,
       "PAYOUT_RATIO": 0.0
     },
     "2018": {
-      "PER_OI": 4.92,
-      "PER_NETCASH": 1.7,
-      "BASIC_EPS": 1.26,
+      "PER_OI": 0.38,
+      "PER_NETCASH": 0.11,
+      "BASIC_EPS": 0.07,
       "DPS": 0,
-      "CAPEX_PS": 0.0,
-      "BPS": 19.22,
-      "TOTAL_SHARES": 50889.8,
+      "CAPEX_PS": 0.03,
+      "BPS": 0.16,
+      "TOTAL_SHARES": 1341.0,
       "PE_AVG": null,
       "PE_RELATIVE": null,
       "DIV_YIELD": null,
-      "OPERATE_INCOME": 2502.7,
-      "OP_MARGIN": 36.6,
-      "DEPRECIATION": 222.8,
-      "GROSS_MARGIN": 57.2,
-      "HOLDER_PROFIT": 640.9,
-      "TAX_EBT": 22.9,
-      "NET_PROFIT_RATIO": 25.6,
-      "WORKING_CAPITAL": 1210.5,
-      "LT_DEBT": 341.5,
-      "TOTAL_EQUITY": 4394.4,
-      "ROIC": 15.4,
-      "ROE": 14.6,
-      "RETAINED_RATIO": 17.4,
+      "OPERATE_INCOME": 5.1,
+      "OP_MARGIN": 26.0,
+      "DEPRECIATION": 0.4,
+      "GROSS_MARGIN": 57.9,
+      "HOLDER_PROFIT": 1.0,
+      "TAX_EBT": 24.8,
+      "NET_PROFIT_RATIO": 19.3,
+      "WORKING_CAPITAL": 1.1,
+      "LT_DEBT": 0.4,
+      "TOTAL_EQUITY": 2.2,
+      "ROIC": 53.5,
+      "ROE": 45.5,
+      "RETAINED_RATIO": 45.5,
       "PAYOUT_RATIO": 0.0
     },
     "2019": {
-      "PER_OI": 7.93,
-      "PER_NETCASH": 2.64,
-      "BASIC_EPS": 1.85,
+      "PER_OI": 14.32,
+      "PER_NETCASH": 3.81,
+      "BASIC_EPS": 3.81,
       "DPS": 0,
-      "CAPEX_PS": 0.75,
-      "BPS": 26.0,
-      "TOTAL_SHARES": 47523.6,
-      "PE_AVG": 102.9,
-      "PE_RELATIVE": 9.35,
-      "DIV_YIELD": 0.0,
-      "OPERATE_INCOME": 3768.4,
-      "OP_MARGIN": 25.1,
-      "DEPRECIATION": 373.4,
-      "GROSS_MARGIN": 45.1,
-      "HOLDER_PROFIT": 878.9,
-      "TAX_EBT": 17.1,
-      "NET_PROFIT_RATIO": 23.3,
-      "WORKING_CAPITAL": 626.0,
-      "LT_DEBT": 354.3,
-      "TOTAL_EQUITY": 6154.0,
-      "ROIC": 9.6,
-      "ROE": 14.3,
-      "RETAINED_RATIO": 17.6,
-      "PAYOUT_RATIO": 0.0,
-      "AVG_PRICE": 190.34,
-      "PE_AVG_HKD": 102.9
+      "CAPEX_PS": 0.89,
+      "BPS": 0.45,
+      "TOTAL_SHARES": 117.5,
+      "PE_AVG": null,
+      "PE_RELATIVE": null,
+      "DIV_YIELD": null,
+      "OPERATE_INCOME": 16.8,
+      "OP_MARGIN": 35.6,
+      "DEPRECIATION": null,
+      "GROSS_MARGIN": 64.8,
+      "HOLDER_PROFIT": 4.5,
+      "TAX_EBT": 24.6,
+      "NET_PROFIT_RATIO": 26.6,
+      "WORKING_CAPITAL": 3.4,
+      "LT_DEBT": 0.9,
+      "TOTAL_EQUITY": 5.9,
+      "ROIC": 88.3,
+      "ROE": 75.6,
+      "RETAINED_RATIO": 75.6,
+      "PAYOUT_RATIO": 0.0
     },
     "2020": {
-      "PER_OI": 23.72,
-      "PER_NETCASH": 7.98,
-      "BASIC_EPS": 6.95,
-      "DPS": 0,
-      "CAPEX_PS": 1.51,
-      "BPS": 39.83,
-      "TOTAL_SHARES": 21492.0,
-      "PE_AVG": 31.9,
-      "PE_RELATIVE": 2.36,
-      "DIV_YIELD": 0.0,
-      "OPERATE_INCOME": 5097.1,
-      "OP_MARGIN": 22.3,
-      "DEPRECIATION": 220.0,
-      "GROSS_MARGIN": 44.6,
-      "HOLDER_PROFIT": 1494.3,
-      "TAX_EBT": 12.8,
-      "NET_PROFIT_RATIO": 29.3,
-      "WORKING_CAPITAL": 2210.5,
-      "LT_DEBT": 396.6,
-      "TOTAL_EQUITY": 8796.5,
-      "ROIC": 10.5,
-      "ROE": 17.0,
-      "RETAINED_RATIO": 19.5,
-      "PAYOUT_RATIO": 0.0,
-      "AVG_PRICE": 221.4,
-      "PE_AVG_HKD": 31.9
+      "PER_OI": 1.79,
+      "PER_NETCASH": 0.55,
+      "BASIC_EPS": 0.38,
+      "DPS": 0.1494,
+      "CAPEX_PS": 0.13,
+      "BPS": 4.6,
+      "TOTAL_SHARES": 1401.9,
+      "PE_AVG": 199.6,
+      "PE_RELATIVE": 14.79,
+      "DIV_YIELD": 0.2,
+      "OPERATE_INCOME": 25.1,
+      "OP_MARGIN": 28.6,
+      "DEPRECIATION": 2.5,
+      "GROSS_MARGIN": 63.4,
+      "HOLDER_PROFIT": 5.3,
+      "TAX_EBT": 26.0,
+      "NET_PROFIT_RATIO": 21.2,
+      "WORKING_CAPITAL": 55.9,
+      "LT_DEBT": 1.7,
+      "TOTAL_EQUITY": 61.3,
+      "ROIC": 11.6,
+      "ROE": 8.7,
+      "RETAINED_RATIO": 5.3,
+      "PAYOUT_RATIO": 39.4,
+      "AVG_PRICE": 75.84,
+      "PE_AVG_HKD": 199.6
     },
     "2021": {
-      "PER_OI": 33.07,
-      "PER_NETCASH": 7.93,
-      "BASIC_EPS": 6.94,
-      "DPS": 0,
-      "CAPEX_PS": 0.0,
-      "BPS": 49.3,
-      "TOTAL_SHARES": 21688.9,
-      "PE_AVG": 26.5,
-      "PE_RELATIVE": 2.52,
-      "DIV_YIELD": 0.0,
-      "OPERATE_INCOME": 7172.9,
-      "OP_MARGIN": 15.5,
-      "DEPRECIATION": 215.2,
-      "GROSS_MARGIN": 41.3,
-      "HOLDER_PROFIT": 1505.8,
-      "TAX_EBT": 17.0,
-      "NET_PROFIT_RATIO": 21.0,
-      "WORKING_CAPITAL": 2660.0,
-      "LT_DEBT": 383.4,
-      "TOTAL_EQUITY": 10836.3,
-      "ROIC": 8.4,
-      "ROE": 13.9,
-      "RETAINED_RATIO": 15.9,
-      "PAYOUT_RATIO": 0.0,
-      "AVG_PRICE": 183.66,
-      "PE_AVG_HKD": 26.5
+      "PER_OI": 3.2,
+      "PER_NETCASH": 0.92,
+      "BASIC_EPS": 0.61,
+      "DPS": 0.1524,
+      "CAPEX_PS": 0.21,
+      "BPS": 5.12,
+      "TOTAL_SHARES": 1401.9,
+      "PE_AVG": 99.8,
+      "PE_RELATIVE": 9.5,
+      "DIV_YIELD": 0.3,
+      "OPERATE_INCOME": 44.9,
+      "OP_MARGIN": 25.6,
+      "DEPRECIATION": 4.4,
+      "GROSS_MARGIN": 61.4,
+      "HOLDER_PROFIT": 8.5,
+      "TAX_EBT": 27.0,
+      "NET_PROFIT_RATIO": 19.0,
+      "WORKING_CAPITAL": 56.6,
+      "LT_DEBT": 4.1,
+      "TOTAL_EQUITY": 68.2,
+      "ROIC": 16.2,
+      "ROE": 12.5,
+      "RETAINED_RATIO": 9.4,
+      "PAYOUT_RATIO": 25.1,
+      "AVG_PRICE": 60.88,
+      "PE_AVG_HKD": 99.8
     },
     "2022": {
-      "PER_OI": 39.33,
-      "PER_NETCASH": 3.8,
-      "BASIC_EPS": 2.87,
-      "DPS": 0.125,
-      "CAPEX_PS": 2.46,
-      "BPS": 49.92,
-      "TOTAL_SHARES": 21687.3,
-      "PE_AVG": 31.4,
-      "PE_RELATIVE": 4.19,
-      "DIV_YIELD": 0.1,
-      "OPERATE_INCOME": 8530.6,
-      "OP_MARGIN": 10.5,
-      "DEPRECIATION": 202.6,
-      "GROSS_MARGIN": 36.8,
-      "HOLDER_PROFIT": 622.5,
-      "TAX_EBT": 36.3,
-      "NET_PROFIT_RATIO": 7.3,
-      "WORKING_CAPITAL": 2547.5,
-      "LT_DEBT": 382.4,
-      "TOTAL_EQUITY": 10821.9,
-      "ROIC": 6.7,
-      "ROE": 5.8,
-      "RETAINED_RATIO": 6.2,
-      "PAYOUT_RATIO": 4.4,
-      "AVG_PRICE": 90.21,
-      "PE_AVG_HKD": 31.4
+      "PER_OI": 3.34,
+      "PER_NETCASH": 0.76,
+      "BASIC_EPS": 0.32,
+      "DPS": 0.087,
+      "CAPEX_PS": 0.19,
+      "BPS": 5.23,
+      "TOTAL_SHARES": 1380.5,
+      "PE_AVG": 81.6,
+      "PE_RELATIVE": 10.88,
+      "DIV_YIELD": 0.3,
+      "OPERATE_INCOME": 46.2,
+      "OP_MARGIN": 12.6,
+      "DEPRECIATION": 6.0,
+      "GROSS_MARGIN": 57.5,
+      "HOLDER_PROFIT": 4.4,
+      "TAX_EBT": 25.6,
+      "NET_PROFIT_RATIO": 9.5,
+      "WORKING_CAPITAL": 54.8,
+      "LT_DEBT": 4.7,
+      "TOTAL_EQUITY": 69.7,
+      "ROIC": 8.4,
+      "ROE": 6.3,
+      "RETAINED_RATIO": 4.6,
+      "PAYOUT_RATIO": 27.4,
+      "AVG_PRICE": 26.11,
+      "PE_AVG_HKD": 81.6
     },
     "2023": {
-      "PER_OI": 42.32,
-      "PER_NETCASH": 4.48,
-      "BASIC_EPS": 3.55,
-      "DPS": 0.20750000000000002,
-      "CAPEX_PS": 1.67,
-      "BPS": 52.08,
-      "TOTAL_SHARES": 20526.0,
-      "PE_AVG": 23.4,
-      "PE_RELATIVE": 2.6,
-      "DIV_YIELD": 0.2,
-      "OPERATE_INCOME": 8686.9,
-      "OP_MARGIN": 13.8,
-      "DEPRECIATION": 191.4,
-      "GROSS_MARGIN": 36.7,
-      "HOLDER_PROFIT": 727.8,
-      "TAX_EBT": 19.2,
-      "NET_PROFIT_RATIO": 8.4,
-      "WORKING_CAPITAL": 3126.2,
-      "LT_DEBT": 520.2,
-      "TOTAL_EQUITY": 11229.2,
-      "ROIC": 9.0,
-      "ROE": 6.5,
-      "RETAINED_RATIO": 6.9,
-      "PAYOUT_RATIO": 5.9,
-      "AVG_PRICE": 83.11,
-      "PE_AVG_HKD": 23.4
+      "PER_OI": 4.67,
+      "PER_NETCASH": 1.3,
+      "BASIC_EPS": 0.8,
+      "DPS": 0.2821,
+      "CAPEX_PS": 0.24,
+      "BPS": 5.83,
+      "TOTAL_SHARES": 1348.2,
+      "PE_AVG": 25.8,
+      "PE_RELATIVE": 2.87,
+      "DIV_YIELD": 1.4,
+      "OPERATE_INCOME": 63.0,
+      "OP_MARGIN": 19.5,
+      "DEPRECIATION": 6.7,
+      "GROSS_MARGIN": 61.3,
+      "HOLDER_PROFIT": 10.8,
+      "TAX_EBT": 23.1,
+      "NET_PROFIT_RATIO": 17.1,
+      "WORKING_CAPITAL": 59.5,
+      "LT_DEBT": 4.4,
+      "TOTAL_EQUITY": 77.8,
+      "ROIC": 15.4,
+      "ROE": 13.9,
+      "RETAINED_RATIO": 9.0,
+      "PAYOUT_RATIO": 35.3,
+      "AVG_PRICE": 20.61,
+      "PE_AVG_HKD": 25.8
     },
     "2024": {
-      "PER_OI": 48.34,
-      "PER_NETCASH": 5.03,
-      "BASIC_EPS": 4.11,
-      "DPS": 0.25,
-      "CAPEX_PS": 1.65,
-      "BPS": 51.96,
-      "TOTAL_SHARES": 19469.1,
-      "PE_AVG": 18.9,
-      "PE_RELATIVE": 2.22,
-      "DIV_YIELD": 0.3,
-      "OPERATE_INCOME": 9411.7,
-      "OP_MARGIN": 13.9,
-      "DEPRECIATION": 178.6,
-      "GROSS_MARGIN": 37.7,
-      "HOLDER_PROFIT": 800.1,
-      "TAX_EBT": 24.0,
-      "NET_PROFIT_RATIO": 8.5,
-      "WORKING_CAPITAL": 3313.6,
-      "LT_DEBT": 556.9,
-      "TOTAL_EQUITY": 11126.0,
-      "ROIC": 10.4,
-      "ROE": 7.2,
-      "RETAINED_RATIO": 7.5,
-      "PAYOUT_RATIO": 6.1,
-      "AVG_PRICE": 77.48,
-      "PE_AVG_HKD": 18.9
+      "PER_OI": 9.71,
+      "PER_NETCASH": 2.99,
+      "BASIC_EPS": 2.35,
+      "DPS": 0.8146,
+      "CAPEX_PS": 0.28,
+      "BPS": 8.02,
+      "TOTAL_SHARES": 1342.9,
+      "PE_AVG": 18.3,
+      "PE_RELATIVE": 2.15,
+      "DIV_YIELD": 1.9,
+      "OPERATE_INCOME": 130.4,
+      "OP_MARGIN": 31.9,
+      "DEPRECIATION": 8.6,
+      "GROSS_MARGIN": 66.8,
+      "HOLDER_PROFIT": 31.5,
+      "TAX_EBT": 24.2,
+      "NET_PROFIT_RATIO": 24.2,
+      "WORKING_CAPITAL": 88.7,
+      "LT_DEBT": 6.2,
+      "TOTAL_EQUITY": 108.8,
+      "ROIC": 36.5,
+      "ROE": 28.9,
+      "RETAINED_RATIO": 19.3,
+      "PAYOUT_RATIO": 34.7,
+      "AVG_PRICE": 43.08,
+      "PE_AVG_HKD": 18.3
     },
     "2025": {
-      "PER_OI": 52.44,
-      "PER_NETCASH": 6.85,
-      "BASIC_EPS": 6.85,
-      "DPS": 0.13125,
-      "CAPEX_PS": 0.0,
-      "BPS": 53.23,
-      "TOTAL_SHARES": 18998.3,
-      "PE_AVG": 18.7,
-      "PE_RELATIVE": 2.34,
-      "DIV_YIELD": 0.1,
-      "OPERATE_INCOME": 9963.5,
-      "OP_MARGIN": 14.1,
-      "DEPRECIATION": null,
-      "GROSS_MARGIN": 40.0,
-      "HOLDER_PROFIT": 1301.1,
-      "TAX_EBT": 22.0,
-      "NET_PROFIT_RATIO": 13.1,
-      "WORKING_CAPITAL": 2387.0,
-      "LT_DEBT": 499.1,
-      "TOTAL_EQUITY": 10901.1,
-      "ROIC": 13.2,
-      "ROE": 11.9,
-      "RETAINED_RATIO": 12.5,
-      "PAYOUT_RATIO": 1.9,
-      "AVG_PRICE": 127.8,
-      "PE_AVG_HKD": 18.7
-    },
-    "2026": {
-      "PER_OI": 53.5,
-      "PER_NETCASH": 5.41,
-      "BASIC_EPS": 5.41,
-      "DPS": 0,
-      "CAPEX_PS": 0.0,
-      "BPS": 55.68,
-      "TOTAL_SHARES": 19134.1,
-      "PE_AVG": 25.9,
-      "PE_RELATIVE": null,
-      "DIV_YIELD": 0.0,
-      "OPERATE_INCOME": 10236.7,
-      "OP_MARGIN": 4.9,
-      "DEPRECIATION": null,
-      "GROSS_MARGIN": 39.8,
-      "HOLDER_PROFIT": 1035.9,
-      "TAX_EBT": 22.7,
-      "NET_PROFIT_RATIO": 10.1,
-      "WORKING_CAPITAL": 1343.7,
-      "LT_DEBT": 474.5,
-      "TOTAL_EQUITY": 11262.7,
-      "ROIC": 5.1,
-      "ROE": 9.2,
-      "RETAINED_RATIO": 9.7,
-      "PAYOUT_RATIO": 0.0,
-      "AVG_PRICE": 140.33,
-      "PE_AVG_HKD": 25.9
+      "PER_OI": 27.64,
+      "PER_NETCASH": 10.43,
+      "BASIC_EPS": 9.6,
+      "DPS": 2.3817,
+      "CAPEX_PS": 0.73,
+      "BPS": 16.73,
+      "TOTAL_SHARES": 1342.9,
+      "PE_AVG": 20.9,
+      "PE_RELATIVE": 2.61,
+      "DIV_YIELD": 1.2,
+      "OPERATE_INCOME": 371.2,
+      "OP_MARGIN": 45.5,
+      "DEPRECIATION": 11.2,
+      "GROSS_MARGIN": 72.1,
+      "HOLDER_PROFIT": 128.9,
+      "TAX_EBT": 23.6,
+      "NET_PROFIT_RATIO": 34.7,
+      "WORKING_CAPITAL": 177.5,
+      "LT_DEBT": 22.8,
+      "TOTAL_EQUITY": 226.5,
+      "ROIC": 68.1,
+      "ROE": 56.9,
+      "RETAINED_RATIO": 43.5,
+      "PAYOUT_RATIO": 24.8,
+      "AVG_PRICE": 200.86,
+      "PE_AVG_HKD": 20.9
     }
   },
   "cagr": {
     "revenue": {
-      "1yr": 2.7,
-      "3yr": 5.6,
-      "5yr": 7.4,
+      "1yr": 184.7,
+      "3yr": 100.3,
+      "5yr": 71.4,
       "10yr": null
     },
     "eps": {
-      "1yr": -21.0,
-      "3yr": 15.1,
-      "5yr": -4.9,
+      "1yr": 308.5,
+      "3yr": 210.7,
+      "5yr": 90.8,
       "10yr": null
     },
     "cashflow": {
-      "1yr": -21.0,
-      "3yr": 6.5,
-      "5yr": -7.4,
+      "1yr": 248.8,
+      "3yr": 139.4,
+      "5yr": 80.1,
       "10yr": null
     },
     "dividend": {
-      "1yr": -47.5,
-      "3yr": 1.6,
-      "5yr": null,
+      "1yr": 192.4,
+      "3yr": 201.4,
+      "5yr": 74.0,
       "10yr": null
     },
     "equity": {
-      "1yr": 3.3,
-      "3yr": 0.1,
-      "5yr": 0.8,
+      "1yr": 108.2,
+      "3yr": 48.1,
+      "5yr": 29.9,
       "10yr": null
     }
   },
@@ -2287,149 +2152,103 @@
     "sales": [
       {
         "year": "2019",
-        "has_quarter": true,
-        "q1": 809.2,
-        "q2": 851.5,
-        "q3": 1172.8,
-        "q4": 935.0,
-        "full": 3768.4
+        "has_quarter": false,
+        "q1": 5.4,
+        "q3": 11.4,
+        "full": 16.8
       },
       {
         "year": "2020",
-        "has_quarter": true,
-        "q1": 1149.2,
-        "q2": 1190.2,
-        "q3": 1614.6,
-        "q4": 1143.1,
-        "full": 5097.1
+        "has_quarter": false,
+        "q1": 8.2,
+        "q3": 16.9,
+        "full": 25.1
       },
       {
         "year": "2021",
-        "has_quarter": true,
-        "q1": 1537.5,
-        "q2": 1550.6,
-        "q3": 2210.8,
-        "q4": 1874.0,
-        "full": 7172.9
+        "has_quarter": false,
+        "q1": 17.7,
+        "q3": 27.2,
+        "full": 44.9
       },
       {
         "year": "2022",
-        "has_quarter": true,
-        "q1": 2057.4,
-        "q2": 2006.9,
-        "q3": 2425.8,
-        "q4": 2040.5,
-        "full": 8530.6
+        "has_quarter": false,
+        "q1": 23.6,
+        "q3": 22.6,
+        "full": 46.2
       },
       {
         "year": "2023",
-        "has_quarter": true,
-        "q1": 2055.6,
-        "q2": 2071.8,
-        "q3": 2477.6,
-        "q4": 2082.0,
-        "full": 8686.9
+        "has_quarter": false,
+        "q1": 28.1,
+        "q3": 34.9,
+        "full": 63.0
       },
       {
         "year": "2024",
-        "has_quarter": true,
-        "q1": 2341.6,
-        "q2": 2247.9,
-        "q3": 2603.5,
-        "q4": 2218.7,
-        "full": 9411.7
+        "has_quarter": false,
+        "q1": 45.6,
+        "q3": 84.8,
+        "full": 130.4
       },
       {
         "year": "2025",
-        "has_quarter": true,
-        "q1": 2432.4,
-        "q2": 2365.0,
-        "q3": 2801.5,
-        "q4": 2364.5,
-        "full": 9963.5
-      },
-      {
-        "year": "2026",
-        "has_quarter": true,
-        "q1": 2476.5,
-        "q2": 2477.9,
-        "q3": 2848.4,
-        "q4": 2433.8,
-        "full": 10236.7
+        "has_quarter": false,
+        "q1": 138.8,
+        "q3": 232.4,
+        "full": 371.2
       }
     ],
     "eps": [
       {
         "year": "2019",
-        "has_quarter": true,
-        "q1": 0.41,
-        "q2": 0.96,
-        "q3": 1.57,
-        "q4": 1.23,
-        "full": 4.17
+        "has_quarter": false,
+        "q1": 0.98,
+        "q3": 2.83,
+        "full": 3.81
       },
       {
         "year": "2020",
-        "has_quarter": true,
-        "q1": 1.01,
-        "q2": 3.44,
-        "q3": 2.44,
-        "q4": 0.1,
-        "full": 6.99
+        "has_quarter": false,
+        "q1": 0.12,
+        "q3": 0.26,
+        "full": 0.38
       },
       {
         "year": "2021",
-        "has_quarter": true,
-        "q1": 2.17,
-        "q2": 1.31,
-        "q3": 3.61,
-        "q4": -0.25,
-        "full": 6.84
+        "has_quarter": false,
+        "q1": 0.26,
+        "q3": 0.35,
+        "full": 0.61
       },
       {
         "year": "2022",
-        "has_quarter": true,
-        "q1": 2.05,
-        "q2": 0.25,
-        "q3": 1.28,
-        "q4": -0.74,
-        "full": 2.84
+        "has_quarter": false,
+        "q1": 0.24,
+        "q3": 0.08,
+        "full": 0.32
       },
       {
         "year": "2023",
-        "has_quarter": true,
-        "q1": 1.06,
-        "q2": -0.96,
-        "q3": 2.21,
-        "q4": 1.12,
-        "full": 3.43
+        "has_quarter": false,
+        "q1": 0.35,
+        "q3": 0.45,
+        "full": 0.8
       },
       {
         "year": "2024",
-        "has_quarter": true,
-        "q1": 1.66,
-        "q2": 1.35,
-        "q3": 0.71,
-        "q4": 0.19,
-        "full": 3.91
+        "has_quarter": false,
+        "q1": 0.69,
+        "q3": 1.66,
+        "full": 2.35
       },
       {
         "year": "2025",
-        "has_quarter": true,
-        "q1": 1.24,
-        "q2": 2.26,
-        "q3": 2.54,
-        "q4": 0.66,
-        "full": 6.7
-      },
-      {
-        "year": "2026",
-        "has_quarter": true,
-        "q1": 2.25,
-        "q2": 1.09,
-        "q3": 0.84,
-        "q4": 1.32,
-        "full": 5.5
+        "has_quarter": false,
+        "q1": 3.43,
+        "q3": 6.17,
+        "full": 9.6
       }
     ],
     "dividends": [
@@ -2458,782 +2277,801 @@
         "year": "2020",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0,
-        "full": 0
+        "q3": 0.149,
+        "full": 0.149
       },
       {
         "year": "2021",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0,
-        "full": 0
+        "q3": 0.152,
+        "full": 0.152
       },
       {
         "year": "2022",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.125,
-        "full": 0.125
+        "q3": 0.087,
+        "full": 0.087
       },
       {
         "year": "2023",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.208,
-        "full": 0.208
+        "q3": 0.282,
+        "full": 0.282
       },
       {
         "year": "2024",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.25,
-        "full": 0.25
+        "q3": 0.815,
+        "full": 0.815
       },
       {
         "year": "2025",
         "has_quarter": false,
         "q1": 0,
-        "q3": 0.131,
-        "full": 0.131
-      },
-      {
-        "year": "2026",
-        "has_quarter": false,
-        "q1": 0,
-        "q3": 0,
-        "full": 0
+        "q3": 2.382,
+        "full": 2.382
       }
     ]
   },
   "valuation_line": [
     {
       "date": "2017",
-      "value": 45.45
+      "value": 0.3
     },
     {
       "date": "2018",
-      "value": 25.5
+      "value": 1.65
     },
     {
       "date": "2019",
-      "value": 39.6
+      "value": 57.15
     },
     {
       "date": "2020",
-      "value": 119.7
+      "value": 8.25
     },
     {
       "date": "2021",
-      "value": 118.95
+      "value": 13.8
     },
     {
       "date": "2022",
-      "value": 57.0
+      "value": 11.4
     },
     {
       "date": "2023",
-      "value": 67.2
+      "value": 19.5
     },
     {
       "date": "2024",
-      "value": 75.45
+      "value": 44.85
     },
     {
       "date": "2025",
-      "value": 102.75
-    },
-    {
-      "date": "2026",
-      "value": 81.15
+      "value": 156.45
     }
   ],
   "valuation_method": "cf",
   "cf_multiplier": 15.0,
   "pb_multiplier": 1.0,
   "balance_summary": {
-    "total_assets": 19095.7,
-    "total_liabilities": 7833.0,
-    "total_equity": 11262.7,
-    "current_assets": 6107.69,
-    "current_liabilities": 4763.98,
-    "cash": 1315.3,
-    "receivables": 2518.37
+    "total_assets": 321.01354,
+    "total_liabilities": 94.48987,
+    "total_equity": 226.52367,
+    "current_assets": 249.14643,
+    "current_liabilities": 71.68161,
+    "cash": 137.75087,
+    "inventory": 54.72839,
+    "receivables": 9.2124
   },
   "income_summary": {
-    "revenue": 10236.7,
-    "gross_profit": 4075.34,
-    "net_profit": 1035.92
+    "revenue": 371.20052,
+    "gross_profit": 267.64916,
+    "net_profit": 127.75689
   },
   "revenue_structure": {
-    "by_region": [
+    "by_channel": [
       {
-        "name": "中国大陆",
-        "value": 740000.0,
-        "pct": 74.3
+        "name": "零售店",
+        "value": 10075.0,
+        "pct": 48.3
       },
       {
-        "name": "国际",
-        "value": 255500.0,
-        "pct": 25.7
+        "name": "线上渠道",
+        "value": 8522.0,
+        "pct": 40.9
+      },
+      {
+        "name": "机器人商店",
+        "value": 1346.0,
+        "pct": 6.5
+      },
+      {
+        "name": "批发及其他",
+        "value": 908.0,
+        "pct": 4.3
       }
     ],
-    "by_segment": [
+    "by_ip": [
       {
-        "name": "淘天集团",
-        "value": 434900.0,
-        "pct": 43.7
+        "name": "THE MONSTERS",
+        "value": 14161.0,
+        "pct": 38.1
       },
       {
-        "name": "其他",
-        "value": 136200.0,
-        "pct": 13.7
+        "name": "SKULLPANDA",
+        "value": 3540.0,
+        "pct": 9.5
       },
       {
-        "name": "云智能集团",
-        "value": 113500.0,
-        "pct": 11.4
+        "name": "其他IP",
+        "value": 3312.0,
+        "pct": 8.9
       },
       {
-        "name": "国际数字商业",
-        "value": 102500.0,
-        "pct": 10.3
+        "name": "CRYBABY",
+        "value": 2929.0,
+        "pct": 7.9
       },
       {
-        "name": "菜鸟集团",
-        "value": 99000.0,
-        "pct": 9.9
+        "name": "MOLLY",
+        "value": 2897.0,
+        "pct": 7.8
       },
       {
-        "name": "本地生活集团",
-        "value": 59800.0,
-        "pct": 6.0
+        "name": "DIMOO",
+        "value": 2777.0,
+        "pct": 7.5
       },
       {
-        "name": "大文娱集团",
-        "value": 49700.0,
-        "pct": 5.0
+        "name": "星星人",
+        "value": 2056.0,
+        "pct": 5.5
+      },
+      {
+        "name": "HIRONO",
+        "value": 1735.0,
+        "pct": 4.7
+      }
+    ],
+    "by_region": [
+      {
+        "name": "中国",
+        "value": 20852.0,
+        "pct": 56.2
+      },
+      {
+        "name": "亚太",
+        "value": 8011.0,
+        "pct": 21.6
+      },
+      {
+        "name": "美洲",
+        "value": 6806.0,
+        "pct": 18.3
+      },
+      {
+        "name": "欧洲及其他",
+        "value": 1451.0,
+        "pct": 3.9
       }
     ]
   },
   "capital_structure": {
     "unit": "亿",
     "divisor": 100000000.0,
-    "total_assets": 19095.7,
-    "total_debt": 7833.0,
-    "total_equity": 11262.7,
-    "current_assets": 6107.69,
-    "current_liabilities": 4763.98,
-    "cash": 1315.3,
-    "inventory": 0,
-    "receivables": 2518.37,
-    "non_current_liab": 3069.02,
-    "lt_debt": 474.5,
-    "due_in_5yr": 282.24,
-    "total_int": 97.93,
-    "coverage": "5.1x",
-    "coverage_num": 5.121004799346472,
-    "lt_debt_pct": 4.0,
+    "total_assets": 321.01354,
+    "total_debt": 94.48987,
+    "total_equity": 226.52367,
+    "current_assets": 249.14643,
+    "current_liabilities": 71.68161,
+    "cash": 137.75087,
+    "inventory": 54.72839,
+    "receivables": 9.2124,
+    "non_current_liab": 22.80826,
+    "lt_debt": 22.75301,
+    "due_in_5yr": 5.91799,
+    "total_int": 0.82471,
+    "coverage": ">25x",
+    "coverage_num": 204.8050102460259,
+    "lt_debt_pct": 9.1,
     "pension_assets": "N/A",
     "pfd_stock": "None",
-    "common_shares": 19134.0,
-    "common_shares_str": "19,134,051,238",
-    "common_shares_raw": 19134051238,
-    "mkt_cap": 23496.6,
-    "cap_label": "Mega Cap",
-    "business_desc": "",
-    "employee_count": null,
-    "employee_year": "",
-    "mda_text": "【经营总览】\n的Choice通過更好的產品選擇、價格和質量，與更快的物流速度和更出色的客戶支持相結合，為消費者提供更佳的\n阿里通義千問系列模型在性能、功能和生態建設方面均取得了里程碑式的進展，通義千問Qwen開源多款模型，覆\n我們的數據中心採用領先的分佈式容錯架構、先進的自研電力和冷卻設備、AI驅動的智能監控和運營技術，以高彈\n通過從我們生態體系獲取的洞察和自有技術，以AI技術驅動，優酷為我們的用戶群體有效提供具有相關性、引人入\n所有其他板塊涵蓋盒馬、阿里健康、靈犀互娛、智能信息（主要由UC優視和夸克業務構成）、飛豬、釘釘、高鑫零\n\n【产品/业务结构】\n和零售商入駐和運營設置嚴格標準，在天貓開店已成為質量認證，使商家、品牌和零售商得以借助\n天貓國際滿足了中國消費者對於國際產品與品牌日益旺盛的需求\n立運營主體即可借助天貓國際作為首要平台，觸達中國消費者、打造品牌知名度並積累寶貴的消費\n天貓超市通過淘寶APP提供日用品、快消品和普通商品，並提供當日或次日達服務\n我們致力通過有吸引力的內容和優質的服務為消費者提供沉浸式和個性化的購物體驗\n\n【渠道发展】\n淘寶成為眾多用戶購物旅程的起點和終點，並作為頂級流量入口將\n在2025財年，我們的國際零售商業業務共同實現33%的收入增長，主要來自於跨境業務的強勁表現，並由產品技術\n在2025財年，我們完成了高鑫零售的出售並基本完成了銀泰的出售\n通過將AI能力注入零售全價值鏈，盒馬正在打造線上線下無縫融合的消費新\n至2025財年末，盒馬鮮生業態作為盒馬的核心零售模式之一，運營超過420家門店，線上交易對盒馬鮮生業態GMV\n\n【分地区表现】\n此外，作為我們全球化戰略的一部分，雲智能集團繼續擴展我們\n的國際雲計算基礎設施，以更好地滿足我們海外市場的客戶的需求\n算全球最大的AI大模型族群，其衍生模型在多個國際權威評測中名列前茅\n這些成就鞏固了雲智能集團在全球AI和雲計算領域的領先地位\n菜鳥已在全球範圍內建立起具有端到端物流能力的智慧物流網絡\n\n【成本与效率】\n在商家端，我們專注於改善商家的營運環境，幫助他們提升運營效率\n因商家從其使用的便捷性和市場營銷效率的提升中獲益，我\n效率及可靠性，同時運用可信賴的合作夥伴的能力以推動網絡拓展及資本效率\n決方案，包括自動化、數字化供應鏈及智能硬件解決方案，以提高整個物流價值鏈的效率和成本效益\n集團的訂單量同比健康增長，虧損顯著收窄，得益於經營效率提升與規模擴大\n",
-    "mda_quality": "1"
+    "common_shares": 1343.0,
+    "common_shares_str": "1,342,943,150",
+    "common_shares_raw": 1342943150,
+    "mkt_cap": 2407.9,
+    "cap_label": "Large Cap",
+    "business_desc": "泡泡玛特是中国领先的潮流文化娱乐公司。2025年全球化进程进一步提速，品牌知名度持续提升，IP运营与产品研发能力持续增强，推出多款深受全球消费者欢迎的新IP及新品系列，推动销售业绩实现高速增长。",
+    "employee_count": 10879,
+    "employee_year": "2025",
+    "mda_text": "【经营总览】\n2025年泡泡玛特实现营收457.9亿元，同比增长16.7%，归母净利润88.3亿元，同比增长17.7%，每股收益¥3.38，经营利润率29.7%。\n\n【成本与效率】\n折旧摊销29.7亿元，营运资金137.8亿元。\n员工规模1.1万人。\n\n【未来展望】\n泡泡玛特将继续坚持核心战略，深化业务布局与运营效率提升。\n持续推动产品创新与市场拓展，把握行业发展趋势。\n致力于为股东创造长期可持续价值。",
+    "mda_quality": "0"
   },
   "current_position": {
     "years": [
+      "2023",
       "2024",
-      "2025",
-      "2026"
+      "2025"
     ],
     "items": [
       {
         "name": "Cash & Equiv",
-        "2024": 2481.25,
-        "2025": 1454.87,
-        "2026": 1315.3
+        "2023": 20.77927,
+        "2024": 61.09017,
+        "2025": 137.75087
       },
       {
         "name": "Receivables",
-        "2024": 0,
-        "2025": 0,
-        "2026": 0
+        "2023": 3.21337,
+        "2024": 4.77723,
+        "2025": 9.2124
       },
       {
         "name": "Inventory",
-        "2024": 0,
-        "2025": 0,
-        "2026": 0
+        "2023": 9.04708,
+        "2024": 15.24521,
+        "2025": 54.72839
       },
       {
         "name": "Other Current Assets",
-        "2024": 5047.39,
-        "2025": 5285.62,
-        "2026": 4792.39
+        "2023": 43.79,
+        "2024": 41.25,
+        "2025": 47.45
       },
       {
         "name": "Current Assets",
-        "2024": 7528.64,
-        "2025": 6740.49,
-        "2026": 6107.69
+        "2023": 76.83469,
+        "2024": 122.36081,
+        "2025": 249.14643
       },
       {
         "name": "Accounts Payable",
-        "2024": 2978.83,
-        "2025": 3325.37,
-        "2026": 3598.93
+        "2023": 4.44944,
+        "2024": 10.10109,
+        "2025": 18.58216
       },
       {
         "name": "Debt Due",
-        "2024": 127.49,
-        "2025": 225.62,
-        "2026": 282.24
+        "2023": 3.67,
+        "2024": 3.63,
+        "2025": 5.86
       },
       {
         "name": "Other Current Liab",
-        "2024": 1108.75,
-        "2025": 802.47,
-        "2026": 882.81
+        "2023": 9.21,
+        "2024": 19.97,
+        "2025": 47.24
       },
       {
         "name": "Current Liabilities",
-        "2024": 4215.07,
-        "2025": 4353.46,
-        "2026": 4763.98
+        "2023": 17.33301,
+        "2024": 33.70028,
+        "2025": 71.68161
       }
     ]
   },
   "annual_rates": {
     "sales": {
-      "1yr": 2.7,
-      "3yr": 5.6,
-      "5yr": 7.4,
+      "1yr": 184.7,
+      "3yr": 100.3,
+      "5yr": 71.4,
       "10yr": null
     },
     "cashflow": {
-      "1yr": -21.0,
-      "3yr": 6.5,
-      "5yr": -7.4,
+      "1yr": 248.8,
+      "3yr": 139.4,
+      "5yr": 80.1,
       "10yr": null
     },
     "earnings": {
-      "1yr": -21.0,
-      "3yr": 15.1,
-      "5yr": -4.9,
+      "1yr": 308.5,
+      "3yr": 210.7,
+      "5yr": 90.8,
       "10yr": null
     },
     "dividends": {
-      "1yr": -47.5,
-      "3yr": 1.6,
-      "5yr": null,
+      "1yr": 192.4,
+      "3yr": 201.4,
+      "5yr": 74.0,
       "10yr": null
     },
     "book_value": {
-      "1yr": 4.6,
-      "3yr": 2.3,
-      "5yr": 2.5,
+      "1yr": 108.6,
+      "3yr": 47.3,
+      "5yr": 29.5,
       "10yr": null
     },
     "has_10yr": false
   },
   "yearly_hl": [
     {
-      "year": "2019",
-      "high": 202.8,
-      "low": 177.6,
-      "month_high": "2019-12",
-      "month_low": "2019-11"
-    },
-    {
       "year": "2020",
-      "high": 293.8,
-      "low": 159.2,
-      "month_high": "2020-10",
-      "month_low": "2020-03"
+      "high": 92.3,
+      "low": 58.6,
+      "month_high": "2020-12",
+      "month_low": "2020-12"
     },
     {
       "year": "2021",
-      "high": 256.4,
-      "low": 103.7,
-      "month_high": "2021-01",
+      "high": 103.0,
+      "low": 39.2,
+      "month_high": "2021-02",
       "month_low": "2021-12"
     },
     {
       "year": "2022",
-      "high": 128.2,
-      "low": 57.2,
+      "high": 47.4,
+      "low": 9.6,
       "month_high": "2022-01",
       "month_low": "2022-10"
     },
     {
       "year": "2023",
-      "high": 112.5,
-      "low": 64.4,
+      "high": 27.0,
+      "low": 15.6,
       "month_high": "2023-01",
-      "month_low": "2023-12"
+      "month_low": "2023-05"
     },
     {
       "year": "2024",
-      "high": 116.8,
-      "low": 62.2,
-      "month_high": "2024-10",
-      "month_low": "2024-01"
+      "high": 94.8,
+      "low": 16.4,
+      "month_high": "2024-12",
+      "month_low": "2024-02"
     },
     {
       "year": "2025",
-      "high": 186.2,
-      "low": 76.1,
-      "month_high": "2025-10",
+      "high": 333.9,
+      "low": 77.8,
+      "month_high": "2025-08",
       "month_low": "2025-01"
-    },
-    {
-      "year": "2026",
-      "high": 174.2,
-      "low": 117.5,
-      "month_high": "2026-01",
-      "month_low": "2026-04"
     }
   ],
   "position": {
     "pe": {
-      "current": 22.3,
-      "min": 18.7,
-      "max": 102.9,
-      "avg": 35.0,
-      "pct": 4.0
+      "current": 18.7,
+      "min": 18.3,
+      "max": 199.6,
+      "avg": 74.3,
+      "pct": 0.0
     },
     "price": {
-      "current": 122.8,
-      "min": 58.4,
-      "max": 278.4,
-      "avg": 131.4,
-      "pct": 29.0
+      "current": 179.3,
+      "min": 9.8,
+      "max": 316.8,
+      "avg": 81.4,
+      "pct": 55.0
     },
     "pb": {
-      "current": 2.21,
-      "min": 1.5,
-      "max": 7.3,
-      "avg": 3.3,
-      "pct": 12.0
+      "current": 10.72,
+      "min": 3.5,
+      "max": 16.5,
+      "avg": 9.0,
+      "pct": 56.0
     }
   },
   "analyst": {
-    "business": "阿里巴巴集团是中国最大的电商和云计算公司，业务涵盖淘天集团（淘宝天猫，占营收约44%）、云智能集团（阿里云，约11%）、国际数字商业（约10%）、菜鸟物流（约10%）、本地生活（饿了么高德，约6%）和大文娱（优酷等，约5%）七大板块。以平台模式运营，轻资产高毛利，近年加码AI大模型（通义千问Qwen）和全球化扩张，中国大陆营收约74%、国际市场约26%。",
+    "business": "泡泡玛特是中国领先的潮流文化娱乐公司，以IP为核心，业务涵盖艺术家发掘、IP运营、产品设计制造、全球零售及粉丝社区运营。旗下IP包括THE MONSTERS(LABUBU)、SKULLPANDA、MOLLY、DIMOO等。2025年海外收入占比达44%。",
     "commentary": [
-      "阿里巴巴2026财年营收10236.7亿元(增长2.7%)，归母净利润1035.9亿元(下降20.4%)，每股收益¥5.41，毛利率39.8%（同比下降0.5%），ROE 9.2%。利润下滑主因云智能及国际业务持续投入，以及非经常性投资收益波动。。",
-      "每股收益¥5.41中，主业贡献¥2.62（48%），非经营性贡献¥2.79（52%）。每股现金流¥5.41中，资本支出¥0.00占None%，现金分红¥0.00占None%，净留存¥5.41/股。",
-      "以淘天集团电商为核心（营收占比超40%），云智能+国际业务为第二增长曲线。当前PE 22.3倍（历史区间18.7-102.9倍，低于均值）。PB 2.21倍。ROE 9.2%（投资回报率偏低，资本配置效率待提升）。",
-      "营收低速增长（1年+2.7%），电商主业增速见顶，增长依赖云和国际化。验证信号：关注2027财年云业务利润率是否改善；关注国际电商减亏进度。"
+      "2026年06月05日 — 泡泡玛特2025年营收371.2亿元(增长184.7%)，归母净利润128.9亿元(增长309.2%)，每股收益¥9.60。利润超营收增长反映经营杠杆改善，净利润率34.7%，ROE 56.9%。",
+      "每股收益¥9.60中，主业贡献¥9.61（100%），非经营性贡献¥-0.01（0%）。每股现金流¥10.43中，资本支出¥0.73占7%，现金分红¥2.38占23%，净留存¥7.32/股，现金流充裕。",
+      "负债率10%，当前PE 18.7倍(低于历史中位数81.6倍)，PB 10.72倍，股息率1.3%，ROE 56.9%(同比提升)。",
+      "营收增速加速（1年+184.7% vs 3年+100.3%）。毛利率止跌回升，盈利质量边际改善。ROE触底反弹：盈利能力较近年均值大幅改善。验证信号：估值处于历史低位但需业绩拐点确认。"
     ],
-    "commentary_from_mda": true,
-    "commentary_from_script": true,
+    "commentary_from_mda": false,
+    "commentary_from_script": false,
     "recommendation": ""
   },
   "validation": {
     "checked": [
       {
-        "year": "2026",
+        "year": "2025",
         "metric": "AKShare↔PDF Revenue",
-        "summary": "AKShare=10236.7B vs PDF=9955.0B",
-        "akshare": 10236.7,
-        "pdf": 9955.0,
-        "diff_pct": 2.75
-      },
-      {
-        "year": "2017",
-        "metric": "AKShare↔Cashflow Depreciation",
-        "summary": "ak=145.6B vs pdf=145.6B",
-        "ak": 145.6,
-        "pdf": 145.56,
-        "diff_pct": 0.03
-      },
-      {
-        "year": "2017",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=16.89 vs Eq/Sh=16.89",
-        "actual": 16.89,
-        "calc": 16.89,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2017",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=19193.1M vs OI-der=19184.2M",
-        "indicator": 19193.1,
-        "oi_derived": 19184.2,
-        "diff_pct": 0.05
-      },
-      {
-        "year": "2017",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=19193.1M vs BPS-der=19190.1M",
-        "indicator": 19193.1,
-        "bps_derived": 19190.1,
-        "diff_pct": 0.02
-      },
-      {
-        "year": "2018",
-        "metric": "AKShare↔Cashflow Depreciation",
-        "summary": "ak=222.8B vs pdf=222.8B",
-        "ak": 222.8,
-        "pdf": 222.84,
-        "diff_pct": 0.02
-      },
-      {
-        "year": "2018",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=4.92 vs Rev/Sh=4.92",
-        "actual": 4.92,
-        "calc": 4.92,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2018",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=19.22 vs Eq/Sh=8.64",
-        "actual": 19.22,
-        "calc": 8.64,
-        "diff_pct": 55.05
-      },
-      {
-        "year": "2018",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=50889.8M vs OI-der=50867.9M",
-        "indicator": 50889.8,
-        "oi_derived": 50867.9,
-        "diff_pct": 0.04
-      },
-      {
-        "year": "2018",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=50889.8M vs BPS-der=22863.7M",
-        "indicator": 50889.8,
-        "bps_derived": 22863.7,
-        "diff_pct": 55.07
-      },
-      {
-        "year": "2019",
-        "metric": "AKShare↔Cashflow Depreciation",
-        "summary": "ak=373.4B vs pdf=373.4B",
-        "ak": 373.4,
-        "pdf": 373.44,
-        "diff_pct": 0.01
-      },
-      {
-        "year": "2019",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=7.93 vs Rev/Sh=7.93",
-        "actual": 7.93,
-        "calc": 7.93,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2019",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=26.0 vs Eq/Sh=12.95",
-        "actual": 26.0,
-        "calc": 12.95,
-        "diff_pct": 50.19
-      },
-      {
-        "year": "2019",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=47523.6M vs OI-der=47520.8M",
-        "indicator": 47523.6,
-        "oi_derived": 47520.8,
-        "diff_pct": 0.01
-      },
-      {
-        "year": "2019",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=47523.6M vs BPS-der=23669.2M",
-        "indicator": 47523.6,
-        "bps_derived": 23669.2,
-        "diff_pct": 50.19
-      },
-      {
-        "year": "2020",
-        "metric": "AKShare↔Cashflow Depreciation",
-        "summary": "ak=220.0B vs pdf=220.0B",
-        "ak": 220.0,
-        "pdf": 220.01,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2020",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=23.72 vs Rev/Sh=23.72",
-        "actual": 23.72,
-        "calc": 23.72,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2020",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=39.83 vs Eq/Sh=40.93",
-        "actual": 39.83,
-        "calc": 40.93,
-        "diff_pct": 2.76
-      },
-      {
-        "year": "2020",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=21492.0M vs OI-der=21488.6M",
-        "indicator": 21492.0,
-        "oi_derived": 21488.6,
-        "diff_pct": 0.02
-      },
-      {
-        "year": "2020",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=21492.0M vs BPS-der=22085.1M",
-        "indicator": 21492.0,
-        "bps_derived": 22085.1,
-        "diff_pct": 2.76
-      },
-      {
-        "year": "2021",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=33.07 vs Rev/Sh=33.07",
-        "actual": 33.07,
-        "calc": 33.07,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2021",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=49.3 vs Eq/Sh=49.96",
-        "actual": 49.3,
-        "calc": 49.96,
-        "diff_pct": 1.34
-      },
-      {
-        "year": "2021",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=21688.9M vs OI-der=21690.1M",
-        "indicator": 21688.9,
-        "oi_derived": 21690.1,
-        "diff_pct": 0.01
-      },
-      {
-        "year": "2021",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=21688.9M vs BPS-der=21980.3M",
-        "indicator": 21688.9,
-        "bps_derived": 21980.3,
-        "diff_pct": 1.34
-      },
-      {
-        "year": "2022",
-        "metric": "AKShare↔Cashflow Depreciation",
-        "summary": "ak=202.6B vs pdf=202.6B",
-        "ak": 202.6,
-        "pdf": 202.57,
-        "diff_pct": 0.01
-      },
-      {
-        "year": "2022",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=39.33 vs Rev/Sh=39.33",
-        "actual": 39.33,
-        "calc": 39.33,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2022",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=49.92 vs Eq/Sh=49.9",
-        "actual": 49.92,
-        "calc": 49.9,
-        "diff_pct": 0.04
-      },
-      {
-        "year": "2022",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=21687.3M vs OI-der=21689.8M",
-        "indicator": 21687.3,
-        "oi_derived": 21689.8,
-        "diff_pct": 0.01
-      },
-      {
-        "year": "2022",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=21687.3M vs BPS-der=21678.5M",
-        "indicator": 21687.3,
-        "bps_derived": 21678.5,
-        "diff_pct": 0.04
-      },
-      {
-        "year": "2023",
-        "metric": "AKShare↔Cashflow Depreciation",
-        "summary": "ak=191.4B vs pdf=191.4B",
-        "ak": 191.4,
-        "pdf": 191.39,
-        "diff_pct": 0.01
-      },
-      {
-        "year": "2023",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=42.32 vs Rev/Sh=42.32",
-        "actual": 42.32,
-        "calc": 42.32,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2023",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=52.08 vs Eq/Sh=54.71",
-        "actual": 52.08,
-        "calc": 54.71,
-        "diff_pct": 5.05
-      },
-      {
-        "year": "2023",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=20526.0M vs OI-der=20526.7M",
-        "indicator": 20526.0,
-        "oi_derived": 20526.7,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2023",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=20526.0M vs BPS-der=21561.4M",
-        "indicator": 20526.0,
-        "bps_derived": 21561.4,
-        "diff_pct": 5.04
-      },
-      {
-        "year": "2024",
-        "metric": "AKShare↔Cashflow Depreciation",
-        "summary": "ak=178.6B vs pdf=178.6B",
-        "ak": 178.6,
-        "pdf": 178.64,
-        "diff_pct": 0.02
-      },
-      {
-        "year": "2024",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=48.34 vs Rev/Sh=48.34",
-        "actual": 48.34,
-        "calc": 48.34,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2024",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=51.96 vs Eq/Sh=57.15",
-        "actual": 51.96,
-        "calc": 57.15,
-        "diff_pct": 9.99
-      },
-      {
-        "year": "2024",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=19469.1M vs OI-der=19469.8M",
-        "indicator": 19469.1,
-        "oi_derived": 19469.8,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2024",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=19469.1M vs BPS-der=21412.6M",
-        "indicator": 19469.1,
-        "bps_derived": 21412.6,
-        "diff_pct": 9.98
-      },
-      {
-        "year": "2025",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=52.44 vs Rev/Sh=52.44",
-        "actual": 52.44,
-        "calc": 52.44,
+        "summary": "AKShare=371.2B vs PDF=371.2B",
+        "akshare": 371.2,
+        "pdf": 371.2,
         "diff_pct": 0.0
       },
       {
         "year": "2025",
+        "metric": "Revenue by_ip sum=100%",
+        "summary": "by_ip: sum_pct=89.9% (gap=10.1%)",
+        "sum_pct": 89.9,
+        "diff_pct": 10.1
+      },
+      {
+        "year": "2017",
+        "metric": "AKShare↔Cashflow Depreciation",
+        "summary": "ak=0.2B vs pdf=0.2B",
+        "ak": 0.2,
+        "pdf": 0.24,
+        "diff_pct": 14.9
+      },
+      {
+        "year": "2017",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=0.12 vs Rev/Sh=0.12",
+        "actual": 0.12,
+        "calc": 0.12,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2017",
         "metric": "PerSh BPS consistency",
-        "summary": "BPS=53.23 vs Eq/Sh=57.38",
-        "actual": 53.23,
-        "calc": 57.38,
-        "diff_pct": 7.8
+        "summary": "BPS=0.06 vs Eq/Sh=0.06",
+        "actual": 0.06,
+        "calc": 0.06,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2017",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=1341.0M vs OI-der=1333.3M",
+        "indicator": 1341.0,
+        "oi_derived": 1333.3,
+        "diff_pct": 0.57
+      },
+      {
+        "year": "2017",
+        "metric": "SHARES: ind vs Eq/BPS",
+        "summary": "ind=1341.0M vs BPS-der=1333.3M",
+        "indicator": 1341.0,
+        "bps_derived": 1333.3,
+        "diff_pct": 0.57
+      },
+      {
+        "year": "2018",
+        "metric": "AKShare↔Cashflow Depreciation",
+        "summary": "ak=0.4B vs pdf=0.4B",
+        "ak": 0.4,
+        "pdf": 0.42,
+        "diff_pct": 5.64
+      },
+      {
+        "year": "2018",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=0.38 vs Rev/Sh=0.38",
+        "actual": 0.38,
+        "calc": 0.38,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2018",
+        "metric": "PerSh BPS consistency",
+        "summary": "BPS=0.16 vs Eq/Sh=0.16",
+        "actual": 0.16,
+        "calc": 0.16,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2018",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=1341.0M vs OI-der=1342.1M",
+        "indicator": 1341.0,
+        "oi_derived": 1342.1,
+        "diff_pct": 0.08
+      },
+      {
+        "year": "2018",
+        "metric": "SHARES: ind vs Eq/BPS",
+        "summary": "ind=1341.0M vs BPS-der=1375.0M",
+        "indicator": 1341.0,
+        "bps_derived": 1375.0,
+        "diff_pct": 2.54
+      },
+      {
+        "year": "2019",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=14.32 vs Rev/Sh=14.33",
+        "actual": 14.32,
+        "calc": 14.33,
+        "diff_pct": 0.07
+      },
+      {
+        "year": "2019",
+        "metric": "PerSh BPS consistency",
+        "summary": "BPS=0.45 vs Eq/Sh=5.02",
+        "actual": 0.45,
+        "calc": 5.02,
+        "diff_pct": 1015.56
+      },
+      {
+        "year": "2019",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=117.5M vs OI-der=117.3M",
+        "indicator": 117.5,
+        "oi_derived": 117.3,
+        "diff_pct": 0.17
+      },
+      {
+        "year": "2019",
+        "metric": "SHARES: ind vs Eq/BPS",
+        "summary": "ind=117.5M vs BPS-der=1311.1M",
+        "indicator": 117.5,
+        "bps_derived": 1311.1,
+        "diff_pct": 1015.83
+      },
+      {
+        "year": "2020",
+        "metric": "AKShare↔Cashflow Depreciation",
+        "summary": "ak=2.5B vs pdf=2.5B",
+        "ak": 2.5,
+        "pdf": 2.46,
+        "diff_pct": 1.66
+      },
+      {
+        "year": "2020",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=1.79 vs Rev/Sh=1.79",
+        "actual": 1.79,
+        "calc": 1.79,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2020",
+        "metric": "PerSh BPS consistency",
+        "summary": "BPS=4.6 vs Eq/Sh=4.37",
+        "actual": 4.6,
+        "calc": 4.37,
+        "diff_pct": 5.0
+      },
+      {
+        "year": "2020",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=1401.9M vs OI-der=1402.2M",
+        "indicator": 1401.9,
+        "oi_derived": 1402.2,
+        "diff_pct": 0.02
+      },
+      {
+        "year": "2020",
+        "metric": "SHARES: ind vs Eq/BPS",
+        "summary": "ind=1401.9M vs BPS-der=1332.6M",
+        "indicator": 1401.9,
+        "bps_derived": 1332.6,
+        "diff_pct": 4.94
+      },
+      {
+        "year": "2021",
+        "metric": "AKShare↔Cashflow Depreciation",
+        "summary": "ak=4.4B vs pdf=4.4B",
+        "ak": 4.4,
+        "pdf": 4.35,
+        "diff_pct": 1.14
+      },
+      {
+        "year": "2021",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=3.2 vs Rev/Sh=3.2",
+        "actual": 3.2,
+        "calc": 3.2,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2021",
+        "metric": "PerSh BPS consistency",
+        "summary": "BPS=5.12 vs Eq/Sh=4.86",
+        "actual": 5.12,
+        "calc": 4.86,
+        "diff_pct": 5.08
+      },
+      {
+        "year": "2021",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=1401.9M vs OI-der=1403.1M",
+        "indicator": 1401.9,
+        "oi_derived": 1403.1,
+        "diff_pct": 0.09
+      },
+      {
+        "year": "2021",
+        "metric": "SHARES: ind vs Eq/BPS",
+        "summary": "ind=1401.9M vs BPS-der=1332.0M",
+        "indicator": 1401.9,
+        "bps_derived": 1332.0,
+        "diff_pct": 4.99
+      },
+      {
+        "year": "2022",
+        "metric": "AKShare↔Cashflow Depreciation",
+        "summary": "ak=6.0B vs pdf=6.0B",
+        "ak": 6.0,
+        "pdf": 6.05,
+        "diff_pct": 0.8
+      },
+      {
+        "year": "2022",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=3.34 vs Rev/Sh=3.34",
+        "actual": 3.34,
+        "calc": 3.34,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2022",
+        "metric": "PerSh BPS consistency",
+        "summary": "BPS=5.23 vs Eq/Sh=5.05",
+        "actual": 5.23,
+        "calc": 5.05,
+        "diff_pct": 3.44
+      },
+      {
+        "year": "2022",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=1380.5M vs OI-der=1383.2M",
+        "indicator": 1380.5,
+        "oi_derived": 1383.2,
+        "diff_pct": 0.2
+      },
+      {
+        "year": "2022",
+        "metric": "SHARES: ind vs Eq/BPS",
+        "summary": "ind=1380.5M vs BPS-der=1332.7M",
+        "indicator": 1380.5,
+        "bps_derived": 1332.7,
+        "diff_pct": 3.46
+      },
+      {
+        "year": "2023",
+        "metric": "AKShare↔Cashflow Depreciation",
+        "summary": "ak=6.7B vs pdf=6.7B",
+        "ak": 6.7,
+        "pdf": 6.69,
+        "diff_pct": 0.21
+      },
+      {
+        "year": "2023",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=4.67 vs Rev/Sh=4.67",
+        "actual": 4.67,
+        "calc": 4.67,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2023",
+        "metric": "PerSh BPS consistency",
+        "summary": "BPS=5.83 vs Eq/Sh=5.77",
+        "actual": 5.83,
+        "calc": 5.77,
+        "diff_pct": 1.03
+      },
+      {
+        "year": "2023",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=1348.2M vs OI-der=1349.0M",
+        "indicator": 1348.2,
+        "oi_derived": 1349.0,
+        "diff_pct": 0.06
+      },
+      {
+        "year": "2023",
+        "metric": "SHARES: ind vs Eq/BPS",
+        "summary": "ind=1348.2M vs BPS-der=1334.5M",
+        "indicator": 1348.2,
+        "bps_derived": 1334.5,
+        "diff_pct": 1.02
+      },
+      {
+        "year": "2024",
+        "metric": "AKShare↔Cashflow Depreciation",
+        "summary": "ak=8.6B vs pdf=8.6B",
+        "ak": 8.6,
+        "pdf": 8.63,
+        "diff_pct": 0.33
+      },
+      {
+        "year": "2024",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=9.71 vs Rev/Sh=9.71",
+        "actual": 9.71,
+        "calc": 9.71,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2024",
+        "metric": "PerSh BPS consistency",
+        "summary": "BPS=8.02 vs Eq/Sh=8.1",
+        "actual": 8.02,
+        "calc": 8.1,
+        "diff_pct": 1.0
+      },
+      {
+        "year": "2024",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=1342.9M vs OI-der=1342.9M",
+        "indicator": 1342.9,
+        "oi_derived": 1342.9,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2024",
+        "metric": "SHARES: ind vs Eq/BPS",
+        "summary": "ind=1342.9M vs BPS-der=1356.6M",
+        "indicator": 1342.9,
+        "bps_derived": 1356.6,
+        "diff_pct": 1.02
+      },
+      {
+        "year": "2025",
+        "metric": "AKShare↔Cashflow Depreciation",
+        "summary": "ak=11.2B vs pdf=11.2B",
+        "ak": 11.2,
+        "pdf": 11.18,
+        "diff_pct": 0.18
+      },
+      {
+        "year": "2025",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=27.64 vs Rev/Sh=27.64",
+        "actual": 27.64,
+        "calc": 27.64,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2025",
+        "metric": "PerSh BPS consistency",
+        "summary": "BPS=16.73 vs Eq/Sh=16.87",
+        "actual": 16.73,
+        "calc": 16.87,
+        "diff_pct": 0.84
       },
       {
         "year": "2025",
         "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=18998.3M vs OI-der=18999.8M",
-        "indicator": 18998.3,
-        "oi_derived": 18999.8,
+        "summary": "ind=1342.9M vs OI-der=1343.0M",
+        "indicator": 1342.9,
+        "oi_derived": 1343.0,
         "diff_pct": 0.01
       },
       {
         "year": "2025",
         "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=18998.3M vs BPS-der=20479.2M",
-        "indicator": 18998.3,
-        "bps_derived": 20479.2,
-        "diff_pct": 7.79
-      },
-      {
-        "year": "2026",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=53.5 vs Rev/Sh=53.5",
-        "actual": 53.5,
-        "calc": 53.5,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2026",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=55.68 vs Eq/Sh=58.86",
-        "actual": 55.68,
-        "calc": 58.86,
-        "diff_pct": 5.71
-      },
-      {
-        "year": "2026",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=19134.1M vs OI-der=19134.0M",
-        "indicator": 19134.1,
-        "oi_derived": 19134.0,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2026",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=19134.1M vs BPS-der=20227.6M",
-        "indicator": 19134.1,
-        "bps_derived": 20227.6,
-        "diff_pct": 5.71
+        "summary": "ind=1342.9M vs BPS-der=1353.9M",
+        "indicator": 1342.9,
+        "bps_derived": 1353.9,
+        "diff_pct": 0.82
       }
     ],
     "mismatches": [
-      "2018 PerSh BPS consistency: BPS=19.22 vs Eq/Sh=8.64 (55.0%)",
-      "2018 SHARES: ind vs Eq/BPS: ind=50889.8M vs BPS-der=22863.7M (55.1%)",
-      "2019 PerSh BPS consistency: BPS=26.0 vs Eq/Sh=12.95 (50.2%)",
-      "2019 SHARES: ind vs Eq/BPS: ind=47523.6M vs BPS-der=23669.2M (50.2%)"
+      "2025 Revenue by_ip sum=100%: by_ip: sum_pct=89.9% (gap=10.1%) (10.1%)",
+      "2017 AKShare↔Cashflow Depreciation: ak=0.2B vs pdf=0.2B (14.9%)",
+      "2017 SHARES: ind vs Rev/PER_OI: ind=1341.0M vs OI-der=1333.3M (0.6%)",
+      "2018 AKShare↔Cashflow Depreciation: ak=0.4B vs pdf=0.4B (5.6%)",
+      "2019 PerSh BPS consistency: BPS=0.45 vs Eq/Sh=5.02 (1015.6%)",
+      "2019 SHARES: ind vs Eq/BPS: ind=117.5M vs BPS-der=1311.1M (1015.8%)"
     ],
     "warnings": [
-      "2026 AKShare↔PDF Revenue: AKShare=10236.7B vs PDF=9955.0B (2.8%)",
-      "2020 PerSh BPS consistency: BPS=39.83 vs Eq/Sh=40.93 (2.8%)",
-      "2020 SHARES: ind vs Eq/BPS: ind=21492.0M vs BPS-der=22085.1M (2.8%)",
-      "2021 PerSh BPS consistency: BPS=49.3 vs Eq/Sh=49.96 (1.3%)",
-      "2021 SHARES: ind vs Eq/BPS: ind=21688.9M vs BPS-der=21980.3M (1.3%)",
-      "2023 PerSh BPS consistency: BPS=52.08 vs Eq/Sh=54.71 (5.0%)",
-      "2023 SHARES: ind vs Eq/BPS: ind=20526.0M vs BPS-der=21561.4M (5.0%)",
-      "2024 PerSh BPS consistency: BPS=51.96 vs Eq/Sh=57.15 (10.0%)",
-      "2024 SHARES: ind vs Eq/BPS: ind=19469.1M vs BPS-der=21412.6M (10.0%)",
-      "2025 PerSh BPS consistency: BPS=53.23 vs Eq/Sh=57.38 (7.8%)",
-      "2025 SHARES: ind vs Eq/BPS: ind=18998.3M vs BPS-der=20479.2M (7.8%)",
-      "2026 PerSh BPS consistency: BPS=55.68 vs Eq/Sh=58.86 (5.7%)",
-      "2026 SHARES: ind vs Eq/BPS: ind=19134.1M vs BPS-der=20227.6M (5.7%)"
+      "2017 SHARES: ind vs Eq/BPS: ind=1341.0M vs BPS-der=1333.3M (0.6%)",
+      "2018 SHARES: ind vs Rev/PER_OI: ind=1341.0M vs OI-der=1342.1M (0.1%)",
+      "2018 SHARES: ind vs Eq/BPS: ind=1341.0M vs BPS-der=1375.0M (2.5%)",
+      "2019 PerSh OI consistency: PER_OI=14.32 vs Rev/Sh=14.33 (0.1%)",
+      "2019 SHARES: ind vs Rev/PER_OI: ind=117.5M vs OI-der=117.3M (0.2%)",
+      "2020 AKShare↔Cashflow Depreciation: ak=2.5B vs pdf=2.5B (1.7%)",
+      "2020 PerSh BPS consistency: BPS=4.6 vs Eq/Sh=4.37 (5.0%)",
+      "2020 SHARES: ind vs Eq/BPS: ind=1401.9M vs BPS-der=1332.6M (4.9%)",
+      "2021 AKShare↔Cashflow Depreciation: ak=4.4B vs pdf=4.4B (1.1%)",
+      "2021 PerSh BPS consistency: BPS=5.12 vs Eq/Sh=4.86 (5.1%)",
+      "2021 SHARES: ind vs Rev/PER_OI: ind=1401.9M vs OI-der=1403.1M (0.1%)",
+      "2021 SHARES: ind vs Eq/BPS: ind=1401.9M vs BPS-der=1332.0M (5.0%)",
+      "2022 AKShare↔Cashflow Depreciation: ak=6.0B vs pdf=6.0B (0.8%)",
+      "2022 PerSh BPS consistency: BPS=5.23 vs Eq/Sh=5.05 (3.4%)",
+      "2022 SHARES: ind vs Rev/PER_OI: ind=1380.5M vs OI-der=1383.2M (0.2%)",
+      "2022 SHARES: ind vs Eq/BPS: ind=1380.5M vs BPS-der=1332.7M (3.5%)",
+      "2023 AKShare↔Cashflow Depreciation: ak=6.7B vs pdf=6.7B (0.2%)",
+      "2023 PerSh BPS consistency: BPS=5.83 vs Eq/Sh=5.77 (1.0%)",
+      "2023 SHARES: ind vs Rev/PER_OI: ind=1348.2M vs OI-der=1349.0M (0.1%)",
+      "2023 SHARES: ind vs Eq/BPS: ind=1348.2M vs BPS-der=1334.5M (1.0%)",
+      "2024 AKShare↔Cashflow Depreciation: ak=8.6B vs pdf=8.6B (0.3%)",
+      "2024 PerSh BPS consistency: BPS=8.02 vs Eq/Sh=8.1 (1.0%)",
+      "2024 SHARES: ind vs Eq/BPS: ind=1342.9M vs BPS-der=1356.6M (1.0%)",
+      "2025 AKShare↔Cashflow Depreciation: ak=11.2B vs pdf=11.2B (0.2%)",
+      "2025 PerSh BPS consistency: BPS=16.73 vs Eq/Sh=16.87 (0.8%)",
+      "2025 SHARES: ind vs Eq/BPS: ind=1342.9M vs BPS-der=1353.9M (0.8%)"
     ],
     "sources": {
       "annual_indicators": "AKShare stock_financial_hk_analysis_indicator_em (年度指标)",
@@ -3244,9 +3082,35 @@
     },
     "status": "MISMATCH",
     "pdf_years": [
-      "2026"
+      "2025"
     ],
-    "checks_passed": 43,
-    "checks_total": 47
-  }
+    "checks_passed": 40,
+    "checks_total": 46
+  },
+  "footnotes": [
+    {
+      "year": "2020",
+      "notes": [
+        "+0.1亿 (其他收益-0.1亿)"
+      ]
+    },
+    {
+      "year": "2022",
+      "notes": [
+        "-0.4亿 (其他收益+0.4亿)"
+      ]
+    },
+    {
+      "year": "2024",
+      "notes": [
+        "+0.3亿 (其他收益-0.4亿)"
+      ]
+    },
+    {
+      "year": "2025",
+      "notes": [
+        "+1.1亿 (其他收益-1.6亿); 剔除减值及拨备 0.12亿 (非经常性)"
+      ]
+    }
+  ]
 }

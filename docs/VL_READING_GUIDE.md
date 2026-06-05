@@ -48,6 +48,7 @@ net    = Row2(每股现金流) - Row5(每股CAPEX) - Row4(每股股息)
 ```
 scripts/<code>/
 ├── business_commentary.py  # 自定义 Business + AI Commentary
+├── metric_adjustment.py    # 自定义 24 项指标计算 (EPS调整、减值口径等)
 ├── insert_revenue.py       # 营收结构数据
 ├── diag_outlook.py         # PDF outlook 提取诊断（按需）
 ```

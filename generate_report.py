@@ -485,6 +485,47 @@ var DATA = {DATA_JS};
   html+='</div>';
   html+='</div>';
 
+  // Item 15 Footnotes — EPS 调整明细 (Value Line standard: exclusion of nonrecurring items)
+  var footnotes = d.footnotes || [];
+  if (footnotes.length > 0) {{
+    // 解析: "+0.1亿 (其他收益-0.1亿)" → {{adj, src}}
+    var fnMap = {{}};
+    footnotes.forEach(function(f) {{
+      var items = (f.notes[0] || '').split('; ');
+      items.forEach(function(it) {{
+        var m = it.match(/(?:EPS调整:\s*)?([+-][\d.]+亿)\s*\((.+)\)/);
+        if (m) fnMap[f.year] = {{adj: m[1], src: m[2]}};
+      }});
+    }});
+    var fnYears = Object.keys(fnMap).sort();
+
+    html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:8.5px;line-height:1.35">';
+
+    // 表头行
+    html += '<tr style="border-bottom:1px solid #000"><td style="width:60px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px">15. Footnotes</td>';
+    fnYears.forEach(function(y) {{
+      html += '<td style="text-align:right;font-weight:700;padding:2px 4px">' + y + '</td>';
+    }});
+    html += '</tr>';
+
+    // Adj. EPS 行
+    html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px">Adj. EPS</td>';
+    fnYears.forEach(function(y) {{
+      html += '<td style="text-align:right;padding:2px 4px;font-weight:600">' + fnMap[y].adj + '</td>';
+    }});
+    html += '</tr>';
+
+    // 来源行
+    html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px">来源</td>';
+    fnYears.forEach(function(y) {{
+      html += '<td style="text-align:right;padding:2px 4px">' + fnMap[y].src + '</td>';
+    }});
+    html += '</tr>';
+
+    html += '</table></div>';
+  }}
+
   html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: '+priceCcy+' | 财报数据: '+(meta.rpt_ccy||'CNY')+' | {datetime.date.today().isoformat()}</div>';
   app.innerHTML=html;
 

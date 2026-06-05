@@ -270,9 +270,81 @@ class DataReader:
         self.conn.close()
 
 
+def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
+    """默认 VL 口径扣非净利润计算。返回 (adj_np, footnotes_list)
+
+    - A股: 直接读取 income 表 '*扣除非经常性损益后的净利润' (审计后 CAS 标准)
+    - 港股: 排除'其他收益' + '减值及拨备' (非经常性, 对齐 VL excluding nonrecurring items)
+    """
+    market = stock_cfg.get("market", "hk")
+    footnotes = []
+
+    if np_val is None:
+        return None, footnotes
+
+    if market == "cn":
+        # A股: 直接使用审计扣非净利润 (CAS 标准)
+        deducted = reader.financial_item("income", "*扣除非经常性损益后的净利润", rd)
+        if deducted is not None:
+            val_b = deducted / 1e8
+            diff_pct = abs(deducted - np_val) / abs(np_val) * 100 if np_val else 0
+            if diff_pct > 0.5:  # 差异 >0.5% 才记录
+                footnotes.append(
+                    f"A股扣非净利润 {val_b:.1f}亿 (CAS审计标准), "
+                    f"较归母净利润{np_val/1e8:.1f}亿调整{diff_pct:.1f}%"
+                )
+            return deducted, footnotes
+
+    # 港股: 排除其他收益 + 减值拨备 (均为非经常性, 对齐 VL)
+    other_gain = reader.financial_item("income", "其他收益", rd) or 0
+    impair = reader.financial_item("income", "减值及拨备", rd) or 0
+    nonrecur_adj = (other_gain + impair) * (1 - tax_rate)
+    adj_np = np_val - nonrecur_adj
+
+    # 仅记录实际影响 >500万元 的项目
+    parts = []
+    if abs(other_gain) > 5e6:  # 500万元起
+        effect = -nonrecur_adj  # 对经常性利润的净影响
+        parts.append(f"{effect/1e8:+.1f}亿 (其他收益{other_gain/1e8:+.1f}亿)")
+    if abs(impair) > 5e6:
+        parts.append(f"剔除减值及拨备 {abs(impair)/1e8:.2f}亿 (非经常性)")
+    if parts:
+        footnotes.append("; ".join(parts))
+
+    return adj_np, footnotes
+
+
+def _resolve_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
+    """尝试加载 per-stock metric_adjustment.py 脚本, 失败则回退到默认计算。
+    返回 (adj_np, footnotes_list)
+
+    脚本接口 scripts/<code>/metric_adjustment.py:
+        def adjust_metrics(reader, rd, np_val, tax_rate, stock_cfg) -> (adj_np, footnotes_list)
+        
+    可在此脚本中自定义 Value Line 24 项指标的任意计算逻辑 (EPS口径调整、减值阈值、折旧分摊等)。
+    """
+    code = reader.code
+    try:
+        script_path = os.path.join(os.path.dirname(__file__), "scripts", code, "metric_adjustment.py")
+        if os.path.exists(script_path):
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(f"ma_{code}", script_path)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            if hasattr(mod, "adjust_metrics"):
+                return mod.adjust_metrics(reader, rd, np_val, tax_rate, stock_cfg)
+    except Exception:
+        pass
+    # 回退到默认计算
+    return _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg)
+
+
 def build_metric_table(reader, years, market="hk"):
-    """构建24行指标表 — Value Line 标准公式 (A股/H股双轨)"""
+    """构建24行指标表 — Value Line 标准公式 (A股/H股双轨)
+    返回 (table, footnotes) — footnotes 为每股收益调整说明列表
+    """
     table = {}
+    all_footnotes = []
     total_shares = None
 
     for yr in years:
@@ -329,12 +401,12 @@ def build_metric_table(reader, years, market="hk"):
         # 经营溢利 (元)
         op_profit = reader.financial_item("income", "经营溢利", rd)
 
-        # ---- VL口径净利: 扣除非经常性损益 ----
+        # ---- VL口径净利: 按市场+行业脚本分层计算 ----
+        stock_cfg_full = config.STOCKS.get(reader.code, {})
         tax_rate = (_tax / 100) if _tax else 0.25
-        other_gain = reader.financial_item("income", "其他收益", rd) or 0
-        impair = reader.financial_item("income", "减值及拨备", rd) or 0
-        nonrecur_adj = (other_gain + impair) * (1 - tax_rate) if (other_gain < 0 or impair < 0) else 0
-        adj_np = np_val - nonrecur_adj if np_val else None
+        adj_np, yr_footnotes = _resolve_adj_np(reader, rd, np_val, tax_rate, stock_cfg_full)
+        if yr_footnotes:
+            all_footnotes.append({"year": yr, "notes": yr_footnotes})
 
         # ---- 1. 每股营收: Revenue / Shares ----
         row = {}
@@ -371,9 +443,8 @@ def build_metric_table(reader, years, market="hk"):
         # ---- 11. 总营收 (亿) ----
         row["OPERATE_INCOME"] = round(rev / 1e8, 1) if rev else None
 
-        # ---- 12. 营业利润率 = EBITDA/Revenue = (OperatingProfit + D&A) / Revenue ----
-        ebitda = (op_profit or 0) + dep
-        row["OP_MARGIN"] = round((ebitda / rev) * 100, 1) if rev and ebitda else None
+        # ---- 12. 营业利润率 = OperatingProfit / Revenue (VL 口径) ----
+        row["OP_MARGIN"] = round((op_profit / rev) * 100, 1) if rev and op_profit else None
 
         # ---- 13. 折旧摊销 (亿) ----
         row["DEPRECIATION"] = round(dep / 1e8, 1) if dep else None
@@ -446,7 +517,7 @@ def build_metric_table(reader, years, market="hk"):
 
     # 补算 PE_AVG / PE_RELATIVE / DIV_YIELD
     _compute_pe_metrics(table, reader, market)
-    return table
+    return table, all_footnotes
 
 
 def _compute_ttm_eps(reader, latest_yr):
@@ -1002,53 +1073,88 @@ def _load_per_stock_script(code):
 
 
 def _build_business_from_data(stock, metrics, rev_struct, years):
-    """纯数据自生成 BUSINESS 描述 (零 config 依赖)"""
+    """VL 风格 BUSINESS 描述 — 先讲清生意是什么，再附关键经营数据。"""
     name = stock.get("name", "该公司")
+
     if not years:
         return f"{name}业务数据暂缺"
 
     latest_yr = years[-1]
     ly = metrics.get(latest_yr, {})
-    prev_yr = years[-2] if len(years) >= 2 else None
-    py = metrics.get(prev_yr, {}) if prev_yr else {}
 
-    parts = []
-    
-    # 营收 + 增长率
-    rev = ly.get("OPERATE_INCOME")
-    rev_prev = py.get("OPERATE_INCOME")
-    if rev and rev_prev and rev_prev > 0:
-        growth = (rev / rev_prev - 1) * 100
-        direction = "增长" if growth >= 0 else "下降"
-        parts.append(f"{latest_yr}年营收{rev:.1f}亿元(同比{direction}{abs(growth):.1f}%)")
-    elif rev:
-        parts.append(f"{latest_yr}年营收{rev:.1f}亿元")
-    
-    # 净利润
-    np_val = ly.get("HOLDER_PROFIT")
-    if np_val:
-        parts.append(f"归母净利润{np_val:.1f}亿元")
-    
-    # ROE
-    roe = ly.get("ROE")
-    if roe:
-        parts.append(f"ROE {roe:.1f}%")
-    
-    # 地域
+    # 1. 有 business_desc → 以它为叙事主线，补充最新数据
+    desc = stock.get("business_desc", "")
+    if desc:
+        parts = []
+        rev = ly.get("OPERATE_INCOME")
+        roe = ly.get("ROE")
+        lt_debt = ly.get("LT_DEBT", 0) or 0
+        if rev:
+            parts.append(f"{latest_yr}年营收{rev:.1f}亿元")
+        if roe:
+            parts.append(f"ROE {roe:.1f}%")
+        if lt_debt == 0:
+            parts.append("零长期负债")
+        suffix = "；".join(parts) if parts else ""
+        return f"{desc} {suffix}。" if suffix else desc
+
+    # 2. 无 business_desc → 从营收结构数据推断业务全貌
+    seg = (rev_struct.get("by_segment", []) or rev_struct.get("by_product", [])
+           or rev_struct.get("by_ip", []))
     rg = rev_struct.get("by_region", [])
-    if rg:
-        rg_str = "、".join([f"{r['name']} {r['pct']}%" for r in rg[:3]])
-        if rg_str:
-            parts.append(f"地域：{rg_str}")
-    
-    # 业务拆分
-    seg = rev_struct.get("by_segment", [])
-    if seg:
-        seg_str = "、".join([f"{s['name']} {s['pct']}%" for s in seg[:3]])
-        if seg_str:
-            parts.append(f"业务：{seg_str}")
+    industry = stock.get("industry", "")
+    rev = ly.get("OPERATE_INCOME")
+    roe = ly.get("ROE")
+    npm = ly.get("NET_PROFIT_RATIO")
+    lt_debt = ly.get("LT_DEBT", 0) or 0
 
-    return "。".join(parts) + "。"
+    lines = [name]
+    if industry:
+        ind_label = {
+            "Consumer": "消费品", "Consumer Staples": "必需消费品",
+            "Technology": "科技", "Energy": "能源",
+            "Metals & Mining": "金属与矿业", "Automotive": "汽车",
+            "Media": "传媒", "Home Appliances": "家电",
+            "Pharmaceuticals": "医药", "Building Materials": "建材",
+            "Financial Services": "金融服务", "Insurance": "保险",
+            "Utilities": "公用事业", "Packaging": "包装",
+            "Healthcare": "医疗健康",
+        }.get(industry, industry)
+        lines.append(f"属于{ind_label}行业")
+
+    if seg:
+        seg_names = [f"{s['name']}（{s['pct']}%）" for s in seg[:3]]
+        lines.append("，主营" + "、".join(seg_names))
+
+    # 地域分布
+    if rg and len(rg) >= 2:
+        domestic = [r for r in rg if any(
+            kw in str(r.get('name', '')).lower()
+            for kw in ['中国', 'china', '内地', '香港']
+        )]
+        overseas = [r for r in rg if r not in domestic]
+        if domestic and overseas:
+            dom_pct = sum(r['pct'] for r in domestic)
+            ovs_pct = sum(r['pct'] for r in overseas)
+            lines.append(f"。国内市场占比{dom_pct:.0f}%")
+            if ovs_pct > 5:
+                top_ovs = sorted(overseas, key=lambda x: x['pct'], reverse=True)[:2]
+                ovs_names = "、".join([r['name'] for r in top_ovs])
+                lines.append(f"，海外市场{ovs_pct:.0f}%（{ovs_names}）")
+
+    # 经营数据
+    data_parts = []
+    if rev:
+        data_parts.append(f"{latest_yr}年营收{rev:.1f}亿元")
+    if npm:
+        data_parts.append(f"净利润率{npm:.1f}%")
+    if roe:
+        data_parts.append(f"ROE {roe:.1f}%")
+    if lt_debt == 0:
+        data_parts.append("零长期负债")
+
+    lines.append("。" + "；".join(data_parts) + "。")
+    return "".join(lines)
 
 
 def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
@@ -1090,7 +1196,8 @@ def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
     med_pe = sorted(pe_vals)[len(pe_vals) // 2] if pe_vals else None
 
     # ── 每股资金流向 (会计恒等式) ──
-    op_eps = round(per_oi * (op_margin / 100), 2) if per_oi and op_margin else None
+    tax_rate_val = (ly.get("TAX_EBT", 25) or 25) / 100
+    op_eps = round(per_oi * (op_margin / 100) * (1 - tax_rate_val), 2) if per_oi and op_margin else None
     nonop_eps = round(eps - op_eps, 2) if eps is not None and op_eps is not None else None
     net_ps = round(per_cf - per_capex - dps, 2) if per_cf is not None else None
     op_pct = round(op_eps / eps * 100) if eps and op_eps and eps != 0 else None
@@ -1472,7 +1579,7 @@ def build_report(code=None):
     num_yr = min(15, len(full_years)) if len(full_years) > 10 else len(full_years)
     years = full_years[-num_yr:]
 
-    metrics = build_metric_table(reader, years, market)
+    metrics, footnotes_data = build_metric_table(reader, years, market)
 
     # 补算 Header PE(TTM) / PB / 股息率 / 市值 + 汇率转换
     # price_ccy = 交易货币(HKD), rpt_ccy = 报表货币(CNY), 不一致时换算
@@ -1884,12 +1991,14 @@ def build_report(code=None):
         except Exception as e:
             print(f"  ⚠️ per-stock script error: {e}")
 
-    # Business: per-stock > PDF > generic
+    # Business: per-stock > PDF > config.business_desc > generic
     business = None
     if per_stock_result and per_stock_result.get("business"):
         business = per_stock_result["business"]
     elif mda_parsed and mda_parsed.get("business_summary"):
         business = mda_parsed["business_summary"]
+    elif stock.get("business_desc"):
+        business = stock.get("business_desc")
     else:
         business = _build_business_from_data(stock, metrics, revenue_structure, years)
 
@@ -1966,6 +2075,7 @@ def build_report(code=None):
         "position": position,
         "analyst": analyst,
         "validation": validation,
+        "footnotes": footnotes_data,
     }
 
     out_dir = os.path.dirname(os.path.abspath(__file__))
