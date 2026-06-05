@@ -386,8 +386,132 @@ def build_reading_report(data):
     return "\n".join(sections)
 
 
+def build_reading_html(md_text, data):
+    """将 Markdown 报告包装为独立 HTML，适合 GitHub Pages"""
+    meta = data["meta"]
+    name = meta["name"]
+    code = meta["code"]
+
+    # 简单的 markdown → html 转换（处理关键元素）
+    html_body = _md_to_html(md_text)
+
+    return f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{name} ({code}) — VL 阅读报告</title>
+<style>
+  :root {{
+    --bg: #fafbfc;
+    --text: #1a1a2e;
+    --muted: #6c757d;
+    --border: #e1e4e8;
+    --code-bg: #f6f8fa;
+    --link: #2563eb;
+  }}
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }}
+  .container {{ max-width: 800px; margin: 0 auto; padding: 32px 20px 80px; }}
+  h1 {{ font-size: 26px; font-weight: 700; margin: 24px 0 8px; letter-spacing: -0.5px; }}
+  h2 {{ font-size: 20px; font-weight: 600; margin: 40px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }}
+  h3 {{ font-size: 16px; font-weight: 600; margin: 24px 0 8px; }}
+  p, blockquote {{ margin: 8px 0; }}
+  blockquote {{ border-left: 3px solid #2563eb; padding: 8px 16px; color: var(--muted); background: #f0f4ff; border-radius: 0 6px 6px 0; }}
+  table {{ width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }}
+  th, td {{ padding: 6px 10px; border: 1px solid var(--border); text-align: left; }}
+  th {{ background: var(--code-bg); font-weight: 600; }}
+  tr:nth-child(even) {{ background: #fafbfc; }}
+  a {{ color: var(--link); text-decoration: none; }}
+  a:hover {{ text-decoration: underline; }}
+  hr {{ border: none; border-top: 1px solid var(--border); margin: 32px 0; }}
+  .subtitle {{ color: var(--muted); font-size: 14px; margin: 4px 0 16px; }}
+  .toc {{ font-size: 14px; color: var(--muted); margin: 12px 0; }}
+  .toc a {{ margin-right: 8px; }}
+  footer {{ text-align: center; margin-top: 48px; padding: 24px 0; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }}
+  @media (max-width: 640px) {{
+    .container {{ padding: 16px 12px 60px; }}
+    h1 {{ font-size: 22px; }}
+    table {{ font-size: 11px; }}
+    th, td {{ padding: 4px 6px; }}
+  }}
+</style>
+</head>
+<body>
+<div class="container">
+{html_body}
+  <footer>Value Line Research · 不构成投资建议</footer>
+</div>
+</body>
+</html>"""
+
+
+def _md_to_html(md_text):
+    """极简 Markdown → HTML 转换"""
+    import re
+    lines = md_text.split("\n")
+    out = []
+    in_table = False
+    i = 0
+
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+
+        # 表格
+        if stripped.startswith("|") and stripped.endswith("|"):
+            if not in_table:
+                out.append('<table>')
+                in_table = True
+            cells = [c.strip() for c in stripped[1:-1].split("|")]
+            # 跳过分隔行
+            if all(re.match(r'^[-:]+$', c) for c in cells):
+                i += 1
+                continue
+            tag = "th" if i + 1 < len(lines) and re.match(r'^[\|\s\-:]+$', lines[i + 1].strip()) else "td"
+            out.append('<tr>')
+            for c in cells:
+                out.append(f'<{tag}>{c}</{tag}>')
+            out.append('</tr>')
+        else:
+            if in_table:
+                out.append('</table>')
+                in_table = False
+
+            if stripped == "":
+                pass
+            elif stripped.startswith("# "):
+                out.append(f'<h1>{stripped[2:]}</h1>')
+            elif stripped.startswith("## "):
+                out.append(f'<h2>{stripped[2:]}</h2>')
+            elif stripped.startswith("### "):
+                out.append(f'<h3>{stripped[3:]}</h3>')
+            elif stripped.startswith("> "):
+                out.append(f'<blockquote>{stripped[2:]}</blockquote>')
+            elif stripped == "---":
+                out.append('<hr>')
+            elif stripped.startswith("**[Business]"):
+                out.append(f'<p class="toc">{stripped}</p>')
+            elif stripped.startswith("*"):
+                out.append(f'<p>{stripped}</p>')
+            elif stripped:
+                # 普通段落
+                out.append(f'<p>{stripped}</p>')
+
+        i += 1
+
+    if in_table:
+        out.append('</table>')
+
+    return "\n".join(out)
+
+
 def generate_one(code, data_path=None):
-    """为单只股票生成阅读报告"""
+    """为单只股票生成阅读报告（Markdown + HTML）"""
     if data_path is None:
         data_path = os.path.join(BASE_DIR, "report_data.json")
 
@@ -396,12 +520,19 @@ def generate_one(code, data_path=None):
 
     report = build_reading_report(data)
 
-    out_path = os.path.join(READING_DIR, f"{code}.md")
-    with open(out_path, "w", encoding="utf-8") as f:
+    # Markdown 版本 (GitHub 源渲染)
+    md_path = os.path.join(READING_DIR, f"{code}.md")
+    with open(md_path, "w", encoding="utf-8") as f:
         f.write(report)
 
-    print(f"[OK] reading report generated: {out_path}")
-    return out_path
+    # HTML 版本 (GitHub Pages)
+    html_content = build_reading_html(report, data)
+    html_path = os.path.join(READING_DIR, f"{code}.html")
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    print(f"[OK] reading reports: {md_path} + {html_path}")
+    return md_path
 
 
 def generate_all():
