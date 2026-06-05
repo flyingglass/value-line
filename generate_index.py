@@ -105,7 +105,7 @@ def build_index_html():
             cards_html += '        </div>\n'
             cards_html += '        <div class="card-links">\n'
             cards_html += f'          <a href="{rpt_file}" class="pill pill-blue">价值线</a>\n'
-            cards_html += f'          <a href="../reading/{code}.html" class="pill pill-green">阅读报告</a>\n'
+            cards_html += f'          <a href="reading/{code}.html" class="pill pill-green">阅读报告</a>\n'
             cards_html += '        </div>\n'
             cards_html += '      </div>\n'
 
