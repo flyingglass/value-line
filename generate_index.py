@@ -14,7 +14,7 @@ from config import STOCKS
 # 行业中文名
 INDUSTRY_CN = {
     "Consumer": "消费",
-    "Consumer Staples": "必需消费",
+    "Consumer Staples": "消费",
     "Technology": "科技",
     "Energy": "能源",
     "Metals & Mining": "金属与矿业",
@@ -34,11 +34,9 @@ INDUSTRY_CN = {
 MARKET_LABEL = {"hk": "港股", "cn": "A股", "us": "美股"}
 MARKET_CLASS = {"hk": "hk", "cn": "cn", "us": "us"}
 
-GITHUB_REPO = "https://github.com/flyingglass/value-line"
-
 # 行业展示顺序
 INDUSTRY_ORDER = [
-    "Consumer", "Consumer Staples",
+    "Consumer",
     "Technology",
     "Energy",
     "Metals & Mining",
@@ -54,10 +52,13 @@ INDUSTRY_ORDER = [
 
 
 def group_by_industry():
-    """按行业分组"""
+    """按行业分组，Consumer Staples 合并到 Consumer"""
     groups = {}
     for code, stock in STOCKS.items():
         ind = stock.get("industry", "Other")
+        # 合并必需消费 → 消费
+        if ind == "Consumer Staples":
+            ind = "Consumer"
         if ind not in groups:
             groups[ind] = []
         groups[ind].append((code, stock))
@@ -103,7 +104,7 @@ def build_index_html():
             cards_html += f'          <span class="badge badge-{mkt_class}">{mkt_label}</span>\n'
             cards_html += '        </div>\n'
             cards_html += '        <div class="card-links">\n'
-            cards_html += f'          <a href="{rpt_file}" class="pill pill-blue">VL 图表</a>\n'
+            cards_html += f'          <a href="{rpt_file}" class="pill pill-blue">价值线</a>\n'
             cards_html += f'          <a href="../reading/{code}.html" class="pill pill-green">阅读报告</a>\n'
             cards_html += '        </div>\n'
             cards_html += '      </div>\n'
