@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-06 14:30:52.377724"
+    "generated": "2026-06-06 14:32:36.540978"
   },
   "spot": {
     "price": 271.0,
@@ -1692,27 +1692,27 @@
   "valuation_line": [
     {
       "date": "2021",
-      "value": 83.25
+      "value": 111.0
     },
     {
       "date": "2022",
-      "value": 90.75
+      "value": 121.0
     },
     {
       "date": "2023",
-      "value": 139.8
+      "value": 186.4
     },
     {
       "date": "2024",
-      "value": 202.35
+      "value": 269.8
     },
     {
       "date": "2025",
-      "value": 253.35
+      "value": 337.8
     }
   ],
   "valuation_method": "cf",
-  "cf_multiplier": 15.0,
+  "cf_multiplier": 20.0,
   "pb_multiplier": 1.0,
   "balance_summary": {
     "total_assets": 307.93625,
