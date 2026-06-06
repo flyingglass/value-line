@@ -274,7 +274,7 @@ def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
     """默认 VL 口径扣非净利润计算。返回 (adj_np, footnotes_list)
 
     - A股: 直接读取 income 表 '*扣除非经常性损益后的净利润' (审计后 CAS 标准)
-    - 港股: 排除'其他收益' + '减值及拨备' (非经常性, 对齐 VL excluding nonrecurring items)
+    - 港股: 排除'其他收益' (FVTPL变动/汇兑/并购等非经常) + '其他收入' (政府补贴/授权费等非经营收入)
     """
     market = stock_cfg.get("market", "hk")
     footnotes = []
@@ -295,20 +295,21 @@ def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
                 )
             return deducted, footnotes
 
-    # 港股: 排除其他收益 + 减值拨备 (均为非经常性, 对齐 VL)
+    # 港股: 排除其他收益 + 其他收入 (非经常/非经营, 对齐 VL)
+    # 减值及拨备 (贸易应收款 ECL) 属经营性费用，不排除
     other_gain = reader.financial_item("income", "其他收益", rd) or 0
-    impair = reader.financial_item("income", "减值及拨备", rd) or 0
-    nonrecur_adj = (other_gain + impair) * (1 - tax_rate)
+    other_income = reader.financial_item("income", "其他收入", rd) or 0
+    nonrecur_adj = (other_gain + other_income) * (1 - tax_rate)
     adj_np = np_val - nonrecur_adj
 
     # 仅记录实际影响 >500万元 的项目
     parts = []
-    if abs(other_gain) > 5e6:  # 500万元起
-        effect = -nonrecur_adj  # 对经常性利润的净影响
-        parts.append(f"{effect/1e8:+.1f}亿 (其他收益{other_gain/1e8:+.1f}亿)")
-    if abs(impair) > 5e6:
-        parts.append(f"剔除减值及拨备 {abs(impair)/1e8:.2f}亿 (非经常性)")
+    if abs(other_gain) > 5e6:
+        parts.append(f"排除其他收益 {other_gain/1e8:+.1f}亿 (非经常)")
+    if abs(other_income) > 5e6:
+        parts.append(f"排除其他收入 {other_income/1e8:+.1f}亿 (非经营)")
     if parts:
+        parts.append(f"VL经常性净利润 {adj_np/1e8:.1f}亿")
         footnotes.append("; ".join(parts))
 
     return adj_np, footnotes

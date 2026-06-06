@@ -1,7 +1,7 @@
 """从年报PDF提取业务简介和员工人数"""
 import pdfplumber
 
-pdf_path = "C:/LY/Repo/llm/value-line/data/pdfs/09992/09992_2025_年报.pdf"
+pdf_path = "../../data/pdfs/09992/09992_2025_年报.pdf"
 pdf = pdfplumber.open(pdf_path)
 
 # Extract MD&A section first page (page 11 in PDF = index 10)

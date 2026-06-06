@@ -24,8 +24,10 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     )
 
     p1 = (f"2026年6月6日 — 分众传媒{latest_yr}年营收约{rev:.0f}亿元（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_c):.1f}%），"
-          f"归母净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
-          f"消费品牌客户占比持续提升，互联网客户投放趋于稳定。"
+          f"VL经常性净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
+          + (f"（报表归母29.5亿，加回数禾科技一次性减值21.5亿+权益法亏损3.8亿后，"
+             f"主业经常性利润≈52.4亿，数禾已于2026年1月清仓。）" if latest_yr == "2025" else "")
+          + f"消费品牌客户占比持续提升，互联网客户投放趋于稳定。"
           f"AI赋能——AI创作广告素材、智能排播系统提升运营效率。"
           f"成本端点位租金趋于稳定，毛利率维持高位。")
 
