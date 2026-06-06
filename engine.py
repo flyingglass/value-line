@@ -498,7 +498,7 @@ def build_metric_table(reader, years, market="hk"):
         # ---- 22. ROE = AdjNI / Total Equity (VL: for common + preferred stockholders) ----
         row["ROE"] = round((adj_np / eq) * 100, 1) if adj_np and eq else None
 
-        # ---- 23. 留存利润占比 = (AdjNetProfit - Dividends) / Common Equity ----
+        # ---- 23. 留存利润再投比 = (AdjNetProfit - Dividends) / Common Equity ----
         # VL: "net income less all dividends... divided by common shareholders' equity"
         if adj_np and com_eq and shares and com_eq > 0:
             div_total = (row["DPS"] or 0) * shares

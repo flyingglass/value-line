@@ -527,24 +527,38 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
     if valuation_method == "pb":
         if pb_multiplier is None:
             if skip_cf_confirm:
-                pb_multiplier = 1.0  # 自动化场景默认
+                # 复用 DB 中已确认的历史参数
+                existing = _read_valuation_meta(code)
+                pb_multiplier = existing["pb_multiplier"]
+                if pb_multiplier is None:
+                    print(f"\n{_red('='*60)}")
+                    print(_red(f"  REFUSED: {name} DB 中无PB估值记录，未经用户确认，拒绝使用默认值"))
+                    print(_red(f"  用法: python build.py {code} --pb N (如 --pb 0.8)"))
+                    print(_red(f"{'='*60}"))
+                    raise SystemExit(1)
             else:
                 print(f"\n{_red('='*60)}")
-                print(_red(f"  REFUSED: {name} 已配置为PB估值, 但未提供 --pb 参数"))
+                print(_red(f"  REFUSED: {name} 已配置为PB估值，但未提供 --pb 参数"))
                 print(_red(f"  用法: python build.py {code} --pb N (如 --pb 0.8)"))
-                print(_red(f"  或:   python build.py {code} --skip-cf-confirm (使用默认 1.0x)"))
                 print(_red(f"{'='*60}"))
                 raise SystemExit(1)
         method_label = f"PB={pb_multiplier}x"
     else:
         if cf_multiplier is None:
             if skip_cf_confirm:
-                cf_multiplier = 15.0  # 自动化场景默认
+                # 复用 DB 中已确认的历史参数
+                existing = _read_valuation_meta(code)
+                cf_multiplier = existing["cf_multiplier"]
+                if cf_multiplier is None:
+                    print(f"\n{_red('='*60)}")
+                    print(_red(f"  REFUSED: {name} DB 中无CF估值记录，未经用户确认，拒绝使用默认值"))
+                    print(_red(f"  用法: python build.py {code} --cf N (如 --cf 15.0)"))
+                    print(_red(f"{'='*60}"))
+                    raise SystemExit(1)
             else:
                 print(f"\n{_red('='*60)}")
                 print(_red(f"  REFUSED: {name} 未提供 --cf 参数"))
                 print(_red(f"  用法: python build.py {code} --cf N (如 --cf 15.0)"))
-                print(_red(f"  或:   python build.py {code} --skip-cf-confirm (使用默认 15.0x)"))
                 print(_red(f"{'='*60}"))
                 raise SystemExit(1)
         method_label = f"CF={cf_multiplier}x"
@@ -592,12 +606,30 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
         if cf_multiplier is None or cf_multiplier <= 0:
             raise SystemExit(_red("  REFUSED: CF倍数必须 > 0, 默认15.0"))
 
-    # Write valuation meta to DB
-    _write_valuation_meta(code, cf_multiplier or 15.0, pb_multiplier or 1.0, valuation_method)
-
     # ── 执行 ──
     print(f"\n{_bold(f'  >>> 开始生成 {name} ({code}), {method_label} <<<')}")
-    return build(code)
+    return build(code, cf_multiplier or 15.0, pb_multiplier or 1.0, valuation_method)
+    # 注: or 15.0 / or 1.0 为防御性兜底，正常流程到此必然有值
+
+
+def _read_valuation_meta(code):
+    """从 DB 读取已有估值参数, 不存在时返回 None 字典。"""
+    db = _db_path(code)
+    if not os.path.exists(db):
+        return {"cf_multiplier": None, "pb_multiplier": None, "valuation_method": None}
+    try:
+        conn = sqlite3.connect(db)
+        rows = conn.execute(
+            "SELECT key, value FROM meta WHERE key IN ('cf_multiplier','pb_multiplier','valuation_method')"
+        ).fetchall()
+        conn.close()
+        result = {k: None for k in ("cf_multiplier", "pb_multiplier", "valuation_method")}
+        for k, v in rows:
+            if k in result:
+                result[k] = float(v) if k in ("cf_multiplier", "pb_multiplier") else v
+        return result
+    except Exception:
+        return {"cf_multiplier": None, "pb_multiplier": None, "valuation_method": None}
 
 
 def _write_valuation_meta(code, cf_mult, pb_mult, method):
@@ -633,7 +665,7 @@ def _detect_year_range(code):
     return None
 
 
-def build(code):
+def build(code, cf_mult=15.0, pb_mult=1.0, val_method="cf"):
     """Run full 8-step pipeline for a single stock."""
     stock = config.STOCKS.get(code, {})
     name = stock.get("name", code)
@@ -651,6 +683,9 @@ def build(code):
     step_6_engine(code)                          # 6. 计算
     step_7_generate(code)                        # 7. HTML
     step_8_verify(code)                          # 8. 验证
+
+    # 所有步骤成功后, 写入估值参数到 DB (避免失败时覆盖已有值)
+    _write_valuation_meta(code, cf_mult, pb_mult, val_method)
 
     print(f"\n{_green(_bold(f'  {name} ({code}) Report Complete!'))}")
     print(f"  文件: {_report_path(code)}\n")

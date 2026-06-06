@@ -770,7 +770,7 @@ VL_METRICS = [
     # === 回报率指标 (21-24) ===
     (21, "总资本回报率", "Return on Total Cap'l",      "ROIC",                 "%",    "calculated"),
     (22, "股东权益回报率","Return on Shr. Equity",      "ROE",                  "%",    "indicators"),
-    (23, "留存利润占比", "Retained to Com Eq",         "RETAINED_RATIO",       "%",    "calculated"),
+    (23, "留存利润再投比", "Retained to Com Eq",         "RETAINED_RATIO",       "%",    "calculated"),
     (24, "股息支付率",   "All Div'ds to Net Prof",     "PAYOUT_RATIO",         "%",    "calculated"),
     # 单位: 元(per sh), 亿(aggregate), %(ratio), 百万股(shares)
     # * DILUTED_EPS优先, AKShare
