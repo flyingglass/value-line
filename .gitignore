@@ -4,3 +4,4 @@ data/pdfs
 weiyun_upload_pdfs.py
 report_data.json
 .vscode/
+build_*.txt
