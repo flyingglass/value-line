@@ -801,7 +801,8 @@ def build_semi_annual(reader, years, metrics):
             
             qtr["sales"].append({
                 "year": yr, "has_quarter": False,
-                "q1": round(h1_rev_b, 1), "q3": round(h2_rev_b, 1), "full": round(ann_rev_metric, 1)
+                "q1": round(h1_rev_b, 1), "q3": round(h2_rev_b, 1),
+                "full": round(ann_rev_metric, 1) if ann_rev_metric else None
             })
             if h1_eps and ann_eps_metric:
                 h1_eps_v = h1_eps

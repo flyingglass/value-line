@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-07 21:29:32.547666"
+    "generated": "2026-06-07 22:04:32.196316"
   },
   "spot": {
     "price": 8.99,
@@ -24,7 +24,7 @@
     "change_pct": -0.22198,
     "eps_ttm": 0.8,
     "eps_ttm_hkd": 0.92,
-    "median_pe": 16.8
+    "median_pe": 20.9
   },
   "kline": [
     {
@@ -3780,166 +3780,160 @@
   ],
   "data": {
     "2011": {
-      "PER_OI": 1.25,
-      "PER_NETCASH": 0.5,
-      "BASIC_EPS": 0.36,
+      "PER_OI": null,
+      "PER_NETCASH": null,
+      "BASIC_EPS": null,
       "DPS": 0.12,
       "CAPEX_PS": 0.07,
-      "BPS": 2.61,
+      "BPS": null,
       "TOTAL_SHARES": 2926.2,
-      "PE_AVG": 7.9,
+      "PE_AVG": null,
       "PE_RELATIVE": null,
-      "DIV_YIELD": 4.2,
-      "OPERATE_INCOME": 36.7,
-      "OP_MARGIN": 32.2,
+      "DIV_YIELD": null,
+      "OPERATE_INCOME": null,
+      "OP_MARGIN": null,
       "DEPRECIATION": 4.1,
-      "GROSS_MARGIN": 100.0,
-      "HOLDER_PROFIT": 10.5,
+      "GROSS_MARGIN": null,
+      "HOLDER_PROFIT": null,
       "TAX_EBT": 16.2,
-      "NET_PROFIT_RATIO": 28.5,
+      "NET_PROFIT_RATIO": null,
       "WORKING_CAPITAL": 44.5,
       "LT_DEBT": null,
       "TOTAL_EQUITY": 76.3,
       "ROIC": 15.5,
-      "ROE": 13.7,
-      "RETAINED_RATIO": 9.3,
-      "PAYOUT_RATIO": 33.5,
-      "AVG_PRICE": 3.52
+      "ROE": null,
+      "RETAINED_RATIO": null,
+      "PAYOUT_RATIO": null
     },
     "2012": {
-      "PER_OI": 1.39,
-      "PER_NETCASH": 0.5,
-      "BASIC_EPS": 0.39,
+      "PER_OI": null,
+      "PER_NETCASH": null,
+      "BASIC_EPS": null,
       "DPS": 0.133,
       "CAPEX_PS": 0.12,
-      "BPS": 2.88,
+      "BPS": null,
       "TOTAL_SHARES": 2926.2,
-      "PE_AVG": 6.8,
+      "PE_AVG": null,
       "PE_RELATIVE": null,
-      "DIV_YIELD": 5.0,
-      "OPERATE_INCOME": 40.6,
-      "OP_MARGIN": 30.0,
+      "DIV_YIELD": null,
+      "OPERATE_INCOME": null,
+      "OP_MARGIN": null,
       "DEPRECIATION": 3.3,
-      "GROSS_MARGIN": 100.0,
-      "HOLDER_PROFIT": 11.3,
+      "GROSS_MARGIN": null,
+      "HOLDER_PROFIT": null,
       "TAX_EBT": 10.9,
-      "NET_PROFIT_RATIO": 27.9,
+      "NET_PROFIT_RATIO": null,
       "WORKING_CAPITAL": 51.4,
       "LT_DEBT": null,
       "TOTAL_EQUITY": 84.3,
       "ROIC": 14.4,
-      "ROE": 13.4,
-      "RETAINED_RATIO": 9.0,
-      "PAYOUT_RATIO": 34.4,
-      "AVG_PRICE": 3.29
+      "ROE": null,
+      "RETAINED_RATIO": null,
+      "PAYOUT_RATIO": null
     },
     "2013": {
-      "PER_OI": 1.54,
-      "PER_NETCASH": 0.54,
-      "BASIC_EPS": 0.41,
+      "PER_OI": null,
+      "PER_NETCASH": null,
+      "BASIC_EPS": null,
       "DPS": 0.14,
       "CAPEX_PS": 0.33,
-      "BPS": 3.18,
+      "BPS": null,
       "TOTAL_SHARES": 2926.2,
-      "PE_AVG": 9.2,
-      "PE_RELATIVE": 0.84,
-      "DIV_YIELD": 3.7,
-      "OPERATE_INCOME": 45.1,
-      "OP_MARGIN": 27.4,
+      "PE_AVG": null,
+      "PE_RELATIVE": null,
+      "DIV_YIELD": null,
+      "OPERATE_INCOME": null,
+      "OP_MARGIN": null,
       "DEPRECIATION": 3.8,
-      "GROSS_MARGIN": 87.6,
-      "HOLDER_PROFIT": 12.1,
+      "GROSS_MARGIN": null,
+      "HOLDER_PROFIT": null,
       "TAX_EBT": 5.5,
-      "NET_PROFIT_RATIO": 26.7,
+      "NET_PROFIT_RATIO": null,
       "WORKING_CAPITAL": 52.2,
       "LT_DEBT": null,
       "TOTAL_EQUITY": 93.0,
       "ROIC": 13.3,
-      "ROE": 13.0,
-      "RETAINED_RATIO": 8.8,
-      "PAYOUT_RATIO": 34.0,
-      "AVG_PRICE": 4.8
+      "ROE": null,
+      "RETAINED_RATIO": null,
+      "PAYOUT_RATIO": null
     },
     "2014": {
-      "PER_OI": 1.82,
-      "PER_NETCASH": 0.72,
-      "BASIC_EPS": 0.56,
+      "PER_OI": null,
+      "PER_NETCASH": null,
+      "BASIC_EPS": null,
       "DPS": 0.133,
       "CAPEX_PS": 0.33,
-      "BPS": 3.61,
+      "BPS": null,
       "TOTAL_SHARES": 2926.2,
-      "PE_AVG": 9.1,
-      "PE_RELATIVE": 0.87,
-      "DIV_YIELD": 2.6,
-      "OPERATE_INCOME": 53.4,
-      "OP_MARGIN": 23.5,
+      "PE_AVG": null,
+      "PE_RELATIVE": null,
+      "DIV_YIELD": null,
+      "OPERATE_INCOME": null,
+      "OP_MARGIN": null,
       "DEPRECIATION": 4.5,
-      "GROSS_MARGIN": 84.8,
-      "HOLDER_PROFIT": 16.5,
+      "GROSS_MARGIN": null,
+      "HOLDER_PROFIT": null,
       "TAX_EBT": 11.2,
-      "NET_PROFIT_RATIO": 31.0,
+      "NET_PROFIT_RATIO": null,
       "WORKING_CAPITAL": 59.6,
       "LT_DEBT": null,
       "TOTAL_EQUITY": 105.8,
       "ROIC": 11.9,
-      "ROE": 15.6,
-      "RETAINED_RATIO": 12.2,
-      "PAYOUT_RATIO": 23.6,
-      "AVG_PRICE": 6.44
+      "ROE": null,
+      "RETAINED_RATIO": null,
+      "PAYOUT_RATIO": null
     },
     "2015": {
-      "PER_OI": 1.87,
-      "PER_NETCASH": 0.83,
-      "BASIC_EPS": 0.65,
+      "PER_OI": null,
+      "PER_NETCASH": null,
+      "BASIC_EPS": null,
       "DPS": 0.166,
       "CAPEX_PS": 0.34,
-      "BPS": 4.16,
+      "BPS": null,
       "TOTAL_SHARES": 2926.2,
-      "PE_AVG": 12.2,
-      "PE_RELATIVE": 1.22,
-      "DIV_YIELD": 2.1,
-      "OPERATE_INCOME": 54.7,
-      "OP_MARGIN": 31.9,
+      "PE_AVG": null,
+      "PE_RELATIVE": null,
+      "DIV_YIELD": null,
+      "OPERATE_INCOME": null,
+      "OP_MARGIN": null,
       "DEPRECIATION": 5.0,
-      "GROSS_MARGIN": 92.5,
-      "HOLDER_PROFIT": 19.1,
+      "GROSS_MARGIN": null,
+      "HOLDER_PROFIT": null,
       "TAX_EBT": 14.8,
-      "NET_PROFIT_RATIO": 35.0,
+      "NET_PROFIT_RATIO": null,
       "WORKING_CAPITAL": 66.9,
       "LT_DEBT": null,
       "TOTAL_EQUITY": 121.8,
       "ROIC": 14.3,
-      "ROE": 15.7,
-      "RETAINED_RATIO": 12.1,
-      "PAYOUT_RATIO": 25.4,
-      "AVG_PRICE": 9.5
+      "ROE": null,
+      "RETAINED_RATIO": null,
+      "PAYOUT_RATIO": null
     },
     "2016": {
-      "PER_OI": 2.13,
-      "PER_NETCASH": 0.99,
-      "BASIC_EPS": 0.83,
+      "PER_OI": null,
+      "PER_NETCASH": null,
+      "BASIC_EPS": null,
       "DPS": 0.222,
       "CAPEX_PS": 0.39,
-      "BPS": 4.84,
+      "BPS": null,
       "TOTAL_SHARES": 2926.2,
-      "PE_AVG": 14.1,
-      "PE_RELATIVE": 1.23,
-      "DIV_YIELD": 1.9,
-      "OPERATE_INCOME": 62.2,
-      "OP_MARGIN": 35.0,
+      "PE_AVG": null,
+      "PE_RELATIVE": null,
+      "DIV_YIELD": null,
+      "OPERATE_INCOME": null,
+      "OP_MARGIN": null,
       "DEPRECIATION": 4.8,
-      "GROSS_MARGIN": 91.6,
-      "HOLDER_PROFIT": 24.2,
+      "GROSS_MARGIN": null,
+      "HOLDER_PROFIT": null,
       "TAX_EBT": 13.4,
-      "NET_PROFIT_RATIO": 38.9,
+      "NET_PROFIT_RATIO": null,
       "WORKING_CAPITAL": 65.9,
       "LT_DEBT": null,
       "TOTAL_EQUITY": 141.6,
       "ROIC": 15.4,
-      "ROE": 17.1,
-      "RETAINED_RATIO": 12.9,
-      "PAYOUT_RATIO": 26.8,
-      "AVG_PRICE": 13.09
+      "ROE": null,
+      "RETAINED_RATIO": null,
+      "PAYOUT_RATIO": null
     },
     "2017": {
       "PER_OI": 2.3,
@@ -4190,19 +4184,19 @@
       "1yr": -0.6,
       "3yr": 19.0,
       "5yr": 9.8,
-      "10yr": 4.8
+      "10yr": null
     },
     "eps": {
       "1yr": 13.2,
       "3yr": 62.3,
       "5yr": -0.3,
-      "10yr": 3.2
+      "10yr": null
     },
     "cashflow": {
       "1yr": 13.2,
       "3yr": 62.3,
       "5yr": -0.3,
-      "10yr": 0.7
+      "10yr": null
     },
     "dividend": {
       "1yr": 15.5,
@@ -4223,43 +4217,43 @@
         "year": "2011",
         "has_quarter": false,
         "q1": 17.0,
-        "q3": 19.7,
-        "full": 36.7
+        "q3": 0,
+        "full": null
       },
       {
         "year": "2012",
         "has_quarter": false,
         "q1": 18.2,
-        "q3": 22.4,
-        "full": 40.6
+        "q3": 0,
+        "full": null
       },
       {
         "year": "2013",
         "has_quarter": false,
         "q1": 19.8,
-        "q3": 25.3,
-        "full": 45.1
+        "q3": 0,
+        "full": null
       },
       {
         "year": "2014",
         "has_quarter": false,
         "q1": 25.4,
-        "q3": 28.0,
-        "full": 53.4
+        "q3": 0,
+        "full": null
       },
       {
         "year": "2015",
         "has_quarter": false,
         "q1": 26.3,
-        "q3": 28.4,
-        "full": 54.7
+        "q3": 0,
+        "full": null
       },
       {
         "year": "2016",
         "has_quarter": false,
         "q1": 27.3,
-        "q3": 34.9,
-        "full": 62.2
+        "q3": 0,
+        "full": null
       },
       {
         "year": "2017",
@@ -4326,48 +4320,6 @@
       }
     ],
     "eps": [
-      {
-        "year": "2011",
-        "has_quarter": false,
-        "q1": 0.19,
-        "q3": 0.17,
-        "full": 0.36
-      },
-      {
-        "year": "2012",
-        "has_quarter": false,
-        "q1": 0.2,
-        "q3": 0.19,
-        "full": 0.39
-      },
-      {
-        "year": "2013",
-        "has_quarter": false,
-        "q1": 0.22,
-        "q3": 0.19,
-        "full": 0.41
-      },
-      {
-        "year": "2014",
-        "has_quarter": false,
-        "q1": 0.39,
-        "q3": 0.17,
-        "full": 0.56
-      },
-      {
-        "year": "2015",
-        "has_quarter": false,
-        "q1": 0.4,
-        "q3": 0.25,
-        "full": 0.65
-      },
-      {
-        "year": "2016",
-        "has_quarter": false,
-        "q1": 0.51,
-        "q3": 0.32,
-        "full": 0.83
-      },
       {
         "year": "2017",
         "has_quarter": false,
@@ -4541,30 +4493,6 @@
     ]
   },
   "valuation_line": [
-    {
-      "date": "2011",
-      "value": 5.75
-    },
-    {
-      "date": "2012",
-      "value": 5.75
-    },
-    {
-      "date": "2013",
-      "value": 6.21
-    },
-    {
-      "date": "2014",
-      "value": 8.28
-    },
-    {
-      "date": "2015",
-      "value": 9.54
-    },
-    {
-      "date": "2016",
-      "value": 11.38
-    },
     {
       "date": "2017",
       "value": 11.15
@@ -4748,19 +4676,19 @@
       "1yr": -0.6,
       "3yr": 19.0,
       "5yr": 9.8,
-      "10yr": 4.8
+      "10yr": null
     },
     "cashflow": {
       "1yr": 13.2,
       "3yr": 62.3,
       "5yr": null,
-      "10yr": -0.7
+      "10yr": null
     },
     "earnings": {
       "1yr": 13.2,
       "3yr": 62.3,
       "5yr": null,
-      "10yr": 1.7
+      "10yr": null
     },
     "dividends": {
       "1yr": 15.5,
@@ -4772,9 +4700,9 @@
       "1yr": 7.6,
       "3yr": 7.7,
       "5yr": 5.6,
-      "10yr": 7.0
+      "10yr": null
     },
-    "has_10yr": true
+    "has_10yr": false
   },
   "yearly_hl": [
     {
@@ -4886,10 +4814,10 @@
   "position": {
     "pe": {
       "current": 9.8,
-      "min": 6.8,
+      "min": 12.6,
       "max": 82.7,
-      "avg": 23.0,
-      "pct": 4.0
+      "avg": 32.8,
+      "pct": -4.0
     },
     "price": {
       "current": 9.0,
@@ -4900,10 +4828,10 @@
     },
     "pb": {
       "current": 0.95,
-      "min": 0.9,
+      "min": 1.2,
       "max": 3.0,
-      "avg": 1.8,
-      "pct": 2.0
+      "avg": 2.0,
+      "pct": -14.0
     }
   },
   "analyst": {
@@ -4912,7 +4840,7 @@
       "2026年6月6日 — TravelSky 2025年营收约88亿元（下降0.6%），扣非净利润约22亿元（增长13.1%）。订座处理量随航空出行复苏稳步增长，国际航线恢复为主要增量。核心AIT业务按每张机票收费，与民航客运量高度相关，属于「出行基础设施」型收租模式。",
       "每股收益¥0.77，高度依赖航空出行量。每股现金流¥0.77，资本支出¥0.29（IT系统维护+升级），现金分红¥0.28（支付率36%），净留存¥0.20/股。低资本支出+高现金流特征显著——垄断基础设施属性。",
       "营业利润率+29.4%、净利率+25.7%、ROE +9.2%。护城河极深：①中国民航GDS法定垄断——政策+技术双重壁垒，无竞争对手；②网络效应——航司接入越多，平台价值越大；③转换成本极高——航司/机场更换GDS系统不可行。风险：航空出行周期性波动、高铁分流短途航线、新兴技术（NDC直连）长期威胁。",
-      "当前PE约9.8倍，低于历史中位数17倍。PB约0.9倍，股息率约3.53%。TravelSky属于「优质垄断基础设施」——确定性高、增长平稳、分红稳定。适合追求稳健收益+适度成长的投资者，下行有限上行依赖航空出行超预期。",
+      "当前PE约9.8倍，低于历史中位数21倍。PB约0.9倍，股息率约3.53%。TravelSky属于「优质垄断基础设施」——确定性高、增长平稳、分红稳定。适合追求稳健收益+适度成长的投资者，下行有限上行依赖航空出行超预期。",
       "关注国际航线恢复进度（当前约疫情前80-90%）及民航客运量增速。当前营收增速-0.6%，若国际航线全面恢复+国内出行增长加速，业绩弹性可观。"
     ],
     "commentary_from_mda": false,
@@ -4930,60 +4858,12 @@
         "diff_pct": 0.91
       },
       {
-        "year": "2011",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=2.61 vs Eq/Sh=2.61",
-        "actual": 2.61,
-        "calc": 2.61,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2011",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2926.2M vs OI-der=2936.0M",
-        "indicator": 2926.2,
-        "oi_derived": 2936.0,
-        "diff_pct": 0.33
-      },
-      {
-        "year": "2011",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=2926.2M vs BPS-der=2923.4M",
-        "indicator": 2926.2,
-        "bps_derived": 2923.4,
-        "diff_pct": 0.1
-      },
-      {
         "year": "2012",
         "metric": "AKShare↔Cashflow Depreciation",
         "summary": "ak=3.3B vs pdf=3.3B",
         "ak": 3.3,
         "pdf": 3.31,
         "diff_pct": 0.42
-      },
-      {
-        "year": "2012",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=2.88 vs Eq/Sh=2.88",
-        "actual": 2.88,
-        "calc": 2.88,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2012",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2926.2M vs OI-der=2920.9M",
-        "indicator": 2926.2,
-        "oi_derived": 2920.9,
-        "diff_pct": 0.18
-      },
-      {
-        "year": "2012",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=2926.2M vs BPS-der=2927.1M",
-        "indicator": 2926.2,
-        "bps_derived": 2927.1,
-        "diff_pct": 0.03
       },
       {
         "year": "2013",
@@ -4994,60 +4874,12 @@
         "diff_pct": 0.17
       },
       {
-        "year": "2013",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=3.18 vs Eq/Sh=3.18",
-        "actual": 3.18,
-        "calc": 3.18,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2013",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2926.2M vs OI-der=2928.6M",
-        "indicator": 2926.2,
-        "oi_derived": 2928.6,
-        "diff_pct": 0.08
-      },
-      {
-        "year": "2013",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=2926.2M vs BPS-der=2924.5M",
-        "indicator": 2926.2,
-        "bps_derived": 2924.5,
-        "diff_pct": 0.06
-      },
-      {
         "year": "2014",
         "metric": "AKShare↔Cashflow Depreciation",
         "summary": "ak=4.5B vs pdf=4.5B",
         "ak": 4.5,
         "pdf": 4.47,
         "diff_pct": 0.68
-      },
-      {
-        "year": "2014",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=3.61 vs Eq/Sh=3.62",
-        "actual": 3.61,
-        "calc": 3.62,
-        "diff_pct": 0.28
-      },
-      {
-        "year": "2014",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2926.2M vs OI-der=2934.1M",
-        "indicator": 2926.2,
-        "oi_derived": 2934.1,
-        "diff_pct": 0.27
-      },
-      {
-        "year": "2014",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=2926.2M vs BPS-der=2930.7M",
-        "indicator": 2926.2,
-        "bps_derived": 2930.7,
-        "diff_pct": 0.15
       },
       {
         "year": "2015",
@@ -5058,60 +4890,12 @@
         "diff_pct": 0.73
       },
       {
-        "year": "2015",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=4.16 vs Eq/Sh=4.16",
-        "actual": 4.16,
-        "calc": 4.16,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2015",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2926.2M vs OI-der=2925.1M",
-        "indicator": 2926.2,
-        "oi_derived": 2925.1,
-        "diff_pct": 0.04
-      },
-      {
-        "year": "2015",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=2926.2M vs BPS-der=2927.9M",
-        "indicator": 2926.2,
-        "bps_derived": 2927.9,
-        "diff_pct": 0.06
-      },
-      {
         "year": "2016",
         "metric": "AKShare↔Cashflow Depreciation",
         "summary": "ak=4.8B vs pdf=4.8B",
         "ak": 4.8,
         "pdf": 4.79,
         "diff_pct": 0.14
-      },
-      {
-        "year": "2016",
-        "metric": "PerSh BPS consistency",
-        "summary": "BPS=4.84 vs Eq/Sh=4.84",
-        "actual": 4.84,
-        "calc": 4.84,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2016",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2926.2M vs OI-der=2920.2M",
-        "indicator": 2926.2,
-        "oi_derived": 2920.2,
-        "diff_pct": 0.21
-      },
-      {
-        "year": "2016",
-        "metric": "SHARES: ind vs Eq/BPS",
-        "summary": "ind=2926.2M vs BPS-der=2925.6M",
-        "indicator": 2926.2,
-        "bps_derived": 2925.6,
-        "diff_pct": 0.02
       },
       {
         "year": "2017",
@@ -5431,21 +5215,11 @@
     ],
     "warnings": [
       "2011 AKShare↔Cashflow Depreciation: ak=4.1B vs pdf=4.1B (0.9%)",
-      "2011 SHARES: ind vs Rev/PER_OI: ind=2926.2M vs OI-der=2936.0M (0.3%)",
-      "2011 SHARES: ind vs Eq/BPS: ind=2926.2M vs BPS-der=2923.4M (0.1%)",
       "2012 AKShare↔Cashflow Depreciation: ak=3.3B vs pdf=3.3B (0.4%)",
-      "2012 SHARES: ind vs Rev/PER_OI: ind=2926.2M vs OI-der=2920.9M (0.2%)",
       "2013 AKShare↔Cashflow Depreciation: ak=3.8B vs pdf=3.8B (0.2%)",
-      "2013 SHARES: ind vs Rev/PER_OI: ind=2926.2M vs OI-der=2928.6M (0.1%)",
-      "2013 SHARES: ind vs Eq/BPS: ind=2926.2M vs BPS-der=2924.5M (0.1%)",
       "2014 AKShare↔Cashflow Depreciation: ak=4.5B vs pdf=4.5B (0.7%)",
-      "2014 PerSh BPS consistency: BPS=3.61 vs Eq/Sh=3.62 (0.3%)",
-      "2014 SHARES: ind vs Rev/PER_OI: ind=2926.2M vs OI-der=2934.1M (0.3%)",
-      "2014 SHARES: ind vs Eq/BPS: ind=2926.2M vs BPS-der=2930.7M (0.2%)",
       "2015 AKShare↔Cashflow Depreciation: ak=5.0B vs pdf=5.0B (0.7%)",
-      "2015 SHARES: ind vs Eq/BPS: ind=2926.2M vs BPS-der=2927.9M (0.1%)",
       "2016 AKShare↔Cashflow Depreciation: ak=4.8B vs pdf=4.8B (0.1%)",
-      "2016 SHARES: ind vs Rev/PER_OI: ind=2926.2M vs OI-der=2920.2M (0.2%)",
       "2017 AKShare↔Cashflow Depreciation: ak=5.8B vs pdf=5.8B (0.5%)",
       "2017 PerSh BPS consistency: BPS=5.27 vs Eq/Sh=5.42 (2.8%)",
       "2017 SHARES: ind vs Eq/BPS: ind=2926.2M vs BPS-der=3009.5M (2.8%)",
@@ -5485,8 +5259,8 @@
     "pdf_years": [
       "2025"
     ],
-    "checks_passed": 62,
-    "checks_total": 63
+    "checks_passed": 44,
+    "checks_total": 45
   },
   "footnotes": [
     {
