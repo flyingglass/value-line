@@ -13,7 +13,7 @@
     "index_name": "CSI300",
     "index_name_cn": "沪深300",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-07 21:17:10.915494"
+    "generated": "2026-06-07 21:18:56.450881"
   },
   "spot": {
     "price": 5.39,
@@ -5223,59 +5223,59 @@
   "valuation_line": [
     {
       "date": "2013",
-      "value": -0.1
+      "value": -0.15
     },
     {
       "date": "2014",
-      "value": 0.1
+      "value": 0.15
     },
     {
       "date": "2015",
-      "value": 2.2
-    },
-    {
-      "date": "2016",
-      "value": 2.6
-    },
-    {
-      "date": "2017",
-      "value": 2.9
-    },
-    {
-      "date": "2018",
-      "value": 3.5
-    },
-    {
-      "date": "2019",
-      "value": 1.1
-    },
-    {
-      "date": "2020",
-      "value": 2.6
-    },
-    {
-      "date": "2021",
-      "value": 5.7
-    },
-    {
-      "date": "2022",
       "value": 3.3
     },
     {
+      "date": "2016",
+      "value": 3.9
+    },
+    {
+      "date": "2017",
+      "value": 4.35
+    },
+    {
+      "date": "2018",
+      "value": 5.25
+    },
+    {
+      "date": "2019",
+      "value": 1.65
+    },
+    {
+      "date": "2020",
+      "value": 3.9
+    },
+    {
+      "date": "2021",
+      "value": 8.55
+    },
+    {
+      "date": "2022",
+      "value": 4.95
+    },
+    {
       "date": "2023",
-      "value": 4.9
+      "value": 7.35
     },
     {
       "date": "2024",
-      "value": 4.9
+      "value": 7.35
     },
     {
       "date": "2025",
-      "value": 5.5
+      "value": 8.25
     }
   ],
   "valuation_method": "cf",
-  "cf_multiplier": 10.0,
+  "cf_multiplier": 15.0,
   "pb_multiplier": 1.0,
   "balance_summary": {
     "total_assets": 202.15,
