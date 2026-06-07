@@ -1,14 +1,15 @@
 # Value Line 报告生成流程（强制8步，无豁免）
 
-> **唯一入口：`python build.py <代码> --cf <倍数>` 或 `python build.py <代码> --pb <倍数>`**
+> **入口：`python build.py <代码> [--cf <倍数> | --pb <倍数>]`**
 
 ---
 
-## 0. 确认页（强制交互，估值倍数必填）
+## 0. 确认页（估值倍数自动解析或交互输入）
 
 ```
-python build.py <代码> --cf <倍数> [--years N]    # CF 估值
-python build.py <代码> --pb <倍数> [--years N]    # PB 估值
+python build.py <代码> --cf <倍数> [--years N]    # CF 估值（显式指定）
+python build.py <代码> --pb <倍数> [--years N]    # PB 估值（显式指定）
+python build.py <代码> [--years N]                 # 省略倍数: 自动从DB读或交互输入
 
 ============================================================
   Value Line 报告生成 — 确认页
@@ -19,16 +20,26 @@ python build.py <代码> --pb <倍数> [--years N]    # PB 估值
   行业:      [行业]
   报表币种:   [CNY/HKD]
   数据年份:   YYYY-YYYY (共X年, 默认N年。--years N 可调整)
-  估值方法:   CF=N.Nx 或 PB=N.Nx  ← --cf / --pb 必填
+  估值方法:   CF=N.Nx 或 PB=N.Nx
   历史参考:   历史PE均值 (YYYY-YYYY) = N.Nx  ← PB模式显示历史PB均值
 ============================================================
 ```
+
+### 估值倍数确定优先级
+
+```
+CLI --cf/--pb  >  DB meta 已确认值  >  用户交互输入（显示历史参考）
+```
+
+1. **CLI 显式指定** `--cf 15.0` → 直接使用
+2. **DB 已确认值**：上次成功构建时写入的 `cf_multiplier` / `pb_multiplier`，自动复用
+3. **交互输入**：首次构建时显示历史PE/PB均值参考，提示用户输入
 
 **拒绝条件：**
 
 | 条件 | 行为 |
 |------|------|
-| 缺 `--cf` 且缺 `--pb` | **阻断**: 提示必须指定估值倍数 |
+| 交互输入无效或取消 | **阻断**: 未提供有效估值倍数 |
 | `--cf` ≤ 0 或 `--pb` ≤ 0 | 阻断 |
 | 代码不在 config.STOCKS | 阻断 |
 | 市场不是 hk/cn | 阻断 |
@@ -43,7 +54,7 @@ python build.py <代码> --pb <倍数> [--years N]    # PB 估值
 | CF | `--cf N` | CF倍数 × 每股现金流 | 消费/科技/成长股 |
 | PB | `--pb N` | PB倍数 × 每股净资产 | 银行/保险/周期股/资产型 |
 
-> **优先级**: CLI `--method` > CLI `--pb` > `config.STOCKS[code].valuation_method` > 默认 `"cf"`
+> **方法优先级**: CLI `--method` > CLI `--pb` > `config.STOCKS[code].valuation_method` > 默认 `"cf"`
 >
 > 在 config.py 中设置 `"valuation_method": "pb"` 可让该股默认使用 PB 模式。
 
@@ -69,14 +80,13 @@ python build.py <代码> --pb <倍数> [--years N]    # PB 估值
 | 参数 | 必填 | 说明 |
 |------|:--:|------|
 | `<代码>` | ✅ | 股票代码，如 09992 00700 01114 |
-| `--cf N` | ✅* | CF 倍数 (CF 模式必填) |
-| `--pb N` | ✅* | PB 倍数 (PB 模式必填) |
+| `--cf N` | — | CF 倍数（未指定时按优先级解析） |
+| `--pb N` | — | PB 倍数（未指定时按优先级解析） |
 | `--method cf\|pb` | — | 显式指定估值方法 (覆盖config) |
 | `--years N` | — | 使用最近 N 年 (默认 ≤15) |
-| `--skip-cf-confirm` | — | 自动化场景使用默认值 (CF=15, PB=1) |
 | `--force` | ❌ | **已禁用** |
 
-> \* CF/PB 模式二选一，`--skip-cf-confirm` 允许跳过（CF 默认 15.0x, PB 默认 1.0x）
+> 估值倍数首次需用户确认；成功后写入 DB，下次自动复用。
 
 ---
 

@@ -14,6 +14,22 @@ def db_path(code):
     return os.path.join(BASE, "data", f"{code}.db")
 
 
+def _get_fx(date_str):
+    """读取 HKD/CNY 汇率 (返回 1 HKD = ? CNY)，失败返回 None"""
+    fx_db = os.path.join(BASE, "data", "fx_rates.db")
+    if not os.path.exists(fx_db):
+        return None
+    try:
+        conn = sqlite3.connect(fx_db)
+        row = conn.execute("SELECT hkd_cny FROM daily_rates WHERE date=?", (date_str,)).fetchone()
+        if not row:
+            row = conn.execute("SELECT hkd_cny FROM daily_rates WHERE date<=? ORDER BY date DESC LIMIT 1", (date_str,)).fetchone()
+        conn.close()
+        return row[0] / 100.0 if row else None
+    except Exception:
+        return None
+
+
 def _get_hist_valuation_ref(code, method):
     """從 DB 讀取歷史 PE/PB 均值。返回 (label, avg_val, year_range) 或 None。"""
     db = db_path(code)
@@ -30,21 +46,44 @@ def _get_hist_valuation_ref(code, method):
         pe_avg_rows = conn.execute(
             "SELECT report_date, amount FROM indicators WHERE item_name='PE_AVG' AND report_date LIKE '%-12-31'"
         ).fetchall()
+        # 前复权日线 → 日线按 YYYY-MM 分组 → 月均价 = 每月所有交易日收盘价的均值
         kl_rows = conn.execute(
-            "SELECT date, close FROM kline WHERE date LIKE '%-12-%' ORDER BY date"
+            "SELECT date, close FROM kline WHERE adjust='qfq' ORDER BY date"
         ).fetchall()
 
-        yr_price = {}
+        from collections import defaultdict
+        monthly_closes = defaultdict(list)
         for d, c in kl_rows:
-            yr_price[d[:4]] = c
+            monthly_closes[d[:7]].append(c)
+        monthly_avg = {m: sum(v) / len(v) for m, v in monthly_closes.items()}
+
+        yr_all_closes = defaultdict(list)
+        for m, c in monthly_avg.items():
+            yr_all_closes[m[:4]].append(c)
+        yr_avg_price = {y: sum(v) / len(v) for y, v in yr_all_closes.items() if v}
+
         yr_bps = {d[:4]: v for d, v in bps_rows if v and v > 0}
         yr_eps = {d[:4]: v for d, v in eps_rows if v and v > 0}
         yr_pe_avg = {d[:4]: v for d, v in pe_avg_rows if v and v > 0}
 
-        years = sorted(set(yr_bps) & set(yr_eps) & set(yr_price))
+        # 共同年份: 有 BPS + EPS + 任何日线
+        years = sorted(set(yr_bps) & set(yr_eps) & set(yr_avg_price))
+
+        # 判断是否需要汇率换算: 港股 + CNY财报 = 股价(HKD)需要折算为CNY
+        stock = config.STOCKS.get(code, {})
+        market = stock.get("market", "")
+        currency = stock.get("currency", "CNY")
+        need_fx = (market == "hk" and currency == "CNY")
 
         if method == "pb" and years:
-            pbs = [yr_price[y] / yr_bps[y] for y in years if yr_bps[y] > 0]
+            if need_fx:
+                pbs = []
+                for y in years:
+                    fx = _get_fx(f"{y}-12-31")
+                    if fx and fx > 0 and yr_bps[y] > 0:
+                        pbs.append(yr_avg_price[y] * fx / yr_bps[y])
+            else:
+                pbs = [yr_avg_price[y] / yr_bps[y] for y in years if yr_bps[y] > 0]
             if pbs:
                 avg = sum(pbs) / len(pbs)
                 rng = f"{years[0]}-{years[-1]}"
@@ -60,7 +99,14 @@ def _get_hist_valuation_ref(code, method):
                 conn.close()
                 return (f"歷史PE均值(PE_AVG)", round(avg, 1), rng)
             else:
-                pes = [yr_price[y] / yr_eps[y] for y in years if yr_eps[y] > 0]
+                if need_fx:
+                    pes = []
+                    for y in years:
+                        fx = _get_fx(f"{y}-12-31")
+                        if fx and fx > 0 and yr_eps[y] > 0:
+                            pes.append(yr_avg_price[y] * fx / yr_eps[y])
+                else:
+                    pes = [yr_avg_price[y] / yr_eps[y] for y in years if yr_eps[y] > 0]
                 if pes:
                     avg = sum(pes) / len(pes)
                     rng = f"{years[0]}-{years[-1]}"

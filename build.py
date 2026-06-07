@@ -5,6 +5,7 @@ Value Line 报告生成流水线 — 强制8步，一步不可少。
 
 用法:
     python build.py 09992 --cf 15.0           # CF估值 (消费/科技/成长股)
+    python build.py 09992                      # 省略 --cf: 从DB读或交互输入
     python build.py 01114 --pb 0.8            # PB估值 (银行/保险/资产型)
     python build.py 00700 --method cf --cf 10.0
     python build.py 02328 --method pb --pb 1.0
@@ -12,11 +13,7 @@ Value Line 报告生成流水线 — 强制8步，一步不可少。
 估值方法:
     cf: CF倍数 × 每股现金流 (适合消费/科技/成长股)
     pb: PB倍数 × 每股净资产 (适合银行/保险/周期股/资产型标的)
-    --cf / --pb 为必填参数，不指定即阻断。
-    --skip-cf-confirm 仅限自动化场景 (CF默认15.0x, PB默认1.0x).
-    优先级: CLI --method > CLI --pb > config.STOCKS[code].valuation_method > 默认 "cf"
-
-确认页自动显示历史PE/PB均值作为估值参考。
+    估值倍数: CLI --cf/--pb > DB 已确认值 > 交互输入 (显示历史PE/PB均值参考)
 
 每一步有前置检查，不满足立即终止。
 """
@@ -90,6 +87,22 @@ def _report_path(code):
 # Step runners
 # ────────────────────────────────────────────────
 
+def _get_fx(date_str):
+    """读取 HKD/CNY 汇率 (返回 1 HKD = ? CNY)，失败返回 None"""
+    fx_db = os.path.join(BASE, "data", "fx_rates.db")
+    if not os.path.exists(fx_db):
+        return None
+    try:
+        conn = sqlite3.connect(fx_db)
+        row = conn.execute("SELECT hkd_cny FROM daily_rates WHERE date=?", (date_str,)).fetchone()
+        if not row:
+            row = conn.execute("SELECT hkd_cny FROM daily_rates WHERE date<=? ORDER BY date DESC LIMIT 1", (date_str,)).fetchone()
+        conn.close()
+        return row[0] / 100.0 if row else None
+    except Exception:
+        return None
+
+
 def _get_hist_valuation_ref(code, method):
     """从 DB 读取历史 PE/PB 均值，作为估值参考。
     返回 (label, avg_val) 或 None。
@@ -109,23 +122,44 @@ def _get_hist_valuation_ref(code, method):
         pe_avg_rows = conn.execute(
             "SELECT report_date, amount FROM indicators WHERE item_name='PE_AVG' AND report_date LIKE '%-12-31'"
         ).fetchall()
+        # 前复权日线 → 日线按 YYYY-MM 分组 → 月均价 = 每月所有交易日收盘价的均值
         kl_rows = conn.execute(
-            "SELECT date, close FROM kline WHERE date LIKE '%-12-%' ORDER BY date"
+            "SELECT date, close FROM kline WHERE adjust='qfq' ORDER BY date"
         ).fetchall()
 
-        # 年末收盘价: 取每年12月最后一天
-        yr_price = {}
+        from collections import defaultdict
+        monthly_closes = defaultdict(list)
         for d, c in kl_rows:
-            yr_price[d[:4]] = c
+            monthly_closes[d[:7]].append(c)
+        monthly_avg = {m: sum(v) / len(v) for m, v in monthly_closes.items()}
+
+        yr_all_closes = defaultdict(list)
+        for m, c in monthly_avg.items():
+            yr_all_closes[m[:4]].append(c)
+        yr_avg_price = {y: sum(v) / len(v) for y, v in yr_all_closes.items() if v}
+
         yr_bps = {d[:4]: v for d, v in bps_rows if v and v > 0}
         yr_eps = {d[:4]: v for d, v in eps_rows if v and v > 0}
         yr_pe_avg = {d[:4]: v for d, v in pe_avg_rows if v and v > 0}
 
-        # 取共同年份
-        years = sorted(set(yr_bps) & set(yr_eps) & set(yr_price))
+        # 共同年份: 有 BPS + EPS + 任何日线
+        years = sorted(set(yr_bps) & set(yr_eps) & set(yr_avg_price))
+
+        # 判断是否需要汇率换算: 港股 + CNY财报 = 股价(HKD)需要折算为CNY
+        stock = config.STOCKS.get(code, {})
+        market = stock.get("market", "")
+        currency = stock.get("currency", "CNY")
+        need_fx = (market == "hk" and currency == "CNY")
 
         if method == "pb" and years:
-            pbs = [yr_price[y] / yr_bps[y] for y in years if yr_bps[y] > 0]
+            if need_fx:
+                pbs = []
+                for y in years:
+                    fx = _get_fx(f"{y}-12-31")
+                    if fx and fx > 0 and yr_bps[y] > 0:
+                        pbs.append(yr_avg_price[y] * fx / yr_bps[y])
+            else:
+                pbs = [yr_avg_price[y] / yr_bps[y] for y in years if yr_bps[y] > 0]
             if pbs:
                 avg = sum(pbs) / len(pbs)
                 rng = f"{years[0]}-{years[-1]}"
@@ -133,7 +167,7 @@ def _get_hist_valuation_ref(code, method):
                 return (f"历史PB均值 ({rng})", round(avg, 2))
 
         if method == "cf" and years:
-            # 优先 PE_AVG, 否则用 年末价/EPS
+            # 优先 PE_AVG, 否则用 年均价/EPS
             if len(yr_pe_avg) >= 3:
                 pes = list(yr_pe_avg.values())
                 avg = sum(pes) / len(pes)
@@ -141,7 +175,14 @@ def _get_hist_valuation_ref(code, method):
                 conn.close()
                 return (f"历史PE均值 ({rng})" if rng else "历史PE均值", round(avg, 1))
             else:
-                pes = [yr_price[y] / yr_eps[y] for y in years if yr_eps[y] > 0]
+                if need_fx:
+                    pes = []
+                    for y in years:
+                        fx = _get_fx(f"{y}-12-31")
+                        if fx and fx > 0 and yr_eps[y] > 0:
+                            pes.append(yr_avg_price[y] * fx / yr_eps[y])
+                else:
+                    pes = [yr_avg_price[y] / yr_eps[y] for y in years if yr_eps[y] > 0]
                 if pes:
                     avg = sum(pes) / len(pes)
                     rng = f"{years[0]}-{years[-1]}"
@@ -498,7 +539,7 @@ def step_8_verify(code):
 # ────────────────────────────────────────────────
 
 def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
-                      valuation_method=None, num_years=15, skip_cf_confirm=False):
+                      valuation_method=None, num_years=15):
     """
     强制确认后才能启动流水线。
     估值方法:
@@ -506,6 +547,8 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
     - pb: PB倍数 × 每股净资产 (适合银行/保险/周期股)
     valuation_method=None 时从 config.STOCKS[code].valuation_method 读取, 默认 "cf".
     --pb 参数 > 0 时自动切换为 "pb" 模式.
+
+    估值倍数确定优先级: CLI --cf/--pb > DB meta > 用户交互输入
     """
     stock = config.STOCKS.get(code)
 
@@ -527,44 +570,44 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
         else:
             valuation_method = "cf"
 
-    # ── 估值倍数校验: 非自动化场景下, 未显式指定即阻断 ──
+    # ── 估值倍数确定: CLI → DB → 用户输入 ──
     if valuation_method == "pb":
         if pb_multiplier is None:
-            if skip_cf_confirm:
-                # 复用 DB 中已确认的历史参数
-                existing = _read_valuation_meta(code)
-                pb_multiplier = existing["pb_multiplier"]
-                if pb_multiplier is None:
+            existing = _read_valuation_meta(code)
+            pb_multiplier = existing["pb_multiplier"]
+            if pb_multiplier is not None:
+                print(f"\n  [DB] 复用已确认估值: PB={pb_multiplier}x")
+            else:
+                hist_ref = _get_hist_valuation_ref(code, "pb")
+                if hist_ref:
+                    print(f"\n  历史PB参考: {hist_ref[0]} = {hist_ref[1]}x")
+                try:
+                    inp = input(f"  请输入 {name} 的PB倍数 (如 0.8): ").strip()
+                    pb_multiplier = float(inp)
+                except (ValueError, EOFError, KeyboardInterrupt):
                     print(f"\n{_red('='*60)}")
-                    print(_red(f"  REFUSED: {name} DB 中无PB估值记录，未经用户确认，拒绝使用默认值"))
-                    print(_red(f"  用法: python build.py {code} --pb N (如 --pb 0.8)"))
+                    print(_red(f"  REFUSED: 未提供有效PB倍数"))
                     print(_red(f"{'='*60}"))
                     raise SystemExit(1)
-            else:
-                print(f"\n{_red('='*60)}")
-                print(_red(f"  REFUSED: {name} 已配置为PB估值，但未提供 --pb 参数"))
-                print(_red(f"  用法: python build.py {code} --pb N (如 --pb 0.8)"))
-                print(_red(f"{'='*60}"))
-                raise SystemExit(1)
         method_label = f"PB={pb_multiplier}x"
     else:
         if cf_multiplier is None:
-            if skip_cf_confirm:
-                # 复用 DB 中已确认的历史参数
-                existing = _read_valuation_meta(code)
-                cf_multiplier = existing["cf_multiplier"]
-                if cf_multiplier is None:
+            existing = _read_valuation_meta(code)
+            cf_multiplier = existing["cf_multiplier"]
+            if cf_multiplier is not None:
+                print(f"\n  [DB] 复用已确认估值: CF={cf_multiplier}x")
+            else:
+                hist_ref = _get_hist_valuation_ref(code, "cf")
+                if hist_ref:
+                    print(f"\n  历史PE参考: {hist_ref[0]} = {hist_ref[1]}x")
+                try:
+                    inp = input(f"  请输入 {name} 的CF倍数 (如 15.0): ").strip()
+                    cf_multiplier = float(inp)
+                except (ValueError, EOFError, KeyboardInterrupt):
                     print(f"\n{_red('='*60)}")
-                    print(_red(f"  REFUSED: {name} DB 中无CF估值记录，未经用户确认，拒绝使用默认值"))
-                    print(_red(f"  用法: python build.py {code} --cf N (如 --cf 15.0)"))
+                    print(_red(f"  REFUSED: 未提供有效CF倍数"))
                     print(_red(f"{'='*60}"))
                     raise SystemExit(1)
-            else:
-                print(f"\n{_red('='*60)}")
-                print(_red(f"  REFUSED: {name} 未提供 --cf 参数"))
-                print(_red(f"  用法: python build.py {code} --cf N (如 --cf 15.0)"))
-                print(_red(f"{'='*60}"))
-                raise SystemExit(1)
         method_label = f"CF={cf_multiplier}x"
 
     # 探测可用数据年份
@@ -714,8 +757,6 @@ if __name__ == "__main__":
                         help="PB倍数 (PB估值模式, 默认1.0, 设置后自动切换为PB模式)")
     parser.add_argument("--method", choices=["cf", "pb"], default=None,
                         help="估值方法 (cf/PB, 默认从config读取或自动推断)")
-    parser.add_argument("--skip-cf-confirm", action="store_true",
-                        help="跳过估值倍数提示(仅用于重生成/自动化)")
     parser.add_argument("--years", type=int, default=15,
                         help="使用最近N年数据 (默认15, 不超过可用年份)")
     parser.add_argument("--publish", action="store_true",
@@ -740,8 +781,7 @@ if __name__ == "__main__":
                               cf_multiplier=args.cf,
                               pb_multiplier=args.pb,
                               valuation_method=args.method,
-                              num_years=actual_years,
-                              skip_cf_confirm=args.skip_cf_confirm)
+                              num_years=actual_years)
         except SystemExit as e:
             print(f"\n{_red(_bold(f'  BUILD FAILED: {code}'))}")
             if str(e):

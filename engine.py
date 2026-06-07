@@ -590,20 +590,24 @@ def _median_pe_iqr(pe_values, years=10):
 
 
 def _compute_pe_metrics(table, reader, market="hk"):
-    """利用月K线计算各年度平均PE和相对PE"""
-    # 获取月线收盘价
+    """利用日K线聚合为月线，计算各年度月均价PE和相对PE (Value Line: Avg Ann'l P/E)"""
+    from collections import defaultdict
+    # 获取日线 → 日线按 YYYY-MM 分组 → 月均价 = 每月所有交易日收盘价的均值
     kline_rows = reader.conn.execute(
         "SELECT date, close FROM kline WHERE adjust='qfq' ORDER BY date"
     ).fetchall()
     if not kline_rows:
         return
 
-    # 按年聚合
-    from collections import defaultdict
-    yearly_closes = defaultdict(list)
+    monthly_closes = defaultdict(list)
     for d, c in kline_rows:
-        yr = d[:4]
-        yearly_closes[yr].append(c)
+        monthly_closes[d[:7]].append(c)
+    monthly_avg = {m: sum(v) / len(v) for m, v in monthly_closes.items()}
+
+    # 月均价按年聚合: 年均价 = 12个月均价的均值
+    yearly_closes = defaultdict(list)
+    for m, c in monthly_avg.items():
+        yearly_closes[m[:4]].append(c)
 
     # 计算每年均价和PE (汇率调整: avg_price HKD → CNY)
     price_ccy = config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
@@ -615,15 +619,16 @@ def _compute_pe_metrics(table, reader, market="hk"):
         avg_price = sum(closes) / len(closes)  # 交易货币(HKD)
         row["AVG_PRICE"] = round(avg_price, 2)
         # 汇率换算: avg_price(HKD) → CNY
-        fx_yr = None
         if need_fx:
             fx_yr = _get_fx_rate(f"{yr}-12-31")
-        fx = (fx_yr or 1.0) if fx_yr and fx_yr > 0 else 1.0
-        avg_price_cny = avg_price * fx   # HKD × fx(HKD→CNY) = CNY
+            if fx_yr is None or fx_yr <= 0:
+                continue  # 无汇率, 无法计算 PE/DIV_YIELD — 跳过该年
+        else:
+            fx_yr = 1.0
+        avg_price_cny = avg_price * fx_yr   # HKD × fx(HKD→CNY) = CNY
         eps = row["BASIC_EPS"]
         if eps and eps > 0:
             row["PE_AVG"] = round(avg_price_cny / eps, 1)
-            row["PE_AVG_HKD"] = round(avg_price / eps, 1)  # 原始混合值
         # 平均股息率 = DPS(CNY) / 年均价(CNY)
         dps = row.get("DPS")
         if dps is not None and avg_price_cny > 0:
@@ -637,6 +642,20 @@ def _compute_pe_metrics(table, reader, market="hk"):
         mkt_pe = index_pe.get(yr)
         if pe_avg and mkt_pe and mkt_pe > 0:
             row["PE_RELATIVE"] = round(pe_avg / mkt_pe, 2)
+
+    # 写回 PE_AVG / DIV_YIELD 到 indicators 表 (供 list_refs / build 确认页读取)
+    for yr, row in table.items():
+        rd = f"{yr}-12-31"
+        for item in ("PE_AVG", "DIV_YIELD"):
+            val = row.get(item)
+            if val is not None:
+                try:
+                    reader.conn.execute(
+                        "INSERT OR REPLACE INTO indicators VALUES (?,?,?)",
+                        (rd, item, float(val)))
+                except Exception:
+                    pass
+    reader.conn.commit()
 
 
 def _detect_freq(reader, yr):
@@ -920,7 +939,7 @@ def _detect_unit(raw_values):
         return "", 1
 
 
-def _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate=None):
+def _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate=None, need_fx=False):
     """CAPITAL STRUCTURE — 资本结构明细 (参照 Timberland Co. Value Line 标准)
     覆盖: Total Debt, Due in 5 Yrs, LT Debt, Total Int, Coverage,
           % of Capital, Pension Assets, Pfd Stock, Common Stock, Market Cap
@@ -1013,21 +1032,26 @@ def _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate=None):
 
     # Market Cap (价格(交易货币) × 股数 → 换算为报表货币 CNY)
     price = spot.get("price", 0) if spot else 0
-    # 汇率换算: price(HKD) → CNY. 1 HKD = fx CNY, 所以 price_cny = price * fx
-    fx_mc = fx_rate if fx_rate and fx_rate > 0 and fx_rate != 1.0 else 1.0
-    price_cny = price * fx_mc
-    mkt_cap_raw = price_cny * result["common_shares_raw"] if result["common_shares_raw"] else 0
-    result["mkt_cap"] = round(mkt_cap_raw / divisor, 1) if divisor else 0
-    # Market cap label
-    mkt_cap_b = result["mkt_cap"]  # 亿
-    if mkt_cap_b > 10000:
-        result["cap_label"] = "Mega Cap"
-    elif mkt_cap_b > 1000:
-        result["cap_label"] = "Large Cap"
-    elif mkt_cap_b > 100:
-        result["cap_label"] = "Mid Cap"
+    if need_fx and (fx_rate is None or fx_rate <= 0):
+        # 无汇率 — 拒绝计算市值 (无法将 HKD 价格转为 CNY)
+        result["mkt_cap"] = "-"
+        result["cap_label"] = "-"
     else:
-        result["cap_label"] = "Small Cap"
+        # 汇率换算: price(HKD) → CNY. 1 HKD = fx CNY, 所以 price_cny = price * fx
+        fx_mc = fx_rate if fx_rate and fx_rate > 0 else 1.0
+        price_cny = price * fx_mc
+        mkt_cap_raw = price_cny * result["common_shares_raw"] if result["common_shares_raw"] else 0
+        result["mkt_cap"] = round(mkt_cap_raw / divisor, 1) if divisor else 0
+        # Market cap label
+        mkt_cap_b = result["mkt_cap"]  # 亿
+        if mkt_cap_b > 10000:
+            result["cap_label"] = "Mega Cap"
+        elif mkt_cap_b > 1000:
+            result["cap_label"] = "Large Cap"
+        elif mkt_cap_b > 100:
+            result["cap_label"] = "Mid Cap"
+        else:
+            result["cap_label"] = "Small Cap"
 
     # Business description + 员工人数 (从SQLite meta表读取, PDF提取一次存库)
     result["business_desc"] = reader.db_meta("business_desc", "")
@@ -1634,38 +1658,45 @@ def build_report(code=None):
     # price_ccy = 交易货币(HKD), rpt_ccy = 报表货币(CNY), 不一致时换算
     price_ccy = config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
     rpt_ccy = _detect_rpt_ccy(reader, stock)
+    need_spot_fx = (price_ccy != rpt_ccy and rpt_ccy == "CNY")
     fx_rate = None
-    if price_ccy != rpt_ccy and rpt_ccy == "CNY":
-        # 获取最新报表日期的 HKD/CNY 汇率
+    fx_available = not need_spot_fx  # A股/同币种不需要汇率
+    if need_spot_fx:
         latest_rpt_date = f"{years[-1]}-{fye}" if years else None
         if latest_rpt_date:
             fx_rate = _get_fx_rate(latest_rpt_date)
+            fx_available = (fx_rate is not None and fx_rate > 0)
 
     if spot and years and metrics:
         latest = metrics.get(years[-1], {})
         price = spot.get("price")  # 交易货币(HKD)
-        # 汇率调整系数: rpt_ccy(CNY) → price_ccy(HKD)
-        fx = fx_rate if fx_rate and fx_rate > 0 else 1.0
-        # TTM EPS: VL Trailing P/E 口径 (最近4季度滚动)
+        # TTM EPS (原始 CNY, 始终可算)
         ttm_eps = _compute_ttm_eps(reader, years[-1])
+        if ttm_eps:
+            spot["eps_ttm"] = round(ttm_eps, 2)
         if price:
-            # EPS 单位: rpt_ccy(CNY) → 需转为 price_ccy(HKD) 同币种后计算 PE
-            # fx = CNY/HKD (1 HKD = fx CNY), 所以 CNY ÷ fx = HKD
-            eps_in_price_ccy = ttm_eps / fx if ttm_eps and fx and fx != 1.0 else ttm_eps
-            if eps_in_price_ccy and eps_in_price_ccy > 0:
-                spot["pe"] = round(price / eps_in_price_ccy, 1)
-                spot["eps_ttm"] = round(ttm_eps, 2)        # 原始 CNY EPS
-                spot["eps_ttm_hkd"] = round(eps_in_price_ccy, 2)  # HKD 换算
+            # 折算: 股价(HKD) → CNY, 一次换算, 后续所有指标用 CNY 直接算
+            fx = fx_rate if fx_rate and fx_rate > 0 else 1.0
+            if need_spot_fx and not fx_available:
+                spot["pe"] = "-"
+                spot["pb"] = "-"
+                spot["div_yield"] = "-"
             else:
-                eps_latest = latest.get("BASIC_EPS")
-                if eps_latest and eps_latest > 0:
-                    spot["pe"] = round(price / (eps_latest / fx if fx and fx != 1.0 else eps_latest), 1)
-            bps_latest = latest.get("BPS")
-            if bps_latest and bps_latest > 0:
-                spot["pb"] = round(price / (bps_latest / fx if fx and fx != 1.0 else bps_latest), 2)
-            dps_latest = latest.get("DPS")
-            if dps_latest and dps_latest > 0:
-                spot["div_yield"] = round((dps_latest / fx if fx and fx != 1.0 else dps_latest) / price * 100, 2)
+                price_cny = price * fx
+                if ttm_eps and ttm_eps > 0:
+                    spot["pe"] = round(price_cny / ttm_eps, 1)
+                    spot["eps_ttm_hkd"] = round(ttm_eps / fx, 2)  # 仅显示用
+                else:
+                    eps_latest = latest.get("BASIC_EPS")
+                    if eps_latest and eps_latest > 0:
+                        spot["pe"] = round(price_cny / eps_latest, 1)
+                bps_latest = latest.get("BPS")
+                if bps_latest and bps_latest > 0:
+                    spot["pb"] = round(price_cny / bps_latest, 2)
+                dps_latest = latest.get("DPS")
+                if dps_latest and dps_latest > 0:
+                    spot["div_yield"] = round(dps_latest / price_cny * 100, 2)
+            # 市值 = 股价(HKD) × 股数, 不依赖汇率
             shares_raw = reader.share_count(_fye(years[-1])) or config.STOCKS.get(code, {}).get("shares")
             if shares_raw and shares_raw > 0:
                 spot["mkt_cap"] = round(price * shares_raw / 1e8, 1)  # 股数×股价÷1亿
@@ -1708,16 +1739,20 @@ def build_report(code=None):
             revenue_structure[dim] = data
 
     # ── 估值线: CF模式或PB模式 ──
-    _fx_cf = fx_rate if fx_rate and fx_rate > 0 else 1.0
     _val_method = reader.db_meta("valuation_method", "cf")
     _cf_mult = float(reader.db_meta("cf_multiplier", "15.0"))
     _pb_mult = float(reader.db_meta("pb_multiplier", "1.0"))
 
-    if _val_method == "pb":
+    if need_spot_fx and not fx_available:
+        # 无汇率, 无法将 CNY 估值转为 HKD — 估值线留空
+        valuation_line = []
+    elif _val_method == "pb":
+        _fx_cf = fx_rate if fx_rate and fx_rate > 0 else 1.0
         # PB Line: N×BPS, 转换为 HKD(与价格图一致)
         valuation_line = [{"date": y, "value": round(metrics[y].get("BPS", 0) * _pb_mult / _fx_cf, 2)}
                           for y in years if y in metrics and metrics[y].get("BPS")]
     else:
+        _fx_cf = fx_rate if fx_rate and fx_rate > 0 else 1.0
         # CF Line: N×PER_NETCASH, 转换为 HKD(与价格图一致)
         valuation_line = [{"date": y, "value": round(metrics[y].get("PER_NETCASH", 0) * _cf_mult / _fx_cf, 2)}
                           for y in years if y in metrics and metrics[y].get("PER_NETCASH")]
@@ -1751,7 +1786,7 @@ def build_report(code=None):
                 income_summary[key] = v / 1e8
 
     # 1. CAPITAL STRUCTURE 资本结构明细
-    cap_struct = _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate)
+    cap_struct = _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate, need_spot_fx)
 
     # 2. CURRENT POSITION 短期资产负债 (3年对比)
     cur_pos = _build_current_position(reader, years)

@@ -388,6 +388,45 @@ def fetch_cn_financials(store, code):
     print(f"OK {len(df)}条")
 
 # ============================================================
+# 汇率数据 (HKD/CNY)
+# ============================================================
+def fetch_fx_rates():
+    """抓取 HKD/CNY 汇率存入 data/fx_rates.db
+    DB 表: daily_rates (date TEXT PRIMARY KEY, hkd_cny REAL)
+    hkd_cny 存储 100 HKD = ? CNY, 使用时 ÷100
+    用途: H股价格(HKD)→报表货币(CNY)换算
+    数据源: 外汇管理局中间价 (currency_boc_safe), 覆盖 1994 至今
+    """
+    import os as _os
+    db_path = _os.path.join(config.DATA_DIR, "fx_rates.db")
+    print("  [fx_rates] ", end="", flush=True)
+    try:
+        df = ak.currency_boc_safe()
+        if df is None or df.empty or "港元" not in df.columns:
+            print("未找到港元汇率列")
+            return
+        conn = sqlite3.connect(db_path)
+        conn.execute(
+            "CREATE TABLE IF NOT EXISTS daily_rates (date TEXT PRIMARY KEY, hkd_cny REAL)")
+        count = 0
+        for _, row in df.iterrows():
+            date_str = str(row["日期"])[:10]
+            rate = row["港元"]
+            if pd.isna(rate) or rate <= 0:
+                continue
+            conn.execute(
+                "INSERT OR REPLACE INTO daily_rates VALUES (?, ?)",
+                (date_str, float(rate)))
+            count += 1
+        conn.commit()
+        conn.close()
+        latest = df.iloc[-1]
+        rate_latest = float(latest["港元"])
+        print(f"OK {count}条 (最新 {str(latest['日期'])[:10]}: 100HKD={rate_latest}CNY, 1HKD≈{round(rate_latest/100,4)}CNY)")
+    except Exception as e:
+        print(f"跳过 (API不可用: {str(e)[:60]})")
+
+# ============================================================
 # 主函数
 # ============================================================
 import pandas as pd
@@ -407,6 +446,8 @@ def fetch(code=None):
     try:
         if market == "hk":
             # 港股
+            fetch_fx_rates()           # 抓取 HKD/CNY 汇率 (供引擎换算)
+            time.sleep(0.3)
             fetch_spot_hk(store, code)
             time.sleep(0.5)
             fetch_kline_hk(store, code)
