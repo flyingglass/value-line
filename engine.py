@@ -1442,7 +1442,7 @@ def _build_current_position(reader, years):
             row[yr] = v / 1e8 if v else 0
         result["items"].append(row)
 
-    # 短期存款合并到 Cash & Equiv (中长期存款属于非流动资产，不加入)
+    # 短期存款合并到 Cash & Equiv (中长期存款为非流动资产，不加入)
     for yr in recent_years:
         rd = _fye(yr)
         sd = reader.financial_item("balance", "短期存款", rd) or 0
