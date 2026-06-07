@@ -30,7 +30,7 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
 
     # 段1
     p1 = (f"2026年6月6日 — 腾讯音乐{latest_yr}年营收约{rev:.0f}亿元（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_c):.1f}%），"
-          f"归母净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
+          f"扣非净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
           f"在线音乐付费用户持续增长，订阅ARPPU稳步提升，在线音乐服务收入占比超60%。"
           f"社交娱乐板块（直播）受短视频冲击持续收缩，但占比降至30%以下影响递减。"
           + (f"利润增速超营收，成本端版权占比下降释放利润率。" if np_c and rev_c and np_c > rev_c else ""))

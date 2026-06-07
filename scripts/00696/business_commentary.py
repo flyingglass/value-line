@@ -24,7 +24,7 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     )
 
     p1 = (f"2026年6月6日 — TravelSky {latest_yr}年营收约{rev:.0f}亿元（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_c):.1f}%），"
-          f"归母净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
+          f"扣非净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
           f"订座处理量随航空出行复苏稳步增长，国际航线恢复为主要增量。"
           f"核心AIT业务按每张机票收费，与民航客运量高度相关，属于「出行基础设施」型收租模式。")
 

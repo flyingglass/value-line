@@ -1281,7 +1281,7 @@ def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
     # ── 段1: 业绩快照 ──
     p1 = f"{today} — {name_short}{latest_yr}年营收{rev:.1f}亿元({_dir_pct(rev,rev_p)})" if rev else ""
     if np_v is not None:
-        p1 += f"，归母净利润{np_v:.1f}亿元({_dir_pct(np_v,np_p)})"
+        p1 += f"，扣非净利润{np_v:.1f}亿元({_dir_pct(np_v,np_p)})"
     if eps:
         p1 += f"，每股收益¥{eps:.2f}"
     # 解释变化原因

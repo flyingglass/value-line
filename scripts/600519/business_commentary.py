@@ -48,7 +48,7 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     # 段1: 业绩快照与变化归因
     p1 = (
         f"2026年6月6日 — 贵州茅台{latest_yr}年营收约{rev:.0f}亿元（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_chg):.1f}%），"
-        f"归母净利润约{np_val:.0f}亿元（{_dir(np_val, py.get('HOLDER_PROFIT'))}{abs(np_chg):.1f}%）。"
+        f"扣非净利润约{np_val:.0f}亿元（{_dir(np_val, py.get('HOLDER_PROFIT'))}{abs(np_chg):.1f}%）。"
         f"茅台酒营收{ly.get('OPERATE_INCOME',0)*0.87:.0f}亿，系列酒{ly.get('OPERATE_INCOME',0)*0.13:.0f}亿，"
         f"i茅台直销平台持续贡献增量。飞天茅台出厂价1169元/瓶，终端批价约2700元，渠道利润丰厚，提价空间充足。"
         f"毛利率{_fmt_pct(gm)}连续15年>90%，净利率{_fmt_pct(npm)}，盈利能力A股第一梯队。"

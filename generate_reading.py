@@ -473,7 +473,7 @@ def _render_commentary(data):
 
         parts = []
         if rev: parts.append(f"营收 {_fmt(rev, '亿')} ({_dir(rev_chg)} {_fmt_pct(abs(rev_chg) if rev_chg else None)})")
-        if np_val: parts.append(f"归母净利润 {_fmt(np_val, '亿')} ({_dir(np_chg)} {_fmt_pct(abs(np_chg) if np_chg else None)})")
+        if np_val: parts.append(f"扣非净利润 {_fmt(np_val, '亿')} ({_dir(np_chg)} {_fmt_pct(abs(np_chg) if np_chg else None)})")
         if eps: parts.append(f"每股收益 ¥{eps:.2f}")
 
         if np_chg is not None and rev_chg is not None and abs(np_chg - rev_chg) > 10:

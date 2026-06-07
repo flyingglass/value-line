@@ -53,7 +53,7 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     # 段1
     p1 = (
         f"2026年6月6日 — 腾讯控股{latest_yr}年营收约{rev:.0f}亿元（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_chg):.1f}%），"
-        f"归母净利润约{np_val:.0f}亿元（{_dir(np_val, py.get('HOLDER_PROFIT'))}{abs(np_chg):.1f}%）。"
+        f"扣非净利润约{np_val:.0f}亿元（{_dir(np_val, py.get('HOLDER_PROFIT'))}{abs(np_chg):.1f}%）。"
         f"游戏：国内《王者荣耀》《和平精英》《DNF手游》基本盘稳固，国际游戏收入占比突破30%+；"
         f"广告：视频号广告VV同比增长80%+，广告收入突破1,200亿元；"
         f"金融科技及企业服务：AI混元大模型全面接入，云业务毛利率大幅改善。"

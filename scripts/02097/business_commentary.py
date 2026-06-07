@@ -54,7 +54,7 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     # 段1
     p1 = (
         f"2026年6月6日 — 蜜雪集团{latest_yr}年营收约{rev:.0f}亿元（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_chg):.1f}%），"
-        f"归母净利润约{np_val:.0f}亿元（{_dir(np_val, py.get('HOLDER_PROFIT'))}{abs(np_chg):.1f}%）。"
+        f"扣非净利润约{np_val:.0f}亿元（{_dir(np_val, py.get('HOLDER_PROFIT'))}{abs(np_chg):.1f}%）。"
         f"全球门店突破{41000 + (int(latest_yr)-2025)*7000}家，其中海外门店超4,000家。"
         f"同店增速保持正增长，净利率{_fmt_pct(npm)}在加盟赛道中领先。"
         + (f"利润增速{abs(np_chg):.0f}%远超营收{abs(rev_chg):.0f}%，经营杠杆释放明显。" if np_chg and rev_chg and np_chg > rev_chg * 1.1 else "")

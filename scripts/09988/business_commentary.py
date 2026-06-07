@@ -24,7 +24,7 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     )
 
     p1 = (f"2026年6月6日 — 阿里巴巴FY{latest_yr}营收约{rev:.0f}亿元（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_c):.1f}%），"
-          f"归母净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
+          f"扣非净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
           f"核心电商在拼多多/抖音竞争下维持份额，88VIP会员持续高增长。"
           f"阿里云AI相关收入连续多季度三位数增长，云业务从「基础设施」转向「AI平台」，利润率大幅改善。"
           f"国际电商AIDC保持30%+增速，菜鸟全球化物流网络完善。")

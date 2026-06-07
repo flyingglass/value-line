@@ -144,7 +144,7 @@ def build_mda_from_data(code):
     parts.append("【经营总览】")
     lines = [f"{ly}年{name}实现营收{lyd.get('OPERATE_INCOME', 0):.1f}亿元，同比{yoy_dir}{abs(rev_yoy):.1f}%"]
     if lyd.get('HOLDER_PROFIT'):
-        lines.append(f"归母净利润{lyd['HOLDER_PROFIT']:.1f}亿元，同比{yoy_dir}{abs(np_yoy):.1f}%")
+        lines.append(f"扣非净利润{lyd['HOLDER_PROFIT']:.1f}亿元，同比{yoy_dir}{abs(np_yoy):.1f}%")
     if lyd.get('ROE_AVG'):
         lines.append(f"ROE达{lyd['ROE_AVG']:.1f}%")
     if lyd.get('BASIC_EPS'):
