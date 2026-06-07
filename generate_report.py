@@ -166,7 +166,7 @@ var DATA = {DATA_JS};
   html+='</tr>';
   // 数据行
   var cpDef=[
-    ['Cash Assets',0,0],['Receivables',1,0],['Inventory (Avg Cst)',2,0],['Other',3,0],
+    ['Cash & Equiv',0,0],['Receivables',1,0],['Inventory (Avg Cst)',2,0],['Other',3,0],
     ['Current Assets',4,1],
     ['Accts Payable',5,0],['Debt Due',6,0],['Other',7,0],
     ['Current Liab.',8,1]
