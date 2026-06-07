@@ -338,6 +338,31 @@ def _resolve_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
     return _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg)
 
 
+def _resolve_dividends(reader):
+    """加载 per-stock adjust_dividends 钩子，解析 DPS + FX 换算。
+    优先级: scripts/<code>/metric_adjustment.py:adjust_dividends > DB 通用解析
+
+    钩子接口:
+        def adjust_dividends(reader, stock_cfg) -> dict
+            reader: DataReader 实例 (可读 dividend 表 raw_text / cash_dps)
+            stock_cfg: config.STOCKS[code]
+            return: {year: dps_cny} 字典
+    """
+    code = reader.code
+    try:
+        script_path = os.path.join(os.path.dirname(__file__), "scripts", code, "metric_adjustment.py")
+        if os.path.exists(script_path):
+            spec = importlib.util.spec_from_file_location(f"md_{code}", script_path)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            if hasattr(mod, "adjust_dividends"):
+                stock_cfg = config.STOCKS.get(code, {})
+                return mod.adjust_dividends(reader, stock_cfg)
+    except Exception:
+        pass
+    return reader.dividends()
+
+
 def build_metric_table(reader, years, market="hk"):
     """构建24行指标表 — Value Line 标准公式 (A股/H股双轨)
     返回 (table, footnotes) — footnotes 为每股收益调整说明列表
@@ -418,8 +443,9 @@ def build_metric_table(reader, years, market="hk"):
         _eps = round(adj_np / shares, 2) if adj_np and shares else None
         row["BASIC_EPS"] = round(_eps, 2) if _eps is not None else None
 
-        # ---- 4. 每股股息: 从dividend表 ----
-        divs = reader.dividends()
+
+        # ---- 4. 每股股息: per-stock脚本 > 通用DB解析 ----
+        divs = _resolve_dividends(reader)
         row["DPS"] = divs.get(yr, 0) or 0
 
         # ---- 5. 每股资本支出: (购建固定资产 + 收购子公司) / Shares ----

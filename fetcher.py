@@ -69,7 +69,10 @@ class Store:
         c.execute("""CREATE TABLE IF NOT EXISTS dividend (
             report_year TEXT, cash_dps REAL, special_dps REAL,
             ex_date TEXT, pay_date TEXT, total_amount REAL,
+            raw_text TEXT DEFAULT '',
             PRIMARY KEY (report_year))""")
+        try: c.execute("ALTER TABLE dividend ADD COLUMN raw_text TEXT DEFAULT ''")
+        except Exception: pass
         c.execute("""CREATE TABLE IF NOT EXISTS revenue_structure (
             code TEXT, year TEXT, dim_type TEXT, dim_name TEXT,
             amount REAL, pct REAL,
@@ -255,7 +258,7 @@ def fetch_hk_financials(store, code):
         val = str(df.iloc[0][c])
         if val.isdigit() and len(val) == 4:
             col_fy = i
-        elif any(k in val for k in ["0.", "1.", "2.", "3."]):  # 包含小数点的文本列
+        elif re.search(r'\d+\.\d+', val):  # 含小数点的分红文本列
             col_txt = i
         if val.count("-") == 2 and len(val) == 10:
             date_cols.append(i)
@@ -266,22 +269,37 @@ def fetch_hk_financials(store, code):
         fy = str(r.iloc[col_fy]) if col_fy is not None else str(r.iloc[1])
         txt = str(r.iloc[col_txt]) if col_txt is not None else ""
         
-        nums = re.findall(r"([\d.]+)", txt)
-        dps_nums = [float(n) for n in nums if n.count(".") == 1]
-        # 取第一个数字(宣告金额, CNY), 非最后一个(HKD等值)
-        dps = dps_nums[0] if dps_nums else 0.0
+        # 精确匹配: 每股派人民币0.276元 / 每股派港币5.3元 / 每股派港币1元 / 相当于每股派18.13港元
+        m = re.search(r'每股派(?:港币|港元|美元|人民币)?\s*(\d+\.?\d*)', txt)
+        if m:
+            dps = float(m.group(1))
+        else:
+            # 回退: 取第一个含小数点的数字
+            nums = re.findall(r"(\d+\.?\d*)", txt)
+            dps_nums = [float(n) for n in nums if '.' in n]
+            dps = dps_nums[0] if dps_nums else 0.0
+        
+        # HKD→CNY 换算: 分红是港币但报表货币是人民币时需转换
+        # 00696 分红是"人民币"无需换算, 00700 分红是"港币"需换算
+        if dps > 0 and re.search(r'港[元币]', txt) and '人民币' not in txt:
+            stock_cfg = config.STOCKS.get(code, {})
+            if stock_cfg.get('currency') == 'CNY':
+                fx = _read_fx_rate(f"{fy}-12-31")
+                if fx:
+                    dps = round(dps * fx, 4)
         
         if fy in div_map:
             div_map[fy]["dps"] += dps  # 叠加特别股息
+            div_map[fy]["raw"] += " | " + txt
         else:
             ex = str(r.iloc[date_cols[0]]) if len(date_cols) > 0 else ""
             pay = str(r.iloc[date_cols[-1]]) if len(date_cols) > 1 else ""
-            div_map[fy] = {"dps": dps, "ex": ex, "pay": pay}
+            div_map[fy] = {"dps": dps, "ex": ex, "pay": pay, "raw": txt}
     
     for fy, data in div_map.items():
         store.conn.execute(
-            "INSERT OR REPLACE INTO dividend VALUES (?,?,?,?,?,?)",
-            (fy, data["dps"], 0.0, data["ex"], data["pay"], 0.0))
+            "INSERT OR REPLACE INTO dividend VALUES (?,?,?,?,?,?,?)",
+            (fy, data["dps"], 0.0, data["ex"], data["pay"], 0.0, data.get("raw", "")))
     store.conn.commit()
     print(f"OK {len(df)}条")
 
@@ -376,16 +394,36 @@ def fetch_cn_financials(store, code):
             cash_dps = round(dps / 10.0, 4) if dps > 0 else 0.0  # 每股息
             trans = float(r.get("转增比例", 0) or 0)
             store.conn.execute(
-                "INSERT OR REPLACE INTO dividend VALUES (?,?,?,?,?,?)",
+                "INSERT OR REPLACE INTO dividend VALUES (?,?,?,?,?,?,?)",
                 (fy, cash_dps,
                  0.0,  # special_dps
                  str(r.get("除权日", "")),
                  str(r.get("派息日", "")),
-                 0.0))
+                 0.0,  # total_amount
+                 str(r.get("方案说明", ""))))  # raw_text
         except Exception:
             pass
     store.conn.commit()
     print(f"OK {len(df)}条")
+
+
+def _read_fx_rate(date_str):
+    """读取 HKD/CNY 汇率, 返回 1 HKD = ? CNY, 失败返回 None"""
+    fx_db = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "fx_rates.db")
+    if not os.path.exists(fx_db):
+        return None
+    try:
+        conn = sqlite3.connect(fx_db)
+        row = conn.execute("SELECT hkd_cny FROM daily_rates WHERE date=?", (date_str,)).fetchone()
+        if not row:
+            row = conn.execute(
+                "SELECT hkd_cny FROM daily_rates WHERE date<=? ORDER BY date DESC LIMIT 1",
+                (date_str,)).fetchone()
+        conn.close()
+        return row[0] / 100.0 if row else None
+    except Exception:
+        return None
+
 
 # ============================================================
 # 汇率数据 (HKD/CNY)

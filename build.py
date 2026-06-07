@@ -57,7 +57,10 @@ def _run(cmd, timeout=120):
                            encoding='utf-8', errors='replace')
         out = (r.stdout or "") + (r.stderr or "")
         out = out.strip()
-        return r.returncode == 0, out[-3000:] if len(out) > 3000 else out
+        # 保留头部和尾部，避免关键信息被截断（如进度条后的"拉取完成"）
+        if len(out) > 3000:
+            out = out[:1000] + "\n... [中间省略] ...\n" + out[-2000:]
+        return r.returncode == 0, out
     except subprocess.TimeoutExpired:
         return False, "TIMEOUT"
     except Exception as e:
