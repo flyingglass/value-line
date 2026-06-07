@@ -1442,6 +1442,12 @@ def _build_current_position(reader, years):
             row[yr] = v / 1e8 if v else 0
         result["items"].append(row)
 
+    # 定期存款合并到 Cash & Equiv (Tencent Music etc.)
+    for yr in recent_years:
+        rd = _fye(yr)
+        td = reader.financial_item("balance", "定期存款", rd) or 0
+        result["items"][0][yr] = round(result["items"][0][yr] + td / 1e8, 2)
+
     # Third pass: Debt Due = 短期借款 + 一年内到期非流动负债 + 融资租赁(流动)
     for yr in recent_years:
         rd = _fye(yr)
