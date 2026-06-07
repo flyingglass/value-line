@@ -219,10 +219,10 @@ def step_0_check_config(code):
     print(f"  Step 0: {name} ({code}) config {_green('OK')}")
     return stock
 
-def step_1_fetch(code, stock):
+def step_1_fetch(code, stock, force_fetch=False):
     """Step 1: 数据拉取 fetcher.py。"""
     db = _db_path(code)
-    if os.path.exists(db) and os.path.getsize(db) > 10000:
+    if not force_fetch and os.path.exists(db) and os.path.getsize(db) > 10000:
         print(f"  Step 1: DB已存在 ({os.path.getsize(db)//1024}KB), 跳过拉取")
         # Still set active stock
         _set_active(code)
@@ -459,6 +459,13 @@ def step_8_verify(code):
         items = qt.get(section, [])
         if items: ok(f"Qtr.{section} ({len(items)}y)")
         else: fail(f"Qtr.{section}: 空")
+    # 检测是否有前瞻部分年度(次年)季度数据
+    years = d.get("years", [])
+    if years:
+        next_yr = str(int(years[-1]) + 1)
+        has_partial = any(str(item.get("year")) == next_yr for item in qt.get("sales", []))
+        if has_partial:
+            ok(f"Qtr.partial (前瞻 {next_yr} — forward-looking)")
 
     # ── 7. K线 & 指数 ──
     kline = d.get("kline", [])
@@ -539,7 +546,7 @@ def step_8_verify(code):
 # ────────────────────────────────────────────────
 
 def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
-                      valuation_method=None, num_years=15):
+                      valuation_method=None, num_years=15, force_fetch=False):
     """
     强制确认后才能启动流水线。
     估值方法:
@@ -634,6 +641,7 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
     if hist_ref:
         label, val = hist_ref
         print(f"  历史参考:   {label} = {val}x")
+    print(f"  强制拉取:   {'是 (跳过缓存，从API获取最新数据)' if force_fetch else '否 (复用缓存DB)'}")
     if not stock:
         print(f"  {_red('状态:  未在 config.STOCKS 中配置!')}")
     print(f"{_bold('='*60)}")
@@ -655,7 +663,7 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
 
     # ── 执行 ──
     print(f"\n{_bold(f'  >>> 开始生成 {name} ({code}), {method_label} <<<')}")
-    return build(code, cf_multiplier or 15.0, pb_multiplier or 1.0, valuation_method)
+    return build(code, cf_multiplier or 15.0, pb_multiplier or 1.0, valuation_method, force_fetch=force_fetch)
     # 注: or 15.0 / or 1.0 为防御性兜底，正常流程到此必然有值
 
 
@@ -712,7 +720,7 @@ def _detect_year_range(code):
     return None
 
 
-def build(code, cf_mult=15.0, pb_mult=1.0, val_method="cf"):
+def build(code, cf_mult=15.0, pb_mult=1.0, val_method="cf", force_fetch=False):
     """Run full 8-step pipeline for a single stock."""
     stock = config.STOCKS.get(code, {})
     name = stock.get("name", code)
@@ -722,7 +730,7 @@ def build(code, cf_mult=15.0, pb_mult=1.0, val_method="cf"):
 
     _set_active(code)
     stock = step_0_check_config(code)           # 0. config
-    step_1_fetch(code, stock)                    # 1. 拉取
+    step_1_fetch(code, stock, force_fetch=force_fetch)  # 1. 拉取
     step_2_pdf(code)                             # 2. PDF
     step_3_mda(code)                             # 3. MD&A
     step_4_revenue(code)                         # 4. 营收结构
@@ -759,6 +767,8 @@ if __name__ == "__main__":
                         help="估值方法 (cf/PB, 默认从config读取或自动推断)")
     parser.add_argument("--years", type=int, default=15,
                         help="使用最近N年数据 (默认15, 不超过可用年份)")
+    parser.add_argument("--fetch", action="store_true",
+                        help="强制重新拉取财务/行情数据 (默认复用缓存DB)")
     parser.add_argument("--publish", action="store_true",
                         help="生成后自动 git commit + push，触发 GitHub Pages 发布")
     args = parser.parse_args()
@@ -781,7 +791,8 @@ if __name__ == "__main__":
                               cf_multiplier=args.cf,
                               pb_multiplier=args.pb,
                               valuation_method=args.method,
-                              num_years=actual_years)
+                              num_years=actual_years,
+                              force_fetch=args.fetch)
         except SystemExit as e:
             print(f"\n{_red(_bold(f'  BUILD FAILED: {code}'))}")
             if str(e):

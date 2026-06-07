@@ -1669,10 +1669,16 @@ def build_report(code=None):
     fx_rate = None
     fx_available = not need_spot_fx  # A股/同币种不需要汇率
     if need_spot_fx:
-        latest_rpt_date = f"{years[-1]}-{fye}" if years else None
-        if latest_rpt_date:
-            fx_rate = _get_fx_rate(latest_rpt_date)
-            fx_available = (fx_rate is not None and fx_rate > 0)
+        # 使用最新可获取汇率 (匹配spot价格日期)，优先当天 → 最近一天
+        from datetime import date
+        today_str = date.today().strftime("%Y-%m-%d")
+        fx_rate = _get_fx_rate(today_str)
+        if fx_rate is None:
+            # fallback: 财年截止日汇率
+            latest_rpt_date = f"{years[-1]}-{fye}" if years else None
+            if latest_rpt_date:
+                fx_rate = _get_fx_rate(latest_rpt_date)
+        fx_available = (fx_rate is not None and fx_rate > 0)
 
     if spot and years and metrics:
         latest = metrics.get(years[-1], {})
