@@ -768,7 +768,7 @@ VL_METRICS = [
     (19, "长期债务",     "Long-Term Debt (亿)",         "LT_DEBT",              "亿",   "calculated"),
     (20, "股东权益",     "Shr. Equity (亿)",            "TOTAL_EQUITY",         "亿",   "calculated"),
     # === 回报率指标 (21-24) ===
-    (21, "总资本回报率", "Return on Total Cap'l",      "ROIC",                 "%",    "calculated"),
+    (21, "投入资本回报率", "Return on Total Cap'l",      "ROIC",                 "%",    "calculated"),
     (22, "股东权益回报率","Return on Shr. Equity",      "ROE",                  "%",    "indicators"),
     (23, "留存利润再投比", "Retained to Com Eq",         "RETAINED_RATIO",       "%",    "calculated"),
     (24, "股息支付率",   "All Div'ds to Net Prof",     "PAYOUT_RATIO",         "%",    "calculated"),

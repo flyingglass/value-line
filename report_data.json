@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-07 11:46:04.308672"
+    "generated": "2026-06-07 12:16:25.140924"
   },
   "spot": {
     "price": 38.02,
@@ -1666,7 +1666,7 @@
     },
     {
       "order": 21,
-      "name_cn": "总资本回报率",
+      "name_cn": "投入资本回报率",
       "name_en": "Return on Total Cap'l",
       "field": "ROIC",
       "unit": "%",
