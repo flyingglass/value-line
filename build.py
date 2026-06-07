@@ -738,12 +738,11 @@ def build(code, cf_mult=15.0, pb_mult=1.0, val_method="cf", force_fetch=False):
     step_3_mda(code)                             # 3. MD&A
     step_4_revenue(code)                         # 4. 营收结构
     step_5_config_final(code, stock)             # 5. config final
+    # 先写入估值参数到 DB，确保 engine 读取最新值
+    _write_valuation_meta(code, cf_mult, pb_mult, val_method)
     step_6_engine(code)                          # 6. 计算
     step_7_generate(code)                        # 7. HTML
     step_8_verify(code)                          # 8. 验证
-
-    # 所有步骤成功后, 写入估值参数到 DB (避免失败时覆盖已有值)
-    _write_valuation_meta(code, cf_mult, pb_mult, val_method)
 
     print(f"\n{_green(_bold(f'  {name} ({code}) Report Complete!'))}")
     print(f"  文件: {_report_path(code)}\n")
