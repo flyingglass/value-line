@@ -521,19 +521,37 @@ def build_metric_table(reader, years, market="hk"):
 
 def _compute_ttm_eps(reader, latest_yr):
     """TTM EPS: 最近12个月滚动 (Trailing P/E 口径)
-    - 优先最新年报EPS (若已发布)
-    - 仅年报未出时才拼半年: H1_cur + H2_prev
-    - 兼容 A股(季度) / 港股(半年)"""
+    - 年度财报已发布时: 优先用下一年部分数据 (Q1 或 H1) 做真正滚动 TTM
+      - 季度股: TTM = (FY - Q1) + Q1_next = Q2+Q3+Q4 + Q1_next
+      - 半年报股: TTM = (FY - H1) + H1_next = H2 + H1_next
+    - 无下一年数据时回退到完整年报 EPS
+    - 年报未出时拼半年: H1_cur + H2_prev"""
     stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
     fye = stock.get("fiscal_yr_end", "12-31")
     qd_cur = _q_dates(str(latest_yr), fye)   # [q1, h1, 9m, fy]
     qd_prev = _q_dates(str(int(latest_yr) - 1), fye)
+    qd_next = _q_dates(str(int(latest_yr) + 1), fye)
     fy_cur = reader.financial_item_by_code("income", "004027003", qd_cur[3])
     h1_cur = reader.financial_item_by_code("income", "004027003", qd_cur[1])
+    q1_cur = reader.financial_item_by_code("income", "004027003", qd_cur[0])
     h1_prev = reader.financial_item_by_code("income", "004027003", qd_prev[1])
     fy_prev = reader.financial_item_by_code("income", "004027003", qd_prev[3])
-    # 方案A: 最新年报已发布 → 直接用 (港股/美股/A股统一)
+    # 查下一年部分数据 (探测是否有 Q1 或 H1)
+    q1_next = reader.financial_item_by_code("income", "004027003", qd_next[0])
+    h1_next = reader.financial_item_by_code("income", "004027003", qd_next[1])
+    # 方案A: 最新年报已发布 → 尝试用下一年数据做真正的 TTM 滚动
     if fy_cur is not None and fy_cur > 0:
+        if q1_next is not None and q1_cur is not None:
+            # 季度股: TTM = Q2+Q3+Q4 + Q1_next = (FY - Q1) + Q1_next
+            h2_plus = fy_cur - q1_cur
+            if h2_plus > 0:
+                return h2_plus + q1_next
+        if h1_next is not None and h1_cur is not None:
+            # 半年报股: TTM = H2 + H1_next = (FY - H1) + H1_next
+            h2_cur = fy_cur - h1_cur
+            if h2_cur > 0:
+                return h2_cur + h1_next
+        # 下一年无数据 → 回退到全年 EPS
         return fy_cur
     # 方案B: 仅半年报(年报未出) → TTM = H1_cur + H2_prev
     if h1_cur is not None and fy_prev is not None and h1_prev is not None:
@@ -748,6 +766,38 @@ def build_semi_annual(reader, years, metrics):
                     "q1": round(h1_eps_v, 2), "q3": round(h2_eps_v, 2), "full": round(ann_eps_metric, 2)
                 })
     
+    # 追加部分年数据 (最新财年之后, 探测是否有 Q1 或 H1 数据)
+    if years:
+        next_yr = str(int(years[-1]) + 1)
+        qd_next = _q_dates(next_yr, fye)
+        c1_next = reader.financial_item_by_code("income", "004001001", qd_next[0])  # Q1
+        c2_next = reader.financial_item_by_code("income", "004001001", qd_next[1])  # H1
+        e1_next = reader.financial_item_by_code("income", "004027003", qd_next[0]) or reader.financial_item_by_code("income", "004027002", qd_next[0])
+        e2_next = reader.financial_item_by_code("income", "004027003", qd_next[1]) or reader.financial_item_by_code("income", "004027002", qd_next[1])
+
+        if c1_next is not None:
+            # 季度股: 有 Q1 累计数据 → 展示单季 Q1
+            qtr["sales"].append({
+                "year": next_yr, "has_quarter": True,
+                "q1": round(c1_next / 1e8, 1), "q2": None, "q3": None, "q4": None, "full": None
+            })
+            if e1_next is not None:
+                qtr["eps"].append({
+                    "year": next_yr, "has_quarter": True,
+                    "q1": round(e1_next, 2), "q2": None, "q3": None, "q4": None, "full": None
+                })
+        elif c2_next is not None:
+            # 半年报股: 仅有 H1 数据 → H1 放在 Q1 列位
+            qtr["sales"].append({
+                "year": next_yr, "has_quarter": False,
+                "q1": round(c2_next / 1e8, 1), "q3": None, "full": None
+            })
+            if e2_next is not None:
+                qtr["eps"].append({
+                    "year": next_yr, "has_quarter": False,
+                    "q1": round(e2_next, 2), "q3": None, "full": None
+                })
+
     # 股息数据 (年度)
     for yr in years:
         if reader:
