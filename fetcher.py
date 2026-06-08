@@ -410,6 +410,257 @@ def fetch_cn_financials(store, code):
     print(f"OK {len(df)}条")
 
 
+# ============================================================
+# 美股数据 (AKShare)
+# ============================================================
+
+# US East Money 财务项目名 → 标准 VL 项目名 (兼容 engine.py 查询)
+_US_FINANCIAL_ITEM_MAP = {
+    # 利润表 income
+    "营业收入": "*营业总收入",
+    "主营收入": "*营业总收入",
+    "归属于母公司股东净利润": "*归属于母公司所有者的净利润",
+    "营业利润": "三、营业利润",
+    "营业成本": "其中：营业成本",
+    "营销费用": "销售费用",
+    "营业费用": "管理费用",
+    "研发费用": "研发费用",
+    "利息支出": "其中：利息费用",
+    "其他收入(支出)": "其他收益",
+    "所得税": "减：所得税费用",
+    "持续经营税前利润": "四、利润总额",
+    "基本每股收益-普通股": "（一）基本每股收益",
+    "摊薄每股收益-普通股": "（二）稀释每股收益",
+    "毛利": "毛利",
+    # 资产负债表 balance
+    "现金及现金等价物": "现金及等价物",
+    "应收账款": "应收帐款",
+    "短期债务": "短期贷款",
+    "长期负债": "长期贷款",
+    "非流动负债合计": "非流动负债合计",
+    "流动资产合计": "流动资产合计",
+    "流动负债合计": "流动负债合计",
+    "总资产": "总资产",
+    "总负债": "总负债",
+    "物业、厂房及设备": "固定资产",
+    "无形资产": "无形资产",
+    "商誉": "商誉",
+    # 现金流量表 cashflow
+    "折旧及摊销": "固定资产折旧、油气资产折耗、生产性生物资产折旧",
+    "购买固定资产": "购建固定资产、无形资产和其他长期资产支付的现金",
+    "经营活动产生的现金流量净额": "经营活动产生的现金流量净额",
+    "投资活动产生的现金流量净额": "投资活动产生的现金流量净额",
+    "股息支付": "股息支付",
+}
+
+
+def fetch_spot_us(store, code):
+    """美股实时行情 (新浪 stock_us_spot)"""
+    print("  [spot_us] ", end="", flush=True)
+    try:
+        df = ak.stock_us_spot()
+        # Sina API 列名: symbol, price, pe, mktcap, chg, volume, name, cname ...
+        row = df[df["symbol"].astype(str).str.upper() == code.upper()]
+        if row.empty:
+            print("未找到")
+            return
+        r = row.iloc[0]
+        store.conn.execute("DELETE FROM spot")
+        store.conn.execute(
+            "INSERT INTO spot VALUES (?,?,?,?,?,?,?,?,?,?)",
+            (str(pd.Timestamp.now().date()), float(r.get("price", 0)),
+             float(r.get("pe", 0)) if pd.notna(r.get("pe")) else 0,
+             0.0,  # pb (新浪 API 无 PB)
+             0.0,  # div_yield (新浪 API 无)
+             float(r.get("mktcap", 0)) if pd.notna(r.get("mktcap")) else 0,
+             float(r.get("chg", 0)) if pd.notna(r.get("chg")) else 0,
+             float(r.get("volume", 0)) if pd.notna(r.get("volume")) else 0,
+             0.0, 0.0))  # high_52w, low_52w (新浪 API 无)
+        store.conn.commit()
+        print(f"OK 股价={r['price']} PE={r.get('pe','N/A')}")
+    except Exception as e:
+        print(f"跳过 (API不可用: {str(e)[:120]})")
+
+
+def fetch_kline_us(store, code):
+    """美股日线K线 (新浪 stock_us_daily)"""
+    print("  [kline_us] ", end="", flush=True)
+    try:
+        df = ak.stock_us_daily(symbol=code, adjust="qfq")
+        store.conn.execute("DELETE FROM kline WHERE adjust='qfq'")
+        for _, r in df.iterrows():
+            store.conn.execute(
+                "INSERT OR REPLACE INTO kline VALUES (?,?,?,?,?,?,?)",
+                (str(r["date"]).split(" ")[0],
+                 float(r.get("open", 0)), float(r.get("high", 0)),
+                 float(r.get("low", 0)), float(r.get("close", 0)),
+                 float(r.get("volume", 0)), "qfq"))
+        store.conn.commit()
+        print(f"OK {len(df)}条")
+    except Exception as e:
+        print(f"跳过 (API不可用: {str(e)[:120]})")
+
+
+def fetch_us_financials(store, code):
+    """美股三大表 (东方财富 stock_financial_us_report_em) + 指标 + 分红"""
+    # 三大表 — 统一使用 stock_financial_us_report_em, 通过 symbol 参数切换
+    for table, sym in [("income", "综合损益表"),
+                       ("balance", "资产负债表"),
+                       ("cashflow", "现金流量表")]:
+        print(f"  [us_{table}] ", end="", flush=True)
+        try:
+            df = ak.stock_financial_us_report_em(stock=code, symbol=sym, indicator="年报")
+        except Exception as e:
+            print(f"跳过 (API不可用: {str(e)[:60]})")
+            continue
+        if df is None or df.empty:
+            print("空")
+            continue
+        # 东方财富 US API 返回 ITEM_NAME, 需重命名为 STD_ITEM_NAME 以兼容 upsert_financials
+        if "ITEM_NAME" in df.columns and "STD_ITEM_NAME" not in df.columns:
+            df = df.rename(columns={"ITEM_NAME": "STD_ITEM_NAME"})
+            # 同时保存原始 ITEM_NAME 用于 US→标准名映射
+            df["ITEM_NAME"] = df["STD_ITEM_NAME"]
+        # 写入前先映射 US 项目名 → 标准 VL 项目名 (作为额外行)
+        import pandas as _pd
+        # 统一将 row 转为 dict 避免 Series/dict 混合导致 DataFrame 构建失败
+        mapped_rows = [dict(row) for _, row in df.iterrows()]
+        for row_dict in mapped_rows:
+            us_name = str(row_dict.get("STD_ITEM_NAME", ""))
+            std_name = _US_FINANCIAL_ITEM_MAP.get(us_name)
+            if std_name and std_name != us_name:
+                mapped_row = dict(row_dict)
+                mapped_row["STD_ITEM_NAME"] = std_name
+                mapped_rows.append(mapped_row)
+        # 美股资产负债表: US GAAP 无直接"总权益"字段, 需从 总资产-总负债 计算
+        if table == "balance":
+            # 按 REPORT_DATE 分组计算
+            from collections import defaultdict
+            rd_groups = defaultdict(dict)
+            for row_dict in mapped_rows:
+                rd = str(row_dict.get("REPORT_DATE", ""))
+                name = str(row_dict.get("STD_ITEM_NAME", ""))
+                amt = float(row_dict.get("AMOUNT", 0) or 0)
+                rd_groups[rd][name] = amt
+            for rd, items in rd_groups.items():
+                ta = items.get("总资产", 0)
+                tl = items.get("总负债", 0)
+                if ta and tl:
+                    total_eq = ta - tl
+                    if abs(total_eq) > 0:
+                        # 使用第一个该日期的 row 作为模板
+                        template = next((r for r in mapped_rows if str(r.get("REPORT_DATE", "")) == rd), {})
+                        new_row = {
+                            "SECUCODE": template.get("SECUCODE", ""),
+                            "SECURITY_CODE": template.get("SECURITY_CODE", code),
+                            "SECURITY_NAME_ABBR": template.get("SECURITY_NAME_ABBR", ""),
+                            "REPORT_DATE": rd,
+                            "REPORT_TYPE": template.get("REPORT_TYPE", "年报"),
+                            "REPORT": template.get("REPORT", ""),
+                            "STD_ITEM_CODE": "calc",
+                            "AMOUNT": total_eq,
+                            "STD_ITEM_NAME": "总权益",
+                            "ITEM_NAME": "总权益",
+                        }
+                        mapped_rows.append(new_row)
+                        new_row2 = dict(new_row)
+                        new_row2["STD_ITEM_NAME"] = "股东权益"
+                        mapped_rows.append(new_row2)
+        df_mapped = _pd.DataFrame(mapped_rows)
+        store.upsert_financials(table, df_mapped)
+        dates = df["REPORT_DATE"].apply(lambda x: str(x)[:10]).unique()
+        n_annual = sum(1 for d in dates if any(
+            d.endswith(suffix) for suffix in ("12-31", "01-31", "01-25", "01-26", "01-27", "01-28", "01-29", "01-30")
+        ))
+        print(f"OK {len(df_mapped)}行 ({n_annual}年报)")
+
+        # 额外拉取 income 单季报 (用于填充 QUARTERLY 区域)
+        if table == "income":
+            print("  [us_income_q] ", end="", flush=True)
+            try:
+                df_q = ak.stock_financial_us_report_em(stock=code, symbol="综合损益表", indicator="单季报")
+            except Exception as e:
+                print(f"跳过 ({str(e)[:60]})")
+                df_q = None
+            if df_q is not None and not df_q.empty:
+                if "ITEM_NAME" in df_q.columns and "STD_ITEM_NAME" not in df_q.columns:
+                    df_q = df_q.rename(columns={"ITEM_NAME": "STD_ITEM_NAME"})
+                store.upsert_financials("income", df_q)
+                print(f"OK {len(df_q)}行 (单季)")
+            else:
+                print("空")
+
+    # 关键指标 (stock_financial_us_analysis_indicator_em)
+    print("  [us_indicators] ", end="", flush=True)
+    try:
+        df = ak.stock_financial_us_analysis_indicator_em(symbol=code, indicator="年报")
+        if df is not None and len(df) > 0:
+            for _, row in df.iterrows():
+                rd = str(row.get("REPORT_DATE", "")).split(" ")[0]
+                items = {}
+                # 映射 US 英文列名 → 标准 VL 指标名
+                _US_INDICATOR_MAP = {
+                    "OPERATE_INCOME": "OPERATE_INCOME",
+                    "PARENT_HOLDER_NETPROFIT": "HOLDER_PROFIT",
+                    "BASIC_EPS": "BASIC_EPS",
+                    "DILUTED_EPS": "DILUTED_EPS",
+                    "ROE_AVG": "ROE_AVG",
+                    "ROA": "ROA",
+                    "GROSS_PROFIT_RATIO": "GROSS_MARGIN",
+                    "NET_PROFIT_RATIO": "NET_PROFIT_RATIO",
+                    "DEBT_ASSET_RATIO": "DEBT_ASSET_RATIO",
+                    "CURRENT_RATIO": "CURRENT_RATIO",
+                    "GROSS_PROFIT": "GROSS_PROFIT",
+                    "EQUITY_RATIO": "EQUITY_RATIO",
+                }
+                for us_col, vl_key in _US_INDICATOR_MAP.items():
+                    val = row.get(us_col)
+                    if val is not None and pd.notna(val):
+                        try:
+                            items[vl_key] = float(val)
+                        except (ValueError, TypeError):
+                            pass
+                if items:
+                    store.upsert_indicators(rd, items)
+            print(f"OK {len(df)}行")
+            # 保存币种信息到 meta
+            if len(df) > 0:
+                raw_currency = str(df.iloc[0].get("CURRENCY", ""))
+                if raw_currency:
+                    store.set_meta("currency", raw_currency)
+                    # 同时设置 price_ccy (engine.py 生成报告用)
+                    store.set_meta("price_ccy", raw_currency)
+        else:
+            print("空")
+    except Exception as e:
+        print(f"跳过 (API不可用: {str(e)[:60]})")
+
+    # 分红 — AKShare 无专用美股分红接口, 从 income 表提取 DPS 或跳过
+    print("  [us_dividend] ", end="", flush=True)
+    try:
+        # 从综合损益表中读 "每股股息-普通股" 作为 DPS
+        rows = store.conn.execute(
+            "SELECT report_date, amount FROM income WHERE item_name=? "
+            "OR item_name=? ORDER BY report_date",
+            ("每股股息-普通股", "每股股息")).fetchall()
+        if rows:
+            for rd, dps_raw in rows:
+                fy = rd[:4] if rd and rd[0].isdigit() else ""
+                if not fy:
+                    continue
+                dps = float(dps_raw) if dps_raw else 0
+                store.conn.execute(
+                    "INSERT OR REPLACE INTO dividend VALUES (?,?,?,?,?,?,?)",
+                    (fy, dps, 0.0, "", "", 0.0,
+                     f"US DPS from income statement ({rd})"))
+            store.conn.commit()
+            print(f"OK {len(rows)}条 (从损益表提取)")
+        else:
+            print("空 (无法获取分红数据)")
+    except Exception as e:
+        print(f"跳过 (API不可用: {str(e)[:60]})")
+
+
 def _read_fx_rate(date_str):
     """读取 HKD/CNY 汇率, 返回 1 HKD = ? CNY, 失败返回 None"""
     fx_db = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "fx_rates.db")
@@ -494,6 +745,13 @@ def fetch(code=None):
             fetch_kline_hk(store, code)
             time.sleep(0.5)
             fetch_hk_financials(store, code)
+        elif market == "us":
+            # 美股
+            fetch_spot_us(store, code)
+            time.sleep(0.5)
+            fetch_kline_us(store, code)
+            time.sleep(0.5)
+            fetch_us_financials(store, code)
         else:
             # A股
             pfx = stock.get("pfx", "sh")

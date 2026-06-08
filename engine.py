@@ -15,7 +15,41 @@ def _fye(yr):
     """返回该财年对应的报告日期 (eg. yr=2026,fye=03-31 → "2026-03-31")"""
     stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
     fye = stock.get("fiscal_yr_end", "12-31")
+    market = stock.get("market", "hk")
     return f"{yr}-{fye}"
+
+
+def _resolve_rd(reader, yr, candidates):
+    """在 DB indicators 表中查找给定年份的第一个匹配 report_date。返回精确日期或 None。"""
+    if isinstance(candidates, list):
+        for rd in candidates:
+            try:
+                r = reader.conn.execute(
+                    "SELECT 1 FROM indicators WHERE report_date=? LIMIT 1",
+                    (rd,)).fetchone()
+                if r:
+                    return rd
+            except Exception:
+                pass
+        # fallback: LIKE 查询
+        try:
+            r = reader.conn.execute(
+                "SELECT report_date FROM indicators WHERE report_date LIKE ? ORDER BY report_date DESC LIMIT 1",
+                (f"{yr}-01-%",)).fetchone()
+            if r:
+                return r[0]
+        except Exception:
+            pass
+        return None
+    return candidates
+
+
+def _fye_resolved(reader, yr):
+    """返回该财年实际匹配的报告日期 (美股浮动日期自动匹配)"""
+    rd = _fye(yr)
+    if isinstance(rd, list):
+        return _resolve_rd(reader, yr, rd)
+    return rd
 
 
 # ============================================================
@@ -142,11 +176,8 @@ class DataReader:
         return [{"date": k, **v} for k, v in sorted(monthly.items())]
 
     def indicators(self, report_date):
-        rows = self.conn.execute(
-            "SELECT item_name, amount FROM indicators WHERE report_date=?",
-            (report_date,)
-        ).fetchall()
-        d = dict(rows)
+        rows = self._query_financial("indicators", report_date)
+        d = dict(rows) if rows else {}
         if self.market == "cn":
             for ths_name, eng_name in THS_INDICATOR_MAP.items():
                 if ths_name in d and eng_name not in d:
@@ -155,14 +186,56 @@ class DataReader:
             shares = config.STOCKS.get(self.code, {}).get("shares")
             if "OPERATE_INCOME" in d and shares and "PER_OI" not in d:
                 d["PER_OI"] = d["OPERATE_INCOME"] / shares
+        elif self.market == "us":
+            # 美股 API 不提供每股营收，自行计算
+            shares = config.STOCKS.get(self.code, {}).get("shares")
+            if "OPERATE_INCOME" in d and shares and "PER_OI" not in d:
+                d["PER_OI"] = d["OPERATE_INCOME"] / shares
         return d
 
+    def _query_financial(self, table, report_date, item_name=None, item_code=None):
+        """查询财务数据，美股自动 fallback 到邻近日期"""
+        # 先尝试精确日期
+        if item_name:
+            r = self.conn.execute(
+                f"SELECT amount FROM {table} WHERE item_name=? AND report_date=?",
+                (item_name, report_date)).fetchone()
+        elif item_code:
+            r = self.conn.execute(
+                f"SELECT amount FROM {table} WHERE item_code=? AND report_date=?",
+                (item_code, report_date)).fetchone()
+        else:
+            r = self.conn.execute(
+                f"SELECT item_name, amount FROM {table} WHERE report_date=?",
+                (report_date,)).fetchall()
+        if r:
+            return r
+        # 美股 fallback: 查找年份内最近的 01-xx 日期
+        if self.market == "us" and report_date and "-01-" in report_date:
+            yr = report_date[:4]
+            try:
+                if item_name:
+                    r = self.conn.execute(
+                        f"SELECT amount FROM {table} WHERE item_name=? AND report_date LIKE ? ORDER BY report_date DESC LIMIT 1",
+                        (item_name, f"{yr}-01-%")).fetchone()
+                elif item_code:
+                    r = self.conn.execute(
+                        f"SELECT amount FROM {table} WHERE item_code=? AND report_date LIKE ? ORDER BY report_date DESC LIMIT 1",
+                        (item_code, f"{yr}-01-%")).fetchone()
+                else:
+                    r = self.conn.execute(
+                        f"SELECT item_name, amount FROM {table} WHERE report_date LIKE ?",
+                        (f"{yr}-01-%",)).fetchall()
+                if r:
+                    return r
+            except Exception:
+                pass
+        return None if item_name or item_code else []
+
     def financial_item(self, table, item, report_date):
-        r = self.conn.execute(
-            f"SELECT amount FROM {table} WHERE item_name=? AND report_date=?",
-            (item, report_date)
-        ).fetchone()
-        if r: return r[0]
+        r = self._query_financial(table, report_date, item_name=item)
+        if r is not None:
+            return r[0] if isinstance(r, (list, tuple)) else r
         if self.market == "cn":
             # Fallback 1: 旧中文名 → 新THS列名
             ths_name = _THS_NAME_MAP.get(item)
@@ -241,7 +314,7 @@ class DataReader:
             import requests
             stock_cfg = config.STOCKS.get(self.code, {})
             market = stock_cfg.get("market", "hk")
-            secid_map = {"hk": "116", "cn": {"SSE": "1", "SZSE": "0"}.get(stock_cfg.get("exchange", ""), "0")}
+            secid_map = {"hk": "116", "cn": {"SSE": "1", "SZSE": "0"}.get(stock_cfg.get("exchange", ""), "0"), "us": "105"}
             secid = secid_map.get(market, "116")
             url = f"https://push2.eastmoney.com/api/qt/stock/get?secid={secid}.{self.code}&fields=f84"
             r = requests.get(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://quote.eastmoney.com/"},
@@ -275,12 +348,17 @@ def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
 
     - A股: 直接读取 income 表 '*扣除非经常性损益后的净利润' (审计后 CAS 标准)
     - 港股: 排除'其他收益' (FVTPL变动/汇兑/并购等非经常); '其他收入' (主要为利息) 默认保留
+    - 美股: US GAAP 净利润即运营利润, 直接使用 (无单独扣非项目)
     """
     market = stock_cfg.get("market", "hk")
     footnotes = []
 
     if np_val is None:
         return None, footnotes
+
+    if market == "us":
+        # 美股: US GAAP net income 直接使用, 无需调整
+        return np_val, footnotes
 
     if market == "cn":
         # A股: 直接使用审计扣非净利润 (CAS 标准)
@@ -635,9 +713,11 @@ def _compute_pe_metrics(table, reader, market="hk"):
     for m, c in monthly_avg.items():
         yearly_closes[m[:4]].append(c)
 
-    # 计算每年均价和PE (汇率调整: avg_price HKD → CNY)
+    # 计算每年均价和PE (汇率调整: 仅当交易币种 ≠ 财报币种时需要换算)
     price_ccy = config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
-    need_fx = (price_ccy != "CNY")  # 港股价格 HKD, 财报 CNY — 需要换算
+    stock_cfg = config.STOCKS.get(reader.code, {})
+    rpt_ccy = stock_cfg.get("currency", "CNY")
+    need_fx = (price_ccy != rpt_ccy)  # e.g. HKD交易+CNY财报 → 需要; USD交易+USD财报 → 不需要
     for yr, row in table.items():
         closes = yearly_closes.get(yr, [])
         if not closes or not row.get("BASIC_EPS"):
@@ -714,11 +794,160 @@ def _q_dates(yr, fye):
         # 标准财年: Q1=03-31, H1=06-30, 9M=09-30, FY=12-31
         return [f"{y}-03-31", f"{y}-06-30", f"{y}-09-30", f"{y}-12-31"]
 
-def build_semi_annual(reader, years, metrics):
-    """从 income 表构建季度或半年度数据"""
+def _us_fy_quarter(report_date, fye_month):
+    """从 report_date (YYYY-MM-DD) 和财年末月推导 (财年, 季度)"""
+    parts = report_date.split("-")
+    yr, mo = int(parts[0]), int(parts[1])
+    # 财年标签: 月度 > 财年末月 → 下一财年
+    fy = yr + 1 if mo > fye_month else yr
+    # 季度偏移 (财年末月+1 为 Q1 起始月)
+    offset = (mo - fye_month - 1) % 12 + 1
+    if offset <= 3:
+        q = "Q1"
+    elif offset <= 6:
+        q = "Q2"
+    elif offset <= 9:
+        q = "Q3"
+    else:
+        q = "Q4"
+    return str(fy), q
+
+def build_us_quarterly(reader, years, metrics):
+    """美股: 从 income 表单季报数据构建 QUARTERLY 区域。
+    Q1-Q3: 单季金额 (indicator='单季报'), Q4: 年报全值 - Q1 - Q2 - Q3。
+    """
+    from collections import defaultdict
     qtr = {"sales": [], "eps": [], "dividends": []}
     stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
     fye = stock.get("fiscal_yr_end", "12-31")
+    fye_month = int(fye.split("-")[0])
+
+    # 年报日期模式 (用于区分年报/季报)
+    yr_end_pats = ["-12-31"] + [f"-01-{d:02d}" for d in range(22, 32)]
+    yr_end_like = " OR ".join([f"report_date LIKE '%{p}'" for p in yr_end_pats])
+    qtr_like = " AND ".join([f"report_date NOT LIKE '%{p}'" for p in yr_end_pats])
+
+    # 查询 Q1-Q3 单季营收
+    rev_q = reader.conn.execute(
+        f"SELECT report_date, amount FROM income WHERE item_code='004001001' AND ({qtr_like}) ORDER BY report_date"
+    ).fetchall()
+    # 查询年报全值营收
+    rev_annual = reader.conn.execute(
+        f"SELECT report_date, amount FROM income WHERE item_code='004001001' AND ({yr_end_like}) ORDER BY report_date"
+    ).fetchall()
+
+    # EPS: Q1-Q3 单季 EPS + 年报全值 EPS
+    eps_q = reader.conn.execute(
+        f"SELECT report_date, amount FROM income WHERE item_code IN ('004017003','004027003','004027002') AND ({qtr_like}) ORDER BY report_date"
+    ).fetchall()
+    eps_annual = reader.conn.execute(
+        f"SELECT report_date, amount FROM income WHERE item_code IN ('004017003','004027003','004027002') AND ({yr_end_like}) ORDER BY report_date"
+    ).fetchall()
+
+    rev_map = {d: a for d, a in rev_q}
+    rev_annual_map = {d: a for d, a in rev_annual}
+    eps_map = {}
+    for d, a in eps_q:
+        if d not in eps_map or a is not None:
+            eps_map[d] = a
+    eps_annual_map = {}
+    for d, a in eps_annual:
+        if d not in eps_annual_map or a is not None:
+            eps_annual_map[d] = a
+
+    # 按财年分组 Q1-Q3 (从单季报日期)
+    fy_quarters = defaultdict(dict)
+    for d in rev_map:
+        fy, q = _us_fy_quarter(d, fye_month)
+        fy_quarters[fy][q] = d
+
+    # 年报日期也按财年分组
+    fy_annual = {}
+    for d, amt in rev_annual_map.items():
+        fy, _ = _us_fy_quarter(d, fye_month)
+        fy_annual[fy] = (d, amt / 1e8)
+
+    all_fys = sorted(set(list(fy_quarters.keys()) + list(fy_annual.keys())))
+
+    for fy in all_fys:
+        qs = fy_quarters.get(fy, {})
+        # Q1-Q3 单季营收
+        q_rev = {}
+        for ql in ["Q1", "Q2", "Q3"]:
+            d = qs.get(ql)
+            if d and d in rev_map:
+                q_rev[ql] = rev_map[d] / 1e8
+
+        # Q4 = 年报全值 - Q1 - Q2 - Q3
+        ann_info = fy_annual.get(fy)
+        if ann_info:
+            ann_date, ann_amt = ann_info
+            q1_q3_sum = sum(v for v in q_rev.values() if v is not None)
+            q4_val = max(0, ann_amt - q1_q3_sum) if q1_q3_sum > 0 else None
+        else:
+            q4_val = None
+            ann_amt = None
+
+        # EPS
+        q_eps = {}
+        for ql in ["Q1", "Q2", "Q3"]:
+            d = qs.get(ql)
+            if d and d in eps_map:
+                q_eps[ql] = eps_map[d]
+        eps_ann = eps_annual_map.get(ann_info[0]) if ann_info else None
+        if eps_ann and q_eps:
+            q1_q3_eps = sum(v for v in q_eps.values() if v is not None)
+            q4_eps = max(0, round(eps_ann - q1_q3_eps, 2)) if q1_q3_eps > 0 else None
+        else:
+            q4_eps = None
+
+        if q_rev:
+            qtr["sales"].append({
+                "year": fy, "has_quarter": True,
+                "q1": round(q_rev["Q1"], 1) if q_rev.get("Q1") is not None else None,
+                "q2": round(q_rev["Q2"], 1) if q_rev.get("Q2") is not None else None,
+                "q3": round(q_rev["Q3"], 1) if q_rev.get("Q3") is not None else None,
+                "q4": round(q4_val, 1) if q4_val is not None else None,
+                "full": round(ann_amt, 1) if ann_amt is not None else None
+            })
+        if q_eps:
+            qtr["eps"].append({
+                "year": fy, "has_quarter": True,
+                "q1": round(q_eps["Q1"], 2) if q_eps.get("Q1") is not None else None,
+                "q2": round(q_eps["Q2"], 2) if q_eps.get("Q2") is not None else None,
+                "q3": round(q_eps["Q3"], 2) if q_eps.get("Q3") is not None else None,
+                "q4": q4_eps,
+                "full": round(eps_ann, 2) if eps_ann else None
+            })
+
+    # 股息
+    for yr in years:
+        if reader:
+            row = reader.conn.execute(
+                "SELECT cash_dps, total_amount FROM dividend WHERE report_year=?",
+                (yr,)
+            ).fetchone()
+        else:
+            row = None
+        dps_val = (row[0] or 0) if row else 0
+        ann = metrics.get(yr, {})
+        full = ann.get("DPS", 0) or 0
+        qtr["dividends"].append({
+            "year": yr, "has_quarter": False,
+            "q1": 0, "q3": round(full, 3), "full": round(full, 3)
+        })
+    return qtr
+
+def build_semi_annual(reader, years, metrics):
+    """从 income 表构建季度或半年度数据。美股走单季报路径 (build_us_quarterly)。"""
+    qtr = {"sales": [], "eps": [], "dividends": []}
+    stock = config.STOCKS.get(config.ACTIVE_STOCK, {})
+    fye = stock.get("fiscal_yr_end", "12-31")
+    market = stock.get("market", "")
+
+    # 美股: 使用单季报数据直接构建季度数据
+    if market == "us":
+        return build_us_quarterly(reader, years, metrics)
     
     for yr in years:
         qd = _q_dates(yr, fye)  # [q1, h1, 9m, fy]
@@ -937,9 +1166,31 @@ if df is not None and len(df) > 0:
 else:
     print('[]')
 """
+        elif func_name == "stock_us_index_daily_sina":
+            script = f"""
+import akshare as ak, json, sys
+df = ak.index_us_stock_sina(symbol="{symbol}")
+if df is not None and len(df) > 0:
+    df['date'] = df['date'].astype(str)
+    result = []
+    monthly = {{}}
+    for _, row in df.iterrows():
+        key = row['date'][:7]
+        if key not in monthly:
+            monthly[key] = {{"open": row['open'], "high": row['high'],
+                            "low": row['low'], "close": row['close']}}
+        else:
+            monthly[key]["high"] = max(monthly[key]["high"], row['high'])
+            monthly[key]["low"] = min(monthly[key]["low"], row['low'])
+            monthly[key]["close"] = row['close']
+    result = [{{"date": k, **v}} for k, v in sorted(monthly.items())]
+    print(json.dumps(result))
+else:
+    print('[]')
+"""
         else:
             return []
-        r = subprocess.run([managed_py, "-c", script], capture_output=True, text=True, timeout=30)
+        r = subprocess.run([managed_py, "-c", script], capture_output=True, text=True, timeout=60)
         if r.returncode == 0 and r.stdout.strip():
             return json.loads(r.stdout.strip())
         return []

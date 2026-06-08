@@ -243,11 +243,12 @@ def step_1_fetch(code, stock, force_fetch=False):
     return True
 
 def step_2_pdf(code):
-    """Step 2: 年报PDF下载。缺失即阻断。"""
+    """Step 2: 年报PDF下载。美股走 SEC EDGAR 10-K (.htm) 下载。"""
+    stock = config.STOCKS.get(code, {})
     pdf_dir = _pdf_dir(code)
-    existing = len([f for f in os.listdir(pdf_dir) if f.endswith(".pdf")]) if os.path.isdir(pdf_dir) else 0
+    existing = len([f for f in os.listdir(pdf_dir) if f.endswith(".pdf") or f.endswith(".htm")]) if os.path.isdir(pdf_dir) else 0
     if existing >= 3:
-        print(f"  Step 2: 已有 {existing} 份PDF, 跳过下载")
+        print(f"  Step 2: 已有 {existing} 份年报文件, 跳过下载")
         return True
 
     print(f"  Step 2: 下载年报PDF...")
@@ -257,14 +258,18 @@ def step_2_pdf(code):
         raise SystemExit(_red(f"  FAIL: PDF下载失败\n{out[-500:]}"))
     # Verify
     pdf_dir = _pdf_dir(code)
-    count = len([f for f in os.listdir(pdf_dir) if f.endswith(".pdf")]) if os.path.isdir(pdf_dir) else 0
+    count = len([f for f in os.listdir(pdf_dir) if f.endswith((".pdf", ".htm"))]) if os.path.isdir(pdf_dir) else 0
     if count < 3:
-        raise SystemExit(_red(f"  FAIL: 下载后仅{count}份PDF, 需≥3年年报"))
-    print(f"  Step 2: {_green('OK')} ({count}份PDF)")
+        raise SystemExit(_red(f"  FAIL: 下载后仅{count}份文件, 需≥3年年报"))
+    print(f"  Step 2: {_green('OK')} ({count}份年报文件)")
     return True
 
 def step_3_mda(code):
-    """Step 3: MD&A提取。缺失即阻断。"""
+    """Step 3: MD&A提取。缺失即阻断。美股跳过(SEC 10-K 英文PDF)。"""
+    stock = config.STOCKS.get(code, {})
+    if stock.get("market") == "us":
+        print(f"  Step 3: {_green('SKIP')} (美股 MD&A 提取待实现, 使用 config fallback)")
+        return True
     db = _db_path(code)
     conn = sqlite3.connect(db)
     has_mda = conn.execute("SELECT value FROM meta WHERE key='mda_text'").fetchone()
@@ -294,7 +299,11 @@ def step_3_mda(code):
     return True
 
 def step_4_revenue(code):
-    """Step 4: 营收结构。缺失则尝试自动运行 scripts/<code>/insert_revenue.py。"""
+    """Step 4: 营收结构。缺失则尝试自动运行 scripts/<code>/insert_revenue.py。美股跳过。"""
+    stock = config.STOCKS.get(code, {})
+    if stock.get("market") == "us":
+        print(f"  Step 4: {_green('SKIP')} (美股营收结构待实现)")
+        return True
     db = _db_path(code)
     conn = sqlite3.connect(db)
     try:
@@ -565,7 +574,7 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
     # 显示用字段 (未配置时用占位值)
     name = stock.get("name", code) if stock else code
     market = stock.get("market", "hk") if stock else "hk"
-    market_label = "A股" if market == "cn" else "港股(H股)"
+    market_label = "A股" if market == "cn" else ("美股" if market == "us" else "港股(H股)")
     industry = stock.get("industry", "未知") if stock else "未知"
     currency = stock.get("currency", "CNY") if stock else "CNY"
     exchange = stock.get("exchange", "") if stock else ""
@@ -653,8 +662,8 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
     if not stock:
         raise SystemExit(_red(f"\n  REFUSED: {code} 不在 config.STOCKS 中, 请先配置\n  提示: 编辑 config.py, 在 STOCKS 字典中添加该股票信息"))
 
-    if market not in ("hk", "cn"):
-        raise SystemExit(_red(f"  REFUSED: 未知市场 '{market}', 请设为 'hk' 或 'cn'"))
+    if market not in ("hk", "cn", "us"):
+        raise SystemExit(_red(f"  REFUSED: 未知市场 '{market}', 请设为 'hk'、'cn' 或 'us'"))
 
     # 校验估值倍数
     if valuation_method == "pb":

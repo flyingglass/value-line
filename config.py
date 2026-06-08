@@ -671,6 +671,32 @@ STOCKS = {
         "fiscal_yr_end": "12-31",
         "business_desc": "宁德时代是全球最大的动力电池和储能电池制造商，主营动力电池系统、储能电池系统和电池材料回收。全球市占率超35%，客户覆盖特斯拉、宝马、奔驰等全球主要车企。2025年营收4237亿元。",
     },
+    "NVDA": {
+        "name": "英伟达",
+        "name_en": "NVIDIA",
+        "market": "us",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "ceo": "Jensen Huang",
+        "inc": "美国特拉华州",
+        "website": "www.nvidia.com",
+        "pfx": "us",
+        "cik": "0001045810",         # SEC CIK (Central Index Key)
+        "shares": 2460000000,
+        "shares_str": "2,460,000,000",
+        "industry": "Technology / Semiconductor",
+        "fiscal_yr_end": "01-26",  # FY ends ~Jan 26 (varies 25-31)
+        "valuation_method": "cf",
+        "business_desc": "NVIDIA是全球领先的GPU和AI加速计算公司，核心业务涵盖数据中心（GPU/AI芯片）、游戏、专业可视化和汽车。H100/B100/GB200等AI GPU垄断全球AI训练和推理市场超80%份额。CUDA生态是NVIDIA最深的护城河。2025年营收超1,300亿美元，数据中心占比超80%。",
+        "analyst": {
+            "commentary": [
+                "NVIDIA：AI算力之王，高增长能否持续支撑高估值？",
+                "2026年6月 — NVIDIA作为全球AI GPU绝对霸主，Blackwell架构GB200量产推动数据中心营收爆发。FY2026营收预计超1,300亿美元（+100%+），数据中心占比80%+。市场担忧：①AI基础设施投资是否可持续？②竞争（AMD、自研芯片）是否侵蚀份额？③增速拐点何时到来？",
+                "NVIDIA的竞争壁垒是全球半导体行业最深的之一：①CUDA软件生态锁定——数百万开发者依赖CUDA，迁移成本极高；②架构代差——Blackwell领先竞品1-2代；③NVLink+InfiniBand端到端系统能力——不是单卖芯片，而是卖整个AI工厂。",
+                "当前PE约35-45x，市场对2026年增速定价。若AI Capex维持高增长，估值有支撑；若增速放缓至30-40%，PE可能压缩至20-25x。关注每季度数据中心营收增速和毛利率趋势作为核心信号。",
+            ],
+        },
+    },
 }
 
 # ============================================================
@@ -708,16 +734,20 @@ MARKET_CONFIG = {
         "currency": "USD",
         "index_name": "SPX",
         "index_name_cn": "标普500",
-        "index_symbol": "SPX",
-        "index_akshare_func": "",
-        "pe_estimate": {},
+        "index_symbol": ".INX",
+        "index_akshare_func": "stock_us_index_daily_sina",
+        "pe_estimate": {
+            "2013": 17.0, "2014": 18.5, "2015": 19.0, "2016": 20.0,
+            "2017": 23.0, "2018": 18.0, "2019": 21.0, "2020": 28.0,
+            "2021": 24.0, "2022": 18.0, "2023": 22.0, "2024": 24.0, "2025": 23.0,
+        },
     },
 }
 
 # ============================================================
 # 当前活跃标的
 # ============================================================
-ACTIVE_STOCK = "09992"
+ACTIVE_STOCK = "NVDA"
 
 # ============================================================
 # SQLite 路径
