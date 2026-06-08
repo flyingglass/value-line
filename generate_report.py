@@ -430,7 +430,7 @@ var DATA = {DATA_JS};
 
   // Business — VL风格，分段可读 (全宽)
   var rev=d.revenue_structure||{{}}, ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]),
-      prod=(rev.by_product||[]), ind=(rev.by_industry||[]);
+      prod=(rev.by_product||[]), ind=(rev.by_industry||[]), tech=(rev.by_tech||[]), app=(rev.by_app||[]);
   var desc=(d.analyst&&d.analyst.business)||cs.business_desc||'';
   var bizP=[], bizHtml='';
   if(desc){{bizP.push(desc);}}
@@ -440,6 +440,8 @@ var DATA = {DATA_JS};
   if(rg.length>0){{var rgTop=rg.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('地域：'+rgTop);}}
   if(prod.length>0){{var prodTop=prod.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('产品：'+prodTop);}}
   if(ind.length>0){{var indTop=ind.slice(0,5).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('行业：'+indTop);}}
+  if(tech.length>0){{var techTop=tech.slice(0,5).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('工艺节点：'+techTop);}}
+  if(app.length>0){{var appTop=app.slice(0,5).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('应用领域：'+appTop);}}
   if(p2.length) bizP.push(p2.join('；'));
   var p3=[];var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
   if(depr&&revs) p3.push('折旧率'+(depr/revs*100).toFixed(1)+'%');

@@ -1792,7 +1792,8 @@ def build_report(code=None):
     revenue_structure = {}
     latest_yr = years[-1] if years else "2025"
     # 回退: 如果最新年份无数据, 向前查找最近有数据的年份
-    for dim in ["by_channel", "by_ip", "by_region", "by_segment", "by_product", "by_industry"]:
+    for dim in ["by_channel", "by_ip", "by_region", "by_segment", "by_product", "by_industry",
+                 "by_tech", "by_app"]:
         data = None
         check_yr = latest_yr
         for _ in range(5):  # 最多回退5年
@@ -2026,7 +2027,7 @@ def build_report(code=None):
                            rev_pct, threshold=pdf_th)
 
             # 3. 营收结构维度完整性: 各维度 pct 总和是否 = 100%
-            for dim in ["by_channel", "by_ip", "by_region", "by_segment"]:
+            for dim in ["by_channel", "by_ip", "by_region", "by_segment", "by_tech", "by_app"]:
                 dim_sum = reader.conn.execute(
                     "SELECT SUM(pct) FROM revenue_structure WHERE code=? AND year=? AND dim_type=?",
                     (code, str(pdf_yr), dim)).fetchone()[0]

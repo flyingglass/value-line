@@ -22,7 +22,12 @@ HK_PDF_URLS = {
         "2025": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0325/2026032500285.pdf",
         "2024": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0326/2025032600228_c.pdf",
         "2023": "https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0320/2024032000318_c.pdf",
-    }
+    },
+    "00981": {
+        "2025": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0327/2026032700422.pdf",
+        "2024": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0327/2025032700201.pdf",
+        "2023": "https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0322/2024032200320.pdf",
+    },
 }
 
 STOCKS = {
@@ -56,6 +61,33 @@ STOCKS = {
         "shares_str": "1,341,043,150",
         "industry": "Consumer",
         "business_desc": "泡泡玛特是中国领先的潮流文化娱乐公司，以IP为核心，业务涵盖艺术家发掘、IP运营、产品设计制造、全球零售及粉丝社区运营。旗下IP包括THE MONSTERS(LABUBU)、SKULLPANDA、MOLLY、DIMOO等。2025年海外收入占比达44%。",
+    },
+    "00981": {
+        "name": "中芯国际",
+        "name_en": "SMIC",
+        "market": "hk",
+        "exchange": "SEHK",
+        "currency": "HKD",
+        "ceo": "刘训峰",
+        "inc": "开曼群岛",
+        "website": "www.smics.com",
+        "hkex_stock_id": "7249",
+        "pfx": "hk",
+        "shares": 7967000000,
+        "shares_str": "7,967,000,000",
+        "industry": "Technology / Semiconductor",
+        "fiscal_yr_end": "12-31",
+        "valuation_method": "pb",
+        "business_desc": "中芯国际是中国大陆规模最大、技术最先进的晶圆代工企业，提供0.35μm到FinFET工艺的集成电路制造服务。核心业务为晶圆代工，覆盖逻辑、射频、CIS、PMIC、BCD、NOR Flash、NAND Flash等工艺平台。全球晶圆代工市场排名第五、中国大陆第一。A+H双上市（港股00981，科创板688981）。",
+        "analyst": {
+            "commentary": [
+                "中芯国际：PB=1x估值，半导体自主可控龙头价值几何？",
+                "2026年6月8日 — 中芯国际2025年营收约577亿元（+21%），晶圆出货量创历史新高。12英寸晶圆占比持续提升，FinFET/28nm先进制程收入占比约15-18%。",
+                "每股净资产约¥21.5，在PB=1x保守估值下目标价约¥21.5（HKD折算后约HKD 23.2）。资本开支极重（年支出超300亿元建晶圆厂），自由现金流长期为负，PB估值法比CF更合理。",
+                "半导体周期：全球晶圆代工处于AI驱动上行周期，但成熟制程竞争加剧。中芯国际受益于中国半导体自主可控政策，稼动率持续提升。风险：美国制裁升级（设备禁令）、技术差距（无法获取EUV）、行业周期波动。",
+                "当前PB约3.5x处于历史高位（3年91%分位），ROE仅3.26%。PB=1x为保守目标，适合长期价值投资者。关注28nm产能爬坡、稼动率趋势及政策支持力度。",
+            ],
+        },
     },
     "09988": {
         "name": "阿里巴巴",

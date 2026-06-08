@@ -249,6 +249,9 @@ def fetch_hk_financials(store, code):
     # 分红
     print("  [hk_dividend] ", end="", flush=True)
     df = ak.stock_hk_dividend_payout_em(symbol=code)
+    if df is None or df.empty:
+        print(f"OK 0条 (无分红数据)")
+        return
     cols = df.columns.tolist()
     # 列名编码乱码, 通过内容特征自动识别各列
     col_fy = None   # 财政年度 (4位数字)
