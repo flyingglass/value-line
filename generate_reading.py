@@ -512,14 +512,17 @@ def _render_commentary(data):
             lines.append(f"① 资本支出 ¥{per_capex:.2f}/股（扩建/更换厂房设备）；")
 
             # 营运资金变化
+            shares_cur = ly.get("TOTAL_SHARES")
+            shares_prev = py.get("TOTAL_SHARES") if years and len(years) >= 2 else None
             wc_cur = ly.get("WORKING_CAPITAL")
             wc_prev = py.get("WORKING_CAPITAL") if years and len(years) >= 2 else None
             if wc_cur is not None and wc_prev is not None:
                 wc_chg = round(wc_cur - wc_prev, 1)
+                wc_chg_ps = f"折合¥{abs(wc_chg * 100 / shares_cur):.2f}/股，" if shares_cur and shares_cur > 0 else ""
                 if wc_chg > 0:
-                    lines.append(f"② 营运资金占用 +{wc_chg:.1f}亿（扩张期正常，需关注效率）；")
+                    lines.append(f"② 营运资金占用 +{wc_chg:.1f}亿（{wc_chg_ps}扩张期正常，需关注效率）；")
                 elif wc_chg < 0:
-                    lines.append(f"② 营运资金释放 {wc_chg:.1f}亿（快收慢付，竞争优势 ✅）；")
+                    lines.append(f"② 营运资金释放 {wc_chg:.1f}亿（{wc_chg_ps}快收慢付，竞争优势 ✅）；")
                 else:
                     lines.append(f"② 营运资金基本持平；")
 
@@ -528,8 +531,6 @@ def _render_commentary(data):
             lines.append(f"③ 现金分红 ¥{dps:.2f}/股{pay_str}；")
 
             # 回购检测（通过股数变化）
-            shares_cur = ly.get("TOTAL_SHARES")
-            shares_prev = py.get("TOTAL_SHARES") if years and len(years) >= 2 else None
             if shares_cur and shares_prev and shares_prev > 0:
                 shr_chg = round((shares_cur - shares_prev) / shares_prev * 100, 1)
                 if shr_chg < -0.3:

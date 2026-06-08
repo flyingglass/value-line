@@ -73,7 +73,8 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
         ]
         if wc is not None and wc_p is not None:
             wc_chg = wc - wc_p
-            p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿")
+            wc_chg_ps = f"折合¥{abs(wc_chg * 100 / shares):.2f}/股" if shares and shares > 0 else ""
+            p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿（{wc_chg_ps}）")
             p2_parts.append(f"（加盟模式先收钱后发货，快收慢付 ✅）；")
         p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（支付率{payout:.0f}%）；")
         if shr_chg is not None and shr_chg < -0.3:

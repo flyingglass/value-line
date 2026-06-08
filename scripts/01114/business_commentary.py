@@ -130,7 +130,8 @@ def build(stock, metrics, rev_struct, years, cagr, spot):
             p2_parts.append(f"① 资本支出¥{per_capex or 0:.2f}/股（占现金流{capex_pct or 0}%）；")
             if wc is not None and wc_p is not None:
                 wc_chg = wc - wc_p
-                p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿；")
+                wc_chg_ps = f"折合¥{abs(wc_chg * 100 / shares):.2f}/股" if shares and shares > 0 else ""
+                p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿（{wc_chg_ps}）；")
             p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（占现金流{dps_pct or 0}%）；")
             if shr_chg is not None and shr_chg < -0.3:
                 p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")

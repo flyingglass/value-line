@@ -1339,10 +1339,11 @@ def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
             ]
             if wc_cur is not None and wc_prev is not None:
                 wc_chg = round(wc_cur - wc_prev, 1)
+                wc_chg_ps = f"折合¥{abs(wc_chg * 100 / shares_cur):.2f}/股，" if shares_cur and shares_cur > 0 else ""
                 if wc_chg > 0:
-                    p2_parts.append(f"② 营运资金占用 +{wc_chg:.1f}亿（扩张期正常，需关注效率）；")
+                    p2_parts.append(f"② 营运资金占用 +{wc_chg:.1f}亿（{wc_chg_ps}扩张期正常，需关注效率）；")
                 elif wc_chg < 0:
-                    p2_parts.append(f"② 营运资金释放 {wc_chg:.1f}亿（快收慢付，竞争优势 ✅）；")
+                    p2_parts.append(f"② 营运资金释放 {wc_chg:.1f}亿（{wc_chg_ps}快收慢付，竞争优势 ✅）；")
                 else:
                     p2_parts.append(f"② 营运资金基本持平；")
             pay_str = f"（支付率{payout:.0f}%）" if payout else ""
