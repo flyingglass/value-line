@@ -61,16 +61,31 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     )
 
     # 段2
+    wc, wc_p = ly.get("WORKING_CAPITAL"), py.get("WORKING_CAPITAL")
+    shares, shares_p = ly.get("TOTAL_SHARES"), py.get("TOTAL_SHARES")
+    shr_chg = round((shares - shares_p) / shares_p * 100, 1) if shares and shares_p and shares_p > 0 else None
     if eps and op_eps and nonop_eps:
-        p2 = (
+        p2_parts = [
             f"每股收益¥{eps:.2f}中，主业经营贡献¥{op_eps:.2f}（{op_pct}%），"
-            f"非经营性贡献¥{nonop_eps:.2f}（{100-op_pct}%），利润高度纯粹。"
-            f"每股现金流¥{per_cf:.2f}，资本支出¥{per_capex:.2f}（轻资产扩张，CAPEX极低），"
-            f"现金分红¥{dps:.2f}（支付率{payout:.0f}%），净留存¥{net_ps:.2f}/股。"
-            f"加盟模式先收钱后发货，现金流充裕——"
-            + ("零长期负债，" if lt_debt == 0 else f"长期负债率{lt_debt/ly.get('TOTAL_EQUITY',1)*100:.0f}%，")
+            f"非经营性贡献¥{nonop_eps:.2f}（{100-op_pct}%），利润高度纯粹。",
+            f"每股现金流¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：",
+            f"① 资本支出¥{per_capex:.2f}/股（轻资产扩张，CAPEX极低）；",
+        ]
+        if wc is not None and wc_p is not None:
+            wc_chg = wc - wc_p
+            p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿")
+            p2_parts.append(f"（加盟模式先收钱后发货，快收慢付 ✅）；")
+        p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（支付率{payout:.0f}%）；")
+        if shr_chg is not None and shr_chg < -0.3:
+            p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+        elif shr_chg is not None and shr_chg > 0:
+            p2_parts.append(f"④ 股数持平/微扩；")
+        p2_parts.append(f"净留存¥{net_ps:.2f}/股，现金流充裕——")
+        p2_parts.append(
+            ("零长期负债，" if lt_debt == 0 else f"长期负债率{lt_debt/ly.get('TOTAL_EQUITY',1)*100:.0f}%，")
             + "经营效率驱动所有回报。"
         )
+        p2 = "".join(p2_parts)
     else:
         p2 = "每股资金流向：数据待补充。"
 

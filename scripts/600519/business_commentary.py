@@ -56,6 +56,9 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
 
     # 段2: 每股资金流向与现金循环
     tax_rate = (ly.get("TAX_EBT", 25) or 25) / 100
+    wc, wc_p = ly.get("WORKING_CAPITAL"), py.get("WORKING_CAPITAL")
+    shares, shares_p = ly.get("TOTAL_SHARES"), py.get("TOTAL_SHARES")
+    shr_chg = round((shares - shares_p) / shares_p * 100, 1) if shares and shares_p and shares_p > 0 else None
     if per_oi and opm and eps:
         op_eps = round(per_oi * (opm / 100) * (1 - tax_rate), 2)
         nonop_eps = round(eps - op_eps, 2)
@@ -63,13 +66,24 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
         nonop_pct = 100 - op_pct
         net_ps = round(per_cf - per_capex - dps, 2) if per_cf else None
 
-        p2 = (
+        p2_parts = [
             f"每股收益¥{eps:.2f}中，主业经营贡献¥{op_eps:.2f}（{op_pct}%），非经营性贡献¥{nonop_eps:.2f}（{nonop_pct}%），"
-            f"利润高度纯粹。每股现金流¥{per_cf:.2f}，资本支出¥{per_capex:.2f}（产能扩建），"
-            f"现金分红¥{dps:.2f}（支付率{payout:.0f}%），净留存¥{net_ps:.2f}/股。"
-            f"现金流极度充裕，分红率持续提升——账上现金超2000亿元，"
-            f"2025年茅台酒基酒产量5.72万吨，系列酒4.81万吨，3-5年后可售商品酒将显著放量。"
+            f"利润高度纯粹。每股现金流¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：",
+            f"① 资本支出¥{per_capex:.2f}/股（产能扩建）；",
+        ]
+        if wc is not None and wc_p is not None:
+            wc_chg = wc - wc_p
+            p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿；")
+        p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（支付率{payout:.0f}%）；")
+        if shr_chg is not None and shr_chg < -0.3:
+            p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+        elif shr_chg is not None and shr_chg > 0:
+            p2_parts.append(f"④ 股数持平/微扩；")
+        p2_parts.append(
+            f"净留存¥{net_ps:.2f}/股，现金流极度充裕。"
+            f"账上现金超2000亿元，2025年茅台酒基酒产量5.72万吨，系列酒4.81万吨，3-5年后可售商品酒将显著放量。"
         )
+        p2 = "".join(p2_parts)
     else:
         p2 = "每股资金流向：数据待补充。"
 

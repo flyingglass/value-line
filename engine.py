@@ -1295,15 +1295,18 @@ def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
     pe_vals = [v for yr_k in years for v in [metrics.get(yr_k, {}).get("PE_AVG")] if v]
     med_pe = sorted(pe_vals)[len(pe_vals) // 2] if pe_vals else None
 
-    # ── 每股资金流向 (会计恒等式) ──
+    # ── 每股资金流向 (VL 四大去向) ──
     tax_rate_val = (ly.get("TAX_EBT", 25) or 25) / 100
     op_eps = round(per_oi * (op_margin / 100) * (1 - tax_rate_val), 2) if per_oi and op_margin else None
     nonop_eps = round(eps - op_eps, 2) if eps is not None and op_eps is not None else None
     net_ps = round(per_cf - per_capex - dps, 2) if per_cf is not None else None
     op_pct = round(op_eps / eps * 100) if eps and op_eps and eps != 0 else None
     nonop_pct = round(nonop_eps / eps * 100) if eps and nonop_eps and eps != 0 else None
-    capex_pct = round(per_capex / per_cf * 100) if per_cf and per_capex and per_cf != 0 else None
-    dps_pct = round(dps / per_cf * 100) if per_cf and dps and per_cf != 0 else None
+    payout = ly.get("PAYOUT_RATIO")
+    wc_cur = ly.get("WORKING_CAPITAL")
+    wc_prev = py.get("WORKING_CAPITAL") if py else None
+    shares_cur = ly.get("TOTAL_SHARES")
+    shares_prev = py.get("TOTAL_SHARES") if py else None
 
     # ── 段1: 业绩快照 ──
     p1 = f"{today} — {name_short}{latest_yr}年营收{rev:.1f}亿元({_dir_pct(rev,rev_p)})" if rev else ""
@@ -1325,17 +1328,38 @@ def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
         p1 += f"，ROE {roe:.1f}%"
     p1 += "。"
 
-    # ── 段2: 每股资金流向 ──
+    # ── 段2: 每股资金流向 (VL 四大去向) ──
     if eps and op_eps is not None and nonop_eps is not None:
         p2 = (f"每股收益¥{eps:.2f}中，主业贡献¥{op_eps:.2f}（{op_pct}%），"
               f"非经营性贡献¥{nonop_eps:.2f}（{nonop_pct}%）。")
         if per_cf is not None and net_ps is not None:
-            p2 += (f"每股现金流¥{per_cf:.2f}中，资本支出¥{per_capex:.2f}占{capex_pct or 0}%，"
-                   f"现金分红¥{dps:.2f}占{dps_pct or 0}%，净留存¥{net_ps:.2f}/股")
+            p2_parts = [
+                f"每股现金流¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：",
+                f"① 资本支出¥{per_capex:.2f}/股（扩建/更换厂房设备）；",
+            ]
+            if wc_cur is not None and wc_prev is not None:
+                wc_chg = round(wc_cur - wc_prev, 1)
+                if wc_chg > 0:
+                    p2_parts.append(f"② 营运资金占用 +{wc_chg:.1f}亿（扩张期正常，需关注效率）；")
+                elif wc_chg < 0:
+                    p2_parts.append(f"② 营运资金释放 {wc_chg:.1f}亿（快收慢付，竞争优势 ✅）；")
+                else:
+                    p2_parts.append(f"② 营运资金基本持平；")
+            pay_str = f"（支付率{payout:.0f}%）" if payout else ""
+            p2_parts.append(f"③ 现金分红¥{dps:.2f}/股{pay_str}；")
+            if shares_cur and shares_prev and shares_prev > 0:
+                shr_chg = round((shares_cur - shares_prev) / shares_prev * 100, 1)
+                if shr_chg < -0.3:
+                    p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+                elif shr_chg > 1:
+                    p2_parts.append(f"④ 股本扩张（股数{shr_chg:+.1f}%）— 摊薄每股指标 ⚠️；")
+                else:
+                    p2_parts.append(f"④ 股数基本持平；")
             if net_ps > 0:
-                p2 += "，现金流充裕。"
+                p2_parts.append(f"净留存¥{net_ps:.2f}/股，现金流充裕。")
             else:
-                p2 += "，入不敷出，消耗存量现金储备。"
+                p2_parts.append(f"入不敷出¥{net_ps:.2f}/股，消耗存量现金储备。")
+            p2 += "".join(p2_parts)
     else:
         p2 = f"每股资金流向：财报数据不足以进行完整拆分。"
 

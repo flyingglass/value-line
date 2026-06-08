@@ -29,11 +29,25 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
           f"阿里云AI相关收入连续多季度三位数增长，云业务从「基础设施」转向「AI平台」，利润率大幅改善。"
           f"国际电商AIDC保持30%+增速，菜鸟全球化物流网络完善。")
 
+    wc, wc_p = ly.get("WORKING_CAPITAL"), py.get("WORKING_CAPITAL")
+    shares, shares_p = ly.get("TOTAL_SHARES"), py.get("TOTAL_SHARES")
+    shr_chg = round((shares - shares_p) / shares_p * 100, 1) if shares and shares_p and shares_p > 0 else None
     net_ps = round(per_cf - per_capex - dps, 2) if per_cf else None
-    p2 = (f"每股收益¥{eps:.2f}，云业务+国际电商贡献增量。"
-          f"每股现金流¥{per_cf:.2f}，资本支出¥{per_capex:.2f}（AI算力投资加大），"
-          f"现金分红¥{dps:.2f}（支付率{pay:.0f}%），净留存¥{net_ps:.2f}/股。"
-          f"净现金超2,000亿，股份回购持续——FY2025约650亿美元等值，每股价值增厚显著。")
+    p2_parts = [
+        f"每股收益¥{eps:.2f}，云业务+国际电商贡献增量。"
+        f"每股现金流¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：",
+        f"① 资本支出¥{per_capex:.2f}/股（AI算力投资加大）；",
+    ]
+    if wc is not None and wc_p is not None:
+        wc_chg = wc - wc_p
+        p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿；")
+    p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（支付率{pay:.0f}%）；")
+    if shr_chg is not None and shr_chg < -0.3:
+        p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+    elif shr_chg is not None and shr_chg > 0:
+        p2_parts.append(f"④ 股数持平/微扩；")
+    p2_parts.append(f"净留存¥{net_ps:.2f}/股，净现金超2,000亿，每股价值增厚显著。")
+    p2 = "".join(p2_parts)
 
     p3 = (f"毛利率{_pct(gm)}、净利率{_pct(npm)}、ROE {_pct(roe)}。"
           f"护城河：①中国电商最大双边网络——10亿消费者+千万商家；"

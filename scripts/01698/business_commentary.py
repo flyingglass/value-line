@@ -36,12 +36,26 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
           + (f"利润增速超营收，成本端版权占比下降释放利润率。" if np_c and rev_c and np_c > rev_c else ""))
 
     # 段2
+    wc, wc_p = ly.get("WORKING_CAPITAL"), py.get("WORKING_CAPITAL")
+    shares, shares_p = ly.get("TOTAL_SHARES"), py.get("TOTAL_SHARES")
+    shr_chg = round((shares - shares_p) / shares_p * 100, 1) if shares and shares_p and shares_p > 0 else None
     net_ps = round(per_cf - per_capex - dps, 2) if per_cf else None
     op_eps = round(eps * 0.85, 2) if eps else None  # approx operating
-    p2 = (f"每股收益¥{eps:.2f}，音乐订阅为主业核心驱动力（约85%+）。"
-          f"每股现金流¥{per_cf:.2f}，资本支出¥{per_capex:.2f}（轻资产），"
-          f"现金分红¥{dps:.2f}（支付率{pay:.0f}%），净留存¥{net_ps:.2f}/股。"
-          f"净现金状态，现金流充沛，版权成本占比持续下降。")
+    p2_parts = [
+        f"每股收益¥{eps:.2f}，音乐订阅为主业核心驱动力（约85%+）。"
+        f"每股现金流¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：",
+        f"① 资本支出¥{per_capex:.2f}/股（轻资产，版权为主）；",
+    ]
+    if wc is not None and wc_p is not None:
+        wc_chg = wc - wc_p
+        p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿；")
+    p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（支付率{pay:.0f}%）；")
+    if shr_chg is not None and shr_chg < -0.3:
+        p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+    elif shr_chg is not None and shr_chg > 0:
+        p2_parts.append(f"④ 股数持平/微扩；")
+    p2_parts.append(f"净留存¥{net_ps:.2f}/股，净现金状态，现金流充沛，版权成本占比持续下降。")
+    p2 = "".join(p2_parts)
 
     # 段3
     p3 = (f"毛利率{_pct(gm)}、净利率{_pct(npm)}、ROE {_pct(roe)}。"

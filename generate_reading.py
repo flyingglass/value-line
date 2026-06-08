@@ -498,6 +498,7 @@ def _render_commentary(data):
         dps = ly.get("DPS") or 0
         op_margin = ly.get("OP_MARGIN")
         tax_rate = (ly.get("TAX_EBT", 25) or 25) / 100
+        payout = ly.get("PAYOUT_RATIO")
 
         if per_oi and op_margin and eps and per_cf:
             op_eps = round(per_oi * (op_margin / 100) * (1 - tax_rate), 2)
@@ -507,11 +508,41 @@ def _render_commentary(data):
             net_ps = round(per_cf - per_capex - dps, 2)
 
             lines.append(f"每股收益 ¥{eps:.2f} 中，主业贡献 ¥{op_eps:.2f} ({op_pct}%)，非经营性 ¥{nonop_eps:.2f} ({nonop_pct}%)。")
-            lines.append(f"每股现金流 ¥{per_cf:.2f}，资本支出 ¥{per_capex:.2f}，现金分红 ¥{dps:.2f}，净留存 ¥{net_ps:.2f}/股")
+            lines.append(f"每股现金流 ¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：")
+            lines.append(f"① 资本支出 ¥{per_capex:.2f}/股（扩建/更换厂房设备）；")
+
+            # 营运资金变化
+            wc_cur = ly.get("WORKING_CAPITAL")
+            wc_prev = py.get("WORKING_CAPITAL") if years and len(years) >= 2 else None
+            if wc_cur is not None and wc_prev is not None:
+                wc_chg = round(wc_cur - wc_prev, 1)
+                if wc_chg > 0:
+                    lines.append(f"② 营运资金占用 +{wc_chg:.1f}亿（扩张期正常，需关注效率）；")
+                elif wc_chg < 0:
+                    lines.append(f"② 营运资金释放 {wc_chg:.1f}亿（快收慢付，竞争优势 ✅）；")
+                else:
+                    lines.append(f"② 营运资金基本持平；")
+
+            # 股利
+            pay_str = f"（支付率{payout:.0f}%）" if payout else ""
+            lines.append(f"③ 现金分红 ¥{dps:.2f}/股{pay_str}；")
+
+            # 回购检测（通过股数变化）
+            shares_cur = ly.get("TOTAL_SHARES")
+            shares_prev = py.get("TOTAL_SHARES") if years and len(years) >= 2 else None
+            if shares_cur and shares_prev and shares_prev > 0:
+                shr_chg = round((shares_cur - shares_prev) / shares_prev * 100, 1)
+                if shr_chg < -0.3:
+                    lines.append(f"④ 股份回购（股数 {shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+                elif shr_chg > 1:
+                    lines.append(f"④ 股本扩张（股数 {shr_chg:+.1f}%）— 摊薄每股指标 ⚠️；")
+                else:
+                    lines.append(f"④ 股数基本持平；")
+
             if net_ps > 0:
-                lines.append("，现金流充裕 ✅。")
+                lines.append(f"净留存 ¥{net_ps:.2f}/股，现金流充裕 ✅。")
             else:
-                lines.append("，入不敷出，消耗存量现金 ⚠️。")
+                lines.append(f"入不敷出 ¥{net_ps:.2f}/股，消耗存量现金 ⚠️。")
         lines.append("")
 
     # ---- 段3: 业务质地与竞争壁垒 ----

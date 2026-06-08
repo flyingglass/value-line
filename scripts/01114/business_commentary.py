@@ -115,18 +115,33 @@ def build(stock, metrics, rev_struct, years, cagr, spot):
             p1 += f"。并表业务利润增速落后营收，关注成本端及联营投资贡献"
     p1 += "。"
 
-    # ── 段2: 每股资金流向 (全新) ──
+    # ── 段2: 每股资金流向 (四大去向) ──
+    wc, wc_p = ly.get("WORKING_CAPITAL"), py.get("WORKING_CAPITAL")
+    shares, shares_p = ly.get("TOTAL_SHARES"), py.get("TOTAL_SHARES")
+    shr_chg = round((shares - shares_p) / shares_p * 100, 1) if shares and shares_p and shares_p > 0 else None
     p2 = ""
     if eps and op_eps is not None and nonop_eps is not None:
-        p2 = (f"每股收益¥{eps:.2f}中，主业贡献¥{op_eps:.2f}（{op_pct}%），"
-              f"非经营性贡献¥{nonop_eps:.2f}（{nonop_pct}%）。")
+        p2_parts = [
+            f"每股收益¥{eps:.2f}中，主业贡献¥{op_eps:.2f}（{op_pct}%），"
+            f"非经营性贡献¥{nonop_eps:.2f}（{nonop_pct}%）。",
+        ]
         if per_cf is not None and net_ps is not None:
-            p2 += (f"每股现金流¥{per_cf:.2f}中，资本支出¥{per_capex or 0:.2f}占{capex_pct or 0}%，"
-                   f"现金分红¥{dps:.2f}占{dps_pct or 0}%，净留存¥{net_ps:.2f}/股")
+            p2_parts.append(f"每股现金流¥{per_cf:.2f}（内生现金生成），四大去向：")
+            p2_parts.append(f"① 资本支出¥{per_capex or 0:.2f}/股（占现金流{capex_pct or 0}%）；")
+            if wc is not None and wc_p is not None:
+                wc_chg = wc - wc_p
+                p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿；")
+            p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（占现金流{dps_pct or 0}%）；")
+            if shr_chg is not None and shr_chg < -0.3:
+                p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+            elif shr_chg is not None and shr_chg > 0:
+                p2_parts.append(f"④ 股数持平/微扩；")
+            p2_parts.append(f"净留存¥{net_ps:.2f}/股")
             if net_ps > 0:
-                p2 += "，现金流充裕。"
+                p2_parts.append("，现金流充裕。")
             else:
-                p2 += "，入不敷出，消耗存量现金储备。"
+                p2_parts.append("，入不敷出，消耗存量现金储备。")
+        p2 = "".join(p2_parts)
     else:
         p2 = f"财报数据不足以计算每股资金流向分解。"
 

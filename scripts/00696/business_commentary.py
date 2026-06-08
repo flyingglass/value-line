@@ -28,10 +28,25 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
           f"订座处理量随航空出行复苏稳步增长，国际航线恢复为主要增量。"
           f"核心AIT业务按每张机票收费，与民航客运量高度相关，属于「出行基础设施」型收租模式。")
 
+    wc, wc_p = ly.get("WORKING_CAPITAL"), py.get("WORKING_CAPITAL")
+    shares, shares_p = ly.get("TOTAL_SHARES"), py.get("TOTAL_SHARES")
+    shr_chg = round((shares - shares_p) / shares_p * 100, 1) if shares and shares_p and shares_p > 0 else None
     net_ps = round(per_cf - per_capex - dps, 2) if per_cf else None
-    p2 = (f"每股收益¥{eps:.2f}，高度依赖航空出行量。每股现金流¥{per_cf:.2f}，"
-          f"资本支出¥{per_capex:.2f}（IT系统维护+升级），现金分红¥{dps:.2f}（支付率{pay:.0f}%），"
-          f"净留存¥{net_ps:.2f}/股。低资本支出+高现金流特征显著——垄断基础设施属性。")
+    p2_parts = [
+        f"每股收益¥{eps:.2f}，高度依赖航空出行量。"
+        f"每股现金流¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：",
+        f"① 资本支出¥{per_capex:.2f}/股（IT系统维护+升级）；",
+    ]
+    if wc is not None and wc_p is not None:
+        wc_chg = wc - wc_p
+        p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿；")
+    p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（支付率{pay:.0f}%）；")
+    if shr_chg is not None and shr_chg < -0.3:
+        p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+    elif shr_chg is not None and shr_chg > 0:
+        p2_parts.append(f"④ 股数持平/微扩；")
+    p2_parts.append(f"净留存¥{net_ps:.2f}/股，低资本支出+高现金流——垄断基础设施属性。")
+    p2 = "".join(p2_parts)
 
     p3 = (f"营业利润率{_pct(opm)}、净利率{_pct(npm)}、ROE {_pct(roe)}。"
           f"护城河极深：①中国民航GDS法定垄断——政策+技术双重壁垒，无竞争对手；"

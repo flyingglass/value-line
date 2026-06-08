@@ -61,16 +61,30 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     )
 
     # 段2
+    wc, wc_p = ly.get("WORKING_CAPITAL"), py.get("WORKING_CAPITAL")
+    shares, shares_p = ly.get("TOTAL_SHARES"), py.get("TOTAL_SHARES")
+    shr_chg = round((shares - shares_p) / shares_p * 100, 1) if shares and shares_p and shares_p > 0 else None
     if eps and op_eps and nonop_eps:
-        p2 = (
+        p2_parts = [
             f"每股收益¥{eps:.2f}中，主业经营贡献¥{op_eps:.2f}（{op_pct}%），"
-            f"投资及非经营性贡献¥{nonop_eps:.2f}（{100-op_pct}%）。"
-            f"每股经营现金流¥{per_cf:.2f}，资本支出¥{per_capex:.2f}"
-            f"（AI算力+云基础设施），现金分红¥{dps:.2f}（支付率{payout:.0f}%），"
+            f"投资及非经营性贡献¥{nonop_eps:.2f}（{100-op_pct}%）。",
+            f"每股经营现金流¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：",
+            f"① 资本支出¥{per_capex:.2f}/股（AI算力+云基础设施）；",
+        ]
+        if wc is not None and wc_p is not None:
+            wc_chg = wc - wc_p
+            p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿；")
+        p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（支付率{payout:.0f}%）；")
+        if shr_chg is not None and shr_chg < -0.3:
+            p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
+        elif shr_chg is not None and shr_chg > 0:
+            p2_parts.append(f"④ 股数持平/微扩；")
+        p2_parts.append(
             f"净留存¥{net_ps:.2f}/股。"
             f"2025年回购超1,000亿港元，相当于总股本缩减~3%，每股价值持续增厚。"
             f"净现金状态（现金远超债务），财务极度稳健。"
         )
+        p2 = "".join(p2_parts)
     else:
         p2 = "每股资金流向：数据待补充。"
 
