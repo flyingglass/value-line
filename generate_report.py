@@ -228,7 +228,7 @@ var DATA = {DATA_JS};
   var hasQ=qsLast.some(function(r){{return r&&r.has_quarter;}});
   function renderQSection(title, data, decimal, hasQq, isFirst){{
     if(!data||!data.length) return '';
-    var show=data.slice(-12);  // 显示最多12年，覆盖完整季度历史
+    var show=data.slice(-5);
     // Section title
     var sepStyle=isFirst?'':'border-top:1px solid #999;';
     sepStyle+='line-height:1;';
