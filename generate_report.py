@@ -223,10 +223,12 @@ var DATA = {DATA_JS};
   html+='</table></div>';
 
   // 季度/半年度表 — VL三表紧排, 单 table + 垂直分割线
-  var hasQ=(qt.sales||[])[0]&&qt.sales[0].has_quarter;
+  // 检查最后3年是否有季报数据 (早年可能缺失，以最近数据为准)
+  var qsLast=(qt.sales||[]).slice(-3);
+  var hasQ=qsLast.some(function(r){{return r&&r.has_quarter;}});
   function renderQSection(title, data, decimal, hasQq, isFirst){{
     if(!data||!data.length) return '';
-    var show=data.slice(-5);
+    var show=data.slice(-12);  // 显示最多12年，覆盖完整季度历史
     // Section title
     var sepStyle=isFirst?'':'border-top:1px solid #999;';
     sepStyle+='line-height:1;';
