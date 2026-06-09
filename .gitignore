@@ -5,4 +5,6 @@ weiyun_upload_pdfs.py
 report_data.json
 .vscode/
 .playwright-cli/
+report/node_modules/
 build_*.txt
+

@@ -13,16 +13,16 @@
     "index_name": "SPX",
     "index_name_cn": "标普500",
     "rpt_ccy": "USD",
-    "generated": "2026-06-08 19:44:29.303805"
+    "generated": "2026-06-09 11:40:06.757553"
   },
   "spot": {
     "price": 205.1,
-    "pe": 4.2,
+    "pe": 41.4,
     "pb": 0.0,
     "div_yield": 0.0,
-    "mkt_cap": 5045.5,
+    "mkt_cap": 49634.2,
     "change_pct": -6.2,
-    "median_pe": 4.8
+    "median_pe": 47.1
   },
   "kline": [
     {
@@ -4107,7 +4107,7 @@
       "open": 7582.29,
       "high": 7620.8999,
       "low": 7368.6299,
-      "close": 7383.7402
+      "close": 7405.73
     }
   ],
   "total_returns": {
@@ -4335,14 +4335,14 @@
   ],
   "data": {
     "2012": {
-      "PER_OI": 1.63,
-      "PER_NETCASH": 0.24,
-      "BASIC_EPS": 0.24,
+      "PER_OI": 0.17,
+      "PER_NETCASH": 0.02,
+      "BASIC_EPS": 0.02,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": -0.6,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": -7.2,
       "PE_RELATIVE": null,
       "DIV_YIELD": null,
       "OPERATE_INCOME": 40.0,
@@ -4362,15 +4362,15 @@
       "AVG_PRICE": -0.14
     },
     "2013": {
-      "PER_OI": 1.74,
-      "PER_NETCASH": 0.23,
-      "BASIC_EPS": 0.23,
+      "PER_OI": 0.18,
+      "PER_NETCASH": 0.02,
+      "BASIC_EPS": 0.02,
       "DPS": 0.075,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": -0.5,
-      "PE_RELATIVE": -0.03,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": -6.2,
+      "PE_RELATIVE": -0.36,
       "DIV_YIELD": null,
       "OPERATE_INCOME": 42.8,
       "OP_MARGIN": null,
@@ -4384,20 +4384,20 @@
       "TOTAL_EQUITY": 48.3,
       "ROIC": null,
       "ROE": 11.7,
-      "RETAINED_RATIO": 7.8,
-      "PAYOUT_RATIO": 32.8,
+      "RETAINED_RATIO": -25.9,
+      "PAYOUT_RATIO": 322.6,
       "AVG_PRICE": -0.12
     },
     "2014": {
-      "PER_OI": 1.68,
-      "PER_NETCASH": 0.18,
-      "BASIC_EPS": 0.18,
+      "PER_OI": 0.17,
+      "PER_NETCASH": 0.02,
+      "BASIC_EPS": 0.02,
       "DPS": 0.085,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": -0.0,
-      "PE_RELATIVE": null,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": -0.3,
+      "PE_RELATIVE": -0.02,
       "DIV_YIELD": null,
       "OPERATE_INCOME": 41.3,
       "OP_MARGIN": null,
@@ -4411,20 +4411,20 @@
       "TOTAL_EQUITY": 44.6,
       "ROIC": null,
       "ROE": 9.9,
-      "RETAINED_RATIO": 5.2,
-      "PAYOUT_RATIO": 47.5,
+      "RETAINED_RATIO": -36.3,
+      "PAYOUT_RATIO": 467.5,
       "AVG_PRICE": -0.01
     },
     "2015": {
-      "PER_OI": 1.9,
-      "PER_NETCASH": 0.26,
-      "BASIC_EPS": 0.26,
+      "PER_OI": 0.19,
+      "PER_NETCASH": 0.03,
+      "BASIC_EPS": 0.03,
       "DPS": 0.0975,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 0.5,
-      "PE_RELATIVE": 0.03,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 4.4,
+      "PE_RELATIVE": 0.23,
       "DIV_YIELD": 74.4,
       "OPERATE_INCOME": 46.8,
       "OP_MARGIN": null,
@@ -4438,20 +4438,20 @@
       "TOTAL_EQUITY": 44.2,
       "ROIC": null,
       "ROE": 14.3,
-      "RETAINED_RATIO": 8.9,
-      "PAYOUT_RATIO": 38.0,
+      "RETAINED_RATIO": -39.1,
+      "PAYOUT_RATIO": 373.9,
       "AVG_PRICE": 0.13
     },
     "2016": {
-      "PER_OI": 2.04,
-      "PER_NETCASH": 0.25,
-      "BASIC_EPS": 0.25,
+      "PER_OI": 0.21,
+      "PER_NETCASH": 0.03,
+      "BASIC_EPS": 0.03,
       "DPS": 0.115,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 3.6,
-      "PE_RELATIVE": 0.18,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 29.6,
+      "PE_RELATIVE": 1.48,
       "DIV_YIELD": 13.0,
       "OPERATE_INCOME": 50.1,
       "OP_MARGIN": null,
@@ -4465,20 +4465,20 @@
       "TOTAL_EQUITY": 45.6,
       "ROIC": null,
       "ROE": 13.5,
-      "RETAINED_RATIO": 7.3,
-      "PAYOUT_RATIO": 46.1,
+      "RETAINED_RATIO": -47.6,
+      "PAYOUT_RATIO": 453.3,
       "AVG_PRICE": 0.89
     },
     "2017": {
-      "PER_OI": 2.81,
-      "PER_NETCASH": 0.68,
-      "BASIC_EPS": 0.68,
+      "PER_OI": 0.29,
+      "PER_NETCASH": 0.07,
+      "BASIC_EPS": 0.07,
       "DPS": 0.14,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 4.8,
-      "PE_RELATIVE": 0.21,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 47.1,
+      "PE_RELATIVE": 2.05,
       "DIV_YIELD": 4.2,
       "OPERATE_INCOME": 69.1,
       "OP_MARGIN": null,
@@ -4492,20 +4492,20 @@
       "TOTAL_EQUITY": 57.9,
       "ROIC": null,
       "ROE": 28.8,
-      "RETAINED_RATIO": 22.8,
-      "PAYOUT_RATIO": 20.7,
+      "RETAINED_RATIO": -29.7,
+      "PAYOUT_RATIO": 203.4,
       "AVG_PRICE": 3.3
     },
     "2018": {
-      "PER_OI": 3.95,
-      "PER_NETCASH": 1.24,
-      "BASIC_EPS": 1.24,
+      "PER_OI": 0.4,
+      "PER_NETCASH": 0.13,
+      "BASIC_EPS": 0.13,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 4.3,
-      "PE_RELATIVE": 0.24,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 41.3,
+      "PE_RELATIVE": 2.29,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 97.1,
       "OP_MARGIN": null,
@@ -4524,15 +4524,15 @@
       "AVG_PRICE": 5.37
     },
     "2019": {
-      "PER_OI": 4.76,
-      "PER_NETCASH": 1.68,
-      "BASIC_EPS": 1.68,
+      "PER_OI": 0.48,
+      "PER_NETCASH": 0.17,
+      "BASIC_EPS": 0.17,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 2.4,
-      "PE_RELATIVE": 0.11,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 23.3,
+      "PE_RELATIVE": 1.11,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 117.2,
       "OP_MARGIN": null,
@@ -4551,15 +4551,15 @@
       "AVG_PRICE": 3.96
     },
     "2020": {
-      "PER_OI": 4.44,
-      "PER_NETCASH": 1.14,
-      "BASIC_EPS": 1.14,
+      "PER_OI": 0.45,
+      "PER_NETCASH": 0.12,
+      "BASIC_EPS": 0.12,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 8.3,
-      "PE_RELATIVE": 0.3,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 78.9,
+      "PE_RELATIVE": 2.82,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 109.2,
       "OP_MARGIN": null,
@@ -4578,15 +4578,15 @@
       "AVG_PRICE": 9.47
     },
     "2021": {
-      "PER_OI": 6.78,
-      "PER_NETCASH": 1.76,
-      "BASIC_EPS": 1.76,
+      "PER_OI": 0.69,
+      "PER_NETCASH": 0.18,
+      "BASIC_EPS": 0.18,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 10.8,
-      "PE_RELATIVE": 0.45,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 105.8,
+      "PE_RELATIVE": 4.41,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 166.8,
       "OP_MARGIN": null,
@@ -4605,15 +4605,15 @@
       "AVG_PRICE": 19.05
     },
     "2022": {
-      "PER_OI": 10.94,
-      "PER_NETCASH": 3.96,
-      "BASIC_EPS": 3.96,
+      "PER_OI": 1.11,
+      "PER_NETCASH": 0.4,
+      "BASIC_EPS": 0.4,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 4.6,
-      "PE_RELATIVE": 0.26,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 45.6,
+      "PE_RELATIVE": 2.53,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 269.1,
       "OP_MARGIN": null,
@@ -4632,15 +4632,15 @@
       "AVG_PRICE": 18.25
     },
     "2023": {
-      "PER_OI": 10.97,
-      "PER_NETCASH": 1.78,
-      "BASIC_EPS": 1.78,
+      "PER_OI": 1.11,
+      "PER_NETCASH": 0.18,
+      "BASIC_EPS": 0.18,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 20.3,
-      "PE_RELATIVE": 0.92,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 200.5,
+      "PE_RELATIVE": 9.11,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 269.7,
       "OP_MARGIN": null,
@@ -4659,15 +4659,15 @@
       "AVG_PRICE": 36.08
     },
     "2024": {
-      "PER_OI": 24.77,
-      "PER_NETCASH": 12.1,
-      "BASIC_EPS": 12.1,
+      "PER_OI": 2.52,
+      "PER_NETCASH": 1.23,
+      "BASIC_EPS": 1.23,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 8.9,
-      "PE_RELATIVE": 0.37,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 87.3,
+      "PE_RELATIVE": 3.64,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 609.2,
       "OP_MARGIN": null,
@@ -4686,15 +4686,15 @@
       "AVG_PRICE": 107.42
     },
     "2025": {
-      "PER_OI": 53.05,
-      "PER_NETCASH": 29.63,
-      "BASIC_EPS": 29.63,
+      "PER_OI": 5.39,
+      "PER_NETCASH": 3.01,
+      "BASIC_EPS": 3.01,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 5.2,
-      "PE_RELATIVE": 0.23,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 50.9,
+      "PE_RELATIVE": 2.21,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 1305.0,
       "OP_MARGIN": null,
@@ -4713,14 +4713,14 @@
       "AVG_PRICE": 153.16
     },
     "2026": {
-      "PER_OI": 87.78,
-      "PER_NETCASH": 48.81,
-      "BASIC_EPS": 48.81,
+      "PER_OI": 8.92,
+      "PER_NETCASH": 4.96,
+      "BASIC_EPS": 4.96,
       "DPS": 0,
       "CAPEX_PS": 0.0,
       "BPS": null,
-      "TOTAL_SHARES": 2460.0,
-      "PE_AVG": 4.0,
+      "TOTAL_SHARES": 24200.0,
+      "PE_AVG": 39.6,
       "PE_RELATIVE": null,
       "DIV_YIELD": 0.0,
       "OPERATE_INCOME": 2159.4,
@@ -4748,16 +4748,16 @@
       "10yr": 45.7
     },
     "eps": {
-      "1yr": 64.7,
-      "3yr": 201.6,
-      "5yr": 94.4,
-      "10yr": 69.5
+      "1yr": 64.8,
+      "3yr": 202.0,
+      "5yr": 94.1,
+      "10yr": 66.7
     },
     "cashflow": {
-      "1yr": 64.7,
-      "3yr": 201.6,
-      "5yr": 94.4,
-      "10yr": 69.5
+      "1yr": 64.8,
+      "3yr": 202.0,
+      "5yr": 94.1,
+      "10yr": 66.7
     },
     "dividend": {
       "1yr": 21.7,
@@ -5122,63 +5122,63 @@
   "valuation_line": [
     {
       "date": "2012",
-      "value": 7.2
+      "value": 0.6
     },
     {
       "date": "2013",
-      "value": 6.9
+      "value": 0.6
     },
     {
       "date": "2014",
-      "value": 5.4
+      "value": 0.6
     },
     {
       "date": "2015",
-      "value": 7.8
+      "value": 0.9
     },
     {
       "date": "2016",
-      "value": 7.5
+      "value": 0.9
     },
     {
       "date": "2017",
-      "value": 20.4
+      "value": 2.1
     },
     {
       "date": "2018",
-      "value": 37.2
+      "value": 3.9
     },
     {
       "date": "2019",
-      "value": 50.4
+      "value": 5.1
     },
     {
       "date": "2020",
-      "value": 34.2
+      "value": 3.6
     },
     {
       "date": "2021",
-      "value": 52.8
+      "value": 5.4
     },
     {
       "date": "2022",
-      "value": 118.8
+      "value": 12.0
     },
     {
       "date": "2023",
-      "value": 53.4
+      "value": 5.4
     },
     {
       "date": "2024",
-      "value": 363.0
+      "value": 36.9
     },
     {
       "date": "2025",
-      "value": 888.9
+      "value": 90.3
     },
     {
       "date": "2026",
-      "value": 1464.3
+      "value": 148.8
     }
   ],
   "valuation_method": "cf",
@@ -5218,11 +5218,11 @@
     "lt_debt_pct": 8.6,
     "pension_assets": "N/A",
     "pfd_stock": "None",
-    "common_shares": 2460.0,
-    "common_shares_str": "2,460,000,000",
-    "common_shares_raw": 2460000000,
-    "mkt_cap": 5045.5,
-    "cap_label": "Large Cap",
+    "common_shares": 24200.0,
+    "common_shares_str": "24,200,000,000",
+    "common_shares_raw": 24200000000,
+    "mkt_cap": 49634.2,
+    "cap_label": "Mega Cap",
     "business_desc": "",
     "employee_count": null,
     "employee_year": "",
@@ -5300,16 +5300,16 @@
       "10yr": 45.7
     },
     "cashflow": {
-      "1yr": 64.7,
-      "3yr": 201.6,
-      "5yr": 94.4,
-      "10yr": 69.5
+      "1yr": 64.8,
+      "3yr": 202.0,
+      "5yr": 94.1,
+      "10yr": 66.7
     },
     "earnings": {
-      "1yr": 64.7,
-      "3yr": 201.6,
-      "5yr": 94.4,
-      "10yr": 69.5
+      "1yr": 64.8,
+      "3yr": 202.0,
+      "5yr": 94.1,
+      "10yr": 66.7
     },
     "dividends": {
       "1yr": 21.7,
@@ -5434,10 +5434,10 @@
   ],
   "position": {
     "pe": {
-      "current": 4.2,
-      "min": -0.6,
-      "max": 20.3,
-      "avg": 5.5,
+      "current": 41.4,
+      "min": -7.2,
+      "max": 200.5,
+      "avg": 49.4,
       "pct": 23.0
     },
     "price": {
@@ -5451,9 +5451,9 @@
   "analyst": {
     "business": "NVIDIA是全球领先的GPU和AI加速计算公司，核心业务涵盖数据中心（GPU/AI芯片）、游戏、专业可视化和汽车。H100/B100/GB200等AI GPU垄断全球AI训练和推理市场超80%份额。CUDA生态是NVIDIA最深的护城河。2025年营收超1,300亿美元，数据中心占比超80%。",
     "commentary": [
-      "2026年06月08日 — 英伟达2026年营收2159.4亿元(增长65.5%)，扣非净利润1200.7亿元(增长64.8%)，每股收益¥48.81，毛利率71.1%(下降5.2%)，ROE 76.3%。",
+      "2026年06月09日 — 英伟达2026年营收2159.4亿元(增长65.5%)，扣非净利润1200.7亿元(增长64.8%)，每股收益¥4.96，毛利率71.1%(下降5.2%)，ROE 76.3%。",
       "每股资金流向：财报数据不足以进行完整拆分。",
-      "负债率9%，当前PE 4.2倍(低于历史中位数4.6倍)，PB 0.00倍，ROE 76.3%(同比下滑)。",
+      "负债率9%，当前PE 41.4倍(高于历史中位数41.3倍)，PB 0.00倍，ROE 76.3%(同比下滑)。",
       "营收增速放缓（1年+65.5% vs 3年+100.1%）。ROE触底反弹：盈利能力较近年均值大幅改善。验证信号：关注2027年中报营收增速作为趋势验证信号。"
     ],
     "commentary_from_mda": false,
@@ -5465,253 +5465,260 @@
       {
         "year": "2012",
         "metric": "PerSh OI consistency",
-        "summary": "PER_OI=1.63 vs Rev/Sh=1.63",
-        "actual": 1.63,
-        "calc": 1.63,
+        "summary": "PER_OI=0.17 vs Rev/Sh=0.17",
+        "actual": 0.17,
+        "calc": 0.17,
         "diff_pct": 0.0
       },
       {
         "year": "2012",
         "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2454.0M",
-        "indicator": 2460.0,
-        "oi_derived": 2454.0,
-        "diff_pct": 0.24
+        "summary": "ind=24200.0M vs OI-der=23529.4M",
+        "indicator": 24200.0,
+        "oi_derived": 23529.4,
+        "diff_pct": 2.77
       },
       {
         "year": "2013",
         "metric": "PerSh OI consistency",
-        "summary": "PER_OI=1.74 vs Rev/Sh=1.74",
-        "actual": 1.74,
-        "calc": 1.74,
+        "summary": "PER_OI=0.18 vs Rev/Sh=0.18",
+        "actual": 0.18,
+        "calc": 0.18,
         "diff_pct": 0.0
       },
       {
         "year": "2013",
         "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2459.8M",
-        "indicator": 2460.0,
-        "oi_derived": 2459.8,
-        "diff_pct": 0.01
+        "summary": "ind=24200.0M vs OI-der=23777.8M",
+        "indicator": 24200.0,
+        "oi_derived": 23777.8,
+        "diff_pct": 1.74
       },
       {
         "year": "2014",
         "metric": "PerSh OI consistency",
-        "summary": "PER_OI=1.68 vs Rev/Sh=1.68",
-        "actual": 1.68,
-        "calc": 1.68,
+        "summary": "PER_OI=0.17 vs Rev/Sh=0.17",
+        "actual": 0.17,
+        "calc": 0.17,
         "diff_pct": 0.0
       },
       {
         "year": "2014",
         "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2458.3M",
-        "indicator": 2460.0,
-        "oi_derived": 2458.3,
-        "diff_pct": 0.07
+        "summary": "ind=24200.0M vs OI-der=24294.1M",
+        "indicator": 24200.0,
+        "oi_derived": 24294.1,
+        "diff_pct": 0.39
       },
       {
         "year": "2015",
         "metric": "PerSh OI consistency",
-        "summary": "PER_OI=1.9 vs Rev/Sh=1.9",
-        "actual": 1.9,
-        "calc": 1.9,
+        "summary": "PER_OI=0.19 vs Rev/Sh=0.19",
+        "actual": 0.19,
+        "calc": 0.19,
         "diff_pct": 0.0
       },
       {
         "year": "2015",
         "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2463.2M",
-        "indicator": 2460.0,
-        "oi_derived": 2463.2,
-        "diff_pct": 0.13
+        "summary": "ind=24200.0M vs OI-der=24631.6M",
+        "indicator": 24200.0,
+        "oi_derived": 24631.6,
+        "diff_pct": 1.78
       },
       {
         "year": "2016",
         "metric": "PerSh OI consistency",
-        "summary": "PER_OI=2.04 vs Rev/Sh=2.04",
-        "actual": 2.04,
-        "calc": 2.04,
+        "summary": "PER_OI=0.21 vs Rev/Sh=0.21",
+        "actual": 0.21,
+        "calc": 0.21,
         "diff_pct": 0.0
       },
       {
         "year": "2016",
         "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2455.9M",
-        "indicator": 2460.0,
-        "oi_derived": 2455.9,
-        "diff_pct": 0.17
+        "summary": "ind=24200.0M vs OI-der=23857.1M",
+        "indicator": 24200.0,
+        "oi_derived": 23857.1,
+        "diff_pct": 1.42
       },
       {
         "year": "2017",
         "metric": "PerSh OI consistency",
-        "summary": "PER_OI=2.81 vs Rev/Sh=2.81",
-        "actual": 2.81,
-        "calc": 2.81,
+        "summary": "PER_OI=0.29 vs Rev/Sh=0.29",
+        "actual": 0.29,
+        "calc": 0.29,
         "diff_pct": 0.0
       },
       {
         "year": "2017",
         "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2459.1M",
-        "indicator": 2460.0,
-        "oi_derived": 2459.1,
+        "summary": "ind=24200.0M vs OI-der=23827.6M",
+        "indicator": 24200.0,
+        "oi_derived": 23827.6,
+        "diff_pct": 1.54
+      },
+      {
+        "year": "2018",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=0.4 vs Rev/Sh=0.4",
+        "actual": 0.4,
+        "calc": 0.4,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2018",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24275.0M",
+        "indicator": 24200.0,
+        "oi_derived": 24275.0,
+        "diff_pct": 0.31
+      },
+      {
+        "year": "2019",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=0.48 vs Rev/Sh=0.48",
+        "actual": 0.48,
+        "calc": 0.48,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2019",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24416.7M",
+        "indicator": 24200.0,
+        "oi_derived": 24416.7,
+        "diff_pct": 0.9
+      },
+      {
+        "year": "2020",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=0.45 vs Rev/Sh=0.45",
+        "actual": 0.45,
+        "calc": 0.45,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2020",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24266.7M",
+        "indicator": 24200.0,
+        "oi_derived": 24266.7,
+        "diff_pct": 0.28
+      },
+      {
+        "year": "2021",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=0.69 vs Rev/Sh=0.69",
+        "actual": 0.69,
+        "calc": 0.69,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2021",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24173.9M",
+        "indicator": 24200.0,
+        "oi_derived": 24173.9,
+        "diff_pct": 0.11
+      },
+      {
+        "year": "2022",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=1.11 vs Rev/Sh=1.11",
+        "actual": 1.11,
+        "calc": 1.11,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2022",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24243.2M",
+        "indicator": 24200.0,
+        "oi_derived": 24243.2,
+        "diff_pct": 0.18
+      },
+      {
+        "year": "2023",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=1.11 vs Rev/Sh=1.11",
+        "actual": 1.11,
+        "calc": 1.11,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2023",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24297.3M",
+        "indicator": 24200.0,
+        "oi_derived": 24297.3,
+        "diff_pct": 0.4
+      },
+      {
+        "year": "2024",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=2.52 vs Rev/Sh=2.52",
+        "actual": 2.52,
+        "calc": 2.52,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2024",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24174.6M",
+        "indicator": 24200.0,
+        "oi_derived": 24174.6,
+        "diff_pct": 0.1
+      },
+      {
+        "year": "2025",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=5.39 vs Rev/Sh=5.39",
+        "actual": 5.39,
+        "calc": 5.39,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2025",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24211.5M",
+        "indicator": 24200.0,
+        "oi_derived": 24211.5,
+        "diff_pct": 0.05
+      },
+      {
+        "year": "2026",
+        "metric": "PerSh OI consistency",
+        "summary": "PER_OI=8.92 vs Rev/Sh=8.92",
+        "actual": 8.92,
+        "calc": 8.92,
+        "diff_pct": 0.0
+      },
+      {
+        "year": "2026",
+        "metric": "SHARES: ind vs Rev/PER_OI",
+        "summary": "ind=24200.0M vs OI-der=24208.5M",
+        "indicator": 24200.0,
+        "oi_derived": 24208.5,
         "diff_pct": 0.04
-      },
-      {
-        "year": "2018",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=3.95 vs Rev/Sh=3.95",
-        "actual": 3.95,
-        "calc": 3.95,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2018",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2458.2M",
-        "indicator": 2460.0,
-        "oi_derived": 2458.2,
-        "diff_pct": 0.07
-      },
-      {
-        "year": "2019",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=4.76 vs Rev/Sh=4.76",
-        "actual": 4.76,
-        "calc": 4.76,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2019",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2462.2M",
-        "indicator": 2460.0,
-        "oi_derived": 2462.2,
-        "diff_pct": 0.09
-      },
-      {
-        "year": "2020",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=4.44 vs Rev/Sh=4.44",
-        "actual": 4.44,
-        "calc": 4.44,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2020",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2459.5M",
-        "indicator": 2460.0,
-        "oi_derived": 2459.5,
-        "diff_pct": 0.02
-      },
-      {
-        "year": "2021",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=6.78 vs Rev/Sh=6.78",
-        "actual": 6.78,
-        "calc": 6.78,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2021",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2460.2M",
-        "indicator": 2460.0,
-        "oi_derived": 2460.2,
-        "diff_pct": 0.01
-      },
-      {
-        "year": "2022",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=10.94 vs Rev/Sh=10.94",
-        "actual": 10.94,
-        "calc": 10.94,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2022",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2459.8M",
-        "indicator": 2460.0,
-        "oi_derived": 2459.8,
-        "diff_pct": 0.01
-      },
-      {
-        "year": "2023",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=10.97 vs Rev/Sh=10.97",
-        "actual": 10.97,
-        "calc": 10.97,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2023",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2458.5M",
-        "indicator": 2460.0,
-        "oi_derived": 2458.5,
-        "diff_pct": 0.06
-      },
-      {
-        "year": "2024",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=24.77 vs Rev/Sh=24.77",
-        "actual": 24.77,
-        "calc": 24.77,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2024",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2459.4M",
-        "indicator": 2460.0,
-        "oi_derived": 2459.4,
-        "diff_pct": 0.02
-      },
-      {
-        "year": "2025",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=53.05 vs Rev/Sh=53.05",
-        "actual": 53.05,
-        "calc": 53.05,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2025",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2459.9M",
-        "indicator": 2460.0,
-        "oi_derived": 2459.9,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2026",
-        "metric": "PerSh OI consistency",
-        "summary": "PER_OI=87.78 vs Rev/Sh=87.78",
-        "actual": 87.78,
-        "calc": 87.78,
-        "diff_pct": 0.0
-      },
-      {
-        "year": "2026",
-        "metric": "SHARES: ind vs Rev/PER_OI",
-        "summary": "ind=2460.0M vs OI-der=2460.0M",
-        "indicator": 2460.0,
-        "oi_derived": 2460.0,
-        "diff_pct": 0.0
       }
     ],
-    "mismatches": [],
+    "mismatches": [
+      "2012 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=23529.4M (2.8%)",
+      "2013 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=23777.8M (1.7%)",
+      "2015 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24631.6M (1.8%)",
+      "2016 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=23857.1M (1.4%)",
+      "2017 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=23827.6M (1.5%)",
+      "2019 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24416.7M (0.9%)"
+    ],
     "warnings": [
-      "2012 SHARES: ind vs Rev/PER_OI: ind=2460.0M vs OI-der=2454.0M (0.2%)",
-      "2014 SHARES: ind vs Rev/PER_OI: ind=2460.0M vs OI-der=2458.3M (0.1%)",
-      "2015 SHARES: ind vs Rev/PER_OI: ind=2460.0M vs OI-der=2463.2M (0.1%)",
-      "2016 SHARES: ind vs Rev/PER_OI: ind=2460.0M vs OI-der=2455.9M (0.2%)",
-      "2018 SHARES: ind vs Rev/PER_OI: ind=2460.0M vs OI-der=2458.2M (0.1%)",
-      "2019 SHARES: ind vs Rev/PER_OI: ind=2460.0M vs OI-der=2462.2M (0.1%)",
-      "2023 SHARES: ind vs Rev/PER_OI: ind=2460.0M vs OI-der=2458.5M (0.1%)"
+      "2014 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24294.1M (0.4%)",
+      "2018 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24275.0M (0.3%)",
+      "2020 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24266.7M (0.3%)",
+      "2021 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24173.9M (0.1%)",
+      "2022 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24243.2M (0.2%)",
+      "2023 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24297.3M (0.4%)",
+      "2024 SHARES: ind vs Rev/PER_OI: ind=24200.0M vs OI-der=24174.6M (0.1%)"
     ],
     "sources": {
       "annual_indicators": "AKShare stock_financial_hk_analysis_indicator_em (年度指标)",
@@ -5720,9 +5727,9 @@
       "revenue_structure": "年报PDF提取 → SQLite revenue_structure 表",
       "index_kline": "新浪 stock_hk_index_daily_sina"
     },
-    "status": "OK",
+    "status": "MISMATCH",
     "pdf_years": [],
-    "checks_passed": 30,
+    "checks_passed": 24,
     "checks_total": 30
   },
   "footnotes": []
