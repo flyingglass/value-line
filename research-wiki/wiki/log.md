@@ -42,5 +42,5 @@ PB=1.0x, 新建 scripts/02899/business_commentary.py, valuation_method="pb" 写�
 ## [2026-06-10] ingest | .workbuddy 清理
 
 - 删除 vl_handbook.txt（与已有 PDF 源重复）
-- 迁移 style-reference.md → raw/style-reference.md，创建实体页 entities/原始资料-VL样式参考.md
+- 迁移 style-reference.md → raw/vl-reference/style-reference.md，创建实体页 entities/原始资料-VL样式参考.md
 触及页面：index.md。

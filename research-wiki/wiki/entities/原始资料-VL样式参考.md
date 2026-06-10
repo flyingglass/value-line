@@ -1,7 +1,7 @@
 ---
 entity: 原始资料-VL样式参考
 type: 外部服务
-source: .workbuddy/style-reference.md (已迁移至 raw/)
+source: .workbuddy/style-reference.md (已迁移至 raw/vl-reference/)
 created: 2026-06-10
 ---
 
@@ -13,7 +13,7 @@ generate_report.py 的 HTML 样式规范参考文档，记录布局尺寸、ECha
 
 ## 状态
 
-- **文件**: `raw/style-reference.md`
+- **文件**: `raw/vl-reference/style-reference.md`
 - **来源**: `.workbuddy/style-reference.md`（已迁移至 raw 层）
 
 ## 内容概要
