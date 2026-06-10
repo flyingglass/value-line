@@ -38,3 +38,9 @@ PB=1.0x, 新建 scripts/02899/business_commentary.py, valuation_method="pb" 写�
 - 更新 index.md
 
 修复后状态：25 页（1 overview + 11 modules + 9 concepts + 3 entities + 1 index + 1 log），0 断链，0 孤儿。
+
+## [2026-06-10] ingest | .workbuddy 清理
+
+- 删除 vl_handbook.txt（与已有 PDF 源重复）
+- 迁移 style-reference.md → raw/style-reference.md，创建实体页 entities/原始资料-VL样式参考.md
+触及页面：index.md。
