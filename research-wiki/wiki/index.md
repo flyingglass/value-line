@@ -1,6 +1,6 @@
 # Wiki 索引
 
-> 最后更新：2026-06-09
+> 最后更新：2026-06-10
 
 ## 概述
 
@@ -15,10 +15,10 @@
 - [[pdf_downloader.py]] — 年报 PDF 下载，港交所/巨潮/SEC 多源
 - [[extract_mda.py]] — PDF 文本提取，管理层讨论 6 类关键词分类
 - [[generate_report.py]] — VL 单页 HTML 生成，ECharts K 线 + 24 行阵列
-- [[generate_reading.py]] — 深度阅读报告（李录方法融合）
-- [[generate_index.py]] — 索引页生成，按行业分组
+- [[generate_reading.py]] — 深度阅读报告（Markdown + HTML，李录方法融合）
+- [[generate_index.py]] — 索引页生成，按行业分组展示所有标的卡片
 - [[list_refs.py]] — 历史估值参考，批量 PE/PB 均值
-- [[set_baba_meta.py]] — 单次元数据补丁工具
+- [[set_baba_meta.py]] — 单次元数据补丁工具（09988 专用）
 
 ## 概念 (concepts/)
 

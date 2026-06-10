@@ -9,31 +9,32 @@
 ## [2026-06-09] ingest | docs/ 文档深度摄入
 
 处理全部 docs/ 目录资料（9 MD + 2 PDF 参考文档）。
-PDF 为原始参考文档，现有 MD 文件是其加工整理后的正式文档版本。
-
-概念页（7 个）：24 行统计阵列、VL 估值方法论、8 步流水线、多源交叉验证、BUSINESS 生成链路、三市场数据适配、李录阅读法融合。
-实体页（2 个）：原始资料-PDF-官方阅读指南2020、原始资料-PDF-产品指南。
+概念页（7 个）、实体页（2 个）。
 
 ## [2026-06-09] ingest | 核心模块逐文件摄入
 
-为 7 个核心 .py 模块创建 Wiki 页面：
-- build.py — 832 行，流水线编排 + 估值解析
-- config.py — 873 行，标的管理配置 + 24 行指标定义
-- engine.py — ~2500 行，核心计算引擎 + 交叉验证 + 早年回退
-- fetcher.py — 数据获取，三市场 AKShare API
-- pdf_downloader.py — 年报 PDF 下载，多市场适配
-- extract_mda.py — MD&A 文本提取，6 类关键词分类
-- generate_report.py — VL 单页 HTML，ECharts + 24 行阵列
-
-触及页面：以上 7 个 module 页。
-更新：index.md
-
-Wiki 构建完成。共 20 页（1 overview + 7 modules + 9 concepts + 2 entities + 1 index + 1 log）。
+为 7 个核心 .py 模块创建 Wiki 页面。
 
 ## [2026-06-09] ingest | AKShare Stock API 文档
 
-用户分享 AKShare 官方 stock 模块 API 文档。
-- raw 层: `akshare-stock-api-ref.md` 记录文档来源
-- entities: `数据源-AKShare.md` — 本项目使用接口清单、关键限制、三市场适配
-触及页面: 2 页（1 raw ref + 1 entity）
-更新: index.md
+raw 层: akshare-stock-api.md + entities: 数据源-AKShare.md
+
+## [2026-06-09] ingest | docs/ 残留文档处理
+
+创建 2 个概念页（开发环境配置、数据口径与样式规范），删除 docs/ 目录。
+
+## [2026-06-09] build | 紫金矿业 (02899)
+
+PB=1.0x, 新建 scripts/02899/business_commentary.py, valuation_method="pb" 写入 config。
+
+## [2026-06-10] lint | Wiki 健康检查 + 修复
+
+全站 Lint 扫描结果：
+- 修复 8 处断链：数据口径规范→数据口径与样式规范 (×2)、估值倍数优先级→VL 估值方法论 (×2)、
+  VL 官方指南 2020 中文解读→概念页组 (×2)、requirements.txt→移除
+- 创建 4 个缺失模块页：generate_reading.py、generate_index.py、list_refs.py、set_baba_meta.py
+- 修复 Step 8 矛盾：统一为 WARNING（非 BLOCK），对齐实际代码行为
+- 添加 6 条反向链接解决孤儿页面：数据源-AKShare、李录阅读法融合、开发环境配置
+- 更新 index.md
+
+修复后状态：25 页（1 overview + 11 modules + 9 concepts + 3 entities + 1 index + 1 log），0 断链，0 孤儿。
