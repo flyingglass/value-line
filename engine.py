@@ -1952,12 +1952,17 @@ def build_report(code=None):
     kline = reader.kline_monthly()
 
     # 年份策略: income表全量年份, indicators表有完整数据
+    # H 股: 东方财富 indicators 数据最早覆盖到 2017, 2017 年前仅有部分字段
+    # A 股: 同花顺 indicators 数据最早覆盖到 2011-2013
     fye = stock.get("fiscal_yr_end", "12-31")
     all_rows = reader.conn.execute(
         "SELECT DISTINCT substr(report_date,1,4) FROM income "
         "WHERE substr(report_date,5,3)=? ORDER BY 1", (f"-{fye[:2]}",)
     ).fetchall()
     full_years = [r[0] for r in all_rows]
+    if market == "hk":
+        # H 股 indicators 表最早从 2017 年起有完整数据, 截断到 2017
+        full_years = [y for y in full_years if int(y) >= 2017]
     # 最近N年
     num_yr = min(15, len(full_years)) if len(full_years) > 10 else len(full_years)
     years = full_years[-num_yr:]

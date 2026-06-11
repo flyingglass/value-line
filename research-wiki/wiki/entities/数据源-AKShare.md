@@ -42,7 +42,8 @@ created: 2026-06-09
 
 ## 关键限制
 
-- **港股 indicators 仅 2017+ 的 9 年数据** — 早年 engine 自动回退 raw 表计算
+- **港股 indicators 仅 2017+ 的 9 年数据** — 拟用 TDX MCP 替换（2001-2025），A 股保留 EM
+- **A 股 THS 保留** — TDX A 股仅 6 年，不如 THS 15 年
 - 频率限制：每分钟/每日有请求上限
 - A 股 THS 字段为长表 EAV 格式（item_name + amount），需 `THS_INDICATOR_MAP` 映射
 - 港股报表为元单位，A 股报表为万元单位
@@ -53,13 +54,14 @@ created: 2026-06-09
 
 ## 涉及模块
 
-[[fetcher.py]] — 调用所有 AKShare 接口
+[[fetcher.py]] — 调用所有 AKShare 接口（港股拟迁出至 [[数据源-通达信TDX]]）
 [[engine.py]] — 消费 SQLite 数据，早年回退计算
 
 ## 相关概念
 
 [[三市场数据适配]]
 [[多源交叉验证]]
+[[数据源-通达信TDX]]
 
 ## 外部文档
 

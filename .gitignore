@@ -7,4 +7,5 @@ report_data.json
 .playwright-cli/
 report/node_modules/
 build_*.txt
+.env
 

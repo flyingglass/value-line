@@ -1,5 +1,11 @@
 # 操作日志
 
+## [2026-06-11] ingest | TDX + 微云 + IMA 三工具接入与迁移方案
+
+接入通达信 TDX MCP 服务（港股财务数据 2001-2025，0.0% 偏差），安装微云 Skill（云备份上传脚本），整理 IMA 知识库配置。
+设计跨电脑迁移方案：`.env` 统一管理全部 Token，微云存储备份包，`setup.cmd` 一键初始化。
+触及页面：entities/数据源-通达信TDX.md, entities/工具-微云网盘.md, entities/工具-IMA知识库.md, concepts/跨电脑迁移与云备份.md, index.md, log.md（共 6 页）。raw 层: tdx-reference/tdx-mcp-api.md（完整数据字典）。
+
 ## [2026-06-09] bootstrap | Wiki 初始化
 
 创建 research-wiki/ 三层架构（Schema + Raw + Wiki），基于 Andrej Karpathy LLM Wiki 方法论。
