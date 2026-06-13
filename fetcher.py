@@ -96,7 +96,7 @@ class Store:
                 continue
             try:
                 self.conn.execute(
-                    "INSERT OR REPLACE INTO indicators VALUES (?,?,?)",
+                    "INSERT OR IGNORE INTO indicators VALUES (?,?,?)",
                     (str(report_date), k, float(v)))
             except (ValueError, TypeError):
                 pass
@@ -202,26 +202,60 @@ def fetch_kline_cn(store, code, pfx):
     print(f"OK {len(df)}条")
 
 # ============================================================
-# 港股财务数据 (东方财富)
+# 港股财务数据 (TDX 三大表 + AKShare 指标/分红)
 # ============================================================
 def fetch_hk_financials(store, code):
-    """港股三大表(含中报) + 分析指标 + 分红"""
-    import pandas as pd
-    # 三大表 — 用 "全部" 获取年报+中报
-    for table, sym in [("income", "利润表"),
-                       ("balance", "资产负债表"),
-                       ("cashflow", "现金流量表")]:
-        print(f"  [hk_{table}] ", end="", flush=True)
-        df = ak.stock_financial_hk_report_em(
-            stock=code, symbol=sym, indicator="全部")
-        store.upsert_financials(table, df)
-        # 统计各期间数量
-        dates = df["REPORT_DATE"].apply(lambda x: str(x)[:10]).unique()
-        n_annual = sum(1 for d in dates if d.endswith("12-31"))
-        n_semi = sum(1 for d in dates if d.endswith("06-30"))
-        print(f"OK {len(df)}行 ({n_annual}年报+{n_semi}中报)")
+    """港股三大表(TDX, 含完整历史) + 分析指标(AKShare) + 分红(AKShare)"""
+    import tdx_client
 
-    # 分析指标
+    # ── 三大表: 先 AKShare 写入 (2017+), 再 TDX 补缺 (2001-2016) ──
+    # AKShare 为近年数据优先源, TDX 仅 INSERT OR IGNORE 补充早年空缺年份
+    table_fetchers = [
+        ("income", "利润表", tdx_client.fetch_hk_income),
+        ("balance", "资产负债表", tdx_client.fetch_hk_balance),
+        ("cashflow", "现金流量表", tdx_client.fetch_hk_cashflow),
+    ]
+    # TDX 每股类项目已是元, 不乘 10000
+    _PS_ITEMS = {"每股基本盈利", "每股摊薄盈利"}
+
+    for table, sym, tdx_fetcher in table_fetchers:
+        print(f"  [hk_{table}] ", end="", flush=True)
+        # Step A: AKShare 写入 (优先, 主数据源)
+        try:
+            df = ak.stock_financial_hk_report_em(
+                stock=code, symbol=sym, indicator="全部")
+            store.upsert_financials(table, df)
+            ak_dates = set(str(d)[:10] for d in df["REPORT_DATE"])
+            n_ak_annual = sum(1 for d in ak_dates if d.endswith("12-31"))
+            print(f"AKShare {len(df)}行 ({n_ak_annual}年报)", end="", flush=True)
+        except Exception as e:
+            print(f"AKShare fail ({e})", end="", flush=True)
+            ak_dates = set()
+
+        # Step B: TDX 补缺 (INSERT OR IGNORE, 不覆盖 AKShare 已有数据)
+        try:
+            rows = tdx_fetcher(code)
+            n_tdx = 0
+            for r in rows:
+                # 仅当该 (report_date, item_name) 不存在时才写入
+                amt = r["amount"] * 10000 if r["item_name"] not in _PS_ITEMS else r["amount"]
+                try:
+                    store.conn.execute(
+                        f"INSERT OR IGNORE INTO {table} VALUES (?,?,?,?)",
+                        (r["report_date"], r["item_name"], amt, None))
+                    n_tdx += 1
+                except Exception:
+                    pass
+            store.conn.commit()
+            tdx_dates = set(r["report_date"] for r in rows)
+            n_tdx_annual = sum(1 for d in tdx_dates if d.endswith("12-31"))
+            print(f" + TDX补 {n_tdx}条 ({n_tdx_annual}年报)", end="", flush=True)
+        except Exception as e:
+            print(f" + TDX fail ({e})", end="", flush=True)
+
+        print()
+
+    # ── 分析指标: 仍用 AKShare (TDX 暂无港股指标接口) ──
     print("  [hk_indicators] ", end="", flush=True)
     df = ak.stock_financial_hk_analysis_indicator_em(
         symbol=code, indicator="年度")

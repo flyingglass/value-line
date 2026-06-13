@@ -443,11 +443,14 @@ def _resolve_dividends(reader):
 
 def build_metric_table(reader, years, market="hk"):
     """构建24行指标表 — Value Line 标准公式 (A股/H股双轨)
-    返回 (table, footnotes) — footnotes 为每股收益调整说明列表
+    返回 (table, footnotes, data_source_note) 
+    — footnotes 为每股收益调整说明列表, data_source_note 为数据源边界说明
     """
     table = {}
     all_footnotes = []
     total_shares = None
+    has_akshare = False   # 是否有年份走了 AKShare indicators 路径
+    has_fallback = False  # 是否有年份走了财报回退路径
 
     for yr in years:
         rd = _fye(yr)
@@ -463,28 +466,47 @@ def build_metric_table(reader, years, market="hk"):
             if shares:
                 total_shares = shares
 
-        if ind:
-            # ---- 标准路径: 从 indicators 表取值 ----
+        if ind and ind.get("OPERATE_INCOME"):
+            # ---- 标准路径: indicators 表有完整数据 ----
+            has_akshare = True
             rev = ind.get("OPERATE_INCOME")
             np_val = ind.get("HOLDER_PROFIT")
             _tax = ind.get("TAX_EBT")
-            _bps = ind.get("BPS")
+            # BPS: 优先从 balance 表计算 (保持与回退路径一致), indicators 兜底
+            eq_raw = reader.financial_item("balance", "总权益", rd)
+            _bps = round(eq_raw / shares, 2) if eq_raw and shares else ind.get("BPS")
             # A股 indicators 无 TAX_EBT, 回退到 income 表当面计算
             if _tax is None:
-                tax_exp = reader.financial_item_by_code("income", "004012001", rd)
-                pretax = reader.financial_item_by_code("income", "004011999", rd)
+                tax_exp = (reader.financial_item_by_code("income", "004012001", rd)
+                           or reader.financial_item("income", "所得税", rd))
+                pretax = (reader.financial_item_by_code("income", "004011999", rd)
+                          or reader.financial_item("income", "除税前盈利", rd))
                 if tax_exp is not None and pretax and pretax > 0:
                     _tax = round((tax_exp / pretax) * 100, 1)
         else:
             # ---- 回退路径: 从 income/balance/cashflow 原始表当面计算 ----
-            rev = reader.financial_item_by_code("income", "004001001", rd)
-            np_val = reader.financial_item_by_code("income", "004025002", rd)
+            has_fallback = True
+            # 优先 item_code 查询 (AKShare), 回退 item_name 查询 (TDX)
+            rev = (reader.financial_item_by_code("income", "004001001", rd)
+                   or reader.financial_item("income", "营业额", rd))
+            np_val = (reader.financial_item_by_code("income", "004025002", rd)
+                      or reader.financial_item("income", "股东应占溢利", rd))
             if not rev or not np_val or not shares:
                 continue
 
-            # 税率: 税项(004012001) / 除税前利润(004011999) — 用 item_code 避免编码乱码
-            tax_exp = reader.financial_item_by_code("income", "004012001", rd)
-            pretax = reader.financial_item_by_code("income", "004011999", rd)
+            # 用 EPS 反推加权平均股数 (AKShare 用期末股数, TDX 用年报披露的加权 EPS)
+            _eps_raw = reader.financial_item("income", "每股基本盈利", rd)
+            if _eps_raw and _eps_raw > 0 and np_val:
+                implied_shares = int(np_val / _eps_raw)
+                if implied_shares > 0:
+                    shares = implied_shares
+                    total_shares = shares
+
+            # 税率: 税项 / 除税前利润
+            tax_exp = (reader.financial_item_by_code("income", "004012001", rd)
+                       or reader.financial_item("income", "所得税", rd))
+            pretax = (reader.financial_item_by_code("income", "004011999", rd)
+                      or reader.financial_item("income", "除税前盈利", rd))
             if tax_exp is not None and pretax and pretax > 0:
                 _tax = round((tax_exp / pretax) * 100, 1)
             else:
@@ -497,8 +519,9 @@ def build_metric_table(reader, years, market="hk"):
         # ---- 基础数据提取 ----
         # (rev, np_val 已在上方路径中设置; shares 已设置)
 
-        # 折旧摊销 (元)
-        dep = reader.financial_item("cashflow", "加:折旧及摊销", rd) or 0
+        # 折旧摊销 (元) — AKShare 在 cashflow, TDX 在 income
+        dep = (reader.financial_item("cashflow", "加:折旧及摊销", rd) or 0
+               or abs(reader.financial_item("income", "折旧及摊销", rd) or 0))
 
         # 经营溢利 (元)
         op_profit = reader.financial_item("income", "经营溢利", rd)
@@ -532,8 +555,9 @@ def build_metric_table(reader, years, market="hk"):
         row["CAPEX_PS"] = round((capex_fixed + capex_mna) / shares, 2) if shares else None
 
         # ---- 6. 每股账面价值: VL = Common Equity / Share (含无形资产) ----
-        # 标准路径取 indicators.BPS, 回退路径从 total_equity/shares 当面计算
+        # 标准公式: 归属母公司权益 / 股数, 与年报披露值可能有 2-5% 口径差异
         row["BPS"] = round(_bps, 2) if _bps else None
+        row["BPS_FORMULA"] = "equity/shares"
 
         # ---- 7. 发行在外股数 (百万股) ----
         row["TOTAL_SHARES"] = round(shares / 1e6, 1) if shares else None  # 百万股
@@ -620,7 +644,20 @@ def build_metric_table(reader, years, market="hk"):
 
     # 补算 PE_AVG / PE_RELATIVE / DIV_YIELD
     _compute_pe_metrics(table, reader, market)
-    return table, all_footnotes
+
+    # 数据源边界说明: 仅当同时用到 AKShare 和 TDX 回退时才生成
+    data_note = None
+    if has_akshare and has_fallback:
+        first_ind_yr = min(int(y) for y in years 
+            if (ind := reader.indicators(_fye(str(y)))) 
+            and ind.get("OPERATE_INCOME"))
+        data_note = (
+            f"指标数据: {first_ind_yr}年起基于东方财富(EM), "
+            f"{first_ind_yr-1}年及以前基于通达信(TDX)财报计算; "
+            f"BPS公式: 归属母公司权益÷股数, "
+            f"与年报披露加权值可能有小幅差异"
+        )
+    return table, all_footnotes, data_note
 
 
 def _compute_ttm_eps(reader, latest_yr):
@@ -773,7 +810,7 @@ def _detect_freq(reader, yr):
     q1 = None
     for patch in ("-03-31", "-09-30"):
         d = f"{yr}{patch}"
-        v = reader.financial_item_by_code("income", "004001001", d)
+        v = reader.financial_item_by_code("income", "004001001", d) or reader.financial_item("income", "营业额", d)
         if v is not None:
             q1 = patch
         else:
@@ -951,18 +988,23 @@ def build_semi_annual(reader, years, metrics):
     
     for yr in years:
         qd = _q_dates(yr, fye)  # [q1, h1, 9m, fy]
-        c1 = reader.financial_item_by_code("income", "004001001", qd[0])  # Q1 cumulative
-        c2 = reader.financial_item_by_code("income", "004001001", qd[1])  # H1 cumulative
-        c3 = reader.financial_item_by_code("income", "004001001", qd[2])  # 9M cumulative
-        ca = reader.financial_item_by_code("income", "004001001", qd[3])  # FY cumulative
-        n1 = reader.financial_item_by_code("income", "004025002", qd[0])
-        n2 = reader.financial_item_by_code("income", "004025002", qd[1])
-        n3 = reader.financial_item_by_code("income", "004025002", qd[2])
-        na = reader.financial_item_by_code("income", "004025002", qd[3])
-        e1 = reader.financial_item_by_code("income", "004027003", qd[0]) or reader.financial_item_by_code("income", "004027002", qd[0])
-        e2 = reader.financial_item_by_code("income", "004027003", qd[1]) or reader.financial_item_by_code("income", "004027002", qd[1])
-        e3 = reader.financial_item_by_code("income", "004027003", qd[2]) or reader.financial_item_by_code("income", "004027002", qd[2])
-        ea = reader.financial_item_by_code("income", "004027003", qd[3]) or reader.financial_item_by_code("income", "004027002", qd[3])
+        # 季度数据查询: 优先 code (AKShare), 回退 name (TDX)
+        c1 = reader.financial_item_by_code("income", "004001001", qd[0]) or reader.financial_item("income", "营业额", qd[0])
+        c2 = reader.financial_item_by_code("income", "004001001", qd[1]) or reader.financial_item("income", "营业额", qd[1])
+        c3 = reader.financial_item_by_code("income", "004001001", qd[2]) or reader.financial_item("income", "营业额", qd[2])
+        ca = reader.financial_item_by_code("income", "004001001", qd[3]) or reader.financial_item("income", "营业额", qd[3])
+        n1 = reader.financial_item_by_code("income", "004025002", qd[0]) or reader.financial_item("income", "股东应占溢利", qd[0])
+        n2 = reader.financial_item_by_code("income", "004025002", qd[1]) or reader.financial_item("income", "股东应占溢利", qd[1])
+        n3 = reader.financial_item_by_code("income", "004025002", qd[2]) or reader.financial_item("income", "股东应占溢利", qd[2])
+        na = reader.financial_item_by_code("income", "004025002", qd[3]) or reader.financial_item("income", "股东应占溢利", qd[3])
+        e1 = (reader.financial_item_by_code("income", "004027003", qd[0]) or reader.financial_item_by_code("income", "004027002", qd[0])
+              or reader.financial_item("income", "每股基本盈利", qd[0]))
+        e2 = (reader.financial_item_by_code("income", "004027003", qd[1]) or reader.financial_item_by_code("income", "004027002", qd[1])
+              or reader.financial_item("income", "每股基本盈利", qd[1]))
+        e3 = (reader.financial_item_by_code("income", "004027003", qd[2]) or reader.financial_item_by_code("income", "004027002", qd[2])
+              or reader.financial_item("income", "每股基本盈利", qd[2]))
+        ea = (reader.financial_item_by_code("income", "004027003", qd[3]) or reader.financial_item_by_code("income", "004027002", qd[3])
+              or reader.financial_item("income", "每股基本盈利", qd[3]))
         
         # 判断是否有季报：c1 和 c2 都存在
         is_q = c1 is not None and c2 is not None
@@ -1011,11 +1053,33 @@ def build_semi_annual(reader, years, metrics):
         else:
             # 半年度 (H1/H2) — 取中间点 qd[1] (06-30) 作为 H1
             h1_d = qd[1]
-            h1_rev = reader.financial_item_by_code("income", "004001001", h1_d)
-            h1_np  = reader.financial_item_by_code("income", "004025002", h1_d)
-            h1_eps = reader.financial_item_by_code("income", "004027003", h1_d) or reader.financial_item_by_code("income", "004027002", h1_d)
+            h1_rev = reader.financial_item_by_code("income", "004001001", h1_d) or reader.financial_item("income", "营业额", h1_d)
+            h1_np  = reader.financial_item_by_code("income", "004025002", h1_d) or reader.financial_item("income", "股东应占溢利", h1_d)
+            h1_eps = (reader.financial_item_by_code("income", "004027003", h1_d)
+                      or reader.financial_item_by_code("income", "004027002", h1_d)
+                      or reader.financial_item("income", "每股基本盈利", h1_d))
             
             if h1_rev is None or h1_np is None:
+                # 无 H1 数据, 尝试 Q1 前瞻 (2026仅有Q1等场景)
+                q1_rev = reader.financial_item_by_code("income", "004001001", qd[0]) \
+                         or reader.financial_item("income", "营业额", qd[0])
+                q1_np  = reader.financial_item_by_code("income", "004025002", qd[0]) \
+                         or reader.financial_item("income", "股东应占溢利", qd[0])
+                q1_eps = (reader.financial_item_by_code("income", "004027003", qd[0])
+                          or reader.financial_item_by_code("income", "004027002", qd[0])
+                          or reader.financial_item("income", "每股基本盈利", qd[0]))
+                if q1_rev is not None and q1_np is not None:
+                    qtr["sales"].append({
+                        "year": yr, "has_quarter": True, "forward": True,
+                        "q1": round(q1_rev / 1e8, 1), "q2": None, "q3": None, "q4": None,
+                        "full": None
+                    })
+                    if q1_eps:
+                        qtr["eps"].append({
+                            "year": yr, "has_quarter": True, "forward": True,
+                            "q1": round(q1_eps, 2), "q2": None, "q3": None, "q4": None,
+                            "full": None
+                        })
                 continue
                 
             ann = metrics.get(yr, {})
@@ -1951,23 +2015,18 @@ def build_report(code=None):
     spot = reader.spot()
     kline = reader.kline_monthly()
 
-    # 年份策略: income表全量年份, indicators表有完整数据
-    # H 股: 东方财富 indicators 数据最早覆盖到 2017, 2017 年前仅有部分字段
-    # A 股: 同花顺 indicators 数据最早覆盖到 2011-2013
+    # 年份策略: income表全量年份, TDX 数据可追溯至 2001 (不再截断)
     fye = stock.get("fiscal_yr_end", "12-31")
     all_rows = reader.conn.execute(
         "SELECT DISTINCT substr(report_date,1,4) FROM income "
         "WHERE substr(report_date,5,3)=? ORDER BY 1", (f"-{fye[:2]}",)
     ).fetchall()
     full_years = [r[0] for r in all_rows]
-    if market == "hk":
-        # H 股 indicators 表最早从 2017 年起有完整数据, 截断到 2017
-        full_years = [y for y in full_years if int(y) >= 2017]
     # 最近N年
     num_yr = min(15, len(full_years)) if len(full_years) > 10 else len(full_years)
     years = full_years[-num_yr:]
 
-    metrics, footnotes_data = build_metric_table(reader, years, market)
+    metrics, footnotes_data, data_source_note = build_metric_table(reader, years, market)
 
     # 补算 Header PE(TTM) / PB / 股息率 / 市值 + 汇率转换
     # price_ccy = 交易货币(HKD), rpt_ccy = 报表货币(CNY), 不一致时换算
@@ -2041,8 +2100,15 @@ def build_report(code=None):
         "equity": calc_cagr_multi(equity_vals, years),
     }
 
-    # 半年度数据 (从 SQLite income 表读取)
-    semi_annual = build_semi_annual(reader, years, metrics)
+    # 半年度数据 (从 SQLite income 表读取), 如有最新 Q1 则前瞻一年
+    qtr_years = list(years)
+    _next_yr = str(int(years[-1]) + 1) if years else None
+    if _next_yr:
+        _next_q1 = reader.financial_item_by_code("income", "004001001", f"{_next_yr}-03-31") \
+                   or reader.financial_item("income", "营业额", f"{_next_yr}-03-31")
+        if _next_q1:
+            qtr_years.append(_next_yr)
+    semi_annual = build_semi_annual(reader, qtr_years, metrics)
 
     # 营收结构 (从 SQLite revenue_structure 表读取)
     revenue_structure = {}
@@ -2116,8 +2182,8 @@ def build_report(code=None):
     # 3. ANNUAL RATES of Change (10yr/5yr/Future)
     annual_rates = _build_annual_rates(metrics, years)
 
-    # 4. QUARTERLY TABLES (港股: H1/H2代替)
-    quarterly = build_semi_annual(reader, years, metrics)
+    # 4. QUARTERLY TABLES (港股: H1/H2代替), 如有 Q1 则前瞻一年
+    quarterly = build_semi_annual(reader, qtr_years, metrics)
 
     # Current Position 估值定位 (图表用)
     position = _calc_position(spot, kline, metrics, years)
@@ -2276,8 +2342,7 @@ def build_report(code=None):
             if ak_rev and pdf_sum_raw and ak_rev > 0:
                 pdf_sum = pdf_sum_raw * 1e6  # 百万 → 元
                 rev_pct = abs(ak_rev - pdf_sum) / ak_rev * 100
-                # 早期年份口径差异大, 放宽阈值
-                pdf_th = 25.0 if int(pdf_yr) <= 2017 else 5.0
+                pdf_th = 5.0
                 add_check(str(pdf_yr), "AKShare↔PDF Revenue",
                            {"summary": f"AKShare={ak_rev/1e8:.1f}B vs PDF={pdf_sum/1e8:.1f}B", "akshare": round(ak_rev/1e8,2), "pdf": round(pdf_sum/1e8,2)},
                            rev_pct, threshold=pdf_th)
@@ -2299,10 +2364,10 @@ def build_report(code=None):
         rd = _fye(yr)
         row = metrics.get(yr, {})
 
-        # 4a. Revenue (2017前重组数据差异大, 放宽到20%)
+        # 4a. Revenue
         ak_rev = _val(yr, "OPERATE_INCOME", rd)
         inc_rev = reader.financial_item_by_code("income", "004001001", rd)
-        rev_th = 20.0 if yr == "2017" else 3.0
+        rev_th = 3.0
         _chk(yr, "AKShare↔Income Revenue", ak_rev, inc_rev, threshold=rev_th)
 
         # 4b. Net Profit
@@ -2482,6 +2547,8 @@ def build_report(code=None):
         "analyst": analyst,
         "validation": validation,
         "footnotes": footnotes_data,
+        "bps_source": "归属于母公司权益 ÷ 股数 (计算值, 与年报披露口径可能有小幅差异)",
+        "data_source_note": data_source_note,
     }
 
     out_dir = os.path.dirname(os.path.abspath(__file__))

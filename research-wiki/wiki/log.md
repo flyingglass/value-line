@@ -1,5 +1,54 @@
 # 操作日志
 
+## [2026-06-13] ingest | 季度数据修复 + 2026前向季报 + 股息0→—
+
+### 改动
+
+**engine.py**:
+1. `build_semi_annual` H1 查询加 `or item_name` 回退（兼容 TDX 无 item_code）
+2. Q1 季度查询全面加 `or item_name` 回退
+3. 2026 前向季报：仅 Q1 时生成 `forward: True` 标记
+4. `qtr_years` 动态追加下一年（如有 Q1 数据）
+
+**generate_report.py**:
+1. 季度股息 0.000 → "—"（`decimal===3&&v===0`）
+2. 半年度格式股息同样处理
+
+### 验证 (00700)
+
+- Qtr.sales: 16y ✅ (含2026 Q1=1941.7亿)
+- Qtr.eps: 16y ✅ (含2026 Q1=6.3)
+- Qtr.dividends: 16y ✅
+- Step 8: ALL PASS (73 checks, 0 fails)
+
+## [2026-06-13] ingest | TDX 替换 fetcher 港股三大表 + engine 双路径改造
+
+### 改动范围
+
+**新建**: `tdx_client.py` — HTTP 直连 TDX API，字段映射，单位转换
+**修改**: `fetcher.py` — 港股三大表改 TDX 拉取，indicators 改 INSERT OR IGNORE
+**修改**: `engine.py` — 6 处改造：
+
+1. `if ind and ind.get("OPERATE_INCOME"):` — 防止空壳 indicators 误入标准路径
+2. BPS 统一 `balance.总权益 ÷ shares` — 替代 `indicators.BPS` 直读
+3. else 分支 EPS 反推加权股数 — `shares = NP / 每股基本盈利`
+4. 财报查询 `item_code or item_name` 双重回退 — 兼容 TDX 无 code
+5. 折旧 `income.折旧及摊销` 兜底 — TDX 折旧在 income 不在 cashflow
+6. 动态数据源边界检测 — 仅混合数据源时生成 `data_source_note`
+
+**触及 Wiki 页面**:
+- [[tdx_client.py]] — 新建模块页
+- [[fetcher.py]] — 更新港股 TDX 双源拉取说明
+- [[engine.py]] — 更新双路径、回退增强、BPS 公式
+- [[数据源-通达信TDX]] — 标记已接入，更新 API 格式
+- [[index.md]] — 新增 tdx_client.py 条目
+
+### 验证结果 (00700 腾讯)
+
+- 2011-2025 共 15 年，交叉校验 83/83 通过
+- TDX 回退 vs 引擎标准: 23/24 项 <2%，仅 BPS 差异 4-5%
+- 2017 年前 6 年全部 TDX 计算，2017 后 9 年保留 AKShare
+
 ## [2026-06-11] ingest | TDX + 微云 + IMA 三工具接入与迁移方案
 
 接入通达信 TDX MCP 服务（港股财务数据 2001-2025，0.0% 偏差），安装微云 Skill（云备份上传脚本），整理 IMA 知识库配置。

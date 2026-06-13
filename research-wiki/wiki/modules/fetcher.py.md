@@ -1,54 +1,50 @@
 ---
 module: fetcher.py
 category: 数据获取
-depends_on: [config.py]
-updated: 2026-06-09
+depends_on: [config.py, tdx_client.py]
+updated: 2026-06-13
 ---
 
 # fetcher.py — 数据获取
 
 ## 职责
 
-从 AKShare API 拉取股标财务/行情数据，写入 SQLite 数据库。
-支持 A 股（同花顺/巨潮）、港股（东方财富）、美股（东方财富+SEC）三市场。
+从 AKShare API + TDX API 双源拉取股票财务/行情数据，写入 SQLite 数据库。
+支持 A 股（同花顺/巨潮）、港股（TDX 三大表 + AKShare 指标/分红）、美股（东方财富+SEC）三市场。
 
 ## 拉取内容
 
-| 表 | 内容 | 来源 |
-|----|------|------|
-| `spot` | 实时行情快照 | stock_hk_spot / stock_zh_a_spot |
-| `kline` | 前复权日线 | stock_hk_daily / stock_zh_a_daily |
-| `indicators` | 分析指标（EPS/BPS/ROE 等） | analysis_indicator_em |
-| `income` | 利润表 | financial_report_em |
-| `balance` | 资产负债表 | financial_report_em |
-| `cashflow` | 现金流量表 | financial_report_em |
-| `dividend` | 股息数据 | dividend |
-| `revenue_structure` | 营收结构 | 由 insert_revenue.py 写入 |
+| 表 | 内容 | 港股来源 | A股来源 | 美股来源 |
+|----|------|---------|--------|--------|
+| `spot` | 实时行情快照 | AKShare stock_hk_spot | AKShare stock_zh_a_spot | AKShare stock_us_spot |
+| `kline` | 前复权日线 | AKShare stock_hk_daily | AKShare stock_zh_a_daily | AKShare stock_us_daily |
+| `income` | 利润表 | **TDX** (2001+) → fallback AKShare | AKShare THS | AKShare EM |
+| `balance` | 资产负债表 | **TDX** (2001+) → fallback AKShare | AKShare THS | AKShare EM |
+| `cashflow` | 现金流量表 | **TDX** (2001+) → fallback AKShare | AKShare THS | AKShare EM |
+| `indicators` | 分析指标 | AKShare (INSERT OR IGNORE) | AKShare THS | AKShare EM |
+| `dividend` | 股息数据 | AKShare | AKShare | income 表提取 |
 
-## 市场适配
+## 港股 TDX 改造 (2026-06-13)
 
-| 市场 | API 前缀 | 字段体系 |
-|------|---------|---------|
-| 港股 hk | 东方财富 EM | 中文 item_name（营业额/经营溢利等） |
-| A 股 cn | 同花顺 THS + 巨潮 | THS 中文 → 英文 map（THS_INDICATOR_MAP） |
-| 美股 us | 东方财富 EM | 英文字段名 |
+### 三大表：TDX 替换 AKShare
+- `tdx_client.py` 直连 TDX HTTP API (Entry: `TdxSharePCCW.skef10_hk_cwfx`)
+- 损益表: fixedTag=1, 资产负债表: fixedTag=2, 现金流量表: fixedTag=3
+- 字段名映射：TDX 英文 ColName → 引擎期望的中文 item_name
+- 单位转换：万元 ×10000 → 元（每股类不乘）
+- 失败自动 fallback 原 AKShare 接口
 
-## 港股关键字段映射
-
-| AKShare item_name | VL 用途 |
-|-------------------|--------|
-| 营业额 | Revenues |
-| 销售成本 | COGS |
-| 经营溢利 | Operating Profit |
-| 股东应占利润 | Net Profit |
-| 折旧及摊销 | Depreciation |
+### indicators：保留 AKShare，INSERT OR IGNORE
+- 一旦拉取成功，永不覆盖 → 保障历史数据稳定
+- 如需强制刷新某年：手动 `DELETE FROM indicators WHERE report_date='年份-12-31'`
 
 ## 涉及模块
 
 [[config.py]] — ACTIVE_STOCK、STOCKS
+[[tdx_client.py]] — TDX HTTP API 封装
 [[build.py]] — Step 1 调用
 
 ## 相关概念
 
 [[三市场数据适配]]
 [[数据源-AKShare]]
+[[数据源-通达信TDX]]

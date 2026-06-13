@@ -256,13 +256,13 @@ var DATA = {DATA_JS};
           var s='text-align:right;padding-right:3px';
           if(i===0) s='text-align:left;border-left:2px solid #000;padding-left:3px';
           if(i===4) s+=';font-weight:700;border-left:2px solid #000;padding-left:3px';
-          h+='<td style="'+s+'">'+(v!=null?v.toFixed(decimal):'—')+'</td>';
+          h+='<td style="'+s+'">'+(v!=null?(decimal===3&&v===0?'—':v.toFixed(decimal)):'—')+'</td>';
         }});
       }}else{{
         h+='<td style="text-align:left;color:#999;border-left:2px solid #000;padding-left:3px;padding-right:3px">—</td>';
-        h+='<td style="text-align:right;padding-right:3px">'+(r.q1!=null?r.q1.toFixed(decimal):'—')+'</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q1!=null?(decimal===3&&r.q1===0?'—':r.q1.toFixed(decimal)):'—')+'</td>';
         h+='<td style="text-align:right;color:#999;padding-right:3px">—</td>';
-        h+='<td style="text-align:right;padding-right:3px">'+(r.q3!=null?r.q3.toFixed(decimal):'—')+'</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q3!=null?(decimal===3&&r.q3===0?'—':r.q3.toFixed(decimal)):'—')+'</td>';
         h+='<td style="text-align:right;font-weight:700;border-left:2px solid #000;padding-left:3px;padding-right:3px">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td>';
       }}
       h+='</tr>';
@@ -526,6 +526,14 @@ var DATA = {DATA_JS};
     html += '</tr>';
 
     html += '</table></div>';
+  }}
+
+  // Item 15 Footnotes — 数据源说明 (混合 AKShare + TDX 时显示)
+  var dsNote = d.data_source_note || '';
+  if (dsNote) {{
+    html += '<div style="border-top:1px solid #999;padding:3px 12px 2px;font-size:8px;color:#666;line-height:1.35">';
+    html += '<span style="font-weight:700">数据源:</span> ' + dsNote;
+    html += '</div>';
   }}
 
   html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: '+priceCcy+' | 财报数据: '+(meta.rpt_ccy||'CNY')+' | {datetime.date.today().isoformat()}</div>';

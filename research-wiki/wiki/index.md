@@ -1,6 +1,6 @@
 # Wiki 索引
 
-> 最后更新：2026-06-11
+> 最后更新：2026-06-13
 
 ## 概述
 
@@ -10,8 +10,9 @@
 
 - [[build.py]] — 主入口，8 步流水线编排，估值倍数确认
 - [[config.py]] — 标的配置中心，STOCKS 字典，市场配置，VL 指标定义
-- [[engine.py]] — 核心计算引擎，~2500 行，24 项指标，估值线，交叉验证，早年回退
-- [[fetcher.py]] — 数据获取，AKShare API → SQLite，三市场适配
+- [[engine.py]] — 核心计算引擎，~2500 行，24 项指标，双路径(TDX/AKShare)，动态数据源边界
+- [[fetcher.py]] — 双源数据获取（TDX 三大表 + AKShare 指标/分红），三市场适配
+- [[tdx_client.py]] — TDX HTTP API 封装，字段映射，单位转换
 - [[pdf_downloader.py]] — 年报 PDF 下载，港交所/巨潮/SEC 多源
 - [[extract_mda.py]] — PDF 文本提取，管理层讨论 6 类关键词分类
 - [[generate_report.py]] — VL 单页 HTML 生成，ECharts K 线 + 24 行阵列
@@ -36,7 +37,7 @@
 ## 实体 (entities/)
 
 - [[数据源-AKShare]] — 主力数据 API，本项目使用的接口清单与限制
-- [[数据源-通达信TDX]] — TDX MCP 服务，港股 2001 年深度，拟替换 EM 港股源
+- [[数据源-通达信TDX]] — **已接入**，港股 2001 年深度，三大表已替换 EM 源
 - [[工具-微云网盘]] — 腾讯微云 MCP Skill，项目密钥和 Skill 包云端备份
 - [[工具-IMA知识库]] — 腾讯 IMA 知识库 MCP，本地 Python 服务
 - [[原始资料-PDF-官方阅读指南2020]] — VL 2020 版官方阅读指南 PDF
