@@ -28,6 +28,7 @@ INDUSTRY_CN = {
     "Utilities": "公用事业",
     "Insurance": "保险",
     "Financial Services": "金融服务",
+    "Semiconductor": "半导体",
 }
 
 # 市场标签
@@ -38,6 +39,7 @@ MARKET_CLASS = {"hk": "hk", "cn": "cn", "us": "us"}
 INDUSTRY_ORDER = [
     "Consumer",
     "Technology",
+    "Semiconductor",
     "Energy",
     "Metals & Mining",
     "Media", "Packaging",

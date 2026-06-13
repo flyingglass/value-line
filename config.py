@@ -75,7 +75,7 @@ STOCKS = {
         "pfx": "hk",
         "shares": 7967000000,
         "shares_str": "7,967,000,000",
-        "industry": "Technology / Semiconductor",
+        "industry": "Semiconductor",
         "fiscal_yr_end": "12-31",
         "valuation_method": "pb",
         "business_desc": "中芯国际是中国大陆规模最大、技术最先进的晶圆代工企业，提供0.35μm到FinFET工艺的集成电路制造服务。核心业务为晶圆代工，覆盖逻辑、射频、CIS、PMIC、BCD、NOR Flash、NAND Flash等工艺平台。全球晶圆代工市场排名第五、中国大陆第一。A+H双上市（港股00981，科创板688981）。",
@@ -684,7 +684,7 @@ STOCKS = {
         "pfx": "sz",
         "shares": 1120000000,
         "shares_str": "1,120,000,000",
-        "industry": "Technology / Optical Communication",
+        "industry": "Semiconductor",
         "fiscal_yr_end": "12-31",
         "business_desc": "中际旭创是全球领先的光模块解决方案提供商，主营高速光通信收发模块的研发、设计和制造。产品覆盖100G/200G/400G/800G/1.6T光模块，是AI算力基础设施核心供应商。客户包括北美云厂商（Google/Meta/Microsoft/Amazon）及国内互联网公司。2025年营收超400亿元，AI驱动800G/1.6T需求爆发式增长。",
         "analyst": {
@@ -710,7 +710,7 @@ STOCKS = {
         "cik": "0001045810",         # SEC CIK (Central Index Key)
         "shares": 2460000000,
         "shares_str": "2,460,000,000",
-        "industry": "Technology / Semiconductor",
+        "industry": "Semiconductor",
         "fiscal_yr_end": "01-26",  # FY ends ~Jan 26 (varies 25-31)
         "valuation_method": "cf",
         "business_desc": "NVIDIA是全球领先的GPU和AI加速计算公司，核心业务涵盖数据中心（GPU/AI芯片）、游戏、专业可视化和汽车。H100/B100/GB200等AI GPU垄断全球AI训练和推理市场超80%份额。CUDA生态是NVIDIA最深的护城河。2025年营收超1,300亿美元，数据中心占比超80%。",
