@@ -75,3 +75,35 @@ Python 3 + AKShare + SQLite + pdfplumber + ECharts (前端) + Jinja2 (模板)
 - [[数据源-AKShare]]
 - [[开发环境配置]]
 - [[李录阅读法融合]]
+- [[Wiki操作手册]]
+
+## Wiki 目录结构
+
+```
+research-wiki/
+├── raw/                   # 原始资料（不可变，只进不改）
+├── wiki/                  # LLM 维护的 Wiki
+│   ├── index.md           # 内容目录
+│   ├── log.md             # 操作日志（只追加）
+│   ├── overview.md        # 本页 — 项目全景概述
+│   ├── modules/           # 代码模块页（每个 .py 文件一篇）
+│   ├── concepts/          # 核心概念页
+│   ├── entities/          # 实体页（股票、数据源、工具）
+│   └── synthesis/         # 综合分析
+└── assets/                # 图片、图表附件
+```
+
+## 为什么这个 Wiki 存在
+
+Value Line 是一个复杂的系统——8 步流水线、30+ 股票标的、3 个市场、24 项指标、
+多源交叉验证、估值方法选择、PDF 解析、HTML 渲染。
+
+Karpathy Wiki 的方法论：LLM 维护一个持久化知识层，交叉引用自动保持、矛盾被标记、
+摘要反映全部已知信息。
+
+> 人的工作：写代码、做决策、提出好问题。
+> LLM 的工作：文档、交叉引用、簿记、一致性维护。
+
+## 参考
+
+- Andrej Karpathy 原始 gist: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f

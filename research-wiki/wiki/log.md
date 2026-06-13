@@ -1,5 +1,12 @@
 # 操作日志
 
+## [2026-06-13] refactor | 精简 CODEBUDDY.md 为纯宪法，详细内容移入 wiki
+
+- `CODEBUDDY.md` 缩减为 3 段：项目身份 + 安全红线 + 环境规则（~30行）
+- 新增 `concepts/Wiki操作手册.md` — 承载 Ingest/Query/Lint 流程 + 页面格式模板
+- `overview.md` 追加 Wiki 目录结构 + "为什么存在"
+- `index.md` 新增 Wiki操作手册 条目
+
 ## [2026-06-13] security | 🔴 TDX Token 硬编码泄露 — 已修复 + 写入宪法
 
 **事件**：GitHub 扫描告警，`tdx_client.py:23` 硬编码 `Bearer TDX-e35604...` 暴露在仓库中。
