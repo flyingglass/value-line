@@ -139,7 +139,7 @@ def _scan_local():
         if not os.path.isdir(dp):
             continue
         for fn in os.listdir(dp):
-            if fn.endswith(".pdf"):
+            if fn.endswith((".pdf", ".json")):
                 local[(code, fn)] = os.path.getsize(os.path.join(dp, fn))
     return local
 
@@ -184,7 +184,8 @@ def upload():
         try:
             cmd = [sys.executable, UPLOAD_SCRIPT, fp, "--token", TOKEN,
                    "--pdir_key", pdir, "--mcp_url", MCP_URL]
-            r2 = subprocess.run(cmd, capture_output=True, timeout=120, text=True)
+            r2 = subprocess.run(cmd, capture_output=True, timeout=120,
+                                encoding="utf-8", errors="replace")
             if r2.returncode == 0:
                 print("OK"); count += 1
             else:
