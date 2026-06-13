@@ -31,6 +31,7 @@ if sys.platform == 'win32' and hasattr(sys.stdout, 'buffer'):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 _lock = threading.Lock()  # 终端输出互斥
+_quota_exhausted = False   # 全局配额耗尽标记
 
 # ══════════════════════════════════════════════════════
 # JSON-RPC 2.0 MCP 调用 (与 upload_to_weiyun.py 同协议)
@@ -40,7 +41,7 @@ _request_id = 0
 _HEADERS = {"Content-Type": "application/json", "WyHeader": f"mcp_token={TOKEN}"}
 
 def _mcp_call(tool_name, arguments, timeout=60):
-    global _request_id
+    global _request_id, _quota_exhausted
     _request_id += 1
     payload = {"jsonrpc": "2.0", "id": _request_id, "method": "tools/call",
                "params": {"name": tool_name, "arguments": arguments}}
@@ -48,6 +49,17 @@ def _mcp_call(tool_name, arguments, timeout=60):
         resp = _requests.post(MCP_URL, headers=_HEADERS, json=payload, timeout=timeout)
         resp.raise_for_status()
         result = resp.json()
+        err = result.get("error", {})
+        if err:
+            code = err.get("code", 0)
+            msg = err.get("message", "")
+            if code == -32603 and "117401" in msg:
+                if not _quota_exhausted:
+                    _quota_exhausted = True
+                    with _lock:
+                        print("\n  [QUOTA] 微云日配额已用完, 明早8点重置后重跑即可")
+                return None
+            return None
         for item in result.get("result", {}).get("content", []):
             if item.get("type") == "text":
                 return json.loads(item["text"])
@@ -174,6 +186,9 @@ def status():
 
 def _upload_one(code, fn, fp, local_sz, pdir, tag, idx, total, max_retries=2):
     """上传单个文件，返回 (code, fn, ok)。失败自动重试一次。"""
+    global _quota_exhausted
+    if _quota_exhausted:
+        return (code, fn, False)
     for attempt in range(max_retries):
         with _lock:
             retry = f"(重试{attempt+1})" if attempt > 0 else ""
@@ -263,6 +278,9 @@ def upload():
 
 def _download_one_file(code, fn, info, idx, total, max_retries=2):
     """下载单个文件并校验大小。返回 (code, fn, ok)"""
+    global _quota_exhausted
+    if _quota_exhausted:
+        return (code, fn, False)
     local_dir = os.path.join(PDFS, code)
     os.makedirs(local_dir, exist_ok=True)
     fp = os.path.join(local_dir, fn)
