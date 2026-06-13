@@ -1109,10 +1109,16 @@ def build_semi_annual(reader, years, metrics):
     if years:
         next_yr = str(int(years[-1]) + 1)
         qd_next = _q_dates(next_yr, fye)
-        c1_next = reader.financial_item_by_code("income", "004001001", qd_next[0])  # Q1
-        c2_next = reader.financial_item_by_code("income", "004001001", qd_next[1])  # H1
-        e1_next = reader.financial_item_by_code("income", "004027003", qd_next[0]) or reader.financial_item_by_code("income", "004027002", qd_next[0])
-        e2_next = reader.financial_item_by_code("income", "004027003", qd_next[1]) or reader.financial_item_by_code("income", "004027002", qd_next[1])
+        c1_next = reader.financial_item_by_code("income", "004001001", qd_next[0]) \
+                  or reader.financial_item("income", "营业额", qd_next[0])  # Q1
+        c2_next = reader.financial_item_by_code("income", "004001001", qd_next[1]) \
+                  or reader.financial_item("income", "营业额", qd_next[1])  # H1
+        e1_next = (reader.financial_item_by_code("income", "004027003", qd_next[0])
+                   or reader.financial_item_by_code("income", "004027002", qd_next[0])
+                   or reader.financial_item("income", "每股基本盈利", qd_next[0]))
+        e2_next = (reader.financial_item_by_code("income", "004027003", qd_next[1])
+                   or reader.financial_item_by_code("income", "004027002", qd_next[1])
+                   or reader.financial_item("income", "每股基本盈利", qd_next[1]))
 
         if c1_next is not None:
             # 季度股: 有 Q1 累计数据 → 展示单季 Q1
@@ -2106,7 +2112,10 @@ def build_report(code=None):
     if _next_yr:
         _next_q1 = reader.financial_item_by_code("income", "004001001", f"{_next_yr}-03-31") \
                    or reader.financial_item("income", "营业额", f"{_next_yr}-03-31")
-        if _next_q1:
+        # 半年度报告公司仅有 H1 (06-30), 也需探测
+        _next_h1 = reader.financial_item_by_code("income", "004001001", f"{_next_yr}-06-30") \
+                   or reader.financial_item("income", "营业额", f"{_next_yr}-06-30")
+        if _next_q1 or _next_h1:
             qtr_years.append(_next_yr)
     semi_annual = build_semi_annual(reader, qtr_years, metrics)
 

@@ -1,5 +1,16 @@
 # 操作日志
 
+## [2026-06-13] fix | engine.py 季度前瞻双重漏洞修复 + ingest
+
+**根因**：06699 季度区无 2026 年，排查发现两处漏洞：
+
+1. `qtr_years` 追加（L2107）：仅探测 Q1 (03-31)，半年度报告公司仅发 H1 (06-30)，永远匹配不到
+2. `build_semi_annual` 末尾前瞻（L1112-1115）：`financial_item_by_code` 无 `item_name` 回退，TDX 数据无 item_code → 静默失败
+
+**修复**：L2107 追加 H1 探测；L1112-1115 加 `or reader.financial_item(...)` 回退。
+
+**验证**：00700 2026 Q1 `forward: True` 正常 ✅。06699 无 2026 数据属公司未发布财报，非代码问题。
+
 ## [2026-06-13] ingest | CODEBUDDY.md 二次精简 — 15行纯宪法 + 腾讯全量报告
 
 - `CODEBUDDY.md` 缩减为 3 段：项目身份 + 安全红线 + 环境规则（~30行）
