@@ -10,7 +10,8 @@ sync_pdfs.py — 微云双向增量同步 data/pdfs 目录
   微云:  value-line-pdfs/<stock_code>/<filename>.pdf
   本地:  data/pdfs/<stock_code>/<filename>.pdf
 """
-import os, sys, json, io, argparse, time, subprocess, hashlib
+import os, sys, json, io, argparse, time, subprocess, hashlib, threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests as _requests
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -24,9 +25,12 @@ MCP_URL = "https://www.weiyun.com/api/v3/mcpserver"
 TOKEN = "dc6f586424684555634a37d31e774d8c"
 _VL_ROOT_PDIR = "98405d2ff0a739ae12b58dcd423dce4a"
 _VL_PDFS_PDIR = "98405d2f491a350c331c685eaaf47b48"
+_WORKERS = 8  # 上传并发数
 
 if sys.platform == 'win32' and hasattr(sys.stdout, 'buffer'):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+
+_lock = threading.Lock()  # 终端输出互斥
 
 # ══════════════════════════════════════════════════════
 # JSON-RPC 2.0 MCP 调用 (与 upload_to_weiyun.py 同协议)
@@ -165,11 +169,41 @@ def status():
     print(f"  已同步: {len(common)-len(size_diff)}")
 
 
+def _upload_one(code, fn, fp, local_sz, pdir, tag, idx, total):
+    """上传单个文件，返回 (code, fn, ok)"""
+    with _lock:
+        print(f"  [{tag}] {code}/{fn} ({local_sz/1024:.0f}KB) [{idx}/{total}]...", end=" ", flush=True)
+    try:
+        cmd = [sys.executable, UPLOAD_SCRIPT, fp, "--token", TOKEN,
+               "--pdir_key", pdir, "--mcp_url", MCP_URL]
+        r2 = subprocess.run(cmd, capture_output=True, timeout=180,
+                            encoding="utf-8", errors="replace")
+        if r2.returncode == 0:
+            with _lock:
+                print("OK")
+            return (code, fn, True)
+        else:
+            err = (r2.stderr or r2.stdout or "unknown")[:120]
+            with _lock:
+                print(f"FAIL: {err}")
+            return (code, fn, False)
+    except subprocess.TimeoutExpired:
+        with _lock:
+            print("TIMEOUT")
+        return (code, fn, False)
+    except Exception as e:
+        with _lock:
+            print(f"ERR: {e}")
+        return (code, fn, False)
+
+
 def upload():
     local = _scan_local()
     remote = _scan_remote()
-    print(f"本地 {len(local)} 个, 微云 {len(remote)} 个")
-    count = 0
+    print(f"本地 {len(local)} 个, 微云 {len(remote)} 个, {_WORKERS} 线程并发")
+
+    # 筛选需上传的文件
+    tasks = []
     for (code, fn), local_sz in sorted(local.items()):
         r = remote.get((code, fn))
         if r and abs(local_sz - r["size"]) <= 10:
@@ -180,22 +214,29 @@ def upload():
             continue
         fp = os.path.join(PDFS, code, fn)
         tag = "UPDATE" if r else "NEW"
-        print(f"  [{tag}] {code}/{fn} ({local_sz/1024:.0f}KB)...", end=" ", flush=True)
-        try:
-            cmd = [sys.executable, UPLOAD_SCRIPT, fp, "--token", TOKEN,
-                   "--pdir_key", pdir, "--mcp_url", MCP_URL]
-            r2 = subprocess.run(cmd, capture_output=True, timeout=120,
-                                encoding="utf-8", errors="replace")
-            if r2.returncode == 0:
-                print("OK"); count += 1
+        tasks.append((code, fn, fp, local_sz, pdir, tag))
+
+    if not tasks:
+        print("全部已同步!")
+        return
+
+    total = len(tasks)
+    print(f"待上传: {total} 个\n")
+    ok, fail = 0, 0
+    t0 = time.time()
+
+    with ThreadPoolExecutor(max_workers=_WORKERS) as pool:
+        futures = {pool.submit(_upload_one, code, fn, fp, sz, pdir, tag, i+1, total):
+                   (code, fn) for i, (code, fn, fp, sz, pdir, tag) in enumerate(tasks)}
+        for fut in as_completed(futures):
+            code, fn, success = fut.result()
+            if success:
+                ok += 1
             else:
-                err = (r2.stderr or r2.stdout or "unknown")[:120]
-                print(f"FAIL: {err}")
-        except subprocess.TimeoutExpired:
-            print("TIMEOUT")
-        except Exception as e:
-            print(f"ERR: {e}")
-    print(f"\n上传完成: {count} 个")
+                fail += 1
+
+    elapsed = time.time() - t0
+    print(f"\n上传完成: {ok} 成功, {fail} 失败, 耗时 {elapsed/60:.1f} 分钟")
 
 
 def download():
