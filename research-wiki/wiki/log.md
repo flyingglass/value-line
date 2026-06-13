@@ -1,20 +1,5 @@
 # 操作日志
 
-## [2026-06-13] ingest | sync_pdfs.py — 微云双向增量同步 + 批量上传
-
-### 新增
-**`sync_pdfs.py`** — 永久模块，JSON-RPC 2.0 直调微云 MCP API：
-- `status` — 双向扫描，显示差异量
-- `upload`   — CPU×2 线程并发上传，失败自动重试，完成后校验远程大小
-- `download` — CPU×2 线程并发下载，逐个校验文件大小，不一致重试
-- 增量策略: 文件名+大小比对，跳过已同步
-
-**`upload_to_weiyun.bat` / `download_from_weiyun.bat`** — 一键批处理
-
-### Wiki
-- 更新 `wiki/modules/` 新增 [[sync_pdfs.py]] 模块页
-- 更新 `wiki/index.md` 索引
-
 ## [2026-06-13] ingest | 季度数据修复 + 2026前向季报 + 股息0→—
 
 ### 改动

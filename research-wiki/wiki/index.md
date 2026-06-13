@@ -20,7 +20,6 @@
 - [[generate_index.py]] — 索引页生成，按行业分组展示所有标的卡片
 - [[list_refs.py]] — 历史估值参考，批量 PE/PB 均值
 - [[set_baba_meta.py]] — 单次元数据补丁工具（09988 专用）
-- [[sync_pdfs.py]] — 微云双向增量同步，CPU×2 并发，完整性校验
 
 ## 概念 (concepts/)
 

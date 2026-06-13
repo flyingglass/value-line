@@ -1,0 +1,1 @@
+{'jsonrpc': '2.0', 'id': 1, 'error': {'code': -32603, 'message': 'tool execution failed (tool: weiyun.create_dir): type:business, code:117401, msg:rate limit exceeded, daily quota used up. Please try again tomorrow'}}
