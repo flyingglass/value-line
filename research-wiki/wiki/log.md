@@ -1,5 +1,20 @@
 # 操作日志
 
+## [2026-06-13] security | 🔴 TDX Token 硬编码泄露 — 已修复 + 写入宪法
+
+**事件**：GitHub 扫描告警，`tdx_client.py:23` 硬编码 `Bearer TDX-e35604...` 暴露在仓库中。
+
+**修复**：
+1. `tdx_client.py` 改为从 `.env` 读取 token（`os.getenv("TDX_TOKEN")` + `_load_dotenv()`）
+2. `git filter-branch` 重写 13 个 commit 从历史中抹掉 token
+3. `git push --force` 覆盖远程
+
+**宪法级规则**（写入 `CODEBUDDY.md` + Memory）：
+- 源码中严禁硬编码任何密钥 / Token / 密码 / API Key
+- 所有凭证必须通过 `.env` + `os.getenv()` 读取
+- 写新模块前必须检查凭证来源
+- Git commit 前自查 `git diff --staged`
+
 ## [2026-06-13] cleanup | 移除微云上传下载及相关 wiki 页面
 
 删除内容：

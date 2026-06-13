@@ -162,6 +162,19 @@ created: 2026-06-09
 重要事件或变更。
 ```
 
+## 🔴 安全红线（宪法级，不可违背）
+
+**源码中严禁硬编码任何密钥 / Token / 密码 / API Key。**
+
+- 所有敏感凭证必须通过 `.env` 文件 + `os.getenv()` 读取
+- `.env` 在 `.gitignore` 中，已有模板 `.env.example`（值为 `xxx` 占位）
+- 写新模块前必须检查：是否有硬编码凭证？→ 一律从 `.env` 读
+- Git commit 前自查：`git diff --staged` 中不得出现真实 token
+- 一旦发现硬编码 token，立即修复 + `git filter-branch` 清理历史 + force push
+
+> 2026-06-13 事故：`tdx_client.py` 第 23 行硬编码 Bearer Token 被 GitHub 扫描告警。
+> 已通过 filter-branch 重写 13 个 commit + force push 修复。不可再犯。
+
 ## 约定
 
 1. **语言**：Wiki 页面用中文编写，代码引用保持原始英文
