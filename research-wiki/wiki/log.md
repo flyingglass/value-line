@@ -1,5 +1,16 @@
 # 操作日志
 
+## [2026-06-13] cleanup | 移除微云上传下载及相关 wiki 页面
+
+删除内容：
+- `research-wiki/wiki/entities/工具-微云网盘.md` — 整页删除
+- `concepts/跨电脑迁移与云备份.md` — 移除微云引用，更新为两 Tool 方案
+- `wiki/index.md` — 移除微云条目
+- `.env` / `.env.example` — 移除 `WEIYUN_MCP_TOKEN`
+- `tencent-weiyun/` 空目录 — 待手动删除
+
+原因：微云 API 配额不足，改为手动同步。
+
 ## [2026-06-13] ingest | 季度数据修复 + 2026前向季报 + 股息0→—
 
 ### 改动
