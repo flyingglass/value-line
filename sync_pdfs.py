@@ -95,14 +95,17 @@ def _list_code_dirs():
 
 
 def _ensure_code_dir(code):
-    """确保微云上存在 stock code 子目录, 返回 dir_key"""
+    """确保微云上存在 stock code 子目录, 返回 dir_key。支持重试。"""
     existing = _list_code_dirs()
     if code in existing:
         return existing[code]
-    cr = _mcp_call("weiyun.create_dir", {"dir_name": code, "pdir_key": _VL_PDFS_PDIR})
-    if cr and cr.get("dir_key"):
-        print(f"  创建微云目录: {code}")
-        return cr["dir_key"]
+    for attempt in range(3):
+        cr = _mcp_call("weiyun.create_dir", {"dir_name": code, "pdir_key": _VL_PDFS_PDIR})
+        if cr and cr.get("dir_key"):
+            print(f"  创建微云目录: {code}")
+            return cr["dir_key"]
+        time.sleep(0.5)
+    print(f"  创建微云目录失败: {code}")
     return None
 
 
@@ -205,7 +208,7 @@ def upload():
         r = remote.get((code, fn))
         if r and abs(local_sz - r["size"]) <= 10:
             continue
-        pdir = _ensure_code_dir(code)
+        pdir = _list_code_dirs().get(code)
         if not pdir:
             print(f"  SKIP {code}/{fn}: 无法创建微云目录")
             continue
@@ -218,6 +221,13 @@ def upload():
         return
 
     total = len(tasks)
+    # 预建所有目录（单线程，避免竞态）
+    needed_codes = {code for code, _, _, _, _, _ in tasks}
+    existing = _list_code_dirs()
+    for code in needed_codes:
+        if code not in existing:
+            _ensure_code_dir(code)
+
     print(f"待上传: {total} 个\n")
     ok, fail = 0, 0
     t0 = time.time()
