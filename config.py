@@ -668,7 +668,7 @@ STOCKS = {
         "pfx": "sz",
         "shares": 4627000000,
         "shares_str": "4,627,000,000",
-        "industry": "Technology",
+        "industry": "Energy",
         "fiscal_yr_end": "12-31",
         "business_desc": "宁德时代是全球最大的动力电池和储能电池制造商，主营动力电池系统、储能电池系统和电池材料回收。全球市占率超35%，客户覆盖特斯拉、宝马、奔驰等全球主要车企。2025年营收4237亿元。",
     },

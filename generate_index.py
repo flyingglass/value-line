@@ -15,7 +15,7 @@ from config import STOCKS
 INDUSTRY_CN = {
     "Consumer": "消费",
     "Consumer Staples": "消费",
-    "Technology": "科技",
+    "Technology": "互联网",
     "Energy": "能源",
     "Metals & Mining": "金属与矿业",
     "Media": "传媒",
