@@ -25,7 +25,7 @@ MCP_URL = "https://www.weiyun.com/api/v3/mcpserver"
 TOKEN = "dc6f586424684555634a37d31e774d8c"
 _VL_ROOT_PDIR = "98405d2ff0a739ae12b58dcd423dce4a"
 _VL_PDFS_PDIR = "98405d2f491a350c331c685eaaf47b48"
-_WORKERS = 8  # 上传并发数
+_WORKERS = (os.cpu_count() or 4) * 2  # 上传/下载并发数
 
 if sys.platform == 'win32' and hasattr(sys.stdout, 'buffer'):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
@@ -235,6 +235,21 @@ def upload():
     elapsed = time.time() - t0
     print(f"\n上传完成: {ok} 成功, {fail} 失败, 耗时 {elapsed/60:.1f} 分钟")
 
+    # 完整性校验: 重新扫描微云, 比对上传文件大小
+    if ok > 0:
+        print("校验远程文件大小...")
+        remote2 = _scan_remote()
+        mismatch = 0
+        for code, fn, fp, local_sz, pdir, tag in tasks:
+            r = remote2.get((code, fn))
+            if r and abs(local_sz - r.get("size", 0)) > 10:
+                print(f"  MISMATCH {code}/{fn}: 本地{local_sz/1024:.0f}KB vs 微云{r.get('size',0)/1024:.0f}KB")
+                mismatch += 1
+        if mismatch:
+            print(f"  {mismatch} 个文件大小不一致, 建议重新上传")
+        else:
+            print(f"  全部校验通过")
+
 
 def _download_one_file(code, fn, info, idx, total, max_retries=2):
     """下载单个文件并校验大小。返回 (code, fn, ok)"""
@@ -312,6 +327,22 @@ def download():
 
     elapsed = time.time() - t0
     print(f"\n下载完成: {ok} 成功, {fail} 失败, 耗时 {elapsed/60:.1f} 分钟")
+
+    # 完整性校验: 重新扫描本地, 比对微云文件大小
+    if ok > 0:
+        print("校验本地文件大小...")
+        local2 = _scan_local()
+        mismatch = 0
+        for code, fn, info in tasks:
+            local_sz = local2.get((code, fn), 0)
+            remote_sz = info["size"]
+            if abs(local_sz - remote_sz) > 10:
+                print(f"  MISMATCH {code}/{fn}: 微云{remote_sz/1024:.0f}KB vs 本地{local_sz/1024:.0f}KB")
+                mismatch += 1
+        if mismatch:
+            print(f"  {mismatch} 个文件大小不一致, 建议重新下载")
+        else:
+            print(f"  全部校验通过")
 
 
 if __name__ == "__main__":
