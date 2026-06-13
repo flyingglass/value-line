@@ -1,6 +1,6 @@
 # 操作日志
 
-## [2026-06-13] refactor | 精简 CODEBUDDY.md 为纯宪法，详细内容移入 wiki
+## [2026-06-13] ingest | CODEBUDDY.md 二次精简 — 15行纯宪法 + 腾讯全量报告
 
 - `CODEBUDDY.md` 缩减为 3 段：项目身份 + 安全红线 + 环境规则（~30行）
 - 新增 `concepts/Wiki操作手册.md` — 承载 Ingest/Query/Lint 流程 + 页面格式模板
