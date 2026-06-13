@@ -169,32 +169,29 @@ def status():
     print(f"  已同步: {len(common)-len(size_diff)}")
 
 
-def _upload_one(code, fn, fp, local_sz, pdir, tag, idx, total):
-    """上传单个文件，返回 (code, fn, ok)"""
-    with _lock:
-        print(f"  [{tag}] {code}/{fn} ({local_sz/1024:.0f}KB) [{idx}/{total}]...", end=" ", flush=True)
-    try:
-        cmd = [sys.executable, UPLOAD_SCRIPT, fp, "--token", TOKEN,
-               "--pdir_key", pdir, "--mcp_url", MCP_URL]
-        r2 = subprocess.run(cmd, capture_output=True, timeout=180,
-                            encoding="utf-8", errors="replace")
-        if r2.returncode == 0:
-            with _lock:
-                print("OK")
-            return (code, fn, True)
-        else:
+def _upload_one(code, fn, fp, local_sz, pdir, tag, idx, total, max_retries=2):
+    """上传单个文件，返回 (code, fn, ok)。失败自动重试一次。"""
+    for attempt in range(max_retries):
+        with _lock:
+            retry = f"(重试{attempt+1})" if attempt > 0 else ""
+            print(f"  [{tag}] {code}/{fn} ({local_sz/1024:.0f}KB) [{idx}/{total}]{retry:s}...", end=" ", flush=True)
+        try:
+            cmd = [sys.executable, UPLOAD_SCRIPT, fp, "--token", TOKEN,
+                   "--pdir_key", pdir, "--mcp_url", MCP_URL]
+            r2 = subprocess.run(cmd, capture_output=True, timeout=180,
+                                encoding="utf-8", errors="replace")
+            if r2.returncode == 0:
+                with _lock: print("OK")
+                return (code, fn, True)
             err = (r2.stderr or r2.stdout or "unknown")[:120]
-            with _lock:
-                print(f"FAIL: {err}")
-            return (code, fn, False)
-    except subprocess.TimeoutExpired:
-        with _lock:
-            print("TIMEOUT")
-        return (code, fn, False)
-    except Exception as e:
-        with _lock:
-            print(f"ERR: {e}")
-        return (code, fn, False)
+            with _lock: print(f"FAIL: {err}")
+        except subprocess.TimeoutExpired:
+            with _lock: print("TIMEOUT")
+        except Exception as e:
+            with _lock: print(f"ERR: {e}")
+        if attempt < max_retries - 1:
+            time.sleep(1)
+    return (code, fn, False)
 
 
 def upload():
@@ -239,34 +236,82 @@ def upload():
     print(f"\n上传完成: {ok} 成功, {fail} 失败, 耗时 {elapsed/60:.1f} 分钟")
 
 
-def download():
-    local = _scan_local()
-    remote = _scan_remote()
-    print(f"本地 {len(local)} 个, 微云 {len(remote)} 个")
-    count = 0
-    for (code, fn), info in sorted(remote.items()):
-        local_sz = local.get((code, fn))
-        if local_sz and abs(local_sz - info["size"]) <= 10:
-            continue
-        local_dir = os.path.join(PDFS, code)
-        os.makedirs(local_dir, exist_ok=True)
-        url, cookie = _download_one(info["file_id"], info["pdir_key"], info["size"])
+def _download_one_file(code, fn, info, idx, total, max_retries=2):
+    """下载单个文件并校验大小。返回 (code, fn, ok)"""
+    local_dir = os.path.join(PDFS, code)
+    os.makedirs(local_dir, exist_ok=True)
+    fp = os.path.join(local_dir, fn)
+    local_sz = os.path.getsize(fp) if os.path.exists(fp) else 0
+    tag = "UPDATE" if local_sz else "NEW"
+    expected_sz = info["size"]
+
+    for attempt in range(max_retries):
+        with _lock:
+            retry = f" (重试{attempt+1})" if attempt > 0 else ""
+            print(f"  [{tag}] {code}/{fn} ({expected_sz/1024:.0f}KB) [{idx}/{total}]{retry}...", end=" ", flush=True)
+
+        url, cookie = _download_one(info["file_id"], info["pdir_key"], expected_sz)
         if not url:
-            print(f"  SKIP {code}/{fn}: 无下载链接")
-            continue
-        fp = os.path.join(local_dir, fn)
-        tag = "UPDATE" if local_sz else "NEW"
-        print(f"  [{tag}] {code}/{fn} ({info['size']/1024:.0f}KB)...", end=" ", flush=True)
+            with _lock: print("SKIP(无链接)")
+            return (code, fn, False)
+
         try:
             r = _requests.get(url, headers={"Cookie": cookie} if cookie else {},
                               timeout=120, allow_redirects=True)
             r.raise_for_status()
+            data = r.content
+            actual_sz = len(data)
+            if abs(actual_sz - expected_sz) > 10 and expected_sz > 0:
+                with _lock:
+                    print(f"MISMATCH 期望{expected_sz/1024:.0f}KB 实际{actual_sz/1024:.0f}KB")
+                if attempt < max_retries - 1:
+                    time.sleep(1)
+                    continue
+                return (code, fn, False)
             with open(fp, "wb") as f:
-                f.write(r.content)
-            print("OK"); count += 1
+                f.write(data)
+            with _lock:
+                print("OK")
+            return (code, fn, True)
         except Exception as e:
-            print(f"ERR: {e}")
-    print(f"\n下载完成: {count} 个")
+            with _lock:
+                print(f"ERR: {e}")
+            if attempt < max_retries - 1:
+                time.sleep(1)
+    return (code, fn, False)
+
+
+def download():
+    local = _scan_local()
+    remote = _scan_remote()
+    print(f"本地 {len(local)} 个, 微云 {len(remote)} 个, {_WORKERS} 线程并发")
+
+    tasks = []
+    for (code, fn), info in sorted(remote.items()):
+        local_sz = local.get((code, fn))
+        if local_sz and abs(local_sz - info["size"]) <= 10:
+            continue
+        tasks.append((code, fn, info))
+
+    if not tasks:
+        print("全部已同步!")
+        return
+
+    total = len(tasks)
+    print(f"待下载: {total} 个\n")
+    ok, fail = 0, 0
+    t0 = time.time()
+
+    with ThreadPoolExecutor(max_workers=_WORKERS) as pool:
+        futures = {pool.submit(_download_one_file, code, fn, info, i+1, total):
+                   (code, fn) for i, (code, fn, info) in enumerate(tasks)}
+        for fut in as_completed(futures):
+            code, fn, success = fut.result()
+            if success: ok += 1
+            else: fail += 1
+
+    elapsed = time.time() - t0
+    print(f"\n下载完成: {ok} 成功, {fail} 失败, 耗时 {elapsed/60:.1f} 分钟")
 
 
 if __name__ == "__main__":
