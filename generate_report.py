@@ -510,28 +510,28 @@ var DATA = {DATA_JS};
     }}
 
     html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
-    html += '<table style="width:100%;border-collapse:collapse;font-size:9px;line-height:1.35">';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.4">';
     var tdLbl = 'padding:2px 4px;border-right:1px solid #ddd';
     var tdCol = 'text-align:center;padding:2px 4px;border-right:1px solid #ddd';
-    html += '<tr style="border-bottom:1px solid #000"><td style="width:68px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px;' + tdLbl.replace('2px','2px') + '">Footnotes</td>';
-    fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + ';font-weight:700">' + y + '</td>'; }});
+    html += '<tr style="font-weight:700;border-bottom:1px solid #000"><td style="width:68px;padding:2px 4px;white-space:nowrap;' + tdLbl + '">Footnotes</td>';
+    fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + '">' + y + '</td>'; }});
     html += '</tr>';
 
     // 每项调整独立一行
     allAbbrs.forEach(function(a) {{
       var name = abbrName[a] || a;
-      html += '<tr><td style="' + tdLbl + ';font-weight:700;color:#000;font-size:8.5px">' + name + '</td>';
+      html += '<tr><td style="' + tdLbl + ';font-weight:700;color:#000">' + name + '</td>';
       fnYears.forEach(function(y) {{
         var src = fnMap[y].src || '';
         var m = src.match(new RegExp(a + '\\\\s+([+-][\\\\d.]+)'));
-        html += '<td style="' + tdCol + ';font-size:8px">' + fmtVal(m ? m[1] : '') + '</td>';
+        html += '<td style="' + tdCol + '">' + fmtVal(m ? m[1] : '') + '</td>';
       }});
       html += '</tr>';
     }});
 
     // 合计行放最后
-    html += '<tr style="border-top:1px solid #000"><td style="' + tdLbl + ';font-weight:700;font-size:8.5px">adj.NP</td>';
-    fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + ';font-weight:700;font-size:8px">' + (fnMap[y].diff || '\u2014') + '</td>'; }});
+    html += '<tr style=\"border-top:1px solid #000\"><td style="' + tdLbl + ';font-weight:700">adj.NP</td>';
+    fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + ';font-weight:700">' + (fnMap[y].diff || '\u2014') + '</td>'; }});
     html += '</tr>';
 
     html += '</table></div>';
