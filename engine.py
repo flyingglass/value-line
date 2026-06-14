@@ -373,20 +373,34 @@ def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
                 )
             return deducted, footnotes
 
-    # 港股: 排除其他收益 (FVTPL变动/汇兑/并购等非经常项目)
-    # 其他收入 (主要为现金等价物利息收入) 属经常性经营收益，VL 默认保留
-    # 减值及拨备 (贸易应收款 ECL) 属经营性费用，不排除
-    other_gain = reader.financial_item("income", "其他收益", rd) or 0
-    nonrecur_adj = other_gain * (1 - tax_rate)
-    adj_np = np_val - nonrecur_adj
+    # 港股: 排除非经常项目 (FVTPL/汇兑/资产处置等), 保留经常性经营收益
+    # 子项探测: 不同公司财报科目不同, 仅展示实际存在的项目
+    _items = [
+        ("公允价值变动收益", "FVTPL"), ("汇兑收益", "FX"), ("政府补助", "GovSub"),
+        ("资产处置收益", "Disp"), ("其他收益", "OthGain"),
+    ]
+    nonrecur_items = []
+    for item_name, abbr in _items:
+        val = reader.financial_item("income", item_name, rd) or 0
+        if abs(val) > 5e6:
+            nonrecur_items.append((abbr, val))
 
-    # 仅记录实际影响 >500万元 的项目
-    parts = []
-    if abs(other_gain) > 5e6:
-        parts.append(f"排除其他收益 {other_gain/1e8:+.1f}亿 (非经常)")
-    if parts:
-        parts.append(f"VL经常性净利润 {adj_np/1e8:.1f}亿")
-        footnotes.append("; ".join(parts))
+    if nonrecur_items:
+        # 逐个排除
+        adj_np = np_val
+        for _, val in nonrecur_items:
+            adj_np -= val * (1 - tax_rate)
+        # 格式: GovSub +0.3 FVTPL -1.2 → adj NP 105.5亿
+        item_str = " ".join([f"{a} {v/1e8:+.1f}" for a, v in nonrecur_items])
+        footnotes.append(f"EPS adj: {item_str} → VL经常性 {adj_np/1e8:.1f}亿 (归母{np_val/1e8:.1f}亿)")
+    else:
+        # 回退: 读取 其他收益 整项
+        other_gain = reader.financial_item("income", "其他收益", rd) or 0
+        if abs(other_gain) > 5e6:
+            adj_np = np_val - other_gain * (1 - tax_rate)
+            footnotes.append(f"EPS adj: OthGain {other_gain/1e8:+.1f} → VL {adj_np/1e8:.1f}亿 (归母{np_val/1e8:.1f}亿)")
+        else:
+            adj_np = np_val
 
     return adj_np, footnotes
 
