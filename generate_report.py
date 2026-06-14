@@ -486,7 +486,7 @@ var DATA = {DATA_JS};
   if (footnotes.length > 0) {{
     var fnMap = {{}};
     footnotes.forEach(function(f) {{
-      if (f.adj) fnMap[f.year] = {{adj: f.adj || '', src: f.src || ''}};
+      if (f.adj) fnMap[f.year] = {{adj: f.adj || '', src: f.src || '', diff: f.diff || ''}};
     }});
     var fnYears = Object.keys(fnMap).sort();
     if (fnYears.length === 0) return;
@@ -503,36 +503,34 @@ var DATA = {DATA_JS};
         }});
       }}
     }});
-    // 格式化数值: 负数加括号, 正数不加+
     function fmtVal(v) {{
-      if (!v) return '';
+      if (!v) return '\u2014';
       var n = parseFloat(v);
       return n < 0 ? '(' + Math.abs(n).toFixed(1) + ')' : n.toFixed(1);
     }}
 
     html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
-    html += '<table style="width:100%;border-collapse:collapse;font-size:9px;line-height:1.4">';
-    html += '<tr style="border-bottom:1px solid #000"><td style="width:68px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px">15. Footnotes</td>';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:9px;line-height:1.35">';
+    html += '<tr style="border-bottom:1px solid #000"><td style="width:68px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px">Footnotes</td>';
     fnYears.forEach(function(y) {{ html += '<td style="text-align:right;font-weight:700;padding:2px 4px">' + y + '</td>'; }});
     html += '</tr>';
 
-    // 差额行: 归母 - VL经常性 = 调整额
-    html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px;font-weight:600">\u8c03\u6574\u9879\u5408\u8ba1</td>';
-    fnYears.forEach(function(y) {{ html += '<td style="text-align:right;padding:2px 4px;font-weight:600;font-size:8px">' + (fnMap[y].diff || '\u2014') + '</td>'; }});
-    html += '</tr>';
-
-    // 每项调整独立一行 (该年无数据的列留空, 负数括号)
+    // 每项调整独立一行
     allAbbrs.forEach(function(a) {{
       var name = abbrName[a] || a;
       html += '<tr><td style="padding:1px 4px;font-weight:700;color:#000;font-size:8.5px">' + name + '</td>';
       fnYears.forEach(function(y) {{
         var src = fnMap[y].src || '';
         var m = src.match(new RegExp(a + '\\\\s+([+-][\\\\d.]+)'));
-        var val = m ? fmtVal(m[1]) : '';
-        html += '<td style="text-align:right;padding:1px 4px;font-size:8px">' + val + '</td>';
+        html += '<td style="text-align:right;padding:1px 4px;font-size:8px">' + fmtVal(m ? m[1] : '') + '</td>';
       }});
       html += '</tr>';
     }});
+
+    // 合计行放最后: 归母 - VL经常性 = 净调整额
+    html += '<tr style="border-top:1px solid #ccc"><td style="padding:2px 4px;font-weight:700;font-size:8.5px">调整项合计</td>';
+    fnYears.forEach(function(y) {{ html += '<td style="text-align:right;padding:2px 4px;font-weight:700;font-size:8px">' + (fnMap[y].diff || '\u2014') + '</td>'; }});
+    html += '</tr>';
 
     html += '</table></div>';
   }}
