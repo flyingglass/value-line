@@ -242,11 +242,11 @@ def main(code="09992"):
         total = sum(quality.values())
         print(f"  分类: {quality} (共{total}句)")
 
-        # 质量评分: 覆盖≥3个类别 + 总句数≥10 + overview不能一家独大
+        # 质量评分: 覆盖≥2个类别 + 总句数≥6 (放宽以覆盖更多年报)
         categories_covered = sum(1 for v in quality.values() if v > 0)
         overview_pct = quality.get("overview", 0) / max(total, 1)
-        quality_ok = (categories_covered >= 3 and total >= 10
-                      and overview_pct < 0.70)  # overview >70% → 分类太偏
+        quality_ok = (categories_covered >= 2 and total >= 6
+                      and overview_pct < 0.85)  # overview>85% 才认为分类太偏
 
         if quality_ok:
             titles = {
@@ -262,30 +262,29 @@ def main(code="09992"):
                     parts.append("")
             mda_text = "\n".join(parts)
 
-    # Fallback: PDF提取不足 → 从数据动态生成
-    if not mda_text or len(mda_text) < 300:
-        print("  -> PDF提取不足(或过短)，使用财务数据动态生成")
-        fallback = build_mda_from_data(code)
-        if fallback:
-            mda_text = fallback
-            quality_ok = False
-        else:
-            # report_data.json 不存在 (Step 3 在 engine 之前运行)
-            print("  -> 动态生成也失败(report_data.json不存在)，保留PDF提取并标记低质量")
-            # 保留PDF中提取的原始文本(即使质量不足)
-            if extracted and len(extracted) >= 5:
-                mda_text = "\n".join(extracted)
+    # Fallback: PDF提取不足 → 保留原始文本(低质量标记)
+    if not mda_text or len(mda_text) < 200:
+        print("  -> PDF分类提取不足，保留原始叙事文本")
+        if extracted and len(extracted) >= 3:
+            mda_text = "\n".join(extracted)
             quality_ok = False
 
     if not mda_text:
         print("  [ERROR] 无法生成MD&A文本")
         return
 
+    # 从PDF文件名提取年份
+    extracted_year = "0"
+    m = re.search(r'_(\d{4})_', os.path.basename(pdfs[0]) if pdfs else "")
+    if m:
+        extracted_year = m.group(1)
+
     db_path = config.db_path(code)
     conn = sqlite3.connect(db_path)
     conn.execute("CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT)")
     conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", ("mda_text", mda_text))
     conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", ("mda_quality", "1" if quality_ok else "0"))
+    conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", ("mda_extracted_year", extracted_year))
     conn.commit()
     conn.close()
 

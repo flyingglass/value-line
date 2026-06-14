@@ -2459,8 +2459,8 @@ def build_report(code=None):
           f"({len(validation['mismatches'])} 失败, {len(validation['warnings'])} 警告)")
 
     # Business 描述 & AI Commentary: per-stock脚本 > PDF提取(quality=1) > 数据自生成
-    mda_quality_ok = cap_struct.get("mda_quality", "0") == "1"
-    mda_parsed = _parse_mda_text(cap_struct.get("mda_text", "")) if mda_quality_ok else None
+    # 不再因 quality=="0" 而跳过: 新阈值已放宽, 即使标记0也有可用文本
+    mda_parsed = _parse_mda_text(cap_struct.get("mda_text", ""))
 
     # 尝试加载个股专属脚本
     per_stock_mod = _load_per_stock_script(code)

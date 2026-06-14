@@ -265,7 +265,7 @@ def step_2_pdf(code):
     return True
 
 def step_3_mda(code):
-    """Step 3: MD&A提取。缺失即阻断。美股跳过(SEC 10-K 英文PDF)。"""
+    """Step 3: MD&A提取。缺失即阻断。美股跳过(SEC 10-K 英文PDF)。检测到年报更新→强制重提。"""
     stock = config.STOCKS.get(code, {})
     if stock.get("market") == "us":
         print(f"  Step 3: {_green('SKIP')} (美股 MD&A 提取待实现, 使用 config fallback)")
@@ -273,10 +273,22 @@ def step_3_mda(code):
     db = _db_path(code)
     conn = sqlite3.connect(db)
     has_mda = conn.execute("SELECT value FROM meta WHERE key='mda_text'").fetchone()
+    extracted_yr = conn.execute("SELECT value FROM meta WHERE key='mda_extracted_year'").fetchone()
     conn.close()
-    if has_mda and has_mda[0] and len(has_mda[0]) > 200:
+    # 检测最新PDF年份是否比已提取的新 → 强制重提
+    pdf_dir = _pdf_dir(code)
+    latest_pdf_yr = None
+    if os.path.isdir(pdf_dir):
+        import re as _re
+        for f in os.listdir(pdf_dir):
+            m = _re.match(r'\d{5}_(\d{4})_', f)
+            if m: latest_pdf_yr = max(latest_pdf_yr or 0, int(m.group(1)))
+    stale = (extracted_yr and latest_pdf_yr and int(extracted_yr[0]) < latest_pdf_yr)
+    if has_mda and has_mda[0] and len(has_mda[0]) > 200 and not stale:
         print(f"  Step 3: mda_text已存在 ({len(has_mda[0])} chars), 跳过提取")
         return True
+    if stale:
+        print(f"  Step 3: 检测到新年报PDF (已提取{extracted_yr[0]} < 最新{latest_pdf_yr})，强制重新提取")
 
     # Check PDF exists before extracting
     pdf_dir = _pdf_dir(code)
