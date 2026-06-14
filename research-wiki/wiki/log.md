@@ -1,5 +1,11 @@
 # 操作日志
 
+## [2026-06-14] fix | AI Commentary 先左后右 + 09992品类占比动态读取 + FOOTNOTES大写
+
+- Commentary 分栏：CSS `column-count` → JS `flex` 手动分半，左栏填满再右栏
+- 09992 BUSINESS 品类占比从 `revenue_structure.by_product` 动态读取
+- `generate_report.py` BUSINESS 不再自动拼 IP/渠道/地域/产品，全权交还脚本
+
 ## [2026-06-14] refactor | BUSINESS 职责分离 — 模板不再自动拼接收拆分
 
 **问题**：`generate_report.py` 自动从 `revenue_structure` 拼 IP/渠道/地域/产品到 BUSINESS 段落，与 `business_commentary.py` 生成的内容重复。09992 的品类描述和 Revenue 区的 IP/渠道/地域/产品明细出现三重冗余。
