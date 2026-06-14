@@ -13,7 +13,7 @@
     "index_name": "HSI",
     "index_name_cn": "恒生指数",
     "rpt_ccy": "CNY",
-    "generated": "2026-06-14 11:33:12.820462"
+    "generated": "2026-06-14 11:52:24.095144"
   },
   "spot": {
     "price": 178.8,
@@ -3088,49 +3088,65 @@
       "year": "2018",
       "notes": [
         "EPS adj: GovSub +0.1 → VL 1.0亿 (归母1.0亿)"
-      ]
+      ],
+      "adj": "1.0亿",
+      "src": "GovSub +0.1"
     },
     {
       "year": "2019",
       "notes": [
         "EPS adj: GovSub +0.2 → VL 4.4亿 (归母4.5亿)"
-      ]
+      ],
+      "adj": "4.4亿",
+      "src": "GovSub +0.2"
     },
     {
       "year": "2020",
       "notes": [
         "EPS adj: FVTPL/FX -0.1 GovSub +0.5 → VL 5.0亿 (归母5.2亿)"
-      ]
+      ],
+      "adj": "5.0亿",
+      "src": "FVTPL/FX -0.1 GovSub +0.5"
     },
     {
       "year": "2021",
       "notes": [
         "EPS adj: GovSub +0.5 → VL 8.1亿 (归母8.5亿)"
-      ]
+      ],
+      "adj": "8.1亿",
+      "src": "GovSub +0.5"
     },
     {
       "year": "2022",
       "notes": [
         "EPS adj: FVTPL/FX +0.4 GovSub +0.5 → VL 4.1亿 (归母4.8亿)"
-      ]
+      ],
+      "adj": "4.1亿",
+      "src": "FVTPL/FX +0.4 GovSub +0.5"
     },
     {
       "year": "2023",
       "notes": [
         "EPS adj: GovSub +0.7 → VL 10.2亿 (归母10.8亿)"
-      ]
+      ],
+      "adj": "10.2亿",
+      "src": "GovSub +0.7"
     },
     {
       "year": "2024",
       "notes": [
         "EPS adj: FVTPL/FX -0.4 GovSub +0.8 → VL 30.9亿 (归母31.3亿)"
-      ]
+      ],
+      "adj": "30.9亿",
+      "src": "FVTPL/FX -0.4 GovSub +0.8"
     },
     {
       "year": "2025",
       "notes": [
         "EPS adj: FVTPL/FX -1.6 GovSub +1.5 → VL 127.8亿 (归母127.8亿)"
-      ]
+      ],
+      "adj": "127.8亿",
+      "src": "FVTPL/FX -1.6 GovSub +1.5"
     }
   ],
   "bps_source": "归属于母公司权益 ÷ 股数 (计算值, 与年报披露口径可能有小幅差异)",

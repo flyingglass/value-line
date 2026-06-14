@@ -4,7 +4,7 @@ engine.py — 从 SQLite 计算 Value Line 指标, 输出 report_data.json
 纯数据驱动, 零硬编码, 支持多股票
 """
 import os, sys, sqlite3, json, math, requests
-import warnings; warnings.filterwarnings("ignore")
+import warnings, re; warnings.filterwarnings("ignore")
 if sys.platform == 'win32': sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -548,7 +548,22 @@ def build_metric_table(reader, years, market="hk"):
         tax_rate = (_tax / 100) if _tax else 0.25
         adj_np, yr_footnotes = _resolve_adj_np(reader, rd, np_val, tax_rate, stock_cfg_full)
         if yr_footnotes:
-            all_footnotes.append({"year": yr, "notes": yr_footnotes})
+            # 从脚注文本提取 adj 和 src (供 generate_report.js 直接渲染)
+            note_text = yr_footnotes[0] if yr_footnotes else ""
+            # 新格式: "EPS adj: FVTPL -0.1 GovSub +0.5 → VL 5.0亿"
+            # 旧格式: "A股扣非 ..." 也兼容
+            adj_val, src_val = "", ""
+            m1 = re.search(r'→ VL(?:经常性)?\s*([\d.]+)亿', note_text)
+            if m1:
+                adj_val = m1.group(1) + "亿"
+            m2 = re.search(r'EPS adj:\s*(.+?)\s*→', note_text)
+            if m2:
+                src_val = m2.group(1)
+            elif "A股扣非" in note_text and "较归母" in note_text:
+                src_val = "CAS审计标准"
+                m_adj = re.search(r'扣非净利润\s*([\d.]+)亿', note_text)
+                if m_adj: adj_val = m_adj.group(1) + "亿"
+            all_footnotes.append({"year": yr, "notes": yr_footnotes, "adj": adj_val, "src": src_val})
 
         # ---- 1. 每股营收: Revenue / Shares ----
         row = {}
