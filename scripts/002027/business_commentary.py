@@ -1,72 +1,21 @@
 # -*- coding: utf-8 -*-
-"""分众传媒 002027 — VL 标准 Business + AI Commentary (5段)"""
-
+"""分众传媒 002027 — VL Business + AI Commentary (数据驱动)"""
 def build(stock, metrics, revenue_structure, years, cagr, spot):
-    latest_yr = years[-1] if years else "2025"
-    ly = metrics.get(latest_yr, {})
-    py = metrics.get(years[-2], {}) if len(years) >= 2 else {}
-
-    def _chg(c, p): return (c/p-1)*100 if c and p and p>0 else None
-    def _dir(c,p): d=_chg(c,p); return "增长" if d and d>0 else ("下降" if d and d<0 else "持平")
-    def _pct(v): return f"{v:+.1f}%" if v is not None else "-"
-
-    rev, np_v = ly.get("OPERATE_INCOME"), ly.get("HOLDER_PROFIT")
-    eps, gm, npm, roe, roce = ly.get("BASIC_EPS"), ly.get("GROSS_MARGIN"), ly.get("NET_PROFIT_RATIO"), ly.get("ROE"), ly.get("ROIC")
-    rev_c, np_c = _chg(rev, py.get("OPERATE_INCOME")), _chg(np_v, py.get("HOLDER_PROFIT"))
-    per_cf, per_capex, dps = ly.get("PER_NETCASH"), ly.get("CAPEX_PS") or 0, ly.get("DPS") or 0
-    pay, pe, med_pe = ly.get("PAYOUT_RATIO"), spot.get("pe",0), spot.get("median_pe")
-
-    business = (
-        f"分众传媒是中国最大的生活圈媒体平台，核心业务为电梯电视和电梯海报广告，"
-        f"覆盖全国约300个城市超280万电梯点位，触达4亿城市主流消费人群。"
-        f"营收{rev:.0f}亿（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_c):.1f}%），"
-        f"净利率{_pct(npm)}，ROE {_pct(roe)}。AI赋能广告投放降本增效，高分红现金牛。"
-    )
-
-    p1 = (f"2026年6月6日 — 分众传媒{latest_yr}年营收约{rev:.0f}亿元（{_dir(rev, py.get('OPERATE_INCOME'))}{abs(rev_c):.1f}%），"
-          f"VL经常性净利润约{np_v:.0f}亿元（{_dir(np_v, py.get('HOLDER_PROFIT'))}{abs(np_c):.1f}%）。"
-          + (f"（报表归母29.5亿，加回数禾科技一次性减值21.5亿+权益法亏损3.8亿后，"
-             f"主业经常性利润≈52.4亿，数禾已于2026年1月清仓。）" if latest_yr == "2025" else "")
-          + f"消费品牌客户占比持续提升，互联网客户投放趋于稳定。"
-          f"AI赋能——AI创作广告素材、智能排播系统提升运营效率。"
-          f"成本端点位租金趋于稳定，毛利率维持高位。")
-
-    wc, wc_p = ly.get("WORKING_CAPITAL"), py.get("WORKING_CAPITAL")
-    shares, shares_p = ly.get("TOTAL_SHARES"), py.get("TOTAL_SHARES")
-    shr_chg = round((shares - shares_p) / shares_p * 100, 1) if shares and shares_p and shares_p > 0 else None
-    net_ps = round(per_cf - per_capex - dps, 2) if per_cf else None
-    p2_parts = [
-        f"每股收益¥{eps:.2f}，收入随广告投放周期波动。"
-        f"每股现金流¥{per_cf:.2f}（内生现金生成 = 净利润 + 折旧），四大去向：",
-        f"① 资本支出¥{per_capex:.2f}/股（点位维护，轻资产）；",
-    ]
-    if wc is not None and wc_p is not None:
-        wc_chg = wc - wc_p
-        wc_chg_ps = f"折合¥{abs(wc_chg * 100 / shares):.2f}/股" if shares and shares > 0 else ""
-        p2_parts.append(f"② 营运资金{'占用 +' if wc_chg > 0 else '释放 '}{abs(wc_chg):.1f}亿（{wc_chg_ps}）；")
-    p2_parts.append(f"③ 现金分红¥{dps:.2f}/股（支付率{pay:.0f}%）；")
-    if shr_chg is not None and shr_chg < -0.3:
-        p2_parts.append(f"④ 股份回购（股数{shr_chg:+.1f}%）— 增厚每股价值 ✅；")
-    elif shr_chg is not None and shr_chg > 0:
-        p2_parts.append(f"④ 股数持平/微扩；")
-    p2_parts.append(f"净留存¥{net_ps:.2f}/股，高分红+高现金流——典型现金牛标的，股东回报优先。")
-    p2 = "".join(p2_parts)
-
-    p3 = (f"毛利率{_pct(gm)}、净利率{_pct(npm)}、ROE {_pct(roe)}。"
-          f"护城河：①点位垄断——280万+电梯点位覆盖核心城市，后来者难以复制规模；"
-          f"②品牌广告的不可替代——电梯场景具有强制观看属性，互联网广告无法替代；"
-          f"③客户粘性——消费品牌长期投放关系，切换成本高。"
-          f"风险：宏观经济下行广告预算收缩、梯媒竞争（新潮传媒）、数字化转型节奏。")
-
-    pb, div_y = spot.get("pb",0), spot.get("div_yield",0) or 0
-    p4 = (f"当前PE约{pe:.1f}倍"
-          + (f"，低于历史中位数{med_pe:.0f}倍。" if med_pe and pe<med_pe else "。")
-          + f"PB约{pb:.1f}倍，股息率约{div_y:.2f}%。支付率{pay:.0f}%处高位——"
-          + f"市场给予的是「增长停滞的广告渠道」估值，但忽视了消费复苏带来的弹性。"
-          + f"若消费品牌广告投放恢复+AI降本增效兑现，PE有修复空间。")
-
-    rev1 = cagr.get("revenue",{}).get("1yr")
-    p5 = (f"关注消费品客户广告投放周期及季度环比改善节奏。"
-          + (f"当前营收增速{rev1:+.1f}%，核心驱动力是消费品牌客户占比提升+AI降本效果。" if rev1 else ""))
-
-    return {"business": business, "commentary": [p1, p2, p3, p4, p5]}
+    ly=metrics.get(years[-1],{}) if years else {}
+    py=metrics.get(years[-2],{}) if len(years)>=2 else {}
+    def _chg(c,p): return (c/p-1)*100 if c and p and p>0 else None
+    def _dir(c,p): return "增长" if (_chg(c,p) or 0)>0 else "下降"
+    def _fmt(v,d=0): return f"{v:,.{d}f}" if v else "-"
+    def _p(v): return f"{v:+.1f}%" if v else "-"
+    rev,np,eps=ly.get("OPERATE_INCOME"),ly.get("HOLDER_PROFIT"),ly.get("BASIC_EPS")
+    npm,roe=ly.get("NET_PROFIT_RATIO"),ly.get("ROE")
+    r_chg,n_chg=_chg(rev,py.get("OPERATE_INCOME")),_chg(np,py.get("HOLDER_PROFIT"))
+    per_cf,dps=ly.get("PER_NETCASH"),ly.get("DPS")or 0; payout=ly.get("PAYOUT_RATIO")
+    pe,pb,div=spot.get("pe",0)or 0,spot.get("pb",0)or 0,spot.get("div_yield",0)or 0
+    biz=f"分众传媒是中国最大的生活圈媒体平台，电梯电视+海报覆盖300城市4亿主流人群。营收{_fmt(rev,0)}亿（{_dir(rev,py.get('OPERATE_INCOME'))}{abs(r_chg):.1f}%），净利率{_p(npm)}，ROE {_p(roe)}。媒体资源壁垒深厚。"
+    p1=f"2026年6月 — 分众传媒营收{_fmt(rev,0)}亿（{_dir(rev,py.get('OPERATE_INCOME'))}{abs(r_chg):.1f}%），净利润{_fmt(np,0)}亿（{_dir(np,py.get('HOLDER_PROFIT'))}{abs(n_chg):.1f}%）。消费品客户占比持续提升，AI赋能广告创作与智能排播提升运营效率。"
+    p2=f"每股收益{_fmt(eps,2)}元，每股现金流{_fmt(per_cf,2)}元。分红{_fmt(dps,2)}元/股（支付率{_fmt(payout,0)}%），现金流充裕。点位租金趋于稳定，利润率改善空间大。"
+    p3=f"净利率{_p(npm)}、ROE {_p(roe)}。壁垒：①280万电梯点位形成的规模优势难以复制；②品牌广告主粘性——消费品、互联网巨头首选投放渠道；③电梯场景独占性——封闭空间的强注意力。风险：宏观经济下行影响广告预算、新媒体分流、点位扩张边际递减。"
+    p4=f"当前PE约{_fmt(pe,1)}倍，PB约{_fmt(pb,1)}倍，股息率约{_fmt(div,1)}%。关注消费品广告投放恢复及AI降本增效。"
+    p5="催化剂：消费复苏驱动品牌广告预算回归+AI智能排播提升点位利用率。若Q2广告收入加速增长，估值修复空间显著。关注季度广告收入增速及刊挂率。"
+    return {"business":biz,"commentary":[p1,p2,p3,p4,p5]}
