@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1360">
+<title>Value Line — China Hongqiao 01378.hk</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;color:#000;width:1360px;margin:0 auto;background:#fff;-webkit-text-size-adjust:100%}
+.container{display:grid;grid-template-columns:245px 1fr;border-top:1px solid #000;padding:4px 0}
+
+/* ===== 左栏 ===== */
+.left-col{border-right:1px solid #000;padding:4px 5px;font-size:9px}
+.left-col .sec{margin-bottom:5px}
+.left-col .sec-title{font-weight:700;font-size:9.5px;border-bottom:1px solid #000;padding-bottom:1px;margin-bottom:3px;text-transform:uppercase}
+.left-col table{width:100%;border-collapse:collapse;font-size:8.5px}
+.left-col td{padding:1px 2px}
+.left-col .r{text-align:right}
+.left-col .b{font-weight:700}
+.left-col p{margin:2px 0;font-size:8.5px}
+
+/* ===== 中栏 ===== */
+.center-col{border-right:1px solid #000;padding:4px 6px;display:flex;flex-direction:column}
+
+/* Header */
+.header{display:flex;align-items:center;justify-content:space-between;padding:2px 8px;border-bottom:2px solid #000;margin:0 0 2px 0}
+.header .code{font-weight:700;font-size:17px;font-family:"Times New Roman",serif}
+.header .info{text-align:right;font-size:8.5px;line-height:1.3}
+.header .info .v{font-weight:700;font-size:10px}
+.header .ratings{display:flex;gap:10px;font-size:8px;text-align:center}
+.header .ratings span{font-weight:700;display:block;font-size:10px}
+
+/* Chart section */
+.chart-area{margin:2px 0;border-bottom:1px solid #000}
+.chart-title{font-weight:700;font-size:9px;margin-bottom:0px}
+.chart-row{display:flex}
+.chart-box{flex:1;height:220px}
+.return-box{width:140px;font-size:8.5px;padding:3px 5px}
+.return-box table{width:100%;border-collapse:collapse;margin-bottom:3px}
+.return-box td,.return-box th{padding:1px 3px;text-align:right;font-size:8px}
+.return-box th{border-bottom:1px solid #999}
+.return-box .note{font-size:7.5px;color:#666;line-height:1.2}
+
+/* 23-line table */
+.stat-table{margin:2px 0;overflow-x:auto}
+.stat-table table{border-collapse:collapse;font-size:8px;width:100%;table-layout:fixed}
+.stat-table th,.stat-table td{text-align:right;padding:1px 4px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.35}
+.stat-table th{background:#eee;font-weight:700;font-size:7.5px}
+.stat-table td:first-child,.stat-table th:first-child{text-align:left;width:130px;white-space:nowrap}
+.stat-table tr:nth-child(even){background:#fafafa}
+
+/* 对齐表 — Yearly High/Low 和 K线轴年份 */
+.align-table{margin:0;padding:1px 8px}
+.align-table table{border-collapse:collapse;font-size:8px;width:100%;table-layout:fixed}
+.align-table th,.align-table td{text-align:right;padding:0 3px;border-right:1px solid transparent}
+.align-table th:first-child,.align-table td:first-child{text-align:left;width:130px}
+.stat-table .sep td{border-bottom:2px solid #000;padding:0}
+.stat-table .sep-sm td{border-bottom:1px solid #999}
+
+/* Analyst */
+.analyst{margin:4px 0;padding:4px 6px;font-size:9px;line-height:1.35;border-top:1px solid #000}
+.analyst b{display:block;margin-bottom:2px}
+.analyst p{margin-bottom:3px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var DATA = {"meta": {"code": "01378", "name": "中国宏桥", "name_en": "China Hongqiao", "market": "hk", "currency": "CNY", "industry": "Metals & Mining", "ceo": "", "inc": "", "website": "", "price_ccy": "HKD", "index_name": "HSI", "index_name_cn": "恒生指数", "rpt_ccy": "CNY", "generated": "2026-06-14 20:05:15.536587"}, "spot": {"price": 27.06, "pe": 9.9, "pb": 1.65, "div_yield": 6.34, "mkt_cap": 2687.7, "change_pct": 0.97015, "eps_ttm": 2.38, "eps_ttm_hkd": 2.74, "median_pe": 3.9}, "kline": [{"date": "2011-03", "open": 2.7566, "high": 3.1203, "low": 2.6609, "close": 2.8982, "volume": 136041000.0}, {"date": "2011-04", "open": 2.8982, "high": 3.082, "low": 2.7298, "close": 2.9671, "volume": 80005544.0}, {"date": "2011-05", "open": 2.9786, "high": 2.9825, "low": 2.7834, "close": 2.791, "volume": 30873300.0}, {"date": "2011-06", "open": 2.837, "high": 2.837, "low": 2.4886, "close": 2.7949, "volume": 17310500.0}, {"date": "2011-07", "open": 2.7949, "high": 2.8446, "low": 2.2971, "close": 2.6609, "volume": 11521300.0}, {"date": "2011-08", "open": 2.6417, "high": 2.68, "low": 2.0559, "close": 2.1134, "volume": 8814935.0}, {"date": "2011-09", "open": 2.1746, "high": 3.0054, "low": 1.4702, "close": 1.5314, "volume": 25552501.0}, {"date": "2011-10", "open": 1.5314, "high": 1.7994, "low": 1.3132, "close": 1.7611, "volume": 6126500.0}, {"date": "2011-11", "open": 1.7229, "high": 1.7573, "low": 1.4166, "close": 1.5314, "volume": 4027300.0}, {"date": "2011-12", "open": 1.6003, "high": 1.608, "low": 1.4204, "close": 1.5965, "volume": 11790820.0}, {"date": "2012-01", "open": 1.5927, "high": 1.6961, "low": 1.4663, "close": 1.5774, "volume": 7635147.0}, {"date": "2012-02", "open": 1.5812, "high": 2.0138, "low": 1.5774, "close": 1.9717, "volume": 56082368.0}, {"date": "2012-03", "open": 1.9909, "high": 2.2857, "low": 1.8607, "close": 1.8837, "volume": 97992308.0}, {"date": "2012-04", "open": 1.8837, "high": 1.9526, "low": 1.7229, "close": 1.853, "volume": 17716391.0}, {"date": "2012-05", "open": 1.8454, "high": 1.876, "low": 1.4256, "close": 1.5253, "volume": 20440724.0}, {"date": "2012-06", "open": 1.5253, "high": 1.6001, "low": 1.4339, "close": 1.5004, "volume": 7004128.0}, {"date": "2012-07", "open": 1.5045, "high": 1.517, "low": 1.2676, "close": 1.3923, "volume": 6716995.0}, {"date": "2012-08", "open": 1.4214, "high": 1.6084, "low": 1.3632, "close": 1.4131, "volume": 23544438.0}, {"date": "2012-09", "open": 1.4131, "high": 1.4796, "low": 1.2302, "close": 1.4089, "volume": 64327694.0}, {"date": "2012-10", "open": 1.4089, "high": 1.6832, "low": 1.3965, "close": 1.4921, "volume": 74444048.0}, {"date": "2012-11", "open": 1.4796, "high": 1.5502, "low": 1.4339, "close": 1.4796, "volume": 47894775.0}, {"date": "2012-12", "open": 1.4962, "high": 1.6999, "low": 1.4796, "close": 1.6916, "volume": 97348272.0}, {"date": "2013-01", "open": 1.704, "high": 1.9576, "low": 1.65, "close": 1.704, "volume": 150278277.0}, {"date": "2013-02", "open": 1.6999, "high": 1.7788, "low": 1.4921, "close": 1.5295, "volume": 105029606.0}, {"date": "2013-03", "open": 1.5295, "high": 1.7581, "low": 1.5004, "close": 1.5918, "volume": 147709658.0}, {"date": "2013-04", "open": 1.5918, "high": 1.8786, "low": 1.5793, "close": 1.8661, "volume": 183530141.0}, {"date": "2013-05", "open": 1.8703, "high": 2.1321, "low": 1.8539, "close": 2.073, "volume": 106937555.0}, {"date": "2013-06", "open": 2.0467, "high": 2.0467, "low": 1.5778, "close": 1.7093, "volume": 43973455.0}, {"date": "2013-07", "open": 1.6917, "high": 1.867, "low": 1.5778, "close": 1.7969, "volume": 64525103.0}, {"date": "2013-08", "open": 1.7838, "high": 2.0599, "low": 1.7614, "close": 1.924, "volume": 78419622.0}, {"date": "2013-09", "open": 1.8977, "high": 2.0686, "low": 1.8626, "close": 2.0117, "volume": 91563682.0}, {"date": "2013-10", "open": 2.038, "high": 2.1913, "low": 1.981, "close": 2.1475, "volume": 68907854.0}, {"date": "2013-11", "open": 2.1519, "high": 2.1694, "low": 1.9941, "close": 2.0993, "volume": 38512344.0}, {"date": "2013-12", "open": 2.0818, "high": 2.3579, "low": 2.016, "close": 2.3404, "volume": 56909650.0}, {"date": "2014-01", "open": 2.336, "high": 2.336, "low": 1.9985, "close": 2.1256, "volume": 70922636.0}, {"date": "2014-02", "open": 2.0467, "high": 2.1694, "low": 2.0204, "close": 2.1168, "volume": 49410765.0}, {"date": "2014-03", "open": 2.1256, "high": 2.2308, "low": 1.9897, "close": 2.1475, "volume": 131108844.0}, {"date": "2014-04", "open": 2.13, "high": 2.3886, "low": 2.1168, "close": 2.3228, "volume": 80731870.0}, {"date": "2014-05", "open": 2.3141, "high": 2.5531, "low": 2.2045, "close": 2.5163, "volume": 57048889.0}, {"date": "2014-06", "open": 2.5531, "high": 2.6589, "low": 2.3737, "close": 2.5623, "volume": 46872153.0}, {"date": "2014-07", "open": 2.5669, "high": 3.1834, "low": 2.5669, "close": 3.0591, "volume": 96100636.0}, {"date": "2014-08", "open": 3.0131, "high": 3.1834, "low": 2.8291, "close": 2.9993, "volume": 110636971.0}, {"date": "2014-09", "open": 2.9947, "high": 3.1742, "low": 2.6221, "close": 2.6819, "volume": 477990635.0}, {"date": "2014-10", "open": 2.5991, "high": 2.7831, "low": 2.5117, "close": 2.7463, "volume": 103055940.0}, {"date": "2014-11", "open": 2.7463, "high": 2.7739, "low": 2.5439, "close": 2.7187, "volume": 95220265.0}, {"date": "2014-12", "open": 2.7141, "high": 2.7325, "low": 2.2587, "close": 2.4059, "volume": 70372687.0}, {"date": "2015-01", "open": 2.4289, "high": 2.4887, "low": 2.1437, "close": 2.2587, "volume": 102995532.0}, {"date": "2015-02", "open": 2.2403, "high": 2.4795, "low": 2.1897, "close": 2.4059, "volume": 75619491.0}, {"date": "2015-03", "open": 2.4611, "high": 2.5301, "low": 1.7941, "close": 2.1391, "volume": 454860596.0}, {"date": "2015-04", "open": 2.1667, "high": 3.3352, "low": 2.1529, "close": 3.3352, "volume": 527474992.0}, {"date": "2015-05", "open": 3.3168, "high": 3.9148, "low": 3.2984, "close": 3.7454, "volume": 320446475.0}, {"date": "2015-06", "open": 3.8121, "high": 3.8407, "low": 3.2022, "close": 3.4786, "volume": 222621885.0}, {"date": "2015-07", "open": 3.5071, "high": 3.5119, "low": 2.2968, "close": 2.74, "volume": 180853620.0}, {"date": "2015-08", "open": 2.7781, "high": 2.8353, "low": 1.7393, "close": 1.7679, "volume": 292151583.0}, {"date": "2015-09", "open": 1.7869, "high": 1.9775, "low": 1.4677, "close": 1.7297, "volume": 333274042.0}, {"date": "2015-10", "open": 1.7583, "high": 2.1253, "low": 1.7583, "close": 1.9299, "volume": 269389255.0}, {"date": "2015-11", "open": 1.9251, "high": 2.0014, "low": 1.7488, "close": 1.8108, "volume": 208881881.0}, {"date": "2015-12", "open": 1.806, "high": 2.2015, "low": 1.7869, "close": 2.1967, "volume": 223624827.0}, {"date": "2016-01", "open": 2.1872, "high": 2.2158, "low": 1.7536, "close": 2.0109, "volume": 337280683.0}, {"date": "2016-02", "open": 1.9966, "high": 2.2015, "low": 1.8965, "close": 2.0967, "volume": 133227341.0}, {"date": "2016-03", "open": 2.0824, "high": 2.5827, "low": 2.0824, "close": 2.5684, "volume": 190911502.0}, {"date": "2016-04", "open": 2.5303, "high": 2.8448, "low": 2.3969, "close": 2.7114, "volume": 174395311.0}, {"date": "2016-05", "open": 2.7161, "high": 2.7352, "low": 2.4112, "close": 2.6542, "volume": 112967469.0}, {"date": "2016-06", "open": 2.6637, "high": 2.7819, "low": 2.4489, "close": 2.5468, "volume": 75785490.0}, {"date": "2016-07", "open": 2.5419, "high": 2.8309, "low": 2.5321, "close": 2.537, "volume": 71456494.0}, {"date": "2016-08", "open": 2.5517, "high": 3.4284, "low": 2.5174, "close": 3.2619, "volume": 137894735.0}, {"date": "2016-09", "open": 3.2717, "high": 3.6635, "low": 3.1982, "close": 3.4186, "volume": 93633054.0}, {"date": "2016-10", "open": 3.4382, "high": 3.6635, "low": 3.2374, "close": 3.399, "volume": 89217967.0}, {"date": "2016-11", "open": 3.4088, "high": 3.6488, "low": 3.2423, "close": 3.5264, "volume": 221046521.0}, {"date": "2016-12", "open": 3.5754, "high": 3.6096, "low": 3.2619, "close": 3.3403, "volume": 166004831.0}, {"date": "2017-01", "open": 3.3305, "high": 3.9672, "low": 3.0366, "close": 3.9182, "volume": 122646470.0}, {"date": "2017-02", "open": 3.9084, "high": 4.1533, "low": 3.7811, "close": 3.8203, "volume": 247213522.0}, {"date": "2017-03", "open": 3.9084, "high": 3.9084, "low": 3.2619, "close": 3.4529, "volume": 237873893.0}, {"date": "2017-10", "open": 4.5059, "high": 5.0349, "low": 4.4717, "close": 4.5843, "volume": 174964926.0}, {"date": "2017-11", "open": 4.5353, "high": 6.4259, "low": 4.0455, "close": 4.0896, "volume": 377248039.0}, {"date": "2017-12", "open": 4.1092, "high": 4.5451, "low": 3.8056, "close": 4.2855, "volume": 141355590.0}, {"date": "2018-01", "open": 4.2708, "high": 5.6226, "low": 4.2415, "close": 5.1013, "volume": 885242455.0}, {"date": "2018-02", "open": 5.0757, "high": 5.1933, "low": 4.0279, "close": 4.6719, "volume": 96572925.0}, {"date": "2018-03", "open": 4.7179, "high": 5.3364, "low": 4.3141, "close": 4.3806, "volume": 165270448.0}, {"date": "2018-04", "open": 4.3448, "high": 4.9121, "low": 4.2937, "close": 4.3959, "volume": 134274931.0}, {"date": "2018-05", "open": 4.447, "high": 4.585, "low": 4.1096, "close": 4.3345, "volume": 121374885.0}, {"date": "2018-06", "open": 4.3712, "high": 4.4026, "low": 3.4394, "close": 3.8739, "volume": 115032047.0}, {"date": "2018-07", "open": 3.7744, "high": 4.2351, "low": 3.6331, "close": 3.8896, "volume": 103416411.0}, {"date": "2018-08", "open": 3.9419, "high": 3.9419, "low": 3.1253, "close": 3.4708, "volume": 82518680.0}, {"date": "2018-09", "open": 3.4551, "high": 3.6121, "low": 2.6698, "close": 2.7222, "volume": 203811500.0}, {"date": "2018-10", "open": 2.8007, "high": 3.1148, "low": 2.5808, "close": 2.7484, "volume": 271323503.0}, {"date": "2018-11", "open": 2.7536, "high": 2.8269, "low": 2.3557, "close": 2.539, "volume": 538562841.0}, {"date": "2018-12", "open": 2.5651, "high": 2.6018, "low": 2.2144, "close": 2.3296, "volume": 156403928.0}, {"date": "2019-01", "open": 2.3296, "high": 2.7326, "low": 2.1359, "close": 2.6175, "volume": 155039279.0}, {"date": "2019-02", "open": 2.6489, "high": 2.9316, "low": 2.5808, "close": 2.7484, "volume": 266884000.0}, {"date": "2019-03", "open": 2.7117, "high": 3.141, "low": 2.5756, "close": 3.0939, "volume": 420428967.0}, {"date": "2019-04", "open": 3.141, "high": 3.5859, "low": 3.1148, "close": 3.3818, "volume": 262237092.0}, {"date": "2019-05", "open": 3.3923, "high": 3.3923, "low": 2.696, "close": 2.9682, "volume": 239686341.0}, {"date": "2019-06", "open": 2.9892, "high": 3.0353, "low": 2.6141, "close": 3.0134, "volume": 112099995.0}, {"date": "2019-07", "open": 3.0079, "high": 3.4345, "low": 2.9806, "close": 3.1446, "volume": 96493244.0}, {"date": "2019-08", "open": 3.0462, "high": 3.1282, "low": 2.6634, "close": 2.811, "volume": 95073033.0}, {"date": "2019-09", "open": 2.7892, "high": 3.0517, "low": 2.6798, "close": 2.7399, "volume": 93365607.0}, {"date": "2019-10", "open": 2.6306, "high": 2.7235, "low": 2.3571, "close": 2.3845, "volume": 70985503.0}, {"date": "2019-11", "open": 2.3626, "high": 2.4829, "low": 2.2149, "close": 2.2477, "volume": 107858125.0}, {"date": "2019-12", "open": 2.2477, "high": 2.5977, "low": 2.1876, "close": 2.5704, "volume": 68054928.0}, {"date": "2020-01", "open": 2.5813, "high": 2.7454, "low": 2.0782, "close": 2.1001, "volume": 53741931.0}, {"date": "2020-02", "open": 2.1001, "high": 2.3516, "low": 2.0563, "close": 2.286, "volume": 80346048.0}, {"date": "2020-03", "open": 2.2696, "high": 2.4227, "low": 1.5751, "close": 1.8047, "volume": 166721106.0}, {"date": "2020-04", "open": 1.8102, "high": 2.1274, "low": 1.7118, "close": 2.111, "volume": 87551336.0}, {"date": "2020-05", "open": 2.0508, "high": 2.0563, "low": 1.7993, "close": 1.8649, "volume": 113508619.0}, {"date": "2020-06", "open": 1.8977, "high": 2.1898, "low": 1.8649, "close": 2.0694, "volume": 98017613.0}, {"date": "2020-07", "open": 2.1296, "high": 2.9357, "low": 2.1116, "close": 2.677, "volume": 166504975.0}, {"date": "2020-08", "open": 2.7131, "high": 3.2786, "low": 2.6951, "close": 3.0079, "volume": 91715427.0}, {"date": "2020-09", "open": 3.05, "high": 3.2425, "low": 2.7071, "close": 2.9056, "volume": 97834074.0}, {"date": "2020-10", "open": 2.8695, "high": 3.5313, "low": 2.8274, "close": 3.3689, "volume": 115853579.0}, {"date": "2020-11", "open": 3.435, "high": 4.6512, "low": 3.2967, "close": 4.1818, "volume": 694706987.0}, {"date": "2020-12", "open": 4.2497, "high": 4.7871, "low": 3.9965, "close": 4.3856, "volume": 339035498.0}, {"date": "2021-01", "open": 4.3671, "high": 4.9972, "low": 4.12, "close": 4.2312, "volume": 454703293.0}, {"date": "2021-02", "open": 4.2312, "high": 6.597, "low": 4.1756, "close": 5.9422, "volume": 508368494.0}, {"date": "2021-03", "open": 5.9422, "high": 8.03, "low": 5.8249, "close": 6.4117, "volume": 1365558041.0}, {"date": "2021-04", "open": 6.3005, "high": 7.82, "low": 6.3005, "close": 7.5977, "volume": 393334883.0}, {"date": "2021-05", "open": 7.5359, "high": 8.8948, "low": 6.5723, "close": 7.7335, "volume": 610457935.0}, {"date": "2021-06", "open": 7.7335, "high": 7.8077, "low": 6.0583, "close": 6.7802, "volume": 540265089.0}, {"date": "2021-07", "open": 6.922, "high": 7.1669, "low": 5.9294, "close": 6.6384, "volume": 438595861.0}, {"date": "2021-08", "open": 6.6255, "high": 7.7985, "low": 6.1937, "close": 7.4763, "volume": 497380951.0}, {"date": "2021-09", "open": 7.4763, "high": 9.2422, "low": 6.2259, "close": 6.4579, "volume": 751791977.0}, {"date": "2021-10", "open": 6.4579, "high": 6.7415, "low": 5.2849, "close": 5.575, "volume": 376247730.0}, {"date": "2021-11", "open": 5.6072, "high": 5.6265, "low": 4.6836, "close": 5.1465, "volume": 414506110.0}, {"date": "2021-12", "open": 5.0921, "high": 5.9158, "low": 4.9491, "close": 5.6026, "volume": 219400369.0}, {"date": "2022-01", "open": 5.6026, "high": 6.44, "low": 5.5482, "close": 5.9226, "volume": 286633636.0}, {"date": "2022-02", "open": 5.9907, "high": 7.5428, "low": 5.8681, "close": 7.393, "volume": 321475788.0}, {"date": "2022-03", "open": 7.2977, "high": 8.101, "low": 5.3848, "close": 7.1207, "volume": 708517781.0}, {"date": "2022-04", "open": 6.9437, "high": 7.5973, "low": 6.2834, "close": 6.8008, "volume": 315913072.0}, {"date": "2022-05", "open": 6.6646, "high": 7.2685, "low": 5.6435, "close": 7.0654, "volume": 336540569.0}, {"date": "2022-06", "open": 7.0581, "high": 7.341, "low": 5.9483, "close": 6.4343, "volume": 454405978.0}, {"date": "2022-07", "open": 6.311, "high": 6.4851, "low": 5.484, "close": 5.9193, "volume": 247845721.0}, {"date": "2022-08", "open": 5.9193, "high": 6.2167, "low": 5.4115, "close": 5.5566, "volume": 312965183.0}, {"date": "2022-09", "open": 5.484, "high": 5.7814, "low": 4.4685, "close": 4.7151, "volume": 311617476.0}, {"date": "2022-10", "open": 4.6063, "high": 4.9907, "low": 3.9824, "close": 4.0405, "volume": 316843544.0}, {"date": "2022-11", "open": 4.113, "high": 5.6947, "low": 4.084, "close": 5.5865, "volume": 383693862.0}, {"date": "2022-12", "open": 5.6174, "high": 5.9883, "low": 5.4088, "close": 5.6947, "volume": 243402512.0}, {"date": "2023-01", "open": 5.6947, "high": 7.1087, "low": 5.5324, "close": 7.0005, "volume": 385478540.0}, {"date": "2023-02", "open": 7.07, "high": 7.3791, "low": 6.1274, "close": 6.4828, "volume": 478295122.0}, {"date": "2023-03", "open": 6.4905, "high": 6.985, "low": 5.4629, "close": 5.8106, "volume": 427203157.0}, {"date": "2023-04", "open": 5.826, "high": 6.7919, "low": 5.5015, "close": 5.9419, "volume": 351441799.0}, {"date": "2023-05", "open": 5.9728, "high": 6.2124, "low": 4.2773, "close": 4.3637, "volume": 351163809.0}, {"date": "2023-06", "open": 4.3637, "high": 5.1642, "low": 4.348, "close": 4.9915, "volume": 400776224.0}, {"date": "2023-07", "open": 4.9915, "high": 6.0275, "low": 4.913, "close": 5.8784, "volume": 465597320.0}, {"date": "2023-08", "open": 5.9647, "high": 6.31, "low": 5.3996, "close": 6.1374, "volume": 594106541.0}, {"date": "2023-09", "open": 6.3257, "high": 6.7574, "low": 5.6822, "close": 6.0197, "volume": 502967346.0}, {"date": "2023-10", "open": 5.8627, "high": 5.9019, "low": 4.8738, "close": 5.745, "volume": 450070891.0}, {"date": "2023-11", "open": 5.745, "high": 5.8548, "low": 5.0368, "close": 5.2425, "volume": 434724447.0}, {"date": "2023-12", "open": 5.2261, "high": 5.3742, "low": 4.4854, "close": 5.259, "volume": 412050181.0}, {"date": "2024-01", "open": 5.259, "high": 5.3002, "low": 4.2549, "close": 4.7076, "volume": 461872159.0}, {"date": "2024-02", "open": 4.7734, "high": 5.2508, "low": 4.4772, "close": 5.0121, "volume": 357930548.0}, {"date": "2024-03", "open": 4.9463, "high": 7.3659, "low": 4.938, "close": 7.2425, "volume": 844099390.0}, {"date": "2024-04", "open": 7.4071, "high": 9.5304, "low": 7.2589, "close": 8.9708, "volume": 1108950266.0}, {"date": "2024-05", "open": 8.9708, "high": 11.4335, "low": 8.9708, "close": 10.877, "volume": 996214338.0}, {"date": "2024-06", "open": 10.877, "high": 11.3829, "low": 9.6123, "close": 9.9664, "volume": 945505407.0}, {"date": "2024-07", "open": 9.9327, "high": 10.4386, "low": 7.673, "close": 8.2126, "volume": 867506391.0}, {"date": "2024-08", "open": 8.3559, "high": 9.1907, "low": 7.6139, "close": 9.022, "volume": 577856209.0}, {"date": "2024-09", "open": 9.0726, "high": 11.5516, "low": 7.732, "close": 10.9276, "volume": 685715196.0}, {"date": "2024-10", "open": 11.0119, "high": 12.0069, "low": 9.7978, "close": 10.5735, "volume": 807599825.0}, {"date": "2024-11", "open": 10.6915, "high": 12.5971, "low": 9.7358, "close": 10.0185, "volume": 641147025.0}, {"date": "2024-12", "open": 10.1775, "high": 11.3613, "low": 9.6474, "close": 10.3895, "volume": 507870950.0}, {"date": "2025-01", "open": 10.1952, "high": 11.9444, "low": 9.3294, "close": 11.4673, "volume": 530335306.0}, {"date": "2025-02", "open": 11.4673, "high": 11.8737, "low": 10.5132, "close": 10.9549, "volume": 595325210.0}, {"date": "2025-03", "open": 10.8489, "high": 14.4181, "low": 10.8489, "close": 14.1354, "volume": 907772528.0}, {"date": "2025-04", "open": 14.1354, "high": 14.2944, "low": 10.4425, "close": 12.3331, "volume": 1008550869.0}, {"date": "2025-05", "open": 12.4568, "high": 14.0281, "low": 12.0504, "close": 13.2709, "volume": 607636134.0}, {"date": "2025-06", "open": 13.1573, "high": 17.5494, "low": 12.949, "close": 17.0193, "volume": 653699726.0}, {"date": "2025-07", "open": 17.2654, "high": 20.9665, "low": 16.5839, "close": 19.6886, "volume": 665576309.0}, {"date": "2025-08", "open": 19.6413, "high": 24.3457, "low": 18.9313, "close": 24.0807, "volume": 666127695.0}, {"date": "2025-09", "open": 24.3646, "high": 25.5952, "low": 22.3011, "close": 25.0083, "volume": 824122757.0}, {"date": "2025-10", "open": 25.0083, "high": 28.7378, "low": 22.8691, "close": 27.9427, "volume": 610361359.0}, {"date": "2025-11", "open": 28.0752, "high": 33.2245, "low": 26.7879, "close": 29.2111, "volume": 1342642606.0}, {"date": "2025-12", "open": 29.8169, "high": 32.4862, "low": 28.3024, "close": 30.877, "volume": 725201875.0}, {"date": "2026-01", "open": 31.1421, "high": 39.15, "low": 30.9149, "close": 34.19, "volume": 921894496.0}, {"date": "2026-02", "open": 32.4483, "high": 36.0453, "low": 31.2557, "close": 33.5653, "volume": 568045215.0}, {"date": "2026-03", "open": 34.1332, "high": 38.9986, "low": 28.4917, "close": 32.9027, "volume": 1234252956.0}, {"date": "2026-04", "open": 33.9818, "high": 37.7302, "low": 30.7634, "close": 30.9338, "volume": 747245648.0}, {"date": "2026-05", "open": 31.5396, "high": 32.808, "low": 27.68, "close": 28.02, "volume": 832631147.0}, {"date": "2026-06", "open": 28.02, "high": 29.88, "low": 24.88, "close": 26.96, "volume": 544581889.0}], "index_kline": [{"date": "2013-08", "open": 22396.289, "high": 22481.74, "low": 21465.721, "close": 21731.369}, {"date": "2013-09", "open": 21948.721, "high": 23554.34, "low": 21948.721, "close": 22859.859}, {"date": "2013-10", "open": 22997.211, "high": 23534.67, "low": 22640.18, "close": 23206.369}, {"date": "2013-11", "open": 23208.801, "high": 24014.811, "low": 22463.4, "close": 23881.289}, {"date": "2013-12", "open": 23936.15, "high": 24111.551, "low": 22713.699, "close": 23306.391}, {"date": "2014-01", "open": 23452.76, "high": 23469.33, "low": 21746.23, "close": 22035.42}, {"date": "2014-02", "open": 21561.699, "high": 22986.699, "low": 21197.779, "close": 22836.961}, {"date": "2014-03", "open": 22630.77, "high": 22839.43, "low": 21137.609, "close": 22151.061}, {"date": "2014-04", "open": 22292.32, "high": 23224.539, "low": 22096.949, "close": 22133.971}, {"date": "2014-05", "open": 22194.66, "high": 23209.26, "low": 21680.33, "close": 23049.02}, {"date": "2014-06", "open": 23327.51, "high": 23397.77, "low": 22802.1, "close": 23190.721}, {"date": "2014-07", "open": 23326.529, "high": 24912.221, "low": 23126.68, "close": 24756.85}, {"date": "2014-08", "open": 24594.23, "high": 25243.16, "low": 24190.93, "close": 24742.061}, {"date": "2014-09", "open": 24703.74, "high": 25362.98, "low": 22855.039, "close": 22932.98}, {"date": "2014-10", "open": 22691.59, "high": 24046.4, "low": 22565.6, "close": 23998.061}, {"date": "2014-11", "open": 24133.449, "high": 24313.061, "low": 23252.631, "close": 23987.449}, {"date": "2014-12", "open": 23678.0, "high": 24189.59, "low": 22529.75, "close": 23605.039}, {"date": "2015-01", "open": 23683.631, "high": 24995.08, "low": 23312.5, "close": 24507.051}, {"date": "2015-02", "open": 24347.27, "high": 25101.961, "low": 24226.289, "close": 24823.289}, {"date": "2015-03", "open": 24996.76, "high": 25113.199, "low": 23677.061, "close": 24900.889}, {"date": "2015-04", "open": 24955.199, "high": 28588.52, "low": 24926.109, "close": 28133.0}, {"date": "2015-05", "open": 28231.26, "high": 28524.6, "low": 27191.029, "close": 27424.189}, {"date": "2015-06", "open": 27373.061, "high": 27854.74, "low": 25617.779, "close": 26250.029}, {"date": "2015-07", "open": 26459.43, "high": 26459.43, "low": 22836.82, "close": 24636.279}, {"date": "2015-08", "open": 24533.141, "high": 24924.07, "low": 20865.26, "close": 21670.58}, {"date": "2015-09", "open": 21692.779, "high": 22228.59, "low": 20368.119, "close": 20846.301}, {"date": "2015-10", "open": 21172.939, "high": 23423.641, "low": 21130.109, "close": 22640.039}, {"date": "2015-11", "open": 22502.279, "high": 23342.07, "low": 21907.35, "close": 21996.42}, {"date": "2015-12", "open": 22197.811, "high": 22563.471, "low": 21010.26, "close": 21914.4}, {"date": "2016-01", "open": 21782.619, "high": 21794.84, "low": 18534.301, "close": 19683.109}, {"date": "2016-02", "open": 19770.961, "high": 19770.961, "low": 18278.801, "close": 19111.93}, {"date": "2016-03", "open": 19259.99, "high": 20872.551, "low": 19108.301, "close": 20776.699}, {"date": "2016-04", "open": 20786.18, "high": 21654.07, "low": 20045.471, "close": 21067.051}, {"date": "2016-05", "open": 21061.77, "high": 21061.77, "low": 19594.609, "close": 20815.09}, {"date": "2016-06", "open": 20726.529, "high": 21352.369, "low": 19662.699, "close": 20794.369}, {"date": "2016-07", "open": 20967.471, "high": 22300.51, "low": 20304.391, "close": 21891.369}, {"date": "2016-08", "open": 22027.65, "high": 23193.9, "low": 21725.381, "close": 22976.881}, {"date": "2016-09", "open": 22897.16, "high": 24364.0, "low": 22843.42, "close": 23297.15}, {"date": "2016-10", "open": 23652.83, "high": 24064.5, "low": 22775.289, "close": 22934.539}, {"date": "2016-11", "open": 23015.061, "high": 23268.051, "low": 21957.711, "close": 22789.77}, {"date": "2016-12", "open": 22948.65, "high": 23076.24, "low": 21488.82, "close": 22000.561}, {"date": "2017-01", "open": 21993.359, "high": 23397.09, "low": 21883.82, "close": 23360.779}, {"date": "2017-02", "open": 23211.881, "high": 24216.529, "low": 22997.461, "close": 23740.73}, {"date": "2017-03", "open": 23849.221, "high": 24656.65, "low": 23438.859, "close": 24111.59}, {"date": "2017-04", "open": 24236.561, "high": 24717.439, "low": 23723.869, "close": 24615.131}, {"date": "2017-05", "open": 24773.801, "high": 25817.949, "low": 24358.721, "close": 25660.65}, {"date": "2017-06", "open": 25736.35, "high": 26090.33, "low": 25557.801, "close": 25764.58}, {"date": "2017-07", "open": 25654.77, "high": 27324.381, "low": 25199.859, "close": 27323.99}, {"date": "2017-08", "open": 27326.039, "high": 28127.9, "low": 26863.711, "close": 27970.301}, {"date": "2017-09", "open": 28015.221, "high": 28248.119, "low": 27300.369, "close": 27554.301}, {"date": "2017-10", "open": 27884.211, "high": 28798.779, "low": 27737.381, "close": 28245.539}, {"date": "2017-11", "open": 28387.551, "high": 30199.689, "low": 28137.77, "close": 29177.35}, {"date": "2017-12", "open": 29261.311, "high": 29997.961, "low": 28134.93, "close": 29919.15}, {"date": "2018-01", "open": 30028.289, "high": 33484.078, "low": 30028.289, "close": 32887.27}, {"date": "2018-02", "open": 32950.301, "high": 33048.039, "low": 29129.26, "close": 30844.721}, {"date": "2018-03", "open": 30476.99, "high": 31978.141, "low": 29819.631, "close": 30093.381}, {"date": "2018-04", "open": 29927.881, "high": 31094.109, "low": 29518.689, "close": 30808.449}, {"date": "2018-05", "open": 30782.211, "high": 31592.561, "low": 29791.869, "close": 30468.561}, {"date": "2018-06", "open": 30548.779, "high": 31521.131, "low": 28169.1, "close": 28955.109}, {"date": "2018-07", "open": 28617.0, "high": 29083.4, "low": 27745.85, "close": 28583.01}, {"date": "2018-08", "open": 28756.721, "high": 28772.801, "low": 26871.109, "close": 27888.551}, {"date": "2018-09", "open": 27809.449, "high": 28031.811, "low": 26219.561, "close": 27788.52}, {"date": "2018-10", "open": 27716.16, "high": 27716.16, "low": 24540.631, "close": 24979.689}, {"date": "2018-11", "open": 25228.75, "high": 26923.33, "low": 25092.301, "close": 26506.75}, {"date": "2018-12", "open": 27185.66, "high": 27260.439, "low": 25313.75, "close": 25845.699}, {"date": "2019-01", "open": 25824.439, "high": 28010.9, "low": 24896.869, "close": 27942.471}, {"date": "2019-02", "open": 28193.279, "high": 29014.189, "low": 27534.199, "close": 28633.18}, {"date": "2019-03", "open": 28716.6, "high": 29486.15, "low": 28201.09, "close": 29051.359}, {"date": "2019-04", "open": 29383.721, "high": 30280.119, "low": 29383.721, "close": 29699.109}, {"date": "2019-05", "open": 29643.051, "high": 30081.551, "low": 26850.27, "close": 26901.09}, {"date": "2019-06", "open": 26909.711, "high": 28634.48, "low": 26671.9, "close": 28542.619}, {"date": "2019-07", "open": 28904.039, "high": 29007.98, "low": 27701.439, "close": 27777.75}, {"date": "2019-08", "open": 27582.211, "high": 27754.039, "low": 24899.93, "close": 25724.73}, {"date": "2019-09", "open": 25627.83, "high": 27366.449, "low": 25498.109, "close": 26092.27}, {"date": "2019-10", "open": 25901.471, "high": 27027.561, "low": 25521.949, "close": 26906.721}, {"date": "2019-11", "open": 26806.439, "high": 27900.801, "low": 26203.971, "close": 26346.49}, {"date": "2019-12", "open": 26475.34, "high": 28418.65, "low": 25995.15, "close": 28189.75}, {"date": "2020-01", "open": 28249.369, "high": 29174.92, "low": 26295.49, "close": 26312.631}, {"date": "2020-02", "open": 26189.609, "high": 28055.58, "low": 25989.41, "close": 26129.93}, {"date": "2020-03", "open": 26077.73, "high": 26805.58, "low": 21139.26, "close": 23603.48}, {"date": "2020-04", "open": 23365.9, "high": 24855.471, "low": 22756.131, "close": 24643.59}, {"date": "2020-05", "open": 23895.109, "high": 24766.83, "low": 22519.73, "close": 22961.471}, {"date": "2020-06", "open": 23539.91, "high": 25303.779, "low": 23539.91, "close": 24427.189}, {"date": "2020-07", "open": 24563.57, "high": 26782.619, "low": 24526.91, "close": 24595.35}, {"date": "2020-08", "open": 24566.811, "high": 25847.109, "low": 24167.789, "close": 25177.051}, {"date": "2020-09", "open": 25085.67, "high": 25254.141, "low": 23124.25, "close": 23459.051}, {"date": "2020-10", "open": 24039.391, "high": 24970.59, "low": 23674.52, "close": 24107.42}, {"date": "2020-11", "open": 24274.83, "high": 27040.41, "low": 24232.66, "close": 26341.49}, {"date": "2020-12", "open": 26422.711, "high": 27340.99, "low": 25998.869, "close": 27231.131}, {"date": "2021-01", "open": 27087.131, "high": 30191.16, "low": 27079.24, "close": 28283.711}, {"date": "2021-02", "open": 28457.85, "high": 31183.359, "low": 28382.26, "close": 28980.211}, {"date": "2021-03", "open": 29457.891, "high": 29912.0, "low": 27505.08, "close": 28378.35}, {"date": "2021-04", "open": 28594.551, "high": 29405.119, "low": 28274.27, "close": 28724.881}, {"date": "2021-05", "open": 28659.91, "high": 29336.131, "low": 27715.881, "close": 29151.801}, {"date": "2021-06", "open": 29159.061, "high": 29490.609, "low": 28216.09, "close": 28827.949}, {"date": "2021-07", "open": 28859.02, "high": 28859.02, "low": 24748.84, "close": 25961.029}, {"date": "2021-08", "open": 26054.811, "high": 26822.471, "low": 24581.6, "close": 25878.99023}, {"date": "2021-09", "open": 25871.82, "high": 26560.04, "low": 23771.46, "close": 24575.64063}, {"date": "2021-10", "open": 24478.68, "high": 26234.94, "low": 23681.44, "close": 25377.24023}, {"date": "2021-11", "open": 25268.35, "high": 25746.71, "low": 23175.37, "close": 23475.26172}, {"date": "2021-12", "open": 23595.57, "high": 24385.44, "low": 22665.25, "close": 23397.66992}, {"date": "2022-01", "open": 23510.54, "high": 24982.03, "low": 22709.6, "close": 23802.25977}, {"date": "2022-02", "open": 24392.86, "high": 25050.59, "low": 22406.12, "close": 22713.02148}, {"date": "2022-03", "open": 22739.84, "high": 22937.56, "low": 18235.48, "close": 21996.84961}, {"date": "2022-04", "open": 21693.1, "high": 22523.64, "low": 19665.49, "close": 21089.39063}, {"date": "2022-05", "open": 20927.62, "high": 21415.2, "low": 19178.89, "close": 21415.19922}, {"date": "2022-06", "open": 21407.79, "high": 22449.31, "low": 20697.17, "close": 21859.79102}, {"date": "2022-07", "open": 21690.68, "high": 22198.51, "low": 20050.05, "close": 20156.50977}, {"date": "2022-08", "open": 20026.6, "high": 20283.59, "low": 19189.54, "close": 19954.39063}, {"date": "2022-09", "open": 19761.72, "high": 19839.51, "low": 17016.28, "close": 17222.83008}, {"date": "2022-10", "open": 17050.25, "high": 18164.2, "low": 14597.31, "close": 14687.02051}, {"date": "2022-11", "open": 14859.92, "high": 18645.35, "low": 14859.92, "close": 18597.23047}, {"date": "2022-12", "open": 19058.9, "high": 20099.77, "low": 18530.82, "close": 19781.41016}, {"date": "2023-01", "open": 19570.43, "high": 22700.85, "low": 19303.73, "close": 21842.33008}, {"date": "2023-02", "open": 21920.8, "high": 22311.96, "low": 19783.07, "close": 19785.93945}, {"date": "2023-03", "open": 19849.97, "high": 21005.66, "low": 18829.11, "close": 20400.11133}, {"date": "2023-04", "open": 20379.5, "high": 20864.74, "low": 19520.97, "close": 19894.57031}, {"date": "2023-05", "open": 20122.9, "high": 20321.74, "low": 18044.86, "close": 18234.26953}, {"date": "2023-06", "open": 18190.27, "high": 20155.92, "low": 18190.27, "close": 18916.42969}, {"date": "2023-07", "open": 19002.55, "high": 20361.03, "low": 18279.73, "close": 20078.94141}, {"date": "2023-08", "open": 20211.2, "high": 20331.28, "low": 17573.7, "close": 18382.06055}, {"date": "2023-09", "open": 18592.53, "high": 18899.49, "low": 17352.83, "close": 17809.66016}, {"date": "2023-10", "open": 17546.39, "high": 18290.91, "low": 16879.66, "close": 17112.48047}, {"date": "2023-11", "open": 17139.4, "high": 18174.69, "low": 16863.05, "close": 17042.88086}, {"date": "2023-12", "open": 17019.17, "high": 17095.12, "low": 15972.31, "close": 17047.39063}, {"date": "2024-01", "open": 17135.12, "high": 17135.12, "low": 14794.16, "close": 15485.07031}, {"date": "2024-02", "open": 15522.86, "high": 16895.82, "low": 15336.86, "close": 16511.43945}, {"date": "2024-03", "open": 16390.89, "high": 17214.67, "low": 16095.68, "close": 16541.41992}, {"date": "2024-04", "open": 16811.74, "high": 18031.16, "low": 16044.45, "close": 17763.03125}, {"date": "2024-05", "open": 17760.68, "high": 19706.12, "low": 17740.62, "close": 18079.60938}, {"date": "2024-06", "open": 18283.56, "high": 18724.62, "low": 17583.19, "close": 17718.60938}, {"date": "2024-07", "open": 17669.42, "high": 18317.31, "low": 16924.58, "close": 17344.59961}, {"date": "2024-08", "open": 17327.85, "high": 18202.6, "low": 16441.44, "close": 17989.07031}, {"date": "2024-09", "open": 17862.59, "high": 21488.75, "low": 16964.28, "close": 21133.67969}, {"date": "2024-10", "open": 21289.6, "high": 23241.74, "low": 19977.35, "close": 20317.33008}, {"date": "2024-11", "open": 20427.88, "high": 21355.44, "low": 19054.4, "close": 19423.60938}, {"date": "2024-12", "open": 19442.31, "high": 21070.05, "low": 19386.82, "close": 20059.95117}, {"date": "2025-01", "open": 19932.8, "high": 20337.46, "low": 18671.49, "close": 20225.11133}, {"date": "2025-02", "open": 20048.87, "high": 24076.53, "low": 19764.67, "close": 22941.32031}, {"date": "2025-03", "open": 23135.12, "high": 24874.39, "low": 22547.53, "close": 23119.58008}, {"date": "2025-04", "open": 23217.11, "high": 23456.58, "low": 19260.21, "close": 22119.41016}, {"date": "2025-05", "open": 22192.51, "high": 23917.0, "low": 22058.3, "close": 23289.76953}, {"date": "2025-06", "open": 23043.1, "high": 24533.39, "low": 22668.35, "close": 24072.2793}, {"date": "2025-07", "open": 24304.31, "high": 25735.89, "low": 23690.94, "close": 24773.33008}, {"date": "2025-08", "open": 24744.34, "high": 25918.86, "low": 24372.51, "close": 25077.61914}, {"date": "2025-09", "open": 25508.21, "high": 27058.03, "low": 25013.26, "close": 26855.55859}, {"date": "2025-10", "open": 26918.3, "high": 27381.84, "low": 25145.34, "close": 25906.65039}, {"date": "2025-11", "open": 25999.17, "high": 27188.81, "low": 25178.63, "close": 25858.88867}, {"date": "2025-12", "open": 25945.87, "high": 26264.13, "low": 25086.54, "close": 25630.54102}, {"date": "2026-01", "open": 25717.42, "high": 28056.1, "low": 25717.42, "close": 27387.11133}, {"date": "2026-02", "open": 27097.34, "high": 27397.65, "low": 26295.03, "close": 26630.54102}, {"date": "2026-03", "open": 26305.58, "high": 26403.85, "low": 24203.54, "close": 24788.14063}, {"date": "2026-04", "open": 25357.23, "high": 26529.49, "low": 24901.77, "close": 25776.5293}, {"date": "2026-05", "open": 26138.34, "high": 26844.8, "low": 24727.26, "close": 25182.39063}, {"date": "2026-06", "open": 25180.05, "high": 26045.07, "low": 23999.67, "close": 24718.09961}], "total_returns": {"stock": {"1yr": 197.2, "3yr": 442.2, "5yr": 604.1}, "index": {"1yr": 27.8, "3yr": 29.6, "5yr": -5.9}}, "years": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"], "metric_defs": [{"order": 1, "name_cn": "每股营收", "name_en": "Revenues per sh", "field": "PER_OI", "unit": "元", "source": "calculated"}, {"order": 2, "name_cn": "每股现金流", "name_en": "\"Cash Flow\" per sh", "field": "PER_NETCASH", "unit": "元", "source": "calculated"}, {"order": 3, "name_cn": "每股收益", "name_en": "Earnings per sh", "field": "BASIC_EPS", "unit": "元", "source": "indicators"}, {"order": 4, "name_cn": "每股股息", "name_en": "Div'ds Decl'd per sh", "field": "DPS", "unit": "元", "source": "dividend"}, {"order": 5, "name_cn": "每股资本支出", "name_en": "Cap'l Spending per sh", "field": "CAPEX_PS", "unit": "元", "source": "calculated"}, {"order": 6, "name_cn": "每股账面价值", "name_en": "Book Value per sh", "field": "BPS", "unit": "元", "source": "indicators"}, {"order": 7, "name_cn": "发行在外股数", "name_en": "Common Shs Outst'g (Mill.)", "field": "TOTAL_SHARES", "unit": "百万股", "source": "calculated"}, {"order": 8, "name_cn": "平均年化PE", "name_en": "Avg Ann'l P/E Ratio", "field": "PE_AVG", "unit": "倍", "source": "calculated"}, {"order": 9, "name_cn": "相对PE", "name_en": "Relative P/E Ratio", "field": "PE_RELATIVE", "unit": "倍", "source": "calculated"}, {"order": 10, "name_cn": "平均股息率", "name_en": "Avg Ann'l Div'd Yield", "field": "DIV_YIELD", "unit": "%", "source": "calculated"}, {"order": 11, "name_cn": "总营收", "name_en": "Revenues (亿)", "field": "OPERATE_INCOME", "unit": "亿", "source": "indicators"}, {"order": 12, "name_cn": "毛利率", "name_en": "Gross Margin", "field": "GROSS_MARGIN", "unit": "%", "source": "calculated"}, {"order": 13, "name_cn": "营业利润率", "name_en": "Operating Margin", "field": "OP_MARGIN", "unit": "%", "source": "calculated"}, {"order": 14, "name_cn": "折旧摊销", "name_en": "Depreciation (亿)", "field": "DEPRECIATION", "unit": "亿", "source": "cashflow"}, {"order": 15, "name_cn": "净利润", "name_en": "Net Profit (亿)", "field": "HOLDER_PROFIT", "unit": "亿", "source": "indicators"}, {"order": 16, "name_cn": "所得税率", "name_en": "Income Tax Rate", "field": "TAX_EBT", "unit": "%", "source": "indicators"}, {"order": 17, "name_cn": "净利润率", "name_en": "Net Profit Margin", "field": "NET_PROFIT_RATIO", "unit": "%", "source": "calculated"}, {"order": 18, "name_cn": "营运资金", "name_en": "Working Cap'l (亿)", "field": "WORKING_CAPITAL", "unit": "亿", "source": "calculated"}, {"order": 19, "name_cn": "长期债务", "name_en": "Long-Term Debt (亿)", "field": "LT_DEBT", "unit": "亿", "source": "calculated"}, {"order": 20, "name_cn": "股东权益", "name_en": "Shr. Equity (亿)", "field": "TOTAL_EQUITY", "unit": "亿", "source": "calculated"}, {"order": 21, "name_cn": "投入资本回报率", "name_en": "Return on Total Cap'l", "field": "ROIC", "unit": "%", "source": "calculated"}, {"order": 22, "name_cn": "股东权益回报率", "name_en": "Return on Shr. Equity", "field": "ROE", "unit": "%", "source": "indicators"}, {"order": 23, "name_cn": "留存利润再投比", "name_en": "Retained to Com Eq", "field": "RETAINED_RATIO", "unit": "%", "source": "calculated"}, {"order": 24, "name_cn": "股息支付率", "name_en": "All Div'ds to Net Prof", "field": "PAYOUT_RATIO", "unit": "%", "source": "calculated"}], "data": {"2011": {"PER_OI": 4.14, "PER_NETCASH": 1.18, "BASIC_EPS": 1.03, "DPS": 0.2594, "CAPEX_PS": 1.43, "BPS": 3.23, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 5704.3, "PE_AVG": 1.8, "PE_RELATIVE": null, "DIV_YIELD": 14.0, "OPERATE_INCOME": 236.3, "OP_MARGIN": 34.9, "DEPRECIATION": 8.5, "GROSS_MARGIN": 34.6, "HOLDER_PROFIT": 58.8, "TAX_EBT": 26.1, "NET_PROFIT_RATIO": 24.9, "WORKING_CAPITAL": 36.5, "LT_DEBT": 39.8, "TOTAL_EQUITY": 184.0, "ROIC": 38.2, "ROE": 31.9, "RETAINED_RATIO": 23.9, "PAYOUT_RATIO": 25.2, "AVG_PRICE": 2.28}, "2012": {"PER_OI": 4.23, "PER_NETCASH": 1.16, "BASIC_EPS": 0.93, "DPS": 0.2108, "CAPEX_PS": 1.83, "BPS": 3.81, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 5863.0, "PE_AVG": 1.4, "PE_RELATIVE": null, "DIV_YIELD": 16.2, "OPERATE_INCOME": 248.0, "OP_MARGIN": 32.4, "DEPRECIATION": 13.6, "GROSS_MARGIN": 32.3, "HOLDER_PROFIT": 54.5, "TAX_EBT": 26.3, "NET_PROFIT_RATIO": 22.0, "WORKING_CAPITAL": 27.8, "LT_DEBT": 74.4, "TOTAL_EQUITY": 223.4, "ROIC": 29.2, "ROE": 24.4, "RETAINED_RATIO": 18.9, "PAYOUT_RATIO": 22.7, "AVG_PRICE": 1.61}, "2013": {"PER_OI": 4.99, "PER_NETCASH": 1.3, "BASIC_EPS": 0.95, "DPS": 0.2123, "CAPEX_PS": 2.38, "BPS": 4.57, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 5887.0, "PE_AVG": 1.5, "PE_RELATIVE": 0.14, "DIV_YIELD": 14.4, "OPERATE_INCOME": 294.0, "OP_MARGIN": 29.7, "DEPRECIATION": 20.9, "GROSS_MARGIN": 27.7, "HOLDER_PROFIT": 55.9, "TAX_EBT": 24.3, "NET_PROFIT_RATIO": 19.0, "WORKING_CAPITAL": 5.1, "LT_DEBT": 138.9, "TOTAL_EQUITY": 268.8, "ROIC": 24.8, "ROE": 20.8, "RETAINED_RATIO": 16.3, "PAYOUT_RATIO": 22.3, "AVG_PRICE": 1.87}, "2014": {"PER_OI": 6.04, "PER_NETCASH": 1.41, "BASIC_EPS": 0.89, "DPS": 0.2209, "CAPEX_PS": 1.55, "BPS": 5.43, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 5970.4, "PE_AVG": 2.2, "PE_RELATIVE": 0.21, "DIV_YIELD": 11.2, "OPERATE_INCOME": 360.9, "OP_MARGIN": 25.6, "DEPRECIATION": 31.1, "GROSS_MARGIN": 25.8, "HOLDER_PROFIT": 53.1, "TAX_EBT": 27.7, "NET_PROFIT_RATIO": 14.7, "WORKING_CAPITAL": -31.6, "LT_DEBT": 126.9, "TOTAL_EQUITY": 324.3, "ROIC": 24.7, "ROE": 16.4, "RETAINED_RATIO": 12.4, "PAYOUT_RATIO": 24.8, "AVG_PRICE": 2.5}, "2015": {"PER_OI": 7.02, "PER_NETCASH": 1.33, "BASIC_EPS": 0.59, "DPS": 0.1257, "CAPEX_PS": 2.73, "BPS": 5.78, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 6282.2, "PE_AVG": 3.5, "PE_RELATIVE": 0.35, "DIV_YIELD": 6.0, "OPERATE_INCOME": 441.1, "OP_MARGIN": 19.4, "DEPRECIATION": 46.4, "GROSS_MARGIN": 20.5, "HOLDER_PROFIT": 37.1, "TAX_EBT": 31.1, "NET_PROFIT_RATIO": 8.4, "WORKING_CAPITAL": -94.0, "LT_DEBT": 254.7, "TOTAL_EQUITY": 362.9, "ROIC": 19.1, "ROE": 10.2, "RETAINED_RATIO": 8.2, "PAYOUT_RATIO": 21.3, "AVG_PRICE": 2.49}, "2016": {"PER_OI": 8.6, "PER_NETCASH": 1.75, "BASIC_EPS": 0.96, "DPS": 0.4204, "CAPEX_PS": 2.92, "BPS": 6.47, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 7135.2, "PE_AVG": 2.6, "PE_RELATIVE": 0.23, "DIV_YIELD": 16.8, "OPERATE_INCOME": 614.0, "OP_MARGIN": 21.1, "DEPRECIATION": 56.5, "GROSS_MARGIN": 23.1, "HOLDER_PROFIT": 68.5, "TAX_EBT": 30.2, "NET_PROFIT_RATIO": 11.2, "WORKING_CAPITAL": -3.7, "LT_DEBT": 164.3, "TOTAL_EQUITY": 461.9, "ROIC": 26.1, "ROE": 14.8, "RETAINED_RATIO": 8.5, "PAYOUT_RATIO": 43.8, "AVG_PRICE": 2.81}, "2017": {"PER_OI": 12.15, "PER_NETCASH": 1.61, "BASIC_EPS": 0.64, "DPS": 0.1672, "CAPEX_PS": 1.1, "BPS": 6.67, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 8057.9, "PE_AVG": 5.4, "PE_RELATIVE": 0.43, "DIV_YIELD": 4.8, "OPERATE_INCOME": 979.4, "OP_MARGIN": 11.1, "DEPRECIATION": 78.6, "GROSS_MARGIN": 16.7, "HOLDER_PROFIT": 51.3, "TAX_EBT": 25.1, "NET_PROFIT_RATIO": 5.2, "WORKING_CAPITAL": 105.8, "LT_DEBT": 207.2, "TOTAL_EQUITY": 537.4, "ROIC": 20.0, "ROE": 9.5, "RETAINED_RATIO": 7.3, "PAYOUT_RATIO": 26.3, "AVG_PRICE": 4.12}, "2018": {"PER_OI": 10.4, "PER_NETCASH": 1.47, "BASIC_EPS": 0.62, "DPS": 0.2103, "CAPEX_PS": 0.48, "BPS": 7.22, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 8675.4, "PE_AVG": 5.4, "PE_RELATIVE": 0.51, "DIV_YIELD": 6.3, "OPERATE_INCOME": 901.9, "OP_MARGIN": 13.7, "DEPRECIATION": 73.3, "GROSS_MARGIN": 17.1, "HOLDER_PROFIT": 54.1, "TAX_EBT": 30.6, "NET_PROFIT_RATIO": 6.0, "WORKING_CAPITAL": 320.5, "LT_DEBT": 183.8, "TOTAL_EQUITY": 626.2, "ROIC": 20.7, "ROE": 8.6, "RETAINED_RATIO": 6.0, "PAYOUT_RATIO": 33.7, "AVG_PRICE": 3.83}, "2019": {"PER_OI": 9.82, "PER_NETCASH": 1.57, "BASIC_EPS": 0.71, "DPS": 0.3046, "CAPEX_PS": 0.38, "BPS": 7.7, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 8570.9, "PE_AVG": 3.5, "PE_RELATIVE": 0.32, "DIV_YIELD": 12.2, "OPERATE_INCOME": 841.8, "OP_MARGIN": 16.0, "DEPRECIATION": 73.9, "GROSS_MARGIN": 19.6, "HOLDER_PROFIT": 61.0, "TAX_EBT": 26.4, "NET_PROFIT_RATIO": 7.2, "WORKING_CAPITAL": 278.7, "LT_DEBT": 50.8, "TOTAL_EQUITY": 660.2, "ROIC": 26.3, "ROE": 9.2, "RETAINED_RATIO": 5.5, "PAYOUT_RATIO": 42.8, "AVG_PRICE": 2.79}, "2020": {"PER_OI": 9.7, "PER_NETCASH": 1.95, "BASIC_EPS": 1.18, "DPS": 0.547, "CAPEX_PS": 0.59, "BPS": 8.65, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 8878.4, "PE_AVG": 1.9, "PE_RELATIVE": 0.14, "DIV_YIELD": 23.8, "OPERATE_INCOME": 861.4, "OP_MARGIN": 19.4, "DEPRECIATION": 67.9, "GROSS_MARGIN": 22.5, "HOLDER_PROFIT": 105.0, "TAX_EBT": 17.8, "NET_PROFIT_RATIO": 12.2, "WORKING_CAPITAL": 240.8, "LT_DEBT": 343.2, "TOTAL_EQUITY": 768.0, "ROIC": 19.1, "ROE": 13.7, "RETAINED_RATIO": 7.9, "PAYOUT_RATIO": 46.3, "AVG_PRICE": 2.73}, "2021": {"PER_OI": 12.55, "PER_NETCASH": 2.49, "BASIC_EPS": 1.76, "DPS": 0.8585, "CAPEX_PS": 0.66, "BPS": 10.13, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 9121.4, "PE_AVG": 3.0, "PE_RELATIVE": 0.29, "DIV_YIELD": 16.5, "OPERATE_INCOME": 1144.9, "OP_MARGIN": 22.8, "DEPRECIATION": 66.7, "GROSS_MARGIN": 26.6, "HOLDER_PROFIT": 160.7, "TAX_EBT": 25.3, "NET_PROFIT_RATIO": 14.0, "WORKING_CAPITAL": 404.6, "LT_DEBT": 218.8, "TOTAL_EQUITY": 924.4, "ROIC": 26.0, "ROE": 17.4, "RETAINED_RATIO": 10.1, "PAYOUT_RATIO": 48.7, "AVG_PRICE": 6.36}, "2022": {"PER_OI": 13.9, "PER_NETCASH": 1.65, "BASIC_EPS": 0.92, "DPS": 0.4555, "CAPEX_PS": 0.93, "BPS": 10.16, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 9475.5, "PE_AVG": 5.9, "PE_RELATIVE": 0.79, "DIV_YIELD": 8.4, "OPERATE_INCOME": 1317.0, "OP_MARGIN": 11.5, "DEPRECIATION": 69.0, "GROSS_MARGIN": 13.8, "HOLDER_PROFIT": 87.0, "TAX_EBT": 22.2, "NET_PROFIT_RATIO": 6.6, "WORKING_CAPITAL": 161.9, "LT_DEBT": 165.5, "TOTAL_EQUITY": 963.1, "ROIC": 16.1, "ROE": 9.0, "RETAINED_RATIO": 5.2, "PAYOUT_RATIO": 49.6, "AVG_PRICE": 6.05}, "2023": {"PER_OI": 14.1, "PER_NETCASH": 1.96, "BASIC_EPS": 1.21, "DPS": 0.5709, "CAPEX_PS": 0.64, "BPS": 11.21, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 9475.5, "PE_AVG": 4.3, "PE_RELATIVE": 0.48, "DIV_YIELD": 11.0, "OPERATE_INCOME": 1336.2, "OP_MARGIN": 13.4, "DEPRECIATION": 71.4, "GROSS_MARGIN": 15.7, "HOLDER_PROFIT": 114.6, "TAX_EBT": 21.4, "NET_PROFIT_RATIO": 8.6, "WORKING_CAPITAL": 133.7, "LT_DEBT": 246.6, "TOTAL_EQUITY": 1062.6, "ROIC": 16.2, "ROE": 10.8, "RETAINED_RATIO": 6.6, "PAYOUT_RATIO": 47.2, "AVG_PRICE": 5.74}, "2024": {"PER_OI": 16.48, "PER_NETCASH": 3.05, "BASIC_EPS": 2.36, "DPS": 1.491, "CAPEX_PS": 1.33, "BPS": 12.52, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 9475.5, "PE_AVG": 3.4, "PE_RELATIVE": 0.4, "DIV_YIELD": 18.8, "OPERATE_INCOME": 1561.7, "OP_MARGIN": 22.0, "DEPRECIATION": 65.2, "GROSS_MARGIN": 27.0, "HOLDER_PROFIT": 223.7, "TAX_EBT": 25.2, "NET_PROFIT_RATIO": 14.3, "WORKING_CAPITAL": 328.4, "LT_DEBT": 238.5, "TOTAL_EQUITY": 1186.1, "ROIC": 26.5, "ROE": 18.9, "RETAINED_RATIO": 7.6, "PAYOUT_RATIO": 63.1, "AVG_PRICE": 8.58}, "2025": {"PER_OI": 16.35, "PER_NETCASH": 2.98, "BASIC_EPS": 2.28, "DPS": 1.4903, "CAPEX_PS": 1.07, "BPS": 14.27, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 9932.3, "PE_AVG": 7.4, "PE_RELATIVE": 0.93, "DIV_YIELD": 8.8, "OPERATE_INCOME": 1623.5, "OP_MARGIN": 20.9, "DEPRECIATION": 69.7, "GROSS_MARGIN": 25.6, "HOLDER_PROFIT": 226.4, "TAX_EBT": 26.9, "NET_PROFIT_RATIO": 13.9, "WORKING_CAPITAL": 604.8, "LT_DEBT": 347.1, "TOTAL_EQUITY": 1417.1, "ROIC": 21.2, "ROE": 16.0, "RETAINED_RATIO": 5.9, "PAYOUT_RATIO": 65.4, "AVG_PRICE": 18.75}}, "cagr": {"revenue": {"1yr": 4.0, "3yr": 7.2, "5yr": 13.5, "10yr": 13.9}, "eps": {"1yr": -3.4, "3yr": 35.3, "5yr": 14.1, "10yr": 14.5}, "cashflow": {"1yr": -2.3, "3yr": 21.8, "5yr": 8.9, "10yr": 8.4}, "dividend": {"1yr": -0.0, "3yr": 48.5, "5yr": 22.2, "10yr": 28.1}, "equity": {"1yr": 19.5, "3yr": 13.7, "5yr": 13.0, "10yr": 14.6}}, "quarterly": {"sales": [{"year": "2011", "has_quarter": false, "q1": 113.4, "q3": 122.9, "full": 236.3}, {"year": "2012", "has_quarter": false, "q1": 126.0, "q3": 122.0, "full": 248.0}, {"year": "2013", "has_quarter": false, "q1": 135.0, "q3": 159.0, "full": 294.0}, {"year": "2014", "has_quarter": false, "q1": 173.7, "q3": 187.2, "full": 360.9}, {"year": "2015", "has_quarter": false, "q1": 224.5, "q3": 216.6, "full": 441.1}, {"year": "2016", "has_quarter": false, "q1": 253.8, "q3": 360.2, "full": 614.0}, {"year": "2017", "has_quarter": false, "q1": 471.7, "q3": 507.7, "full": 979.4}, {"year": "2018", "has_quarter": false, "q1": 443.3, "q3": 458.6, "full": 901.9}, {"year": "2019", "has_quarter": false, "q1": 414.3, "q3": 427.5, "full": 841.8}, {"year": "2020", "has_quarter": false, "q1": 399.4, "q3": 462.0, "full": 861.4}, {"year": "2021", "has_quarter": false, "q1": 524.8, "q3": 620.1, "full": 1144.9}, {"year": "2022", "has_quarter": false, "q1": 687.4, "q3": 629.6, "full": 1317.0}, {"year": "2023", "has_quarter": false, "q1": 657.3, "q3": 678.9, "full": 1336.2}, {"year": "2024", "has_quarter": false, "q1": 735.9, "q3": 825.8, "full": 1561.7}, {"year": "2025", "has_quarter": false, "q1": 810.4, "q3": 813.1, "full": 1623.5}], "eps": [{"year": "2011", "has_quarter": false, "q1": 0.53, "q3": 0.5, "full": 1.03}, {"year": "2012", "has_quarter": false, "q1": 0.48, "q3": 0.45, "full": 0.93}, {"year": "2013", "has_quarter": false, "q1": 0.44, "q3": 0.51, "full": 0.95}, {"year": "2014", "has_quarter": false, "q1": 0.35, "q3": 0.54, "full": 0.89}, {"year": "2015", "has_quarter": false, "q1": 0.43, "q3": 0.16, "full": 0.59}, {"year": "2016", "has_quarter": false, "q1": 0.46, "q3": 0.5, "full": 0.96}, {"year": "2017", "has_quarter": false, "q1": 0.2, "q3": 0.44, "full": 0.64}, {"year": "2018", "has_quarter": false, "q1": 0.21, "q3": 0.41, "full": 0.62}, {"year": "2019", "has_quarter": false, "q1": 0.29, "q3": 0.42, "full": 0.71}, {"year": "2020", "has_quarter": false, "q1": 0.33, "q3": 0.85, "full": 1.18}, {"year": "2021", "has_quarter": false, "q1": 0.9, "q3": 0.86, "full": 1.76}, {"year": "2022", "has_quarter": false, "q1": 0.85, "q3": 0.07, "full": 0.92}, {"year": "2023", "has_quarter": false, "q1": 0.26, "q3": 0.95, "full": 1.21}, {"year": "2024", "has_quarter": false, "q1": 0.97, "q3": 1.39, "full": 2.36}, {"year": "2025", "has_quarter": false, "q1": 1.31, "q3": 0.97, "full": 2.28}], "dividends": [{"year": "2011", "has_quarter": false, "q1": 0, "q3": 0.259, "full": 0.259}, {"year": "2012", "has_quarter": false, "q1": 0, "q3": 0.211, "full": 0.211}, {"year": "2013", "has_quarter": false, "q1": 0, "q3": 0.212, "full": 0.212}, {"year": "2014", "has_quarter": false, "q1": 0, "q3": 0.221, "full": 0.221}, {"year": "2015", "has_quarter": false, "q1": 0, "q3": 0.126, "full": 0.126}, {"year": "2016", "has_quarter": false, "q1": 0, "q3": 0.42, "full": 0.42}, {"year": "2017", "has_quarter": false, "q1": 0, "q3": 0.167, "full": 0.167}, {"year": "2018", "has_quarter": false, "q1": 0, "q3": 0.21, "full": 0.21}, {"year": "2019", "has_quarter": false, "q1": 0, "q3": 0.305, "full": 0.305}, {"year": "2020", "has_quarter": false, "q1": 0, "q3": 0.547, "full": 0.547}, {"year": "2021", "has_quarter": false, "q1": 0, "q3": 0.859, "full": 0.859}, {"year": "2022", "has_quarter": false, "q1": 0, "q3": 0.456, "full": 0.456}, {"year": "2023", "has_quarter": false, "q1": 0, "q3": 0.571, "full": 0.571}, {"year": "2024", "has_quarter": false, "q1": 0, "q3": 1.491, "full": 1.491}, {"year": "2025", "has_quarter": false, "q1": 0, "q3": 1.49, "full": 1.49}]}, "valuation_line": [{"date": "2011", "value": 20.36}, {"date": "2012", "value": 20.02}, {"date": "2013", "value": 22.43}, {"date": "2014", "value": 24.33}, {"date": "2015", "value": 22.95}, {"date": "2016", "value": 30.2}, {"date": "2017", "value": 27.78}, {"date": "2018", "value": 25.37}, {"date": "2019", "value": 27.09}, {"date": "2020", "value": 33.65}, {"date": "2021", "value": 42.97}, {"date": "2022", "value": 28.47}, {"date": "2023", "value": 33.82}, {"date": "2024", "value": 52.63}, {"date": "2025", "value": 51.42}], "valuation_method": "cf", "cf_multiplier": 15.0, "pb_multiplier": 1.0, "balance_summary": {"total_assets": 2453.79016, "total_liabilities": 1036.68524, "total_equity": 1417.10492, "current_assets": 1145.67042, "current_liabilities": 540.89193, "cash": 511.87377, "inventory": 366.35529, "receivables": 88.94377}, "income_summary": {"revenue": 1623.53725, "gross_profit": 415.05249, "net_profit": 226.36105}, "revenue_structure": {"by_product": [{"name": "铝合金产品", "value": 120000.0, "pct": 90.0}, {"name": "氧化铝", "value": 13000.0, "pct": 10.0}]}, "capital_structure": {"unit": "亿", "divisor": 100000000.0, "total_assets": 2453.79016, "total_debt": 1036.68524, "total_equity": 1417.10492, "current_assets": 1145.67042, "current_liabilities": 540.89193, "cash": 511.87377, "inventory": 366.35529, "receivables": 88.94377, "non_current_liab": 495.79331, "lt_debt": 9.68183, "due_in_5yr": 184.46578, "total_int": 34.83268, "coverage": "9.7x", "coverage_num": 9.732475652174912, "lt_debt_pct": 0.7, "pension_assets": "N/A", "pfd_stock": "None", "common_shares": 9932.0, "common_shares_str": "9,932,297,039", "common_shares_raw": 9932297039, "mkt_cap": 2336.3, "cap_label": "Large Cap", "business_desc": "", "employee_count": null, "employee_year": "", "mda_text": "截至二零二五年及二零二四年十二月三十一日止年度，本集團的收入和本公司股東應佔淨利潤比較數字列載如下：\n集團鋁合金產品銷售價格、氧化鋁銷量以及鋁合金加工產品銷量與銷售價格同比均上漲所致\n年內，本集團鋁合金產品銷量達到約582.4萬噸，與去年同期基本持平，鋁合金產品平均銷售價格較去年同期上升約3.8%\n下表分別列出截至二零二五年及二零二四年十二月三十一日止年度，按產品種類劃分之收入、毛利、毛利率及收入佔比：\n收入 毛利 毛利率 收入佔比 收入 毛利 毛利率 收入佔比\n主要是由於本集團氧化鋁產品毛利率與去年同期相比有所下降\n由於鋁合金加工產品之深加工產品受產能利用率下降及出口退稅取消影響所致\n元減少約14.4%，主要是由於計入行政開支的研發費用減少所致\n元增加約3.6%，主要是由於年內本集團有息債務總額增加，導致利息費用相應增加\n額主要是購買物業、廠房及設備的現金流出；融資活動現金流出淨額主要是本集團於年內支付股息及債務利息的現金流\n設項目的質量保證金、雲南綠色鋁創新產業園、輕量化材料基地及新能源等項目的建設開支\n主要是用於雲南綠色鋁創新產業園、輕量化材料基地及新能源等建設項目\n於二零二五年十二月三十一日，本集團貿易應收賬款約人民幣8,894,377,000元，較二零二四年十二月三十一日的貿易應收\n於二零二五年十二月三十一日，本集團預付款及其他應收賬款約人民幣5,957,675,000元，較二零二四年十二月三十一日的\n於二零二五年及二零二四年十二月三十一日，除本年報披露外，本集團無重大或然負債\n本集團已建立適當的流動資金風險管理架構，以確保本集團的短、中及長期資金供應和滿足流動資金需求\n該等現金及現金等價物水平有助於保證本集團業務經營的穩健和靈活性，並對本\n本集團將繼續採取有效措施保證充足的流動資金及財務資源以滿足業務所需，保持良\n本集團以部分受限制銀行存款、存貨、貿易應收賬款、設備及使用權資產作為銀行借款的抵押品，為日常業務運營及項目\n於二零二五年十二月三十一日，本集團銀行借款中約47.5%為按固定息率計算，餘下\n本集團的目標是運用各種債務融資工具以保持融資的持續性與靈活性之間的平衡\n等票據及債券有助於優化本集團的負債結構，降低融資成本\n另外，本集團將繼續控制生產成本，提高盈利能力，增加自身的現金流水平，保證本集團充足的流動性\n於二零二五年十二月三十一日，本集團的債務主要以人民幣和外幣計算，其中人民幣債務佔總債務的約85.3%，外幣債\n務佔總債務的約14.7%；現金及現金等價物主要以人民幣及外幣持有，其中持有的人民幣現金及現金等價物佔總額的約\n有關借款、票據及債券的幣種、到期日及利率詳情載於綜合財務報表附註35、37至40\n於二零二五年十二月三十一日，本集團共有51,234名員工，與二零二四年十二月三十一日基本持平\n此外，本集團建立基於業績表現的獎勵制度，根據該制度，員工有可能獲得額外獎金\n本集團的大多數收入以人民幣收取，大多數開支也採用人民幣支付\n產品、部分銀行結餘及銀行借款、可換股債券及優先票據以外幣計價，本集團存在某些外匯風險\n回顧年內，本集團積極防範匯率波動風險，確保匯率風險整體受控，本集團根據業務開展情況，積極採取以下措施，以達\n到防範外匯風險的目的：(合理安排外幣融資及外匯收支，適時調整外匯資金管理方案；(推進跨境資金池管理模式，開\n展境內和境外資金集中統一管理和使用，以減少結售匯成本，減少貨幣兌換損失；及(結合匯率及利率的變化情況，適時\n茲提述本公司日期為二零二四年十二月二十三日、二零二五年一月六日、二零二五年五月二十二日、二零二五年六月九\n日、二零二五年十二月十日、二零二六年一月四日及二零二六年一月九日的公告，內容有關本集團附屬公司山東宏橋鋁業\n控股股份有限公司（「宏橋控股」，前稱山東宏創鋁業控股股份有限公司，於深圳證券交易所上市，股份代碼：002379.)\n擬向本集團附屬公司山東宏拓實業有限公司（「宏拓實業」）現有股東發行新股以購買其持有的目標股份\n權已於二零二五年十二月三十一日全部過戶登記至宏橋控股名下\n該交易完成後，本公司在宏橋控股的間接持股比例由約22.98%增加至\n除上文所披露者外，截至二零二五年十二月三十一日止年度，本公司概無有關附屬公司、聯營公司或合營企業的重大收購\n除本年報披露外，截至二零二五年十二月三十一日止年度，本集團概無持有對本集團整體運營有重大影響的重大投資\n除本年報披露外，截至二零二五年十二月三十一日止年度及截至本年報刊發日期，本集團概無批准任何未來作重大投資或\n本集團的運營面臨著一定的風險及不確定性，其中一些風險是本集團所不能控制的\n形勢，中國信貸政策及外匯政策，有關法律、法規和執法政策的變動，原材料和鋁產品的價格及供求等因素\n隨著本集團的業務增長及擴展，有關本集團業務的潛在風險亦同時增加\n險，本集團已實施一套風險管理系統，覆蓋我們業務營運各重大方面，包括財務安全、生產與合規\n理為一個系統項目，本集團各部門負責識別及評估有關其各自營運範疇的風險\n環保部負責監督本集團全面的環境保護情況，例如為本集團制訂環境相關指引及政策，\n關注中國相關環境法規及標準的最新發展，定期檢查本集團生產設施及污染物排放設施，申請環保許可文件及檢查本集團\n於發電過程中，本集團的發電廠排放污水、空氣污染物（如二氧化硫）及發出噪音\n本集團亦已安裝污水處理及循環設備，以降低污水對環境所造成的影響\n此外，本集團已安裝隔音裝置，以降低本集團發電廠日常營運所製造\n本集團完成了所有燃煤發電機組的超低排放改造，所有發電機組達到了燃氣機組的排放水平\n於生產鋁產品過程中，本集團的工廠排放污水、空氣污染物及發出噪音\n本集團將生產過程中產生的廢鋁循環再利用，從而減少工業廢料以及提高其利用率\n此外，本集團已安裝隔音裝置，以降低我們生產基地日常營運所製造噪音的影響\n本公司於開曼群島註冊成立，本集團絕大部分的業務經營在中國境內進行，而本公司本身在香港聯合交易所有限公司（「聯\n於截至二零二五年十二月三十一日止年度內及直至本年報刊發日期，本集團一直致力於在營運方面遵守相關\n人力資源為本集團的最大資產之一，本集團高度重視僱員的個人發展\n本集團會慎重考慮僱員有關提升工作效率及和諧工作氣氛的所有寶貴反\n本集團亦會根據僱員的表現給予額外獎金，以表揚及獎勵對本集\n本集團已與多家供貨商建立長期的合作關係，並盡力確保其遵守本集團對質素及道德的承諾\n要求其滿足若干評估標準，包括往績記錄、經驗、財務實力、聲譽、生產高質素產品的能力及質量控制效力\n本集團加強與現有客戶的關係並發展與潛在客戶的關係，與多家客戶建立長期的合作關係\n本集團已設立覆蓋山東省、東北、華南、華東、西南及華北的客戶所在地區的銷售及營銷團隊\n展望未來，全球經濟仍面臨諸多不確定性，貿易壁壘與政策波動交織，增長韌性與下行壓力並存；而中國經濟在結構性調\n整中持續釋放內需潛能，政策精準發力亦將為行業發展持續提供助力，並為鋁行業供需緊平衡格局帶來更多契機\n本集團將繼續錨定「打造受人尊敬的百年製造企業」願景，深耕鋁業主航道，主動對接並深度融入國家「十五五」科技創新自\n主、產業升級與國內大循環戰略，以數智賦能與綠色轉型築牢核心競爭力，在產業轉型變革的浪潮中，以創新驅動與高質\n量發展回應市場挑戰，擘畫產業新藍圖，破局而立和向新而行，馳騁時代之勢，彰顯產業擔當，以恆久之進，致基業長\n於二零二五年十二月三十一日後及截至本年報刊發之日止，並無發生任何對本集團有重大影響的事件\n王雨婷女士 41歲 執行董事、企業融資部主管及高級副總裁\n張波先生，56歲，於二零一一年一月十六日獲委任為本公司執行董事兼行政總裁，於二零一九年五月三十一日獲選舉為\n董事會主席以及董事會薪酬委員會及提名委員會成員，於二零二三年五月十六日起擔任董事會提名委員會主席，於二零\n他於一九九六年八月畢業於山東廣播電視大學，主修財務會計專\n他亦於二零零五年六月取得武漢大學軟件工程專業碩士學位及於二零二三年六月取得新加坡管\n他自一九九八年四月至一九九九年二月擔任山東魏橋創業集團有限公\n司（「魏橋創業集團」）副總經理，自一九九九年三月至二零零六年九月相繼擔任魏橋紡織股份有限公司（「魏橋紡織」，曾於\n聯交所上市，退市前股份代碼：2698.包括其前身）總經理、執行董事及董事長，自二零零一年七月至二零一零年五\n月擔任威海魏橋紡織有限公司董事，自二零零一年十一月至二零一零年五月擔任濱州魏橋科技工業園有限公司（「濱州工業\n園」）董事長及總經理，自二零一零年一月至二零二一年一月擔任山東宏橋新型材料有限公司（「山東宏橋」）的總經理，自二\n零一四年六月至二零二零年八月擔任濱州市鋁行業協會會長，自二零一六年十一月起至二零二零年八月止擔任國際鋁業協\n會副主席，自二零一九年六月起至二零二一年十二月擔任山東宏拓實業有限公司（「宏拓實業」）的執行董事及總經理，自二\n零一八年十二月至二零一九年五月擔任士平環球控股有限公司（「士平環球控股」）的備任董事\n公司（「魏橋鋁電」）的董事經理（自二零零六年十一月起）、董事長（自二零零七年一月起）及總經理（自二零零七年二月起），\n山東宏橋的董事（自二零一零年一月起）、董事長（自二零一九年六月起）及總經理（自二零二一年十一月起），宏橋（香港）國\n際貿易有限公司（「宏橋（香港）貿易」）董事（自二零一二年四月起），宏橋投資（香港）有限公司（「宏橋投資（香港）」）的董事（自\n二零一五年一月起），魏橋創業集團的董事（自二零一二年十一月起）、董事長（自二零一八年九月起），中國宏橋投資有限公\n司的董事（自二零一九年五月起），宏拓實業的董事長（自二零二一年十二月起），宏橋國際貿易有限公司的執行董事（自二零\n二零年四月起），士平環球控股的董事（自二零一九年五月起），士平興旺私人信託公司（「士平信託公司」）董事（自二零一九\n年十二月起），山東宏橋鋁業控股股份有限公司（「宏橋控股」，前稱山東宏創鋁業控股股份有限公司，於深圳證券交易所上\n月起）、中國有色金屬工業協會副會長（自二零一五年三月起）、山東省鋁業協會會長（自二零一九年三月起）、濱州市企業\n與企業家聯合會（前稱濱州市企業家協會）會長（自二零二零年一月起）、濱州士平公益基金會副理事長（自二零二零年九月\n起）、濱州市慈善總會會長（自二零二零年十月起）、鄒平市企業家協會榮譽會長（自二零二二年五月起）、中國光彩事業促進\n全國人民代表大會代表及山東省第十二屆人民代表大會代表\n鄭淑良女士，79歲，於二零一一年一月十六日獲委任為本公司副主席及執行董事，於二零二五年三月十四日起擔任董事會\n她自一九九六年十一月至一九九九年六月相繼擔任魏橋創業集\n團（包括其前身）原料採購部計量科科長、處長、原料供應部副部長，自一九九九年六月至二零零一年六月擔任魏橋創業集\n她現任山東宏橋董事兼副董事長（自二零一零年一月起），魏橋鋁電的董事（自二零一一年十一月起），濱州\n張瑞蓮女士，48歲，於二零一七年十二月十一日獲委任為執行董事，於二零二五年三月十四日起擔任董事會可持續發展委\n她於一九九六年七月畢業於山東省輕工業經濟管理學校，取得會計專業文憑\n她於二零零六年六月加入本集團，並擁有逾二十五年會計經驗\n她自二零零五年十二月至二零零六年六月擔任魏橋創業集團的審計處處長\n零六年六月起擔任魏橋鋁電財務部部長及自二零一四年十二月起擔任魏橋鋁電董事，自二零一零年二月起擔任山東宏橋財\n務部經理及自二零一四年十二月起擔任山東宏橋的董事，自二零一二年四月起擔任宏橋（香港）貿易董事，自二零二六年一\n她目前亦為本公司執行副總裁（自二零一一年一月起）及財務總監（自二零一四年九月起），以及魏\n王雨婷女士，41歲，於二零二一年八月二十日獲委任為執行董事，於二零二五年三月十四日起擔任董事會可持續發展委員\n她於二零零八年十二月畢業於英國諾丁漢大學商學院，主修風險管理和微觀經濟學\n她自二零一一年六月至二零二三年一月擔任本公司投資者關係部主管，自二零一四年三月至今擔任本公司企業融資\n部主管，負責本公司的境外資本巿場、機構投資者通訊、融資及併購等事宜\n楊叢森先生，56歲，於二零一一年一月十六日獲委任為非執行董事，於二零二五年三月十四日起擔任董事會可持續發展委\n他畢業於青島海洋大學，於一九九八年七月獲國際貿易專業大專文憑\n他於二零零七年一月加入本集團，擁有逾二十五年的管理經驗\n負責管理本集團自備熱電廠的生產及運營，亦曾擔任魏橋鋁電副總經理\n創業集團（包括其前身）人事科網絡管理員，自一九九九年十二月至二零零三年十月擔任魏橋創業集團熱電廠廠長，自二零\n零五年一月至二零零六年六月擔任魏橋創業集團副總經理，自二零二一年一月至二零二一年十二月擔任山東宏橋的總經\n理，自二零二四年一月至二零二六年一月擔任宏橋控股董事長\n他現任魏橋創業集團的董事（自二零零五年一月起），山東\n宏橋的董事（自二零一零年一月起）、魏橋鋁電的董事（自二零零六年十二月起）、宏拓實業的董事總經理（自二零二一年十二\n月起）、宏橋控股董事（自二零二四年一月起）及總經理（自二零二六年一月起）、魏橋產業技術研究院院長（自二零二五年十\n張敬雷先生，49歲，於二零一一年一月十六日獲委任為非執行董事，於二零二五年三月十四日起擔任董事會可持續發展委\n他於一九九七年七月畢業於長安大學（前稱西安工程學院），獲工業分析專業大專文憑\n魏橋紡織的執行董事及公司秘書（自二零一零年五月至二零二四年三月）\n魏橋創業集團的董事（自二零一八年九月起）、山東宏橋的董事（自二零二一年一月起）、宏橋控股董事（自二零二六年一月\n涂一鍇先生，49歲，於二零二五年八月四日獲委任為非執行董事\n他亦於二零零二年三月畢業於北京科技大學，取得碩士學位，主修企業管理專業\n至二零零二年六月，他曾於中信銀行股份有限公司（股份代號：998.HK及601998.，前稱為中信實業銀行）（「中信銀行」）\n於二零零二年六月至二零零二年十月，他曾於中信銀行總行營業部富華大廈支行擔\n於二零零二年十月至二零零六年九月，他曾先後於中信銀行總行營業部投資銀行部擔任客戶經理及高級客戶\n於二零零六年九月至二零零八年三月，他曾先後於中信銀行總行營業部公司銀行部戰略客戶處擔任副經理及經理\n於二零零八年三月至二零零八年十二月，他曾於中信銀行總行營業部公司銀行部擔任總經理助理兼戰略客戶處經理\n零零八年十二月至二零一零年四月，他曾先後於中信信託有限責任公司（「中信信託」）信託業務二部擔任高級經理及副總經\n於二零一零年四月至二零一三年七月，他曾先後於中信信託信託業務三部擔任副總經理及總經理\n於二零一五年六月至二零二一年十一月，他於中信信託擔任副總經\n於二零二一年十一月至二零二四年四月，他曾於中信信託擔任副總經理及董事會秘書\n於二零二四年四月至二零二五年一月，他曾於中信信託擔任黨\n於二零二五年一月至二零二五年六月，他曾於中信信託擔任黨委副書記、副總經理及董\n自二零二五年六月起，他擔任中信信託黨委副書記、總經理及董事會秘書\n保誠基金管理有限公司（自二零二一年十月起）及上海信誠致遠資產管理有限公司（前稱為中信信誠資產管理有限公司）（自二\n自二零二二年四月起，他亦不時擔任中信信惠國際資本有限公司的董事\n股有限公司（於聯交所上市，股份代號：934.的非執行董事（自二零二五年九月起）、中國信託登記有限責任公司（自二\n零二二年三月起）及中國信託業保障基金有限責任公司（自二零二二年四月起）董事，以及擔任中國信託業協會副會長（自二\n零二一年十二月起）及中信基金會理事會理事（自二零二一年六月起）\n張浩先生，51歲，於二零二五年八月四日獲委任為涂一鍇先生之替任董事\n（前稱中國金融學院），主修國際金融專業並獲經濟學學士學位\n限公司（股份代號：998.HK及601998.，前稱為中信實業銀行）相繼擔任資金部外匯交易員及副經理\n月至二零零五年六月於東方匯理銀行擔任金融市場部董事，及自二零零五年七月至二零零八年六月於貝爾斯登亞洲有限公\n他亦曾於二零零八年七月至二零一四年七月於渣打銀行（香港）有限公司擔任金融市場部董事\n他於二零一七年十二月十一日至二零一八年二月二日及自二零一八年八月三十一日至二零二一年一月二十七日擔\n他於二零二一年一月二十七日至二零二二年十二月二十九日擔任前任非執行董\n他於二零二二年十二月二十九日至二零二三年十二月二十八日擔任前任非執行董事劉小軍先生\n自二零二三年十二月二十八日至二零二四年七月十一日，他擔任涂一鍇先生之替任董事\n十一日至二零二五年八月四日，他擔任前任非執行董事田明明先生之替任董事\n際資本有限公司行政總裁兼董事並兼任中信信惠國際資本（香港）有限公司（該公司為中信信惠國際資本有限公司全資附屬公\n司並持有香港證券及期貨事務監察委員會發出的牌照可以從事受規管活動）的行政總裁兼董事並為第一類（證券交易）及第四\n類（就證券提供意見）受規管活動的負責人員及第九類（提供資產管理）受規管活動的持牌代表\n孫冬冬女士，48歲，於二零二一年三月五日獲委任為非執行董事，於二零二五年三月十四日起擔任董事會可持續發展委\n她於一九九八年七月畢業於山東建築工程學院，主修供熱通風與空調工程\n她於魏橋鋁電相繼擔任多項職務，自二零零零年十一月至二零零六年六月擔任供應科科長，自二零零六年六月至二零\n一零年五月擔任物資供應部機電處處長，自二零一零年五月至二零一一年六月擔任預算審計處處長，自二零一一年六月\n至二零一八年三月擔任審計監察部部長，及自二零一八年三月至二零二零年十月擔任審計部部長\n擔任山東宏橋監事，自二零一九年六月起擔任魏橋鋁電監事，自二零一九年十月起擔任雲南宏橋新型材料有限公司監事，\n自二零一九年十月起擔任雲南宏泰新型材料有限公司監事，自二零一九年十一月起擔任上海和魯股權投資管理有限公司監\n事，自二零二零年十月起擔任山東宏橋審計部部長，自二零二四年二月起擔任魏橋創業集團監事\n文献軍先生，63歲，於二零二一年三月五日獲委任為獨立非執行董事\n他於一九八四年七月畢業於中南大學（原中南礦冶學院），取得工學學士學位，主修金屬材料，及他\n亦於一九九零年六月畢業於北京有色金屬研究總院研究生部，取得工學碩士學位，主修金屬材料\n至一九八七年八月擔任北京有色金屬研究總院助理工程師，自一九九零年七月至一九九二年六月擔任中國有色金屬工業總\n公司科技局工程師，自一九九二年九月至一九九六年一月擔任中國有色金屬技術開發交流中心副處長及高級工程師，自\n一九九六年二月至一九九八年四月擔任中國有色金屬工業總公司投資經營部副處長及高級工程師，自一九九八年五月至二\n零零零年十二月擔任國家有色金屬工業局行業管理司副處長、正處級調研員及高級工程師，自二零零一年一月至二零零一\n年三月擔任中央企業工委處長，自二零零一年四月至二零二一年四月於中國有色金屬工業協會相繼擔任行業協調部副主\n任、鋁部主任、副會長及教授級高級工程師，及自二零一零年十月至二零一七年十月擔任中國有色金屬加工工業協會理事\n文先生亦曾擔任多家上市公司的獨立董事，自二零零九年十月至二零一四年十一月擔任河南中孚實業股份有限公司\n（「中孚實業」）（於上海證券交易所上市，股票代碼：600595.獨立董事，自二零一一年三月至二零一四年十月擔任寧夏\n東方鉭業股份有限公司（於深圳證券交易所上市，股票代碼：000962.獨立董事，自二零一一年五月至二零一三年九月\n擔任浙江棟樑新材股份有限公司（現稱萬邦德醫藥控股集團股份有限公司，於深圳證券交易所上市，股票代碼：002082.\n獨立董事，自二零一三年七月至二零一四年十月擔任焦作萬方鋁業股份有限公司（於深圳證券交易所上市，股票代碼：\n000612.獨立董事，自二零一三年十月至二零一四年十月擔任蘇州羅普斯金鋁業股份有限公司（現稱中億豐羅普斯金材\n料科技股份有限公司，於深圳證券交易所上市，股票代碼：002333.獨立董事，自二零零八年七月至二零二一年七月擔\n任中國忠旺控股有限公司（曾於聯交所上市，退市前股票代碼：01333.獨立非執行董事\n河南神火煤電股份有限公司（於深圳證券交易所上市，股票代碼：000933.獨立董事，自二零二一年八月起擔任興發鋁\n業控股有限公司（於聯交所上市，股票代碼：00098.獨立非執行董事，自二零二一年九月起擔任浙江海亮股份有限公\n司（於深圳證券交易所上市，股票代碼：002203.獨立董事，自二零二一年十一月起擔任中孚實業（於上海證券交易所上\n市，股票代碼：600595.獨立董事，自二零二五年三月起擔任南山鋁業國際控股有限公司（於聯交所上市，股票代碼：\n韓本文先生，75歲，於二零一一年一月十六日獲委任為獨立非執行董事、董事會審核委員會主席、薪酬委員會成員及提\n名委員會成員，於二零一二年三月九日起擔任董事會薪酬委員會主席\n他獲山東省註冊會計師協會認可為註冊會計師，為合資格的中級審計師\n十二月任鄒平縣審計局科員及由一九九九年十二月至二零零七年二月任山東鑒鑫會計師事務所有限公司（前稱鄒平鑒鑫有限\n董新義先生，49歲，於二零一七年十二月十一日獲委任為獨立非執行董事及董事會審核委員會成員\n畢業於位於中國陝西省西安市的西北政法學院（現稱西北政法大學），主修國際經濟法，取得法學學士學位；及分別於二零\n零六年八月及二零零九年八月於位於韓國首爾的高麗大學取得法學碩士學位及法學博士學位\n零四年三月於山東省青島市黃島區人民檢察院民事行政檢察處任書記員\n他於二零一零年七月至二零一二年六月於中國人民大學法學院擔任\n他於二零一六年九月至二零二四年八月擔任廣東格林精密部件股份有限公司（於深圳證券交易所上市，股票\n自二零一二年七月以來，他於中央財經大學（「中央財大」）擔任多個職務，包括教師、副教授\n及教授，他自二零一五年五月起同時兼任中央財大科技金融與金融消費者權益保障法治研究中心（前稱中央財大互聯網金融\n與民間融資法治研究中心）副主任及自二零一七年六月起同時兼任中央財大科技與金融法律研究中心主任\n十二月起擔任北京市金融服務法學研究會理事，自二零一六年二月起於北京市京都律師事務所任職律師及自二零一七年四\n他自二零一三年九月至二零二零年一月擔任友利銀行（中國）有限公司監事，及\n自二零二零年一月起擔任友利銀行（中國）有限公司獨立董事\n他自二零一六年二月起擔任中皓翔宇投資管理有限公司非執\n傅郁林女士，60歲，於二零二三年五月十六日獲委任為獨立非執行董事及董事會提名委員會成員\n她亦於一九九八年七月於北京大學獲得法學碩士學位，主修民法，並於\n二零零一年七月於中國人民大學獲得法學博士學位，主修民事訴訟法\n自一九八七年七月至一九九八年七月，她在武漢海事法院從事審判工作和應用法學研究工作\n三年六月，於北京大學博士後流動工作站從事司法制度與民事訴訟法的學術研究\n學院從事民事訴訟法、證據法、仲裁法及司法制度領域的教學及研究工作\n本公司行政總裁張波先生簡歷詳見「執行董事」部分的披露\n本公司財務總監張瑞蓮女士簡歷詳見「執行董事」部分的披露\n張月霞女士，50歲，於二零一一年一月十六日獲委任為公司秘書\n她亦於二零二零年七月取得中國石油大學（華東）會計學專業本科學歷\n她自二零零一年十二月至二零零九年七月任魏橋創業集團財務部科長、處長，自二零零八年三月至二零一零\n本公司的董事謹此提呈本集團截至二零二五年十二月三十一日止年度的年報及經審核綜合財務報表\n目前本集團的鋁產品包括液態鋁合金、鋁合金錠、鋁合金加工產品及氧化鋁產品\n本公司已採納股息政策，據此，本公司可向本公司股東宣派及派發股息，使股東能分享本公司之溢利成果，同時使本公司\n根據本公司章程細則（「章程細則」），宣派股息須待董事會酌情決定及獲股東批准後，方可作實\n慮本公司的業務、盈利、財務狀況、現金需求及可動用現金、資本開支及未來發展所需，以及當時認為有關的其他因素\n任何股息的宣派、支付以及股息金額均要符合章程細則及開曼群島公司法的規定，包括取得股東批准\n本公司派付的股息亦會取決於本公司可否獲得來自其中國附屬公司的股息而定\n則計算的年度溢利派付，而中國會計原則與其他司法權區的公認會計原則（包括國際財務報告準則）在多方面存有差異\n國法律亦規定外資企業須將部分年度溢利劃撥為法定儲備，此儲備不可以現金股息作出分派\n務或虧損，或須遵守本公司或本公司附屬公司和聯營公司可能訂立的任何銀行授信融資限制契約或其他協議，同樣有可能\n本公司按每股股份基準以港元宣派任何股息，而本公司亦以港元支付相關股息\n本集團截至二零二五年十二月三十一日止年度的經營業績及本集團於二零二五年十二月三十一日的財務狀況，載於本年報\n董事會建議就截至二零二五年十二月三十一日止年度派發末期股息每股165港仙（「二零二五年末期股息」）\n期股息（需經股東於將於二零二六年五月十九日（星期二）舉行的本公司股東週年大會（「二零二五年度股東週年大會」）上批\n准）將於二零二六年六月十八日（星期四）或之前支付予於二零二六年六月二日（星期二）名列本公司股東登記冊之股東\n本公司將於二零二六年五月十二日（星期二）至二零二六年五月十九日（星期二）（包括首尾兩日）期間暫停辦理股份過戶登記\n於二零二六年五月十九日（星期二）名列本公司股東名冊的本公司股東均有權出席即將舉行的二零二五年度股東週年\n為符合出席二零二五年度股東週年大會並於會上投票的資格，所有股份過戶文件連同有關股票，最遲\n須於二零二六年五月十一日（星期一）下午四時三十分前送達本公司股份過戶登記處香港分處之香港中央證券登記有限公司\n本公司將於二零二六年五月二十七日（星期三）至二零二六年六月二日（星期二）（包括首尾兩日）期間暫停辦理股份過戶登記\n於二零二六年六月二日（星期二）名列本公司股東名冊的本公司股東均有權獲派二零二五年末期股息\n零二五年末期股息的資格，所有股份過戶文件連同有關股票，最遲須於二零二六年五月二十六日（星期二）下午四時三十分\n前送達本公司股份過戶登記處香港分處之香港中央證券登記有限公司辦理股份過戶登記手續\n本集團於過去五個財政年度的綜合業績、資產與負債的概要乃摘錄自本集團截至二零二一年十二月三十一日止年度、截至\n二零二二年十二月三十一日止年度、截至二零二三年十二月三十一日止年度的經審核綜合財務報表以及載於本年報第75至\n第77頁本集團截至二零二四年十二月三十一日及二零二五年十二月三十一日止年度的經審核綜合財務報表，現列載如下：\n二零二一年 二零二二年 二零二三年 二零二四年 二零二五年\n二零二一年 二零二二年 二零二三年 二零二四年 二零二五年\n本集團的物業、廠房及設備於截至二零二五年十二月三十一日止年度內的變動詳情，載於綜合財務報表附註16\n本集團於二零二五年十二月三十一日的銀行及其他債務詳情，載於綜合財務報表附註35、37、38、39及40\n截至二零二五年十二月三十一日止年度內本公司股本變動的詳情，載於綜合財務報表附註43\n三十一日止年度內本公司的債券及票據詳情，載於綜合財務報表附註37、38、39及40\n至二零二五年十二月三十一日止年度內，除本年報披露者外，本公司概無訂立任何其他股票掛鈎協議，亦無任何股票掛鈎\n章程細則及開曼群島法例並無優先購買權條文，且並無就該等權利限制本公司須按比例向現有股東提呈發售新股\n於截至二零二五年十二月三十一日止年度及截至本年報刊發日期止任何時間內，除本集團業務外，董事目前或過去概無在\n與本集團業務構成或可能構成直接或間接競爭的業務中擁有任何權益\n於截至二零二五年十二月三十一日止年度及截至本年報刊發日期止任何時間內，本公司或其任何附屬公司概無訂立任何安\n排，以使董事可借由收購本公司或任何其他法人團體的股份或債權證而獲得利益，而董事或任何彼等的配偶或十八歲以下\n子女亦概無獲授予可認購本公司或任何其他法人團體的股份或債權證的權利，亦無於年內行使任何該項權利\n本公司進行股份回購是因為董事會認為本公司的股價偏離本公司的價值\n事會及管理團隊對本公司長遠策略及增長充滿信心，董事會認為股份購回符合本公司及其股東的整體最佳利益\n本公司於截至二零二五年十二月三十一日止年度購回股份詳情如下：\n董事會認為，同步股份回購反映董事會及管理團隊對本公司長期策略及成長的信心，並認為股份回購符合本公司及其股東的整體最佳利益\n詳情載於本公司日期為二零二五年三月十七日及二零二五年三月十八日的公告，以及日期為二零二五年三月十九日的翌日披露報表\n自二零二六年三月二十三日至二零二六年三月二十七日，本公司以總代價約1,823,259,000港元（不含佣金及其他開支）經聯\n股份購回反映董事會及管理團隊對本公司長遠策略及增長充\n滿信心，董事會認為股份購回符合本公司及其股東的整體最佳利益\n除上文所披露者外，本公司或其任何附屬公司於截至二零二五年十二月三十一日止年度內及截至本年報刊發前的最後實際\n該票據於新加坡證券交易有限公司（「新交所」）上市及掛牌，並於二零二五年三月二十七日到期\n有關詳情載於本公司日期為二零二四年三月二十五日及二零\n本公司是次發售的所得款項淨額用作現有離岸債務再融資及一般公司用途\n照本公司日期為二零二五年一月六日之公告所述用途將所得款項使用完畢\n二零二五年五月二十二日之公告所述用途將所得款項使用完畢\n為進一步籌集資本，同時亦擴大本公司股東及資本基礎，於二零二五年十一月十七日，本公司、中國宏橋控股與配售代理\n根據配售及認購協議，配售代理同意以每股29.20港元配售價向六名或以上獨立承配人配售中國宏橋\n認購價約為每股認購股份28.73港元，較本公司普通股於二零二五年十一月十七日（即配售及認購協議日期）在聯交所所報收\n配售及認購事項分別於二零二五年十一月二十日及二零二五年十一月二十五日完成\n有關詳情載於本公司日期為二零二五年十一月十七日、二零二五年十一月二十五日之公告及二零二五年十一月二十五日之\n認購事項之 佔所得款項 年度內已動用的 動用的所得 悉數動用所得款項\n所得款項淨額擬定用途 所得款項淨額 淨額之百分比 實際金額 款項淨額 淨額之預期時間表註\n新能源項目、西芒杜鐵礦石項目、雲南產能搬遷項 十二月三十一日之前\n註： 該分配及預期時間表乃基於董事在並無不可預見情況下作出的最佳估計，並可能根據本公司營運需求、資金需求及項目進度等因素作出適當調整\n(1) 於二零二零年九月二日，山東宏橋獲得中國證監會發出的證監許可[2020]2060號《關於同意山東宏橋新型材料有限公\n(於二零二二年六月十三日，山東宏橋完成境內二零二二年公司債券（第一期）發行，發售規模為人民幣\n根據該期債券募集說明書內設定的投資者回售條款，於二零二四年五月二十日至二零二四年五月二十二日回售\n該期債券已於二零二五年六月十三日到期，山東宏橋已按其存續本金總額連同累計至到期日的利息悉數贖回該\n(於二零二二年八月三日，山東宏橋完成境內二零二二年公司債券（第二期）發行，發售規模為人民幣\n根據該期債券募集說明書內設定的投資者回售條款，於二零二四年七月十五日至二零二四年七月十七日回售期\n該期債券已於二零二五年八月三日到期，山東宏橋已按其存續本金總額連同累計至到期日的利息悉數贖回該期\n(於二零二二年十一月三日，山東宏橋完成境內二零二二年公司債券（第三期）（大宗商品指數掛鈎）發行，發售規\n資者回售選擇權及第3年末發行人贖回選擇權），債券年利率由基礎利率加上浮動利率構成，第一個計息年度的\n根據該期債券募集說明書內設定的投資者回售條款，於二零二三年九月二十六日至二零二三年九月二十八日回\n根據該期債券募集說明書內設定的投資者回售條款，於二零二四年九月二十三日至二零二四年九月二十五日回\n根據該期債券募集說明書內設定的發行人贖回條款，於二零二五年十一月三日，山東宏橋已按其存續本金總額\n(2) 於二零二三年八月三十一日，山東宏橋獲得中國證監會發出的證監許可[2023]2014號《關於同意山東宏橋新型材料有\n(於二零二四年七月三日，山東宏橋完成境內二零二四年科技創新公司債券（第一期）(高成長產業債）發行，發售\n(於二零二五年八月十四日，山東宏橋完成境內二零二五年科技創新公司債券（第一期）(高成長產業債）發行，發\n於二零二一年一月七日（交易時段後），本公司及附屬公司擔保人與聯席牽頭經辦人訂立可換股債券認購協議，據此，本公\n司已同意發行，而聯席牽頭經辦人已同意（各自而非共同）盡力認購及支付或促使認購及支付初始本金額為300,000,000美元\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二零年度末期股息，故換股價自每股8.91港元調整至每股\n有關詳情載於本公司日期為二零二一年六月十一日及二零二一年六月十五日\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二一年度中期股息，故換股價自每股8.47港元調整至每股\n有關詳情載於本公司日期為二零二一年十一月二十五日之公告\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二一年度末期股息，故換股價自每股8.12港元調整至每股\n有關詳情載於本公司日期為二零二二年五月三十一日之公告\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二二年度中期股息，故換股價自每股7.63港元調整至每股\n有關詳情載於本公司日期為二零二二年十一月二十一日之公告\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二二年度末期股息，故換股價自每股7.24港元調整至每股\n有關詳情載於本公司日期為二零二三年五月三十一日之公告\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二三年度中期股息及特別股息，故換股價自每股7.15港元調\n有關詳情載於本公司日期為二零二三年十一月二十四日之公\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二三年度末期股息，故換股價自每股6.82港元調整至每股\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二四年度中期股息，故換股價自每股6.54港元調整至每股\n有關詳情載於本公司日期為二零二四年十一月二十二日之公告\n根據二零二一年可換股債券的條款及條件，因本公司宣派二零二四年度末期股息，故換股價自每股6.14港元調整至每股\n有關詳情載於本公司日期為二零二五年五月二十九日之公告\n自二零二五年七月七日至二零二六年一月八日期間，本公司依照已收到的二零二一年可換股債券之換股通知，並根據\n股東於二零二五年五月七日的本公司股東週年大會上授予董事的一般授權，按已調整換股價每股5.68港元發行及配發\n於發行該等股份後，概無任何未償還二零二一年可換股債券\n為擴大本公司的股東及資本基礎，並提高股份的整體流通性及加強本集團財政狀況，於二零二五年三月十七日（交易時段\n後），本公司及附屬公司擔保人與聯席牽頭經辦人訂立可換股債券認購協議，據此，本公司已同意發行，而聯席牽頭經辦\n人已同意（各自而非共同）盡力認購及支付或促使認購及支付初始本金300,000,000美元的可換股債券（「二零二五年可換股債\n券」），並已向不少於六名獨立承配人提呈發售及出售可換股債券\n的所得款項淨額約為294,584,687美元，本公司已按照本公司日期為二零二五年三月十八日之公告所述用途將所得款項使\n於二零二五年三月十八日，本公司在發售二零二五年可換股債券的同時，通過私人安排向可換股債券有關買方以\n有關詳情請參閱本公司日期為二零二五年三月十七日、二零二五年三月十八日、二零二五年三月\n二十六日及二零二五年三月二十七日之公告，以及日期為二零二五年三月十九日的翌日披露報表\n根據二零二五年可換股債券的條款及條件，因本公司宣派二零二四年度末期股息，故換股價自每股20.88港元調整至每股\n有關詳情載於本公司日期為二零二五年五月二十九日之公告\n截至二零二五年十二月三十一日止年度內，本集團共計捐贈人民幣531,814,000元，主要是用於開展鄉村振興、教育及醫\n本集團的儲備於截至二零二五年十二月三十一日止年度內的變動詳情，載於綜合權益變動表\n本公司於二零二五年十二月三十一日之可供分派儲備詳情，載於綜合財務報表附註53\n就董事所知，概無股東因其持有本公司的上市證券而享有任何稅項減免\n於截至二零二五年十二月三十一日止年度內，本集團向本集團前五大客戶的銷售、向本集團最大客戶的銷售，分別佔本集\n於截至二零二五年十二月三十一日止年度內，本集團向本集團前五大供貨商的採購、向本集團最大供貨商的採購，分別佔\n概無任何董事、彼等之緊密聯繫人或任何其他股東（據董事會所知擁有本公司已發行股本之5%以上）於本集團截至二零二五\n年十二月三十一日止年度的前五大客戶或前五大供貨商中擁有任何股本權益\n本公司已接獲各獨立非執行董事根據聯交所證券上市規則（「上市規則」）第3.13條所載之獨立性指引作出的有關其獨立性的\n事田明明先生及非執行董事涂一鍇先生根據其各自與本公司訂立的服務合約不會自本公司領取任何董事酬金\n截至二零二五年十二月三十一日止年度，有關董事、最高行政人員及五名最\n各董事已與本公司訂立服務合約，自彼等各自的委任日期為期三年，而董事或本公司可向另一方發出不少於一個月的書面\n任的董事概無擁有本公司或其任何附屬公司於一年內不予賠償（法定賠償除外）的情況下不可終止的未到期服務合約\n於截至二零二五年十二月三十一日止年度內及截至本年報刊發日期，本公司董事名單載列如下：\n註1： 自二零二五年八月四日起，田明明先生因工作調動辭任非執行董事，張浩先生停任田明明先生之替任董事\n董事及本公司高管人員的履歷詳情，載於本年報第18至第24頁\n(1) 田明明先生因工作調動辭任非執行董事，自二零二五年八月四日起生效\n(2) 張浩先生因田明明先生辭任而停任田明明先生之替任董事，自二零二五年八月四日起生效\n(3) 涂一鍇先生自二零二五年八月四日起獲委任為本公司的非執行董事\n(4) 張浩先生獲委任為涂一鍇先生之替任董事，自二零二五年八月四日起生效\n除上文所披露者外，截至二零二五年十二月三十一日止年度內及截至本年報刊發日期，本公司董事及最高行政人員並無其\n他變化，本公司亦未知悉任何其他有關本公司董事及最高行政人員資料的變動須根據上市規則第13.51B(1)條的規定作出披\n除本年報「關連交易」一節內所披露者外，概無董事或與董事有關連的實體與本公司或其任何附屬公司於截至二零二五年\n十二月三十一日止年度內或結束時仍然生效的並對本集團業務而言屬重要的任何其他交易、安排或合約中仍然或曾經、直\n董事及最高行政人員於股份、相關股份及債權證中的權益及淡倉\n於二零二五年十二月三十一日，本公司董事及最高行政人員於本公司或其任何相聯法團（定義見香港法例第571章證券及期\n貨條例（「證券及期貨條例」）第XV部）的股份、相關股份及債權證中擁有的根據證券及期貨條例第XV部第7及8分部須知會本\n公司及聯交所的權益及淡倉（包括根據證券及期貨條例的有關條文被當作或被視為擁有的權益及淡倉）；或須記錄於本公司\n根據證券及期貨條例第352條須備存的登記冊內的權益及淡倉；或根據上市規則附錄C3所載《上市發行人董事進行證券交\n易的標準守則》（「標準守則」）須知會本公司及聯交所的權益及淡倉如下：\n董事名稱 身份╱權益性質 所持股份總數 概約百分比(%)\n(1) 士平信託公司以受託人身份持有中國宏橋控股有限公司（「中國宏橋控股」）100%權益，士平環球控股有限公司（「士平環球」）為士平興旺信託的委託人、\n張波先生、張紅霞女士及張艷紅女士分別持有士平環球的40%、30%及30%權益，並在行使士平環球股東權利方面保持一\n基於此，張波先生、張紅霞女士和張艷紅女士對中國宏橋控股持有的本公司股份擁有相關權益及進行披露\n(2) 所持股份總數當中包含了中國宏橋控股持有的本公司發行的可換股債券的可轉換股數\n除上文所披露者外，於二零二五年十二月三十一日，概無其他本公司董事或最高行政人員或彼等任何配偶或未滿十八歲子\n女於本公司或其任何相聯法團（定義見證券及期貨條例第XV部）的股份、相關股份或債權證中擁有根據證券及期貨條例第\nXV部第7及8分部須知會本公司及聯交所的權益或淡倉（包括根據證券及期貨條例的有關條文被當作或被視為擁有的權益或\n淡倉）；或須記錄於本公司根據證券及期貨條例第352條須備存的登記冊內的權益或淡倉；或根據標準守則須知會本公司及\n於二零二五年十二月三十一日，就本公司董事及最高行政人員所知，以下人士（本公司董事或最高行政人員以外）於本公司\n股份及相關股份中擁有根據證券及期貨條例第XV部第2及3分部的條文規定須向本公司及聯交所披露的權益或淡倉，或擁有\n須記錄於本公司根據證券及期貨條例第336條須備存的登記冊內的權益或淡倉：\n股東名稱 身份╱權益性質 所持股份總數 概約百分比(%)\n(1) 士平信託公司以受託人身份持有中國宏橋控股100%權益\n(2) 士平信託公司以受託人身份持有中國宏橋控股100%權益，士平環球為士平興旺信託的委託人、保護人及其中一名受益人\n張艷紅女士分別持有士平環球的40%、30%及30%權益，並在行使士平環球股東權利方面保持一致行動安排\n紅女士對中國宏橋控股持有的本公司股份擁有相關權益及進行披露\n此外，張波先生作為實益擁有人於本公司持有8,870,000股股份，基於一致行動安\n排，張紅霞女士及張艷紅女士被視為對張波先生實益持有的本公司股份中擁有權益\n(3) 根據於聯交所網站列載之權益披露，中信信惠國際資本有限公司於本公司564,190,170股好倉股份中持有權益\n(4) 根據於聯交所網站列載之權益披露，中國中信集團有限公司持有中信盛星有限公司100%權益，而中信盛星有限公司持有中國中信股份有限公司\n中國中信集團有限公司還持有中信盛榮有限公司100%權益，而中信盛榮有限公司持有中國中信股份有限公司25.60%權益，因此，中國\n中信集團有限公司間接持有中國中信股份有限公司合計53.12%權益\n中國中信股份有限公司持有中國中信有限公司100%權益\n有中國中信金融控股有限公司100%權益，而中國中信金融控股有限公司持有中信信託有限責任公司100%權益\n因此根據證券及期貨條例，中國中信集團有限公司和中國中信股份有限公司被視為於中信信惠國際資本有限公司所持有\n(5) 所持股份總數當中包含了中國宏橋控股持有的本公司發行的可換股債券的可轉換股數\n除上文所披露者外，於二零二五年十二月三十一日，就本公司董事及最高行政人員所知，概無任何其他人士（本公司董事或\n最高行政人員除外）於本公司股份或相關股份中擁有根據證券及期貨條例第XV部第2及3分部的條文須向本公司及聯交所披\n露的權益或淡倉，或擁有須記錄於本公司根據證券及期貨條例第336條須備存的登記冊內的權益或淡倉\n截至二零二五年十二月三十一日止年度，本公司並無就本公司的全部或任何重大部分業務的管理或行政工作簽訂或存有任\n除本年報「關連交易」一節及綜合財務報表附註50內所披露者外，於截至二零二五年十二月三十一日止年度，本公司或其任\n何附屬公司概無與控股股東或其任何附屬公司訂立任何重要合約，亦無就控股股東或其附屬公司向本公司或其任何附屬公\n根據章程細則規定，本公司任何時候之董事、秘書及其他高級人員及每位核數師以及現時或曾經就本公司任何事務行事\n之清盤人或受託人（如有）以及每位該等人士及每位其繼承人、遺囑執行人及遺產管理人均可從本公司之資產及利潤獲得彌\n償，該等人士或任何該等人士、該等人士之任何繼承人、遺囑執行人或遺產管理人就各自之職務或信託執行其職責時因所\n作出、發生之作為或不作為而招致或蒙受的所有訴訟、費用、收費、損失、損害及開支，可獲免就此受任何損害\n等人士均無須就其他人士之行為、收入、疏忽或過失而負責，亦無須為符合規定以致參與任何收入或為本公司向其寄存或\n存入任何款項或財產作保管用途之任何銀行或其他人士或為本公司賴以投放或投資任何款項之抵押不充份或不足或為該等\n人士執行各自的職務或信託時發生的任何其他損失、不幸事故或損害而負責，惟本彌償保證不延伸至任何與上述任何人士\n本公司於截至二零二五年十二月三十一日止年度內已購買及維持董事及高級管理人員責任保險，為本公司董事及高級管理\n綜合財務報表附註50所披露下列的交易構成上市規則第14A章項下的非豁免關連交易及持續關連交易\n及，本集團對持續關連交易採用了明確的定價政策和指引，並採取程序根據相關定價政策和指引確定交易的價格和條款，\n於二零一九年一月三十一日，本公司與本公司的關連人士濱州市北海魏橋固廢處置有限公司（「北海固廢」）訂立工業廢\n物服務協議，據此，北海固廢向本公司及其附屬公司提供工業廢物收集、運輸、貯存及處置服務，期限由二零一九年\n根據該協議的重續機制，本公司與北海固廢已於二零二一年十二\n月二十三日訂立工業廢物服務協議（「先前工業廢物服務協議」），期限自二零二二年一月一日起至二零二四年十二月\n根據該協議的重續機制，本公司與北海固廢已於二零二四年十月十八日訂立工業廢物服務協議（「重續工\n業廢物服務協議」），期限自二零二五年一月一日起至二零二七年十二月三十一日止\n司與濱州魏橋鑫興實業有限公司（「魏橋鑫興實業」）於二零二五年二月十四日訂立工業廢物處理協議後，重續工業廢物\n服務協議已由本公司與北海固廢於二零二五年二月十四日終止\n自二零二五年一月一日起至二零二五年二月十三日期間，北海固廢向本公司提供工業廢物收集、運輸、貯存及處置服\n乃經參考中國其他獨立第三方提供相同或相似種類服務之市場價格後釐定\n倘中國政府對價格另有強制規定，則應採用政府強制價格作為重續工業廢物服務協議項下的\n自二零二五年一月一日起至二零二五年二月十三日期間，本公司根據重續工業廢物服務協議向北海固廢購買工業廢物\n魏橋創業集團為執行董事張波先生（連同他的其他家族成員於魏橋創業集團擁有權益）的聯繫人，因此，北海固廢為上\n有關持續關連交易的詳情已於本公司日期為二零一九年一月三十一日、二零二一年\n於二零二五年二月十四日，本公司與本公司的關連人士魏橋鑫興實業訂立工業廢物處理協議，期限自二零二五年二月\n十四日起至二零二七年十二月三十一日止（包括首尾兩日），據此，魏橋鑫興實業及其附屬公司（統稱「魏橋鑫興實業集\n自二零二五年二月十四日起至二零二五年十二月三十一日止期間，魏橋鑫興實業集團向本集團提供工業廢物處理服務\n的價格乃經參考魏橋鑫興實業鄰近其他獨立第三方提供相同或可資比較種類服務之市場價格後釐定\n倘中國政府對價格另有強制規定，則應採用政府強制價格作\n自二零二五年二月十四日起至二零二五年十二月三十一日止期間，本集團根據工業廢物處理協議向魏橋鑫興實業集團\n魏橋鑫興實業為魏橋創業集團的全資附屬公司，而魏橋創業集團為執行董事張波先生（連同他的其他家族成員於魏橋\n於二零一九年一月三十一日，本公司的間接附屬公司山東宏橋與本公司的關連人士魏橋創業集團訂立生產用水供應\n協議，據此，魏橋創業集團向山東宏橋位於鄒平市及魏橋鎮的生產基地供水以作生產用途，期限自二零一九年一月\n根據該協議的重續機制，山東宏橋與魏橋創業集團已於二零二一年十二\n月二十三日訂立生產用水供應協議（「先前生產用水供應協議」），期限自二零二二年一月一日起至二零二四年十二月\n根據該協議的重續機制，山東宏橋與魏橋創業集團已於二零二四年十月十八日訂立重續生產用水供應協\n議（「重續生產用水供應協議」），期限自二零二五年一月一日起至二零二七年十二月三十一日止（包括首尾兩日）\n生產用水供應協議項下之條款及條件基本上與先前生產用水供應協議項下之條件相同\n自二零二五年一月一日起至二零二五年十二月三十一日止期間，魏橋創業集團向山東宏橋位於鄒平市及魏橋鎮的生產\n基地供應生產用水的價格為每噸約人民幣1.99元（不含增值稅），此乃經參考鄒平市及魏橋鎮其他獨立第三方供應生產\n在山東宏橋要求下，魏橋創業集團須向山東宏橋提供該等市場價格的證明\n格另有強制規定，則應採用政府強制價格作為重續生產用水供應協議項下供應生產用水的價格\n年內，山東宏橋（含其關聯方）根據重續生產用水供應協議向魏橋創業集團購買生產用水約人民幣31,615,000元，較二\n魏橋創業集團為執行董事張波先生（連同他的其他家族成員於魏橋創業集團擁有\n權益）的聯繫人，因此，魏橋創業集團為上市規則項下本公司的關連人士\n為二零一九年一月三十一日、二零二一年十二月二十三日及二零二四年十月十八日的公告中披露\n於二零二五年二月十四日，本公司與本公司的關連人士魏橋鑫興實業訂立工業品採購協議，期限自二零二五年二月\n十四日起至二零二七年十二月三十一日止（包括首尾兩日），據此，魏橋鑫興實業集團將向本公司及其附屬公司出售工\n自二零二五年二月十四日起至二零二七年十二月三十一日止期間，魏橋鑫興實業集團向本集團供應電解質粉的價格不\n得高於魏橋鑫興實業集團在中國的日常及一般業務過程中按正常商業條款向其他獨立第三方供應相同產品的價格\n本公司要求下，魏橋鑫興實業須向本公司提供電解質粉市場價格的證明\n自二零二五年二月十四日起至二零二五年十二月三十一日止期間，魏橋鑫興實業集團向本集團供應炭粉的價格為每噸\n約人民幣265.49元（不含增值稅），此乃經參考魏橋鑫興實業鄰近其他獨立第三方供應相同或可資比較種類產品之市場\n本公司可要求魏橋鑫興實業向本公司提供炭粉市場價格的憑證\n倘中國政府對價格另有強制規定，則應採用政府強制價格作為工業品採購協議項下的採購價格\n自二零二五年二月十四日起至二零二五年十二月三十一日止期間，本集團根據工業品採購協議向魏橋鑫興實業集團購\n魏橋鑫興實業為魏橋創業集團的全資附屬公司，而魏橋創業集團為執行董事張波先生（連同他的其他家族成員於魏橋\n於二零二五年六月十六日，本公司與本公司的關連人士魏橋創業集團訂立供應及採購框架協議，期限自二零二五年六\n月十六日起至二零二七年十二月三十一日止（包括首尾兩日），據此，(魏橋創業集團（及其附屬公司和附屬實體）須向\n本集團供應資源及提供服務（包括但不限於物資及配件、生產用水、招標代理服務及廢鋁採購服務等）；及(本集團\n須向魏橋創業集團（及其附屬公司和附屬實體）供應資源（包括但不限於電力、蒸汽以及物資及配件等）\n本集團與魏橋創業集團可根據實際銷售或採購需要（視乎情況而定）不時簽訂具體合約\n司和附屬實體）向本集團提供資源及服務的價格須參考臨近魏橋創業集團（及其附屬公司和附屬實體）的其他獨立第三\n在本公司要求下，魏橋創業集團須向本公司提供該等市場價格的證\n魏橋創業集團（及其附屬公司和附屬實體）向本集團所提供資源及服務的價格原則上不得高於當時同類資源或服務\n倘中國政府對某類特定資源或服務的價格另有強制規定，則該類資源或服務的價格須為政府強制價\n(本集團向魏橋創業集團（及其附屬公司和附屬實體）提供資源的價格須參考臨近本集\n團的其他獨立第三方提供相同或同類資源的市場價格或（倘市場價格不可得）本集團向獨立第三方出售該等資源的價格\n魏橋創業集團可要求本公司從至少三家臨近本集團的其他獨立第三方獲取銷售市場價格（如有），並向魏橋創業\n本集團向魏橋創業集團（及其附屬公司和附屬實體）所提供資源的價格原則上不得低於當時同類資源的\n倘中國政府對某類特定資源的價格另有強制規定，則該類資源的價\n自二零二五年六月十六日起至二零二五年十二月三十一日止期間，魏橋創業集團根據供應及採購框架協議向本集團供\n零二五年六月十六日起至二零二五年十二月三十一日止期間，本集團根據供應及採購框架協議向魏橋創業集團供應資\n魏橋創業集團為執行董事張波先生（連同他的其他家族成員於魏橋創業集團中擁有權益）的聯繫人，因此，魏橋創業集\n有關持續關連交易的詳情已於本公司日期為二零二五年六月十六日的公告中披\n於二零一九年十二月三日，本公司非全資附属公司PT.  （「\n土礦供應協議」），期限自生效日期起至二零三三年十二月三十一日止\n或促使出售或交付鋁土礦予Well ，及Well Winning應自Cita Investindo購買鋁土礦\n根據鋁土礦供應協議，Investindo向Well Winning供應鋁土礦的基準售價為每乾公噸 31.50 美元\n印度尼西亞盾匯率，此乃參考Cita Investindo在其日常及一般業務過程中按正常商業條款向其他獨立第三方\n鋁土礦的實際售價應在基準售價的基礎上根據AlO和SiO的比例以及\n前述定價基準須每年於鋁土礦供應協議的每個週年日或之前進行檢討並須由訂約方相\n互協定，並進行修訂以反映釐定商品價格通脹常用的指數所發佈的通脹率之任何變動\n年內，Winning根據鋁土礦供應協議向Cita Investindo購買鋁土礦約145,256,000美元，較二零\n年十二月三十一日止年度有關Well Winning的相關百分比率（定義見上市規則第14A.09條）超過10%，故Well\nWinning不再為上市規則第14A.09條項下本公司的非重大附屬公司，Investindo因此未能符合上\n市規則第14A.09條項下的豁免條件，從而成為上市規則項下本公司的關連人士\n司二零一九年十二月三日及二零二五年六月十六日的公告中披露\n於二零二五年二月十四日，本公司的間接附屬公司濱州市北海信和新材料有限公司（「北海信和」）與本公司的關連人士\n山東綠祥資源綜合利用有限公司（「綠祥資源」）訂立資產轉讓協議（「北海資產轉讓協議」），據此，北海信和將出售及綠\n祥資源將收購北海信和擁有的有關赤泥綜合利用項目的資產（「北海目標資產」，主要用於從赤泥中提取鐵）\n根據北海資產轉讓協議，綠祥資源就北海目標資產的轉讓須向北海信和支付的總代價為人民幣3,369,999元（包括稅\n項），有關代價乃基於根據獨立估值師使用資產基礎法編製的估值報告所計算北海目標資產於二零二四年十一月三十\n訂約方已於北海資產轉讓協議日期後10日內完成北海目標資\n北海信和已向綠祥資源提供有關北海目標資產的所有文件、資料、數據及材料（包括但不限於產權證\n自完成日期起，綠祥資源已成為北海目標資產的唯一合法擁有人，並有權佔有、使用、\n收益及處置北海目標資產，而北海信和不再擁有北海目標資產\n北海資產轉讓協議項下的資產轉讓並不涉及北海信和或北海目標資產的相關債權或負債轉讓，該等債權或負債仍由北\n海信和享有或承擔，且概不因本次轉讓而發生變更、解除或終止\n綠祥資源為魏橋創業集團的間接全資附屬公司，而魏橋創業集團為執行董事張波\n先生（連同他的其他家族成員於魏橋創業集團中擁有權益）的聯繫人\n有關該關連交易的詳情已於本公司日期為二零二五年二月十四日的公告中披露\n於二零二五年二月十四日，本公司的間接附屬公司濱州市沾化區匯宏新材料有限公司（「沾化匯宏」）與本公司的關連人\n士山東綠智資源綜合利用有限公司（「綠智資源」）訂立資產轉讓協議（「沾化資產轉讓協議」），據此，沾化匯宏將出售及\n綠智資源將收購沾化匯宏擁有的有關赤泥綜合利用項目的資產（「沾化目標資產」，主要用於從赤泥中提取鐵）\n根據沾化資產轉讓協議，綠智資源就沾化目標資產的轉讓須向沾化匯宏支付的總代價為人民幣31,805,479元（包括稅\n項），有關代價乃基於根據獨立估值師使用資產基礎法編製的估值報告所計算沾化目標資產於二零二四年十一月三十\n訂約方已於沾化資產轉讓協議日期後10日內完成沾化目標資\n沾化匯宏已向綠智資源提供有關沾化目標資產的所有文件、資料、數據及材料（包括但不限於產權證\n自完成日期起，綠智資源已成為沾化目標資產的唯一合法擁有人，並有權佔有、使用、\n收益及處置沾化目標資產，而沾化匯宏不再擁有沾化目標資產\n沾化資產轉讓協議項下的資產轉讓並不涉及沾化匯宏或沾化目標資產的相關債權或負債轉讓，該等債權或負債仍由沾\n化匯宏享有或承擔，且概不因本次轉讓而發生變更、解除或終止\n綠智資源為魏橋創業集團的間接全資附屬公司，而魏橋創業集團為執行董事張波\n先生（連同他的其他家族成員於魏橋創業集團中擁有權益）的聯繫人\n有關該關連交易的詳情已於本公司日期為二零二五年二月十四日的公告中披露\n於二零二五年二月十四日，本公司的間接附屬公司魏橋鋁電與本公司的關連人士山東魏橋再生資源有限公司（「魏橋再\n生資源」）訂立股權轉讓協議（「股權轉讓協議」），據此，魏橋鋁電將出售及魏橋再生資源將收購濱州市宏通資源綜合利\n宏通資源（即目標公司）為一間於二零一六年七月二十九日根據中國法律註冊成立的有限責任公司，且在轉讓前由魏橋\n根據股權轉讓協議，魏橋再生資源就宏通資源全部股權的轉讓須向魏橋鋁電支付的總代價為人民幣62,000,000元（包\n括稅項），有關代價乃基於根據獨立估值師使用資產基礎法進行的估值所計算宏通資源的股東權益於二零二四年十一\n月三十日的評估價值按正常商業條款釐定並經公平磋商後得出\n訂約方已於股權轉讓協議日期後30日內辦理並完成宏通資源股權轉讓相關的工商變更登記手續\n記手續完成後，魏橋再生資源持有宏通資源100%股權，並享有及承擔與該股權相關的所有權利及義務\n再持有該股權及不再享有及承擔與該股權相關的任何權利及義務\n魏橋再生資源為魏橋創業集團的間接全資附屬公司，而魏橋創業集團為執行董事\n張波先生（連同他的其他家族成員於魏橋創業集團中擁有權益）的聯繫人\n有關該關連交易的詳情已於本公司日期為二零二五年二月十四日的公告中披露\n除上文所披露者外，綜合財務報表附註50所載的其他交易不構成上市規則第14A章項下本公司的持續關連交易或關連交\n易，或豁免遵守申報、公告、年度審閱及獨立股東批准規定\n董事確認本公司已遵守上市規則第14A章項下的相關披露規\n獨立非執行董事已審閱本集團的上述持續關連交易，並確認該等交易均：\n(根據有關交易的協議進行，條款公平合理，並且符合本公司股東的整體利益\n本公司核數師已致函董事會，確認於截至二零二五年十二月三十一日止年度，他們並無注意到任何事情，可使他們認為上\n(就涉及由本集團提供貨品或服務的交易而言）在各重大方面沒有按照本集團的定價政策進行；\n本公司已採納條款不遜於標準守則所訂標準的董事證券交易之行為守則\n在向所有董事作出特定查詢後，本公司確認，各董事於截至二零二五年十二月三十一日止年度及直至本年報刊發日期整段\n期間內已遵守標準守則及本公司行為守則所載有關董事證券交易的標準\n截至二零二五年十二月三十一日止年度，本公司已遵守企業管治守則的守則條\n企業管治守則第二部分守則條文C.2.1條規定主席與行政總裁的角色應有區分，\n但是，考慮到張波先生具有豐富的管理經驗和行業知識，且對本集團的業務十分熟悉，董事會相\n信，由張波先生兼任董事會主席與本公司行政總裁，有利於本集團業務的持續穩定發展\n董事會認為，在董事會委員會及董事會副主席的協助下，現有董事會之組成可確保權力\n除上文所披露者外，截至二零二五年十二月三十一日止年度，本公司概無違反企業管治守則中的其他守則條文\n根據本公司可以得悉及董事亦知悉的公開資料，本公司於刊發本年報前的最後實際可行日期已維持聯交所所批准及上市規\n控股股東已向本公司確認，其已遵照根據不競爭契約（定義見本公司於二零一一年三月十四日刊發之招股章程）向本公司提\n獨立非執行董事已審查其遵例情況，並確認控股股東已遵照不競爭契約的所有承諾\n本公司已根據上市規則附錄C1企業管治守則（「企業管治守則」）的規定，就審閱及監督本集團的財務匯報過程及內部控制的\n三月二十日舉行以審閱本集團截至二零二五年十二月三十一日止年度的年度業績及綜合財務報表\n截至二零二五年十二月三十一日止年度財務業績已遵照有關會計準則、規則及規例，並已正式作出適當披露\n本集團年內的業務回顧及未來展望載於本報告第10至17頁管理層討論與分析中\n本集團面對的主要風險及不確定性載於本年報第16頁管理層討論與分析中\n信永中和（香港）會計師事務所有限公司（「信永中和香港」）為本公司截至二零二五年十二月三十一日止年度的國際核數師\n續聘信永中和香港為本公司的國際核數師的決議案將於二零二五年度股東週年大會上提呈\n本公司在發展實踐中，形成了五種思想方法、八個實踐要求，相容並蓄、獨具特色的\n中國宏橋管理思想，成為了推動企業科學和諧可持續發展的重要力量\n幸福生活」的管理理念，通過豐富員工的業餘生活，提升了員工的綜合素質，為企業的長久發展增添了凝聚力，催生了創造\n中國宏橋一直深信良好的企業管治能夠為股東及企業本身創造價值\n誠實、透明和負責任的態度，推動公司的發展和股東的利益\n截至二零二五年十二月三十一日止年度，本公司已遵守企業管治守則的守則條文，惟下列偏離者除外：\n企業管治守則第二部分守則條文C.2.1條規定主席與行政總裁的角色應有區分，並不應由一人同時兼任\n先生具有豐富的管理經驗和行業知識，且對本集團的業務十分熟悉，董事會相信，由張波先生兼任董事會主席與本公司行\n此外，董事會成員亦包括合資格專業人士及其他富有經驗之人士\n為，在董事會委員會及董事會副主席的協助下，現有董事會之組成可確保權力和授權之平衡\n除上文所披露者外，截至二零二五年十二月三十一日止年度，本公司概無違反企業管治守則中的其他守則條文\n本公司已採納條款不遜於標準守則所訂標準的董事證券交易之行為守則\n在向所有董事作出特定查詢後，本公司確認，各董事於截至二零二五年十二月三十一日止年度及直至本年報刊發日期整段\n期間內已遵守標準守則及本公司行為守則所載有關董事證券交易的標準\n截至本年報刊發日期，董事會由四名執行董事、四名非執行董事及四名獨立非執行董事組成\n註1： 鄭淑良女士為張波先生的母親以及楊叢森先生的岳母\n註2： 自二零二五年八月四日起，田明明先生因工作調動辭任非執行董事，張浩先生停任田明明先生之替任董事\n涂一鍇先生及張浩先生於二零二五年八月四日取得上市規則第3.09D條所述法律意見\n董事會已設立董事會屬下委員會，並授予此等董事委員會載於\n全體董事已真誠地履行其責任及遵守適用法例及規例準則，並一直按本公司及其股東利益行\n董事會亦負責履行企業管治守則第二部分守則條文A.2.1條所載的企業管治職責，包括但不限於：\n(制定及檢討本公司的企業管治政策及常規，並向董事會提出建議；\n(檢討及監察本公司在遵守法律及監管規定方面的政策及常規；\n(制定、檢討及監察適用於雇員及董事的操守準則及合規手冊；以及\n(檢討本公司遵守企業管治守則的情況及在企業管治報告的披露\n截至二零二五年十二月三十一日止年度，董事會已履行上述企業管治職責\n三十一日止年度遵守企業管治守則的情況及本企業管治報告\n董事會負責其對本公司所有主要事宜的決策，包括批准及監管所有政策事宜、整體策略及預算、內部監控及風險管理制\n度、重大交易（尤其可能涉及利益衝突者）、財務報表及其他重大財務及營運事宜\n所有董事均可全面及適時地取得一切相關報表以及公司秘書的意見與服務，以確保遵行董事會程序及所有適用規則及規\n各董事一般可於適當情況下，經向董事會提出要求後尋求獨立專業意見，有關開支由本公司承擔\n本公司的日常管理、行政及營運乃授予行政總裁及高級管理層\n本公司行政總裁對董事會負責，主持本公司的生產經營管理工作，組織實施董事會決議；組織實施本公司年度經營計畫和\n本公司副總裁、財務負責人；聘任或者解聘除應由董事會聘任或者解聘以外的管理人員，及章程細則和董事會授予的其他\n本公司公司秘書向董事會負責，並確保董事會遵守所有適用法例及規則\n董事會提名委員會（「提名委員會」）負責檢討董事會組成、研究及制\n定提名及委任董事的有關程序，監管董事的委任，以及評估獨立非執行董事的獨立性\n除非董事或本公司以不少於一個月的書面通知終止合約，否則該合約期滿後\n董事的委任須遵守章程細則項下董事退任及輪席退位的規定\n七日舉行的本公司二零二四年度股東週年大會上，張波先生、鄭淑良女士、張瑞蓮女士、王雨婷女士、楊叢森先生、張敬\n雷先生、田明明先生（張浩先生為其替任董事）、孫冬冬女士、文献軍先生、韓本文先生、董新義先生、傅郁林女士獲重選\n根據章程細則，全體董事須至少每三年輪值告退一次，獲董事委任以填補董事會臨時空缺或出任現任董事會新增成員的任\n何董事，其任期直至本公司下屆股東週年大會舉行為止，並可膺選連任\n本公司為所有新任董事提供就職培訓計畫，希望因應新任董事的經驗和背景，加強其對本集團文化及營運以至相關角色和\n本公司鼓勵所有董事出席相關培訓課程，費用由本公司繳付\n由二零二五年一月一日起至二零二五年十二月三十一日期間，所有董事均向本公司提供其培訓紀錄，並由本公司公司秘書\n全體董事即張波先生、鄭淑良女士、張瑞蓮女士、王雨婷女士、楊叢森先生、張敬雷先生、田明明先生（張\n浩先生為其替任董事）、涂一鍇先生（張浩先生為其替任董事）、孫冬冬女士、文献軍先生、韓本文先生、董新義先生、傅郁\n林女士及本公司公司秘書張月霞女士分別就企業管治和公司治理參與了相關培訓或者進行了持續性學習，以增強自身的知\n董事會瞭解定期評審本集團表現以求運作上有所改善的重要及好處\n企業管治守則第二部分守則條文第C.5.1條規定，每年至少召開四次定期董事會會議，大約每季度召開一次，且大多數董事\n本公司的董事會會議慣常每年定期舉行最少四次，大約每季度舉行\n截至二零二五年十二月三十一日止年度，董事會親自或透過電子通訊方式共舉行過九次會議\n(1) 田明明先生於二零二五年八月四日辭任非執行董事\n張浩先生於二零二五年八月四日停任田明明先生之替任董事\n田明明先生親身出席5次董事會會議，張浩先生作為田明明先生的替任董事出席1次董事會會\n(2) 涂一鍇先生於二零二五年八月四日獲委任為非執行董事\n張浩先生於二零二五年八月四日起獲委任為涂一鍇先生之替任董事\n日截至二零二五年底，本公司舉行了2次董事會會議，沒有舉行股東會會議\n涂一鍇先生親身出席2次董事會會議，張浩先生並無作為涂一鍇先生的替\n於截至二零二五年十二月三十一日止年度，董事會主席與獨立非執行董事舉行了一次沒有其他董事出席的會議\n全年會議時間表及每次會議的草擬議程一般會事先向董事提供\n至於其他董事會及委員會會議，在一般情況下亦給予合理通知\n事會會議文件連同所有適當、完整及可靠資料於每次董事會會議或委員會會議前至少提前3日寄發予所有董事，以便董事\n瞭解本公司最新發展、財政狀況及使董事在知情情況下作出決定\n本公司高級管理層（包括行政總裁及財務總監）出席所有定期董事會會議和（於需要時）其他董事會及委員會會議，就本公司\n業務發展、財務及會計事項、遵守法規事宜、企業管治及其他重大事項提供意見\n每次會議後一般於合理時間內交予董事傳閱紀錄草稿並發表意見，其定稿可供董事隨\n章程細則亦載有規定，要求有關董事於批准彼等或其任何緊密聯繫人擁有重大利益的交易時放棄投票並不計入會議法定人\n自二零一一年三月二十四日上市日期起，董事會一直遵守上市規則有關委任至少三名獨立非執行董事，以及至少一名獨立\n非執行董事須擁有適當專業資格或會計或相關財務管理專業知識的規定\n本公司已收到各獨立非執行董事根據上市規則的規定發出確認本身獨立性的年度確認書\n本公司經參照上市規則第3.13條所載的因素，確認全體獨立非執行董事的獨立性\n本公司已設立有關機制，以確保董事會可獲取獨立意見和資訊\n見，以及全體獨立非執行董事均有出席報告期內舉行的所有董事會會議及相關委員會會議，從而達到上述目的\n非執行董事及獨立非執行董事均已與本公司訂立服務合約，自彼等各自的委任日期為期三年，而董事或本公司可向另一方\n主席的責任為領導董事會，確保董事會有效地運作，且履行應有職責，並及時就\n所有重要的適當事項進行討論，亦負責本集團的策略性管理及制定本集團整體目標及任務\n主席與行政總裁之間的職責分工明確，並載於本公司的企業管治守則\n企業管治守則第二部分的守則條文C.2.1規定主席與行政總裁的角色應有區分，並不應由一人同時兼任\n董事會認為此架構不會影響董事會與管理層兩者之間的權力和職權的平衡\n和才幹的成員組成，並定期開會，以商討影響本公司運作的事項\n事會相信此架構有助於建立穩健而一致的領導權，使本公司能夠迅速及有效地作出及實施各項決定\n先生為主席兼行政總裁之職，會有利於本公司的業務發展及管理，並使董事會與高級管理層的工作更協調\n本公司已設立董事及本集團高級管理人員薪酬政策的正式及透明的程序\n事、最高行政人員以及五名最高薪雇員的薪酬詳情載於綜合財務報表附註12及13\n截至二零二五年十二月三十一日止年度，按薪酬等級劃分支付於高級管理人員（不包括董事）的酬金載列如下：\n各董事會屬下委員會對其所屬職權範圍及適用許可權內的事宜作出決定\n審核委員會的主要職責為協助董事會就本集團的財務報告程序、內部監控及風險管理制度的有效性提供獨立意見、監\n本公司截至二零二五年十二月三十一日止年度的業績，已經審核委員會審閱\n審核委員會於截至二零二五年十二月三十一日止年度的主要工作包括審閱本集團截至二零二四年十二月三十一日止年\n度的年度業績及年度報告及截至二零二五年六月三十日止六個月的中期業績及中期報告、審閱外部審計師委任條款及\n薪酬和本集團持續關連交易等重大事宜，並檢討本公司風險管理及內部監控系統以及內部審核功能的有效性\n截至二零二五年十二月三十一日止年度期間，審核委員會共舉行過兩次會議\n薪酬委員會的主要職責包括（但不限於）：(就本公司董事及高級管理人員的薪酬政策及架構，及就設立正規而具透明\n度的程序制訂薪酬政策，向董事會提出建議；(因應董事會所訂企業方針及目標而檢討及批准管理層的薪酬建議；\n(向董事會建議個別執行董事及高級管理人員的薪酬待遇，此應包括非金錢利益、退休金權利及賠償金額（包括喪失\n或終止職務或委任的賠償）（即企業管治守則第二部分守則條文第E.1.2 (條所述的薪酬委員會模式）；及(就非執\n薪酬委員會通常每年舉行至少一次會議，以檢討薪酬政策及架構、執行董事及高級管理層的年度薪金、服務合約以及\n薪酬委員會於截至二零二五年十二月三十一日止年度的主要工作包括評估執行董事的表現，檢討本公司的薪酬政策，\n審閱董事於截至二零二五年十二月三十一日止年度的薪酬並向董事會提出建議\n本公司的執行董事按其崗位領取薪金、津貼及其他福利，享受退休福利供款，同時領取固定董事袍金，袍金標準經股\n本公司的非執行董事領取固定董事袍金，袍金標準經股東大會審議通過後按年發放\n本公司的獨立非執行董事只領取固定董事袍金，袍金標準經股東大會審議通過後按年發放\n薪金、津貼及其他福利待遇等；獨立非執行董事因出席本公司董事會和股東大會的差旅費（憑發票據實報銷）以及依照\n獨立非執行董事不參與本公司內部的與薪酬掛鈎的績效考核\n截至二零二五年十二月三十一日止年度，薪酬委員會共舉行過一次會議以履行前述規定的職責\n提名委員會的主要職能包括：(至少每年檢討董事會的架構、人數及組成（包括技能、知識及經驗方面），並就任何為\n配合本公司的公司策略而擬對董事會作出的變動提出建議；(物色具備合適資格可擔任董事的人士，並挑選提名有\n關人士出任董事或就此向董事會提供意見；(評核獨立非執行董事的獨立性；及(就董事委任或重新委任以及董事\n（尤其是本公司主席及行政總裁）繼任計畫向董事會提出建議\n提名委員會於截至二零二五年十二月三十一日止年度的主要工作包括檢討董事會的架構、人數及組成（包括技能、知\n識及經驗方面），評估獨立非執行董事的獨立性，並就於本公司股東週年大會上重選退任董事向董事會提出建議以供\n截至二零二五年十二月三十一日止年度，提名委員會召開過兩次會議\n提名委員會對董事候選人的資格及履歷等方面進行審慎調查和考\n倘董事會出現空缺，提名委員會將因應有關人選的性別、年齡、文化\n及教育背景、技能、經驗、專業知識、個人誠信及所能付出的時間、獨立非執行董事的獨立性，以及本公司的需要及\n化，以確保董事會專業知識、技能及經驗並重，配合本公司業務所需\n董事會所有委任均以用人唯才為原則，並在考慮人選時以適當的條件充分顧及董事會成員多元化，包括但不僅限於性\n本公司認為於董事會層面上的多元化水準為保持競爭優勢、從盡可能廣泛的人才庫中吸引、保留及\n本公司應積極確保董事會成員在技能、經驗及意見多元化方面達成平衡，以支持其執行業務策\n有見更多女性在經濟體系中出任高職，帶動適合當董事的人選數目上升，\n(最少一名具備專業會計資格的成員及一名具備專業法律資格的成員，以使董事會能配合本公司業務需要的不同\n本公司為員工提供定期的在職培訓，以確保其徹底瞭解本公司的業務及政策以及其角色及職責，並彌補其知識上的任\n本公司亦會為特具潛質的員工提供相關培訓，使彼等具備將來董事會所需的特質及能力，以培養背景更富工作經驗和\n技能的人才，並假以時日可讓他們升任董事職位以配合本公司將來的策略需要及經營環境\n提名委員會將每年討論及協定為實現董事會多元化的所有可衡量目標，並建議董事會採納該等目標\n標，本公司每年將評估董事會的多元化狀況，包括其性別佔比，以及其實現多元化目標的進展\n提名委員會將監察本政策的執行，並每年在企業管治報告內彙報董事會在多元化層面的組成（包括性別、種族、年齡\n提名委員會將在適當時候檢討本政策，以確保本政策行之有效\n截至本年報刊發日期，董事會包括十二名董事，其中包括五名女性董事，以及法律、會計專業人士\n於二零二五年度結束時，本集團共有約51,234名員工（包括高級管理人員），其中男性員工的佔比約為85%，女性員工\n本公司認為全體員工（包括高級管理人員）已達到既定的性別多元化的目標\n(指導及制定本公司在可持續發展事宜方面的願景、目標、戰略及架構；監督本公司可持續發展管理領域包括但\n不限於氣候變化、健康與安全、社區關係、供應商管理、環境、人權與反腐的管理制度、工作程序及相關標準\n和方法進行研究並提出建議，以確保本公司的需要及遵守適用法律、法規、監管規定及國際標準；\n(識別與評估可持續發展相關（包括氣候變化）的風險，並進行討論，提升風險管理及內部監控系統，以監測和應\n對與可持續發展相關（包括氣候變化）的重大風險與機遇，並向董事會匯報並提出建議；\n(監察本公司環境、社會及管治（「」）願景、目標、戰略及架構的發展及實施，包括制定本公司ESG管理績效\n目標和關鍵績效指標及檢討執行目標的進度，負責審議本公司的環境、社會責任、可持續發展目標和關鍵績效\n指標，根據管理層可持續發展事務執行的結果與績效目標的實現情況提出績效薪酬的建議；並就改善績效表現\n(督導本公司各業務板塊的可持續發展體系運行，審議和檢討本公司業務對環境、社會和可持續發展的影響，積\n極響應新興的可持續發展議題，並就提升本公司可持續發展表現提供建議及方案；及\n(審閱本公司ESG報告及其他ESG相關披露，向董事會提出建議，以維持ESG報告及其他ESG相關披露的完整性\n可持續發展委員會至少每年召開一次及在有需要時召開會議\n截至二零二五年十二月三十一日止年度，可持續發展委員會共舉行過一次會議以履行前述規定的職責\n董事確認彼等編製本公司截至二零二五年十二月三十一日止年度財務報表的責任\n董事會負責在年報及中期報告及按上市規則規定須予披露的其他財務資料內，對本公司表現做出平衡、清晰及容易理解的\n本公司高級管理層已在需要時向董事會提供充分的解釋及資料，以讓董事會可以就提交其批准的本公司財務及其他資料，\n董事於做出適當查詢後，並不知悉任何重大不明朗事件或情況可能會嚴重影響本公司持續經營的能力\n外聘核數師負責根據審核工作的結果，對財務報表表達獨立意見，並向本公司作出報告\n本公司就截至二零二五年十二月三十一日止年度的審核服務及非審核服務支付本公司外聘核數師的酬金分別為人民幣\n就非審核服務（包括稅務審查、ESG報告審閱及內部監控檢討服務）（由信永\n董事會對本公司的風險管理及內部監控系統負責，並每年檢討該等系統的有效性\n務目標的風險，而且只能就不會有重大的失實陳述或損失作出合理而非絕對的保證\n已採取相關措施，以防止資產被未經授權挪用或處置、控制過度的資本開支、保存妥善的會計記錄以及確保業務上使用或\n審核委員會負責內部監控本公司各合資格管理人員按持續準則維持及監察內部監控系統\n本集團建立了較為完善的風險管理及內部監控系統，明確各業務單位、各部門以及管理人員之工作職責和許可權，落實各\n業務環節的彙報、審批流程以及問責制度，以實現合規運作，對管理各環節施行有效的監控\n響達至業務目標的風險，並協同管理層分析及評估該等風險的重要性；財務部門負責監控財務方面的風險並就其所負責審\n批環節中所發現的潛在風險提出建議；其他管理部門則須在自身責任和職權範圍內，辨認和判斷各類情況，監察和評估可\n能的風險因素，必要時可隨時徵詢專業人士的意見，並遵循內部管理流程向董事會進行彙報\n之前，必須就其可能涉及到的風險問題和程度作出確實的評估\n董事會及審核委員會每年聽取管理層就有關風險管理和內部監控方面工作所作出的彙報，同其一起檢討相關制度的有效\n性，以及是否出現任何監控方面的失誤或任何程序方面的重大弱點\n事會須積極作出應對，盡可能妥善地解決已經發生的問題，同時從制度和程序方面檢討工作需改進之處，作出彌補\n本公司理解其根據證券及期貨條例第XIVA部以及上市規則所應履行的責任，已設立處理及發佈內幕消息的程序及內部監控\n凡涉及內幕消息，本公司將在合理切實可行的範圍內，儘快向公眾披露\n香港證券及期貨事務監察委員會頒佈的《內幕消息披露指引》，嚴格禁止未經授權使用機密或內幕消息\n董事有責任持續關注公司生產經營情況、財務狀況和公司已經發生或者可能發生的重大事件及其影響，主動調查、獲取決\n相關工作人員在瞭解或知悉須披露的事項後，應及時報告管理層和負責董事，對相關資訊及材料進行判\n斷和核實，就所涉及事項及初步處理意見進行內部評估，需要時可尋求專業意見\n資訊披露的安排，並確保資訊披露的真實、準確、完整、及時和公平，沒有虛假記載、嚴重誤導性陳述或重大遺漏\n董事會已對本集團截至二零二五年十二月三十一日止年度的風險管理及內部監控系統進行檢討，當中涵蓋財務、運營、合\n規程序、風險控制功能及環境、社會和管治風險，並認為該等系統屬有效及足夠\n計、內部審核及財務彙報職能方面以及與本公司環境、社會及管治表現和彙報相關的資源、員工資歷及經驗，以及員工所\n本公司於截至二零二五年十二月三十一日止年度並無對章程細則作出任何重大變更\n所有董事均可向本公司公司秘書張月霞女士諮詢有關意見和服務\n確保董事會程序獲得遵從，以及促進董事之間、董事與股東及管理層之間的溝通\n度，本公司公司秘書共接受超過15小時更新其技能及知識的專業培訓\n本公司就此通過股東週年大會或其他股東大會與股東一直保持溝通並鼓勵他們參與股東大\n股東大會通告可在聯交所網站及本公司網站查閱，股東亦可向本公司股份過戶登記處申請以郵寄方式收取股東大會通告\n未能出席股東大會的股東可填妥股東大會的代表委任表格並交回本公司股份過戶登記處，以委任彼等之代表、另一名股東\n根據章程細則規定，於遞呈要求日期持有不少於本公司繳足股本（賦有於本公司股東大會上投票權）十分之一的股東於任何\n時候有權透過向本公司董事會或秘書發出書面要求，要求董事會召開股東特別大會，以處理有關要求中指明的任何事項；\n倘遞呈後二十一(21)日內，董事會未有召開該大會，則遞呈要求人士可以相\n同方式自發於一個地點（即主要會議地點）召開現場會議，因遞呈要求人士因董事會未能召開大會而產生的一切合理開支均\n股東通訊政策可在本公司網站查閱，並闡明本公司與股東保持有效持續對話的承諾\n股東通訊政策旨在確保本公司個人及機構股東及（於適當情況下）整個投資界（包括但不限於本公司的有意投資者與報告及分\n析本公司表現的分析師）獲提供有效、平等及及時取得有關本公司財務表現、策略目標及規劃、重要發展、規管及風險概況\n的清晰、準確、經比較及易懂之重要資料的途經，以使股東能以知情方式行使權利，並使股東及投資界密切關注本公司；\n溝通；(投資市場上的溝通，例如投資者╱分析師簡報、路演、媒體採訪、營銷活動等；以及(可透過聯絡本公司投資\n董事會會與股東及投資界不斷溝通，亦將定期檢討本政策並進行適當修訂以反映股東通訊的現有最佳慣例\n董事會已就截至二零二五年十二月三十一日止年度的股東通訊政策作出檢討，以確保股東通訊政策的有效性\n經考慮現有與股東溝通及聯繫之多個管道後，董事會認為截至二零二五年十二月三十一日止年度的股東通\n自本公司於二零一一年三月上市以來，管理層積極與資本市場保\n本公司設有網站載有詳盡企業資料，包括但不限於：年度報告及中期\n報告、公告及通函、推介材料、最新資訊、業務介紹和最新的企業資料\n反向路演、與機構投資者和分析員面談、電話會議等形式，跟投資者保持溝通\n為了向股東及投資者提供及時、透明和公平的披露，本公司已遵照上市規則及時地公佈一切股價敏感資料、公告、中期及\n年度報告、帳目及中期報告載有本公司活動的詳細資料，該等報告及帳目可在聯交所網站及本公司網站查閱\n吾等已審核列載於第75至200頁中國宏橋集團有限公司（「貴公司」）及其附屬公司（以下統稱「貴集團」）的綜合財務報表，此\n綜合財務報表包括於二零二五年十二月三十一日的綜合財務狀況表、截至該日止年度的綜合損益及其他全面收益表、綜合\n權益變動表和綜合現金流量表，以及綜合財務報表附註，包括主要會計政策資料\n吾等認為，該等綜合財務報表已根據國際會計準則理事會（「國際會計準則理事會」）頒佈的國際財務報告準則會計準則真實\n而中肯地反映了 貴集團於二零二五年十二月三十一日的綜合財務狀況及其截至該日止年度的綜合財務表現及綜合現金流\n吾等已根據香港會計師公會（「香港會計師公會」）頒佈的香港審計準則（「香港審計準則」）進行審計\n的責任已在本報告「核數師就審計綜合財務報表承擔的責任」部分中作進一步闡述\n利益實體綜合財務報表審計的專業會計師道德守則（以下簡稱「守則」），吾等獨立於 貴集團\n吾等相信，吾等所獲得的審計憑證能充足及適當地為吾等的審計意見提供基礎\n關鍵審計事項是根據吾等的專業判斷，認為對本期綜合財務報表的審計最為重要的事項\n• 於鄒平濱能能源科技有限公司（「濱能能源」）之權益減值評估；及\n於二零二五年十二月三十一日，物業、廠房及設備的賬面值 吾等了解於計算可收回金額中應用的管理方法及基準\n截至二零 吾等評估相關資產的可收回金額計算，有關計算乃由管理層\n二五年十二月三十一日止年度，已確認物業、廠房及設備的 透過1）就按使用價值和公允價值減出售成本兩者中較高者釐\n定可收回金額的該等資產取得外部估值報告；2）考慮估值專\n家的客觀性、獨立性及能力；3）評估估值方法的適當性，並\n由於物業、廠房及設備的賬面值對綜合財務報表屬重要及管 對方法的合理性及市場數據的使用和於釐定使用價值和公允\n理層及估值專家釐定物業、廠房及設備的可收回金額時已運 價值減出售成本時應用的假設提出質疑及4）檢查減值模型的\n用重大判斷及估計，吾等將物業、廠房及設備的減值評估識 數學準確性編製\n於二零二五年十二月三十一日， 貴集團於濱能能源的權益 吾等的程序旨在評估管理層識別於濱能能源的權益是否存在\n減值跡象的過程，並對可收回金額的合理性提出質疑，包括\n現金流量的預測、貼現率及已應用的增長率，以及濱能能源\n由於減值評估涉及管理層作出重大判斷及估計，吾等將於濱 的前景\n為於吾等的審計過程中處理此項問題，吾等取得管理層的減\n新市場預期的假設（包括銷售增長率及毛利率）的適當性提出\n吾等通過審查其計算基準並將其輸入數據與市場來源進行比\n於二零二五年十二月三十一日， 貴集團向聯營公司提 吾等的程序旨在審查管理層對給予聯營公司貸款虧損撥備採\n為在審計中處理該事項，吾等獲得管理層減值評估及由其估\n向聯營公司提供的貸款就減值進行獨立評估，並涉及評估預 值專家編製的估值報告，並參照過往信貸虧損經驗、聯營公\n期信貸虧損（「預期信貸虧損」）時的重大管理層判斷，根據過 司的財務資料、抵押品的可收回金額、可獲得的最新整體經\n往信貸虧損經驗，聯營公司指定的前瞻性因素及經濟環境， 濟數據及前瞻性資料，質疑管理層所使用輸入數據的合理\n由於減值評估涉及管理層作出重大判斷及估計，吾等將給予\n其他資料包括年報中所包含的資料，但不包括綜合財務報表及吾等就此發出的核數師\n就審計綜合財務報表而言，吾等的責任是閱讀其他資料，從而考慮其他資料是否與綜合財務報表或吾等在審核過程中獲悉\n倘若吾等基於已完成的工作認為其他資料出現重大錯誤陳述，吾等須報\n貴公司董事須負責根據國際會計準則理事會頒佈的國際財務報告準則會計準則及香港公司條例的披露要求編製及真實而公\n允地列報該等綜合財務報表，並負責 貴公司董事認為編製綜合財務報表所必需的有關內部監控，以確保有關綜合財務報\n表不存在重大錯誤陳述（不論是否由於欺詐或錯誤而導致的）\n在編製綜合財務報表時， 貴公司董事須負責評估 貴集團持續經營的能力，並披露與持續經營有關的事項（如適用）\n非 貴公司董事有意將 貴集團清盤，或停止營運，或除此之外並無其他實際可行的辦法，否則董事須採用以持續經營為\n吾等的目標是合理確定整體而言此等綜合財務報表是否不存在重大錯誤陳述（不論是否由於欺詐或錯誤而導致的），並根據\n吾等約定的專案約定條款向閣下（作為一個團體）發出包含審核意見的核數師報告，除此之外別無其他目的\n合理確定屬高層次的核證，但不能擔保根據香港審計準則進行的\n重大錯誤陳述可源於欺詐或錯誤，倘個別或整體在合理預期情況下可影響使\n用者根據綜合財務報表作出的經濟決定時，被視為重大錯誤陳述\n吾等根據香港審計準則進行審計的工作之一，是運用專業判斷，在整個審核過程中抱持職業懷疑態度\n• 識別和評估綜合財務報表內的重大錯報風險（不論是否因錯誤或欺詐而導致的），設計和執行回應這些風險的審計程\n序，和獲取充分和適當的審計證據為發表吾等的意見提供基礎\n對內部控制的否決，因此未能發現由欺詐而導致重大錯報的風險是比由錯誤而導致重大錯報的風險為高\n• 瞭解與審計工作相關的內部控制以設計恰當的審計程序，但並非對 貴集團的內部控制有效性發表意見\n• 評估 貴公司董事選用會計政策的恰當性和作出會計估計和相關披露的合理性\n• 總結 貴公司董事採用以持續經營為基礎的會計處理是否恰當，並根據已獲取的審核證據，總結是否對 貴集團持續\n經營的能力構成重大疑問的事件或情況等存在重大不確定因素\n數師報告中提呈注意綜合財務報表內的相關資料披露，或如果相關披露不足，則修訂吾等的意見\n然而，未來事件或情況可能導致 貴集團不再具有持續經營的能力\n• 評估綜合財務報表的整體列報、架構和內容（包括資料披露），以及綜合財務報表是否已公允地反映及列報相關交易及\n• 計劃及執行貴集團審計以就貴集團內各實體或業務單位的財務資料獲得充足的審核憑證，作為就貴集團財務報表形成\n吾等須負責指導、監督和審閱就貴集團審計而進行的審計工作\n吾等就審計工作的計劃範圍和時間、在審核過程中的主要審計發現（包括內部控制的重大缺失）及其他事項與審核委員會進\n吾等亦向審核委員會作出聲明，確認吾等已遵守有關獨立性的道德要求，並就所有被合理認為可能影響核數師獨立性的關\n係和其他事宜以及為消除威脅而採取的行動或相關的防範措施（如適用），與審核委員會進行溝通\n吾等通過與審核委員會溝通，確定哪些是本期綜合財務報表審計工作的最重要事項，即關鍵審計事項\n容許公開披露此等事項或在極罕有的情況下，吾等認為披露此等事項可合理預期的不良後果將超過公眾知悉此等事項的利\n益而不應在報告中予以披露，否則吾等會在核數師報告中描述此等事項\n負責此審核項目與簽發獨立核數師報告的項目合夥人為關志峰\n第75至200頁的綜合財務報表已於二零二六年三月二十日經董事會批准及授權確認刊發，並由以下董事代表簽署：\n股本 股份溢價 儲備 資本儲備 匯兌儲備 儲備 保留盈利 總計 權益 總計\n出售按公允價值計入其他全面收益的金融資產 – – 939 – – – (939) – – –\n股本 股份溢價 儲備 資本儲備 匯兌儲備 儲備 保留盈利 總計 權益 總計", "mda_quality": "0"}, "current_position": {"years": ["2023", "2024", "2025"], "items": [{"name": "Cash Assets", "2023": 317.21, "2024": 447.7, "2025": 541.89}, {"name": "Receivables", "2023": 54.88751, "2024": 97.73923, "2025": 88.94377}, {"name": "Inventory (FIFO)", "2023": 339.58455, "2024": 373.44003, "2025": 366.35529}, {"name": "Other Current Assets", "2023": 162.27, "2024": 179.37, "2025": 148.48}, {"name": "Current Assets", "2023": 873.94963, "2024": 1098.24559, "2025": 1145.67042}, {"name": "Accounts Payable", "2023": 116.48276, "2024": 149.30515, "2025": 111.88809}, {"name": "Debt Due", "2023": 305.27, "2024": 341.94, "2025": 184.47}, {"name": "Other Current Liab", "2023": 318.54, "2024": 278.58, "2025": 244.53}, {"name": "Current Liabilities", "2023": 740.29126, "2024": 769.82549, "2025": 540.89193}]}, "annual_rates": {"sales": {"1yr": 4.0, "3yr": 7.2, "5yr": 13.5, "10yr": 13.9}, "cashflow": {"1yr": -2.3, "3yr": 21.8, "5yr": 8.9, "10yr": 8.4}, "earnings": {"1yr": -3.4, "3yr": 35.3, "5yr": 14.1, "10yr": 14.5}, "dividends": {"1yr": -0.0, "3yr": 48.5, "5yr": 22.2, "10yr": 28.1}, "book_value": {"1yr": 14.0, "3yr": 12.0, "5yr": 10.5, "10yr": 9.5}, "has_10yr": true}, "yearly_hl": [{"year": "2011", "high": 3.1, "low": 1.3, "month_high": "2011-03", "month_low": "2011-10"}, {"year": "2012", "high": 2.3, "low": 1.2, "month_high": "2012-03", "month_low": "2012-09"}, {"year": "2013", "high": 2.4, "low": 1.5, "month_high": "2013-12", "month_low": "2013-02"}, {"year": "2014", "high": 3.2, "low": 2.0, "month_high": "2014-07", "month_low": "2014-03"}, {"year": "2015", "high": 3.9, "low": 1.5, "month_high": "2015-05", "month_low": "2015-09"}, {"year": "2016", "high": 3.7, "low": 1.8, "month_high": "2016-09", "month_low": "2016-01"}, {"year": "2017", "high": 6.4, "low": 3.0, "month_high": "2017-11", "month_low": "2017-01"}, {"year": "2018", "high": 5.6, "low": 2.2, "month_high": "2018-01", "month_low": "2018-12"}, {"year": "2019", "high": 3.6, "low": 2.1, "month_high": "2019-04", "month_low": "2019-01"}, {"year": "2020", "high": 4.8, "low": 1.6, "month_high": "2020-12", "month_low": "2020-03"}, {"year": "2021", "high": 9.2, "low": 4.1, "month_high": "2021-09", "month_low": "2021-01"}, {"year": "2022", "high": 8.1, "low": 4.0, "month_high": "2022-03", "month_low": "2022-10"}, {"year": "2023", "high": 7.4, "low": 4.3, "month_high": "2023-02", "month_low": "2023-05"}, {"year": "2024", "high": 12.6, "low": 4.3, "month_high": "2024-11", "month_low": "2024-01"}, {"year": "2025", "high": 33.2, "low": 9.3, "month_high": "2025-11", "month_low": "2025-01"}], "position": {"pe": {"current": 9.9, "min": 1.4, "max": 7.4, "avg": 3.5, "pct": 142.0}, "price": {"current": 27.1, "min": 1.4, "max": 34.2, "avg": 5.8, "pct": 78.0}, "pb": {"current": 1.65, "min": 0.3, "max": 1.2, "avg": 0.5, "pct": 150.0}}, "analyst": {"business": "中国宏桥属于金属与矿业行业，主营铝合金产品（90.0%）、氧化铝（10.0%）。2025年营收1623.5亿元；净利润率13.9%；ROE 16.0%。", "commentary": ["2026年06月14日 — 宏桥2025年营收1623.5亿元(增长4.0%)，扣非净利润226.4亿元(增长1.2%)，每股收益¥2.28，毛利率25.6%(下降5.2%)，ROE 16.0%。", "每股收益¥2.28中，主业贡献¥2.50（110%），非经营性贡献¥-0.22（-10%）。每股现金流¥2.98（内生现金生成 = 净利润 + 折旧），四大去向：① 资本支出¥1.07/股（扩建/更换厂房设备）；② 营运资金占用 +276.4亿（折合¥2.78/股，扩张期正常，需关注效率）；③ 现金分红¥1.49/股（支付率65%）；④ 股本扩张（股数+4.8%）— 摊薄每股指标 ⚠️；净留存¥0.42/股，现金流充裕。", "以铝合金产品和氧化铝为主(合计100%营收)，负债率24%，当前PE 9.9倍(高于历史中位数3.4倍)，PB 1.65倍，股息率6.3%，ROE 16.0%(同比下滑)。", "营收增速放缓（1年+4.0% vs 3年+7.2%）。ROE触底反弹：盈利能力较近年均值大幅改善。验证信号：关注2026年中报营收增速作为趋势验证信号。"], "commentary_from_mda": false, "commentary_from_script": false, "recommendation": ""}, "validation": {"checked": [{"year": "2011", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=8.5B vs pdf=8.5B", "ak": 8.5, "pdf": 8.48, "diff_pct": 0.19}, {"year": "2011", "metric": "PerSh BPS consistency", "summary": "BPS=3.23 vs Eq/Sh=3.23", "actual": 3.23, "calc": 3.23, "diff_pct": 0.0}, {"year": "2011", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=5704.3M vs OI-der=5707.7M", "indicator": 5704.3, "oi_derived": 5707.7, "diff_pct": 0.06}, {"year": "2011", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=5704.3M vs BPS-der=5696.6M", "indicator": 5704.3, "bps_derived": 5696.6, "diff_pct": 0.13}, {"year": "2012", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=13.6B vs pdf=13.6B", "ak": 13.6, "pdf": 13.62, "diff_pct": 0.14}, {"year": "2012", "metric": "PerSh BPS consistency", "summary": "BPS=3.81 vs Eq/Sh=3.81", "actual": 3.81, "calc": 3.81, "diff_pct": 0.0}, {"year": "2012", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=5863.0M vs OI-der=5862.9M", "indicator": 5863.0, "oi_derived": 5862.9, "diff_pct": 0.0}, {"year": "2012", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=5863.0M vs BPS-der=5863.5M", "indicator": 5863.0, "bps_derived": 5863.5, "diff_pct": 0.01}, {"year": "2013", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=20.9B vs pdf=20.9B", "ak": 20.9, "pdf": 20.86, "diff_pct": 0.2}, {"year": "2013", "metric": "PerSh BPS consistency", "summary": "BPS=4.57 vs Eq/Sh=4.57", "actual": 4.57, "calc": 4.57, "diff_pct": 0.0}, {"year": "2013", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=5887.0M vs OI-der=5891.8M", "indicator": 5887.0, "oi_derived": 5891.8, "diff_pct": 0.08}, {"year": "2013", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=5887.0M vs BPS-der=5881.8M", "indicator": 5887.0, "bps_derived": 5881.8, "diff_pct": 0.09}, {"year": "2014", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=31.1B vs pdf=31.1B", "ak": 31.1, "pdf": 31.13, "diff_pct": 0.09}, {"year": "2014", "metric": "PerSh BPS consistency", "summary": "BPS=5.43 vs Eq/Sh=5.43", "actual": 5.43, "calc": 5.43, "diff_pct": 0.0}, {"year": "2014", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=5970.4M vs OI-der=5975.2M", "indicator": 5970.4, "oi_derived": 5975.2, "diff_pct": 0.08}, {"year": "2014", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=5970.4M vs BPS-der=5972.4M", "indicator": 5970.4, "bps_derived": 5972.4, "diff_pct": 0.03}, {"year": "2015", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=46.4B vs pdf=46.4B", "ak": 46.4, "pdf": 46.43, "diff_pct": 0.07}, {"year": "2015", "metric": "PerSh BPS consistency", "summary": "BPS=5.78 vs Eq/Sh=5.78", "actual": 5.78, "calc": 5.78, "diff_pct": 0.0}, {"year": "2015", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=6282.2M vs OI-der=6283.5M", "indicator": 6282.2, "oi_derived": 6283.5, "diff_pct": 0.02}, {"year": "2015", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=6282.2M vs BPS-der=6278.5M", "indicator": 6282.2, "bps_derived": 6278.5, "diff_pct": 0.06}, {"year": "2016", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=56.5B vs pdf=56.5B", "ak": 56.5, "pdf": 56.49, "diff_pct": 0.01}, {"year": "2016", "metric": "PerSh BPS consistency", "summary": "BPS=6.47 vs Eq/Sh=6.47", "actual": 6.47, "calc": 6.47, "diff_pct": 0.0}, {"year": "2016", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=7135.2M vs OI-der=7139.5M", "indicator": 7135.2, "oi_derived": 7139.5, "diff_pct": 0.06}, {"year": "2016", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=7135.2M vs BPS-der=7139.1M", "indicator": 7135.2, "bps_derived": 7139.1, "diff_pct": 0.05}, {"year": "2017", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=78.6B vs pdf=78.6B", "ak": 78.6, "pdf": 78.55, "diff_pct": 0.06}, {"year": "2017", "metric": "PerSh OI consistency", "summary": "PER_OI=12.15 vs Rev/Sh=12.15", "actual": 12.15, "calc": 12.15, "diff_pct": 0.0}, {"year": "2017", "metric": "PerSh BPS consistency", "summary": "BPS=6.67 vs Eq/Sh=6.67", "actual": 6.67, "calc": 6.67, "diff_pct": 0.0}, {"year": "2017", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=8057.9M vs OI-der=8060.9M", "indicator": 8057.9, "oi_derived": 8060.9, "diff_pct": 0.04}, {"year": "2017", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=8057.9M vs BPS-der=8057.0M", "indicator": 8057.9, "bps_derived": 8057.0, "diff_pct": 0.01}, {"year": "2018", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=73.3B vs pdf=73.3B", "ak": 73.3, "pdf": 73.29, "diff_pct": 0.02}, {"year": "2018", "metric": "PerSh OI consistency", "summary": "PER_OI=10.4 vs Rev/Sh=10.4", "actual": 10.4, "calc": 10.4, "diff_pct": 0.0}, {"year": "2018", "metric": "PerSh BPS consistency", "summary": "BPS=7.22 vs Eq/Sh=7.22", "actual": 7.22, "calc": 7.22, "diff_pct": 0.0}, {"year": "2018", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=8675.4M vs OI-der=8672.1M", "indicator": 8675.4, "oi_derived": 8672.1, "diff_pct": 0.04}, {"year": "2018", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=8675.4M vs BPS-der=8673.1M", "indicator": 8675.4, "bps_derived": 8673.1, "diff_pct": 0.03}, {"year": "2019", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=73.9B vs pdf=73.9B", "ak": 73.9, "pdf": 73.91, "diff_pct": 0.01}, {"year": "2019", "metric": "PerSh OI consistency", "summary": "PER_OI=9.82 vs Rev/Sh=9.82", "actual": 9.82, "calc": 9.82, "diff_pct": 0.0}, {"year": "2019", "metric": "PerSh BPS consistency", "summary": "BPS=7.7 vs Eq/Sh=7.7", "actual": 7.7, "calc": 7.7, "diff_pct": 0.0}, {"year": "2019", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=8570.9M vs OI-der=8572.3M", "indicator": 8570.9, "oi_derived": 8572.3, "diff_pct": 0.02}, {"year": "2019", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=8570.9M vs BPS-der=8574.0M", "indicator": 8570.9, "bps_derived": 8574.0, "diff_pct": 0.04}, {"year": "2020", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=67.9B vs pdf=67.9B", "ak": 67.9, "pdf": 67.94, "diff_pct": 0.06}, {"year": "2020", "metric": "PerSh OI consistency", "summary": "PER_OI=9.7 vs Rev/Sh=9.7", "actual": 9.7, "calc": 9.7, "diff_pct": 0.0}, {"year": "2020", "metric": "PerSh BPS consistency", "summary": "BPS=8.65 vs Eq/Sh=8.65", "actual": 8.65, "calc": 8.65, "diff_pct": 0.0}, {"year": "2020", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=8878.4M vs OI-der=8880.4M", "indicator": 8878.4, "oi_derived": 8880.4, "diff_pct": 0.02}, {"year": "2020", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=8878.4M vs BPS-der=8878.6M", "indicator": 8878.4, "bps_derived": 8878.6, "diff_pct": 0.0}, {"year": "2021", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=66.7B vs pdf=66.7B", "ak": 66.7, "pdf": 66.72, "diff_pct": 0.03}, {"year": "2021", "metric": "PerSh OI consistency", "summary": "PER_OI=12.55 vs Rev/Sh=12.55", "actual": 12.55, "calc": 12.55, "diff_pct": 0.0}, {"year": "2021", "metric": "PerSh BPS consistency", "summary": "BPS=10.13 vs Eq/Sh=10.13", "actual": 10.13, "calc": 10.13, "diff_pct": 0.0}, {"year": "2021", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=9121.4M vs OI-der=9122.7M", "indicator": 9121.4, "oi_derived": 9122.7, "diff_pct": 0.01}, {"year": "2021", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=9121.4M vs BPS-der=9125.4M", "indicator": 9121.4, "bps_derived": 9125.4, "diff_pct": 0.04}, {"year": "2022", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=69.0B vs pdf=69.0B", "ak": 69.0, "pdf": 69.03, "diff_pct": 0.05}, {"year": "2022", "metric": "PerSh OI consistency", "summary": "PER_OI=13.9 vs Rev/Sh=13.9", "actual": 13.9, "calc": 13.9, "diff_pct": 0.0}, {"year": "2022", "metric": "PerSh BPS consistency", "summary": "BPS=10.16 vs Eq/Sh=10.16", "actual": 10.16, "calc": 10.16, "diff_pct": 0.0}, {"year": "2022", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=9475.5M vs OI-der=9474.8M", "indicator": 9475.5, "oi_derived": 9474.8, "diff_pct": 0.01}, {"year": "2022", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=9475.5M vs BPS-der=9479.3M", "indicator": 9475.5, "bps_derived": 9479.3, "diff_pct": 0.04}, {"year": "2023", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=71.4B vs pdf=71.4B", "ak": 71.4, "pdf": 71.41, "diff_pct": 0.02}, {"year": "2023", "metric": "PerSh OI consistency", "summary": "PER_OI=14.1 vs Rev/Sh=14.1", "actual": 14.1, "calc": 14.1, "diff_pct": 0.0}, {"year": "2023", "metric": "PerSh BPS consistency", "summary": "BPS=11.21 vs Eq/Sh=11.21", "actual": 11.21, "calc": 11.21, "diff_pct": 0.0}, {"year": "2023", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=9475.5M vs OI-der=9476.6M", "indicator": 9475.5, "oi_derived": 9476.6, "diff_pct": 0.01}, {"year": "2023", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=9475.5M vs BPS-der=9479.0M", "indicator": 9475.5, "bps_derived": 9479.0, "diff_pct": 0.04}, {"year": "2024", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=65.2B vs pdf=65.2B", "ak": 65.2, "pdf": 65.24, "diff_pct": 0.06}, {"year": "2024", "metric": "PerSh OI consistency", "summary": "PER_OI=16.48 vs Rev/Sh=16.48", "actual": 16.48, "calc": 16.48, "diff_pct": 0.0}, {"year": "2024", "metric": "PerSh BPS consistency", "summary": "BPS=12.52 vs Eq/Sh=12.52", "actual": 12.52, "calc": 12.52, "diff_pct": 0.0}, {"year": "2024", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=9475.5M vs OI-der=9476.3M", "indicator": 9475.5, "oi_derived": 9476.3, "diff_pct": 0.01}, {"year": "2024", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=9475.5M vs BPS-der=9473.6M", "indicator": 9475.5, "bps_derived": 9473.6, "diff_pct": 0.02}, {"year": "2025", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=69.7B vs pdf=69.7B", "ak": 69.7, "pdf": 69.66, "diff_pct": 0.06}, {"year": "2025", "metric": "PerSh OI consistency", "summary": "PER_OI=16.35 vs Rev/Sh=16.35", "actual": 16.35, "calc": 16.35, "diff_pct": 0.0}, {"year": "2025", "metric": "PerSh BPS consistency", "summary": "BPS=14.27 vs Eq/Sh=14.27", "actual": 14.27, "calc": 14.27, "diff_pct": 0.0}, {"year": "2025", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=9932.3M vs OI-der=9929.7M", "indicator": 9932.3, "oi_derived": 9929.7, "diff_pct": 0.03}, {"year": "2025", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=9932.3M vs BPS-der=9930.6M", "indicator": 9932.3, "bps_derived": 9930.6, "diff_pct": 0.02}], "mismatches": [], "warnings": ["2011 AKShare↔Cashflow Depreciation: ak=8.5B vs pdf=8.5B (0.2%)", "2011 SHARES: ind vs Rev/PER_OI: ind=5704.3M vs OI-der=5707.7M (0.1%)", "2011 SHARES: ind vs Eq/BPS: ind=5704.3M vs BPS-der=5696.6M (0.1%)", "2012 AKShare↔Cashflow Depreciation: ak=13.6B vs pdf=13.6B (0.1%)", "2013 AKShare↔Cashflow Depreciation: ak=20.9B vs pdf=20.9B (0.2%)", "2013 SHARES: ind vs Rev/PER_OI: ind=5887.0M vs OI-der=5891.8M (0.1%)", "2013 SHARES: ind vs Eq/BPS: ind=5887.0M vs BPS-der=5881.8M (0.1%)", "2014 AKShare↔Cashflow Depreciation: ak=31.1B vs pdf=31.1B (0.1%)", "2014 SHARES: ind vs Rev/PER_OI: ind=5970.4M vs OI-der=5975.2M (0.1%)", "2015 AKShare↔Cashflow Depreciation: ak=46.4B vs pdf=46.4B (0.1%)", "2015 SHARES: ind vs Eq/BPS: ind=6282.2M vs BPS-der=6278.5M (0.1%)", "2016 SHARES: ind vs Rev/PER_OI: ind=7135.2M vs OI-der=7139.5M (0.1%)", "2016 SHARES: ind vs Eq/BPS: ind=7135.2M vs BPS-der=7139.1M (0.1%)", "2017 AKShare↔Cashflow Depreciation: ak=78.6B vs pdf=78.6B (0.1%)", "2020 AKShare↔Cashflow Depreciation: ak=67.9B vs pdf=67.9B (0.1%)", "2024 AKShare↔Cashflow Depreciation: ak=65.2B vs pdf=65.2B (0.1%)", "2025 AKShare↔Cashflow Depreciation: ak=69.7B vs pdf=69.7B (0.1%)"], "sources": {"annual_indicators": "AKShare stock_financial_hk_analysis_indicator_em (年度指标)", "semi_annual_income": "AKShare stock_financial_hk_report_em 利润表 (06-30中报)", "dividend": "AKShare stock_hk_dividend_payout_em + 手动补充", "revenue_structure": "年报PDF提取 → SQLite revenue_structure 表", "index_kline": "新浪 stock_hk_index_daily_sina"}, "status": "OK", "pdf_years": ["2025"], "checks_passed": 69, "checks_total": 69}, "footnotes": [], "bps_source": "归属于母公司权益 ÷ 股数 (计算值, 与年报披露口径可能有小幅差异)", "data_source_note": "指标数据: 2017年起基于东方财富(EM), 2016年及以前基于通达信(TDX)财报计算; BPS公式: 归属母公司权益÷股数, 与年报披露加权值可能有小幅差异"};
+
+(function(){
+  var d=DATA, M=d.metric_defs, Y=d.years, MT=d.data, QT=d.quarterly,
+      cs=d.capital_structure||{}, cp=d.current_position||{},
+      ar=d.annual_rates||{}, qt=d.quarterly||{},
+      yhl=d.yearly_hl||[], pos=d.position||{}, v=d.validation||{};
+  // 统一年份: 使用 indicators 全量, Yearly HL 缺失则空
+  var yhlMap={}; yhl.forEach(function(h){yhlMap[h.year]=h;});
+  var allY=Y.slice(-15);  // 最多15年 (不足则全部)
+  var spot=d.spot||{};
+  var latestYr=Y[Y.length-1], ly=MT[latestYr]||{};
+  var meta=d.meta||{};
+  var stockName=meta.name_en||meta.name||'N/A';
+  var stockCode=meta.code||'';
+  var cfMult=d.cf_multiplier||15;
+  var pbMult=d.pb_multiplier||1;
+  var valMethod=d.valuation_method||'cf';
+  var cfLabelStr='x "Cash Flow" p sh';
+  var pbLabelStr='x "Book Value" p sh';
+  var valLabel=valMethod==='pb'?(pbMult.toFixed(2)+'*BPS'):(cfMult.toFixed(1)+'x CF');
+  var legendLine=valMethod==='pb'?(pbMult.toFixed(2)+' '+pbLabelStr):(cfMult.toFixed(1)+' '+cfLabelStr);
+  var stockMarket=meta.market||'';
+  var currency=meta.currency||'¥';
+  var indexName=meta.index_name||'HSI';
+  var indexNameCn=meta.index_name_cn||'恒生指数';
+  var app=document.getElementById('app');
+  var html='';
+
+  html+='<div class="container">';
+
+  // ========================
+  // 左栏
+  // ========================
+  html+='<div class="left-col">';
+
+  // Capital Structure — 完全参考VL截图布局
+  var csDate=Y[Y.length-1]+'-12-31', csUnit=cs.unit||'亿';
+  html+='<div class="sec">';
+  html+='<div style="font-size:10px;font-weight:700;margin-bottom:2px">CAPITAL STRUCTURE as of '+csDate+'</div>';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.5">';
+  // Row 1: Total Debt | Due in 5 Yrs
+  html+='<tr><td style="white-space:nowrap;font-weight:700">Total Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.total_debt||0).toFixed(1)+' '+csUnit+'</td>';
+  html+='<td style="width:8px"></td><td style="white-space:nowrap;font-weight:700">Due in 5 Yrs</td><td style="text-align:right;font-weight:700">'+(cs.due_in_5yr||0).toFixed(1)+' '+csUnit+'</td></tr>';
+  // Row 2: LT Debt | LT Interest
+  html+='<tr><td style="white-space:nowrap;font-weight:700">LT Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.lt_debt||0).toFixed(1)+' '+csUnit+'</td>';
+  html+='<td></td><td style="white-space:nowrap;font-weight:700">LT Interest</td><td style="text-align:right;font-weight:700">'+(cs.total_int||0).toFixed(2)+' '+csUnit+'</td></tr>';
+  // Row 3: (coverage)
+  html+='<tr><td colspan="5" style="font-size:10px;color:#000;padding-left:0">(Total interest coverage: '+cs.coverage+')</td></tr>';
+  // Row 4: (% of Cap’l) — 右对齐
+  html+='<tr><td colspan="5" style="text-align:right;font-size:10px;color:#000;padding-left:0">('+cs.lt_debt_pct+'% of Cap\u2019l)</td></tr>';
+  // Row 5: Pfd Stock | None (Leases/Pension不适用港股)
+  html+='<tr><td style="white-space:nowrap;font-weight:700">Pfd Stock</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.pfd_stock||'None')+'</td><td></td><td></td><td></td></tr>';
+  html+='</table>';
+  // Common Stock 单独块
+  html+='<div style="margin-top:4px;font-size:10px;line-height:1.4">';
+  html+='<div style="display:flex;justify-content:space-between"><span style="font-weight:700">Common Stock</span><span style="font-weight:700;margin-left:2px">'+cs.common_shares_str+' shs.</span></div>';
+  html+='<div style="text-align:left;font-weight:700">as of '+csDate+'</div>';
+  html+='</div>';
+  // MARKET CAP
+  html+='<div style="margin-top:4px;font-size:10px;line-height:1.4">';
+  html+='<div style="display:flex;justify-content:space-between;font-weight:700"><span>MARKET CAP:</span><span>'+(cs.mkt_cap||0).toFixed(0)+' '+csUnit+' ('+cs.cap_label+')</span></div>';
+  html+='</div>';
+  html+='<div style="border-bottom:1px solid #000;margin-top:4px"></div>';
+  html+='</div>';
+
+  // Current Position — VL格式
+  var cpYears=cp.years||[];
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:4px;margin-bottom:6px">';
+  html+='<div style="margin-bottom:2px"></div>';
+  // 标题行: 标题 + 列名同行
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.4">';
+  html+='<tr style="font-weight:700">';
+  html+='<td style="white-space:nowrap">CURRENT POSITION</td>';
+  cpYears.forEach(function(yr, i){
+    var label=(i===cpYears.length-1)?yr+'-12-31':yr;
+    html+='<td style="text-align:right">'+label+'</td>';
+  });
+  html+='</tr>';
+  // 单位行
+  html+='<tr><td style="font-size:8px;color:#000;font-weight:700">(亿)</td>';
+  cpYears.forEach(function(){html+='<td></td>';});
+  html+='</tr>';
+  // 数据行
+  var cpDef=[
+    ['Cash Assets',0,0],['Receivables',1,0],['Inventory (FIFO)',2,0],['Other',3,0],
+    ['Current Assets',4,1],
+    ['Accts Payable',5,0],['Debt Due',6,0],['Other',7,0],
+    ['Current Liab.',8,1]
+  ];
+  var cpItems=cp.items||[];
+  cpDef.forEach(function(d){
+    var label=d[0], idx=d[1], isBold=d[2];
+    if(isBold){
+      html+='<tr style="font-weight:700">';
+    }else{
+      html+='<tr>';
+    }
+    html+='<td style="white-space:nowrap">'+label+'</td>';
+    var item=cpItems[idx];
+    cpYears.forEach(function(yr){
+      var v=(item&&item[yr]!=null)?item[yr].toFixed(1):'—';
+      html+='<td style="text-align:right;'+(isBold?'border-top:1px solid #000':'')+'">'+v+'</td>';
+    });
+    html+='</tr>';
+  });
+  html+='</table></div>';
+
+  // Annual Rates of Change — VL标准 (per sh, 复合增长率)
+  var has10=ar.has_10yr;
+  var colKeys=has10?['10yr','5yr','3yr','1yr']:['5yr','3yr','1yr'];
+  var colParts=colKeys.map(function(k){
+    var m=k.match(/^(\d+)(yr)$/);
+    return m?[m[1]+' Yrs.']:[k];
+  });
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:0;margin-bottom:0">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.3">';
+  // 标题行: ANNUAL RATES + 列名第一行
+  html+='<tr><td style="white-space:nowrap;font-weight:700">ANNUAL RATES</td>';
+  colParts.forEach(function(p){html+='<td style="text-align:right;font-weight:700">Past</td>';});
+  html+='</tr>';
+  // 副标题行: of change (per sh) + 列名第二行
+  html+='<tr><td style="font-size:9px;color:#666">of change (per sh)</td>';
+  colParts.forEach(function(p){html+='<td style="text-align:right;font-weight:700">'+p[0]+'</td>';});
+  html+='</tr>';
+  // 数据行
+  var arData=[
+    ['Revenues',ar.sales],['"Cash Flow"',ar.cashflow],['Earnings',ar.earnings],
+    ['Dividends',ar.dividends],['Book Value',ar.book_value]
+  ];
+  arData.forEach(function(a){
+    var v=a[1]||{};
+    html+='<tr><td style="white-space:nowrap;font-weight:700">'+a[0]+'</td>';
+    colKeys.forEach(function(k){
+      var pct=(v[k]!=null)?v[k].toFixed(1)+'%':'—';
+      html+='<td style="text-align:right">'+pct+'</td>';
+    });
+    html+='</tr>';
+  });
+  html+='</table></div>';
+
+  // 季度/半年度表 — VL三表紧排, 单 table + 垂直分割线
+  var qsLast=(qt.sales||[]).slice(-3);
+  var hasQ=qsLast.some(function(r){return r&&r.has_quarter;});
+  function renderQSection(title, data, decimal, hasQq, isFirst){
+    if(!data||!data.length) return '';
+    var show=data.slice(-5);
+    var sepStyle=isFirst?'':'border-top:1px solid #999;';
+    sepStyle+='line-height:1;';
+    var h='<tr><td style="font-weight:700;'+sepStyle+'padding-top:3px">Year</td>';
+    h+='<td colspan="4" style="text-align:center;font-weight:700;border-left:2px solid #000;border-right:2px solid #000;'+sepStyle+'padding-top:3px;white-space:nowrap;font-size:9.5px">'+title+'</td>';
+    h+='<td style="border-left:2px solid #000;'+sepStyle+'padding-top:3px"></td></tr>';
+    // Header
+    h+='<tr style="font-weight:700;line-height:1">';
+    h+='<td style="width:16%;border-bottom:1px solid #000"></td>';
+    var qLabels=['Q1','Q2','Q3','Q4'];
+    qLabels.forEach(function(l,i){
+      var s='width:14%;text-align:right;padding-right:3px;border-bottom:1px solid #000';
+      if(i===0) s+=';border-left:2px solid #000;padding-left:3px;text-align:left';
+      if(i===3) s+=';padding-right:3px';
+      h+='<td style="'+s+'">'+l+'</td>';
+    });
+    h+='<td style="width:16%;text-align:right;padding-right:3px;font-weight:700;border-left:2px solid #000;border-bottom:1px solid #000">Full Year</td></tr>';
+    // Data rows
+    show.forEach(function(r){
+      h+='<tr>';
+      h+='<td style="font-weight:700">'+r.year+'</td>';
+      if(hasQq){
+        var vs=[r.q1,r.q2,r.q3,r.q4,r.full];
+        vs.forEach(function(v,i){
+          var s='text-align:right;padding-right:3px';
+          if(i===0) s='text-align:left;border-left:2px solid #000;padding-left:3px';
+          if(i===4) s+=';font-weight:700;border-left:2px solid #000;padding-left:3px';
+          h+='<td style="'+s+'">'+(v!=null?(decimal===3&&v===0?'—':v.toFixed(decimal)):'—')+'</td>';
+        });
+      }else{
+        h+='<td style="text-align:left;color:#999;border-left:2px solid #000;padding-left:3px;padding-right:3px">—</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q1!=null?(decimal===3&&r.q1===0?'—':r.q1.toFixed(decimal)):'—')+'</td>';
+        h+='<td style="text-align:right;color:#999;padding-right:3px">—</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q3!=null?(decimal===3&&r.q3===0?'—':r.q3.toFixed(decimal)):'—')+'</td>';
+        h+='<td style="text-align:right;font-weight:700;border-left:2px solid #000;padding-left:3px;padding-right:3px">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td>';
+      }
+      h+='</tr>';
+    });
+    return h;
+  }
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:2px;margin-bottom:2px">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.3">';
+  html+=renderQSection('QUARTERLY REVENUES (亿)', qt.sales, 1, hasQ, true);
+  html+=renderQSection('EARNINGS PER SHARE', qt.eps, 2, hasQ, false);
+  html+=renderQSection('QUARTERLY DIVIDENDS PAID', qt.dividends, 3, hasQ, false);
+  html+='</table>';
+  if(!hasQ) html+='<div style="border-top:1px solid #000;font-size:8px;color:#666;margin-top:3px;padding-top:3px">*港股仅披露半年报，Q2/Q4暂无数据。</div>';
+  html+='</div>';
+
+  html+='</div>'; // end left-col
+
+  // ========================
+  // 中栏
+  // ========================
+  html+='<div class="center-col">';
+
+  // ===== VL Header: HTML table 2行, rowspan=2跨两行 =====
+  var medianPE=spot.median_pe||null;
+  var trailingPE=spot.pe||ly.PE_AVG||null;
+  var relPE=ly.PE_RELATIVE||(pos.pe?pos.pe.avg:null);
+  var divYld=spot.div_yield||ly.DIV_YIELD;
+
+  html+='<table class="header" style="border-collapse:collapse;border-bottom:2px solid #000;margin:0 0 2px 0;width:100%"><tr>';
+
+  // Row 1
+  html+='<td rowspan="2" style="vertical-align:middle;padding:5px 10px;border-right:1px solid #999">';
+  html+='<span class="code" style="font-size:18px;font-weight:700;line-height:1">'+(stockName||'N/A')+'</span> ';
+  html+='<span style="font-size:9px;font-weight:700;color:#000;line-height:1">'+stockCode+'.'+stockMarket+'</span></td>';
+
+  var priceCcy=meta.price_ccy||meta.currency||(stockMarket==='hk'?'HKD':'CNY');
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RECENT</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'—')+' '+priceCcy+'</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(trailingPE!=null?trailingPE.toFixed(1):'—')+'</td>';
+  // ⑥ (Trailing: xx 第一行
+  html+='<td style="vertical-align:bottom;padding:2px 8px;line-height:1;border-right:1px solid #999;font-size:9px;font-weight:700">';
+  if(trailingPE){html+='(Trailing:'+trailingPE.toFixed(1)+')';}
+  html+='</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RELATIVE</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:17px;font-weight:700">'+(relPE!=null?relPE.toFixed(2):'—')+'</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">DIV’D</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(divYld!=null?divYld.toFixed(1)+'%':'—')+'</td>';
+
+  html+='</tr><tr>';
+
+  // Row 2
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">PRICE</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RATIO</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;line-height:1;border-right:1px solid #999;font-size:9px;font-weight:700">';
+  if(medianPE){html+='(Median:'+medianPE.toFixed(1)+')';}
+  html+='</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E RATIO</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">YLD</td>';
+
+  html+='</tr></table>';
+
+  // Chart
+  var kl=d.kline, hsi=d.index_kline||[];
+
+  // ========== 统一表格: Yearly High/Low + K线 + 23-line ==========
+  var showYears=allY;  // 最多10年
+  var yrCount=showYears.length;
+  html+='<table style="table-layout:fixed;width:100%;border-collapse:collapse;font-size:8.5px">';
+  html+='<colgroup><col style="width:140px">';
+  showYears.forEach(function(){ html+='<col>'; });
+  html+='</colgroup>';
+  var tdStyle='border-right:1px solid #ddd;padding:2px 8px', thStyle='border-right:1px solid #ddd;text-align:right;padding:2px 8px';
+  
+  // Row 1: High
+  html+='<tr><td style="padding:0 3px;'+tdStyle+'">High</td>';
+  showYears.forEach(function(yr){
+    var hl=yhlMap[yr];
+    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.high:'—')+'</td>';
+  });
+  html+='</tr>';
+  // Row 3: Low
+  html+='<tr><td style="padding:0 3px;'+tdStyle+'">Low</td>';
+  showYears.forEach(function(yr){
+    var hl=yhlMap[yr];
+    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.low:'—')+'</td>';
+  });
+  html+='</tr>';
+  
+  // Row 4: K线图行 — LEGENDS + % TOT. RETURN(左) + 图表(右)
+  // chart 220px + volume 42px = 262px flex容器, Percent用margin-top:auto沉底
+  html+='<tr><td style="width:200px;padding:0 4px;vertical-align:top;border-right:1px solid #ddd">';
+  html+='<div style="display:flex;flex-direction:column;height:260px;font-size:9px;line-height:1.4">';
+  html+='<div>';
+  html+='<div style="font-weight:700;font-size:10px;margin:2px 0 1px 0">LEGENDS</div>';
+  html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
+  html+='<div style="font-size:10px;color:#1976D2;line-height:1.1">━━━</div>';
+  html+='<div>'+legendLine+'</div>';
+  html+='<div style="margin:4px 0"></div>';
+  html+='<div style="font-size:10px;color:#ef232a;line-height:1.1">······</div>';
+  html+='<div>Relative Price Strength</div>';
+  html+='<div style="margin:3px 0"></div>';
+  html+='<div>Splits: '+(meta.splits||'None')+'</div><div>Options: '+(meta.options||'No')+'</div>';
+  html+='<div style="margin:15px 0 2px 0"></div>';
+  html+='<div style="font-weight:700;font-size:10px;margin-bottom:2px">% HIST. RETURN</div>';
+  html+='<div style="border-bottom:1px solid #000;margin:0 0 2px 0"></div>';
+  var trR2=d.total_returns||{};
+  var trStock2=trR2.stock||{};
+  var trIndex2=trR2.index||{};
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.35;margin:1px 0">';
+  html+='<tr><td></td><td style="text-align:right;font-weight:700">THIS</td><td style="text-align:right;font-weight:700">'+indexName+'</td></tr>';
+  html+='<tr><td></td><td style="text-align:right;font-weight:700">STOCK</td><td style="text-align:right"></td></tr>';
+  html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock2['1yr']!=null?trStock2['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['1yr']!=null?trIndex2['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>3 yr.</td><td style="text-align:right">'+(trStock2['3yr']!=null?trStock2['3yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['3yr']!=null?trIndex2['3yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock2['5yr']!=null?trStock2['5yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['5yr']!=null?trIndex2['5yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='</table>';
+  html+='</div>';
+  html+='</div></td>';
+  html+='<td colspan="'+yrCount+'" style="padding:0">';
+  html+='<div class="chart-box" id="chart_kline"></div>';
+  html+='<div id="chart_volume" style="height:42px;margin-top:6px;position:relative"></div>';
+  
+  // Row 5: 年份行
+  html+='<tr style="border-top:1px solid #000;border-bottom:1px solid #000"><td style="width:40px;font-size:10px;color:#000;padding:2px 4px;border-right:1px solid #ddd">Year</td>';
+  showYears.forEach(function(y){html+='<td style="text-align:center;font-size:10px;font-weight:700;padding:2px 3px;'+tdStyle+'">'+y+'</td>';});
+  html+='</tr>';
+  
+  // Row 6+: 24-line metrics
+  M.forEach(function(m, idx){
+    var sepBefore=[5];
+    var sepAfter=[6,7,10,13,15,17,20,22];
+    if(sepBefore.indexOf(m.order)>=0){
+      html+='<tr class="sep" style="height:4px"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
+    }
+    var rowBg=(idx%2===0)?'background:#fafafa;':'';
+    html+='<tr style="line-height:1.35;'+rowBg+'">';
+    html+='<td style="text-align:left;white-space:nowrap;font-size:9.5px;font-weight:700;'+tdStyle+'">'+m.name_en+' <span style="font-size:8px;color:#444;font-weight:400">'+m.name_cn+'</span></td>';
+    showYears.forEach(function(y){
+      var v=(MT[y]||{})[m.field];
+      var txt='—';
+      if(v!=null){
+        if(m.unit==='亿')txt=v.toFixed(1);
+        else if(m.unit==='%')txt=v.toFixed(1)+'%';
+        else if(m.unit==='元')txt=v.toFixed(2);
+        else if(m.unit==='百万股')txt=v.toFixed(0);
+        else txt=v.toString();
+      }
+      html+='<td style="text-align:right;font-size:9px;'+tdStyle+'">'+txt+'</td>';
+    });
+    html+='</tr>';
+    if(sepAfter.indexOf(m.order)>=0){
+      html+='<tr class="sep" style="height:4px"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
+    }
+  });
+  html+='</table>';
+  
+  html+='</div>'; // end center-col
+  html+='</div>'; // end container
+
+  // ========================
+  // 底部全宽: Business + AI Commentary
+  // ========================
+
+  // Business — VL风格，分段可读 (全宽)
+  // 内容由 business_commentary.py 全权控制, 模板仅渲染 + 附加折旧/员工/CEO等通用信息
+  var desc=(d.analyst&&d.analyst.business)||cs.business_desc||'';
+  var bizP=[], bizHtml='';
+  if(desc){bizP.push(desc);}
+  var p2=[];var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
+  if(depr&&revs) p2.push('折旧率'+(depr/revs*100).toFixed(1)+'%');
+  if(cs.employee_count) p2.push('员工'+(cs.employee_count/10000).toFixed(1)+'万人（'+latestYr+'）');
+  if(p2.length) bizP.push(p2.join('。'));
+  var p3=[];
+  if(meta.ceo) p3.push('首席执行官：'+meta.ceo);
+  if(meta.inc) p3.push('注册地：'+meta.inc);
+  if(meta.website) p3.push(meta.website);
+  if(p3.length) bizP.push(p3.join('。'));
+  bizHtml='<span style="font-weight:700">BUSINESS:</span>';
+  bizHtml+='<div style="column-count:2;column-gap:24px;margin-top:4px">';
+  var left=[bizP[0]];
+  if(bizP[1]) left.push('· '+bizP[1]);
+  var right=[];
+  if(bizP[2]) right.push('· '+bizP[2]);
+  bizHtml+='<div>'+left.join('<br>')+'</div>';
+  bizHtml+='<div>'+right.join('<br>')+'</div>';
+  bizHtml+='</div>';
+  html+='<div style="border-top:1px solid #000;padding:6px 12px;font-size:11px;line-height:1.55">'+bizHtml+'</div>';
+
+  // AI Commentary: per-stock脚本 > PDF提取(mda) > 数据自生成 (4段VL风格, 全宽)
+  var commentary=d.analyst&&d.analyst.commentary&&d.analyst.commentary.length?d.analyst.commentary:[
+    '暂无数据', '数据暂不可用', '请先运行 engine.py 生成完整数据', ''
+  ];
+  var fromMda=d.analyst&&d.analyst.commentary_from_mda;
+  var fromScript=d.analyst&&d.analyst.commentary_from_script;
+  html+='<div style="border-top:1px solid #000;padding:6px 12px 10px 12px;font-size:10px;line-height:1.35">';
+  if(fromScript){
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+' (Custom)</span>';
+  }else if(fromMda){
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+(stockName+' MD&A Analysis')+'</span>';
+  }else{
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+'</span>';
+  }
+  // 先填充左边，再填充右边
+  var commLeft=[], commRight=[];
+  var half=Math.ceil(commentary.length/2);
+  for(var ci=0;ci<commentary.length;ci++){
+    if(commentary[ci]&&commentary[ci].length>5){
+      if(ci<half) commLeft.push(commentary[ci]);
+      else commRight.push(commentary[ci]);
+    }
+  }
+  html+='<div style="display:flex;gap:24px;margin-top:6px">';
+  html+='<div style="flex:1;min-width:0">';
+  for(var ci=0;ci<commLeft.length;ci++){
+    html+='<p style="text-align:justify;margin:0 0 8px 0;font-size:12px">'+commLeft[ci]+'</p>';
+  }
+  html+='</div>';
+  html+='<div style="flex:1;min-width:0">';
+  for(var ci=0;ci<commRight.length;ci++){
+    html+='<p style="text-align:justify;margin:0 0 8px 0;font-size:12px">'+commRight[ci]+'</p>';
+  }
+  html+='</div></div>';
+  html+='</div>';
+
+  // Item 15 Footnotes — EPS 调整明细 (每项调整独立一行, 无数据留空)
+  var footnotes = d.footnotes || [];
+  if (footnotes.length > 0) {
+    var fnMap = {};
+    footnotes.forEach(function(f) {
+      if (f.adj) fnMap[f.year] = {adj: f.adj || '', src: f.src || '', diff: f.diff || ''};
+    });
+    var fnYears = Object.keys(fnMap).sort();
+    if (fnYears.length === 0) return;
+
+    var abbrName = {'GS':'政府补贴','FV':'公允价值变动','FX':'汇兑收益','II':'投资收益','IM':'资产减值','EL':'权益法亏损','OG':'其他收益','CD':'A股扣非'};
+    var allAbbrs = [];
+    fnYears.forEach(function(y) {
+      var src = fnMap[y].src || '';
+      var parts = src.match(/([A-Z]+)\s+([+-][\d.]+)/g);
+      if (parts) {
+        parts.forEach(function(p) {
+          var m = p.match(/([A-Z]+)\s+([+-][\d.]+)/);
+          if (m && allAbbrs.indexOf(m[1]) < 0) allAbbrs.push(m[1]);
+        });
+      }
+    });
+    function fmtVal(v) {
+      if (!v) return '—';
+      var n = parseFloat(v);
+      return n < 0 ? '(' + Math.abs(n).toFixed(2) + ')' : n.toFixed(2);
+    }
+
+    html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.4">';
+    var tdLbl = 'padding:2px 4px;border-right:1px solid #ddd';
+    var tdCol = 'text-align:center;padding:2px 4px;border-right:1px solid #ddd';
+    html += '<tr style="font-weight:700;border-bottom:1px solid #000"><td style="width:68px;padding:2px 4px;white-space:nowrap;' + tdLbl + '">FOOTNOTES</td>';
+    fnYears.forEach(function(y) { html += '<td style="' + tdCol + ';font-size:8.5px">' + y + '</td>'; });
+    html += '</tr>';
+
+    // 每项调整独立一行
+    allAbbrs.forEach(function(a) {
+      var name = abbrName[a] || a;
+      html += '<tr><td style="' + tdLbl + ';font-weight:700;color:#000;font-size:8.5px">' + name + '</td>';
+      fnYears.forEach(function(y) {
+        var src = fnMap[y].src || '';
+        var m = src.match(new RegExp(a + '\\s+([+-][\\d.]+)'));
+        html += '<td style="' + tdCol + ';font-size:8px">' + fmtVal(m ? m[1] : '') + '</td>';
+      });
+      html += '</tr>';
+    });
+
+    // 合计行放最后
+    html += '<tr style="border-top:1px solid #000"><td style="' + tdLbl + ';font-weight:700;font-size:8.5px">adj.NP</td>';
+    fnYears.forEach(function(y) { html += '<td style="' + tdCol + ';font-weight:700;font-size:8px">' + (fnMap[y].diff || '—') + '</td>'; });
+    html += '</tr>';
+
+    html += '</table></div>';
+  }
+
+  // Item 15 Footnotes — 数据源说明 (混合 AKShare + TDX 时显示)
+  var dsNote = d.data_source_note || '';
+  if (dsNote) {
+    html += '<div style="border-top:1px solid #999;padding:3px 12px 2px;font-size:8px;color:#666;line-height:1.35">';
+    html += '<span style="font-weight:700">数据源:</span> ' + dsNote;
+    html += '</div>';
+  }
+
+  html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: '+priceCcy+' | 财报数据: '+(meta.rpt_ccy||'CNY')+' | 2026-06-14</div>';
+  app.innerHTML=html;
+
+  // ECharts
+  setTimeout(function(){
+    // 裁剪K线到指标年份范围 (与 showYears 对齐, 最多15年)
+    var minYr=showYears.length>0?parseInt(showYears[0],10):0;
+    kl=kl.filter(function(k){return parseInt(k.date.substring(0,4),10)>=minYr;});
+    // 补齐K线起始前的空月份，对齐指标表列
+    var padMonths=[], padOHLC=[], firstKL=kl.length>0?kl[0].date:null;
+    if(firstKL && showYears.length>0){
+      var beginYr=parseInt(showYears[0],10), endYr=parseInt(firstKL.substring(0,4),10), endMo=parseInt(firstKL.substring(5,7),10);
+      for(var y=beginYr; y<=endYr; y++){
+        var maxM=(y===endYr)?endMo-1:12;
+        for(var m=1; m<=maxM; m++){padMonths.push(y+'-'+(m<10?'0'+m:''+m));padOHLC.push([null,null,null,null]);}
+      }
+    }
+    var dates=padMonths.concat(kl.map(function(k){return k.date;})),
+        ohlc=padOHLC.concat(kl.map(function(k){return [Math.log(k.open),Math.log(k.close),Math.log(k.low),Math.log(k.high)];}));
+
+    // RS line — VL 原生: (个股价/基期) ÷ (指数/基期) × 100, >100跑赢
+    // 与 dates 等长，缺失月份填 null 避免 tooltip 索引错位
+    var rsData=[];
+    if(hsi.length>0){
+      var hsiMap={};
+      hsi.forEach(function(h){hsiMap[h.date]=h.close;});
+      var baseS=null,baseH=null;
+      dates.forEach(function(dt){
+        var sc=kl.find(function(k){return k.date===dt;});
+        var hc=hsiMap[dt];
+        if(sc&&hc){
+          if(baseS===null){baseS=sc.close;baseH=hc;}
+          rsData.push(baseS?+((sc.close/baseS)/(hc/baseH)*100).toFixed(1):100);
+        }else{
+          rsData.push(null);
+        }
+      });
+    }
+    var series=[
+      {name:stockName,type:'candlestick',data:ohlc,
+        itemStyle:{color:'#ef232a',color0:'#14b143',borderColor:'#ef232a',borderColor0:'#14b143'}}
+    ];
+
+    var valLine=d.valuation_line||d.cf_line||[];
+    var valMap={};
+    valLine.forEach(function(c){valMap[c.date]=c.value;});
+    var valSeries=dates.map(function(dt){
+      var yr=dt.substring(0,4);
+      var v=valMap[yr];
+      return v!=null?Math.log(v):null;
+    });
+    if(valSeries.some(function(v){return v!=null;})){
+      series.push({name:valLabel,type:'line',data:valSeries,
+        lineStyle:{type:'solid',color:'#1976D2',width:1.2},symbol:'none'});
+    }
+    if(rsData.length>0){
+      series.push({name:'RS',type:'line',data:rsData,
+        lineStyle:{color:'#ef232a',width:1.2,type:'dotted'},symbol:'none',yAxisIndex:1});
+    }
+
+    // 年分隔线
+    var yearLines=[];
+    dates.forEach(function(d,i){if(d.endsWith('-01'))yearLines.push({xAxis:i,lineStyle:{color:'#ccc',width:1,type:'solid'}});});
+    series[0].markLine={silent:true,animation:false,symbol:'none',data:yearLines,label:{show:false}};
+
+    // 对数Y轴范围: 种子序列 [1,1.6,2.4,4,6] × 10^k + 4%缓冲区
+    var pVals=kl.map(function(k){return k.close;}).filter(function(v){return v>0;});
+    var pMin=Math.min.apply(null,pVals), pMax=Math.max.apply(null,pVals);
+    var lnMin=Math.log(pMin), lnMax=Math.log(pMax), lnDl=lnMax-lnMin;
+    var lnBuf=lnDl*0.04;
+    var yMin=lnMin-lnBuf, yMax=lnMax+lnBuf;
+    // 种子序列生成刻度标签 (自然对数统一)
+    var tLo=Math.exp(yMin), tHi=Math.exp(yMax);
+    var seeds=[1,1.6,2.4,4,6];
+    var ticks=[], pow=Math.pow(10,Math.floor(Math.log(tLo)/Math.LN10)-1);
+    while(pow<=tHi*1.1){
+      seeds.forEach(function(m){
+        var v=pow*m; if(v>=tLo&&v<=tHi) ticks.push(v);
+      });
+      pow*=10;
+    }
+    var logTicks=ticks.map(function(v){return Math.log(v);});
+    var klineChart=echarts.init(document.getElementById('chart_kline'));
+    // 统一 tooltip: 日期 → OHLC(从原始kl读) → CF → RS → PST
+    var tooltipFmt=function(p){var di=p[0].dataIndex,h=p[0].axisValue,r='<b>'+h+' HKD</b>',mk=p[0].marker;var dk=kl.find(function(k){return k.date===h;});if(dk)r+='<br/>'+mk+' '+stockName+'<br/> open:'+dk.open.toFixed(2)+'<br/> close:'+dk.close.toFixed(2)+'<br/> low:'+dk.low.toFixed(2)+'<br/> high:'+dk.high.toFixed(2);for(var i=1;i<p.length;i++){var v=p[i].value,n=p[i].seriesName;if(v==null)continue;if(n==='RS')r+='<br/>'+p[i].marker+' '+n+': '+(v!=null?Number(v).toFixed(1):'-');else if(n.indexOf('x CF')>-1||n.indexOf('*BPS')>-1)r+='<br/>'+p[i].marker+' '+n+': '+Math.exp(Number(v)).toFixed(2);}var pv=volData[di];if(pv!=null){var up=dk&&dk.close>dk.open;r+='<br/><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle"></span>PST: '+pv.toFixed(2)+'%';}return r;};
+    klineChart.setOption({
+      tooltip:{trigger:'axis',axisPointer:{label:{show:false}},formatter:tooltipFmt},
+      grid:{left:0,right:28,top:4,bottom:24},
+      xAxis:{type:'category',data:dates,boundaryGap:false,
+        axisPointer:{label:{show:false}},
+        axisLabel:{fontSize:8,color:'#333',fontWeight:700,margin:2,
+          formatter:function(v){return v&&v.endsWith('-01')?v.slice(0,4):'';},
+          interval:0,showMinLabel:true,showMaxLabel:true},
+        axisLine:{show:true,lineStyle:{color:'#999',width:0.5}},
+        axisTick:{show:false},
+        splitLine:{show:true,lineStyle:{color:'#ccc',width:0.5}}},
+      yAxis:[
+        {type:'value',min:yMin,max:yMax,
+          axisLabel:{fontSize:9,color:'#000',
+            formatter:function(v){var p=Math.exp(v);return p>=100?Math.round(p):p>=10?p.toFixed(0):p.toFixed(1);}},position:'right'},
+        {type:'value',axisLabel:{fontSize:8,color:'#999'},splitLine:{show:false},position:'left'}],
+      series:series
+    });
+
+    // Monthly Volume % — VL item 11: 按年份匹配股本
+    var volData=[], totalShM=ly.TOTAL_SHARES;
+    var shByYear={};
+    showYears.forEach(function(y){shByYear[y]=(MT[y]||{}).TOTAL_SHARES;});
+    var shFallback=shByYear[showYears[showYears.length-1]]||totalShM;
+    dates.forEach(function(dt){
+      var k=kl.find(function(k){return k.date===dt;});
+      var yr=dt.substring(0,4);
+      var sh=shByYear[yr]||shFallback;
+      if(k&&k.volume&&sh){
+        volData.push(+(k.volume/(sh*1e6)*100).toFixed(2));
+      }else{volData.push(null);}
+    });
+    var vMax=0;
+    volData.forEach(function(v){if(v!=null&&v>vMax)vMax=v;});
+    // Y轴刻度: 比例缓冲+自适应interval, 向上取整到nice number
+    var maxVol=vMax*1.2, interval=maxVol<=5?1:maxVol<=50?5:10;
+    var ceilVol=Math.ceil(maxVol/interval)*interval||interval, step=ceilVol/3;
+    var volChart=echarts.init(document.getElementById('chart_volume'));
+    volChart.setOption({
+      tooltip:{show:false},
+      grid:{left:0,right:28,top:0,bottom:0,containLabel:false},
+      xAxis:{type:'category',data:dates,show:false,boundaryGap:false,
+        axisPointer:{show:true,type:'shadow',shadowStyle:{color:'rgba(25,118,210,.08)'},label:{show:false,formatter:''},handle:{show:false}}},
+      yAxis:{type:'value',position:'left',min:0,max:ceilVol,splitNumber:3,
+        axisLabel:{show:false},
+        splitLine:{show:false},
+        axisLine:{show:false},axisTick:{show:false}},
+      series:[{name:'Vol%',type:'bar',data:volData,
+        emphasis:{itemStyle:{color:'#ff6600'}},
+        itemStyle:{color:function(p){var d=dates[p.dataIndex];return d&&d.endsWith('-01')?'#7b1fa2':'#1976D2';}},barWidth:'60%',
+        markLine:{silent:true,symbol:'none',animation:false,
+          data:[{yAxis:ceilVol,name:'',lineStyle:{color:'#000',width:3.0,type:'solid'}},
+                {yAxis:step*2,name:'',lineStyle:{color:'#000',width:0.5,type:'solid'}},
+                {yAxis:step,name:'',lineStyle:{color:'#000',width:0.5,type:'solid'}}]
+        }}]
+    });
+    // DOM 标签画左侧 Percent/shares/traded — convertToPixel 取刻度 y 像素, 放在 chart_volume 外
+    var volCnt=document.getElementById('chart_volume');
+    volCnt.style.overflow='visible';
+    var vals=[ceilVol,step*2,step], labels=['Percent','shares','traded'];
+    var vsDiv=document.createElement('div');
+    vsDiv.style.cssText='position:absolute;left:-72px;width:68px;top:0;bottom:0;pointer-events:none;z-index:1';
+    vals.forEach(function(v,i){
+      var py=volChart.convertToPixel({yAxisIndex:0},v);
+      var d=document.createElement('div');
+      d.style.cssText='position:absolute;left:0;right:0;top:'+(py||0)+'px;font-size:10px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
+      d.innerHTML='<span>'+labels[i]+'</span><span>'+Math.round(v)+'</span>';
+      vsDiv.appendChild(d);
+    });
+    volCnt.appendChild(vsDiv);
+    // K线图 ↔ 成交量图联动
+    klineChart.group='vl'; volChart.group='vl'; echarts.connect('vl');
+    // click K线 → 成交量柱高亮 + tooltip
+    klineChart.on('click',function(p){
+      volChart.dispatchAction({type:'downplay',seriesIndex:0});
+      volChart.dispatchAction({type:'highlight',seriesIndex:0,dataIndex:p.dataIndex});
+      volChart.dispatchAction({type:'showTip',seriesIndex:0,dataIndex:p.dataIndex});
+    });
+    // click 成交量图空白 → 取消高亮
+    volChart.getZr().on('click',function(e){if(!e.target)volChart.dispatchAction({type:'downplay',seriesIndex:0});});
+
+  },300);
+})();
+</script>
+</body>
+</html>

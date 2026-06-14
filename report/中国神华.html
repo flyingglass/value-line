@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1360">
+<title>Value Line — China Shenhua 01088.hk</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.25;color:#000;width:1360px;margin:0 auto;background:#fff;-webkit-text-size-adjust:100%}
+.container{display:grid;grid-template-columns:245px 1fr;border-top:1px solid #000;padding:4px 0}
+
+/* ===== 左栏 ===== */
+.left-col{border-right:1px solid #000;padding:4px 5px;font-size:9px}
+.left-col .sec{margin-bottom:5px}
+.left-col .sec-title{font-weight:700;font-size:9.5px;border-bottom:1px solid #000;padding-bottom:1px;margin-bottom:3px;text-transform:uppercase}
+.left-col table{width:100%;border-collapse:collapse;font-size:8.5px}
+.left-col td{padding:1px 2px}
+.left-col .r{text-align:right}
+.left-col .b{font-weight:700}
+.left-col p{margin:2px 0;font-size:8.5px}
+
+/* ===== 中栏 ===== */
+.center-col{border-right:1px solid #000;padding:4px 6px;display:flex;flex-direction:column}
+
+/* Header */
+.header{display:flex;align-items:center;justify-content:space-between;padding:2px 8px;border-bottom:2px solid #000;margin:0 0 2px 0}
+.header .code{font-weight:700;font-size:17px;font-family:"Times New Roman",serif}
+.header .info{text-align:right;font-size:8.5px;line-height:1.3}
+.header .info .v{font-weight:700;font-size:10px}
+.header .ratings{display:flex;gap:10px;font-size:8px;text-align:center}
+.header .ratings span{font-weight:700;display:block;font-size:10px}
+
+/* Chart section */
+.chart-area{margin:2px 0;border-bottom:1px solid #000}
+.chart-title{font-weight:700;font-size:9px;margin-bottom:0px}
+.chart-row{display:flex}
+.chart-box{flex:1;height:220px}
+.return-box{width:140px;font-size:8.5px;padding:3px 5px}
+.return-box table{width:100%;border-collapse:collapse;margin-bottom:3px}
+.return-box td,.return-box th{padding:1px 3px;text-align:right;font-size:8px}
+.return-box th{border-bottom:1px solid #999}
+.return-box .note{font-size:7.5px;color:#666;line-height:1.2}
+
+/* 23-line table */
+.stat-table{margin:2px 0;overflow-x:auto}
+.stat-table table{border-collapse:collapse;font-size:8px;width:100%;table-layout:fixed}
+.stat-table th,.stat-table td{text-align:right;padding:1px 4px;border-right:1px solid #ddd;white-space:nowrap;line-height:1.35}
+.stat-table th{background:#eee;font-weight:700;font-size:7.5px}
+.stat-table td:first-child,.stat-table th:first-child{text-align:left;width:130px;white-space:nowrap}
+.stat-table tr:nth-child(even){background:#fafafa}
+
+/* 对齐表 — Yearly High/Low 和 K线轴年份 */
+.align-table{margin:0;padding:1px 8px}
+.align-table table{border-collapse:collapse;font-size:8px;width:100%;table-layout:fixed}
+.align-table th,.align-table td{text-align:right;padding:0 3px;border-right:1px solid transparent}
+.align-table th:first-child,.align-table td:first-child{text-align:left;width:130px}
+.stat-table .sep td{border-bottom:2px solid #000;padding:0}
+.stat-table .sep-sm td{border-bottom:1px solid #999}
+
+/* Analyst */
+.analyst{margin:4px 0;padding:4px 6px;font-size:9px;line-height:1.35;border-top:1px solid #000}
+.analyst b{display:block;margin-bottom:2px}
+.analyst p{margin-bottom:3px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var DATA = {"meta": {"code": "01088", "name": "中国神华", "name_en": "China Shenhua", "market": "hk", "currency": "CNY", "industry": "Energy", "ceo": "吕志韧", "inc": "中国北京", "website": "www.shenhuachina.com", "price_ccy": "HKD", "index_name": "HSI", "index_name_cn": "恒生指数", "rpt_ccy": "CNY", "generated": "2026-06-14 20:07:23.988074"}, "spot": {"price": 45.22, "pe": 14.4, "pb": 1.61, "div_yield": 5.11, "mkt_cap": 8984.5, "change_pct": 0.0, "eps_ttm": 2.73, "eps_ttm_hkd": 3.14, "median_pe": 3.5}, "kline": [{"date": "2005-06", "open": 2.0743, "high": 2.0878, "low": 1.9658, "close": 2.0336, "volume": 874267300.0}, {"date": "2005-07", "open": 2.0471, "high": 2.2505, "low": 1.9794, "close": 2.2369, "volume": 722379210.0}, {"date": "2005-08", "open": 2.2369, "high": 2.5216, "low": 2.2234, "close": 2.3454, "volume": 750068400.0}, {"date": "2005-09", "open": 2.359, "high": 2.4945, "low": 2.2234, "close": 2.4674, "volume": 572380420.0}, {"date": "2005-10", "open": 2.4674, "high": 2.4945, "low": 2.2505, "close": 2.3047, "volume": 418641580.0}, {"date": "2005-11", "open": 2.3183, "high": 2.3996, "low": 2.1556, "close": 2.3454, "volume": 339664892.0}, {"date": "2005-12", "open": 2.359, "high": 2.3861, "low": 2.2098, "close": 2.3183, "volume": 281648039.0}, {"date": "2006-01", "open": 2.3183, "high": 2.7928, "low": 2.2776, "close": 2.7928, "volume": 465351030.0}, {"date": "2006-02", "open": 2.9012, "high": 3.1995, "low": 2.7928, "close": 3.1995, "volume": 525088060.0}, {"date": "2006-03", "open": 3.1588, "high": 3.8367, "low": 3.1182, "close": 3.7011, "volume": 470331810.0}, {"date": "2006-04", "open": 3.7011, "high": 4.1581, "low": 3.57, "close": 3.8435, "volume": 448325060.0}, {"date": "2006-05", "open": 3.9119, "high": 4.6095, "low": 3.5016, "close": 3.6383, "volume": 341121820.0}, {"date": "2006-06", "open": 3.5836, "high": 3.994, "low": 3.1733, "close": 3.9256, "volume": 331990660.0}, {"date": "2006-07", "open": 3.994, "high": 4.076, "low": 3.6657, "close": 3.8244, "volume": 232239709.0}, {"date": "2006-08", "open": 3.8736, "high": 4.0268, "low": 3.6165, "close": 3.7642, "volume": 260593150.0}, {"date": "2006-09", "open": 3.7642, "high": 3.8517, "low": 3.425, "close": 3.4304, "volume": 356155830.0}, {"date": "2006-10", "open": 3.425, "high": 3.9119, "low": 3.2061, "close": 3.7423, "volume": 442892983.0}, {"date": "2006-11", "open": 3.7478, "high": 4.3496, "low": 3.6548, "close": 4.1143, "volume": 379079222.0}, {"date": "2006-12", "open": 4.1362, "high": 5.1648, "low": 4.1034, "close": 5.121, "volume": 361400400.0}, {"date": "2007-01", "open": 5.121, "high": 5.9499, "low": 4.6286, "close": 5.225, "volume": 513580467.0}, {"date": "2007-02", "open": 5.2578, "high": 6.1414, "low": 5.1976, "close": 5.4274, "volume": 353233547.0}, {"date": "2007-03", "open": 5.4274, "high": 5.8268, "low": 4.8147, "close": 5.1703, "volume": 461806540.0}, {"date": "2007-04", "open": 5.1976, "high": 5.8046, "low": 5.1758, "close": 5.4399, "volume": 378662240.0}, {"date": "2007-05", "open": 5.5679, "high": 6.4866, "low": 5.4009, "close": 6.3753, "volume": 531096530.0}, {"date": "2007-06", "open": 6.598, "high": 8.0039, "low": 6.5423, "close": 7.6002, "volume": 591575630.0}, {"date": "2007-07", "open": 8.0735, "high": 9.1592, "low": 7.8786, "close": 8.7695, "volume": 568171080.0}, {"date": "2007-08", "open": 8.6999, "high": 9.5908, "low": 5.9298, "close": 9.4098, "volume": 761684110.0}, {"date": "2007-09", "open": 9.0479, "high": 13.196, "low": 9.0479, "close": 13.0011, "volume": 536104370.0}, {"date": "2007-10", "open": 13.2238, "high": 16.1331, "low": 11.9154, "close": 13.6832, "volume": 1332850920.0}, {"date": "2007-11", "open": 13.9755, "high": 14.059, "low": 11.372, "close": 13.1204, "volume": 722050620.0}, {"date": "2007-12", "open": 13.3763, "high": 14.215, "low": 12.2818, "close": 13.1489, "volume": 506999856.0}, {"date": "2008-01", "open": 13.3052, "high": 14.0729, "low": 10.4338, "close": 11.372, "volume": 823961790.0}, {"date": "2008-02", "open": 11.5852, "high": 12.296, "low": 11.0024, "close": 11.5994, "volume": 384574521.0}, {"date": "2008-03", "open": 11.2441, "high": 11.6563, "low": 8.0599, "close": 8.8417, "volume": 710782970.0}, {"date": "2008-04", "open": 9.2113, "high": 11.1865, "low": 8.529, "close": 10.3349, "volume": 789712120.0}, {"date": "2008-05", "open": 10.5369, "high": 10.7101, "low": 9.209, "close": 10.0462, "volume": 671418910.0}, {"date": "2008-06", "open": 10.2916, "high": 10.5658, "low": 8.4873, "close": 8.8337, "volume": 511000670.0}, {"date": "2008-07", "open": 8.6605, "high": 9.4832, "low": 8.011, "close": 8.1409, "volume": 500829010.0}, {"date": "2008-08", "open": 8.2996, "high": 8.2996, "low": 6.6253, "close": 7.7944, "volume": 532648630.0}, {"date": "2008-09", "open": 7.5058, "high": 7.881, "low": 4.6998, "close": 5.3406, "volume": 903201790.0}, {"date": "2008-10", "open": 5.5138, "high": 5.664, "low": 2.2835, "close": 4.0416, "volume": 1420315700.0}, {"date": "2008-11", "open": 4.2783, "high": 4.7286, "low": 2.9446, "close": 4.1859, "volume": 1074070500.0}, {"date": "2008-12", "open": 4.0416, "high": 5.4503, "low": 3.7875, "close": 4.7344, "volume": 699271280.0}, {"date": "2009-01", "open": 4.7344, "high": 5.612, "low": 4.1917, "close": 4.9076, "volume": 571976610.0}, {"date": "2009-02", "open": 4.8614, "high": 5.5254, "low": 4.4284, "close": 4.4457, "volume": 577780330.0}, {"date": "2009-03", "open": 4.3129, "high": 5.4734, "low": 3.8684, "close": 5.0404, "volume": 753850280.0}, {"date": "2009-04", "open": 5.1386, "high": 6.6541, "low": 4.8556, "close": 6.2789, "volume": 588196720.0}, {"date": "2009-05", "open": 6.5959, "high": 7.7494, "low": 6.4776, "close": 7.6163, "volume": 487176010.0}, {"date": "2009-06", "open": 7.6163, "high": 8.7994, "low": 7.1283, "close": 8.4445, "volume": 560780480.0}, {"date": "2009-07", "open": 8.8142, "high": 9.9678, "low": 7.2614, "close": 9.3614, "volume": 534088950.0}, {"date": "2009-08", "open": 9.2283, "high": 10.2636, "low": 8.6368, "close": 9.2431, "volume": 489990250.0}, {"date": "2009-09", "open": 9.4649, "high": 10.8847, "low": 8.9325, "close": 10.0121, "volume": 341837379.0}, {"date": "2009-10", "open": 9.6128, "high": 10.8107, "low": 9.5537, "close": 10.5593, "volume": 334656383.0}, {"date": "2009-11", "open": 10.3523, "high": 11.8608, "low": 10.2931, "close": 11.21, "volume": 338977550.0}, {"date": "2009-12", "open": 11.3727, "high": 11.6537, "low": 10.8107, "close": 11.2396, "volume": 295417379.0}, {"date": "2010-01", "open": 11.3284, "high": 12.4227, "low": 9.6572, "close": 9.879, "volume": 560310372.0}, {"date": "2010-02", "open": 9.6868, "high": 10.2044, "low": 9.0509, "close": 9.879, "volume": 288660973.0}, {"date": "2010-03", "open": 10.0565, "high": 10.5002, "low": 9.1248, "close": 9.9234, "volume": 419766471.0}, {"date": "2010-04", "open": 10.0565, "high": 11.0178, "low": 9.7164, "close": 10.0565, "volume": 367716260.0}, {"date": "2010-05", "open": 10.0565, "high": 10.0565, "low": 8.4589, "close": 9.4692, "volume": 437603525.0}, {"date": "2010-06", "open": 9.2128, "high": 9.8009, "low": 8.2931, "close": 8.5946, "volume": 372761544.0}, {"date": "2010-07", "open": 8.5946, "high": 9.5596, "low": 8.1724, "close": 9.0168, "volume": 352176123.0}, {"date": "2010-08", "open": 9.1978, "high": 9.5295, "low": 8.3835, "close": 8.5494, "volume": 475543170.0}, {"date": "2010-09", "open": 8.5042, "high": 9.7403, "low": 8.5042, "close": 9.6803, "volume": 365971813.0}, {"date": "2010-10", "open": 9.7858, "high": 11.1881, "low": 9.7858, "close": 10.404, "volume": 442327550.0}, {"date": "2010-11", "open": 10.6, "high": 11.4143, "low": 9.7557, "close": 9.8461, "volume": 400891014.0}, {"date": "2010-12", "open": 9.7707, "high": 10.1326, "low": 8.9113, "close": 9.831, "volume": 428836849.0}, {"date": "2011-01", "open": 9.8914, "high": 10.6, "low": 9.3335, "close": 9.5446, "volume": 311550882.0}, {"date": "2011-02", "open": 9.4239, "high": 9.9215, "low": 8.7454, "close": 9.7403, "volume": 365155436.0}, {"date": "2011-03", "open": 9.9517, "high": 11.1278, "low": 9.5747, "close": 11.0524, "volume": 511837292.0}, {"date": "2011-04", "open": 11.1579, "high": 11.7493, "low": 10.6151, "close": 11.2082, "volume": 425847403.0}, {"date": "2011-05", "open": 11.2082, "high": 11.9966, "low": 10.3888, "close": 11.9502, "volume": 352198813.0}, {"date": "2011-06", "open": 11.9348, "high": 11.9812, "low": 10.4352, "close": 11.471, "volume": 393853444.0}, {"date": "2011-07", "open": 11.8111, "high": 12.4295, "low": 11.2855, "close": 12.1048, "volume": 258713626.0}, {"date": "2011-08", "open": 12.0739, "high": 12.414, "low": 9.3376, "close": 11.1618, "volume": 489935274.0}, {"date": "2011-09", "open": 11.3782, "high": 11.6256, "low": 9.4767, "close": 9.6004, "volume": 401116090.0}, {"date": "2011-10", "open": 9.4922, "high": 11.7493, "low": 8.3791, "close": 11.1927, "volume": 424963883.0}, {"date": "2011-11", "open": 10.698, "high": 11.6101, "low": 9.8323, "close": 10.0951, "volume": 277508378.0}, {"date": "2011-12", "open": 10.5434, "high": 11.069, "low": 9.6158, "close": 10.4197, "volume": 239535715.0}, {"date": "2012-01", "open": 10.6516, "high": 11.1, "low": 10.0796, "close": 10.5434, "volume": 308235429.0}, {"date": "2012-02", "open": 10.5125, "high": 11.27, "low": 10.4661, "close": 11.0845, "volume": 343312657.0}, {"date": "2012-03", "open": 11.1618, "high": 11.2082, "low": 9.9405, "close": 10.126, "volume": 345561027.0}, {"date": "2012-04", "open": 10.2961, "high": 10.6671, "low": 9.9559, "close": 10.6516, "volume": 200107098.0}, {"date": "2012-05", "open": 10.7135, "high": 10.8526, "low": 8.3791, "close": 8.7986, "volume": 330699066.0}, {"date": "2012-06", "open": 8.7664, "high": 9.072, "low": 7.7691, "close": 8.7021, "volume": 393304237.0}, {"date": "2012-07", "open": 8.9273, "high": 9.5867, "low": 8.6377, "close": 9.3616, "volume": 372343818.0}, {"date": "2012-08", "open": 9.249, "high": 9.9084, "low": 9.072, "close": 9.0881, "volume": 274735147.0}, {"date": "2012-09", "open": 9.0077, "high": 10.2784, "low": 8.493, "close": 9.6833, "volume": 347553474.0}, {"date": "2012-10", "open": 9.8119, "high": 10.8253, "low": 9.5546, "close": 10.6162, "volume": 279988237.0}, {"date": "2012-11", "open": 10.6162, "high": 11.0183, "low": 9.7476, "close": 10.2141, "volume": 296453956.0}, {"date": "2012-12", "open": 10.2141, "high": 11.0022, "low": 9.828, "close": 10.9218, "volume": 284449250.0}, {"date": "2013-01", "open": 11.0505, "high": 11.4044, "low": 10.3267, "close": 10.7288, "volume": 338949444.0}, {"date": "2013-02", "open": 10.7931, "high": 10.7931, "low": 8.9112, "close": 9.4581, "volume": 378809701.0}, {"date": "2013-03", "open": 9.5867, "high": 9.6672, "low": 8.9594, "close": 9.072, "volume": 363081222.0}, {"date": "2013-04", "open": 9.0077, "high": 9.2811, "low": 8.0104, "close": 8.8307, "volume": 445758505.0}, {"date": "2013-05", "open": 8.7342, "high": 9.072, "low": 8.1069, "close": 8.1873, "volume": 336631528.0}, {"date": "2013-06", "open": 8.2195, "high": 8.3964, "low": 6.6106, "close": 6.74, "volume": 435745353.0}, {"date": "2013-07", "open": 6.9612, "high": 8.0675, "low": 6.1613, "close": 7.625, "volume": 525230399.0}, {"date": "2013-08", "open": 7.7441, "high": 8.7483, "low": 7.3527, "close": 8.2037, "volume": 420873113.0}, {"date": "2013-09", "open": 8.3398, "high": 9.2589, "low": 7.9143, "close": 8.0335, "volume": 394285864.0}, {"date": "2013-10", "open": 8.2037, "high": 8.493, "low": 7.8463, "close": 8.0335, "volume": 404594230.0}, {"date": "2013-11", "open": 8.1526, "high": 9.1909, "low": 7.9484, "close": 8.9526, "volume": 412573476.0}, {"date": "2013-12", "open": 9.0547, "high": 9.1398, "low": 7.9314, "close": 8.3228, "volume": 263267386.0}, {"date": "2014-01", "open": 8.3228, "high": 8.425, "low": 6.6515, "close": 6.8251, "volume": 313008715.0}, {"date": "2014-02", "open": 6.6719, "high": 7.3186, "low": 6.5085, "close": 7.1825, "volume": 288764293.0}, {"date": "2014-03", "open": 7.0804, "high": 7.642, "low": 6.5085, "close": 7.625, "volume": 355614383.0}, {"date": "2014-04", "open": 7.642, "high": 7.9824, "low": 7.0633, "close": 7.1484, "volume": 329348150.0}, {"date": "2014-05", "open": 7.0463, "high": 7.5059, "low": 6.9782, "close": 7.2335, "volume": 303626760.0}, {"date": "2014-06", "open": 7.3016, "high": 7.8122, "low": 7.2506, "close": 7.625, "volume": 233513724.0}, {"date": "2014-07", "open": 7.8292, "high": 8.4001, "low": 7.3613, "close": 8.2389, "volume": 350089387.0}, {"date": "2014-08", "open": 8.2389, "high": 8.6508, "low": 7.9523, "close": 8.0061, "volume": 303187003.0}, {"date": "2014-09", "open": 8.0777, "high": 8.5255, "low": 7.6658, "close": 7.7553, "volume": 366501499.0}, {"date": "2014-10", "open": 7.8628, "high": 7.9344, "low": 7.2896, "close": 7.827, "volume": 336904181.0}, {"date": "2014-11", "open": 7.9165, "high": 7.9702, "low": 7.1428, "close": 7.8986, "volume": 330694264.0}, {"date": "2014-12", "open": 7.7553, "high": 8.6688, "low": 7.5583, "close": 8.221, "volume": 453376406.0}, {"date": "2015-01", "open": 8.3105, "high": 8.7404, "low": 7.4508, "close": 7.612, "volume": 346602529.0}, {"date": "2015-02", "open": 7.5225, "high": 7.809, "low": 7.0568, "close": 7.2717, "volume": 278572255.0}, {"date": "2015-03", "open": 7.3792, "high": 7.3971, "low": 6.6699, "close": 7.0926, "volume": 374625689.0}, {"date": "2015-04", "open": 7.2359, "high": 8.0598, "low": 7.021, "close": 7.218, "volume": 669538781.0}, {"date": "2015-05", "open": 7.2538, "high": 7.5046, "low": 6.7487, "close": 6.8275, "volume": 445412549.0}, {"date": "2015-06", "open": 6.8132, "high": 7.641, "low": 6.3081, "close": 6.6385, "volume": 710685933.0}, {"date": "2015-07", "open": 6.5033, "high": 6.5784, "low": 5.3994, "close": 5.5421, "volume": 482949962.0}, {"date": "2015-08", "open": 5.4369, "high": 5.9927, "low": 4.6334, "close": 5.0464, "volume": 442447350.0}, {"date": "2015-09", "open": 4.9563, "high": 5.1591, "low": 4.2429, "close": 4.4457, "volume": 412083149.0}, {"date": "2015-10", "open": 4.5809, "high": 5.5421, "low": 4.4982, "close": 4.9263, "volume": 368919432.0}, {"date": "2015-11", "open": 4.8061, "high": 5.2492, "low": 4.4682, "close": 4.5433, "volume": 353742221.0}, {"date": "2015-12", "open": 4.656, "high": 4.8212, "low": 4.2354, "close": 4.5733, "volume": 327403273.0}, {"date": "2016-01", "open": 4.5208, "high": 4.5208, "low": 3.7999, "close": 4.3631, "volume": 511071494.0}, {"date": "2016-02", "open": 4.3631, "high": 4.3856, "low": 3.95, "close": 4.1002, "volume": 263027459.0}, {"date": "2016-03", "open": 4.1078, "high": 4.9789, "low": 4.0852, "close": 4.5809, "volume": 402042502.0}, {"date": "2016-04", "open": 4.6034, "high": 5.2042, "low": 4.2805, "close": 4.9263, "volume": 407490788.0}, {"date": "2016-05", "open": 4.8362, "high": 4.9263, "low": 4.2805, "close": 4.6334, "volume": 383358644.0}, {"date": "2016-06", "open": 4.5809, "high": 5.5751, "low": 4.4907, "close": 5.5056, "volume": 459523975.0}, {"date": "2016-07", "open": 5.5443, "high": 5.9767, "low": 5.1891, "close": 5.7219, "volume": 492370781.0}, {"date": "2016-08", "open": 5.8222, "high": 5.9921, "low": 5.1813, "close": 5.3821, "volume": 403123785.0}, {"date": "2016-09", "open": 5.4053, "high": 6.162, "low": 5.3821, "close": 5.8531, "volume": 446342863.0}, {"date": "2016-10", "open": 5.9844, "high": 6.5172, "low": 5.7914, "close": 6.2315, "volume": 427534178.0}, {"date": "2016-11", "open": 6.3705, "high": 6.8338, "low": 6.023, "close": 6.2006, "volume": 706840030.0}, {"date": "2016-12", "open": 6.2161, "high": 6.3473, "low": 5.4439, "close": 5.6369, "volume": 422607650.0}, {"date": "2017-01", "open": 5.5983, "high": 6.4477, "low": 5.552, "close": 6.3859, "volume": 374392587.0}, {"date": "2017-02", "open": 6.3859, "high": 6.5249, "low": 6.0771, "close": 6.2701, "volume": 423734475.0}, {"date": "2017-03", "open": 6.2392, "high": 7.6369, "low": 5.9149, "close": 6.9651, "volume": 651340161.0}, {"date": "2017-04", "open": 6.9496, "high": 7.2044, "low": 6.7643, "close": 7.0037, "volume": 325449568.0}, {"date": "2017-05", "open": 7.1427, "high": 7.521, "low": 6.7952, "close": 7.328, "volume": 495297315.0}, {"date": "2017-06", "open": 7.382, "high": 8.2459, "low": 7.2662, "close": 8.1059, "volume": 577844117.0}, {"date": "2017-07", "open": 8.1526, "high": 9.16, "low": 7.8634, "close": 9.076, "volume": 493848013.0}, {"date": "2017-08", "open": 9.0387, "high": 9.701, "low": 8.5164, "close": 9.3978, "volume": 588655001.0}, {"date": "2017-09", "open": 9.4445, "high": 9.8409, "low": 8.507, "close": 8.563, "volume": 446140318.0}, {"date": "2017-10", "open": 8.591, "high": 9.3279, "low": 8.5164, "close": 8.6936, "volume": 312302017.0}, {"date": "2017-11", "open": 8.6843, "high": 9.4911, "low": 8.6376, "close": 8.9641, "volume": 469406111.0}, {"date": "2017-12", "open": 9.076, "high": 9.5611, "low": 8.6936, "close": 9.4445, "volume": 318070394.0}, {"date": "2018-01", "open": 9.4678, "high": 11.963, "low": 9.4678, "close": 11.3567, "volume": 642757303.0}, {"date": "2018-02", "open": 11.38, "high": 12.0097, "low": 9.6544, "close": 10.3773, "volume": 553181572.0}, {"date": "2018-03", "open": 10.0275, "high": 10.5172, "low": 8.8615, "close": 9.0947, "volume": 507188627.0}, {"date": "2018-04", "open": 8.8708, "high": 9.6544, "low": 8.7029, "close": 9.076, "volume": 398760805.0}, {"date": "2018-05", "open": 9.0667, "high": 10.3306, "low": 8.6376, "close": 9.5611, "volume": 587039278.0}, {"date": "2018-06", "open": 9.6544, "high": 10.1907, "low": 8.9065, "close": 9.2133, "volume": 490729477.0}, {"date": "2018-07", "open": 8.5997, "high": 9.243, "low": 8.0159, "close": 8.7581, "volume": 532274246.0}, {"date": "2018-08", "open": 8.7581, "high": 8.9956, "low": 7.9664, "close": 8.6591, "volume": 414283415.0}, {"date": "2018-09", "open": 8.6195, "high": 9.243, "low": 7.9367, "close": 8.8471, "volume": 369821966.0}, {"date": "2018-10", "open": 8.9065, "high": 9.3914, "low": 8.3622, "close": 8.7878, "volume": 502874849.0}, {"date": "2018-11", "open": 8.6591, "high": 9.6388, "low": 8.4909, "close": 8.5997, "volume": 464098658.0}, {"date": "2018-12", "open": 8.768, "high": 9.1935, "low": 8.382, "close": 8.4909, "volume": 310785582.0}, {"date": "2019-01", "open": 8.5008, "high": 9.9704, "low": 8.1346, "close": 9.7972, "volume": 368887259.0}, {"date": "2019-02", "open": 9.8368, "high": 10.0941, "low": 9.3914, "close": 9.5795, "volume": 295789399.0}, {"date": "2019-03", "open": 9.5795, "high": 9.8565, "low": 8.6393, "close": 8.857, "volume": 392373454.0}, {"date": "2019-04", "open": 8.8966, "high": 9.055, "low": 8.5305, "close": 8.5799, "volume": 344104540.0}, {"date": "2019-05", "open": 8.5503, "high": 8.7482, "low": 7.9169, "close": 7.9664, "volume": 323144589.0}, {"date": "2019-06", "open": 8.0258, "high": 8.7511, "low": 7.8377, "close": 8.6038, "volume": 396317291.0}, {"date": "2019-07", "open": 8.6459, "high": 8.8247, "low": 8.1305, "close": 8.2041, "volume": 234508735.0}, {"date": "2019-08", "open": 8.099, "high": 8.383, "low": 7.7098, "close": 8.0569, "volume": 330290297.0}, {"date": "2019-09", "open": 8.1305, "high": 9.0351, "low": 8.0884, "close": 8.2778, "volume": 350310086.0}, {"date": "2019-10", "open": 8.1831, "high": 8.4776, "low": 7.9727, "close": 8.383, "volume": 325780276.0}, {"date": "2019-11", "open": 8.2673, "high": 8.5618, "low": 7.8465, "close": 7.9727, "volume": 417975806.0}, {"date": "2019-12", "open": 7.9727, "high": 8.7195, "low": 7.8781, "close": 8.5618, "volume": 323319859.0}, {"date": "2020-01", "open": 8.6564, "high": 8.8773, "low": 7.226, "close": 7.226, "volume": 418883315.0}, {"date": "2020-02", "open": 7.1944, "high": 7.7413, "low": 7.0787, "close": 7.1103, "volume": 523017183.0}, {"date": "2020-03", "open": 7.247, "high": 7.9202, "low": 6.2898, "close": 7.7624, "volume": 815598671.0}, {"date": "2020-04", "open": 7.4889, "high": 7.7519, "low": 7.1103, "close": 7.2891, "volume": 364565263.0}, {"date": "2020-05", "open": 7.2891, "high": 7.4994, "low": 6.8368, "close": 7.4468, "volume": 440745570.0}, {"date": "2020-06", "open": 7.6256, "high": 7.8263, "low": 6.9322, "close": 7.0367, "volume": 479327146.0}, {"date": "2020-07", "open": 7.176, "high": 8.3023, "low": 7.1179, "close": 7.5011, "volume": 523259746.0}, {"date": "2020-08", "open": 7.3966, "high": 7.8843, "low": 7.2108, "close": 7.5127, "volume": 446785765.0}, {"date": "2020-09", "open": 7.6056, "high": 8.1862, "low": 7.4663, "close": 8.0701, "volume": 611095564.0}, {"date": "2020-10", "open": 8.0701, "high": 8.2907, "low": 7.6869, "close": 7.7798, "volume": 385960241.0}, {"date": "2020-11", "open": 7.7798, "high": 9.1151, "low": 7.745, "close": 8.6971, "volume": 616285738.0}, {"date": "2020-12", "open": 8.8597, "high": 8.9642, "low": 8.1398, "close": 8.4765, "volume": 675728686.0}, {"date": "2021-01", "open": 8.4765, "high": 9.4751, "low": 8.2443, "close": 8.3488, "volume": 569409523.0}, {"date": "2021-02", "open": 8.1514, "high": 9.2893, "low": 7.9191, "close": 8.5578, "volume": 512262175.0}, {"date": "2021-03", "open": 8.6042, "high": 9.4635, "low": 8.2559, "close": 9.3009, "volume": 687264222.0}, {"date": "2021-04", "open": 9.2777, "high": 9.7538, "low": 9.1848, "close": 9.4054, "volume": 382314660.0}, {"date": "2021-05", "open": 9.4054, "high": 10.6363, "low": 9.3242, "close": 10.2066, "volume": 444818595.0}, {"date": "2021-06", "open": 10.2183, "high": 10.3924, "low": 9.7073, "close": 10.1105, "volume": 431480724.0}, {"date": "2021-07", "open": 10.1636, "high": 10.3895, "low": 9.5259, "close": 9.765, "volume": 406129763.0}, {"date": "2021-08", "open": 9.765, "high": 11.4391, "low": 9.4993, "close": 11.4391, "volume": 402516767.0}, {"date": "2021-09", "open": 11.4523, "high": 12.8606, "low": 10.9608, "close": 12.1033, "volume": 789056306.0}, {"date": "2021-10", "open": 12.1963, "high": 12.8606, "low": 10.6685, "close": 11.1335, "volume": 686182114.0}, {"date": "2021-11", "open": 11.1069, "high": 11.3328, "low": 10.4559, "close": 10.7349, "volume": 346554620.0}, {"date": "2021-12", "open": 10.6951, "high": 13.0201, "low": 10.6951, "close": 12.1432, "volume": 551877827.0}, {"date": "2022-01", "open": 12.3691, "high": 14.249, "low": 12.0901, "close": 12.6746, "volume": 484847198.0}, {"date": "2022-02", "open": 12.9536, "high": 15.1458, "low": 12.8739, "close": 14.2822, "volume": 465783583.0}, {"date": "2022-03", "open": 14.2822, "high": 17.2051, "low": 12.0901, "close": 16.6737, "volume": 855104687.0}, {"date": "2022-04", "open": 16.7401, "high": 17.6369, "low": 15.4779, "close": 16.8065, "volume": 415295012.0}, {"date": "2022-05", "open": 16.7401, "high": 17.8029, "low": 15.179, "close": 17.4376, "volume": 423180614.0}, {"date": "2022-06", "open": 17.504, "high": 18.3676, "low": 15.6772, "close": 16.9663, "volume": 594186396.0}, {"date": "2022-07", "open": 16.9663, "high": 17.6073, "low": 16.0237, "close": 16.7024, "volume": 313703952.0}, {"date": "2022-08", "open": 16.7401, "high": 19.5678, "low": 15.986, "close": 18.6252, "volume": 424682431.0}, {"date": "2022-09", "open": 18.6629, "high": 19.9825, "low": 17.0794, "close": 17.6827, "volume": 519059215.0}, {"date": "2022-10", "open": 17.3056, "high": 18.3613, "low": 15.4582, "close": 15.5713, "volume": 458576544.0}, {"date": "2022-11", "open": 15.7975, "high": 18.1351, "low": 15.609, "close": 18.0974, "volume": 583911334.0}, {"date": "2022-12", "open": 18.2105, "high": 18.4744, "low": 16.7401, "close": 17.004, "volume": 428038636.0}, {"date": "2023-01", "open": 16.9663, "high": 19.04, "low": 16.8909, "close": 18.3613, "volume": 358641746.0}, {"date": "2023-02", "open": 18.3236, "high": 18.5498, "low": 17.2679, "close": 17.7958, "volume": 372438689.0}, {"date": "2023-03", "open": 17.9089, "high": 19.7186, "low": 17.9089, "close": 18.6252, "volume": 603388263.0}, {"date": "2023-04", "open": 19.0023, "high": 19.6809, "low": 18.0597, "close": 19.6055, "volume": 348915097.0}, {"date": "2023-05", "open": 19.6055, "high": 21.6415, "low": 18.3613, "close": 18.6629, "volume": 478142650.0}, {"date": "2023-06", "open": 18.5121, "high": 20.56, "low": 18.3236, "close": 20.3057, "volume": 478478929.0}, {"date": "2023-07", "open": 20.2633, "high": 20.772, "low": 19.2035, "close": 19.7546, "volume": 218380047.0}, {"date": "2023-08", "open": 19.797, "high": 19.9241, "low": 18.1861, "close": 19.373, "volume": 251257592.0}, {"date": "2023-09", "open": 20.1361, "high": 21.7046, "low": 19.7122, "close": 21.535, "volume": 323023303.0}, {"date": "2023-10", "open": 21.4926, "high": 21.4926, "low": 20.1361, "close": 20.3481, "volume": 176877763.0}, {"date": "2023-11", "open": 20.3481, "high": 21.747, "low": 19.8394, "close": 21.6622, "volume": 209302068.0}, {"date": "2023-12", "open": 21.6622, "high": 22.7644, "low": 20.6448, "close": 22.6796, "volume": 278740926.0}, {"date": "2024-01", "open": 22.7644, "high": 25.5622, "low": 22.2981, "close": 25.0535, "volume": 444891008.0}, {"date": "2024-02", "open": 25.1807, "high": 27.597, "low": 24.7144, "close": 25.647, "volume": 301565855.0}, {"date": "2024-03", "open": 25.647, "high": 27.0883, "low": 24.672, "close": 26.0709, "volume": 453203966.0}, {"date": "2024-04", "open": 25.9438, "high": 28.3177, "low": 25.9014, "close": 27.7242, "volume": 361757267.0}, {"date": "2024-05", "open": 27.5547, "high": 32.8112, "low": 27.4275, "close": 32.1754, "volume": 422138921.0}, {"date": "2024-06", "open": 32.1754, "high": 34.5069, "low": 31.6156, "close": 32.5202, "volume": 438094250.0}, {"date": "2024-07", "open": 33.1082, "high": 34.646, "low": 28.6757, "close": 29.4446, "volume": 412152978.0}, {"date": "2024-08", "open": 29.4446, "high": 31.4799, "low": 27.364, "close": 30.4848, "volume": 297100349.0}, {"date": "2024-09", "open": 29.8969, "high": 32.8368, "low": 25.6905, "close": 31.7061, "volume": 440555244.0}, {"date": "2024-10", "open": 31.9322, "high": 33.7866, "low": 29.3089, "close": 30.4396, "volume": 472760264.0}, {"date": "2024-11", "open": 30.7562, "high": 31.6608, "low": 28.5852, "close": 29.128, "volume": 366905541.0}, {"date": "2024-12", "open": 29.1732, "high": 32.3845, "low": 28.4495, "close": 30.3944, "volume": 448114343.0}, {"date": "2025-01", "open": 30.123, "high": 30.3039, "low": 27.2735, "close": 28.359, "volume": 362583183.0}, {"date": "2025-02", "open": 27.5449, "high": 28.8113, "low": 25.6, "close": 26.8212, "volume": 512637855.0}, {"date": "2025-03", "open": 26.8212, "high": 29.6707, "low": 26.5951, "close": 28.54, "volume": 432976984.0}, {"date": "2025-04", "open": 28.7209, "high": 29.6707, "low": 26.3237, "close": 26.4142, "volume": 601742967.0}, {"date": "2025-05", "open": 26.4142, "high": 30.711, "low": 26.2785, "close": 29.9873, "volume": 456362481.0}, {"date": "2025-06", "open": 29.9873, "high": 32.0679, "low": 28.8113, "close": 29.6691, "volume": 447333215.0}, {"date": "2025-07", "open": 29.9127, "high": 35.0768, "low": 29.7666, "close": 33.1768, "volume": 379095433.0}, {"date": "2025-08", "open": 33.1768, "high": 37.4542, "low": 31.6471, "close": 33.9855, "volume": 385331357.0}, {"date": "2025-09", "open": 33.9271, "high": 37.9804, "low": 33.5763, "close": 36.246, "volume": 304353491.0}, {"date": "2025-10", "open": 36.3045, "high": 43.22, "low": 36.0706, "close": 40.46, "volume": 286263457.0}, {"date": "2025-11", "open": 40.7, "high": 43.84, "low": 39.44, "close": 39.82, "volume": 238433789.0}, {"date": "2025-12", "open": 39.98, "high": 41.0, "low": 38.2, "close": 38.8, "volume": 238487901.0}, {"date": "2026-01", "open": 38.8, "high": 44.24, "low": 38.7, "close": 43.02, "volume": 251172995.0}, {"date": "2026-02", "open": 42.5, "high": 44.96, "low": 39.94, "close": 44.96, "volume": 193758633.0}, {"date": "2026-03", "open": 45.0, "high": 49.62, "low": 43.66, "close": 46.12, "volume": 466984868.0}, {"date": "2026-04", "open": 46.32, "high": 49.34, "low": 44.32, "close": 48.32, "volume": 280049318.0}, {"date": "2026-05", "open": 48.92, "high": 49.3, "low": 42.86, "close": 45.08, "volume": 250942330.0}, {"date": "2026-06", "open": 45.06, "high": 47.92, "low": 44.74, "close": 45.32, "volume": 149907456.0}], "index_kline": [{"date": "2013-08", "open": 22396.289, "high": 22481.74, "low": 21465.721, "close": 21731.369}, {"date": "2013-09", "open": 21948.721, "high": 23554.34, "low": 21948.721, "close": 22859.859}, {"date": "2013-10", "open": 22997.211, "high": 23534.67, "low": 22640.18, "close": 23206.369}, {"date": "2013-11", "open": 23208.801, "high": 24014.811, "low": 22463.4, "close": 23881.289}, {"date": "2013-12", "open": 23936.15, "high": 24111.551, "low": 22713.699, "close": 23306.391}, {"date": "2014-01", "open": 23452.76, "high": 23469.33, "low": 21746.23, "close": 22035.42}, {"date": "2014-02", "open": 21561.699, "high": 22986.699, "low": 21197.779, "close": 22836.961}, {"date": "2014-03", "open": 22630.77, "high": 22839.43, "low": 21137.609, "close": 22151.061}, {"date": "2014-04", "open": 22292.32, "high": 23224.539, "low": 22096.949, "close": 22133.971}, {"date": "2014-05", "open": 22194.66, "high": 23209.26, "low": 21680.33, "close": 23049.02}, {"date": "2014-06", "open": 23327.51, "high": 23397.77, "low": 22802.1, "close": 23190.721}, {"date": "2014-07", "open": 23326.529, "high": 24912.221, "low": 23126.68, "close": 24756.85}, {"date": "2014-08", "open": 24594.23, "high": 25243.16, "low": 24190.93, "close": 24742.061}, {"date": "2014-09", "open": 24703.74, "high": 25362.98, "low": 22855.039, "close": 22932.98}, {"date": "2014-10", "open": 22691.59, "high": 24046.4, "low": 22565.6, "close": 23998.061}, {"date": "2014-11", "open": 24133.449, "high": 24313.061, "low": 23252.631, "close": 23987.449}, {"date": "2014-12", "open": 23678.0, "high": 24189.59, "low": 22529.75, "close": 23605.039}, {"date": "2015-01", "open": 23683.631, "high": 24995.08, "low": 23312.5, "close": 24507.051}, {"date": "2015-02", "open": 24347.27, "high": 25101.961, "low": 24226.289, "close": 24823.289}, {"date": "2015-03", "open": 24996.76, "high": 25113.199, "low": 23677.061, "close": 24900.889}, {"date": "2015-04", "open": 24955.199, "high": 28588.52, "low": 24926.109, "close": 28133.0}, {"date": "2015-05", "open": 28231.26, "high": 28524.6, "low": 27191.029, "close": 27424.189}, {"date": "2015-06", "open": 27373.061, "high": 27854.74, "low": 25617.779, "close": 26250.029}, {"date": "2015-07", "open": 26459.43, "high": 26459.43, "low": 22836.82, "close": 24636.279}, {"date": "2015-08", "open": 24533.141, "high": 24924.07, "low": 20865.26, "close": 21670.58}, {"date": "2015-09", "open": 21692.779, "high": 22228.59, "low": 20368.119, "close": 20846.301}, {"date": "2015-10", "open": 21172.939, "high": 23423.641, "low": 21130.109, "close": 22640.039}, {"date": "2015-11", "open": 22502.279, "high": 23342.07, "low": 21907.35, "close": 21996.42}, {"date": "2015-12", "open": 22197.811, "high": 22563.471, "low": 21010.26, "close": 21914.4}, {"date": "2016-01", "open": 21782.619, "high": 21794.84, "low": 18534.301, "close": 19683.109}, {"date": "2016-02", "open": 19770.961, "high": 19770.961, "low": 18278.801, "close": 19111.93}, {"date": "2016-03", "open": 19259.99, "high": 20872.551, "low": 19108.301, "close": 20776.699}, {"date": "2016-04", "open": 20786.18, "high": 21654.07, "low": 20045.471, "close": 21067.051}, {"date": "2016-05", "open": 21061.77, "high": 21061.77, "low": 19594.609, "close": 20815.09}, {"date": "2016-06", "open": 20726.529, "high": 21352.369, "low": 19662.699, "close": 20794.369}, {"date": "2016-07", "open": 20967.471, "high": 22300.51, "low": 20304.391, "close": 21891.369}, {"date": "2016-08", "open": 22027.65, "high": 23193.9, "low": 21725.381, "close": 22976.881}, {"date": "2016-09", "open": 22897.16, "high": 24364.0, "low": 22843.42, "close": 23297.15}, {"date": "2016-10", "open": 23652.83, "high": 24064.5, "low": 22775.289, "close": 22934.539}, {"date": "2016-11", "open": 23015.061, "high": 23268.051, "low": 21957.711, "close": 22789.77}, {"date": "2016-12", "open": 22948.65, "high": 23076.24, "low": 21488.82, "close": 22000.561}, {"date": "2017-01", "open": 21993.359, "high": 23397.09, "low": 21883.82, "close": 23360.779}, {"date": "2017-02", "open": 23211.881, "high": 24216.529, "low": 22997.461, "close": 23740.73}, {"date": "2017-03", "open": 23849.221, "high": 24656.65, "low": 23438.859, "close": 24111.59}, {"date": "2017-04", "open": 24236.561, "high": 24717.439, "low": 23723.869, "close": 24615.131}, {"date": "2017-05", "open": 24773.801, "high": 25817.949, "low": 24358.721, "close": 25660.65}, {"date": "2017-06", "open": 25736.35, "high": 26090.33, "low": 25557.801, "close": 25764.58}, {"date": "2017-07", "open": 25654.77, "high": 27324.381, "low": 25199.859, "close": 27323.99}, {"date": "2017-08", "open": 27326.039, "high": 28127.9, "low": 26863.711, "close": 27970.301}, {"date": "2017-09", "open": 28015.221, "high": 28248.119, "low": 27300.369, "close": 27554.301}, {"date": "2017-10", "open": 27884.211, "high": 28798.779, "low": 27737.381, "close": 28245.539}, {"date": "2017-11", "open": 28387.551, "high": 30199.689, "low": 28137.77, "close": 29177.35}, {"date": "2017-12", "open": 29261.311, "high": 29997.961, "low": 28134.93, "close": 29919.15}, {"date": "2018-01", "open": 30028.289, "high": 33484.078, "low": 30028.289, "close": 32887.27}, {"date": "2018-02", "open": 32950.301, "high": 33048.039, "low": 29129.26, "close": 30844.721}, {"date": "2018-03", "open": 30476.99, "high": 31978.141, "low": 29819.631, "close": 30093.381}, {"date": "2018-04", "open": 29927.881, "high": 31094.109, "low": 29518.689, "close": 30808.449}, {"date": "2018-05", "open": 30782.211, "high": 31592.561, "low": 29791.869, "close": 30468.561}, {"date": "2018-06", "open": 30548.779, "high": 31521.131, "low": 28169.1, "close": 28955.109}, {"date": "2018-07", "open": 28617.0, "high": 29083.4, "low": 27745.85, "close": 28583.01}, {"date": "2018-08", "open": 28756.721, "high": 28772.801, "low": 26871.109, "close": 27888.551}, {"date": "2018-09", "open": 27809.449, "high": 28031.811, "low": 26219.561, "close": 27788.52}, {"date": "2018-10", "open": 27716.16, "high": 27716.16, "low": 24540.631, "close": 24979.689}, {"date": "2018-11", "open": 25228.75, "high": 26923.33, "low": 25092.301, "close": 26506.75}, {"date": "2018-12", "open": 27185.66, "high": 27260.439, "low": 25313.75, "close": 25845.699}, {"date": "2019-01", "open": 25824.439, "high": 28010.9, "low": 24896.869, "close": 27942.471}, {"date": "2019-02", "open": 28193.279, "high": 29014.189, "low": 27534.199, "close": 28633.18}, {"date": "2019-03", "open": 28716.6, "high": 29486.15, "low": 28201.09, "close": 29051.359}, {"date": "2019-04", "open": 29383.721, "high": 30280.119, "low": 29383.721, "close": 29699.109}, {"date": "2019-05", "open": 29643.051, "high": 30081.551, "low": 26850.27, "close": 26901.09}, {"date": "2019-06", "open": 26909.711, "high": 28634.48, "low": 26671.9, "close": 28542.619}, {"date": "2019-07", "open": 28904.039, "high": 29007.98, "low": 27701.439, "close": 27777.75}, {"date": "2019-08", "open": 27582.211, "high": 27754.039, "low": 24899.93, "close": 25724.73}, {"date": "2019-09", "open": 25627.83, "high": 27366.449, "low": 25498.109, "close": 26092.27}, {"date": "2019-10", "open": 25901.471, "high": 27027.561, "low": 25521.949, "close": 26906.721}, {"date": "2019-11", "open": 26806.439, "high": 27900.801, "low": 26203.971, "close": 26346.49}, {"date": "2019-12", "open": 26475.34, "high": 28418.65, "low": 25995.15, "close": 28189.75}, {"date": "2020-01", "open": 28249.369, "high": 29174.92, "low": 26295.49, "close": 26312.631}, {"date": "2020-02", "open": 26189.609, "high": 28055.58, "low": 25989.41, "close": 26129.93}, {"date": "2020-03", "open": 26077.73, "high": 26805.58, "low": 21139.26, "close": 23603.48}, {"date": "2020-04", "open": 23365.9, "high": 24855.471, "low": 22756.131, "close": 24643.59}, {"date": "2020-05", "open": 23895.109, "high": 24766.83, "low": 22519.73, "close": 22961.471}, {"date": "2020-06", "open": 23539.91, "high": 25303.779, "low": 23539.91, "close": 24427.189}, {"date": "2020-07", "open": 24563.57, "high": 26782.619, "low": 24526.91, "close": 24595.35}, {"date": "2020-08", "open": 24566.811, "high": 25847.109, "low": 24167.789, "close": 25177.051}, {"date": "2020-09", "open": 25085.67, "high": 25254.141, "low": 23124.25, "close": 23459.051}, {"date": "2020-10", "open": 24039.391, "high": 24970.59, "low": 23674.52, "close": 24107.42}, {"date": "2020-11", "open": 24274.83, "high": 27040.41, "low": 24232.66, "close": 26341.49}, {"date": "2020-12", "open": 26422.711, "high": 27340.99, "low": 25998.869, "close": 27231.131}, {"date": "2021-01", "open": 27087.131, "high": 30191.16, "low": 27079.24, "close": 28283.711}, {"date": "2021-02", "open": 28457.85, "high": 31183.359, "low": 28382.26, "close": 28980.211}, {"date": "2021-03", "open": 29457.891, "high": 29912.0, "low": 27505.08, "close": 28378.35}, {"date": "2021-04", "open": 28594.551, "high": 29405.119, "low": 28274.27, "close": 28724.881}, {"date": "2021-05", "open": 28659.91, "high": 29336.131, "low": 27715.881, "close": 29151.801}, {"date": "2021-06", "open": 29159.061, "high": 29490.609, "low": 28216.09, "close": 28827.949}, {"date": "2021-07", "open": 28859.02, "high": 28859.02, "low": 24748.84, "close": 25961.029}, {"date": "2021-08", "open": 26054.811, "high": 26822.471, "low": 24581.6, "close": 25878.99023}, {"date": "2021-09", "open": 25871.82, "high": 26560.04, "low": 23771.46, "close": 24575.64063}, {"date": "2021-10", "open": 24478.68, "high": 26234.94, "low": 23681.44, "close": 25377.24023}, {"date": "2021-11", "open": 25268.35, "high": 25746.71, "low": 23175.37, "close": 23475.26172}, {"date": "2021-12", "open": 23595.57, "high": 24385.44, "low": 22665.25, "close": 23397.66992}, {"date": "2022-01", "open": 23510.54, "high": 24982.03, "low": 22709.6, "close": 23802.25977}, {"date": "2022-02", "open": 24392.86, "high": 25050.59, "low": 22406.12, "close": 22713.02148}, {"date": "2022-03", "open": 22739.84, "high": 22937.56, "low": 18235.48, "close": 21996.84961}, {"date": "2022-04", "open": 21693.1, "high": 22523.64, "low": 19665.49, "close": 21089.39063}, {"date": "2022-05", "open": 20927.62, "high": 21415.2, "low": 19178.89, "close": 21415.19922}, {"date": "2022-06", "open": 21407.79, "high": 22449.31, "low": 20697.17, "close": 21859.79102}, {"date": "2022-07", "open": 21690.68, "high": 22198.51, "low": 20050.05, "close": 20156.50977}, {"date": "2022-08", "open": 20026.6, "high": 20283.59, "low": 19189.54, "close": 19954.39063}, {"date": "2022-09", "open": 19761.72, "high": 19839.51, "low": 17016.28, "close": 17222.83008}, {"date": "2022-10", "open": 17050.25, "high": 18164.2, "low": 14597.31, "close": 14687.02051}, {"date": "2022-11", "open": 14859.92, "high": 18645.35, "low": 14859.92, "close": 18597.23047}, {"date": "2022-12", "open": 19058.9, "high": 20099.77, "low": 18530.82, "close": 19781.41016}, {"date": "2023-01", "open": 19570.43, "high": 22700.85, "low": 19303.73, "close": 21842.33008}, {"date": "2023-02", "open": 21920.8, "high": 22311.96, "low": 19783.07, "close": 19785.93945}, {"date": "2023-03", "open": 19849.97, "high": 21005.66, "low": 18829.11, "close": 20400.11133}, {"date": "2023-04", "open": 20379.5, "high": 20864.74, "low": 19520.97, "close": 19894.57031}, {"date": "2023-05", "open": 20122.9, "high": 20321.74, "low": 18044.86, "close": 18234.26953}, {"date": "2023-06", "open": 18190.27, "high": 20155.92, "low": 18190.27, "close": 18916.42969}, {"date": "2023-07", "open": 19002.55, "high": 20361.03, "low": 18279.73, "close": 20078.94141}, {"date": "2023-08", "open": 20211.2, "high": 20331.28, "low": 17573.7, "close": 18382.06055}, {"date": "2023-09", "open": 18592.53, "high": 18899.49, "low": 17352.83, "close": 17809.66016}, {"date": "2023-10", "open": 17546.39, "high": 18290.91, "low": 16879.66, "close": 17112.48047}, {"date": "2023-11", "open": 17139.4, "high": 18174.69, "low": 16863.05, "close": 17042.88086}, {"date": "2023-12", "open": 17019.17, "high": 17095.12, "low": 15972.31, "close": 17047.39063}, {"date": "2024-01", "open": 17135.12, "high": 17135.12, "low": 14794.16, "close": 15485.07031}, {"date": "2024-02", "open": 15522.86, "high": 16895.82, "low": 15336.86, "close": 16511.43945}, {"date": "2024-03", "open": 16390.89, "high": 17214.67, "low": 16095.68, "close": 16541.41992}, {"date": "2024-04", "open": 16811.74, "high": 18031.16, "low": 16044.45, "close": 17763.03125}, {"date": "2024-05", "open": 17760.68, "high": 19706.12, "low": 17740.62, "close": 18079.60938}, {"date": "2024-06", "open": 18283.56, "high": 18724.62, "low": 17583.19, "close": 17718.60938}, {"date": "2024-07", "open": 17669.42, "high": 18317.31, "low": 16924.58, "close": 17344.59961}, {"date": "2024-08", "open": 17327.85, "high": 18202.6, "low": 16441.44, "close": 17989.07031}, {"date": "2024-09", "open": 17862.59, "high": 21488.75, "low": 16964.28, "close": 21133.67969}, {"date": "2024-10", "open": 21289.6, "high": 23241.74, "low": 19977.35, "close": 20317.33008}, {"date": "2024-11", "open": 20427.88, "high": 21355.44, "low": 19054.4, "close": 19423.60938}, {"date": "2024-12", "open": 19442.31, "high": 21070.05, "low": 19386.82, "close": 20059.95117}, {"date": "2025-01", "open": 19932.8, "high": 20337.46, "low": 18671.49, "close": 20225.11133}, {"date": "2025-02", "open": 20048.87, "high": 24076.53, "low": 19764.67, "close": 22941.32031}, {"date": "2025-03", "open": 23135.12, "high": 24874.39, "low": 22547.53, "close": 23119.58008}, {"date": "2025-04", "open": 23217.11, "high": 23456.58, "low": 19260.21, "close": 22119.41016}, {"date": "2025-05", "open": 22192.51, "high": 23917.0, "low": 22058.3, "close": 23289.76953}, {"date": "2025-06", "open": 23043.1, "high": 24533.39, "low": 22668.35, "close": 24072.2793}, {"date": "2025-07", "open": 24304.31, "high": 25735.89, "low": 23690.94, "close": 24773.33008}, {"date": "2025-08", "open": 24744.34, "high": 25918.86, "low": 24372.51, "close": 25077.61914}, {"date": "2025-09", "open": 25508.21, "high": 27058.03, "low": 25013.26, "close": 26855.55859}, {"date": "2025-10", "open": 26918.3, "high": 27381.84, "low": 25145.34, "close": 25906.65039}, {"date": "2025-11", "open": 25999.17, "high": 27188.81, "low": 25178.63, "close": 25858.88867}, {"date": "2025-12", "open": 25945.87, "high": 26264.13, "low": 25086.54, "close": 25630.54102}, {"date": "2026-01", "open": 25717.42, "high": 28056.1, "low": 25717.42, "close": 27387.11133}, {"date": "2026-02", "open": 27097.34, "high": 27397.65, "low": 26295.03, "close": 26630.54102}, {"date": "2026-03", "open": 26305.58, "high": 26403.85, "low": 24203.54, "close": 24788.14063}, {"date": "2026-04", "open": 25357.23, "high": 26529.49, "low": 24901.77, "close": 25776.5293}, {"date": "2026-05", "open": 26138.34, "high": 26844.8, "low": 24727.26, "close": 25182.39063}, {"date": "2026-06", "open": 25180.05, "high": 26045.07, "low": 23999.67, "close": 24718.09961}], "total_returns": {"stock": {"1yr": 27.7, "3yr": 128.2, "5yr": 357.7}, "index": {"1yr": 27.8, "3yr": 29.6, "5yr": -5.9}}, "years": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"], "metric_defs": [{"order": 1, "name_cn": "每股营收", "name_en": "Revenues per sh", "field": "PER_OI", "unit": "元", "source": "calculated"}, {"order": 2, "name_cn": "每股现金流", "name_en": "\"Cash Flow\" per sh", "field": "PER_NETCASH", "unit": "元", "source": "calculated"}, {"order": 3, "name_cn": "每股收益", "name_en": "Earnings per sh", "field": "BASIC_EPS", "unit": "元", "source": "indicators"}, {"order": 4, "name_cn": "每股股息", "name_en": "Div'ds Decl'd per sh", "field": "DPS", "unit": "元", "source": "dividend"}, {"order": 5, "name_cn": "每股资本支出", "name_en": "Cap'l Spending per sh", "field": "CAPEX_PS", "unit": "元", "source": "calculated"}, {"order": 6, "name_cn": "每股账面价值", "name_en": "Book Value per sh", "field": "BPS", "unit": "元", "source": "indicators"}, {"order": 7, "name_cn": "发行在外股数", "name_en": "Common Shs Outst'g (Mill.)", "field": "TOTAL_SHARES", "unit": "百万股", "source": "calculated"}, {"order": 8, "name_cn": "平均年化PE", "name_en": "Avg Ann'l P/E Ratio", "field": "PE_AVG", "unit": "倍", "source": "calculated"}, {"order": 9, "name_cn": "相对PE", "name_en": "Relative P/E Ratio", "field": "PE_RELATIVE", "unit": "倍", "source": "calculated"}, {"order": 10, "name_cn": "平均股息率", "name_en": "Avg Ann'l Div'd Yield", "field": "DIV_YIELD", "unit": "%", "source": "calculated"}, {"order": 11, "name_cn": "总营收", "name_en": "Revenues (亿)", "field": "OPERATE_INCOME", "unit": "亿", "source": "indicators"}, {"order": 12, "name_cn": "毛利率", "name_en": "Gross Margin", "field": "GROSS_MARGIN", "unit": "%", "source": "calculated"}, {"order": 13, "name_cn": "营业利润率", "name_en": "Operating Margin", "field": "OP_MARGIN", "unit": "%", "source": "calculated"}, {"order": 14, "name_cn": "折旧摊销", "name_en": "Depreciation (亿)", "field": "DEPRECIATION", "unit": "亿", "source": "cashflow"}, {"order": 15, "name_cn": "净利润", "name_en": "Net Profit (亿)", "field": "HOLDER_PROFIT", "unit": "亿", "source": "indicators"}, {"order": 16, "name_cn": "所得税率", "name_en": "Income Tax Rate", "field": "TAX_EBT", "unit": "%", "source": "indicators"}, {"order": 17, "name_cn": "净利润率", "name_en": "Net Profit Margin", "field": "NET_PROFIT_RATIO", "unit": "%", "source": "calculated"}, {"order": 18, "name_cn": "营运资金", "name_en": "Working Cap'l (亿)", "field": "WORKING_CAPITAL", "unit": "亿", "source": "calculated"}, {"order": 19, "name_cn": "长期债务", "name_en": "Long-Term Debt (亿)", "field": "LT_DEBT", "unit": "亿", "source": "calculated"}, {"order": 20, "name_cn": "股东权益", "name_en": "Shr. Equity (亿)", "field": "TOTAL_EQUITY", "unit": "亿", "source": "calculated"}, {"order": 21, "name_cn": "投入资本回报率", "name_en": "Return on Total Cap'l", "field": "ROIC", "unit": "%", "source": "calculated"}, {"order": 22, "name_cn": "股东权益回报率", "name_en": "Return on Shr. Equity", "field": "ROE", "unit": "%", "source": "indicators"}, {"order": 23, "name_cn": "留存利润再投比", "name_en": "Retained to Com Eq", "field": "RETAINED_RATIO", "unit": "%", "source": "calculated"}, {"order": 24, "name_cn": "股息支付率", "name_en": "All Div'ds to Net Prof", "field": "PAYOUT_RATIO", "unit": "%", "source": "calculated"}], "data": {"2011": {"PER_OI": 10.03, "PER_NETCASH": 3.13, "BASIC_EPS": 2.34, "DPS": 0.9, "CAPEX_PS": 2.27, "BPS": 13.77, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19889.8, "PE_AVG": 3.7, "PE_RELATIVE": null, "DIV_YIELD": 10.4, "OPERATE_INCOME": 1994.7, "OP_MARGIN": 34.4, "DEPRECIATION": 158.2, "GROSS_MARGIN": 40.4, "HOLDER_PROFIT": 465.0, "TAX_EBT": 21.0, "NET_PROFIT_RATIO": 23.3, "WORKING_CAPITAL": 222.7, "LT_DEBT": 564.2, "TOTAL_EQUITY": 2738.6, "ROIC": 21.8, "ROE": 17.0, "RETAINED_RATIO": 12.2, "PAYOUT_RATIO": 38.5, "AVG_PRICE": 10.63}, "2012": {"PER_OI": 12.8, "PER_NETCASH": 3.51, "BASIC_EPS": 2.51, "DPS": 0.96, "CAPEX_PS": 2.69, "BPS": 15.74, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19891.2, "PE_AVG": 3.2, "PE_RELATIVE": null, "DIV_YIELD": 11.9, "OPERATE_INCOME": 2545.8, "OP_MARGIN": 27.8, "DEPRECIATION": 198.6, "GROSS_MARGIN": 31.4, "HOLDER_PROFIT": 499.6, "TAX_EBT": 15.9, "NET_PROFIT_RATIO": 19.6, "WORKING_CAPITAL": 62.0, "LT_DEBT": 487.8, "TOTAL_EQUITY": 3131.5, "ROIC": 20.4, "ROE": 16.0, "RETAINED_RATIO": 11.7, "PAYOUT_RATIO": 38.2, "AVG_PRICE": 9.96}, "2013": {"PER_OI": 14.27, "PER_NETCASH": 3.27, "BASIC_EPS": 2.3, "DPS": 0.91, "CAPEX_PS": 2.57, "BPS": 16.82, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19893.6, "PE_AVG": 3.0, "PE_RELATIVE": 0.27, "DIV_YIELD": 13.4, "OPERATE_INCOME": 2838.0, "OP_MARGIN": 24.9, "DEPRECIATION": 191.9, "GROSS_MARGIN": 28.7, "HOLDER_PROFIT": 457.9, "TAX_EBT": 19.9, "NET_PROFIT_RATIO": 16.1, "WORKING_CAPITAL": -101.0, "LT_DEBT": 489.3, "TOTAL_EQUITY": 3346.4, "ROIC": 19.2, "ROE": 13.7, "RETAINED_RATIO": 10.0, "PAYOUT_RATIO": 39.5, "AVG_PRICE": 8.64}, "2014": {"PER_OI": 12.72, "PER_NETCASH": 3.08, "BASIC_EPS": 2.01, "DPS": 0.74, "CAPEX_PS": 2.2, "BPS": 18.38, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19889.2, "PE_AVG": 3.0, "PE_RELATIVE": 0.29, "DIV_YIELD": 12.3, "OPERATE_INCOME": 2530.8, "OP_MARGIN": 25.7, "DEPRECIATION": 213.4, "GROSS_MARGIN": 29.6, "HOLDER_PROFIT": 399.1, "TAX_EBT": 20.7, "NET_PROFIT_RATIO": 15.8, "WORKING_CAPITAL": 88.7, "LT_DEBT": 563.2, "TOTAL_EQUITY": 3655.7, "ROIC": 16.5, "ROE": 10.9, "RETAINED_RATIO": 8.4, "PAYOUT_RATIO": 36.9, "AVG_PRICE": 7.61}, "2015": {"PER_OI": 8.9, "PER_NETCASH": 2.31, "BASIC_EPS": 1.1, "DPS": 0.32, "CAPEX_PS": 1.49, "BPS": 18.29, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19897.4, "PE_AVG": 4.7, "PE_RELATIVE": 0.47, "DIV_YIELD": 6.2, "OPERATE_INCOME": 1770.7, "OP_MARGIN": 21.8, "DEPRECIATION": 239.9, "GROSS_MARGIN": 30.3, "HOLDER_PROFIT": 218.8, "TAX_EBT": 27.7, "NET_PROFIT_RATIO": 12.4, "WORKING_CAPITAL": 195.5, "LT_DEBT": 617.0, "TOTAL_EQUITY": 3639.2, "ROIC": 10.3, "ROE": 6.0, "RETAINED_RATIO": 5.2, "PAYOUT_RATIO": 29.1, "AVG_PRICE": 6.16}, "2016": {"PER_OI": 9.2, "PER_NETCASH": 2.61, "BASIC_EPS": 1.37, "DPS": 2.9699999999999998, "CAPEX_PS": 1.42, "BPS": 19.35, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19896.2, "PE_AVG": 3.4, "PE_RELATIVE": 0.3, "DIV_YIELD": 63.6, "OPERATE_INCOME": 1831.3, "OP_MARGIN": 25.1, "DEPRECIATION": 247.2, "GROSS_MARGIN": 31.8, "HOLDER_PROFIT": 273.0, "TAX_EBT": 22.5, "NET_PROFIT_RATIO": 14.9, "WORKING_CAPITAL": 212.8, "LT_DEBT": 609.1, "TOTAL_EQUITY": 3849.7, "ROIC": 11.6, "ROE": 7.1, "RETAINED_RATIO": -10.0, "PAYOUT_RATIO": 216.5, "AVG_PRICE": 5.22}, "2017": {"PER_OI": 12.51, "PER_NETCASH": 3.75, "BASIC_EPS": 2.48, "DPS": 0.91, "CAPEX_PS": 0.99, "BPS": 19.06, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19889.6, "PE_AVG": 2.6, "PE_RELATIVE": 0.21, "DIV_YIELD": 13.9, "OPERATE_INCOME": 2487.5, "OP_MARGIN": 30.5, "DEPRECIATION": 253.4, "GROSS_MARGIN": 35.5, "HOLDER_PROFIT": 492.6, "TAX_EBT": 22.0, "NET_PROFIT_RATIO": 19.8, "WORKING_CAPITAL": 167.4, "LT_DEBT": 698.8, "TOTAL_EQUITY": 3791.1, "ROIC": 17.9, "ROE": 13.0, "RETAINED_RATIO": 10.2, "PAYOUT_RATIO": 36.7, "AVG_PRICE": 7.85}, "2018": {"PER_OI": 13.28, "PER_NETCASH": 3.52, "BASIC_EPS": 2.33, "DPS": 0.88, "CAPEX_PS": 0.97, "BPS": 20.56, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19889.6, "PE_AVG": 3.5, "PE_RELATIVE": 0.33, "DIV_YIELD": 10.8, "OPERATE_INCOME": 2641.0, "OP_MARGIN": 27.9, "DEPRECIATION": 237.3, "GROSS_MARGIN": 34.2, "HOLDER_PROFIT": 463.3, "TAX_EBT": 22.8, "NET_PROFIT_RATIO": 17.5, "WORKING_CAPITAL": 1099.2, "LT_DEBT": 488.6, "TOTAL_EQUITY": 4088.4, "ROIC": 17.3, "ROE": 11.3, "RETAINED_RATIO": 8.7, "PAYOUT_RATIO": 37.8, "AVG_PRICE": 9.31}, "2019": {"PER_OI": 12.16, "PER_NETCASH": 3.12, "BASIC_EPS": 2.1, "DPS": 1.26, "CAPEX_PS": 0.91, "BPS": 21.13, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19889.6, "PE_AVG": 3.7, "PE_RELATIVE": 0.34, "DIV_YIELD": 16.3, "OPERATE_INCOME": 2418.7, "OP_MARGIN": 27.5, "DEPRECIATION": 203.8, "GROSS_MARGIN": 31.8, "HOLDER_PROFIT": 417.1, "TAX_EBT": 23.3, "NET_PROFIT_RATIO": 17.2, "WORKING_CAPITAL": 650.1, "LT_DEBT": 432.6, "TOTAL_EQUITY": 4202.2, "ROIC": 15.1, "ROE": 9.9, "RETAINED_RATIO": 4.7, "PAYOUT_RATIO": 60.1, "AVG_PRICE": 8.61}, "2020": {"PER_OI": 11.73, "PER_NETCASH": 2.81, "BASIC_EPS": 1.81, "DPS": 1.81, "CAPEX_PS": 1.01, "BPS": 21.6, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19889.6, "PE_AVG": 3.6, "PE_RELATIVE": 0.27, "DIV_YIELD": 27.8, "OPERATE_INCOME": 2332.6, "OP_MARGIN": 25.3, "DEPRECIATION": 199.8, "GROSS_MARGIN": 30.4, "HOLDER_PROFIT": 359.9, "TAX_EBT": 25.9, "NET_PROFIT_RATIO": 15.4, "WORKING_CAPITAL": 1027.4, "LT_DEBT": 535.2, "TOTAL_EQUITY": 4295.9, "ROIC": 12.7, "ROE": 8.4, "RETAINED_RATIO": -0.0, "PAYOUT_RATIO": 100.0, "AVG_PRICE": 7.73}, "2021": {"PER_OI": 16.89, "PER_NETCASH": 3.71, "BASIC_EPS": 2.63, "DPS": 2.54, "CAPEX_PS": 1.16, "BPS": 22.6, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19868.5, "PE_AVG": 3.2, "PE_RELATIVE": 0.3, "DIV_YIELD": 30.5, "OPERATE_INCOME": 3356.4, "OP_MARGIN": 23.8, "DEPRECIATION": 215.4, "GROSS_MARGIN": 28.6, "HOLDER_PROFIT": 521.6, "TAX_EBT": 23.0, "NET_PROFIT_RATIO": 15.5, "WORKING_CAPITAL": 1165.6, "LT_DEBT": 587.3, "TOTAL_EQUITY": 4490.0, "ROIC": 16.2, "ROE": 11.6, "RETAINED_RATIO": 0.4, "PAYOUT_RATIO": 96.8, "AVG_PRICE": 10.2}, "2022": {"PER_OI": 17.34, "PER_NETCASH": 4.98, "BASIC_EPS": 3.81, "DPS": 2.55, "CAPEX_PS": 1.35, "BPS": 23.29, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19868.5, "PE_AVG": 3.9, "PE_RELATIVE": 0.52, "DIV_YIELD": 17.4, "OPERATE_INCOME": 3445.3, "OP_MARGIN": 28.5, "DEPRECIATION": 232.5, "GROSS_MARGIN": 34.2, "HOLDER_PROFIT": 756.5, "TAX_EBT": 14.3, "NET_PROFIT_RATIO": 22.0, "WORKING_CAPITAL": 1126.5, "LT_DEBT": 505.0, "TOTAL_EQUITY": 4628.0, "ROIC": 19.9, "ROE": 16.3, "RETAINED_RATIO": 6.3, "PAYOUT_RATIO": 67.0, "AVG_PRICE": 16.43}, "2023": {"PER_OI": 17.27, "PER_NETCASH": 4.65, "BASIC_EPS": 3.4, "DPS": 2.26, "CAPEX_PS": 1.82, "BPS": 24.24, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19868.5, "PE_AVG": 5.3, "PE_RELATIVE": 0.59, "DIV_YIELD": 12.6, "OPERATE_INCOME": 3430.7, "OP_MARGIN": 26.1, "DEPRECIATION": 248.8, "GROSS_MARGIN": 32.2, "HOLDER_PROFIT": 675.3, "TAX_EBT": 19.0, "NET_PROFIT_RATIO": 19.7, "WORKING_CAPITAL": 1073.7, "LT_DEBT": 460.9, "TOTAL_EQUITY": 4816.5, "ROIC": 17.6, "ROE": 14.0, "RETAINED_RATIO": 5.5, "PAYOUT_RATIO": 66.5, "AVG_PRICE": 19.72}, "2024": {"PER_OI": 17.1, "PER_NETCASH": 4.27, "BASIC_EPS": 3.02, "DPS": 2.26, "CAPEX_PS": 1.85, "BPS": 25.18, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19868.5, "PE_AVG": 8.9, "PE_RELATIVE": 1.05, "DIV_YIELD": 8.4, "OPERATE_INCOME": 3397.9, "OP_MARGIN": 24.5, "DEPRECIATION": 248.2, "GROSS_MARGIN": 30.0, "HOLDER_PROFIT": 600.9, "TAX_EBT": 19.5, "NET_PROFIT_RATIO": 17.7, "WORKING_CAPITAL": 1020.2, "LT_DEBT": 538.9, "TOTAL_EQUITY": 5002.6, "ROIC": 15.6, "ROE": 12.0, "RETAINED_RATIO": 3.6, "PAYOUT_RATIO": 74.7, "AVG_PRICE": 28.98}, "2025": {"PER_OI": 14.84, "PER_NETCASH": 3.96, "BASIC_EPS": 2.73, "DPS": 2.01, "CAPEX_PS": 2.35, "BPS": 24.43, "BPS_FORMULA": "equity/shares", "TOTAL_SHARES": 19868.5, "PE_AVG": 10.9, "PE_RELATIVE": 1.36, "DIV_YIELD": 6.8, "OPERATE_INCOME": 2949.2, "OP_MARGIN": 26.4, "DEPRECIATION": 244.4, "GROSS_MARGIN": 29.9, "HOLDER_PROFIT": 542.4, "TAX_EBT": 20.4, "NET_PROFIT_RATIO": 18.4, "WORKING_CAPITAL": 577.1, "LT_DEBT": 438.9, "TOTAL_EQUITY": 4854.7, "ROIC": 15.2, "ROE": 11.2, "RETAINED_RATIO": 3.5, "PAYOUT_RATIO": 73.6, "AVG_PRICE": 32.88}}, "cagr": {"revenue": {"1yr": -13.2, "3yr": -5.1, "5yr": 4.8, "10yr": 5.2}, "eps": {"1yr": -9.6, "3yr": -10.5, "5yr": 8.6, "10yr": 9.5}, "cashflow": {"1yr": -7.3, "3yr": -7.4, "5yr": 7.1, "10yr": 5.5}, "dividend": {"1yr": -11.1, "3yr": -7.6, "5yr": 2.1, "10yr": 20.2}, "equity": {"1yr": -3.0, "3yr": 1.6, "5yr": 2.5, "10yr": 2.9}}, "quarterly": {"sales": [{"year": "2011", "has_quarter": true, "q1": 473.9, "q2": 491.4, "q3": 499.0, "q4": 530.4, "full": 1994.7}, {"year": "2012", "has_quarter": true, "q1": 595.3, "q2": 619.4, "q3": 569.0, "q4": 762.1, "full": 2545.8}, {"year": "2013", "has_quarter": true, "q1": 609.9, "q2": 676.7, "q3": 710.4, "q4": 840.9, "full": 2838.0}, {"year": "2014", "has_quarter": true, "q1": 609.3, "q2": 682.7, "q3": 612.5, "q4": 626.4, "full": 2530.8}, {"year": "2015", "has_quarter": true, "q1": 412.9, "q2": 487.1, "q3": 448.1, "q4": 422.6, "full": 1770.7}, {"year": "2016", "has_quarter": true, "q1": 394.0, "q2": 393.2, "q3": 460.8, "q4": 583.2, "full": 1831.3}, {"year": "2017", "has_quarter": true, "q1": 610.6, "q2": 594.6, "q3": 620.2, "q4": 662.1, "full": 2487.5}, {"year": "2018", "has_quarter": true, "q1": 629.8, "q2": 644.0, "q3": 667.0, "q4": 700.2, "full": 2641.0}, {"year": "2019", "has_quarter": true, "q1": 570.1, "q2": 593.5, "q3": 614.8, "q4": 640.2, "full": 2418.7}, {"year": "2020", "has_quarter": true, "q1": 510.8, "q2": 539.4, "q3": 610.9, "q4": 671.6, "full": 2332.6}, {"year": "2021", "has_quarter": true, "q1": 676.1, "q2": 763.7, "q3": 890.6, "q4": 1026.0, "full": 3356.4}, {"year": "2022", "has_quarter": true, "q1": 839.0, "q2": 816.8, "q3": 849.1, "q4": 940.4, "full": 3445.3}, {"year": "2023", "has_quarter": true, "q1": 870.4, "q2": 824.0, "q3": 830.2, "q4": 906.1, "full": 3430.7}, {"year": "2024", "has_quarter": true, "q1": 881.6, "q2": 809.6, "q3": 863.5, "q4": 843.1, "full": 3397.9}, {"year": "2025", "has_quarter": true, "q1": 695.9, "q2": 685.2, "q3": 750.4, "q4": 817.6, "full": 2949.2}, {"year": "2026", "has_quarter": true, "forward": true, "q1": 704.0, "q2": null, "q3": null, "q4": null, "full": null}], "eps": [{"year": "2011", "has_quarter": true, "q1": 0.56, "q2": 0.59, "q3": 0.64, "q4": 0.52, "full": 2.31}, {"year": "2012", "has_quarter": true, "q1": 0.59, "q2": 0.75, "q3": 0.6, "q4": 0.55, "full": 2.5}, {"year": "2013", "has_quarter": true, "q1": 0.61, "q2": 0.67, "q3": 0.49, "q4": 0.5, "full": 2.27}, {"year": "2014", "has_quarter": true, "q1": 0.56, "q2": 0.59, "q3": 0.44, "q4": 0.4, "full": 1.98}, {"year": "2015", "has_quarter": true, "q1": 0.33, "q2": 0.34, "q3": 0.29, "q4": -0.07, "full": 0.89}, {"year": "2016", "has_quarter": true, "q1": 0.24, "q2": 0.31, "q3": 0.39, "q4": 0.31, "full": 1.25}, {"year": "2017", "has_quarter": true, "q1": 0.65, "q2": 0.67, "q3": 0.62, "q4": 0.46, "full": 2.4}, {"year": "2018", "has_quarter": true, "q1": 0.61, "q2": 0.62, "q3": 0.64, "q4": 0.35, "full": 2.22}, {"year": "2019", "has_quarter": true, "q1": 0.65, "q2": 0.57, "q3": 0.6, "q4": 0.27, "full": 2.1}, {"year": "2020", "has_quarter": true, "q1": 0.5, "q2": 0.52, "q3": 0.61, "q4": 0.17, "full": 1.8}, {"year": "2021", "has_quarter": true, "q1": 0.6, "q2": 0.74, "q3": 0.74, "q4": 0.51, "full": 2.59}, {"year": "2022", "has_quarter": true, "q1": 1.0, "q2": 1.14, "q3": 1.02, "q4": 0.51, "full": 3.67}, {"year": "2023", "has_quarter": true, "q1": 1.04, "q2": 0.81, "q3": 0.79, "q4": 0.61, "full": 3.25}, {"year": "2024", "has_quarter": true, "q1": 0.83, "q2": 0.75, "q3": 0.84, "q4": 0.58, "full": 3.0}, {"year": "2025", "has_quarter": true, "q1": 0.67, "q2": 0.67, "q3": 0.74, "q4": 0.65, "full": 2.73}, {"year": "2026", "has_quarter": true, "forward": true, "q1": 0.59, "q2": null, "q3": null, "q4": null, "full": null}], "dividends": [{"year": "2011", "has_quarter": false, "q1": 0, "q3": 0.9, "full": 0.9}, {"year": "2012", "has_quarter": false, "q1": 0, "q3": 0.96, "full": 0.96}, {"year": "2013", "has_quarter": false, "q1": 0, "q3": 0.91, "full": 0.91}, {"year": "2014", "has_quarter": false, "q1": 0, "q3": 0.74, "full": 0.74}, {"year": "2015", "has_quarter": false, "q1": 0, "q3": 0.32, "full": 0.32}, {"year": "2016", "has_quarter": false, "q1": 0, "q3": 2.97, "full": 2.97}, {"year": "2017", "has_quarter": false, "q1": 0, "q3": 0.91, "full": 0.91}, {"year": "2018", "has_quarter": false, "q1": 0, "q3": 0.88, "full": 0.88}, {"year": "2019", "has_quarter": false, "q1": 0, "q3": 1.26, "full": 1.26}, {"year": "2020", "has_quarter": false, "q1": 0, "q3": 1.81, "full": 1.81}, {"year": "2021", "has_quarter": false, "q1": 0, "q3": 2.54, "full": 2.54}, {"year": "2022", "has_quarter": false, "q1": 0, "q3": 2.55, "full": 2.55}, {"year": "2023", "has_quarter": false, "q1": 0, "q3": 2.26, "full": 2.26}, {"year": "2024", "has_quarter": false, "q1": 0, "q3": 2.26, "full": 2.26}, {"year": "2025", "has_quarter": false, "q1": 0, "q3": 2.01, "full": 2.01}, {"year": "2026", "has_quarter": false, "q1": 0, "q3": 0, "full": 0}]}, "valuation_line": [{"date": "2011", "value": 54.01}, {"date": "2012", "value": 60.57}, {"date": "2013", "value": 56.43}, {"date": "2014", "value": 53.15}, {"date": "2015", "value": 39.86}, {"date": "2016", "value": 45.04}, {"date": "2017", "value": 64.71}, {"date": "2018", "value": 60.74}, {"date": "2019", "value": 53.84}, {"date": "2020", "value": 48.49}, {"date": "2021", "value": 64.02}, {"date": "2022", "value": 85.94}, {"date": "2023", "value": 80.24}, {"date": "2024", "value": 73.68}, {"date": "2025", "value": 68.33}], "valuation_method": "cf", "cf_multiplier": 15.0, "pb_multiplier": 1.0, "balance_summary": {"total_assets": 6317.77, "total_liabilities": 1463.1, "total_equity": 4854.67, "current_assets": 1469.69, "current_liabilities": 892.62, "cash": 232.88, "inventory": 118.5, "receivables": 188.43}, "income_summary": {"revenue": 2949.16, "gross_profit": 881.96, "net_profit": 542.18}, "revenue_structure": {"by_product": [{"name": "煤炭", "value": 270000.0, "pct": 78.0}, {"name": "发电", "value": 52000.0, "pct": 15.0}, {"name": "铁路/港口/航运", "value": 24000.0, "pct": 7.0}]}, "capital_structure": {"unit": "亿", "divisor": 100000000.0, "total_assets": 6317.77, "total_debt": 1463.1, "total_equity": 4854.67, "current_assets": 1469.69, "current_liabilities": 892.62, "cash": 232.88, "inventory": 118.5, "receivables": 188.43, "non_current_liab": 570.48, "lt_debt": 9.71, "due_in_5yr": 212.88, "total_int": 27.15, "coverage": ">25x", "coverage_num": 28.629097605893186, "lt_debt_pct": 0.2, "pension_assets": "N/A", "pfd_stock": "None", "common_shares": 19869.0, "common_shares_str": "19,868,519,955", "common_shares_raw": 19868519955, "mkt_cap": 7809.9, "cap_label": "Large Cap", "business_desc": "", "employee_count": null, "employee_year": "", "mda_text": "【经营总览】\n2025年，公司堅持以習近平新時代中國特色社會主義思想為指導，全面貫徹黨的二十大和二十屆歷次全會\n公司自產煤產量連續保持高位，電煤中長協合同實現高比例簽約履約\n制定印發公司提質增效工作方案，組織開展歸母淨利潤挖潛\n制「十五五」發展戰略規劃，為公司產業佈局、項目發展、資產優化等謀篇佈局\n圓滿完成杭錦能源資產注入和整合，進一步提高公司能源保\n\n【产品/业务结构】\n深化電力市場交易策略研究，積極爭取容量電價上調、輔助服務補貼等政策支持\n完善科技創新機制與平台支撐，突破主業轉型關鍵技術瓶頸，\n據船舶經紀與服務集團班切羅•科斯塔(發佈報告顯示，2025年，全球\n(1) 一般及行政費同比增長的主要原因：信息服務費用、人工成本等增長\n平台，打通煤炭作業上下游數據壁壘，黃驊港成為全球首家全流程智能作業的乾\n\n【渠道发展】\n1. 合併損益及其他綜合收益表、合併現金流量表主要科目變動分析表\n\n【分地区表现】\n當前，世界百年未有之大變局加速演進，科技革命和大國博弈相互交織，全球能源供需格局深度重塑，能\n4.6%，主要為位於印度尼西亞的發電資產以及本集團持有的境外企業股權等\n全球地緣政治多極化趨勢加速，貿易戰、技術壟斷等不斷升級，增加了國際化業務開展\n可能引發匯兌損失，地緣政治衝突、政策變動等因素導致境外項目收益不及預期，資產\n加強境外項目投資決策前信息的搜集、分析和研究工作，做好境外項目資源評\n\n【成本与效率】\n受氣候變化、煤炭電力市場供需關係、煤價電價波動等外部因素影響，以及本集團成本費用結算周\n州電力應用自主可控智能發電控制系統提升機組運行效率；朔黃鐵路智慧重載新模式入選國務院國資委價\n百萬噸 百萬噸 % 表6 發電業務 表7 煤炭分部經營成本 表8 發電分部經營成本\n工）」一體化運營模式，具有鏈條完整、協同高效、安全穩定、低成本運營等優勢\n應；深化提質增效，全力拓市增收，加強成本管控，推行全員、全過程、全要素精益管理，不斷提\n\n【未来展望】\n堅決扛牢能源保供職責使命，以堅強有力的常態化能源保供能力，圓滿完成重點時段、重點區域保供任\n標，堅守能源保供責任使命，全面完成年度各項生產經營目標任務，紮實推進強基固本、擴綠降碳、創新\n展、市場條件、對未來業務環境的展望及獲得必要的許可證與審批文件而有所變動\n黨的二十屆四中全會以來，國家大力推進「兩重」「兩新」建設，鼓勵優化投資方向，為\n種類多、涉及境內外，面對複雜多變的內外部環境，市場政策、投資規劃方向、投資收\n", "mda_quality": "1"}, "current_position": {"years": ["2023", "2024", "2025"], "items": [{"name": "Cash Assets", "2023": 1426.88, "2024": 1295.65, "2025": 791.35}, {"name": "Receivables", "2023": 198.58, "2024": 156.05, "2025": 188.43}, {"name": "Inventory (FIFO)", "2023": 128.46, "2024": 126.66, "2025": 118.5}, {"name": "Other Current Assets", "2023": 235.59, "2024": 493.03, "2025": 371.41}, {"name": "Current Assets", "2023": 1989.51, "2024": 2071.39, "2025": 1469.69}, {"name": "Accounts Payable", "2023": 440.85, "2024": 389.61, "2025": 415.13}, {"name": "Debt Due", "2023": 49.22, "2024": 140.21, "2025": 66.32}, {"name": "Other Current Liab", "2023": 425.78, "2024": 521.34, "2025": 411.17}, {"name": "Current Liabilities", "2023": 915.85, "2024": 1051.16, "2025": 892.62}]}, "annual_rates": {"sales": {"1yr": -13.2, "3yr": -5.1, "5yr": 4.8, "10yr": 5.2}, "cashflow": {"1yr": -7.3, "3yr": -7.4, "5yr": 7.1, "10yr": 5.5}, "earnings": {"1yr": -9.6, "3yr": -10.5, "5yr": 8.6, "10yr": 9.5}, "dividends": {"1yr": -11.1, "3yr": -7.6, "5yr": 2.1, "10yr": 20.2}, "book_value": {"1yr": -3.0, "3yr": 1.6, "5yr": 2.5, "10yr": 2.9}, "has_10yr": true}, "yearly_hl": [{"year": "2011", "high": 12.4, "low": 8.4, "month_high": "2011-07", "month_low": "2011-10"}, {"year": "2012", "high": 11.3, "low": 7.8, "month_high": "2012-02", "month_low": "2012-06"}, {"year": "2013", "high": 11.4, "low": 6.2, "month_high": "2013-01", "month_low": "2013-07"}, {"year": "2014", "high": 8.7, "low": 6.5, "month_high": "2014-12", "month_low": "2014-02"}, {"year": "2015", "high": 8.7, "low": 4.2, "month_high": "2015-01", "month_low": "2015-12"}, {"year": "2016", "high": 6.8, "low": 3.8, "month_high": "2016-11", "month_low": "2016-01"}, {"year": "2017", "high": 9.8, "low": 5.6, "month_high": "2017-09", "month_low": "2017-01"}, {"year": "2018", "high": 12.0, "low": 7.9, "month_high": "2018-02", "month_low": "2018-09"}, {"year": "2019", "high": 10.1, "low": 7.7, "month_high": "2019-02", "month_low": "2019-08"}, {"year": "2020", "high": 9.1, "low": 6.3, "month_high": "2020-11", "month_low": "2020-03"}, {"year": "2021", "high": 13.0, "low": 7.9, "month_high": "2021-12", "month_low": "2021-02"}, {"year": "2022", "high": 20.0, "low": 12.1, "month_high": "2022-09", "month_low": "2022-01"}, {"year": "2023", "high": 22.8, "low": 16.9, "month_high": "2023-12", "month_low": "2023-01"}, {"year": "2024", "high": 34.6, "low": 22.3, "month_high": "2024-07", "month_low": "2024-01"}, {"year": "2025", "high": 43.8, "low": 25.6, "month_high": "2025-11", "month_low": "2025-02"}], "position": {"pe": {"current": 14.4, "min": 2.6, "max": 10.9, "avg": 4.4, "pct": 142.0}, "price": {"current": 45.2, "min": 2.0, "max": 48.3, "avg": 12.0, "pct": 93.0}, "pb": {"current": 1.61, "min": 0.2, "max": 1.2, "avg": 0.5, "pct": 141.0}}, "analyst": {"business": "2025年，公司堅持以習近平新時代中國特色社會主義思想為指導，全面貫徹黨的二十大和二十屆歷次全會；公司自產煤產量連續保持高位，電煤中長協合同實現高比例簽約履約", "commentary": ["【业务结构】深化電力市場交易策略研究，積極爭取容量電價上調、輔助服務補貼等政策支持；完善科技創新機制與平台支撐，突破主業轉型關鍵技術瓶頸，；據船舶經紀與服務集團班切羅•科斯塔(發佈報告顯示，2025年，全球", "渠道：1. 合併損益及其他綜合收益表、合併現金流量表主要科目變動分析表；地区：當前，世界百年未有之大變局加速演進，科技革命和大國博弈相互交織，全球能源供需格局深度重塑，能；4.6%，主要為位於印度尼西亞的發電資產以及本集團持有的境外企業股權等", "【成本与效率】受氣候變化、煤炭電力市場供需關係、煤價電價波動等外部因素影響，以及本集團成本費用結算周；州電力應用自主可控智能發電控制系統提升機組運行效率；朔黃鐵路智慧重載新模式入選國務院國資委價；百萬噸 百萬噸 % 表6 發電業務 表7 煤炭分部經營成本 表8 發電分部經營成本", "【展望】堅決扛牢能源保供職責使命，以堅強有力的常態化能源保供能力，圓滿完成重點時段、重點區域保供任；標，堅守能源保供責任使命，全面完成年度各項生產經營目標任務，紮實推進強基固本、擴綠降碳、創新"], "commentary_from_mda": true, "commentary_from_script": false, "recommendation": ""}, "validation": {"checked": [{"year": "2011", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=158.2B vs pdf=158.2B", "ak": 158.2, "pdf": 158.25, "diff_pct": 0.03}, {"year": "2011", "metric": "PerSh BPS consistency", "summary": "BPS=13.77 vs Eq/Sh=13.77", "actual": 13.77, "calc": 13.77, "diff_pct": 0.0}, {"year": "2011", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19889.8M vs OI-der=19887.3M", "indicator": 19889.8, "oi_derived": 19887.3, "diff_pct": 0.01}, {"year": "2011", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19889.8M vs BPS-der=19888.2M", "indicator": 19889.8, "bps_derived": 19888.2, "diff_pct": 0.01}, {"year": "2012", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=198.6B vs pdf=198.6B", "ak": 198.6, "pdf": 198.56, "diff_pct": 0.02}, {"year": "2012", "metric": "PerSh BPS consistency", "summary": "BPS=15.74 vs Eq/Sh=15.74", "actual": 15.74, "calc": 15.74, "diff_pct": 0.0}, {"year": "2012", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19891.2M vs OI-der=19889.1M", "indicator": 19891.2, "oi_derived": 19889.1, "diff_pct": 0.01}, {"year": "2012", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19891.2M vs BPS-der=19895.2M", "indicator": 19891.2, "bps_derived": 19895.2, "diff_pct": 0.02}, {"year": "2013", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=191.9B vs pdf=191.9B", "ak": 191.9, "pdf": 191.87, "diff_pct": 0.02}, {"year": "2013", "metric": "PerSh BPS consistency", "summary": "BPS=16.82 vs Eq/Sh=16.82", "actual": 16.82, "calc": 16.82, "diff_pct": 0.0}, {"year": "2013", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19893.6M vs OI-der=19887.9M", "indicator": 19893.6, "oi_derived": 19887.9, "diff_pct": 0.03}, {"year": "2013", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19893.6M vs BPS-der=19895.4M", "indicator": 19893.6, "bps_derived": 19895.4, "diff_pct": 0.01}, {"year": "2014", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=213.4B vs pdf=213.4B", "ak": 213.4, "pdf": 213.43, "diff_pct": 0.01}, {"year": "2014", "metric": "PerSh BPS consistency", "summary": "BPS=18.38 vs Eq/Sh=18.38", "actual": 18.38, "calc": 18.38, "diff_pct": 0.0}, {"year": "2014", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19889.2M vs OI-der=19896.2M", "indicator": 19889.2, "oi_derived": 19896.2, "diff_pct": 0.04}, {"year": "2014", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19889.2M vs BPS-der=19889.6M", "indicator": 19889.2, "bps_derived": 19889.6, "diff_pct": 0.0}, {"year": "2015", "metric": "PerSh BPS consistency", "summary": "BPS=18.29 vs Eq/Sh=18.29", "actual": 18.29, "calc": 18.29, "diff_pct": 0.0}, {"year": "2015", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19897.4M vs OI-der=19895.5M", "indicator": 19897.4, "oi_derived": 19895.5, "diff_pct": 0.01}, {"year": "2015", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19897.4M vs BPS-der=19897.2M", "indicator": 19897.4, "bps_derived": 19897.2, "diff_pct": 0.0}, {"year": "2016", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=247.2B vs pdf=247.2B", "ak": 247.2, "pdf": 247.21, "diff_pct": 0.0}, {"year": "2016", "metric": "PerSh BPS consistency", "summary": "BPS=19.35 vs Eq/Sh=19.35", "actual": 19.35, "calc": 19.35, "diff_pct": 0.0}, {"year": "2016", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19896.2M vs OI-der=19905.4M", "indicator": 19896.2, "oi_derived": 19905.4, "diff_pct": 0.05}, {"year": "2016", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19896.2M vs BPS-der=19895.1M", "indicator": 19896.2, "bps_derived": 19895.1, "diff_pct": 0.01}, {"year": "2017", "metric": "PerSh OI consistency", "summary": "PER_OI=12.51 vs Rev/Sh=12.51", "actual": 12.51, "calc": 12.51, "diff_pct": 0.0}, {"year": "2017", "metric": "PerSh BPS consistency", "summary": "BPS=19.06 vs Eq/Sh=19.06", "actual": 19.06, "calc": 19.06, "diff_pct": 0.0}, {"year": "2017", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19889.6M vs OI-der=19884.1M", "indicator": 19889.6, "oi_derived": 19884.1, "diff_pct": 0.03}, {"year": "2017", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19889.6M vs BPS-der=19890.3M", "indicator": 19889.6, "bps_derived": 19890.3, "diff_pct": 0.0}, {"year": "2018", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=237.3B vs pdf=237.3B", "ak": 237.3, "pdf": 237.28, "diff_pct": 0.01}, {"year": "2018", "metric": "PerSh OI consistency", "summary": "PER_OI=13.28 vs Rev/Sh=13.28", "actual": 13.28, "calc": 13.28, "diff_pct": 0.0}, {"year": "2018", "metric": "PerSh BPS consistency", "summary": "BPS=20.56 vs Eq/Sh=20.56", "actual": 20.56, "calc": 20.56, "diff_pct": 0.0}, {"year": "2018", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19889.6M vs OI-der=19887.0M", "indicator": 19889.6, "oi_derived": 19887.0, "diff_pct": 0.01}, {"year": "2018", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19889.6M vs BPS-der=19885.2M", "indicator": 19889.6, "bps_derived": 19885.2, "diff_pct": 0.02}, {"year": "2019", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=203.8B vs pdf=203.8B", "ak": 203.8, "pdf": 203.79, "diff_pct": 0.0}, {"year": "2019", "metric": "PerSh OI consistency", "summary": "PER_OI=12.16 vs Rev/Sh=12.16", "actual": 12.16, "calc": 12.16, "diff_pct": 0.0}, {"year": "2019", "metric": "PerSh BPS consistency", "summary": "BPS=21.13 vs Eq/Sh=21.13", "actual": 21.13, "calc": 21.13, "diff_pct": 0.0}, {"year": "2019", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19889.6M vs OI-der=19890.6M", "indicator": 19889.6, "oi_derived": 19890.6, "diff_pct": 0.01}, {"year": "2019", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19889.6M vs BPS-der=19887.4M", "indicator": 19889.6, "bps_derived": 19887.4, "diff_pct": 0.01}, {"year": "2020", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=199.8B vs pdf=199.8B", "ak": 199.8, "pdf": 199.85, "diff_pct": 0.03}, {"year": "2020", "metric": "PerSh OI consistency", "summary": "PER_OI=11.73 vs Rev/Sh=11.73", "actual": 11.73, "calc": 11.73, "diff_pct": 0.0}, {"year": "2020", "metric": "PerSh BPS consistency", "summary": "BPS=21.6 vs Eq/Sh=21.6", "actual": 21.6, "calc": 21.6, "diff_pct": 0.0}, {"year": "2020", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19889.6M vs OI-der=19885.8M", "indicator": 19889.6, "oi_derived": 19885.8, "diff_pct": 0.02}, {"year": "2020", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19889.6M vs BPS-der=19888.4M", "indicator": 19889.6, "bps_derived": 19888.4, "diff_pct": 0.01}, {"year": "2021", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=215.4B vs pdf=215.4B", "ak": 215.4, "pdf": 215.45, "diff_pct": 0.02}, {"year": "2021", "metric": "PerSh OI consistency", "summary": "PER_OI=16.89 vs Rev/Sh=16.89", "actual": 16.89, "calc": 16.89, "diff_pct": 0.0}, {"year": "2021", "metric": "PerSh BPS consistency", "summary": "BPS=22.6 vs Eq/Sh=22.6", "actual": 22.6, "calc": 22.6, "diff_pct": 0.0}, {"year": "2021", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19868.5M vs OI-der=19872.1M", "indicator": 19868.5, "oi_derived": 19872.1, "diff_pct": 0.02}, {"year": "2021", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19868.5M vs BPS-der=19867.3M", "indicator": 19868.5, "bps_derived": 19867.3, "diff_pct": 0.01}, {"year": "2022", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=232.5B vs pdf=232.5B", "ak": 232.5, "pdf": 232.48, "diff_pct": 0.01}, {"year": "2022", "metric": "PerSh OI consistency", "summary": "PER_OI=17.34 vs Rev/Sh=17.34", "actual": 17.34, "calc": 17.34, "diff_pct": 0.0}, {"year": "2022", "metric": "PerSh BPS consistency", "summary": "BPS=23.29 vs Eq/Sh=23.29", "actual": 23.29, "calc": 23.29, "diff_pct": 0.0}, {"year": "2022", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19868.5M vs OI-der=19869.1M", "indicator": 19868.5, "oi_derived": 19869.1, "diff_pct": 0.0}, {"year": "2022", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19868.5M vs BPS-der=19871.2M", "indicator": 19868.5, "bps_derived": 19871.2, "diff_pct": 0.01}, {"year": "2023", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=248.8B vs pdf=248.8B", "ak": 248.8, "pdf": 248.79, "diff_pct": 0.0}, {"year": "2023", "metric": "PerSh OI consistency", "summary": "PER_OI=17.27 vs Rev/Sh=17.27", "actual": 17.27, "calc": 17.27, "diff_pct": 0.0}, {"year": "2023", "metric": "PerSh BPS consistency", "summary": "BPS=24.24 vs Eq/Sh=24.24", "actual": 24.24, "calc": 24.24, "diff_pct": 0.0}, {"year": "2023", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19868.5M vs OI-der=19865.1M", "indicator": 19868.5, "oi_derived": 19865.1, "diff_pct": 0.02}, {"year": "2023", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19868.5M vs BPS-der=19870.0M", "indicator": 19868.5, "bps_derived": 19870.0, "diff_pct": 0.01}, {"year": "2024", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=248.2B vs pdf=248.2B", "ak": 248.2, "pdf": 248.19, "diff_pct": 0.0}, {"year": "2024", "metric": "PerSh OI consistency", "summary": "PER_OI=17.1 vs Rev/Sh=17.1", "actual": 17.1, "calc": 17.1, "diff_pct": 0.0}, {"year": "2024", "metric": "PerSh BPS consistency", "summary": "BPS=25.18 vs Eq/Sh=25.18", "actual": 25.18, "calc": 25.18, "diff_pct": 0.0}, {"year": "2024", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19868.5M vs OI-der=19870.8M", "indicator": 19868.5, "oi_derived": 19870.8, "diff_pct": 0.01}, {"year": "2024", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19868.5M vs BPS-der=19867.4M", "indicator": 19868.5, "bps_derived": 19867.4, "diff_pct": 0.01}, {"year": "2025", "metric": "AKShare↔Cashflow Depreciation", "summary": "ak=244.4B vs pdf=244.4B", "ak": 244.4, "pdf": 244.38, "diff_pct": 0.01}, {"year": "2025", "metric": "PerSh OI consistency", "summary": "PER_OI=14.84 vs Rev/Sh=14.84", "actual": 14.84, "calc": 14.84, "diff_pct": 0.0}, {"year": "2025", "metric": "PerSh BPS consistency", "summary": "BPS=24.43 vs Eq/Sh=24.43", "actual": 24.43, "calc": 24.43, "diff_pct": 0.0}, {"year": "2025", "metric": "SHARES: ind vs Rev/PER_OI", "summary": "ind=19868.5M vs OI-der=19873.3M", "indicator": 19868.5, "oi_derived": 19873.3, "diff_pct": 0.02}, {"year": "2025", "metric": "SHARES: ind vs Eq/BPS", "summary": "ind=19868.5M vs BPS-der=19871.9M", "indicator": 19868.5, "bps_derived": 19871.9, "diff_pct": 0.02}], "mismatches": [], "warnings": [], "sources": {"annual_indicators": "AKShare stock_financial_hk_analysis_indicator_em (年度指标)", "semi_annual_income": "AKShare stock_financial_hk_report_em 利润表 (06-30中报)", "dividend": "AKShare stock_hk_dividend_payout_em + 手动补充", "revenue_structure": "年报PDF提取 → SQLite revenue_structure 表", "index_kline": "新浪 stock_hk_index_daily_sina"}, "status": "OK", "pdf_years": ["2025"], "checks_passed": 67, "checks_total": 67}, "footnotes": [{"year": "2011", "notes": ["EPS adj: OG -8.25 -> VL 465.0亿 (归母458.5亿)"], "adj": "465.0亿", "diff": "(6.52)", "src": ""}, {"year": "2012", "notes": ["EPS adj: OG -3.03 -> VL 499.6亿 (归母497.1亿)"], "adj": "499.6亿", "diff": "(2.55)", "src": ""}, {"year": "2013", "notes": ["EPS adj: OG -8.89 -> VL 457.9亿 (归母450.8亿)"], "adj": "457.9亿", "diff": "(7.12)", "src": ""}, {"year": "2014", "notes": ["EPS adj: OG -7.70 -> VL 399.1亿 (归母393.0亿)"], "adj": "399.1亿", "diff": "(6.11)", "src": ""}, {"year": "2015", "notes": ["EPS adj: OG -58.56 -> VL 218.8亿 (归母176.5亿)"], "adj": "218.8亿", "diff": "(42.34)", "src": ""}, {"year": "2016", "notes": ["EPS adj: OG -30.78 -> VL 273.0亿 (归母249.1亿)"], "adj": "273.0亿", "diff": "(23.85)", "src": ""}, {"year": "2017", "notes": ["EPS adj: OG -18.80 -> VL 492.6亿 (归母477.9亿)"], "adj": "492.6亿", "diff": "(14.66)", "src": ""}, {"year": "2018", "notes": ["EPS adj: OG -28.44 -> VL 463.3亿 (归母441.4亿)"], "adj": "463.3亿", "diff": "(21.96)", "src": ""}, {"year": "2020", "notes": ["EPS adj: OG -1.94 -> VL 359.9亿 (归母358.5亿)"], "adj": "359.9亿", "diff": "(1.44)", "src": ""}, {"year": "2021", "notes": ["EPS adj: OG -9.55 -> VL 521.6亿 (归母514.2亿)"], "adj": "521.6亿", "diff": "(7.35)", "src": ""}, {"year": "2022", "notes": ["EPS adj: OG -31.84 -> VL 756.5亿 (归母729.2亿)"], "adj": "756.5亿", "diff": "(27.29)", "src": ""}, {"year": "2023", "notes": ["EPS adj: OG -35.83 -> VL 675.3亿 (归母646.2亿)"], "adj": "675.3亿", "diff": "(29.04)", "src": ""}, {"year": "2024", "notes": ["EPS adj: OG -6.77 -> VL 600.9亿 (归母595.4亿)"], "adj": "600.9亿", "diff": "(5.45)", "src": ""}, {"year": "2025", "notes": ["EPS adj: OG -0.32 -> VL 542.4亿 (归母542.2亿)"], "adj": "542.4亿", "diff": "(0.25)", "src": ""}], "bps_source": "归属于母公司权益 ÷ 股数 (计算值, 与年报披露口径可能有小幅差异)", "data_source_note": "指标数据: 2017年起基于东方财富(EM), 2016年及以前基于通达信(TDX)财报计算; BPS公式: 归属母公司权益÷股数, 与年报披露加权值可能有小幅差异"};
+
+(function(){
+  var d=DATA, M=d.metric_defs, Y=d.years, MT=d.data, QT=d.quarterly,
+      cs=d.capital_structure||{}, cp=d.current_position||{},
+      ar=d.annual_rates||{}, qt=d.quarterly||{},
+      yhl=d.yearly_hl||[], pos=d.position||{}, v=d.validation||{};
+  // 统一年份: 使用 indicators 全量, Yearly HL 缺失则空
+  var yhlMap={}; yhl.forEach(function(h){yhlMap[h.year]=h;});
+  var allY=Y.slice(-15);  // 最多15年 (不足则全部)
+  var spot=d.spot||{};
+  var latestYr=Y[Y.length-1], ly=MT[latestYr]||{};
+  var meta=d.meta||{};
+  var stockName=meta.name_en||meta.name||'N/A';
+  var stockCode=meta.code||'';
+  var cfMult=d.cf_multiplier||15;
+  var pbMult=d.pb_multiplier||1;
+  var valMethod=d.valuation_method||'cf';
+  var cfLabelStr='x "Cash Flow" p sh';
+  var pbLabelStr='x "Book Value" p sh';
+  var valLabel=valMethod==='pb'?(pbMult.toFixed(2)+'*BPS'):(cfMult.toFixed(1)+'x CF');
+  var legendLine=valMethod==='pb'?(pbMult.toFixed(2)+' '+pbLabelStr):(cfMult.toFixed(1)+' '+cfLabelStr);
+  var stockMarket=meta.market||'';
+  var currency=meta.currency||'¥';
+  var indexName=meta.index_name||'HSI';
+  var indexNameCn=meta.index_name_cn||'恒生指数';
+  var app=document.getElementById('app');
+  var html='';
+
+  html+='<div class="container">';
+
+  // ========================
+  // 左栏
+  // ========================
+  html+='<div class="left-col">';
+
+  // Capital Structure — 完全参考VL截图布局
+  var csDate=Y[Y.length-1]+'-12-31', csUnit=cs.unit||'亿';
+  html+='<div class="sec">';
+  html+='<div style="font-size:10px;font-weight:700;margin-bottom:2px">CAPITAL STRUCTURE as of '+csDate+'</div>';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.5">';
+  // Row 1: Total Debt | Due in 5 Yrs
+  html+='<tr><td style="white-space:nowrap;font-weight:700">Total Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.total_debt||0).toFixed(1)+' '+csUnit+'</td>';
+  html+='<td style="width:8px"></td><td style="white-space:nowrap;font-weight:700">Due in 5 Yrs</td><td style="text-align:right;font-weight:700">'+(cs.due_in_5yr||0).toFixed(1)+' '+csUnit+'</td></tr>';
+  // Row 2: LT Debt | LT Interest
+  html+='<tr><td style="white-space:nowrap;font-weight:700">LT Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.lt_debt||0).toFixed(1)+' '+csUnit+'</td>';
+  html+='<td></td><td style="white-space:nowrap;font-weight:700">LT Interest</td><td style="text-align:right;font-weight:700">'+(cs.total_int||0).toFixed(2)+' '+csUnit+'</td></tr>';
+  // Row 3: (coverage)
+  html+='<tr><td colspan="5" style="font-size:10px;color:#000;padding-left:0">(Total interest coverage: '+cs.coverage+')</td></tr>';
+  // Row 4: (% of Cap’l) — 右对齐
+  html+='<tr><td colspan="5" style="text-align:right;font-size:10px;color:#000;padding-left:0">('+cs.lt_debt_pct+'% of Cap\u2019l)</td></tr>';
+  // Row 5: Pfd Stock | None (Leases/Pension不适用港股)
+  html+='<tr><td style="white-space:nowrap;font-weight:700">Pfd Stock</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.pfd_stock||'None')+'</td><td></td><td></td><td></td></tr>';
+  html+='</table>';
+  // Common Stock 单独块
+  html+='<div style="margin-top:4px;font-size:10px;line-height:1.4">';
+  html+='<div style="display:flex;justify-content:space-between"><span style="font-weight:700">Common Stock</span><span style="font-weight:700;margin-left:2px">'+cs.common_shares_str+' shs.</span></div>';
+  html+='<div style="text-align:left;font-weight:700">as of '+csDate+'</div>';
+  html+='</div>';
+  // MARKET CAP
+  html+='<div style="margin-top:4px;font-size:10px;line-height:1.4">';
+  html+='<div style="display:flex;justify-content:space-between;font-weight:700"><span>MARKET CAP:</span><span>'+(cs.mkt_cap||0).toFixed(0)+' '+csUnit+' ('+cs.cap_label+')</span></div>';
+  html+='</div>';
+  html+='<div style="border-bottom:1px solid #000;margin-top:4px"></div>';
+  html+='</div>';
+
+  // Current Position — VL格式
+  var cpYears=cp.years||[];
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:4px;margin-bottom:6px">';
+  html+='<div style="margin-bottom:2px"></div>';
+  // 标题行: 标题 + 列名同行
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.4">';
+  html+='<tr style="font-weight:700">';
+  html+='<td style="white-space:nowrap">CURRENT POSITION</td>';
+  cpYears.forEach(function(yr, i){
+    var label=(i===cpYears.length-1)?yr+'-12-31':yr;
+    html+='<td style="text-align:right">'+label+'</td>';
+  });
+  html+='</tr>';
+  // 单位行
+  html+='<tr><td style="font-size:8px;color:#000;font-weight:700">(亿)</td>';
+  cpYears.forEach(function(){html+='<td></td>';});
+  html+='</tr>';
+  // 数据行
+  var cpDef=[
+    ['Cash Assets',0,0],['Receivables',1,0],['Inventory (FIFO)',2,0],['Other',3,0],
+    ['Current Assets',4,1],
+    ['Accts Payable',5,0],['Debt Due',6,0],['Other',7,0],
+    ['Current Liab.',8,1]
+  ];
+  var cpItems=cp.items||[];
+  cpDef.forEach(function(d){
+    var label=d[0], idx=d[1], isBold=d[2];
+    if(isBold){
+      html+='<tr style="font-weight:700">';
+    }else{
+      html+='<tr>';
+    }
+    html+='<td style="white-space:nowrap">'+label+'</td>';
+    var item=cpItems[idx];
+    cpYears.forEach(function(yr){
+      var v=(item&&item[yr]!=null)?item[yr].toFixed(1):'—';
+      html+='<td style="text-align:right;'+(isBold?'border-top:1px solid #000':'')+'">'+v+'</td>';
+    });
+    html+='</tr>';
+  });
+  html+='</table></div>';
+
+  // Annual Rates of Change — VL标准 (per sh, 复合增长率)
+  var has10=ar.has_10yr;
+  var colKeys=has10?['10yr','5yr','3yr','1yr']:['5yr','3yr','1yr'];
+  var colParts=colKeys.map(function(k){
+    var m=k.match(/^(\d+)(yr)$/);
+    return m?[m[1]+' Yrs.']:[k];
+  });
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:0;margin-bottom:0">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.3">';
+  // 标题行: ANNUAL RATES + 列名第一行
+  html+='<tr><td style="white-space:nowrap;font-weight:700">ANNUAL RATES</td>';
+  colParts.forEach(function(p){html+='<td style="text-align:right;font-weight:700">Past</td>';});
+  html+='</tr>';
+  // 副标题行: of change (per sh) + 列名第二行
+  html+='<tr><td style="font-size:9px;color:#666">of change (per sh)</td>';
+  colParts.forEach(function(p){html+='<td style="text-align:right;font-weight:700">'+p[0]+'</td>';});
+  html+='</tr>';
+  // 数据行
+  var arData=[
+    ['Revenues',ar.sales],['"Cash Flow"',ar.cashflow],['Earnings',ar.earnings],
+    ['Dividends',ar.dividends],['Book Value',ar.book_value]
+  ];
+  arData.forEach(function(a){
+    var v=a[1]||{};
+    html+='<tr><td style="white-space:nowrap;font-weight:700">'+a[0]+'</td>';
+    colKeys.forEach(function(k){
+      var pct=(v[k]!=null)?v[k].toFixed(1)+'%':'—';
+      html+='<td style="text-align:right">'+pct+'</td>';
+    });
+    html+='</tr>';
+  });
+  html+='</table></div>';
+
+  // 季度/半年度表 — VL三表紧排, 单 table + 垂直分割线
+  var qsLast=(qt.sales||[]).slice(-3);
+  var hasQ=qsLast.some(function(r){return r&&r.has_quarter;});
+  function renderQSection(title, data, decimal, hasQq, isFirst){
+    if(!data||!data.length) return '';
+    var show=data.slice(-5);
+    var sepStyle=isFirst?'':'border-top:1px solid #999;';
+    sepStyle+='line-height:1;';
+    var h='<tr><td style="font-weight:700;'+sepStyle+'padding-top:3px">Year</td>';
+    h+='<td colspan="4" style="text-align:center;font-weight:700;border-left:2px solid #000;border-right:2px solid #000;'+sepStyle+'padding-top:3px;white-space:nowrap;font-size:9.5px">'+title+'</td>';
+    h+='<td style="border-left:2px solid #000;'+sepStyle+'padding-top:3px"></td></tr>';
+    // Header
+    h+='<tr style="font-weight:700;line-height:1">';
+    h+='<td style="width:16%;border-bottom:1px solid #000"></td>';
+    var qLabels=['Q1','Q2','Q3','Q4'];
+    qLabels.forEach(function(l,i){
+      var s='width:14%;text-align:right;padding-right:3px;border-bottom:1px solid #000';
+      if(i===0) s+=';border-left:2px solid #000;padding-left:3px;text-align:left';
+      if(i===3) s+=';padding-right:3px';
+      h+='<td style="'+s+'">'+l+'</td>';
+    });
+    h+='<td style="width:16%;text-align:right;padding-right:3px;font-weight:700;border-left:2px solid #000;border-bottom:1px solid #000">Full Year</td></tr>';
+    // Data rows
+    show.forEach(function(r){
+      h+='<tr>';
+      h+='<td style="font-weight:700">'+r.year+'</td>';
+      if(hasQq){
+        var vs=[r.q1,r.q2,r.q3,r.q4,r.full];
+        vs.forEach(function(v,i){
+          var s='text-align:right;padding-right:3px';
+          if(i===0) s='text-align:left;border-left:2px solid #000;padding-left:3px';
+          if(i===4) s+=';font-weight:700;border-left:2px solid #000;padding-left:3px';
+          h+='<td style="'+s+'">'+(v!=null?(decimal===3&&v===0?'—':v.toFixed(decimal)):'—')+'</td>';
+        });
+      }else{
+        h+='<td style="text-align:left;color:#999;border-left:2px solid #000;padding-left:3px;padding-right:3px">—</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q1!=null?(decimal===3&&r.q1===0?'—':r.q1.toFixed(decimal)):'—')+'</td>';
+        h+='<td style="text-align:right;color:#999;padding-right:3px">—</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q3!=null?(decimal===3&&r.q3===0?'—':r.q3.toFixed(decimal)):'—')+'</td>';
+        h+='<td style="text-align:right;font-weight:700;border-left:2px solid #000;padding-left:3px;padding-right:3px">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td>';
+      }
+      h+='</tr>';
+    });
+    return h;
+  }
+  html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:2px;margin-bottom:2px">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.3">';
+  html+=renderQSection('QUARTERLY REVENUES (亿)', qt.sales, 1, hasQ, true);
+  html+=renderQSection('EARNINGS PER SHARE', qt.eps, 2, hasQ, false);
+  html+=renderQSection('QUARTERLY DIVIDENDS PAID', qt.dividends, 3, hasQ, false);
+  html+='</table>';
+  if(!hasQ) html+='<div style="border-top:1px solid #000;font-size:8px;color:#666;margin-top:3px;padding-top:3px">*港股仅披露半年报，Q2/Q4暂无数据。</div>';
+  html+='</div>';
+
+  html+='</div>'; // end left-col
+
+  // ========================
+  // 中栏
+  // ========================
+  html+='<div class="center-col">';
+
+  // ===== VL Header: HTML table 2行, rowspan=2跨两行 =====
+  var medianPE=spot.median_pe||null;
+  var trailingPE=spot.pe||ly.PE_AVG||null;
+  var relPE=ly.PE_RELATIVE||(pos.pe?pos.pe.avg:null);
+  var divYld=spot.div_yield||ly.DIV_YIELD;
+
+  html+='<table class="header" style="border-collapse:collapse;border-bottom:2px solid #000;margin:0 0 2px 0;width:100%"><tr>';
+
+  // Row 1
+  html+='<td rowspan="2" style="vertical-align:middle;padding:5px 10px;border-right:1px solid #999">';
+  html+='<span class="code" style="font-size:18px;font-weight:700;line-height:1">'+(stockName||'N/A')+'</span> ';
+  html+='<span style="font-size:9px;font-weight:700;color:#000;line-height:1">'+stockCode+'.'+stockMarket+'</span></td>';
+
+  var priceCcy=meta.price_ccy||meta.currency||(stockMarket==='hk'?'HKD':'CNY');
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RECENT</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'—')+' '+priceCcy+'</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(trailingPE!=null?trailingPE.toFixed(1):'—')+'</td>';
+  // ⑥ (Trailing: xx 第一行
+  html+='<td style="vertical-align:bottom;padding:2px 8px;line-height:1;border-right:1px solid #999;font-size:9px;font-weight:700">';
+  if(trailingPE){html+='(Trailing:'+trailingPE.toFixed(1)+')';}
+  html+='</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RELATIVE</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:17px;font-weight:700">'+(relPE!=null?relPE.toFixed(2):'—')+'</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">DIV’D</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(divYld!=null?divYld.toFixed(1)+'%':'—')+'</td>';
+
+  html+='</tr><tr>';
+
+  // Row 2
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">PRICE</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RATIO</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;line-height:1;border-right:1px solid #999;font-size:9px;font-weight:700">';
+  if(medianPE){html+='(Median:'+medianPE.toFixed(1)+')';}
+  html+='</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E RATIO</td>';
+  html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">YLD</td>';
+
+  html+='</tr></table>';
+
+  // Chart
+  var kl=d.kline, hsi=d.index_kline||[];
+
+  // ========== 统一表格: Yearly High/Low + K线 + 23-line ==========
+  var showYears=allY;  // 最多10年
+  var yrCount=showYears.length;
+  html+='<table style="table-layout:fixed;width:100%;border-collapse:collapse;font-size:8.5px">';
+  html+='<colgroup><col style="width:140px">';
+  showYears.forEach(function(){ html+='<col>'; });
+  html+='</colgroup>';
+  var tdStyle='border-right:1px solid #ddd;padding:2px 8px', thStyle='border-right:1px solid #ddd;text-align:right;padding:2px 8px';
+  
+  // Row 1: High
+  html+='<tr><td style="padding:0 3px;'+tdStyle+'">High</td>';
+  showYears.forEach(function(yr){
+    var hl=yhlMap[yr];
+    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.high:'—')+'</td>';
+  });
+  html+='</tr>';
+  // Row 3: Low
+  html+='<tr><td style="padding:0 3px;'+tdStyle+'">Low</td>';
+  showYears.forEach(function(yr){
+    var hl=yhlMap[yr];
+    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.low:'—')+'</td>';
+  });
+  html+='</tr>';
+  
+  // Row 4: K线图行 — LEGENDS + % TOT. RETURN(左) + 图表(右)
+  // chart 220px + volume 42px = 262px flex容器, Percent用margin-top:auto沉底
+  html+='<tr><td style="width:200px;padding:0 4px;vertical-align:top;border-right:1px solid #ddd">';
+  html+='<div style="display:flex;flex-direction:column;height:260px;font-size:9px;line-height:1.4">';
+  html+='<div>';
+  html+='<div style="font-weight:700;font-size:10px;margin:2px 0 1px 0">LEGENDS</div>';
+  html+='<div style="border-bottom:1px solid #000;margin:2px 0"></div>';
+  html+='<div style="font-size:10px;color:#1976D2;line-height:1.1">━━━</div>';
+  html+='<div>'+legendLine+'</div>';
+  html+='<div style="margin:4px 0"></div>';
+  html+='<div style="font-size:10px;color:#ef232a;line-height:1.1">······</div>';
+  html+='<div>Relative Price Strength</div>';
+  html+='<div style="margin:3px 0"></div>';
+  html+='<div>Splits: '+(meta.splits||'None')+'</div><div>Options: '+(meta.options||'No')+'</div>';
+  html+='<div style="margin:15px 0 2px 0"></div>';
+  html+='<div style="font-weight:700;font-size:10px;margin-bottom:2px">% HIST. RETURN</div>';
+  html+='<div style="border-bottom:1px solid #000;margin:0 0 2px 0"></div>';
+  var trR2=d.total_returns||{};
+  var trStock2=trR2.stock||{};
+  var trIndex2=trR2.index||{};
+  html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.35;margin:1px 0">';
+  html+='<tr><td></td><td style="text-align:right;font-weight:700">THIS</td><td style="text-align:right;font-weight:700">'+indexName+'</td></tr>';
+  html+='<tr><td></td><td style="text-align:right;font-weight:700">STOCK</td><td style="text-align:right"></td></tr>';
+  html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock2['1yr']!=null?trStock2['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['1yr']!=null?trIndex2['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>3 yr.</td><td style="text-align:right">'+(trStock2['3yr']!=null?trStock2['3yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['3yr']!=null?trIndex2['3yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock2['5yr']!=null?trStock2['5yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['5yr']!=null?trIndex2['5yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='</table>';
+  html+='</div>';
+  html+='</div></td>';
+  html+='<td colspan="'+yrCount+'" style="padding:0">';
+  html+='<div class="chart-box" id="chart_kline"></div>';
+  html+='<div id="chart_volume" style="height:42px;margin-top:6px;position:relative"></div>';
+  
+  // Row 5: 年份行
+  html+='<tr style="border-top:1px solid #000;border-bottom:1px solid #000"><td style="width:40px;font-size:10px;color:#000;padding:2px 4px;border-right:1px solid #ddd">Year</td>';
+  showYears.forEach(function(y){html+='<td style="text-align:center;font-size:10px;font-weight:700;padding:2px 3px;'+tdStyle+'">'+y+'</td>';});
+  html+='</tr>';
+  
+  // Row 6+: 24-line metrics
+  M.forEach(function(m, idx){
+    var sepBefore=[5];
+    var sepAfter=[6,7,10,13,15,17,20,22];
+    if(sepBefore.indexOf(m.order)>=0){
+      html+='<tr class="sep" style="height:4px"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
+    }
+    var rowBg=(idx%2===0)?'background:#fafafa;':'';
+    html+='<tr style="line-height:1.35;'+rowBg+'">';
+    html+='<td style="text-align:left;white-space:nowrap;font-size:9.5px;font-weight:700;'+tdStyle+'">'+m.name_en+' <span style="font-size:8px;color:#444;font-weight:400">'+m.name_cn+'</span></td>';
+    showYears.forEach(function(y){
+      var v=(MT[y]||{})[m.field];
+      var txt='—';
+      if(v!=null){
+        if(m.unit==='亿')txt=v.toFixed(1);
+        else if(m.unit==='%')txt=v.toFixed(1)+'%';
+        else if(m.unit==='元')txt=v.toFixed(2);
+        else if(m.unit==='百万股')txt=v.toFixed(0);
+        else txt=v.toString();
+      }
+      html+='<td style="text-align:right;font-size:9px;'+tdStyle+'">'+txt+'</td>';
+    });
+    html+='</tr>';
+    if(sepAfter.indexOf(m.order)>=0){
+      html+='<tr class="sep" style="height:4px"><td colspan="'+(yrCount+1)+'" style="border-bottom:1px solid #000"></td></tr>';
+    }
+  });
+  html+='</table>';
+  
+  html+='</div>'; // end center-col
+  html+='</div>'; // end container
+
+  // ========================
+  // 底部全宽: Business + AI Commentary
+  // ========================
+
+  // Business — VL风格，分段可读 (全宽)
+  // 内容由 business_commentary.py 全权控制, 模板仅渲染 + 附加折旧/员工/CEO等通用信息
+  var desc=(d.analyst&&d.analyst.business)||cs.business_desc||'';
+  var bizP=[], bizHtml='';
+  if(desc){bizP.push(desc);}
+  var p2=[];var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
+  if(depr&&revs) p2.push('折旧率'+(depr/revs*100).toFixed(1)+'%');
+  if(cs.employee_count) p2.push('员工'+(cs.employee_count/10000).toFixed(1)+'万人（'+latestYr+'）');
+  if(p2.length) bizP.push(p2.join('。'));
+  var p3=[];
+  if(meta.ceo) p3.push('首席执行官：'+meta.ceo);
+  if(meta.inc) p3.push('注册地：'+meta.inc);
+  if(meta.website) p3.push(meta.website);
+  if(p3.length) bizP.push(p3.join('。'));
+  bizHtml='<span style="font-weight:700">BUSINESS:</span>';
+  bizHtml+='<div style="column-count:2;column-gap:24px;margin-top:4px">';
+  var left=[bizP[0]];
+  if(bizP[1]) left.push('· '+bizP[1]);
+  var right=[];
+  if(bizP[2]) right.push('· '+bizP[2]);
+  bizHtml+='<div>'+left.join('<br>')+'</div>';
+  bizHtml+='<div>'+right.join('<br>')+'</div>';
+  bizHtml+='</div>';
+  html+='<div style="border-top:1px solid #000;padding:6px 12px;font-size:11px;line-height:1.55">'+bizHtml+'</div>';
+
+  // AI Commentary: per-stock脚本 > PDF提取(mda) > 数据自生成 (4段VL风格, 全宽)
+  var commentary=d.analyst&&d.analyst.commentary&&d.analyst.commentary.length?d.analyst.commentary:[
+    '暂无数据', '数据暂不可用', '请先运行 engine.py 生成完整数据', ''
+  ];
+  var fromMda=d.analyst&&d.analyst.commentary_from_mda;
+  var fromScript=d.analyst&&d.analyst.commentary_from_script;
+  html+='<div style="border-top:1px solid #000;padding:6px 12px 10px 12px;font-size:10px;line-height:1.35">';
+  if(fromScript){
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+' (Custom)</span>';
+  }else if(fromMda){
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+(stockName+' MD&A Analysis')+'</span>';
+  }else{
+    html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+'</span>';
+  }
+  // 先填充左边，再填充右边
+  var commLeft=[], commRight=[];
+  var half=Math.ceil(commentary.length/2);
+  for(var ci=0;ci<commentary.length;ci++){
+    if(commentary[ci]&&commentary[ci].length>5){
+      if(ci<half) commLeft.push(commentary[ci]);
+      else commRight.push(commentary[ci]);
+    }
+  }
+  html+='<div style="display:flex;gap:24px;margin-top:6px">';
+  html+='<div style="flex:1;min-width:0">';
+  for(var ci=0;ci<commLeft.length;ci++){
+    html+='<p style="text-align:justify;margin:0 0 8px 0;font-size:12px">'+commLeft[ci]+'</p>';
+  }
+  html+='</div>';
+  html+='<div style="flex:1;min-width:0">';
+  for(var ci=0;ci<commRight.length;ci++){
+    html+='<p style="text-align:justify;margin:0 0 8px 0;font-size:12px">'+commRight[ci]+'</p>';
+  }
+  html+='</div></div>';
+  html+='</div>';
+
+  // Item 15 Footnotes — EPS 调整明细 (每项调整独立一行, 无数据留空)
+  var footnotes = d.footnotes || [];
+  if (footnotes.length > 0) {
+    var fnMap = {};
+    footnotes.forEach(function(f) {
+      if (f.adj) fnMap[f.year] = {adj: f.adj || '', src: f.src || '', diff: f.diff || ''};
+    });
+    var fnYears = Object.keys(fnMap).sort();
+    if (fnYears.length === 0) return;
+
+    var abbrName = {'GS':'政府补贴','FV':'公允价值变动','FX':'汇兑收益','II':'投资收益','IM':'资产减值','EL':'权益法亏损','OG':'其他收益','CD':'A股扣非'};
+    var allAbbrs = [];
+    fnYears.forEach(function(y) {
+      var src = fnMap[y].src || '';
+      var parts = src.match(/([A-Z]+)\s+([+-][\d.]+)/g);
+      if (parts) {
+        parts.forEach(function(p) {
+          var m = p.match(/([A-Z]+)\s+([+-][\d.]+)/);
+          if (m && allAbbrs.indexOf(m[1]) < 0) allAbbrs.push(m[1]);
+        });
+      }
+    });
+    function fmtVal(v) {
+      if (!v) return '—';
+      var n = parseFloat(v);
+      return n < 0 ? '(' + Math.abs(n).toFixed(2) + ')' : n.toFixed(2);
+    }
+
+    html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.4">';
+    var tdLbl = 'padding:2px 4px;border-right:1px solid #ddd';
+    var tdCol = 'text-align:center;padding:2px 4px;border-right:1px solid #ddd';
+    html += '<tr style="font-weight:700;border-bottom:1px solid #000"><td style="width:68px;padding:2px 4px;white-space:nowrap;' + tdLbl + '">FOOTNOTES</td>';
+    fnYears.forEach(function(y) { html += '<td style="' + tdCol + ';font-size:8.5px">' + y + '</td>'; });
+    html += '</tr>';
+
+    // 每项调整独立一行
+    allAbbrs.forEach(function(a) {
+      var name = abbrName[a] || a;
+      html += '<tr><td style="' + tdLbl + ';font-weight:700;color:#000;font-size:8.5px">' + name + '</td>';
+      fnYears.forEach(function(y) {
+        var src = fnMap[y].src || '';
+        var m = src.match(new RegExp(a + '\\s+([+-][\\d.]+)'));
+        html += '<td style="' + tdCol + ';font-size:8px">' + fmtVal(m ? m[1] : '') + '</td>';
+      });
+      html += '</tr>';
+    });
+
+    // 合计行放最后
+    html += '<tr style="border-top:1px solid #000"><td style="' + tdLbl + ';font-weight:700;font-size:8.5px">adj.NP</td>';
+    fnYears.forEach(function(y) { html += '<td style="' + tdCol + ';font-weight:700;font-size:8px">' + (fnMap[y].diff || '—') + '</td>'; });
+    html += '</tr>';
+
+    html += '</table></div>';
+  }
+
+  // Item 15 Footnotes — 数据源说明 (混合 AKShare + TDX 时显示)
+  var dsNote = d.data_source_note || '';
+  if (dsNote) {
+    html += '<div style="border-top:1px solid #999;padding:3px 12px 2px;font-size:8px;color:#666;line-height:1.35">';
+    html += '<span style="font-weight:700">数据源:</span> ' + dsNote;
+    html += '</div>';
+  }
+
+  html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: '+priceCcy+' | 财报数据: '+(meta.rpt_ccy||'CNY')+' | 2026-06-14</div>';
+  app.innerHTML=html;
+
+  // ECharts
+  setTimeout(function(){
+    // 裁剪K线到指标年份范围 (与 showYears 对齐, 最多15年)
+    var minYr=showYears.length>0?parseInt(showYears[0],10):0;
+    kl=kl.filter(function(k){return parseInt(k.date.substring(0,4),10)>=minYr;});
+    // 补齐K线起始前的空月份，对齐指标表列
+    var padMonths=[], padOHLC=[], firstKL=kl.length>0?kl[0].date:null;
+    if(firstKL && showYears.length>0){
+      var beginYr=parseInt(showYears[0],10), endYr=parseInt(firstKL.substring(0,4),10), endMo=parseInt(firstKL.substring(5,7),10);
+      for(var y=beginYr; y<=endYr; y++){
+        var maxM=(y===endYr)?endMo-1:12;
+        for(var m=1; m<=maxM; m++){padMonths.push(y+'-'+(m<10?'0'+m:''+m));padOHLC.push([null,null,null,null]);}
+      }
+    }
+    var dates=padMonths.concat(kl.map(function(k){return k.date;})),
+        ohlc=padOHLC.concat(kl.map(function(k){return [Math.log(k.open),Math.log(k.close),Math.log(k.low),Math.log(k.high)];}));
+
+    // RS line — VL 原生: (个股价/基期) ÷ (指数/基期) × 100, >100跑赢
+    // 与 dates 等长，缺失月份填 null 避免 tooltip 索引错位
+    var rsData=[];
+    if(hsi.length>0){
+      var hsiMap={};
+      hsi.forEach(function(h){hsiMap[h.date]=h.close;});
+      var baseS=null,baseH=null;
+      dates.forEach(function(dt){
+        var sc=kl.find(function(k){return k.date===dt;});
+        var hc=hsiMap[dt];
+        if(sc&&hc){
+          if(baseS===null){baseS=sc.close;baseH=hc;}
+          rsData.push(baseS?+((sc.close/baseS)/(hc/baseH)*100).toFixed(1):100);
+        }else{
+          rsData.push(null);
+        }
+      });
+    }
+    var series=[
+      {name:stockName,type:'candlestick',data:ohlc,
+        itemStyle:{color:'#ef232a',color0:'#14b143',borderColor:'#ef232a',borderColor0:'#14b143'}}
+    ];
+
+    var valLine=d.valuation_line||d.cf_line||[];
+    var valMap={};
+    valLine.forEach(function(c){valMap[c.date]=c.value;});
+    var valSeries=dates.map(function(dt){
+      var yr=dt.substring(0,4);
+      var v=valMap[yr];
+      return v!=null?Math.log(v):null;
+    });
+    if(valSeries.some(function(v){return v!=null;})){
+      series.push({name:valLabel,type:'line',data:valSeries,
+        lineStyle:{type:'solid',color:'#1976D2',width:1.2},symbol:'none'});
+    }
+    if(rsData.length>0){
+      series.push({name:'RS',type:'line',data:rsData,
+        lineStyle:{color:'#ef232a',width:1.2,type:'dotted'},symbol:'none',yAxisIndex:1});
+    }
+
+    // 年分隔线
+    var yearLines=[];
+    dates.forEach(function(d,i){if(d.endsWith('-01'))yearLines.push({xAxis:i,lineStyle:{color:'#ccc',width:1,type:'solid'}});});
+    series[0].markLine={silent:true,animation:false,symbol:'none',data:yearLines,label:{show:false}};
+
+    // 对数Y轴范围: 种子序列 [1,1.6,2.4,4,6] × 10^k + 4%缓冲区
+    var pVals=kl.map(function(k){return k.close;}).filter(function(v){return v>0;});
+    var pMin=Math.min.apply(null,pVals), pMax=Math.max.apply(null,pVals);
+    var lnMin=Math.log(pMin), lnMax=Math.log(pMax), lnDl=lnMax-lnMin;
+    var lnBuf=lnDl*0.04;
+    var yMin=lnMin-lnBuf, yMax=lnMax+lnBuf;
+    // 种子序列生成刻度标签 (自然对数统一)
+    var tLo=Math.exp(yMin), tHi=Math.exp(yMax);
+    var seeds=[1,1.6,2.4,4,6];
+    var ticks=[], pow=Math.pow(10,Math.floor(Math.log(tLo)/Math.LN10)-1);
+    while(pow<=tHi*1.1){
+      seeds.forEach(function(m){
+        var v=pow*m; if(v>=tLo&&v<=tHi) ticks.push(v);
+      });
+      pow*=10;
+    }
+    var logTicks=ticks.map(function(v){return Math.log(v);});
+    var klineChart=echarts.init(document.getElementById('chart_kline'));
+    // 统一 tooltip: 日期 → OHLC(从原始kl读) → CF → RS → PST
+    var tooltipFmt=function(p){var di=p[0].dataIndex,h=p[0].axisValue,r='<b>'+h+' HKD</b>',mk=p[0].marker;var dk=kl.find(function(k){return k.date===h;});if(dk)r+='<br/>'+mk+' '+stockName+'<br/> open:'+dk.open.toFixed(2)+'<br/> close:'+dk.close.toFixed(2)+'<br/> low:'+dk.low.toFixed(2)+'<br/> high:'+dk.high.toFixed(2);for(var i=1;i<p.length;i++){var v=p[i].value,n=p[i].seriesName;if(v==null)continue;if(n==='RS')r+='<br/>'+p[i].marker+' '+n+': '+(v!=null?Number(v).toFixed(1):'-');else if(n.indexOf('x CF')>-1||n.indexOf('*BPS')>-1)r+='<br/>'+p[i].marker+' '+n+': '+Math.exp(Number(v)).toFixed(2);}var pv=volData[di];if(pv!=null){var up=dk&&dk.close>dk.open;r+='<br/><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(up?'#ef232a':'#14b143')+';margin-right:4px;vertical-align:middle"></span>PST: '+pv.toFixed(2)+'%';}return r;};
+    klineChart.setOption({
+      tooltip:{trigger:'axis',axisPointer:{label:{show:false}},formatter:tooltipFmt},
+      grid:{left:0,right:28,top:4,bottom:24},
+      xAxis:{type:'category',data:dates,boundaryGap:false,
+        axisPointer:{label:{show:false}},
+        axisLabel:{fontSize:8,color:'#333',fontWeight:700,margin:2,
+          formatter:function(v){return v&&v.endsWith('-01')?v.slice(0,4):'';},
+          interval:0,showMinLabel:true,showMaxLabel:true},
+        axisLine:{show:true,lineStyle:{color:'#999',width:0.5}},
+        axisTick:{show:false},
+        splitLine:{show:true,lineStyle:{color:'#ccc',width:0.5}}},
+      yAxis:[
+        {type:'value',min:yMin,max:yMax,
+          axisLabel:{fontSize:9,color:'#000',
+            formatter:function(v){var p=Math.exp(v);return p>=100?Math.round(p):p>=10?p.toFixed(0):p.toFixed(1);}},position:'right'},
+        {type:'value',axisLabel:{fontSize:8,color:'#999'},splitLine:{show:false},position:'left'}],
+      series:series
+    });
+
+    // Monthly Volume % — VL item 11: 按年份匹配股本
+    var volData=[], totalShM=ly.TOTAL_SHARES;
+    var shByYear={};
+    showYears.forEach(function(y){shByYear[y]=(MT[y]||{}).TOTAL_SHARES;});
+    var shFallback=shByYear[showYears[showYears.length-1]]||totalShM;
+    dates.forEach(function(dt){
+      var k=kl.find(function(k){return k.date===dt;});
+      var yr=dt.substring(0,4);
+      var sh=shByYear[yr]||shFallback;
+      if(k&&k.volume&&sh){
+        volData.push(+(k.volume/(sh*1e6)*100).toFixed(2));
+      }else{volData.push(null);}
+    });
+    var vMax=0;
+    volData.forEach(function(v){if(v!=null&&v>vMax)vMax=v;});
+    // Y轴刻度: 比例缓冲+自适应interval, 向上取整到nice number
+    var maxVol=vMax*1.2, interval=maxVol<=5?1:maxVol<=50?5:10;
+    var ceilVol=Math.ceil(maxVol/interval)*interval||interval, step=ceilVol/3;
+    var volChart=echarts.init(document.getElementById('chart_volume'));
+    volChart.setOption({
+      tooltip:{show:false},
+      grid:{left:0,right:28,top:0,bottom:0,containLabel:false},
+      xAxis:{type:'category',data:dates,show:false,boundaryGap:false,
+        axisPointer:{show:true,type:'shadow',shadowStyle:{color:'rgba(25,118,210,.08)'},label:{show:false,formatter:''},handle:{show:false}}},
+      yAxis:{type:'value',position:'left',min:0,max:ceilVol,splitNumber:3,
+        axisLabel:{show:false},
+        splitLine:{show:false},
+        axisLine:{show:false},axisTick:{show:false}},
+      series:[{name:'Vol%',type:'bar',data:volData,
+        emphasis:{itemStyle:{color:'#ff6600'}},
+        itemStyle:{color:function(p){var d=dates[p.dataIndex];return d&&d.endsWith('-01')?'#7b1fa2':'#1976D2';}},barWidth:'60%',
+        markLine:{silent:true,symbol:'none',animation:false,
+          data:[{yAxis:ceilVol,name:'',lineStyle:{color:'#000',width:3.0,type:'solid'}},
+                {yAxis:step*2,name:'',lineStyle:{color:'#000',width:0.5,type:'solid'}},
+                {yAxis:step,name:'',lineStyle:{color:'#000',width:0.5,type:'solid'}}]
+        }}]
+    });
+    // DOM 标签画左侧 Percent/shares/traded — convertToPixel 取刻度 y 像素, 放在 chart_volume 外
+    var volCnt=document.getElementById('chart_volume');
+    volCnt.style.overflow='visible';
+    var vals=[ceilVol,step*2,step], labels=['Percent','shares','traded'];
+    var vsDiv=document.createElement('div');
+    vsDiv.style.cssText='position:absolute;left:-72px;width:68px;top:0;bottom:0;pointer-events:none;z-index:1';
+    vals.forEach(function(v,i){
+      var py=volChart.convertToPixel({yAxisIndex:0},v);
+      var d=document.createElement('div');
+      d.style.cssText='position:absolute;left:0;right:0;top:'+(py||0)+'px;font-size:10px;font-weight:700;display:flex;justify-content:space-between;padding-right:4px';
+      d.innerHTML='<span>'+labels[i]+'</span><span>'+Math.round(v)+'</span>';
+      vsDiv.appendChild(d);
+    });
+    volCnt.appendChild(vsDiv);
+    // K线图 ↔ 成交量图联动
+    klineChart.group='vl'; volChart.group='vl'; echarts.connect('vl');
+    // click K线 → 成交量柱高亮 + tooltip
+    klineChart.on('click',function(p){
+      volChart.dispatchAction({type:'downplay',seriesIndex:0});
+      volChart.dispatchAction({type:'highlight',seriesIndex:0,dataIndex:p.dataIndex});
+      volChart.dispatchAction({type:'showTip',seriesIndex:0,dataIndex:p.dataIndex});
+    });
+    // click 成交量图空白 → 取消高亮
+    volChart.getZr().on('click',function(e){if(!e.target)volChart.dispatchAction({type:'downplay',seriesIndex:0});});
+
+  },300);
+})();
+</script>
+</body>
+</html>
