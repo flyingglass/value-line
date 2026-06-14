@@ -25,13 +25,17 @@ config `business_desc` 仅作为 engine 自生成时的补充信息，不独立�
 ```python
 def build(stock, metrics, revenue_structure, years, cagr, spot):
     """
-    参数: 全部从 DB/engine 实时计算
-    返回: {"business": "动态业务描述", "commentary": [p1,p2,p3,p4,p5]}
+    stock: {"name": "腾讯控股", "market": "hk", ...}
+    metrics: {"2025": {"OPERATE_INCOME": 7200.0, "BASIC_EPS": 24.15, ...}, ...}
+    revenue_structure: {"by_product": [{"name":"...", "pct":82.4}], ...}  # 注意: 是 dict!
+    years: ["2011","2012",...,"2025"]
+    cagr: {"sales": {"1yr": 10.2, "3yr": ...}, ...}
+    spot: {"pe": 15.9, "pb": 2.96, "div_yield": 1.19, ...}
+    返回: {"business": "...", "commentary": [p1,p2,p3,p4,p5]}
     """
 ```
 
-所有涉及数字的部分（营收、增长率、PE、ROE 等）通过 `ly.get("FIELD")` 从实时指标字典获取，
-确保每次拉取最新财报后报告自动同步更新。
+⚠️ `revenue_structure` 是 dict，需 `isinstance(dict)` 检查后用 `.items()` 遍历或 `.get("dim_key", [])` 取值，不可直接切片。
 
 ## MDA 提取流程
 

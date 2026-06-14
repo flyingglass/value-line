@@ -1,5 +1,24 @@
 # 操作日志
 
+## [2026-06-14] fix | 脚本 revenue_structure 类型 + SourceFileLoader 编码 + A股 TDX footnote 三连修
+
+**问题**：
+1. `importlib.spec_from_file_location(encoding="utf-8")` 在 Python 3.11 不支持 → `TypeError`
+2. engine 传的 `revenue_structure` 是 `{"by_product": [...]}` dict，脚本里 `revenue_structure[:3]` 把 dict 当 list → `str.get()` 报错 → 脚本静默失败 → 回退到 PDF 乱码
+3. A 股也显示了"通达信(TDX)财报计算" footnote（AKShare indicators 早年为空触发 `has_fallback=True`）
+
+**修复**：
+- `engine.py` 3 处加载点改用 `SourceFileLoader`（自动检测 `# coding: utf-8`）
+- `scripts/000408/`: `isinstance(revenue_structure, dict)` + 遍历 `items()` 取前 3 条
+- `scripts/09992/`: `revenue_structure.get("by_ip", [])` 替代 list comprehension
+- `engine.py` L653: `and market == "hk"` 限定仅港股生成 footnote
+
+**验证**：14 只有动态脚本的标的全部 Commentary PASS，藏格从乱码修复为 `from_script: True`。
+
+**触及 Wiki 页面**：
+- [[engine.py]] — 更新脚本加载 + 数据源 footnote 说明
+- [[BUSINESS 生成链路]] — 补充 revenue_structure 参数类型
+
 ## [2026-06-14] feat | 全链路智能新鲜度检测 — 双轨模型
 
 **设计**：将报告数据分为两类，各自独立检测新鲜度：

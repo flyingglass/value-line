@@ -3,7 +3,7 @@ module: engine.py
 category: 核心计算引擎
 depends_on: [config.py]
 lines: ~2500
-updated: 2026-06-13
+updated: 2026-06-14
 ---
 
 # engine.py — 核心计算引擎
@@ -12,6 +12,24 @@ updated: 2026-06-13
 
 从 SQLite 读取原始数据，计算全部 Value Line 指标，输出 `report_data.json`。
 纯数据驱动，零硬编码。支持 AKShare + TDX 双数据源。
+
+## 2026-06-14 重要修复
+
+### 脚本加载编码
+`importlib.util.spec_from_file_location` 在 Python 3.11 不支持 `encoding=` 参数。
+改用 `importlib.machinery.SourceFileLoader` 自动检测源文件 `# coding: utf-8` 声明。
+
+### 数据源 footnote
+仅在港股 + 同时使用 AKShare indicators + TDX 回退时生成。
+A 股/美股不显示"通达信(TDX)财报计算"提示（`market == "hk"` 门控）。
+
+### 动态脚本接口
+```python
+def build(stock, metrics, revenue_structure, years, cagr, spot):
+    # revenue_structure = {"by_product": [{"name":..., "pct":...}], ...}
+    # metrics = {"2025": {"OPERATE_INCOME": ..., ...}, ...}
+    return {"business": str, "commentary": [p1..p5]}
+```
 
 ## 关键功能
 
