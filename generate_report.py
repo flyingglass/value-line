@@ -491,7 +491,7 @@ var DATA = {DATA_JS};
     var fnYears = Object.keys(fnMap).sort();
     if (fnYears.length === 0) return;
 
-    var abbrName = {{'GS':'\u653f\u5e9c\u8865\u8d34','FV':'\u516c\u5141\u4ef7\u503c\u53d8\u52a8','FX':'\u6c47\u5151\u6536\u76ca','II':'\u6295\u8d44\u6536\u76ca','IM':'\u8d44\u4ea7\u51cf\u503c','EL':'\u6743\u76ca\u6cd5\u4e8f\u635f','OG':'\u5176\u4ed6\u6536\u76ca','CD':'A\u80a1\u6263\u975e'}};
+    var abbrName = {{'GS':'政府补贴','FV':'公允价值变动','FX':'汇兑收益','II':'投资收益','IM':'资产减值','EL':'权益法亏损','OG':'其他收益','CD':'A股扣非'}};
     var allAbbrs = [];
     fnYears.forEach(function(y) {{
       var src = fnMap[y].src || '';
@@ -503,27 +503,33 @@ var DATA = {DATA_JS};
         }});
       }}
     }});
+    // 格式化数值: 负数加括号, 正数不加+
+    function fmtVal(v) {{
+      if (!v) return '';
+      var n = parseFloat(v);
+      return n < 0 ? '(' + Math.abs(n).toFixed(1) + ')' : n.toFixed(1);
+    }}
 
     html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
-    html += '<table style="width:100%;border-collapse:collapse;font-size:8.5px;line-height:1.35">';
-    html += '<tr style="border-bottom:1px solid #000"><td style="width:60px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px">15. Footnotes</td>';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:9px;line-height:1.4">';
+    html += '<tr style="border-bottom:1px solid #000"><td style="width:68px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px">15. Footnotes</td>';
     fnYears.forEach(function(y) {{ html += '<td style="text-align:right;font-weight:700;padding:2px 4px">' + y + '</td>'; }});
     html += '</tr>';
 
-    // Adj. EPS \u884c (\u603b\u8c03\u6574\u540e\u51c0\u5229\u6da6)
-    html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px;font-weight:600">Adj. EPS</td>';
-    fnYears.forEach(function(y) {{ html += '<td style="text-align:right;padding:2px 4px;font-weight:600">' + (fnMap[y].adj || '\u2014') + '</td>'; }});
+    // 差额行: 归母 - VL经常性 = 调整额
+    html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px;font-weight:600">\u8c03\u6574\u9879\u5408\u8ba1</td>';
+    fnYears.forEach(function(y) {{ html += '<td style="text-align:right;padding:2px 4px;font-weight:600;font-size:8px">' + (fnMap[y].diff || '\u2014') + '</td>'; }});
     html += '</tr>';
 
-    // \u6bcf\u9879\u8c03\u6574\u72ec\u7acb\u4e00\u884c (\u8be5\u5e74\u65e0\u6570\u636e\u7684\u5217\u7559\u7a7a)
+    // 每项调整独立一行 (该年无数据的列留空, 负数括号)
     allAbbrs.forEach(function(a) {{
       var name = abbrName[a] || a;
-      html += '<tr><td style="padding:1px 4px;font-weight:700;color:#000">' + a + '<span style="font-weight:400;color:#666;font-size:7px"> ' + name + '</span></td>';
+      html += '<tr><td style="padding:1px 4px;font-weight:700;color:#000;font-size:8.5px">' + name + '</td>';
       fnYears.forEach(function(y) {{
         var src = fnMap[y].src || '';
         var m = src.match(new RegExp(a + '\\\\s+([+-][\\\\d.]+)'));
-        var val = m ? m[1] : '';
-        html += '<td style="text-align:right;padding:1px 4px;font-size:7.5px">' + val + '</td>';
+        var val = m ? fmtVal(m[1]) : '';
+        html += '<td style="text-align:right;padding:1px 4px;font-size:8px">' + val + '</td>';
       }});
       html += '</tr>';
     }});

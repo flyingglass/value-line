@@ -548,22 +548,30 @@ def build_metric_table(reader, years, market="hk"):
         tax_rate = (_tax / 100) if _tax else 0.25
         adj_np, yr_footnotes = _resolve_adj_np(reader, rd, np_val, tax_rate, stock_cfg_full)
         if yr_footnotes:
-            # 从脚注文本提取 adj 和 src (供 generate_report.js 直接渲染)
+            # 从脚注文本提取 adj, diff, src (供 generate_report.js 渲染)
             note_text = yr_footnotes[0] if yr_footnotes else ""
-            # 新格式: "EPS adj: FVTPL -0.1 GovSub +0.5 → VL 5.0亿"
-            # 旧格式: "A股扣非 ..." 也兼容
-            adj_val, src_val = "", ""
-            m1 = re.search(r'→ VL(?:经常性)?\s*([\d.]+)亿', note_text)
-            if m1:
-                adj_val = m1.group(1) + "亿"
+            adj_val, src_val, diff_val = "", "", ""
+            m_adj = re.search(r'→ VL(?:经常性)?\s*([\d.]+)亿', note_text)
+            m_rep = re.search(r'归母\s*([\d.]+)亿', note_text)
+            if m_adj and m_rep:
+                adj_f = float(m_adj.group(1))
+                rep_f = float(m_rep.group(1))
+                diff_f = rep_f - adj_f
+                adj_val = f"{adj_f:.1f}亿"
+                diff_val = f"({abs(diff_f):.1f})" if abs(diff_f) >= 0.05 else "\u2014"
             m2 = re.search(r'EPS adj:\s*(.+?)\s*→', note_text)
             if m2:
                 src_val = m2.group(1)
             elif "A股扣非" in note_text and "较归母" in note_text:
-                src_val = "CAS审计标准"
-                m_adj = re.search(r'扣非净利润\s*([\d.]+)亿', note_text)
-                if m_adj: adj_val = m_adj.group(1) + "亿"
-            all_footnotes.append({"year": yr, "notes": yr_footnotes, "adj": adj_val, "src": src_val})
+                src_val = "CAS\u5ba1\u8ba1\u6807\u51c6"
+                m_d = re.search(r'\u6263\u975e\u51c0\u5229\u6da6\s*([\d.]+)\u4ebf', note_text)
+                if m_d and m_rep:
+                    adj_f = float(m_d.group(1))
+                    rep_f = float(m_rep.group(1))
+                    diff_f = rep_f - adj_f
+                    adj_val = f"{adj_f:.1f}亿"
+                    diff_val = f"({abs(diff_f):.1f})" if abs(diff_f) >= 0.05 else "\u2014"
+            all_footnotes.append({"year": yr, "notes": yr_footnotes, "adj": adj_val, "diff": diff_val, "src": src_val})
 
         # ---- 1. 每股营收: Revenue / Shares ----
         row = {}
