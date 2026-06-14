@@ -72,6 +72,7 @@ Python 3 + AKShare + SQLite + pdfplumber + ECharts (前端) + Jinja2 (模板)
 
 - [[24 行统计阵列]]
 - [[VL 估值方法论]]
+- [[个股脚本标准]]
 - [[数据源-AKShare]]
 - [[开发环境配置]]
 - [[李录阅读法融合]]

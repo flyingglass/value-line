@@ -1,5 +1,29 @@
 # 操作日志
 
+## [2026-06-14] feat | 全量脚本标准化 — 38只全部对齐09992四件套
+
+**动机**：09992 (泡泡玛特) 的 scripts 目录是唯一完整的标准：4 件脚本各司其职。其余 37 只股票缺失不等。
+
+**标准四件套**：
+
+| 脚本 | 作用 | 实现方式 |
+|------|------|---------|
+| `business_commentary.py` | 动态 Business + 5 段 AI Commentary | `build(stock, metrics, revenue_structure, years, cagr, spot)` 数据驱动 |
+| `insert_revenue.py` | 营收拆分数据入库 | 手工维护年报分业务/分渠道/分地区数据 |
+| `metric_adjustment.py` | EPS 非经常性调整 | A股 CAS扣非 / 港股探 FV+FX+GS+IM+OG / 美股直通 |
+| `extract_business.py` | PDF 提取员工数等补充信息 | pdfplumber 搜索关键词 |
+
+**效果**：
+- 新增 93 个 `.py` 脚本，总计 153 个，全部语法检查通过
+- 38 只股票全量报告重新生成，0 失败，17 只 ALL PASS
+- 后续新增股票也按此标准
+
+**触及 Wiki 页面**：
+- [[个股脚本标准]] — 新建概念页
+- [[项目全景概述]] — 补充 scripts 目录说明
+
+---
+
 ## [2026-06-14] feat | Footnotes 重构 — 分行展示 EPS 调整项明细
 
 **设计**：每项非经常调整独立一行，标签用中文全称，数据两位小数（百万级精度），无数据留空。
