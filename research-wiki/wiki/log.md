@@ -1,5 +1,20 @@
 # 操作日志
 
+## [2026-06-14] fix | generate_report.py K线 tooltip PB 线缺失 + 系列名规范化
+
+**根因**：K 线图 hover tooltip 估值线数值判断仅匹配 `x CF`（L623），PB 估值线（`0.67x PB`）永不符合 → hover 时无价格显示。
+
+**修复**：
+1. `valLabel` PB 模式改 `'x PB'` → `'*BPS'`（与 BPS 指标对齐，如 `0.67*BPS`）
+2. tooltip 条件：`n.indexOf('x PB')>-1` → `n.indexOf('*BPS')>-1`
+3. 同步匹配：`x CF` || `*BPS` 覆盖两种估值模式
+
+**验证**：01114 华晨中国 × PB=0.67 → K 线 hover 显示 `0.67*BPS: {price}` ✅
+
+**触及 Wiki 页面**:
+- [[generate_report.py]] — 更新 tooltip 渲染 + 系列名
+- [[VL 估值方法论]] — 补充 PB 图表标签格式
+
 ## [2026-06-13] fix | engine.py 季度前瞻双重漏洞修复 + ingest
 
 **根因**：06699 季度区无 2026 年，排查发现两处漏洞：

@@ -2,7 +2,7 @@
 module: generate_report.py
 category: 前端渲染
 depends_on: [engine.py, config.py]
-updated: 2026-06-09
+updated: 2026-06-14
 ---
 
 # generate_report.py — VL 单页 HTML 生成
@@ -30,10 +30,16 @@ updated: 2026-06-09
 ## 技术栈
 
 - ECharts：K 线图（candlestick）、成交量柱（bar）
-- Jinja2 模板渲染
 - 自包含：CSS/JS 内嵌，无外部依赖
 - 字体：Arial, Helvetica, sans-serif
 - 色彩：涨红 #ef232a、跌绿 #14b143、HKD 蓝 #1976D2
+
+### K 线 Tooltip 渲染
+
+Hover 时显示：日期 → OHLC → 估值线价格 → RS → PST（月量/流通股%）。
+
+估值线系列名：CF 模式 `"15.0x CF"`，PB 模式 `"0.67*BPS"`。
+tooltip 对数价反转条件：`n.indexOf('x CF')>-1 || n.indexOf('*BPS')>-1` → `Math.exp(v).toFixed(2)`。
 
 ## BUSINESS 渲染优先级
 
