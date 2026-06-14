@@ -1,5 +1,9 @@
 # 操作日志
 
+## [2026-06-14] refactor | 报告文件名统一中文 + 删除英文旧文件
+
+`generate_report.py` / `generate_index.py` / `build.py` `_report_path`：文件名从 `name_en` 改为 `name`（中文），如 `泡泡玛特.html`。删除全部 40 个英文旧报告，index 同步刷新。
+
 ## [2026-06-14] fix | AI Commentary 先左后右 + 09992品类占比动态读取 + FOOTNOTES大写
 
 - Commentary 分栏：CSS `column-count` → JS `flex` 手动分半，左栏填满再右栏
