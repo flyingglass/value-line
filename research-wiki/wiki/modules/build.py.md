@@ -3,7 +3,7 @@ module: build.py
 category: 流水线编排
 depends_on: [config.py, fetcher.py, engine.py, pdf_downloader.py, extract_mda.py, generate_report.py]
 lines: 832
-updated: 2026-06-09
+updated: 2026-06-14
 ---
 
 # build.py — 主入口，8 步流水线
@@ -13,6 +13,8 @@ updated: 2026-06-09
 系统唯一入口，编排 8 步强制流水线，处理估值倍数确认、前置校验、步骤调度。
 任何一步失败即阻断，不生成报告。
 
+**2026-06-14 改造**：智能新鲜度检测，默认自动判断是否需要拉取最新数据，无需手动 `--fetch`。
+
 ## 关键函数
 
 | 函数 | 职责 |
@@ -20,9 +22,9 @@ updated: 2026-06-09
 | `confirm_and_build()` | 确认页 + 估值解析 + 触发流水线 |
 | `build()` | 执行完整 8 步 |
 | `step_0_check_config()` | config 完整性检查（name_en 必填） |
-| `step_1_fetch()` | 数据拉取（DB 存在时跳过） |
-| `step_2_pdf()` | 年报 PDF 下载（≥3 年） |
-| `step_3_mda()` | MD&A 提取（美股跳过） |
+| `step_1_fetch()` | 双轨检测：股价按交易日 / 财报按报告期 → 自动拉取 |
+| `step_2_pdf()` | 年报 PDF 下载（检测新年报 → 自动下载） |
+| `step_3_mda()` | MD&A 提取（检测 PDF 年份 > 已提取年份 → 强制重提） |
 | `step_4_revenue()` | 营收结构入库（唯一步骤需手动脚本） |
 | `step_6_engine()` | 调用 engine.py 计算指标 |
 | `step_7_generate()` | 调用 generate_report.py |
@@ -30,29 +32,19 @@ updated: 2026-06-09
 | `_write_valuation_meta()` | 估值参数写入 DB meta 表 |
 | `_read_valuation_meta()` | 从 DB 读取已有估值参数 |
 | `_get_hist_valuation_ref()` | 从 DB 计算历史 PE/PB 均值 |
+| `_need_fresh_prices()` | 查询最近 3 天 K 线，缺则需拉取 |
+| `_need_fresh_financials()` | 查询最新 report_date，推算应发布的新报告期 |
 
-## 估值倍数优先级
+## 双轨智能新鲜度
 
-```
-CLI --cf/--pb  >  DB meta 已确认值  >  用户交互输入（含历史PE/PB参考）
-```
+| 数据类型 | 检测方式 | 示例 |
+|---------|---------|------|
+| 股价 (daily) | 查最近 3 自然日 K 线 | 周五→周一间隔有效 |
+| 财报 (periodic) | Q1(4月)→H1(8月)→Q3(10月)→FY(次年4月) | 6月时 DB 只有 12月 → 触发拉取 |
+| PDF 年报 (annual) | 比较最新 PDF 年份 vs 当前年 | 6月后缺去年 PDF → 自动下载 |
+| MD&A | 比较 mda_extracted_year vs PDF 年份 | PDF 更新 → 强制重提 |
 
-**关键**：`_write_valuation_meta()` 必须在 `step_6_engine()` **之前**调用，因为 engine.py 作为子进程从 DB meta 表读估值参数。
-
-## 数据流
-
-```
-CLI 参数 → 确认页 → Step 0-8 流水线 → HTML 报告
-                                ↓
-                        估值参数 → DB meta 表 → engine.py 读取
-```
-
-## 设计决策
-
-- 无 `--force`：任何步骤失败即阻断，确保报告质量
-- 估值参数 8 步成功后才写入 DB（防止中途失败覆盖已有值）
-- `_set_active()` 通过正则替换 config.py 的 ACTIVE_STOCK 标记来切换标的
-- Step 8 失败降级为 WARNING 而非阻断（报告仍生成）
+`--fetch` 强制跳过所有检测，无条件全量重拉。
 
 ## CLI 参数
 

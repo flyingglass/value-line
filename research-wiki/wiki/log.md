@@ -1,5 +1,46 @@
 # 操作日志
 
+## [2026-06-14] feat | 全链路智能新鲜度检测 — 双轨模型
+
+**设计**：将报告数据分为两类，各自独立检测新鲜度：
+1. **股价类**（Header/K线/估值线）：查最近 3 个自然日 K 线是否存在 → 缺则自动拉取
+2. **财报类**（24行/季度/CAGR/估值）：查最新 report_date，对比当前日期推算应发布报告期 → 有新品则自动拉取
+
+**改动**：
+- `build.py`：`step_1_fetch` 新增 `_need_fresh_prices()` + `_need_fresh_financials()` 双轨检测
+- `build.py`：`step_2_pdf` 检测最新 PDF 年份落后当前年份 → 自动下载
+- `build.py`：`step_3_mda` 存 `mda_extracted_year`，新年报 PDF → 强制重提
+- `fetcher.py`：新增 `last_fetch_date` meta key（YYYY-MM-DD 格式）
+- **效果**：`python build.py <code>` 无需 `--fetch`，自动判断哪些步骤需要刷新
+
+**触及 Wiki 页面**：
+- [[build.py]] — 更新 Step 1/2/3 描述
+- [[extract_mda.py]] — 更新质量阈值 + 年份追踪
+- [[engine.py]] — 更新 mda_parsed 逻辑
+- [[8 步流水线]] — 更新 Step 描述
+
+## [2026-06-14] refactor | 移除全部硬编码 commentary → 动态 business_commentary.py
+
+**原则**：Business 和 AI Commentary 不应写死数字，应通过 `build(stock, metrics, revenue_structure, years, cagr, spot)` 从实时数据动态生成。
+
+**改动**：
+- 新建 `scripts/{000408,00883,09992,300308}/business_commentary.py`（4 只）
+- 重写 `scripts/{002027,00981,02097,600519}/business_commentary.py`（4 只）
+- 删除 8 只股票的 config `analyst.commentary` 硬编码
+- `extract_mda.py`：质量阈值放宽（≥2 类 + ≥6 句 + overview<85%），原始文本兜底
+- `engine.py`：移除 `mda_quality=="1"` 门控 → 无条件尝试解析 mda_text
+
+**动态脚本接口**：
+```python
+def build(stock, metrics, revenue_structure, years, cagr, spot):
+    return {"business": str, "commentary": [p1,p2,p3,p4,p5]}
+```
+
+**触及 Wiki 页面**：
+- [[BUSINESS 生成链路]] — 更新优先级链
+- [[engine.py]] — 更新 commentary 生成逻辑
+- [[extract_mda.py]] — 更新质量阈值
+
 ## [2026-06-14] fix | generate_report.py K线 tooltip PB 线缺失 + 系列名规范化
 
 **根因**：K 线图 hover tooltip 估值线数值判断仅匹配 `x CF`（L623），PB 估值线（`0.67x PB`）永不符合 → hover 时无价格显示。

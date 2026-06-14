@@ -52,10 +52,19 @@ else:
 
 AKShare ↔ income ↔ balance ↔ PDF 三源交叉，TOTAL_SHARES 三路径反推。
 
-### 5. BUSINESS & Commentary 生成
+### 5. BUSINESS & Commentary 生成 — 三级优先级 (2026-06-14 改)
 
-- 优先从 `_parse_mda_text()` 解析 PDF 提取的 mda_text
-- 失败则 `_build_business_from_data()` + `_build_commentary_from_data()` 自生成
+```
+1. 个股动态脚本 scripts/<code>/business_commentary.py::build()
+       ↓ 返回 {"business": str, "commentary": [p1..p5]}
+2. PDF 年报 MDA 提取 (extract_mda.py, engine 无条件解析, 不再 gate by quality)
+       ↓ _parse_mda_text() → business_summary + mda_sections
+3. 通用自生成 _build_business_from_data() + _build_commentary_from_data()
+```
+
+**关键改动**：engine 不再检查 `mda_quality=="1"`，直接尝试解析。解析成功则用 PDF 内容，失败才用自生成。config `analyst.commentary` 已废弃（不参与优先级链）。
+
+14 只股票已有 `business_commentary.py`（数据驱动，无硬编码）。剩余股票由 PDF 提取 + 自生成兜底。
 
 ### 6. 数据源标记 (report_data.json)
 
