@@ -463,13 +463,26 @@ var DATA = {DATA_JS};
   }}else{{
     html+='<span style="font-size:15px;font-weight:700">AI Commentary: '+stockName+' '+latestYr+'</span>';
   }}
-  html+='<div style="column-count:2;column-gap:24px;margin-top:6px">';
+  // 先填充左边，再填充右边
+  var commLeft=[], commRight=[];
+  var half=Math.ceil(commentary.length/2);
   for(var ci=0;ci<commentary.length;ci++){{
     if(commentary[ci]&&commentary[ci].length>5){{
-      html+='<p style="text-align:justify;margin:0 0 8px 0;font-size:12px;break-inside:avoid">'+commentary[ci]+'</p>';
+      if(ci<half) commLeft.push(commentary[ci]);
+      else commRight.push(commentary[ci]);
     }}
   }}
+  html+='<div style="display:flex;gap:24px;margin-top:6px">';
+  html+='<div style="flex:1;min-width:0">';
+  for(var ci=0;ci<commLeft.length;ci++){{
+    html+='<p style="text-align:justify;margin:0 0 8px 0;font-size:12px">'+commLeft[ci]+'</p>';
+  }}
   html+='</div>';
+  html+='<div style="flex:1;min-width:0">';
+  for(var ci=0;ci<commRight.length;ci++){{
+    html+='<p style="text-align:justify;margin:0 0 8px 0;font-size:12px">'+commRight[ci]+'</p>';
+  }}
+  html+='</div></div>';
   html+='</div>';
 
   // Item 15 Footnotes — EPS \u8c03\u6574\u660e\u7ec6 (\u6bcf\u9879\u8c03\u6574\u72ec\u7acb\u4e00\u884c, \u65e0\u6570\u636e\u7559\u7a7a)
