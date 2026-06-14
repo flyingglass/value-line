@@ -648,9 +648,9 @@ def build_metric_table(reader, years, market="hk"):
     # 补算 PE_AVG / PE_RELATIVE / DIV_YIELD
     _compute_pe_metrics(table, reader, market)
 
-    # 数据源边界说明: 仅当同时用到 AKShare 和 TDX 回退时才生成
+    # 数据源边界说明: 仅港股同时用到 AKShare indicators + TDX 回退时才生成
     data_note = None
-    if has_akshare and has_fallback:
+    if has_akshare and has_fallback and market == "hk":
         first_ind_yr = min(int(y) for y in years 
             if (ind := reader.indicators(_fye(str(y)))) 
             and ind.get("OPERATE_INCOME"))
