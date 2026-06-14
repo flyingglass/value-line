@@ -95,9 +95,8 @@ def build_index_html():
             mkt_label = MARKET_LABEL.get(market, market)
             mkt_class = MARKET_CLASS.get(market, "hk")
 
-            # report 文件名: POP MART 对应 POP_MART.html
-            rpt_name = name_en.replace(" ", "_").replace("/", "_") if name_en else name
-            rpt_file = f"{rpt_name}.html" if name_en else f"{code}.html"
+            # report 文件名: 使用中文名称
+            rpt_file = f"{name}.html"
 
             cards_html += '      <div class="card">\n'
             cards_html += f'        <div class="card-title">{name_en} · {name}</div>\n'

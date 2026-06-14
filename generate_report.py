@@ -721,7 +721,7 @@ var DATA = {DATA_JS};
 </body>
 </html>'''
 
-out_path = os.path.join(BASE, 'report', DATA['meta']['name_en'].replace(' ','_')+'.html')
+out_path = os.path.join(BASE, 'report', DATA['meta']['name']+'.html')
 out_alt = os.path.join(os.environ.get("TEMP", os.environ.get("TMP", "/tmp")), "vl_report.html")
 try:
     with open(out_path, "w", encoding="utf-8") as f:

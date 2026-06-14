@@ -89,7 +89,7 @@ def _pdf_dir(code):
 
 def _report_path(code):
     stock = config.STOCKS.get(code, {})
-    name = stock.get("name_en", code).replace(" ", "_")
+    name = stock.get("name", code)
     return os.path.join(BASE, "report", f"{name}.html")
 
 # ────────────────────────────────────────────────
