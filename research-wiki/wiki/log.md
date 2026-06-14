@@ -1,5 +1,28 @@
 # 操作日志
 
+## [2026-06-14] feat | Footnotes 重构 — 分行展示 EPS 调整项明细
+
+**设计**：每项非经常调整独立一行，标签用中文全称，数据两位小数（百万级精度），无数据留空。
+
+**格式**：
+```
+Footnotes      2018  2019  2020  ...
+政府补贴       0.05  0.17  0.45  ...
+公允价值变动     —     —   (0.11) ...
+───────────────────────────────────
+adj.NP         0.04  0.13  0.25  ...
+```
+
+**引擎**：`engine.py` → `all_footnotes` 新增 `adj`/`diff`/`src` 结构化字段，diff 用原始 `np_val`/`adj_np` 直算避免脚注文本四舍五入失真。
+
+**前端**：`generate_report.py` JS 端解析 `src` 提取各缩写出现的年份，每项一行；表格含灰色垂直分割线；合计行 `adj.NP` 位于底部分隔线上方。
+
+**缩写表**：GS=政府补贴, FV=公允价值变动, FX=汇兑收益, II=投资收益, IM=资产减值, EL=权益法亏损, OG=其他收益, CD=A股扣非
+
+**触及 Wiki 页面**：
+- [[generate_report.py]] — 新增 Footnotes 渲染章节
+- [[engine.py]] — 补充 footnotes 结构化字段
+
 ## [2026-06-14] fix | 脚本 revenue_structure 类型 + SourceFileLoader 编码 + A股 TDX footnote 三连修
 
 **问题**：

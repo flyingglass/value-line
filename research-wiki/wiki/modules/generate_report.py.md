@@ -26,6 +26,23 @@ updated: 2026-06-14
 | Quarterly Data | 半年度营收/EPS/股息 |
 | BUSINESS | 4 段式（Pop Mart 风格） |
 | AI Commentary | 3 段叙事体 |
+| 15. Footnotes | EPS 调整项明细表，每项一行 |
+
+## Footnotes 渲染（2026-06-14 重构）
+
+引擎输出 `{"year": "2025", "adj": "127.8亿", "diff": "0.08", "src": "GS 1.50 FV -1.60"}` 结构化字段。
+
+**布局**：
+- 标题 `Footnotes`，字体与 CURRENT POSITION 统一 (10px)
+- 年份列 8.5px，数据列 8px
+- 每项调整独立一行（政府补贴 / 公允价值变动 / ...），无数据列留空 `—`
+- 合计行 `adj.NP` 位于底部，上方黑色实线分隔
+- 垂直分割线 `border-right:1px solid #ddd`
+
+**数据规则**：
+- 正数无 `+`，负数括号 `(0.08)`，两位小数（百万级）
+- diff < 0.005 亿显示 `—`
+- diff = 归母NP - VL经常性NP；正数 = 非经常收益，负数 = 非经常损失
 
 ## 技术栈
 
