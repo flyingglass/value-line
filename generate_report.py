@@ -104,9 +104,9 @@ var DATA = {DATA_JS};
   var valLabel=valMethod==='pb'?(pbMult.toFixed(2)+'*BPS'):(cfMult.toFixed(1)+'x CF');
   var legendLine=valMethod==='pb'?(pbMult.toFixed(2)+' '+pbLabelStr):(cfMult.toFixed(1)+' '+cfLabelStr);
   var stockMarket=meta.market||'';
-  var currency=meta.currency||'¥';
+  var currency=meta.currency||'\u00a5';
   var indexName=meta.index_name||'HSI';
-  var indexNameCn=meta.index_name_cn||'恒生指数';
+  var indexNameCn=meta.index_name_cn||'\u6052\u751f\u6307\u6570';
   var app=document.getElementById('app');
   var html='';
 
@@ -118,7 +118,7 @@ var DATA = {DATA_JS};
   html+='<div class="left-col">';
 
   // Capital Structure — 完全参考VL截图布局
-  var csDate=Y[Y.length-1]+'-12-31', csUnit=cs.unit||'亿';
+  var csDate=Y[Y.length-1]+'-12-31', csUnit=cs.unit||'\u4ebf';
   html+='<div class="sec">';
   html+='<div style="font-size:10px;font-weight:700;margin-bottom:2px">CAPITAL STRUCTURE as of '+csDate+'</div>';
   html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.5">';
@@ -130,8 +130,8 @@ var DATA = {DATA_JS};
   html+='<td></td><td style="white-space:nowrap;font-weight:700">LT Interest</td><td style="text-align:right;font-weight:700">'+(cs.total_int||0).toFixed(2)+' '+csUnit+'</td></tr>';
   // Row 3: (coverage)
   html+='<tr><td colspan="5" style="font-size:10px;color:#000;padding-left:0">(Total interest coverage: '+cs.coverage+')</td></tr>';
-  // Row 4: (% of Cap'l) — 右对齐
-  html+='<tr><td colspan="5" style="text-align:right;font-size:10px;color:#000;padding-left:0">('+cs.lt_debt_pct+'% of Cap\u2019l)</td></tr>';
+  // Row 4: (% of Cap\u2019l) — 右对齐
+  html+='<tr><td colspan="5" style="text-align:right;font-size:10px;color:#000;padding-left:0">('+cs.lt_debt_pct+'% of Cap\\u2019l)</td></tr>';
   // Row 5: Pfd Stock | None (Leases/Pension不适用港股)
   html+='<tr><td style="white-space:nowrap;font-weight:700">Pfd Stock</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.pfd_stock||'None')+'</td><td></td><td></td><td></td></tr>';
   html+='</table>';
@@ -161,7 +161,7 @@ var DATA = {DATA_JS};
   }});
   html+='</tr>';
   // 单位行
-  html+='<tr><td style="font-size:8px;color:#000;font-weight:700">(亿)</td>';
+  html+='<tr><td style="font-size:8px;color:#000;font-weight:700">(\u4ebf)</td>';
   cpYears.forEach(function(){{html+='<td></td>';}});
   html+='</tr>';
   // 数据行
@@ -182,7 +182,7 @@ var DATA = {DATA_JS};
     html+='<td style="white-space:nowrap">'+label+'</td>';
     var item=cpItems[idx];
     cpYears.forEach(function(yr){{
-      var v=(item&&item[yr]!=null)?item[yr].toFixed(1):'—';
+      var v=(item&&item[yr]!=null)?item[yr].toFixed(1):'\u2014';
       html+='<td style="text-align:right;'+(isBold?'border-top:1px solid #000':'')+'">'+v+'</td>';
     }});
     html+='</tr>';
@@ -215,7 +215,7 @@ var DATA = {DATA_JS};
     var v=a[1]||{{}};
     html+='<tr><td style="white-space:nowrap;font-weight:700">'+a[0]+'</td>';
     colKeys.forEach(function(k){{
-      var pct=(v[k]!=null)?v[k].toFixed(1)+'%':'—';
+      var pct=(v[k]!=null)?v[k].toFixed(1)+'%':'\u2014';
       html+='<td style="text-align:right">'+pct+'</td>';
     }});
     html+='</tr>';
@@ -223,13 +223,11 @@ var DATA = {DATA_JS};
   html+='</table></div>';
 
   // 季度/半年度表 — VL三表紧排, 单 table + 垂直分割线
-  // 检查最后3年是否有季报数据 (早年可能缺失，以最近数据为准)
   var qsLast=(qt.sales||[]).slice(-3);
   var hasQ=qsLast.some(function(r){{return r&&r.has_quarter;}});
   function renderQSection(title, data, decimal, hasQq, isFirst){{
     if(!data||!data.length) return '';
     var show=data.slice(-5);
-    // Section title
     var sepStyle=isFirst?'':'border-top:1px solid #999;';
     sepStyle+='line-height:1;';
     var h='<tr><td style="font-weight:700;'+sepStyle+'padding-top:3px">Year</td>';
@@ -256,14 +254,14 @@ var DATA = {DATA_JS};
           var s='text-align:right;padding-right:3px';
           if(i===0) s='text-align:left;border-left:2px solid #000;padding-left:3px';
           if(i===4) s+=';font-weight:700;border-left:2px solid #000;padding-left:3px';
-          h+='<td style="'+s+'">'+(v!=null?(decimal===3&&v===0?'—':v.toFixed(decimal)):'—')+'</td>';
+          h+='<td style="'+s+'">'+(v!=null?(decimal===3&&v===0?'\u2014':v.toFixed(decimal)):'\u2014')+'</td>';
         }});
       }}else{{
-        h+='<td style="text-align:left;color:#999;border-left:2px solid #000;padding-left:3px;padding-right:3px">—</td>';
-        h+='<td style="text-align:right;padding-right:3px">'+(r.q1!=null?(decimal===3&&r.q1===0?'—':r.q1.toFixed(decimal)):'—')+'</td>';
-        h+='<td style="text-align:right;color:#999;padding-right:3px">—</td>';
-        h+='<td style="text-align:right;padding-right:3px">'+(r.q3!=null?(decimal===3&&r.q3===0?'—':r.q3.toFixed(decimal)):'—')+'</td>';
-        h+='<td style="text-align:right;font-weight:700;border-left:2px solid #000;padding-left:3px;padding-right:3px">'+(r.full!=null?r.full.toFixed(decimal):'—')+'</td>';
+        h+='<td style="text-align:left;color:#999;border-left:2px solid #000;padding-left:3px;padding-right:3px">\u2014</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q1!=null?(decimal===3&&r.q1===0?'\u2014':r.q1.toFixed(decimal)):'\u2014')+'</td>';
+        h+='<td style="text-align:right;color:#999;padding-right:3px">\u2014</td>';
+        h+='<td style="text-align:right;padding-right:3px">'+(r.q3!=null?(decimal===3&&r.q3===0?'\u2014':r.q3.toFixed(decimal)):'\u2014')+'</td>';
+        h+='<td style="text-align:right;font-weight:700;border-left:2px solid #000;padding-left:3px;padding-right:3px">'+(r.full!=null?r.full.toFixed(decimal):'\u2014')+'</td>';
       }}
       h+='</tr>';
     }});
@@ -271,11 +269,11 @@ var DATA = {DATA_JS};
   }}
   html+='<div class="sec" style="border-bottom:1px solid #000;padding-bottom:2px;margin-bottom:2px">';
   html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.3">';
-  html+=renderQSection('QUARTERLY REVENUES (亿)', qt.sales, 1, hasQ, true);
+  html+=renderQSection('QUARTERLY REVENUES (\u4ebf)', qt.sales, 1, hasQ, true);
   html+=renderQSection('EARNINGS PER SHARE', qt.eps, 2, hasQ, false);
   html+=renderQSection('QUARTERLY DIVIDENDS PAID', qt.dividends, 3, hasQ, false);
   html+='</table>';
-  if(!hasQ) html+='<div style="border-top:1px solid #000;font-size:8px;color:#666;margin-top:3px;padding-top:3px">*港股仅披露半年报，Q2/Q4暂无数据。</div>';
+  if(!hasQ) html+='<div style="border-top:1px solid #000;font-size:8px;color:#666;margin-top:3px;padding-top:3px">*\u6e2f\u80a1\u4ec5\u62ab\u9732\u534a\u5e74\u62a5\uff0cQ2/Q4\u6682\u65e0\u6570\u636e\u3002</div>';
   html+='</div>';
 
   html+='</div>'; // end left-col
@@ -300,17 +298,17 @@ var DATA = {DATA_JS};
 
   var priceCcy=meta.price_ccy||meta.currency||(stockMarket==='hk'?'HKD':'CNY');
   html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RECENT</td>';
-  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'—')+' '+priceCcy+'</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:18px;font-weight:700">'+(spot.price!=null?spot.price.toFixed(2):'\u2014')+' '+priceCcy+'</td>';
   html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">P/E</td>';
-  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(trailingPE!=null?trailingPE.toFixed(1):'—')+'</td>';
-  // ⑥ (Trailing: xx 第一行
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(trailingPE!=null?trailingPE.toFixed(1):'\u2014')+'</td>';
+  // \u2465 (Trailing: xx 第一行
   html+='<td style="vertical-align:bottom;padding:2px 8px;line-height:1;border-right:1px solid #999;font-size:9px;font-weight:700">';
   if(trailingPE){{html+='(Trailing:'+trailingPE.toFixed(1)+')';}}
   html+='</td>';
   html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">RELATIVE</td>';
-  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:17px;font-weight:700">'+(relPE!=null?relPE.toFixed(2):'—')+'</td>';
-  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">DIV’D</td>';
-  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(divYld!=null?divYld.toFixed(1)+'%':'—')+'</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;border-right:1px solid #999;font-size:17px;font-weight:700">'+(relPE!=null?relPE.toFixed(2):'\u2014')+'</td>';
+  html+='<td style="vertical-align:bottom;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">DIV\u2019D</td>';
+  html+='<td rowspan="2" style="vertical-align:middle;text-align:center;padding:0 10px;font-size:17px;font-weight:700">'+(divYld!=null?divYld.toFixed(1)+'%':'\u2014')+'</td>';
 
   html+='</tr><tr>';
 
@@ -324,10 +322,6 @@ var DATA = {DATA_JS};
   html+='<td style="vertical-align:top;padding:2px 8px;font-size:9px;color:#000;font-weight:700;line-height:1">YLD</td>';
 
   html+='</tr></table>';
-
-  // Chart
-
-
 
   // Chart
   var kl=d.kline, hsi=d.index_kline||[];
@@ -345,14 +339,14 @@ var DATA = {DATA_JS};
   html+='<tr><td style="padding:0 3px;'+tdStyle+'">High</td>';
   showYears.forEach(function(yr){{
     var hl=yhlMap[yr];
-    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.high:'—')+'</td>';
+    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.high:'\u2014')+'</td>';
   }});
   html+='</tr>';
   // Row 3: Low
   html+='<tr><td style="padding:0 3px;'+tdStyle+'">Low</td>';
   showYears.forEach(function(yr){{
     var hl=yhlMap[yr];
-    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.low:'—')+'</td>';
+    html+='<td style="text-align:right;padding:0 3px;'+tdStyle+'">'+(hl?hl.low:'\u2014')+'</td>';
   }});
   html+='</tr>';
   
@@ -379,9 +373,9 @@ var DATA = {DATA_JS};
   html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.35;margin:1px 0">';
   html+='<tr><td></td><td style="text-align:right;font-weight:700">THIS</td><td style="text-align:right;font-weight:700">'+indexName+'</td></tr>';
   html+='<tr><td></td><td style="text-align:right;font-weight:700">STOCK</td><td style="text-align:right"></td></tr>';
-  html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock2['1yr']!=null?trStock2['1yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['1yr']!=null?trIndex2['1yr'].toFixed(1)+'%':'—')+'</td></tr>';
-  html+='<tr><td>3 yr.</td><td style="text-align:right">'+(trStock2['3yr']!=null?trStock2['3yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['3yr']!=null?trIndex2['3yr'].toFixed(1)+'%':'—')+'</td></tr>';
-  html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock2['5yr']!=null?trStock2['5yr'].toFixed(1)+'%':'—')+'</td><td style="text-align:right">'+(trIndex2['5yr']!=null?trIndex2['5yr'].toFixed(1)+'%':'—')+'</td></tr>';
+  html+='<tr><td>1 yr.</td><td style="text-align:right">'+(trStock2['1yr']!=null?trStock2['1yr'].toFixed(1)+'%':'\u2014')+'</td><td style="text-align:right">'+(trIndex2['1yr']!=null?trIndex2['1yr'].toFixed(1)+'%':'\u2014')+'</td></tr>';
+  html+='<tr><td>3 yr.</td><td style="text-align:right">'+(trStock2['3yr']!=null?trStock2['3yr'].toFixed(1)+'%':'\u2014')+'</td><td style="text-align:right">'+(trIndex2['3yr']!=null?trIndex2['3yr'].toFixed(1)+'%':'\u2014')+'</td></tr>';
+  html+='<tr><td>5 yr.</td><td style="text-align:right">'+(trStock2['5yr']!=null?trStock2['5yr'].toFixed(1)+'%':'\u2014')+'</td><td style="text-align:right">'+(trIndex2['5yr']!=null?trIndex2['5yr'].toFixed(1)+'%':'\u2014')+'</td></tr>';
   html+='</table>';
   html+='</div>';
   html+='</div></td>';
@@ -406,7 +400,7 @@ var DATA = {DATA_JS};
     html+='<td style="text-align:left;white-space:nowrap;font-size:9.5px;font-weight:700;'+tdStyle+'">'+m.name_en+' <span style="font-size:8px;color:#444;font-weight:400">'+m.name_cn+'</span></td>';
     showYears.forEach(function(y){{
       var v=(MT[y]||{{}})[m.field];
-      var txt='—';
+      var txt='\u2014';
       if(v!=null){{
         if(m.unit==='亿')txt=v.toFixed(1);
         else if(m.unit==='%')txt=v.toFixed(1)+'%';
@@ -437,28 +431,28 @@ var DATA = {DATA_JS};
   var bizP=[], bizHtml='';
   if(desc){{bizP.push(desc);}}
   var p2=[];
-  if(ip.length>0){{var ipTop=ip.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('核心IP：'+ipTop);}}
-  if(ch.length>0){{var chTop=ch.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('渠道：'+chTop);}}
-  if(rg.length>0){{var rgTop=rg.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('地域：'+rgTop);}}
-  if(prod.length>0){{var prodTop=prod.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('产品：'+prodTop);}}
-  if(ind.length>0){{var indTop=ind.slice(0,5).map(function(c){{return c.name+' '+c.pct+'%';}}).join('、');p2.push('行业：'+indTop);}}
-  if(p2.length) bizP.push(p2.join('；'));
+  if(ip.length>0){{var ipTop=ip.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u6838\u5fc3IP\uff1a'+ipTop);}}
+  if(ch.length>0){{var chTop=ch.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u6e20\u9053\uff1a'+chTop);}}
+  if(rg.length>0){{var rgTop=rg.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u5730\u57df\uff1a'+rgTop);}}
+  if(prod.length>0){{var prodTop=prod.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u4ea7\u54c1\uff1a'+prodTop);}}
+  if(ind.length>0){{var indTop=ind.slice(0,5).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u884c\u4e1a\uff1a'+indTop);}}
+  if(p2.length) bizP.push(p2.join('\uff1b'));
   var p3=[];var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
-  if(depr&&revs) p3.push('折旧率'+(depr/revs*100).toFixed(1)+'%');
-  if(cs.employee_count) p3.push('员工'+(cs.employee_count/10000).toFixed(1)+'万人（'+latestYr+'）');
-  if(p3.length) bizP.push(p3.join('。'));
+  if(depr&&revs) p3.push('\u6298\u65e7\u7387'+(depr/revs*100).toFixed(1)+'%');
+  if(cs.employee_count) p3.push('\u5458\u5de5'+(cs.employee_count/10000).toFixed(1)+'\u4e07\u4eba\uff08'+latestYr+'\uff09');
+  if(p3.length) bizP.push(p3.join('\u3002'));
   var p4=[];
-  if(meta.ceo) p4.push('首席执行官：'+meta.ceo);
-  if(meta.inc) p4.push('注册地：'+meta.inc);
+  if(meta.ceo) p4.push('\u9996\u5e2d\u6267\u884c\u5b98\uff1a'+meta.ceo);
+  if(meta.inc) p4.push('\u6ce8\u518c\u5730\uff1a'+meta.inc);
   if(meta.website) p4.push(meta.website);
-  if(p4.length) bizP.push(p4.join('。'));
+  if(p4.length) bizP.push(p4.join('\u3002'));
   bizHtml='<span style="font-weight:700">BUSINESS:</span>';
   bizHtml+='<div style="column-count:2;column-gap:24px;margin-top:4px">';
   var left=[bizP[0]];
-  if(bizP[1]) left.push('· '+bizP[1]);
+  if(bizP[1]) left.push('\u00b7 '+bizP[1]);
   var right=[];
-  if(bizP[2]) right.push('· '+bizP[2]);
-  if(bizP[3]) right.push('· '+bizP[3]);
+  if(bizP[2]) right.push('\u00b7 '+bizP[2]);
+  if(bizP[3]) right.push('\u00b7 '+bizP[3]);
   bizHtml+='<div>'+left.join('<br>')+'</div>';
   bizHtml+='<div>'+right.join('<br>')+'</div>';
   bizHtml+='</div>';
@@ -466,7 +460,7 @@ var DATA = {DATA_JS};
 
   // AI Commentary: per-stock脚本 > PDF提取(mda) > 数据自生成 (4段VL风格, 全宽)
   var commentary=d.analyst&&d.analyst.commentary&&d.analyst.commentary.length?d.analyst.commentary:[
-    '暂无数据', '数据暂不可用', '请先运行 engine.py 生成完整数据', ''
+    '\u6682\u65e0\u6570\u636e', '\u6570\u636e\u6682\u4e0d\u53ef\u7528', '\u8bf7\u5148\u8fd0\u884c engine.py \u751f\u6210\u5b8c\u6574\u6570\u636e', ''
   ];
   var fromMda=d.analyst&&d.analyst.commentary_from_mda;
   var fromScript=d.analyst&&d.analyst.commentary_from_script;
@@ -487,96 +481,65 @@ var DATA = {DATA_JS};
   html+='</div>';
   html+='</div>';
 
-  // Item 15 Footnotes — EPS 调整明细 (Value Line standard: exclusion of nonrecurring items)
+  // Item 15 Footnotes — EPS \u8c03\u6574\u660e\u7ec6 (\u6bcf\u9879\u8c03\u6574\u72ec\u7acb\u4e00\u884c, \u65e0\u6570\u636e\u7559\u7a7a)
   var footnotes = d.footnotes || [];
   if (footnotes.length > 0) {{
-    // 优先用结构化字段, 回退旧格式解析
     var fnMap = {{}};
     footnotes.forEach(function(f) {{
-      if (f.adj) {{
-        fnMap[f.year] = {{adj: f.adj, src: f.src || ''}};
-      }} else {{
-        // 旧格式兼容
-        var items = (f.notes[0] || '').split('; ');
-        items.forEach(function(it) {{
-          var m = it.match(/(?:EPS调整:\s*)?([+-][\d.]+亿)\s*\((.+)\)/);
-          if (m) fnMap[f.year] = {{adj: m[1], src: m[2]}};
+      if (f.adj) fnMap[f.year] = {{adj: f.adj || '', src: f.src || ''}};
+    }});
+    var fnYears = Object.keys(fnMap).sort();
+    if (fnYears.length === 0) return;
+
+    var abbrName = {{'GS':'\u653f\u5e9c\u8865\u8d34','FV':'\u516c\u5141\u4ef7\u503c\u53d8\u52a8','FX':'\u6c47\u5151\u6536\u76ca','II':'\u6295\u8d44\u6536\u76ca','IM':'\u8d44\u4ea7\u51cf\u503c','EL':'\u6743\u76ca\u6cd5\u4e8f\u635f','OG':'\u5176\u4ed6\u6536\u76ca','CD':'A\u80a1\u6263\u975e'}};
+    var allAbbrs = [];
+    fnYears.forEach(function(y) {{
+      var src = fnMap[y].src || '';
+      var parts = src.match(/([A-Z]+)\\s+([+-][\\d.]+)/g);
+      if (parts) {{
+        parts.forEach(function(p) {{
+          var m = p.match(/([A-Z]+)\\s+([+-][\\d.]+)/);
+          if (m && allAbbrs.indexOf(m[1]) < 0) allAbbrs.push(m[1]);
         }});
       }}
     }});
-    var fnYears = Object.keys(fnMap).sort();
 
-    if (fnYears.length > 0) {{
-      html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
-      html += '<table style="width:100%;border-collapse:collapse;font-size:8.5px;line-height:1.35">';
+    html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:8.5px;line-height:1.35">';
+    html += '<tr style="border-bottom:1px solid #000"><td style="width:60px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px">15. Footnotes</td>';
+    fnYears.forEach(function(y) {{ html += '<td style="text-align:right;font-weight:700;padding:2px 4px">' + y + '</td>'; }});
+    html += '</tr>';
 
-      // 表头行
-      html += '<tr style="border-bottom:1px solid #000"><td style="width:60px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px">15. Footnotes</td>';
+    // Adj. EPS \u884c (\u603b\u8c03\u6574\u540e\u51c0\u5229\u6da6)
+    html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px;font-weight:600">Adj. EPS</td>';
+    fnYears.forEach(function(y) {{ html += '<td style="text-align:right;padding:2px 4px;font-weight:600">' + (fnMap[y].adj || '\u2014') + '</td>'; }});
+    html += '</tr>';
+
+    // \u6bcf\u9879\u8c03\u6574\u72ec\u7acb\u4e00\u884c (\u8be5\u5e74\u65e0\u6570\u636e\u7684\u5217\u7559\u7a7a)
+    allAbbrs.forEach(function(a) {{
+      var name = abbrName[a] || a;
+      html += '<tr><td style="padding:1px 4px;font-weight:700;color:#000">' + a + '<span style="font-weight:400;color:#666;font-size:7px"> ' + name + '</span></td>';
       fnYears.forEach(function(y) {{
-        html += '<td style="text-align:right;font-weight:700;padding:2px 4px">' + y + '</td>';
+        var src = fnMap[y].src || '';
+        var m = src.match(new RegExp(a + '\\\\s+([+-][\\\\d.]+)'));
+        var val = m ? m[1] : '';
+        html += '<td style="text-align:right;padding:1px 4px;font-size:7.5px">' + val + '</td>';
       }});
       html += '</tr>';
+    }});
 
-      // 收集出现的缩写, 生成标注行
-      var abbrMap = {{
-        'GS': '政府补贴', 'FV': '公允价值变动', 'FX': '汇兑收益',
-        'II': '投资收益', 'IM': '资产减值', 'EL': '权益法亏损',
-        'OG': '其他收益', 'CD': 'A股扣非'
-      }};
-      var seenAbbrs = [];
-      fnYears.forEach(function(y) {{
-        if (fnMap[y].src) {{
-          fnMap[y].src.split(' ').forEach(function(t) {{
-            if (abbrMap[t] && seenAbbrs.indexOf(t) < 0) seenAbbrs.push(t);
-          }});
-        }}
-      }});
-      var legendHtml = '';
-      if (seenAbbrs.length > 0) {{
-        legendHtml = '<tr style="border-bottom:1px solid #eee"><td style="padding:2px 4px;font-size:8px;font-weight:700;color:#000">标注</td>';
-        var maxCols = Math.min(seenAbbrs.length, fnYears.length);
-        for (var ci = 0; ci < maxCols; ci++) {{
-          var a = seenAbbrs[ci];
-          legendHtml += '<td style="padding:2px 4px;font-size:8px;font-weight:700;color:#000;white-space:nowrap">' + a + ' &mdash; ' + abbrMap[a] + '</td>';
-        }}
-        // 补齐剩余列
-        for (var ci = maxCols; ci < fnYears.length; ci++) {{
-          legendHtml += '<td></td>';
-        }}
-        legendHtml += '</tr>';
-      }}
-
-      // Adj. EPS 行
-      html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px">Adj. EPS</td>';
-      fnYears.forEach(function(y) {{
-        html += '<td style="text-align:right;padding:2px 4px;font-weight:600">' + fnMap[y].adj + '</td>';
-      }});
-      html += '</tr>';
-
-      // 来源行
-      html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px">来源</td>';
-      fnYears.forEach(function(y) {{
-        html += '<td style="text-align:right;padding:2px 4px;font-size:7.5px;white-space:nowrap">' + fnMap[y].src + '</td>';
-      }});
-      html += '</tr>';
-
-      // 标注行
-      if (legendHtml) html += legendHtml;
-      html += '</tr>';
-
-      html += '</table></div>';
-    }}
+    html += '</table></div>';
   }}
 
-  // Item 15 Footnotes — 数据源说明 (混合 AKShare + TDX 时显示)
+  // Item 15 Footnotes — \u6570\u636e\u6e90\u8bf4\u660e (\u6df7\u5408 AKShare + TDX \u65f6\u663e\u793a)
   var dsNote = d.data_source_note || '';
   if (dsNote) {{
     html += '<div style="border-top:1px solid #999;padding:3px 12px 2px;font-size:8px;color:#666;line-height:1.35">';
-    html += '<span style="font-weight:700">数据源:</span> ' + dsNote;
+    html += '<span style="font-weight:700">\u6570\u636e\u6e90:</span> ' + dsNote;
     html += '</div>';
   }}
 
-  html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">股价: '+priceCcy+' | 财报数据: '+(meta.rpt_ccy||'CNY')+' | {datetime.date.today().isoformat()}</div>';
+  html+='<div style="font-size:8px;color:#666;text-align:right;margin-top:4px">\u80a1\u4ef7: '+priceCcy+' | \u8d22\u62a5\u6570\u636e: '+(meta.rpt_ccy||'CNY')+' | {datetime.date.today().isoformat()}</div>';
   app.innerHTML=html;
 
   // ECharts
