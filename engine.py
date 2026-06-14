@@ -376,8 +376,8 @@ def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
     # 港股: 排除非经常项目 (FVTPL/汇兑/资产处置等), 保留经常性经营收益
     # 子项探测: 不同公司财报科目不同, 仅展示实际存在的项目
     _items = [
-        ("公允价值变动收益", "FVTPL"), ("汇兑收益", "FX"), ("政府补助", "GovSub"),
-        ("资产处置收益", "Disp"), ("其他收益", "OthGain"),
+        ("公允价值变动收益", "FV"), ("汇兑收益", "FX"), ("政府补助", "GS"),
+        ("资产处置收益", "IM"), ("其他收益", "OG"),
     ]
     nonrecur_items = []
     for item_name, abbr in _items:
@@ -398,7 +398,7 @@ def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
         other_gain = reader.financial_item("income", "其他收益", rd) or 0
         if abs(other_gain) > 5e6:
             adj_np = np_val - other_gain * (1 - tax_rate)
-            footnotes.append(f"EPS adj: OthGain {other_gain/1e8:+.1f} → VL {adj_np/1e8:.1f}亿 (归母{np_val/1e8:.1f}亿)")
+            footnotes.append(f"EPS adj: OG {other_gain/1e8:+.1f} → VL {adj_np/1e8:.1f}亿 (归母{np_val/1e8:.1f}亿)")
         else:
             adj_np = np_val
 

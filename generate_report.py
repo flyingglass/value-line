@@ -519,9 +519,9 @@ var DATA = {DATA_JS};
 
       // 收集出现的缩写, 生成标注行
       var abbrMap = {{
-        'GovSub': '政府补贴', 'FVTPL': '公允价值变动', 'FX': '汇兑收益',
-        'InvInc': '投资收益', 'Impair': '资产减值', 'EqLoss': '权益法亏损',
-        'OthGain': '其他收益', 'CAS ded': 'A股扣非'
+        'GS': '政府补贴', 'FV': '公允价值变动', 'FX': '汇兑收益',
+        'II': '投资收益', 'IM': '资产减值', 'EL': '权益法亏损',
+        'OG': '其他收益', 'CD': 'A股扣非'
       }};
       var seenAbbrs = [];
       fnYears.forEach(function(y) {{
