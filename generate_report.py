@@ -528,7 +528,7 @@ var DATA = {DATA_JS};
     }});
 
     // 合计行放最后: 归母 - VL经常性 = 净调整额
-    html += '<tr style="border-top:1px solid #ccc"><td style="padding:2px 4px;font-weight:700;font-size:8.5px">调整项合计</td>';
+    html += '<tr style="border-top:1px solid #000"><td style="padding:2px 4px;font-weight:700;font-size:8.5px">调整项合计</td>';
     fnYears.forEach(function(y) {{ html += '<td style="text-align:right;padding:2px 4px;font-weight:700;font-size:8px">' + (fnMap[y].diff || '\u2014') + '</td>'; }});
     html += '</tr>';
 
