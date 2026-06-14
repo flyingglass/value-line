@@ -16,9 +16,9 @@ def adjust_metrics(reader, rd, np_val, tax_rate, stock_cfg):
 
     parts = []
     if abs(other_gain) > 5e6:
-        parts.append(f"FV {other_gain/1e8:+.1f}")
+        parts.append(f"FV {other_gain/1e8:+.2f}")
     if abs(other_income) > 5e6:
-        parts.append(f"GS {other_income/1e8:+.1f}")
+        parts.append(f"GS {other_income/1e8:+.2f}")
     if parts:
         item_str = " ".join(parts)
         footnotes.append(f"EPS adj: {item_str} → VL {adj_np/1e8:.1f}亿 (归母{np_val/1e8:.1f}亿)")

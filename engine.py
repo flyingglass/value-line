@@ -391,14 +391,14 @@ def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
         for _, val in nonrecur_items:
             adj_np -= val * (1 - tax_rate)
         # 格式: GovSub +0.3 FVTPL -1.2 → adj NP 105.5亿
-        item_str = " ".join([f"{a} {v/1e8:+.1f}" for a, v in nonrecur_items])
+        item_str = " ".join([f"{a} {v/1e8:+.2f}" for a, v in nonrecur_items])
         footnotes.append(f"EPS adj: {item_str} → VL经常性 {adj_np/1e8:.1f}亿 (归母{np_val/1e8:.1f}亿)")
     else:
         # 回退: 读取 其他收益 整项
         other_gain = reader.financial_item("income", "其他收益", rd) or 0
         if abs(other_gain) > 5e6:
             adj_np = np_val - other_gain * (1 - tax_rate)
-            footnotes.append(f"EPS adj: OG {other_gain/1e8:+.1f} → VL {adj_np/1e8:.1f}亿 (归母{np_val/1e8:.1f}亿)")
+            footnotes.append(f"EPS adj: OG {other_gain/1e8:+.2f} → VL {adj_np/1e8:.1f}亿 (归母{np_val/1e8:.1f}亿)")
         else:
             adj_np = np_val
 
