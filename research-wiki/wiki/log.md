@@ -1,5 +1,27 @@
 # 操作日志
 
+## [2026-06-14] fix | 新增股票三修复 — 确认页历史PE/PB + 流式输出防卡死 + 6位代码兼容
+
+**问题**：
+1. **确认页不显示历史PE/PB参考**：`_get_hist_valuation_ref` PE_AVG 分支被 `years`（BPS/EPS/K线交集）阻断 — A股 raw indicators 字段名不同（`basic_eps` 非 `BASIC_EPS`），交集为空 → PE_AVG 永不执行
+2. **拉数据/年报卡死无反馈**：`_run` 用 `capture_output=True` — 全程静默，用户看到白屏 5+ 分钟
+3. **6位代码兼容**：`_set_active` 正则 `[0-9]+` 不匹配 NVDA；PDF 年份检测 `\d{5}` 不匹配 6 位 A 股代码
+
+**修复**：
+- `build.py` `_get_hist_valuation_ref`：CF 的 PE_AVG 分支独立运行，不再依赖 BPS/EPS 交集（`if method == "cf" and years:` → `if method == "cf":`）
+- `build.py` `confirm_and_build`：历史 PE/PB 参考移到 `if cf_multiplier is None:` 外部，**始终展示**
+- `build.py` `_run`：添加"运行中..."进度提示；超时调整：fetcher 300→600s, generate_report 30→60s
+- `build.py` `_set_active`：正则 `[0-9]+` → `[^"]*` 匹配任意代码格式
+- `build.py` PDF 年份检测：`\d{5}` / `\d{4,6}` → `[A-Za-z0-9]+` 兼容字母+数字代码
+
+**关键原则**：**确认页必须始终出现**，显示历史 PE/PB 参考。`--cf`/`--pb` 传参时不弹交互框但必须展示参考数据。
+
+**验证**：A/H/美股 14/14 测试全通过。
+
+**触及 Wiki 页面**：
+- [[build.py]] — 更新确认页 + _run 流式输出
+- [[8 步流水线]] — 强调确认页展示规则
+
 ## [2026-06-14] feat | 全量脚本标准化 — 38只全部对齐09992四件套
 
 **动机**：09992 (泡泡玛特) 的 scripts 目录是唯一完整的标准：4 件脚本各司其职。其余 37 只股票缺失不等。
