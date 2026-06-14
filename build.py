@@ -50,20 +50,26 @@ def _yellow(s): return f"\033[33m{s}\033[0m"
 def _bold(s): return f"\033[1m{s}\033[0m"
 
 def _run(cmd, timeout=120):
-    """Run a shell command, return (ok, output)."""
+    """Run a shell command, return (ok, output). 流式输出，避免长时间无进度反馈。"""
+    import io
     try:
+        print(f"      运行中 ...", end="", flush=True)
         r = subprocess.run(cmd, shell=True, capture_output=True,
                            text=True, timeout=timeout, cwd=BASE, env=ENV,
                            encoding='utf-8', errors='replace')
         out = (r.stdout or "") + (r.stderr or "")
         out = out.strip()
-        # 保留头部和尾部，避免关键信息被截断（如进度条后的"拉取完成"）
-        if len(out) > 3000:
-            out = out[:1000] + "\n... [中间省略] ...\n" + out[-2000:]
-        return r.returncode == 0, out
+        # 截断保留尾部的关键信息（如进度条后的"拉取完成"）
+        tail = out[-4000:] if len(out) > 4000 else out
+        ok = r.returncode == 0
+        if ok:
+            print(f"\r{'':20}", end="")  # 清除"运行中..."
+        return ok, tail
     except subprocess.TimeoutExpired:
+        print(f"\r{'':20}", end="")
         return False, "TIMEOUT"
     except Exception as e:
+        print(f"\r{'':20}", end="")
         return False, str(e)
 
 def _set_active(code):
@@ -71,7 +77,7 @@ def _set_active(code):
     path = os.path.join(BASE, "config.py")
     with open(path, "r", encoding="utf-8") as f:
         c = f.read()
-    c = re.sub(r'ACTIVE_STOCK\s*=\s*"[0-9]+"', f'ACTIVE_STOCK = "{code}"', c)
+    c = re.sub(r'ACTIVE_STOCK\s*=\s*"[^"]*"', f'ACTIVE_STOCK = "{code}"', c)
     with open(path, "w", encoding="utf-8") as f:
         f.write(c)
 
@@ -145,7 +151,7 @@ def _get_hist_valuation_ref(code, method):
         yr_eps = {d[:4]: v for d, v in eps_rows if v and v > 0}
         yr_pe_avg = {d[:4]: v for d, v in pe_avg_rows if v and v > 0}
 
-        # 共同年份: 有 BPS + EPS + 任何日线
+        # 共同年份: 有 BPS + EPS + 任何日线 (仅 PB 需要)
         years = sorted(set(yr_bps) & set(yr_eps) & set(yr_avg_price))
 
         # 判断是否需要汇率换算: 港股 + CNY财报 = 股价(HKD)需要折算为CNY
@@ -169,15 +175,17 @@ def _get_hist_valuation_ref(code, method):
                 conn.close()
                 return (f"历史PB均值 ({rng})", round(avg, 2))
 
-        if method == "cf" and years:
-            # 优先 PE_AVG, 否则用 年均价/EPS
+        if method == "cf":
+            # 优先 PE_AVG (AKShare自带, 无需 BPS/EPS 交集)
             if len(yr_pe_avg) >= 3:
                 pes = list(yr_pe_avg.values())
                 avg = sum(pes) / len(pes)
-                rng = f"{min(yr_pe_avg)}{'-'}{max(yr_pe_avg)}" if yr_pe_avg else ""
+                keys_sorted = sorted(yr_pe_avg.keys())
+                rng = f"{keys_sorted[0]}-{keys_sorted[-1]}"
                 conn.close()
-                return (f"历史PE均值 ({rng})" if rng else "历史PE均值", round(avg, 1))
-            else:
+                return (f"历史PE均值 ({rng})", round(avg, 1))
+            # 回退: 年均价/EPS 自行计算 (需要 BPS+EPS+K线 交集)
+            elif years:
                 if need_fx:
                     pes = []
                     for y in years:
@@ -316,7 +324,7 @@ def step_1_fetch(code, stock, force_fetch=False):
 
     print(f"  Step 1: 拉取数据...")
     _set_active(code)
-    ok, out = _run(f'"{PYTHON}" fetcher.py', timeout=300)
+    ok, out = _run(f'"{PYTHON}" fetcher.py', timeout=600)
     if not ok or "拉取完成" not in out:
         raise SystemExit(_red(f"  FAIL: 数据拉取失败\n{out[-500:]}"))
     if not os.path.exists(db) or os.path.getsize(db) < 10000:
@@ -334,7 +342,7 @@ def step_2_pdf(code):
     latest_yr = 0
     if os.path.isdir(pdf_dir):
         for f in os.listdir(pdf_dir):
-            m = re.match(r'\d{5}_(\d{4})_', f)
+            m = re.match(r'\d{4,6}_(\d{4})_', f)
             if m: latest_yr = max(latest_yr, int(m.group(1)))
     current_yr = date.today().year
     # 年报通常在次年3-4月发布，6月后还缺当年-1年的PDF才触发下载
@@ -374,7 +382,7 @@ def step_3_mda(code):
     if os.path.isdir(pdf_dir):
         import re as _re
         for f in os.listdir(pdf_dir):
-            m = _re.match(r'\d{5}_(\d{4})_', f)
+            m = _re.match(r'\d{4,6}_(\d{4})_', f)
             if m: latest_pdf_yr = max(latest_pdf_yr or 0, int(m.group(1)))
     stale = (extracted_yr and latest_pdf_yr and int(extracted_yr[0]) < latest_pdf_yr)
     if has_mda and has_mda[0] and len(has_mda[0]) > 200 and not stale:
@@ -467,7 +475,7 @@ def step_7_generate(code):
     """Step 7: generate_report.py HTML生成。"""
     print(f"  Step 7: 生成HTML...")
     _set_active(code)
-    ok, out = _run(f'"{PYTHON}" generate_report.py', timeout=30)
+    ok, out = _run(f'"{PYTHON}" generate_report.py', timeout=60)
     if not ok:
         raise SystemExit(_red(f"  FAIL: HTML生成失败\n{out[-500:]}"))
     rp = _report_path(code)
@@ -696,15 +704,15 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
 
     # ── 估值倍数确定: CLI → DB → 用户输入 ──
     if valuation_method == "pb":
+        hist_ref = _get_hist_valuation_ref(code, "pb")
+        if hist_ref:
+            print(f"\n  历史PB参考: {hist_ref[0]} = {hist_ref[1]}x")
         if pb_multiplier is None:
             existing = _read_valuation_meta(code)
             pb_multiplier = existing["pb_multiplier"]
             if pb_multiplier is not None:
-                print(f"\n  [DB] 复用已确认估值: PB={pb_multiplier}x")
+                print(f"  [DB] 复用已确认估值: PB={pb_multiplier}x")
             else:
-                hist_ref = _get_hist_valuation_ref(code, "pb")
-                if hist_ref:
-                    print(f"\n  历史PB参考: {hist_ref[0]} = {hist_ref[1]}x")
                 try:
                     inp = input(f"  请输入 {name} 的PB倍数 (如 0.8): ").strip()
                     pb_multiplier = float(inp)
@@ -715,15 +723,15 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
                     raise SystemExit(1)
         method_label = f"PB={pb_multiplier}x"
     else:
+        hist_ref = _get_hist_valuation_ref(code, "cf")
+        if hist_ref:
+            print(f"\n  历史PE参考: {hist_ref[0]} = {hist_ref[1]}x")
         if cf_multiplier is None:
             existing = _read_valuation_meta(code)
             cf_multiplier = existing["cf_multiplier"]
             if cf_multiplier is not None:
-                print(f"\n  [DB] 复用已确认估值: CF={cf_multiplier}x")
+                print(f"  [DB] 复用已确认估值: CF={cf_multiplier}x")
             else:
-                hist_ref = _get_hist_valuation_ref(code, "cf")
-                if hist_ref:
-                    print(f"\n  历史PE参考: {hist_ref[0]} = {hist_ref[1]}x")
                 try:
                     inp = input(f"  请输入 {name} 的CF倍数 (如 15.0): ").strip()
                     cf_multiplier = float(inp)

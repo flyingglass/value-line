@@ -246,6 +246,23 @@ STOCKS = {
         "industry": "Metals & Mining",
         "business_desc": "",
     },
+    "002568": {
+        "name": "百润股份",
+        "name_en": "BAIRUN",
+        "market": "cn",
+        "exchange": "SZSE",
+        "currency": "CNY",
+        "ceo": "刘晓东",
+        "inc": "中国上海",
+        "website": "www.bairun.net",
+        "org_id": "",                # 巨潮自动发现
+        "pfx": "sz",
+        "shares": 1049700000,
+        "shares_str": "1,049,700,000",
+        "industry": "Consumer Staples",
+        "fiscal_yr_end": "12-31",
+        "business_desc": "百润股份是中国预调鸡尾酒行业龙头，旗下RIO锐澳品牌占据80%以上市场份额。主营预调鸡尾酒及食用香精，构建即饮+居家+餐饮全场景覆盖。",
+    },
     "00700": {
         "name": "腾讯控股",
         "name_en": "Tencent Holdings",
@@ -715,7 +732,7 @@ MARKET_CONFIG = {
 # ============================================================
 # 当前活跃标的
 # ============================================================
-ACTIVE_STOCK = "NVDA"
+ACTIVE_STOCK = "002568"
 
 # ============================================================
 # SQLite 路径
