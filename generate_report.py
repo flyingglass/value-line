@@ -530,7 +530,7 @@ var DATA = {DATA_JS};
     }});
 
     // 合计行放最后
-    html += '<tr style="border-top:1px solid #000"><td style="' + tdLbl + ';font-weight:700;font-size:8.5px">合计(adj.EPS)</td>';
+    html += '<tr style="border-top:1px solid #000"><td style="' + tdLbl + ';font-weight:700;font-size:8.5px">adj.NP</td>';
     fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + ';font-weight:700;font-size:8px">' + (fnMap[y].diff || '\u2014') + '</td>'; }});
     html += '</tr>';
 
