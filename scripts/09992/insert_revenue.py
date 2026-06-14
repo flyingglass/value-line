@@ -6,7 +6,12 @@ code = sys.argv[1] if len(sys.argv) > 1 else "09992"
 conn = sqlite3.connect(f"data/{code}.db")
 
 data = [
-    # by_channel (PRC 2025)
+    # by_product (2025 年报) — 毛绒/手办/MEGA/衍生品
+    (code, '2025', 'by_product', '毛绒', 18708, 50.4),
+    (code, '2025', 'by_product', '手办', 12023, 32.4),
+    (code, '2025', 'by_product', 'MEGA', 1916, 5.2),
+    (code, '2025', 'by_product', '衍生品及其他', 4473, 12.0),
+    # by_channel (2025)
     (code, '2025', 'by_channel', '零售店', 10075, 48.3),
     (code, '2025', 'by_channel', '线上渠道', 8522, 40.9),
     (code, '2025', 'by_channel', '机器人商店', 1346, 6.5),
