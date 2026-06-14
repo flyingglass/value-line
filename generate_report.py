@@ -506,7 +506,7 @@ var DATA = {DATA_JS};
     function fmtVal(v) {{
       if (!v) return '\u2014';
       var n = parseFloat(v);
-      return n < 0 ? '(' + Math.abs(n).toFixed(1) + ')' : n.toFixed(1);
+      return n.toFixed(2);
     }}
 
     html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
