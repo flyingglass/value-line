@@ -517,6 +517,28 @@ var DATA = {DATA_JS};
       }});
       html += '</tr>';
 
+      // 收集出现的缩写, 生成标注行
+      var abbrMap = {{
+        'GovSub': '政府补贴', 'FVTPL': '公允价值变动', 'FX': '汇兑收益',
+        'InvInc': '投资收益', 'Impair': '资产减值', 'EqLoss': '权益法亏损',
+        'OthGain': '其他收益', 'CAS ded': 'A股扣非'
+      }};
+      var seenAbbrs = [];
+      fnYears.forEach(function(y) {{
+        if (fnMap[y].src) {{
+          fnMap[y].src.split(' ').forEach(function(t) {{
+            if (abbrMap[t] && seenAbbrs.indexOf(t) < 0) seenAbbrs.push(t);
+          }});
+        }}
+      }});
+      var legendHtml = '';
+      if (seenAbbrs.length > 0) {{
+        legendHtml = '<tr style="border-bottom:1px solid #eee"><td style="padding:1px 4px;font-size:7px;color:#999">标注</td>';
+        legendHtml += '<td colspan="' + fnYears.length + '" style="padding:1px 4px;font-size:7px;color:#999">';
+        legendHtml += seenAbbrs.map(function(a) {{ return '<b>' + a + '</b>' + abbrMap[a]; }}).join(' | ');
+        legendHtml += '</td></tr>';
+      }}
+
       // Adj. EPS 行
       html += '<tr style="border-bottom:1px solid #ccc"><td style="padding:2px 4px">Adj. EPS</td>';
       fnYears.forEach(function(y) {{
@@ -529,6 +551,10 @@ var DATA = {DATA_JS};
       fnYears.forEach(function(y) {{
         html += '<td style="text-align:right;padding:2px 4px;font-size:7.5px;white-space:nowrap">' + fnMap[y].src + '</td>';
       }});
+      html += '</tr>';
+
+      // 标注行
+      if (legendHtml) html += legendHtml;
       html += '</tr>';
 
       html += '</table></div>';
