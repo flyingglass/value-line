@@ -29,11 +29,12 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     dps = ly.get("DPS") or 0
     payout = ly.get("PAYOUT_RATIO")
 
-    # ---- Revenue breakdown from revenue_structure ----
+    # ---- Revenue breakdown from revenue_structure (dict keyed by dim_type) ----
     rev_parts = []
-    if revenue_structure:
-        for r in revenue_structure[:3]:
-            rev_parts.append(f"{r.get('name','')}{r.get('pct','')}%")
+    if isinstance(revenue_structure, dict) and revenue_structure:
+        for dim_key, items in revenue_structure.items():
+            if items:
+                rev_parts.extend([f"{r.get('name','')}{r.get('pct','')}%" for r in items[:3]])
 
     # ---- Business ----
     business = (
