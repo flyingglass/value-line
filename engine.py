@@ -405,7 +405,7 @@ def _resolve_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
         script_path = os.path.join(os.path.dirname(__file__), "scripts", code, "metric_adjustment.py")
         if os.path.exists(script_path):
             import importlib.util
-            spec = importlib.util.spec_from_file_location(f"ma_{code}", script_path)
+            spec = importlib.util.spec_from_file_location(f"ma_{code}", script_path, encoding="utf-8")
             mod = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(mod)
             if hasattr(mod, "adjust_metrics"):
@@ -430,7 +430,7 @@ def _resolve_dividends(reader):
     try:
         script_path = os.path.join(os.path.dirname(__file__), "scripts", code, "metric_adjustment.py")
         if os.path.exists(script_path):
-            spec = importlib.util.spec_from_file_location(f"md_{code}", script_path)
+            spec = importlib.util.spec_from_file_location(f"md_{code}", script_path, encoding="utf-8")
             mod = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(mod)
             if hasattr(mod, "adjust_dividends"):
@@ -1485,7 +1485,7 @@ def _load_per_stock_script(code):
         if not os.path.exists(script_path):
             return None
         import importlib.util
-        spec = importlib.util.spec_from_file_location(f"bc_{code}", script_path)
+        spec = importlib.util.spec_from_file_location(f"bc_{code}", script_path, encoding="utf-8")
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         return mod if hasattr(mod, "build") else None
