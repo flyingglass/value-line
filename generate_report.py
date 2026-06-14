@@ -533,10 +533,17 @@ var DATA = {DATA_JS};
       }});
       var legendHtml = '';
       if (seenAbbrs.length > 0) {{
-        legendHtml = '<tr style="border-bottom:1px solid #eee"><td style="padding:1px 4px;font-size:7px;color:#999">标注</td>';
-        legendHtml += '<td colspan="' + fnYears.length + '" style="padding:1px 4px;font-size:7px;color:#999">';
-        legendHtml += seenAbbrs.map(function(a) {{ return '<b>' + a + '</b>' + abbrMap[a]; }}).join(' | ');
-        legendHtml += '</td></tr>';
+        legendHtml = '<tr style="border-bottom:1px solid #eee"><td style="padding:2px 4px;font-size:8px;font-weight:700;color:#000">标注</td>';
+        var maxCols = Math.min(seenAbbrs.length, fnYears.length);
+        for (var ci = 0; ci < maxCols; ci++) {{
+          var a = seenAbbrs[ci];
+          legendHtml += '<td style="padding:2px 4px;font-size:8px;font-weight:700;color:#000;white-space:nowrap">' + a + ' &mdash; ' + abbrMap[a] + '</td>';
+        }}
+        // 补齐剩余列
+        for (var ci = maxCols; ci < fnYears.length; ci++) {{
+          legendHtml += '<td></td>';
+        }}
+        legendHtml += '</tr>';
       }}
 
       // Adj. EPS 行
