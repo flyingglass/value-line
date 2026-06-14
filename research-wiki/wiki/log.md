@@ -1,5 +1,24 @@
 # 操作日志
 
+## [2026-06-14] refactor | BUSINESS 职责分离 — 模板不再自动拼接收拆分
+
+**问题**：`generate_report.py` 自动从 `revenue_structure` 拼 IP/渠道/地域/产品到 BUSINESS 段落，与 `business_commentary.py` 生成的内容重复。09992 的品类描述和 Revenue 区的 IP/渠道/地域/产品明细出现三重冗余。
+
+**修复**：
+- `generate_report.py`：移除 IP/渠道/地域/产品自动拼接（L428-438），BUSINESS 内容全权交还 `business_commentary.py`
+- 通用模板升级：21 只股票新增从 `revenue_structure` 读取最相关维度（by_product > by_channel > by_region）加入 BUSINESS
+- 09992：品类描述（毛绒/手办/MEGA/衍生品）+ 财务快照，不再重复 Revenue 数据
+- 新增 `by_product` 维度到 09992 的 `insert_revenue.py`（2025 年报 P29 品类数据）
+
+**职责划分**：
+- BUSINESS → `business_commentary.py` 全权控制
+- Revenue Structure → `insert_revenue.py` 独立展示
+- 模板仅附加折旧率/员工数/CEO/注册地等通用信息
+
+**触及 Wiki 页面**：
+- [[generate_report.py]] — 更新 BUSINESS 渲染逻辑
+- [[个股脚本标准]] — 更新职责划分
+
 ## [2026-06-14] fix | 新增股票流程补全 — index.html 自动刷新
 
 **问题**：百润股份 (002568) 新增后未更新 `report/index.html`。
