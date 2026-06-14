@@ -548,33 +548,23 @@ def build_metric_table(reader, years, market="hk"):
         tax_rate = (_tax / 100) if _tax else 0.25
         adj_np, yr_footnotes = _resolve_adj_np(reader, rd, np_val, tax_rate, stock_cfg_full)
         if yr_footnotes:
-            # 从脚注文本提取 adj, diff, src (供 generate_report.js 渲染)
             note_text = yr_footnotes[0] if yr_footnotes else ""
-            adj_val, src_val, diff_val = "", "", ""
-            m_adj = re.search(r'→ VL(?:经常性)?\s*([\d.]+)亿', note_text)
-            m_rep = re.search(r'归母\s*([\d.]+)亿', note_text)
-            if m_adj and m_rep:
-                adj_f = float(m_adj.group(1))
-                rep_f = float(m_rep.group(1))
-                diff_f = rep_f - adj_f
-                adj_val = f"{adj_f:.1f}亿"
+            adj_val = f"{adj_np/1e8:.1f}亿" if adj_np else ""
+            # diff 直接用原始 adj_np vs np_val 计算, 避免脚注文本四舍五入失真
+            if adj_np and np_val:
+                diff_f = (np_val - adj_np) / 1e8
                 if abs(diff_f) >= 0.005:
                     s = f"{abs(diff_f):.2f}".rstrip('0').rstrip('.')
                     diff_val = f"({s})" if diff_f < 0 else s
                 else:
                     diff_val = "\u2014"
+            else:
+                diff_val = "\u2014"
+            # src: 提取脚注中具体的调整项描述
+            src_val = ""
             m2 = re.search(r'EPS adj:\s*(.+?)\s*→', note_text)
             if m2:
                 src_val = m2.group(1)
-            elif "A股扣非" in note_text and "较归母" in note_text:
-                src_val = "CAS\u5ba1\u8ba1\u6807\u51c6"
-                m_d = re.search(r'\u6263\u975e\u51c0\u5229\u6da6\s*([\d.]+)\u4ebf', note_text)
-                if m_d and m_rep:
-                    adj_f = float(m_d.group(1))
-                    rep_f = float(m_rep.group(1))
-                    diff_f = rep_f - adj_f
-                    adj_val = f"{adj_f:.1f}亿"
-                    diff_val = f"({abs(diff_f):.1f})" if abs(diff_f) >= 0.05 else "\u2014"
             all_footnotes.append({"year": yr, "notes": yr_footnotes, "adj": adj_val, "diff": diff_val, "src": src_val})
 
         # ---- 1. 每股营收: Revenue / Shares ----
