@@ -222,41 +222,72 @@ def step_0_check_config(code):
     print(f"  Step 0: {name} ({code}) config {_green('OK')}")
     return stock
 
+def _get_meta(db_path, key, default=None):
+    try:
+        conn = sqlite3.connect(db_path)
+        row = conn.execute("SELECT value FROM meta WHERE key=?", (key,)).fetchone()
+        conn.close()
+        return row[0] if row else default
+    except: return default
+
+def _set_meta(db_path, key, value):
+    try:
+        conn = sqlite3.connect(db_path)
+        conn.execute("CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT)")
+        conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", (key, str(value)))
+        conn.commit(); conn.close()
+    except: pass
+
 def step_1_fetch(code, stock, force_fetch=False):
-    """Step 1: 数据拉取 fetcher.py。"""
+    """Step 1: 数据拉取 fetcher.py。智能检测: 超过3天自动刷新。"""
     db = _db_path(code)
     if not force_fetch and os.path.exists(db) and os.path.getsize(db) > 10000:
-        print(f"  Step 1: DB已存在 ({os.path.getsize(db)//1024}KB), 跳过拉取")
-        # Still set active stock
-        _set_active(code)
-        return True
+        last_fetch = _get_meta(db, "last_fetch_date", "")
+        from datetime import date as _date
+        today = _date.today().isoformat()
+        days_old = (_date.today() - _date.fromisoformat(last_fetch)).days if last_fetch else 999
+        if days_old <= 3:
+            print(f"  Step 1: DB已存在 ({os.path.getsize(db)//1024}KB, {days_old}天前), 跳过拉取")
+            _set_active(code); return True
+        else:
+            print(f"  Step 1: DB数据{last_fetch}已过{days_old}天，自动刷新...")
 
     print(f"  Step 1: 拉取数据...")
     _set_active(code)
     ok, out = _run(f'"{PYTHON}" fetcher.py', timeout=300)
     if not ok or "拉取完成" not in out:
         raise SystemExit(_red(f"  FAIL: 数据拉取失败\n{out[-500:]}"))
-    # Verify DB
     if not os.path.exists(db) or os.path.getsize(db) < 10000:
         raise SystemExit(_red(f"  FAIL: DB文件过小或不存在"))
+    _set_meta(db, "last_fetch_date", _date.today().isoformat())
     print(f"  Step 1: {_green('OK')}")
     return True
 
 def step_2_pdf(code):
-    """Step 2: 年报PDF下载。美股走 SEC EDGAR 10-K (.htm) 下载。"""
+    """Step 2: 年报PDF下载。智能检测: 新年报发布自动下载。"""
     stock = config.STOCKS.get(code, {})
     pdf_dir = _pdf_dir(code)
     existing = len([f for f in os.listdir(pdf_dir) if f.endswith(".pdf") or f.endswith(".htm")]) if os.path.isdir(pdf_dir) else 0
-    if existing >= 3:
-        print(f"  Step 2: 已有 {existing} 份年报文件, 跳过下载")
+    # 检测最新PDF年份是否落后于当前年份
+    latest_yr = 0
+    if os.path.isdir(pdf_dir):
+        for f in os.listdir(pdf_dir):
+            m = re.match(r'\d{5}_(\d{4})_', f)
+            if m: latest_yr = max(latest_yr, int(m.group(1)))
+    current_yr = date.today().year
+    # 年报通常在次年3-4月发布，6月后还缺当年-1年的PDF才触发下载
+    need_fresh = latest_yr < current_yr - 1 and date.today().month >= 6
+    if existing >= 3 and not need_fresh:
+        print(f"  Step 2: 已有 {existing} 份年报文件 (最新{latest_yr}年), 跳过下载")
         return True
+    if need_fresh:
+        print(f"  Step 2: 最新PDF为{latest_yr}年，{current_yr-1}年年报应已发布，尝试下载...")
 
     print(f"  Step 2: 下载年报PDF...")
     _set_active(code)
     ok, out = _run(f'"{PYTHON}" pdf_downloader.py', timeout=600)
     if not ok:
         raise SystemExit(_red(f"  FAIL: PDF下载失败\n{out[-500:]}"))
-    # Verify
     pdf_dir = _pdf_dir(code)
     count = len([f for f in os.listdir(pdf_dir) if f.endswith((".pdf", ".htm"))]) if os.path.isdir(pdf_dir) else 0
     if count < 3:

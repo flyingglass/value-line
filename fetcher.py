@@ -796,6 +796,7 @@ def fetch(code=None):
             fetch_cn_financials(store, code)
 
         store.set_meta("last_fetch", str(pd.Timestamp.now()))
+        store.set_meta("last_fetch_date", pd.Timestamp.now().strftime("%Y-%m-%d"))
         store.set_meta("code", code)
         store.set_meta("market", market)
 
