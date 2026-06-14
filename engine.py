@@ -558,7 +558,11 @@ def build_metric_table(reader, years, market="hk"):
                 rep_f = float(m_rep.group(1))
                 diff_f = rep_f - adj_f
                 adj_val = f"{adj_f:.1f}亿"
-                diff_val = f"{diff_f:+.2f}" if abs(diff_f) >= 0.005 else "\u2014"
+                if abs(diff_f) >= 0.005:
+                    s = f"{abs(diff_f):.2f}".rstrip('0').rstrip('.')
+                    diff_val = f"({s})" if diff_f < 0 else s
+                else:
+                    diff_val = "\u2014"
             m2 = re.search(r'EPS adj:\s*(.+?)\s*→', note_text)
             if m2:
                 src_val = m2.group(1)
