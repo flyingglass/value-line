@@ -342,7 +342,7 @@ def step_2_pdf(code):
     latest_yr = 0
     if os.path.isdir(pdf_dir):
         for f in os.listdir(pdf_dir):
-            m = re.match(r'\d{4,6}_(\d{4})_', f)
+            m = re.match(r'[A-Za-z0-9]+_(\d{4})_', f)
             if m: latest_yr = max(latest_yr, int(m.group(1)))
     current_yr = date.today().year
     # 年报通常在次年3-4月发布，6月后还缺当年-1年的PDF才触发下载
@@ -382,7 +382,7 @@ def step_3_mda(code):
     if os.path.isdir(pdf_dir):
         import re as _re
         for f in os.listdir(pdf_dir):
-            m = _re.match(r'\d{4,6}_(\d{4})_', f)
+            m = _re.match(r'[A-Za-z0-9]+_(\d{4})_', f)
             if m: latest_pdf_yr = max(latest_pdf_yr or 0, int(m.group(1)))
     stale = (extracted_yr and latest_pdf_yr and int(extracted_yr[0]) < latest_pdf_yr)
     if has_mda and has_mda[0] and len(has_mda[0]) > 200 and not stale:
