@@ -511,15 +511,16 @@ var DATA = {DATA_JS};
 
     html += '<div style="border-top:1px solid #000;padding:4px 12px 2px">';
     html += '<table style="width:100%;border-collapse:collapse;font-size:9px;line-height:1.35">';
-    var tdCol = 'text-align:right;padding:2px 4px;border-right:1px solid #ddd';
-    html += '<tr style="border-bottom:1px solid #000"><td style="width:68px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px">Footnotes</td>';
+    var tdLbl = 'padding:2px 4px;border-right:1px solid #ddd';
+    var tdCol = 'text-align:center;padding:2px 4px;border-right:1px solid #ddd';
+    html += '<tr style="border-bottom:1px solid #000"><td style="width:68px;font-weight:700;padding:2px 4px;white-space:nowrap;font-size:9.5px;' + tdLbl.replace('2px','2px') + '">Footnotes</td>';
     fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + ';font-weight:700">' + y + '</td>'; }});
     html += '</tr>';
 
     // 每项调整独立一行
     allAbbrs.forEach(function(a) {{
       var name = abbrName[a] || a;
-      html += '<tr><td style="padding:1px 4px;font-weight:700;color:#000;font-size:8.5px">' + name + '</td>';
+      html += '<tr><td style="' + tdLbl + ';font-weight:700;color:#000;font-size:8.5px">' + name + '</td>';
       fnYears.forEach(function(y) {{
         var src = fnMap[y].src || '';
         var m = src.match(new RegExp(a + '\\\\s+([+-][\\\\d.]+)'));
@@ -529,7 +530,7 @@ var DATA = {DATA_JS};
     }});
 
     // 合计行放最后
-    html += '<tr style="border-top:1px solid #000"><td style="padding:2px 4px;font-weight:700;font-size:8.5px">调整项合计</td>';
+    html += '<tr style="border-top:1px solid #000"><td style="' + tdLbl + ';font-weight:700;font-size:8.5px">调整项合计</td>';
     fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + ';font-weight:700;font-size:8px">' + (fnMap[y].diff || '\u2014') + '</td>'; }});
     html += '</tr>';
 
