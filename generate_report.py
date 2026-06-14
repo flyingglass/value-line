@@ -514,7 +514,7 @@ var DATA = {DATA_JS};
     var tdLbl = 'padding:2px 4px;border-right:1px solid #ddd';
     var tdCol = 'text-align:center;padding:2px 4px;border-right:1px solid #ddd';
     html += '<tr style="font-weight:700;border-bottom:1px solid #000"><td style="width:68px;padding:2px 4px;white-space:nowrap;' + tdLbl + '">Footnotes</td>';
-    fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + '">' + y + '</td>'; }});
+    fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + ';font-size:9px">' + y + '</td>'; }});
     html += '</tr>';
 
     // 每项调整独立一行
