@@ -19,7 +19,7 @@ Value Line 报告生成流水线 — 强制8步，一步不可少。
 """
 
 import os, sys, json, sqlite3, subprocess, argparse, time, re
-from datetime import date
+from datetime import date, timedelta
 
 # Windows 终端中文乱码修复: 强制 stdout 为 UTF-8
 if sys.platform == 'win32':
@@ -238,19 +238,81 @@ def _set_meta(db_path, key, value):
         conn.commit(); conn.close()
     except: pass
 
+def _need_fresh_financials(db_path):
+    """检查是否有新的财报期。返回: (need_refresh, reason)"""
+    try:
+        conn = sqlite3.connect(db_path)
+        # 取最新的财报报告期
+        rows = conn.execute(
+            "SELECT DISTINCT report_date FROM indicators WHERE report_date LIKE '%-12-31' OR report_date LIKE '%-06-30' OR report_date LIKE '%-03-31' OR report_date LIKE '%-09-30' ORDER BY report_date DESC LIMIT 1"
+        ).fetchall()
+        conn.close()
+        if not rows:
+            return True, "无财报数据"
+        latest = rows[0][0]  # e.g. "2025-12-31"
+        yr, mo = int(latest[:4]), int(latest[5:7])
+        today = date.today()
+        # 年报(12-31): 次年4月底前发布 → 5月后应该有
+        if mo == 12 and today >= date(today.year, 5, 1) and yr < today.year - 1:
+            return True, f"最新年报{yr}年，{today.year-1}年年报应已发布"
+        if mo == 12 and today >= date(today.year, 5, 1) and today.month >= 5:
+            # 检查是否有下一年的Q1
+            pass  # Q1 通常在4月底前发布
+        # Q1(03-31): 4月底前发布
+        if mo == 3 and today >= date(today.year, 5, 1) and yr < today.year:
+            return True, f"最新季报{latest}，{today.year}年Q1应已发布"
+        if mo == 3 and today >= date(today.year, 5, 1):
+            # 检查是否有H1
+            expected_yr = today.year if today.month >= 9 else today.year - 1
+            if yr < expected_yr:
+                return True, f"最新报表{latest}，应有更新的中期/年报"
+        # 中报(06-30): 8月底前发布
+        if mo == 6 and today >= date(today.year, 9, 1) and yr < today.year:
+            return True, f"最新中报{latest}，{today.year}年中报应已发布"
+        # Q3(09-30): 10月底前发布
+        if mo == 9 and today >= date(today.year, 11, 1) and yr < today.year:
+            return True, f"最新季报{latest}，{today.year}年Q3应已发布"
+        # 通用: 如果最新财报年份落后当前年份超过1年
+        if yr < today.year - 1:
+            return True, f"最新报表{latest}落后{today.year-yr}年"
+        return False, ""
+    except Exception:
+        return True, "无法检测"
+
+def _need_fresh_prices(db_path):
+    """检查最新K线是否覆盖到最近交易日。返回: (need_refresh, reason)"""
+    try:
+        conn = sqlite3.connect(db_path)
+        today_str = date.today().strftime("%Y-%m-%d")
+        # 查最近3天是否有数据 (周六日没数据, 周五的数据周一仍有效)
+        for d in range(3):
+            check = (date.today() - timedelta(days=d)).strftime("%Y-%m-%d")
+            row = conn.execute("SELECT date FROM kline WHERE date=? LIMIT 1", (check,)).fetchone()
+            if row:
+                conn.close()
+                return False, ""
+        last = conn.execute("SELECT date FROM kline ORDER BY date DESC LIMIT 1").fetchone()
+        conn.close()
+        return True, f"最新K线到{last[0] if last else '无'}"
+    except Exception:
+        return True, "无法检测"
+
 def step_1_fetch(code, stock, force_fetch=False):
-    """Step 1: 数据拉取 fetcher.py。智能检测: 超过3天自动刷新。"""
+    """Step 1: 数据拉取 fetcher.py。
+    财报数据: 检查是否有新报告期 → 有则拉取
+    股价数据: 检查今日K线是否存在 → 无则拉取
+    --fetch 强制全量重拉。"""
     db = _db_path(code)
     if not force_fetch and os.path.exists(db) and os.path.getsize(db) > 10000:
-        last_fetch = _get_meta(db, "last_fetch_date", "")
-        from datetime import date as _date
-        today = _date.today().isoformat()
-        days_old = (_date.today() - _date.fromisoformat(last_fetch)).days if last_fetch else 999
-        if days_old <= 3:
-            print(f"  Step 1: DB已存在 ({os.path.getsize(db)//1024}KB, {days_old}天前), 跳过拉取")
+        need_prices, price_reason = _need_fresh_prices(db)
+        need_fin, fin_reason = _need_fresh_financials(db)
+        if not need_prices and not need_fin:
+            print(f"  Step 1: DB数据已是最新 (K线到本月, 财报期同步), 跳过拉取")
             _set_active(code); return True
-        else:
-            print(f"  Step 1: DB数据{last_fetch}已过{days_old}天，自动刷新...")
+        reasons = []
+        if need_prices: reasons.append(f"股价需更新: {price_reason}")
+        if need_fin: reasons.append(f"财报需更新: {fin_reason}")
+        print(f"  Step 1: {'; '.join(reasons)}，自动拉取...")
 
     print(f"  Step 1: 拉取数据...")
     _set_active(code)
@@ -259,7 +321,7 @@ def step_1_fetch(code, stock, force_fetch=False):
         raise SystemExit(_red(f"  FAIL: 数据拉取失败\n{out[-500:]}"))
     if not os.path.exists(db) or os.path.getsize(db) < 10000:
         raise SystemExit(_red(f"  FAIL: DB文件过小或不存在"))
-    _set_meta(db, "last_fetch_date", _date.today().isoformat())
+    _set_meta(db, "last_fetch_date", date.today().isoformat())
     print(f"  Step 1: {_green('OK')}")
     return True
 
