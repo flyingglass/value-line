@@ -434,7 +434,7 @@ var DATA = {DATA_JS};
   if(ip.length>0){{var ipTop=ip.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u6838\u5fc3IP\uff1a'+ipTop);}}
   if(ch.length>0){{var chTop=ch.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u6e20\u9053\uff1a'+chTop);}}
   if(rg.length>0){{var rgTop=rg.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u5730\u57df\uff1a'+rgTop);}}
-  if(prod.length>0){{var prodTop=prod.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u4ea7\u54c1\uff1a'+prodTop);}}
+  if(prod.length>0){{var prodTop=prod.map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u4ea7\u54c1\uff1a'+prodTop);}}
   if(ind.length>0){{var indTop=ind.slice(0,5).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u884c\u4e1a\uff1a'+indTop);}}
   if(p2.length) bizP.push(p2.join('\uff1b'));
   var p3=[];var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
