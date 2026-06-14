@@ -425,34 +425,25 @@ var DATA = {DATA_JS};
   // ========================
 
   // Business — VL风格，分段可读 (全宽)
-  var rev=d.revenue_structure||{{}}, ch=(rev.by_channel||[]), ip=(rev.by_ip||[]), rg=(rev.by_region||[]),
-      prod=(rev.by_product||[]), ind=(rev.by_industry||[]);
+  // 内容由 business_commentary.py 全权控制, 模板仅渲染 + 附加折旧/员工/CEO等通用信息
   var desc=(d.analyst&&d.analyst.business)||cs.business_desc||'';
   var bizP=[], bizHtml='';
   if(desc){{bizP.push(desc);}}
-  var p2=[];
-  if(ip.length>0){{var ipTop=ip.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u6838\u5fc3IP\uff1a'+ipTop);}}
-  if(ch.length>0){{var chTop=ch.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u6e20\u9053\uff1a'+chTop);}}
-  if(rg.length>0){{var rgTop=rg.slice(0,3).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u5730\u57df\uff1a'+rgTop);}}
-  if(prod.length>0){{var prodTop=prod.map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u4ea7\u54c1\uff1a'+prodTop);}}
-  if(ind.length>0){{var indTop=ind.slice(0,5).map(function(c){{return c.name+' '+c.pct+'%';}}).join('\u3001');p2.push('\u884c\u4e1a\uff1a'+indTop);}}
-  if(p2.length) bizP.push(p2.join('\uff1b'));
-  var p3=[];var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
-  if(depr&&revs) p3.push('\u6298\u65e7\u7387'+(depr/revs*100).toFixed(1)+'%');
-  if(cs.employee_count) p3.push('\u5458\u5de5'+(cs.employee_count/10000).toFixed(1)+'\u4e07\u4eba\uff08'+latestYr+'\uff09');
+  var p2=[];var depr=ly.DEPRECIATION, revs=ly.OPERATE_INCOME;
+  if(depr&&revs) p2.push('\u6298\u65e7\u7387'+(depr/revs*100).toFixed(1)+'%');
+  if(cs.employee_count) p2.push('\u5458\u5de5'+(cs.employee_count/10000).toFixed(1)+'\u4e07\u4eba\uff08'+latestYr+'\uff09');
+  if(p2.length) bizP.push(p2.join('\u3002'));
+  var p3=[];
+  if(meta.ceo) p3.push('\u9996\u5e2d\u6267\u884c\u5b98\uff1a'+meta.ceo);
+  if(meta.inc) p3.push('\u6ce8\u518c\u5730\uff1a'+meta.inc);
+  if(meta.website) p3.push(meta.website);
   if(p3.length) bizP.push(p3.join('\u3002'));
-  var p4=[];
-  if(meta.ceo) p4.push('\u9996\u5e2d\u6267\u884c\u5b98\uff1a'+meta.ceo);
-  if(meta.inc) p4.push('\u6ce8\u518c\u5730\uff1a'+meta.inc);
-  if(meta.website) p4.push(meta.website);
-  if(p4.length) bizP.push(p4.join('\u3002'));
   bizHtml='<span style="font-weight:700">BUSINESS:</span>';
   bizHtml+='<div style="column-count:2;column-gap:24px;margin-top:4px">';
   var left=[bizP[0]];
   if(bizP[1]) left.push('\u00b7 '+bizP[1]);
   var right=[];
   if(bizP[2]) right.push('\u00b7 '+bizP[2]);
-  if(bizP[3]) right.push('\u00b7 '+bizP[3]);
   bizHtml+='<div>'+left.join('<br>')+'</div>';
   bizHtml+='<div>'+right.join('<br>')+'</div>';
   bizHtml+='</div>';
