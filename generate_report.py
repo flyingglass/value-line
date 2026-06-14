@@ -513,7 +513,7 @@ var DATA = {DATA_JS};
     html += '<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.4">';
     var tdLbl = 'padding:2px 4px;border-right:1px solid #ddd';
     var tdCol = 'text-align:center;padding:2px 4px;border-right:1px solid #ddd';
-    html += '<tr style="font-weight:700;border-bottom:1px solid #000"><td style="width:68px;padding:2px 4px;white-space:nowrap;' + tdLbl + '">Footnotes</td>';
+    html += '<tr style="font-weight:700;border-bottom:1px solid #000"><td style="width:68px;padding:2px 4px;white-space:nowrap;' + tdLbl + '">FOOTNOTES</td>';
     fnYears.forEach(function(y) {{ html += '<td style="' + tdCol + ';font-size:8.5px">' + y + '</td>'; }});
     html += '</tr>';
 
