@@ -14,9 +14,9 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
     payout=ly.get("PAYOUT_RATIO")
     pe,pb,div=spot.get("pe",0)or 0,spot.get("pb",0)or 0,spot.get("div_yield",0)or 0
     med=spot.get("median_pe")
-    ip_data = revenue_structure.get("by_ip", []) if isinstance(revenue_structure, dict) else []
-    ip_str="、".join([f"{r.get('name','')}{r.get('pct','')}%" for r in ip_data[:3]]) if ip_data else ""
-    biz=f"泡泡玛特是中国领先的潮流文化娱乐公司，以IP为核心，覆盖艺术家发掘、IP运营、全球零售及粉丝社区。最新财年营收{_fmt(rev,0)}亿（{_dir(rev,py.get('OPERATE_INCOME'))}{abs(r_chg):.1f}%），净利率{_p(npm)}，ROE {_p(roe)}。"+(f"核心IP：{ip_str}。" if ip_str else "")
+    ch_data = revenue_structure.get("by_channel", []) if isinstance(revenue_structure, dict) else []
+    ch_str="、".join([f"{r.get('name','')}{r.get('pct','')}%" for r in ch_data[:3]]) if ch_data else ""
+    biz=f"泡泡玛特是中国领先的潮流文化娱乐公司，以IP为核心，覆盖艺术家发掘、IP运营、全球零售及粉丝社区。最新财年营收{_fmt(rev,0)}亿（{_dir(rev,py.get('OPERATE_INCOME'))}{abs(r_chg):.1f}%），净利率{_p(npm)}，ROE {_p(roe)}。"+(f"渠道：{ch_str}。" if ch_str else "")
     p1=f"2026年6月 — 泡泡玛特营收{_fmt(rev,0)}亿（{_dir(rev,py.get('OPERATE_INCOME'))}{abs(r_chg):.1f}%），净利润{_fmt(np,0)}亿（{_dir(np,py.get('HOLDER_PROFIT'))}{abs(n_chg):.1f}%）。海外收入占比持续提升，IP矩阵丰富，全球化扩张驱动增长。"
     op_eps=round(eps*.90,2) if eps else None
     nonop=round(eps-op_eps,2) if eps and op_eps else None
