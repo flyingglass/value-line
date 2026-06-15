@@ -1,5 +1,12 @@
 # 操作日志
 
+## [2026-06-15] feat | 心动公司 (02400) + business_commentary.py 定制模式
+
+新增标的 + 确立 commentary 定制最佳实践：
+- **不用 config.py analyst**（PDF 粗提取质量差），用 `scripts/<code>/business_commentary.py`
+- 参照 `scripts/09992/business_commentary.py`：`build()` 函数返回 `{"business": ..., "commentary": [p1..p5]}`
+- p2 必须含完整现金流分析：每股经营现金流 → 四大去向（资本支出/营运资金/分红/净留存）
+
 ## [2026-06-15] fix | 美的集团 HTML 本地丢失 — 中文文件名 + index.html 同步
 
 **现象**：`report/美的集团.html` git 中存在但本地磁盘被删除，index.html 看似正常但不含新标的。
