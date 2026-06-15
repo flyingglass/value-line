@@ -1,5 +1,15 @@
 # 操作日志
 
+## [2026-06-15] feat | 美的集团 (000333) 新增标的 + build 流水线双修复
+
+**新增标的**：美的集团 CF=15.0x, A股, 家电行业, 15年数据, 72/72 ALL PASS。
+- `config.py`：org_id=`9900005965`（通过 `http://www.cninfo.com.cn/new/data/szse_stock.json` API 查询获得），代码 `gssz` 前缀不适用所有 SZSE 股票
+- `scripts/000333/insert_revenue.py`：营收结构（暖通空调/消费电器/机器人）
+
+**流水线修复**：
+1. `build.py` `_need_fresh_prices`：回溯 `range(3)`→`range(5)`，覆盖长周末（周一查不到周五K线）
+2. `build.py` + `fetcher.py`：子进程检测 `"拉取完成"`→`"FETCH_OK"`（ASCII 标记），避免编码乱码导致误判失败
+
 ## [2026-06-14] refactor | 报告文件名统一中文 + 删除英文旧文件
 
 `generate_report.py` / `generate_index.py` / `build.py` `_report_path`：文件名从 `name_en` 改为 `name`（中文），如 `泡泡玛特.html`。删除全部 40 个英文旧报告，index 同步刷新。
