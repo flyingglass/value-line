@@ -801,6 +801,7 @@ def fetch(code=None):
         store.set_meta("market", market)
 
         print(f"\n{'='*50}")
+        print("FETCH_OK")
         print(f"拉取完成! 数据已存入 {config.db_path(code)}")
         print(f"{'='*50}")
     finally:

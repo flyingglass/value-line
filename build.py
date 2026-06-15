@@ -292,8 +292,8 @@ def _need_fresh_prices(db_path):
     try:
         conn = sqlite3.connect(db_path)
         today_str = date.today().strftime("%Y-%m-%d")
-        # 查最近3天是否有数据 (周六日没数据, 周五的数据周一仍有效)
-        for d in range(3):
+        # 查最近5天是否有数据 (覆盖长周末)
+        for d in range(5):
             check = (date.today() - timedelta(days=d)).strftime("%Y-%m-%d")
             row = conn.execute("SELECT date FROM kline WHERE date=? LIMIT 1", (check,)).fetchone()
             if row:
@@ -325,7 +325,7 @@ def step_1_fetch(code, stock, force_fetch=False):
     print(f"  Step 1: 拉取数据...")
     _set_active(code)
     ok, out = _run(f'"{PYTHON}" fetcher.py', timeout=600)
-    if not ok or "拉取完成" not in out:
+    if not ok or "FETCH_OK" not in out:
         raise SystemExit(_red(f"  FAIL: 数据拉取失败\n{out[-500:]}"))
     if not os.path.exists(db) or os.path.getsize(db) < 10000:
         raise SystemExit(_red(f"  FAIL: DB文件过小或不存在"))
