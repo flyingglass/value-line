@@ -2,8 +2,8 @@
 module: build.py
 category: 流水线编排
 depends_on: [config.py, fetcher.py, engine.py, pdf_downloader.py, extract_mda.py, generate_report.py]
-lines: 832
-updated: 2026-06-14
+lines: 944
+updated: 2026-06-15
 ---
 
 # build.py — 主入口，8 步流水线
@@ -32,14 +32,14 @@ updated: 2026-06-14
 | `_write_valuation_meta()` | 估值参数写入 DB meta 表 |
 | `_read_valuation_meta()` | 从 DB 读取已有估值参数 |
 | `_get_hist_valuation_ref()` | 从 DB 计算历史 PE/PB 均值 |
-| `_need_fresh_prices()` | 查询最近 3 天 K 线，缺则需拉取 |
+| `_need_fresh_prices()` | 查询最近 5 天 K 线，缺则需拉取 |
 | `_need_fresh_financials()` | 查询最新 report_date，推算应发布的新报告期 |
 
 ## 双轨智能新鲜度
 
 | 数据类型 | 检测方式 | 示例 |
 |---------|---------|------|
-| 股价 (daily) | 查最近 3 自然日 K 线 | 周五→周一间隔有效 |
+| 股价 (daily) | 查最近 5 自然日 K 线 | 周五→周一间隔有效 |
 | 财报 (periodic) | Q1(4月)→H1(8月)→Q3(10月)→FY(次年4月) | 6月时 DB 只有 12月 → 触发拉取 |
 | PDF 年报 (annual) | 比较最新 PDF 年份 vs 当前年 | 6月后缺去年 PDF → 自动下载 |
 | MD&A | 比较 mda_extracted_year vs PDF 年份 | PDF 更新 → 强制重提 |
@@ -67,6 +67,8 @@ CLI --cf/--pb  >  DB meta 已确认值  >  用户交互输入
 ## `_run` 子进程执行
 
 所有步骤通过 `_run(cmd, timeout)` 子进程运行。**2026-06-14 改流式**：打印"运行中..."提示防卡死。
+
+**2026-06-15 修复**：子进程成功判断从 `"拉取完成"` 改为 `"FETCH_OK"`（ASCII 标记），避免 Windows 子进程编码乱码导致误判失败。
 
 | 步骤 | timeout | 原因 |
 |------|---------|------|

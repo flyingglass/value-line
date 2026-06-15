@@ -2,7 +2,7 @@
 module: fetcher.py
 category: 数据获取
 depends_on: [config.py, tdx_client.py]
-updated: 2026-06-13
+updated: 2026-06-15
 ---
 
 # fetcher.py — 数据获取
@@ -42,6 +42,10 @@ updated: 2026-06-13
 [[config.py]] — ACTIVE_STOCK、STOCKS
 [[tdx_client.py]] — TDX HTTP API 封装
 [[build.py]] — Step 1 调用
+
+## 已知问题
+
+**2026-06-15**：末尾打印 `FETCH_OK`（ASCII 标记），因 Windows 子进程输出中文 `"拉取完成"` 可能出现编码乱码，导致 build.py 的 `_run()` 误判为失败。
 
 ## 相关概念
 
