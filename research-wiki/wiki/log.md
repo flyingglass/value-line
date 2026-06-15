@@ -1,5 +1,15 @@
 # 操作日志
 
+## [2026-06-15] fix | 美的集团 HTML 本地丢失 — 中文文件名 + index.html 同步
+
+**现象**：`report/美的集团.html` git 中存在但本地磁盘被删除，index.html 看似正常但不含新标的。
+
+**根因**：中文文件名在某些操作（如 IDE 重载 / git 操作）下本地文件消失，但 git 历史保留。非代码问题，属环境偶发。
+
+**修复**：`build.py 000333 --cf 15.0` 重新生成 + `generate_index.py` 刷新 index，确认 index.html 卡片链接正确（`美的集团.html` + `reading/000333.html`）。
+
+**教训**：新增标的后务必 `generate_index.py` 重建索引，且验证 report/ 下文件实际存在。
+
 ## [2026-06-15] feat | 美的集团 (000333) 新增标的 + build 流水线双修复
 
 **新增标的**：美的集团 CF=15.0x, A股, 家电行业, 15年数据, 72/72 ALL PASS。
