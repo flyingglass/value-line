@@ -21,7 +21,7 @@ from typing import Any
 
 def _load_dotenv():
     """从项目根目录 .env 加载环境变量（不依赖 python-dotenv）"""
-    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+    env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
     if not os.path.exists(env_path):
         return
     with open(env_path, "r", encoding="utf-8") as f:

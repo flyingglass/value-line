@@ -5,7 +5,7 @@ generate_report.py — 从 report_data.json 生成自包含 HTML (Value Line 标
 import json, os, datetime, sys
 if sys.platform == 'win32': sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
-BASE = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root
 
 with open(os.path.join(BASE, "report_data.json"), encoding="utf-8") as f:
     DATA = json.load(f)

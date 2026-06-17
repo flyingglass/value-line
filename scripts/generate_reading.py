@@ -19,7 +19,7 @@ generate_reading.py — 从 report_data.json 生成 VL 标准阅读报告 (Markd
 """
 import json, os, sys
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root
 READING_DIR = os.path.join(BASE_DIR, "report", "reading")
 os.makedirs(READING_DIR, exist_ok=True)
 

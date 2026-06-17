@@ -4,7 +4,7 @@ Value Line 中文版 — 标的管理配置
 """
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root (scripts/ → ../)
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
 # 确保数据目录存在

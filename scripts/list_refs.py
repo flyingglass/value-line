@@ -7,7 +7,7 @@ import os, sys, sqlite3
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import config
 
-BASE = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root
 
 
 def db_path(code):

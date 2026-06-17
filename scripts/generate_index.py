@@ -6,8 +6,8 @@ generate_index.py — 从 config.py 自动生成 report/index.html
 import os, sys, json
 from datetime import datetime
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, BASE_DIR)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root
+sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 
 from config import STOCKS
 

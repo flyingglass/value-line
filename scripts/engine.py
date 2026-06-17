@@ -416,7 +416,7 @@ def _resolve_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
     """
     code = reader.code
     try:
-        script_path = os.path.join(os.path.dirname(__file__), "scripts", code, "metric_adjustment.py")
+        script_path = os.path.join(os.path.dirname(__file__), code, "metric_adjustment.py")
         if os.path.exists(script_path):
             import importlib.util, importlib.machinery as _im
             loader = _im.SourceFileLoader(f"ma_{code}", script_path)
@@ -443,7 +443,7 @@ def _resolve_dividends(reader):
     """
     code = reader.code
     try:
-        script_path = os.path.join(os.path.dirname(__file__), "scripts", code, "metric_adjustment.py")
+        script_path = os.path.join(os.path.dirname(__file__), code, "metric_adjustment.py")
         if os.path.exists(script_path):
             import importlib.util, importlib.machinery as _im2
             loader = _im2.SourceFileLoader(f"md_{code}", script_path)
@@ -1515,7 +1515,7 @@ def _parse_mda_text(mda_text):
 def _load_per_stock_script(code):
     """尝试加载 scripts/<code>/business_commentary.py, 返回 module 或 None"""
     try:
-        script_path = os.path.join(os.path.dirname(__file__), "scripts", code, "business_commentary.py")
+        script_path = os.path.join(os.path.dirname(__file__), code, "business_commentary.py")
         if not os.path.exists(script_path):
             return None
         import importlib.util, importlib.machinery as _im3

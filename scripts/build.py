@@ -4,11 +4,11 @@
 Value Line 报告生成流水线 — 强制8步，一步不可少。
 
 用法:
-    python build.py 09992 --cf 15.0           # CF估值 (消费/科技/成长股)
-    python build.py 09992                      # 省略 --cf: 从DB读或交互输入
-    python build.py 01114 --pb 0.8            # PB估值 (银行/保险/资产型)
-    python build.py 00700 --method cf --cf 10.0
-    python build.py 02328 --method pb --pb 1.0
+    python scripts/build.py 09992 --cf 15.0           # CF估值 (消费/科技/成长股)
+    python scripts/build.py 09992                      # 省略 --cf: 从DB读或交互输入
+    python scripts/build.py 01114 --pb 0.8            # PB估值 (银行/保险/资产型)
+    python scripts/build.py 00700 --method cf --cf 10.0
+    python scripts/build.py 02328 --method pb --pb 1.0
 
 估值方法:
     cf: CF倍数 × 每股现金流 (适合消费/科技/成长股)
@@ -26,8 +26,8 @@ if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 from pathlib import Path
 
-BASE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, BASE)
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # project root
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))       # scripts/ for imports
 import config
 
 PYTHON = os.environ.get("PYTHON_BIN", os.path.join(
@@ -74,7 +74,7 @@ def _run(cmd, timeout=120):
 
 def _set_active(code):
     """Write ACTIVE_STOCK to config.py."""
-    path = os.path.join(BASE, "config.py")
+    path = os.path.join(BASE, "scripts", "config.py")
     with open(path, "r", encoding="utf-8") as f:
         c = f.read()
     c = re.sub(r'ACTIVE_STOCK\s*=\s*"[^"]*"', f'ACTIVE_STOCK = "{code}"', c)
@@ -324,7 +324,7 @@ def step_1_fetch(code, stock, force_fetch=False):
 
     print(f"  Step 1: 拉取数据...")
     _set_active(code)
-    ok, out = _run(f'"{PYTHON}" fetcher.py', timeout=600)
+    ok, out = _run(f'"{PYTHON}" scripts/fetcher.py', timeout=600)
     if not ok or "FETCH_OK" not in out:
         raise SystemExit(_red(f"  FAIL: 数据拉取失败\n{out[-500:]}"))
     if not os.path.exists(db) or os.path.getsize(db) < 10000:
@@ -355,7 +355,7 @@ def step_2_pdf(code):
 
     print(f"  Step 2: 下载年报PDF...")
     _set_active(code)
-    ok, out = _run(f'"{PYTHON}" pdf_downloader.py', timeout=600)
+    ok, out = _run(f'"{PYTHON}" scripts/pdf_downloader.py', timeout=600)
     if not ok:
         raise SystemExit(_red(f"  FAIL: PDF下载失败\n{out[-500:]}"))
     pdf_dir = _pdf_dir(code)
@@ -399,7 +399,7 @@ def step_3_mda(code):
 
     print(f"  Step 3: 提取MD&A...")
     _set_active(code)
-    ok, out = _run(f'"{PYTHON}" extract_mda.py', timeout=120)
+    ok, out = _run(f'"{PYTHON}" scripts/extract_mda.py', timeout=120)
     if not ok:
         raise SystemExit(_red(f"  FAIL: MD&A提取失败\n{out[-500:]}"))
     # Verify
@@ -457,7 +457,7 @@ def step_6_engine(code):
     """Step 6: engine.py 计算。"""
     print(f"  Step 6: 计算指标...")
     _set_active(code)
-    ok, out = _run(f'"{PYTHON}" engine.py', timeout=120)
+    ok, out = _run(f'"{PYTHON}" scripts/engine.py', timeout=120)
     if not ok:
         raise SystemExit(_red(f"  FAIL: engine计算失败\n{out[-500:]}"))
     # Check report_data.json
@@ -475,7 +475,7 @@ def step_7_generate(code):
     """Step 7: generate_report.py HTML生成。"""
     print(f"  Step 7: 生成HTML...")
     _set_active(code)
-    ok, out = _run(f'"{PYTHON}" generate_report.py', timeout=60)
+    ok, out = _run(f'"{PYTHON}" scripts/generate_report.py', timeout=60)
     if not ok:
         raise SystemExit(_red(f"  FAIL: HTML生成失败\n{out[-500:]}"))
     rp = _report_path(code)
@@ -876,11 +876,11 @@ def build(code, cf_mult=15.0, pb_mult=1.0, val_method="cf", force_fetch=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Value Line 报告生成流水线",
-        epilog="示例: python build.py 09992                    (CF默认15.0)\n"
-              "      python build.py 09992 --cf 18.0           (指定CF倍数)\n"
-              "      python build.py 00388 --pb 0.8            (PB估值模式)\n"
-              "      python build.py 02328 --method pb --pb 1.0 (显式PB)\n"
-              "      python build.py 00700 --method cf --cf 10.0(显式CF)"
+        epilog="示例: python scripts/build.py 09992                    (CF默认15.0)\n"
+              "      python scripts/build.py 09992 --cf 18.0           (指定CF倍数)\n"
+              "      python scripts/build.py 00388 --pb 0.8            (PB估值模式)\n"
+              "      python scripts/build.py 02328 --method pb --pb 1.0 (显式PB)\n"
+              "      python scripts/build.py 00700 --method cf --cf 10.0(显式CF)"
     )
     parser.add_argument("codes", nargs="+", help="股票代码, 如 09992 00700")
     parser.add_argument("--cf", type=float, default=None,
