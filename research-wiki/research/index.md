@@ -1,0 +1,36 @@
+# 投研索引
+
+> 最后更新：2026-06-17
+
+## 按标的
+
+（随 ingest/query 循环逐步积累）
+
+<!-- 格式: [[<code>/overview]] — <name> · <industry> · <1-2句核心逻辑> -->
+
+## 按主题
+
+（跨标的主题研究，存放在 themes/ 目录）
+
+<!-- 格式: [[themes/<topic>]] -->
+
+## 共享数据
+
+投研过程中可随时查询以下数据资产：
+
+| 资产 | 位置 | 内容 |
+|------|------|------|
+| 财务数据库 | `data/<code>.db` | 三大报表、分析指标、分红、行情、营收拆分 (9 表) |
+| 年报 PDF | `data/pdfs/<code>/` | 港交所/A股年报/中报/季报原始文件 |
+| 汇率 | `data/fx_rates.db` | HKD/CNY 每日汇率 |
+| 标的配置 | `config.py` > STOCKS | 42 只标的的基本信息 |
+
+## 工作流
+
+遵循 ingest → query → wiki 循环：
+
+1. **Ingest**：将原始资料全文存入 `raw/research/<code>/`，再读取后创建 wiki 页面
+2. **Query**：从 wiki 页面提取观点，结合 DB/PDF 数据验证或深化
+3. **Wiki**：将 query 结果写回 wiki 页面（thesis/moat/risks 等），更新 index.md + log.md
+
+详细规范见 [[Wiki操作手册]]（`wiki/concepts/Wiki操作手册.md`）。
