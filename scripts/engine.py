@@ -1613,6 +1613,13 @@ def _build_business_from_data(stock, metrics, rev_struct, years):
     return "".join(lines)
 
 
+def _safe_float(v, default=0.0):
+    try:
+        return float(v)
+    except (ValueError, TypeError):
+        return default
+
+
 def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
     """VL 风格 4 段 AI Commentary: 业绩快照 + 每股资金流向 + 业务质地 + 转折点检测"""
     name = stock.get("name", "该公司")
@@ -1643,9 +1650,9 @@ def _build_commentary_from_data(stock, metrics, rev_struct, years, cagr, spot):
     gm, gm_p = ly.get("GROSS_MARGIN"), py.get("GROSS_MARGIN") if py else None
     roe, roe_p = ly.get("ROE"), py.get("ROE") if py else None
     npm = ly.get("NET_PROFIT_RATIO")
-    pe = spot.get("pe", 0)
-    pb = spot.get("pb", 0)
-    div_y = spot.get("div_yield", 0)
+    pe = _safe_float(spot.get("pe", 0))
+    pb = _safe_float(spot.get("pb", 0))
+    div_y = _safe_float(spot.get("div_yield", 0))
 
     # PE 中位数
     pe_vals = [v for yr_k in years for v in [metrics.get(yr_k, {}).get("PE_AVG")] if v]
