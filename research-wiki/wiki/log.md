@@ -1,5 +1,37 @@
 # 操作日志
 
+## [2026-06-17] refactor | 项目结构重构：全部 .py 移入 scripts/ + 投研 wiki 框架
+
+### 改动
+
+**根目录清理**：11 个 .py 文件全部移入 `scripts/`，根目录不再有源码。
+
+**路径系统修复**：
+- `config.py` BASE_DIR 上移一层 → 项目根
+- `build.py` BASE 上移一层 + 子进程调用加 `scripts/` 前缀 + `sys.path` 双轨
+- `engine.py` 3 处 `scripts/<code>/` 引用去前缀（因自身已在 scripts/ 内）
+- `extract_mda.py` `sys.path(".")` → 绝对路径
+- `generate_report/generate_reading/generate_index/list_refs` BASE_DIR 上移一层
+- `tdx_client.py` `.env` 路径上移一层
+
+**投研 wiki 框架初始化**：
+- `research-wiki/research/` 命名空间（index.md / log.md）
+- `research-wiki/raw/research/` 投研原始资料归档
+- `CODEBUDDY.md` 升级为投研系统宪法，VL 明确为子功能
+
+**修复**：`engine.py` `_safe_float()` 容错 spot 数据中 pe/pb/div_y 可能为字符串 "-"
+
+**归档**：`v1.0.0` tag 打在 `72e46b7`（纯净 VL 系统）
+
+### 验证
+
+`python scripts/build.py 09992 --cf 15.0` → 8步全通过，HTML 正常生成 (88KB)。
+
+### 触及 Wiki 页面
+- [[项目目录结构]] — 新建概念页
+- [[index.md]] — 新增条目
+- raw/2026-06-17-scripts-refactor.md — 原始记录
+
 ## [2026-06-15] feat | 心动公司 (02400) + business_commentary.py 定制模式
 
 新增标的 + 确立 commentary 定制最佳实践：
