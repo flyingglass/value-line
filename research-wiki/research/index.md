@@ -4,9 +4,7 @@
 
 ## 按标的
 
-（随 ingest/query 循环逐步积累）
-
-<!-- 格式: [[<code>/overview]] — <name> · <industry> · <1-2句核心逻辑> -->
+- [[09992/overview]] — 泡泡玛特 · Consumer · 中国线上渠道拆分(21-25) + 德银沽售分析
 
 ## 按主题
 

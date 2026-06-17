@@ -1,15 +1,22 @@
 # 投研操作日志
 
+## [2026-06-17] ingest+query | 泡泡玛特 09992 首次投研
+
+### Ingest
+- 从 2021-2025 年报 PDF 提取中国区线上子渠道营收拆分
+- 存入 `data/09992.db` → `revenue_structure` 表，`dim_type = 'china_online_channel'`，共 20 条
+- 原始记录: `raw/research/09992/2026-06-17-线上渠道拆分.md`
+
+### 数据要点
+- 2021-2023 调整期（18.6→15.2亿），2024 拐点，2025 爆发（85.2亿）
+- 抽盒机占比 52%→40%，第三方公域流量反超
+- ⚠️ 魔镜洞察等第三方数据源无法追踪抽盒机（微信小程序），缺失 ~40% 份额
+
+### Query
+- 德银沽售报告评价：魔镜洞察数据有 40% 盲区，单月外推过度，140 HKD 定价隐含衰退而非放缓
+
+### Wiki 产出
+- `09992/overview.md` — 投研主页（核心数据 + 渠道拆分 + 待深入清单）
+- `index.md` + `log.md` — 更新
+
 ## [2026-06-17] init | 投研 wiki 初始化
-
-创建 research-wiki/research/ 目录结构：
-- `index.md` — 投研索引
-- `log.md` — 本日志
-- `<code>/` — 按标的的投研页面（随 ingest/query 逐步创建）
-- `themes/` — 跨标的主题研究
-- `raw/research/<code>/` — 投研原始资料归档
-
-设计原则：
-- 与 VL wiki (`wiki/`) 双轨并行，通过交叉链接互通
-- 共享 `data/<code>.db` 和 `data/pdfs/<code>/` 数据层
-- VL 流水线 (build.py/engine.py/fetcher.py) 不受影响
