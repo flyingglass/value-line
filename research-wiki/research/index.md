@@ -4,7 +4,7 @@
 
 ## 按标的
 
-- [[09992/overview]] — 泡泡玛特 · Consumer · 中国线上渠道拆分(21-25) + 德银沽售分析
+- [[09992/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度, 中国线上子渠道 21-25)
 
 ## 按主题
 
