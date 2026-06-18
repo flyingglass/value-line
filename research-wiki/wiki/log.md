@@ -1,5 +1,18 @@
 # 操作日志
 
+## [2026-06-19] refactor | 投资框架指导手册移至 research/ 命名空间
+
+### 改动
+- `wiki/投资框架-复杂经济学指导手册.md` → `research/投资框架-复杂经济学指导手册.md`
+- `wiki/index.md`：更新链接指向新位置
+- `research/index.md`：新增投资框架条目
+
+### 触及 Wiki 页面
+- [[../research/投资框架-复杂经济学指导手册]]
+- [[index.md]] (wiki + research)
+
+---
+
 ## [2026-06-18] ingest | 投资框架知识体系导入
 
 ### 摄入内容
