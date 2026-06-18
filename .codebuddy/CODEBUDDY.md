@@ -38,5 +38,14 @@ research-wiki/
 
 > 2026-06-13：`tdx_client.py` 泄露 Bearer Token，已修复。不可再犯。
 
+## 🔴 投研数据（不可违背）
+**严禁编造任何数据。** 所有投研输出中的数字必须准确，且注明出处。
+- 数据来源优先级：年报 PDF 原文 > `data/<code>.db` > `report_data.json` > IMA 知识库原始资料
+- 无出处 = 不可用。标注"未知/待查"优于凭空估算
+- 市场份额、行业规模、单价区间等不可从 DB 直接得出的数字，必须引用外部原文
+- 引用格式：`（来源：<文件名/API/IMA kb 名称>）`
+
+> 2026-06-19：宇通客车分析中编造市场保有量/份额/单价数据，已纠正。不可再犯。
+
 ## 环境
 Python `.venv\Scripts\python.exe`，依赖 `requirements.txt`，凭证 `.env`（.gitignore）。
