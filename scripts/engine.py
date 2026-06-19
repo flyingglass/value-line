@@ -2602,7 +2602,7 @@ def build_report(code=None):
         "data_source_note": data_source_note,
     }
 
-    out_dir = os.path.dirname(os.path.abspath(__file__))
+    out_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root
     out_path = os.path.join(out_dir, "report_data.json")
     out_tmp = out_path + ".tmp"
     try:

@@ -49,19 +49,35 @@ def _red(s):   return f"\033[31m{s}\033[0m"
 def _yellow(s): return f"\033[33m{s}\033[0m"
 def _bold(s): return f"\033[1m{s}\033[0m"
 
+def _safe_input(prompt, default):
+    """交互输入估值倍数。非TTY环境自动使用默认值，避免卡死。"""
+    if not sys.stdin.isatty():
+        print(f"  [AUTO] 非交互环境，自动使用默认值: {default}")
+        return float(default)
+    try:
+        return float(input(prompt).strip())
+    except (ValueError, EOFError, KeyboardInterrupt):
+        raise
+
 def _run(cmd, timeout=120):
-    """Run a shell command, return (ok, output). 流式输出，避免长时间无进度反馈。"""
+    """Run a shell command, return (ok, output). 使用 Popen+communicate 避免 PIPE 死锁。"""
     import io
     try:
         print(f"      运行中 ...", end="", flush=True)
-        r = subprocess.run(cmd, shell=True, capture_output=True,
-                           text=True, timeout=timeout, cwd=BASE, env=ENV,
-                           encoding='utf-8', errors='replace')
-        out = (r.stdout or "") + (r.stderr or "")
-        out = out.strip()
-        # 截断保留尾部的关键信息（如进度条后的"拉取完成"）
+        p = subprocess.Popen(cmd, shell=True,
+                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                             text=True, cwd=BASE, env=ENV,
+                             encoding='utf-8', errors='replace')
+        try:
+            out, _ = p.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            p.kill()
+            out, _ = p.communicate()
+            print(f"\r{'':20}", end="")
+            return False, "TIMEOUT"
+        out = (out or "").strip()
         tail = out[-4000:] if len(out) > 4000 else out
-        ok = r.returncode == 0
+        ok = p.returncode == 0
         if ok:
             print(f"\r{'':20}", end="")  # 清除"运行中..."
         return ok, tail
@@ -714,8 +730,7 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
                 print(f"  [DB] 复用已确认估值: PB={pb_multiplier}x")
             else:
                 try:
-                    inp = input(f"  请输入 {name} 的PB倍数 (如 0.8): ").strip()
-                    pb_multiplier = float(inp)
+                    pb_multiplier = _safe_input(f"  请输入 {name} 的PB倍数 (如 0.8): ", 1.0)
                 except (ValueError, EOFError, KeyboardInterrupt):
                     print(f"\n{_red('='*60)}")
                     print(_red(f"  REFUSED: 未提供有效PB倍数"))
@@ -733,8 +748,7 @@ def confirm_and_build(code, cf_multiplier=None, pb_multiplier=None,
                 print(f"  [DB] 复用已确认估值: CF={cf_multiplier}x")
             else:
                 try:
-                    inp = input(f"  请输入 {name} 的CF倍数 (如 15.0): ").strip()
-                    cf_multiplier = float(inp)
+                    cf_multiplier = _safe_input(f"  请输入 {name} 的CF倍数 (如 15.0): ", 15.0)
                 except (ValueError, EOFError, KeyboardInterrupt):
                     print(f"\n{_red('='*60)}")
                     print(_red(f"  REFUSED: 未提供有效CF倍数"))

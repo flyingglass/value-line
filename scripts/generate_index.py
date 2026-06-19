@@ -61,13 +61,15 @@ INDUSTRY_CN = {
 MARKET_LABEL = {"hk": "港股", "cn": "A股", "us": "美股"}
 MARKET_CLASS = {"hk": "hk", "cn": "cn", "us": "us"}
 
-# 行业展示顺序
+# 行业展示顺序 (含中文行业, 新增行业追加于此)
 INDUSTRY_ORDER = [
     "Consumer",
     "Technology",
     "Semiconductor",
     "Energy",
     "Metals & Mining",
+    "面板",       # 京东方 / TCL科技
+    "光伏",       # TCL中环
     "Media", "Packaging",
     "Automotive",
     "Healthcare", "Pharmaceuticals",
@@ -76,6 +78,7 @@ INDUSTRY_ORDER = [
     "Utilities",
     "Insurance",
     "Financial Services",
+    "半导体",     # 台积电
 ]
 
 
