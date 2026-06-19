@@ -1,10 +1,11 @@
 # 投研索引
 
-> 最后更新：2026-06-17
+> 最后更新：2026-06-19
 
 ## 按标的
 
 - [[09992/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度, 中国线上子渠道 21-25)
+- [[002129/overview]] — TCL中环 · 光伏 · 数据目录 (revenue_structure 表, by_product 5 年产品拆分, PB=1.0x)
 
 ## 按主题
 
