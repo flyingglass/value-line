@@ -749,6 +749,24 @@ STOCKS = {
             ],
         },
     },
+    "TSM": {
+        "name": "台积电",
+        "name_en": "TSMC",
+        "market": "us",
+        "exchange": "NYSE",
+        "currency": "USD",
+        "ceo": "C.C. Wei (魏哲家)",
+        "inc": "台湾新竹",
+        "website": "www.tsmc.com",
+        "cik": "0001046179",
+        "pfx": "us",
+        "shares": 5185652400,
+        "shares_str": "5,185,652,400",
+        "industry": "半导体",
+        "fiscal_yr_end": "12-31",
+        "valuation_method": "cf",
+        "business_desc": "台积电（TSMC）是全球最大的半导体晶圆代工厂，全球市占率超60%。核心业务为先进制程晶圆代工（3nm/5nm/7nm等），客户涵盖苹果、英伟达、AMD、高通等。先进封装（CoWoS、SoIC）深度绑定AI算力产业链。2025年营收约900亿美元，毛利率55%+，净利率40%+，半导体行业最宽护城河之一。",
+    },
 }
 
 # ============================================================

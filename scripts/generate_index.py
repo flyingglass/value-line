@@ -11,6 +11,32 @@ sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 
 from config import STOCKS
 
+# ============================================================
+# 精选标的 (在首页顶部展示，不改变原行业分组)
+# ============================================================
+FEATURED_CODES = [
+    "09988",  # 阿里巴巴
+    "000786", # 北新建材
+    "002027", # 分众传媒
+    "03606",  # 福耀玻璃
+    "600519", # 贵州茅台
+    "000333", # 美的集团
+    "300750", # 宁德时代
+    "09633",  # 农夫山泉
+    "09992",  # 泡泡玛特
+    "000933", # 神火股份
+    "06699",  # 时代天使
+    "00700",  # 腾讯控股
+    "01698",  # 腾讯音乐
+    "02400",  # 心动公司
+    "000807", # 云铝股份
+    "00883",  # 中国海洋石油
+    "00696",  # 中国民航信息网络
+    "01088",  # 中国神华
+    "02899",  # 紫金矿业
+    "002129", # TCL中环
+]
+
 # 行业中文名
 INDUSTRY_CN = {
     "Consumer": "消费",
@@ -77,11 +103,49 @@ def group_by_industry():
     return ordered
 
 
+def _card_html(code, stock):
+    """生成单张卡片 HTML"""
+    name = stock["name"]
+    name_en = stock.get("name_en", "")
+    market = stock.get("market", "hk")
+    mkt_label = MARKET_LABEL.get(market, market)
+    mkt_class = MARKET_CLASS.get(market, "hk")
+    rpt_file = f"{name}.html"
+
+    return f'''      <div class="card">
+        <div class="card-title">{name_en} · {name}</div>
+        <div class="card-meta">
+          <span class="code">{code}</span>
+          <span class="badge badge-{mkt_class}">{mkt_label}</span>
+        </div>
+        <div class="card-links">
+          <a href="{rpt_file}" class="pill pill-blue">价值线</a>
+          <a href="reading/{code}.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>'''
+
+
 def build_index_html():
     """生成 index.html"""
     groups = group_by_industry()
     total = sum(len(v) for v in groups.values())
+    featured_count = len([c for c in FEATURED_CODES if c in STOCKS])
 
+    # --- 精选区域（按行业分组，与全部同排版） ---
+    featured_set = set(FEATURED_CODES)
+    featured_html = ""
+    for ind, items in groups.items():
+        featured_items = [(c, s) for c, s in items if c in featured_set]
+        if not featured_items:
+            continue
+        ind_cn = INDUSTRY_CN.get(ind, ind)
+        featured_html += f'    <h3 class="section-title">🎯 {ind_cn}</h3>\n'
+        featured_html += '    <div class="grid">\n'
+        for code, stock in featured_items:
+            featured_html += _card_html(code, stock)
+        featured_html += '    </div>\n'
+
+    # --- 行业分组（全部） ---
     cards_html = ""
     for ind, items in groups.items():
         ind_cn = INDUSTRY_CN.get(ind, ind)
@@ -89,26 +153,7 @@ def build_index_html():
         cards_html += '    <div class="grid">\n'
 
         for code, stock in items:
-            name = stock["name"]
-            name_en = stock.get("name_en", "")
-            market = stock.get("market", "hk")
-            mkt_label = MARKET_LABEL.get(market, market)
-            mkt_class = MARKET_CLASS.get(market, "hk")
-
-            # report 文件名: 使用中文名称
-            rpt_file = f"{name}.html"
-
-            cards_html += '      <div class="card">\n'
-            cards_html += f'        <div class="card-title">{name_en} · {name}</div>\n'
-            cards_html += '        <div class="card-meta">\n'
-            cards_html += f'          <span class="code">{code}</span>\n'
-            cards_html += f'          <span class="badge badge-{mkt_class}">{mkt_label}</span>\n'
-            cards_html += '        </div>\n'
-            cards_html += '        <div class="card-links">\n'
-            cards_html += f'          <a href="{rpt_file}" class="pill pill-blue">价值线</a>\n'
-            cards_html += f'          <a href="reading/{code}.html" class="pill pill-green">阅读报告</a>\n'
-            cards_html += '        </div>\n'
-            cards_html += '      </div>\n'
+            cards_html += _card_html(code, stock)
 
         cards_html += '    </div>\n'
 
@@ -151,9 +196,39 @@ def build_index_html():
   .stats {{ display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 13px; color: var(--text-muted); }}
   .stats strong {{ color: var(--text); }}
 
+  /* ===== 标签栏 ===== */
+  .tabs {{
+    display: flex; justify-content: center; gap: 0; margin: 0 0 32px;
+    border-bottom: 2px solid var(--border);
+  }}
+  .tab-btn {{
+    padding: 8px 28px; font-size: 14px; font-weight: 500;
+    border: none; background: none; color: var(--text-muted);
+    cursor: pointer; transition: all 0.2s;
+    border-bottom: 2px solid transparent; margin-bottom: -2px;
+    position: relative;
+  }}
+  .tab-btn:hover {{ color: var(--text); }}
+  .tab-btn.active {{
+    color: var(--blue); font-weight: 600;
+    border-bottom-color: var(--blue);
+  }}
+  .tab-btn .count {{
+    font-size: 11px; color: var(--text-muted); margin-left: 4px;
+  }}
+  .tab-btn.active .count {{ color: var(--blue); }}
+  .tab-content {{ display: none; }}
+  .tab-content.active {{ display: block; }}
+
   .section-title {{
     font-size: 16px; font-weight: 600; margin: 36px 0 12px;
     padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }}
+  .tab-content:first-of-type .section-title:first-child {{
+    margin-top: 0;
+  }}
+  .tab-content .section-title:first-child {{
+    margin-top: 0;
   }}
   .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }}
 
@@ -193,6 +268,7 @@ def build_index_html():
     .container {{ padding: 20px 12px 60px; }}
     header h1 {{ font-size: 22px; }}
     .grid {{ grid-template-columns: 1fr; }}
+    .tab-btn {{ padding: 8px 16px; font-size: 13px; }}
   }}
 </style>
 </head>
@@ -210,7 +286,32 @@ def build_index_html():
     </div>
   </header>
 
-{cards_html}
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('all')">全部<span class="count">({total})</span></button>
+    <button class="tab-btn" onclick="switchTab('featured')">精选<span class="count">({featured_count})</span></button>
+  </div>
+
+  <div id="tab-all" class="tab-content active">
+{cards_html}  </div>
+
+  <div id="tab-featured" class="tab-content">
+{featured_html}  </div>
+
+  <script>
+    function switchTab(tab) {{
+      document.querySelectorAll('.tab-btn').forEach(function(b) {{ b.classList.remove('active'); }});
+      document.querySelectorAll('.tab-content').forEach(function(c) {{ c.classList.remove('active'); }});
+      document.querySelector('.tab-btn[onclick*="' + tab + '"]').classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+      // 更新 URL hash
+      window.location.hash = tab === 'featured' ? '#精选' : '';
+    }}
+    // 页面加载时根据 URL hash 切换
+    (function() {{
+      if (window.location.hash === '#精选') switchTab('featured');
+    }})();
+  </script>
+
   <footer>
     Value Line Research · 不构成投资建议
   </footer>
