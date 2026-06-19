@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCL中环 (002129) — VL 阅读报告</title>
+<style>
+  :root {
+    --bg: #fafbfc; --text: #1a1a2e; --muted: #6c757d;
+    --border: #e1e4e8; --code-bg: #f6f8fa; --link: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
+  h1 { font-size: 26px; font-weight: 700; margin: 24px 0 8px; letter-spacing: -0.5px; }
+  h2 { font-size: 20px; font-weight: 600; margin: 40px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
+  h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; }
+  h4 { font-size: 14px; font-weight: 600; margin: 20px 0 6px; }
+  p, blockquote { margin: 8px 0; }
+  blockquote { border-left: 3px solid #2563eb; padding: 8px 16px; color: var(--muted); background: #f0f4ff; border-radius: 0 6px 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  th, td { padding: 6px 10px; border: 1px solid var(--border); text-align: left; }
+  th { background: var(--code-bg); font-weight: 600; }
+  tr:nth-child(even) { background: #fafbfc; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  .subtitle { color: var(--muted); font-size: 14px; margin: 4px 0 16px; }
+  code { font-family: "SF Mono", "Fira Code", monospace; font-size: 12px; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; }
+  footer { text-align: center; margin-top: 48px; padding: 24px 0; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
+  @media (max-width: 640px) {
+    .container { padding: 16px 12px 60px; }
+    h1 { font-size: 22px; }
+    table { font-size: 11px; }
+    th, td { padding: 4px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>TCL中环 (002129) — Value Line 阅读报告</h1>
+<blockquote>生成日: 2026-06-19 | 股价: 10.3 CNY | PE(TTM): 0.0x | 总市值: 415 亿</blockquote>
+<hr>
+<h2> 🔍 李录式快速筛查（30 秒）</h2>
+<blockquote>**李录心法**：跳过文案，直扑硬数据。一页资料，5 分钟判断值不值得深读。</blockquote>
+<blockquote>依次检查：便宜吗？ → 生意好吗？ → 资产干净吗？ → 管理层靠谱吗？</blockquote>
+<table>
+<tr>
+<th>🟢 **PB**: 1.1x</th>
+<th>🟢 **资产**: 商誉0.0%</th>
+<th>🔴 **ROIC**: -10.3%</th>
+<th>🔴 **负债**: 负债率109%</th>
+</tr>
+<tr>
+<td>接近净资产，便宜</td>
+<td>账面干净 ✅</td>
+<td>生意一般</td>
+<td>高杠杆</td>
+</tr>
+</table>
+<blockquote>🔴 **需谨慎** — 多项指标示警。不排除错杀可能，但需要更充分的证据。</blockquote>
+<hr>
+<h2> 一、Business 业务描述</h2>
+<blockquote>上述财务指标或其加总数是否与公司已披露季度报告、半年度报告相关财务指标存在重；公司不存在其他符合非经常性损益定义的损益项目的具体情况</blockquote>
+<table>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+<tr>
+<td>**代码**</td>
+<td>002129</td>
+</tr>
+<tr>
+<td>**市场**</td>
+<td>CN</td>
+</tr>
+<tr>
+<td>**行业**</td>
+<td>Photovoltaic</td>
+</tr>
+<tr>
+<td>**货币**</td>
+<td>CNY</td>
+</tr>
+<tr>
+<td>**管理层**</td>
+<td>CEO: 欧阳洪平 · 注册地: 中国天津</td>
+</tr>
+<tr>
+<td>**股价**</td>
+<td>10.3 CNY</td>
+</tr>
+<tr>
+<td>**PE(TTM)**</td>
+<td>0.0x</td>
+</tr>
+<tr>
+<td>**总市值**</td>
+<td>415 亿</td>
+</tr>
+</table>
+<h3> 收入结构</h3>
+<table>
+<tr>
+<th>来源</th>
+<th>FY2025</th>
+</tr>
+<tr>
+<td>光伏硅片</td>
+<td>42.13%</td>
+</tr>
+<tr>
+<td>光伏组件</td>
+<td>32.1%</td>
+</tr>
+<tr>
+<td>半导体材料</td>
+<td>19.64%</td>
+</tr>
+<tr>
+<td>光伏电站</td>
+<td>4.0%</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>2.13%</td>
+</tr>
+</table>
+<hr>
+<h2> 二、Timeliness & Safety 评级</h2>
+<table>
+<tr>
+<th>**Timeliness 时效性**</th>
+<th>**Safety 安全性**</th>
+<th>**Technical 技术**</th>
+</tr>
+<tr>
+<td>🟡 **3** - 中性</td>
+<td>🔴 **5** - 不安全</td>
+<td>🟡 **3** - 中性</td>
+</tr>
+<tr>
+<td>6-12个月预期表现</td>
+<td>财务稳定性 + 股价风险</td>
+<td>价格动量</td>
+</tr>
+</table>
+<h3> Timeliness 时效性详情</h3>
+<table>
+<tr>
+<th>评分因子</th>
+<th>数据</th>
+<th>得分</th>
+</tr>
+<tr>
+<td>PE 百分位</td>
+<td>底部 -4%</td>
+<td>+2</td>
+</tr>
+<tr>
+<td>EPS 1yr 增速</td>
+<td>-60.0%</td>
+<td>-2</td>
+</tr>
+</table>
+<blockquote>**综合 Timeliness: 3** — 预期表现与市场持平</blockquote>
+<h3> Safety 安全性详情</h3>
+<table>
+<tr>
+<th>评分因子</th>
+<th>数据</th>
+<th>得分</th>
+</tr>
+<tr>
+<td>负债率</td>
+<td>109% (高)</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>ROE 稳定</td>
+<td>CV=999.00 (波动)</td>
+<td>-1</td>
+</tr>
+</table>
+<blockquote>**综合 Safety: 5** — 高风险，财务或经营存在重大不确定性</blockquote>
+<hr>
+<h2> 三、AI Commentary（5 段 VL 风格分析）</h2>
+<h3> 📈 段1：业绩快照与变化归因</h3>
+<p>【业务结构】光伏组件业务的制造、产品、市场、品牌能力大幅提升，半片及 组件逐步上；合 Maxeon非美销售平台及 Sunpower品牌，构建海外销售体系，实现多个国家地区的销售突；球领先的专利体系，将充分发挥累积的产品技术和专利优势，整合行业存量优质产能，打造</p>
+<h3> 💰 段2：每股资金流向与现金循环</h3>
+<p>渠道：筹资活动产生的现金流量净额变动原因说明：主要系融资规模减少导致筹资活动现金净；为积极践行中共中央政治局会议提出的“要活跃资本市场、 提振投资者信心”的重要；地区：1、同时按照国际会计准则与按照中国会计准则披露的财务报告中净利润和净资产差异情况；公司报告期不存在按照国际会计准则与按照中国会计准则披露的财务报告中净利润和净</p>
+<h3> 🏢 段3：业务质地与竞争壁垒</h3>
+<p>【成本与效率】量，公司将把握周期底部机遇，发挥 领先技术优势，通过内涵增长和外延收购快速增强；坚持技术创新，完善知识产权保护体系，以产品技术和专利为壁垒构建全新产业生态；权保护的、行业前瞻性技术投入和工艺创新，坚持自主技术创新和 工艺积累，推</p>
+<h3> 🎯 段4：估值锚定与安全边际</h3>
+<p>【展望】增强硅片竞争优势，补齐电池、组件业务短板，加速适度一体化战略落地；格大幅上涨，下游传导不足，公司联动战略供应商优化用料结构，并通过资源集约管理、单</p>
+<h3> 🔍 段5：转折点检测与待验证信号</h3>
+<table>
+<tr>
+<th>#</th>
+<th>信号</th>
+<th>状态</th>
+<th>说明</th>
+</tr>
+<tr>
+<td>1</td>
+<td>营收增速反转</td>
+<td>➡️ 未触发</td>
+<td>未检测到营收从收缩中恢复的信号</td>
+</tr>
+<tr>
+<td>2</td>
+<td>利润率反转</td>
+<td>➡️ 未触发</td>
+<td>毛利率未出现持续改善</td>
+</tr>
+<tr>
+<td>3</td>
+<td>现金流方向反转</td>
+<td>➡️ 未触发</td>
+<td>现金流方向未改变</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ROE 反转</td>
+<td>➡️ 未触发</td>
+<td>ROE 未出现显著反转</td>
+</tr>
+</table>
+<p>**⚠️ 待验证信号：**</p>
+<p>- 关注 2026 年中报净留存是否回升</p>
+<hr>
+<h2> 四、24 行 Statistical Array</h2>
+<blockquote>**阅读提示**: 左 = 历史数据，粗体 = VL 估计/预测。从左→右读：先看历史趋势，再对比预测。</blockquote>
+<h3> 📊 每股指标 #1-#6</h3>
+<table>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>2018</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>趋势</th>
+</tr>
+<tr>
+<td>1</td>
+<td>**每股营收**</td>
+<td>3.40</td>
+<td>4.18</td>
+<td>4.71</td>
+<td>10.17</td>
+<td>16.57</td>
+<td>14.63</td>
+<td>7.03</td>
+<td>7.19</td>
+<td>↗️</td>
+</tr>
+<tr>
+<td>2</td>
+<td>**每股现金流**</td>
+<td>0.41</td>
+<td>0.61</td>
+<td>0.72</td>
+<td>1.63</td>
+<td>2.63</td>
+<td>2.17</td>
+<td>-0.88</td>
+<td>-0.42</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>3</td>
+<td>**每股收益**</td>
+<td>0.08</td>
+<td>0.15</td>
+<td>0.24</td>
+<td>0.96</td>
+<td>1.60</td>
+<td>0.64</td>
+<td>-2.70</td>
+<td>-2.42</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>4</td>
+<td>**每股股息**</td>
+<td>0.03</td>
+<td>0.03</td>
+<td>0.06</td>
+<td>0.11</td>
+<td>0.10</td>
+<td>0.26</td>
+<td>0</td>
+<td>0</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>5</td>
+<td>**每股资本支出**</td>
+<td>1.34</td>
+<td>1.15</td>
+<td>1.06</td>
+<td>1.51</td>
+<td>2.77</td>
+<td>3.01</td>
+<td>1.72</td>
+<td>1.42</td>
+<td>↗️</td>
+</tr>
+<tr>
+<td>6</td>
+<td>**每股账面价值**</td>
+<td>3.89</td>
+<td>5.08</td>
+<td>6.95</td>
+<td>10.31</td>
+<td>11.64</td>
+<td>14.90</td>
+<td>11.49</td>
+<td>9.74</td>
+<td>↗️</td>
+</tr>
+</table>
+<blockquote>🔍 **诊断窗 #1-#6**</blockquote>
+<p>></p>
+<blockquote>- 每股现金流/每股收益 = 0.17x（差值 ¥2.00 ≈ 折旧 ¥1.99）→ 重资产，资本密集度高</blockquote>
+<blockquote>- CAPEX/折旧 = 1.42/0.02 = 71.0x → 高速扩张</blockquote>
+<blockquote>- 每股账面价值 14年 CAGR = +24.2% → 内在价值复利快 ✅</blockquote>
+<h3> 📈 股本与历史估值 #7-#10</h3>
+<table>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>2018</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>趋势</th>
+</tr>
+<tr>
+<td>7</td>
+<td>**发行在外股数**</td>
+<td>4,043</td>
+<td>4,043</td>
+<td>4,043</td>
+<td>4,043</td>
+<td>4,043</td>
+<td>4,043</td>
+<td>4,043</td>
+<td>4,043</td>
+<td>➡️</td>
+</tr>
+<tr>
+<td>8</td>
+<td>**平均年化PE**</td>
+<td>80.10</td>
+<td>53.10</td>
+<td>64.90</td>
+<td>30.00</td>
+<td>21.70</td>
+<td>42.40</td>
+<td>-</td>
+<td>-</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>9</td>
+<td>**相对PE**</td>
+<td>6.67</td>
+<td>3.79</td>
+<td>4.06</td>
+<td>2.00</td>
+<td>1.81</td>
+<td>3.26</td>
+<td>-</td>
+<td>-</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>10</td>
+<td>**平均股息率**</td>
+<td>0.5%</td>
+<td>0.4%</td>
+<td>0.4%</td>
+<td>0.4%</td>
+<td>0.3%</td>
+<td>1.0%</td>
+<td>0.0%</td>
+<td>0.0%</td>
+<td>↘️</td>
+</tr>
+</table>
+<blockquote>🔍 **诊断窗 #7-#10**</blockquote>
+<p>></p>
+<blockquote>- #7 股数: 4043M → 4043M → 增发/摊薄中</blockquote>
+<blockquote>- #8 PE 中枢趋势: 155x → 42x → 估值回归</blockquote>
+<h3> 📊 利润表指标 #11-#17</h3>
+<table>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>2018</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>趋势</th>
+</tr>
+<tr>
+<td>11</td>
+<td>**总营收**</td>
+<td>138</td>
+<td>169</td>
+<td>191</td>
+<td>411</td>
+<td>670</td>
+<td>592</td>
+<td>284</td>
+<td>290</td>
+<td>↗️</td>
+</tr>
+<tr>
+<td>12</td>
+<td>**毛利率**</td>
+<td>17.4%</td>
+<td>19.5%</td>
+<td>18.9%</td>
+<td>21.7%</td>
+<td>18.2%</td>
+<td>20.2%</td>
+<td>-9.1%</td>
+<td>-6.4%</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>13</td>
+<td>**营业利润率**</td>
+<td>3.6%</td>
+<td>8.5%</td>
+<td>8.6%</td>
+<td>12.2%</td>
+<td>10.9%</td>
+<td>7.7%</td>
+<td>-39.2%</td>
+<td>-34.9%</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>14</td>
+<td>**折旧摊销**</td>
+<td>13.4</td>
+<td>18.3</td>
+<td>19.5</td>
+<td>26.9</td>
+<td>41.6</td>
+<td>61.9</td>
+<td>73.4</td>
+<td>80.6</td>
+<td>↗️</td>
+</tr>
+<tr>
+<td>15</td>
+<td>**净利润**</td>
+<td>3.1</td>
+<td>6.2</td>
+<td>9.5</td>
+<td>38.8</td>
+<td>64.8</td>
+<td>25.8</td>
+<td>-109</td>
+<td>-97.7</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>16</td>
+<td>**所得税率**</td>
+<td>9.6%</td>
+<td>13.5%</td>
+<td>12.8%</td>
+<td>11.3%</td>
+<td>5.0%</td>
+<td>14.2%</td>
+<td>-</td>
+<td>-</td>
+<td>↗️</td>
+</tr>
+<tr>
+<td>17</td>
+<td>**净利润率**</td>
+<td>2.3%</td>
+<td>3.7%</td>
+<td>5.0%</td>
+<td>9.4%</td>
+<td>9.7%</td>
+<td>4.4%</td>
+<td>-38.4%</td>
+<td>-33.6%</td>
+<td>↘️</td>
+</tr>
+</table>
+<blockquote>🔍 **诊断窗 #11-#17: 三层利润率裂缝分析**</blockquote>
+<p>></p>
+<blockquote>```</blockquote>
+<blockquote>裂缝1: 毛利率 -6.4% - 营业利润率 -34.9% = 28.5pp (SG&A 费用)</blockquote>
+<blockquote>裂缝2: 营业利润率 -34.9% - 净利润率 -33.6% = -1.3pp (折旧+利息+税)</blockquote>
+<blockquote>```</blockquote>
+<blockquote>裂缝1 趋势: 30.1pp → 28.5pp — 缩小（规模效应发挥 ✅）</blockquote>
+<blockquote>利润质量: 一般</blockquote>
+<h3> 📊 资产负债指标 #18-#20</h3>
+<table>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>2018</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>趋势</th>
+</tr>
+<tr>
+<td>18</td>
+<td>**营运资金**</td>
+<td>-33.2</td>
+<td>6.3</td>
+<td>-12.4</td>
+<td>40.1</td>
+<td>88.1</td>
+<td>123</td>
+<td>47.6</td>
+<td>11.2</td>
+<td>↗️</td>
+</tr>
+<tr>
+<td>19</td>
+<td>**长期债务**</td>
+<td>94.3</td>
+<td>124</td>
+<td>125</td>
+<td>133</td>
+<td>328</td>
+<td>360</td>
+<td>440</td>
+<td>430</td>
+<td>↗️</td>
+</tr>
+<tr>
+<td>20</td>
+<td>**股东权益**</td>
+<td>157</td>
+<td>206</td>
+<td>281</td>
+<td>417</td>
+<td>471</td>
+<td>602</td>
+<td>465</td>
+<td>394</td>
+<td>↗️</td>
+</tr>
+</table>
+<blockquote>🔍 **诊断窗 #18-#20**</blockquote>
+<p>></p>
+<blockquote>- #18 营运资金 11亿 (净正) + 营收 增长 → 扩张中需更多运营资金（正常）</blockquote>
+<blockquote>- #19 长期债务 430.1亿，负债权益比 109%</blockquote>
+<blockquote>- #20 股东权益 14年 CAGR = +24.2%</blockquote>
+<h3> 📊 回报率指标 #21-#24</h3>
+<table>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>2018</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>趋势</th>
+</tr>
+<tr>
+<td>21</td>
+<td>**投入资本回报率**</td>
+<td>4.8%</td>
+<td>7.4%</td>
+<td>6.7%</td>
+<td>10.8%</td>
+<td>10.5%</td>
+<td>6.2%</td>
+<td>-10.8%</td>
+<td>-10.3%</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>22</td>
+<td>**股东权益回报率**</td>
+<td>2.0%</td>
+<td>3.0%</td>
+<td>3.4%</td>
+<td>9.3%</td>
+<td>13.8%</td>
+<td>4.3%</td>
+<td>-23.5%</td>
+<td>-24.8%</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>23</td>
+<td>**留存利润再投比**</td>
+<td>1.2%</td>
+<td>2.4%</td>
+<td>2.5%</td>
+<td>8.2%</td>
+<td>12.9%</td>
+<td>2.5%</td>
+<td>-23.5%</td>
+<td>-24.8%</td>
+<td>↘️</td>
+</tr>
+<tr>
+<td>24</td>
+<td>**股息支付率**</td>
+<td>38.8%</td>
+<td>19.5%</td>
+<td>25.5%</td>
+<td>11.5%</td>
+<td>6.2%</td>
+<td>40.8%</td>
+<td>-</td>
+<td>-</td>
+<td>↗️</td>
+</tr>
+</table>
+<blockquote>🔍 **诊断窗 #21-#24: 资本配置质量评分**</blockquote>
+<p>></p>
+<blockquote>- ROIC -10.3% vs ROE -24.8% (差值 -14.5pp) → ROIC > ROE（正常，零杠杆企业 ROE 低于 ROIC 因税款扣减）</blockquote>
+<blockquote>- 留存率 -24.8% + ROE -24.8% → 💰 现金牛（高分红，适合收息）</blockquote>
+<hr>
+<h2> 五、资本结构与流动性</h2>
+<h3> 资本结构</h3>
+<table>
+<tr>
+<th>项目</th>
+<th>金额</th>
+</tr>
+<tr>
+<td>总债务 (Total Debt)</td>
+<td>786.5 亿</td>
+</tr>
+<tr>
+<td>长期债务 (LT Debt)</td>
+<td>423.6 亿</td>
+</tr>
+<tr>
+<td>长期利息 (LT Interest)</td>
+<td>16.42 亿</td>
+</tr>
+<tr>
+<td>**利息覆盖倍数**</td>
+<td>**-6.2x**</td>
+</tr>
+<tr>
+<td>长期债务/总资本</td>
+<td>51.8%</td>
+</tr>
+<tr>
+<td>股东权益</td>
+<td>393.7 亿</td>
+</tr>
+<tr>
+<td>普通股</td>
+<td>4,043,120,000 股</td>
+</tr>
+<tr>
+<td>**总市值**</td>
+<td>**415 亿** (Mid Cap)</td>
+</tr>
+</table>
+<blockquote>资产负债率 67% — 偏高 ⚠️</blockquote>
+<h3> 短期流动性（3 年对比）</h3>
+<table>
+<tr>
+<th>项目</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+<tr>
+<td>现金及等价物</td>
+<td>139.0 亿</td>
+<td>152.7 亿</td>
+<td>131.3 亿</td>
+</tr>
+<tr>
+<td>应收帐款</td>
+<td>22.2 亿</td>
+<td>16.4 亿</td>
+<td>12.3 亿</td>
+</tr>
+<tr>
+<td>存货</td>
+<td>81.6 亿</td>
+<td>63.2 亿</td>
+<td>58.7 亿</td>
+</tr>
+<tr>
+<td>其他流动资产</td>
+<td>103.4 亿</td>
+<td>90.5 亿</td>
+<td>114.4 亿</td>
+</tr>
+<tr>
+<td>**流动资产合计**</td>
+<td>**346.3 亿**</td>
+<td>**322.9 亿**</td>
+<td>**316.6 亿**</td>
+</tr>
+<tr>
+<td>应付帐款</td>
+<td>0.0 亿</td>
+<td>0.0 亿</td>
+<td>0.0 亿</td>
+</tr>
+<tr>
+<td>到期债务</td>
+<td>47.1 亿</td>
+<td>74.9 亿</td>
+<td>114.9 亿</td>
+</tr>
+<tr>
+<td>其他流动负债</td>
+<td>176.1 亿</td>
+<td>200.4 亿</td>
+<td>190.5 亿</td>
+</tr>
+<tr>
+<td>**流动负债合计**</td>
+<td>**223.2 亿**</td>
+<td>**275.2 亿**</td>
+<td>**305.4 亿**</td>
+</tr>
+</table>
+<table>
+<tr>
+<th>比率</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+<tr>
+<td>流动比率</td>
+<td>1.55x</td>
+<td>1.17x</td>
+<td>1.04x</td>
+</tr>
+<tr>
+<td>速动比率</td>
+<td>0.72x</td>
+<td>0.61x</td>
+<td>0.47x</td>
+</tr>
+</table>
+<hr>
+<h2> 六、价格图解读与市场表现</h2>
+<h3> 价格图三线解读</h3>
+<table>
+<tr>
+<th>线条</th>
+<th>含义</th>
+<th>当前状态</th>
+</tr>
+<tr>
+<td>**月K线**</td>
+<td>股价月度高低范围</td>
+<td>当前 10.3 CNY</td>
+</tr>
+<tr>
+<td>**估值基准线 (实线)**</td>
+<td>现金流基准线 = 8.0 × 每股现金流</td>
+<td>-3.4</td>
+</tr>
+<tr>
+<td>**相对价格强度线 (虚线)**</td>
+<td>个股 vs 市场指数的相对强度</td>
+<td>近一年表现</td>
+</tr>
+</table>
+<h3> 年度股价区间</h3>
+<table>
+<tr>
+<th>年份</th>
+<th>最高</th>
+<th>最低</th>
+<th>波动幅度</th>
+</tr>
+<tr>
+<td>2016</td>
+<td>9.3 CNY</td>
+<td>5.5 CNY</td>
+<td>3.8 CNY (69%)</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>10.7 CNY</td>
+<td>6.9 CNY</td>
+<td>3.8 CNY (55%)</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>9.2 CNY</td>
+<td>4.0 CNY</td>
+<td>5.2 CNY (130%)</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>10.5 CNY</td>
+<td>5.3 CNY</td>
+<td>5.2 CNY (98%)</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>22.7 CNY</td>
+<td>9.0 CNY</td>
+<td>13.7 CNY (152%)</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>43.3 CNY</td>
+<td>17.9 CNY</td>
+<td>25.4 CNY (142%)</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>48.0 CNY</td>
+<td>25.9 CNY</td>
+<td>22.1 CNY (85%)</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>38.8 CNY</td>
+<td>13.9 CNY</td>
+<td>24.9 CNY (179%)</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>16.1 CNY</td>
+<td>7.3 CNY</td>
+<td>8.8 CNY (121%)</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>11.5 CNY</td>
+<td>7.1 CNY</td>
+<td>4.4 CNY (62%)</td>
+</tr>
+</table>
+<h3> 历史回报率 vs 指数</h3>
+<table>
+<tr>
+<th>周期</th>
+<th>个股回报</th>
+<th>沪深300回报</th>
+<th>超额</th>
+</tr>
+<tr>
+<td>1yr</td>
+<td>-3.4%</td>
+<td>17.7%</td>
+<td>-21.1%</td>
+</tr>
+<tr>
+<td>3yr</td>
+<td>-70.5%</td>
+<td>19.6%</td>
+<td>-90.1%</td>
+</tr>
+<tr>
+<td>5yr</td>
+<td>-56.3%</td>
+<td>-11.2%</td>
+<td>-45.1%</td>
+</tr>
+</table>
+<h3> 估值区间</h3>
+<table>
+<tr>
+<th>估值指标</th>
+<th>当前</th>
+<th>最低</th>
+<th>最高</th>
+<th>中位数</th>
+<th>百分位</th>
+</tr>
+<tr>
+<td>**PE**</td>
+<td>0.0x</td>
+<td>21.7x</td>
+<td>618x</td>
+<td>58.0x</td>
+<td>-4%</td>
+</tr>
+<tr>
+<td>**PB**</td>
+<td>1.1x</td>
+<td>1.6x</td>
+<td>13.2x</td>
+<td>3.7x</td>
+<td>-5%</td>
+</tr>
+</table>
+<hr>
+<h2> 七、增长率与季度趋势</h2>
+<h3> CAGR 复合增长率（每股）</h3>
+<table>
+<tr>
+<th>指标</th>
+<th>1年</th>
+<th>3年</th>
+<th>5年</th>
+</tr>
+<tr>
+<td>每股营收</td>
+<td>+2.2%</td>
+<td>-24.3%</td>
+<td>+8.8%</td>
+</tr>
+<tr>
+<td>每股收益</td>
+<td>-60.0%</td>
+<td>+38.7%</td>
+<td>+51.6%</td>
+</tr>
+<tr>
+<td>每股现金流</td>
+<td>-17.5%</td>
+<td>+44.4%</td>
+<td>+39.6%</td>
+</tr>
+<tr>
+<td>每股股息</td>
+<td>+160.0%</td>
+<td>+63.0%</td>
+<td>+54.0%</td>
+</tr>
+<tr>
+<td>每股账面价值</td>
+<td>-15.3%</td>
+<td>-5.8%</td>
+<td>+7.0%</td>
+</tr>
+</table>
+<h3> 长期历史增长率 (ANNUAL RATES)</h3>
+<table>
+<tr>
+<th>指标</th>
+<th>10年</th>
+<th>5年</th>
+<th>3年</th>
+<th>1年</th>
+</tr>
+<tr>
+<td>营收</td>
+<td>+19.1%</td>
+<td>+8.8%</td>
+<td>-24.3%</td>
+<td>+2.2%</td>
+</tr>
+<tr>
+<td>现金流</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>收益</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>股息</td>
+<td>+36.0%</td>
+<td>+54.0%</td>
+<td>+63.0%</td>
+<td>+160.0%</td>
+</tr>
+<tr>
+<td>账面价值</td>
+<td>+14.3%</td>
+<td>+7.0%</td>
+<td>-5.8%</td>
+<td>-15.2%</td>
+</tr>
+</table>
+<h3> 季度营收趋势（近 5 年）</h3>
+<table>
+<tr>
+<th>年份</th>
+<th>Q1</th>
+<th>Q2</th>
+<th>Q3</th>
+<th>Q4</th>
+<th>全年</th>
+</tr>
+<tr>
+<td>2022</td>
+<td>134亿</td>
+<td>183亿</td>
+<td>182亿</td>
+<td>172亿</td>
+<td>670亿</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>176亿</td>
+<td>173亿</td>
+<td>138亿</td>
+<td>105亿</td>
+<td>592亿</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>99.3亿</td>
+<td>62.8亿</td>
+<td>63.7亿</td>
+<td>58.4亿</td>
+<td>284亿</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>61.0亿</td>
+<td>73.0亿</td>
+<td>81.7亿</td>
+<td>74.8亿</td>
+<td>290亿</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>65.5亿</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</table>
+<h3> 季度/半年 EPS 趋势</h3>
+<table>
+<tr>
+<th>年份</th>
+<th>Q1</th>
+<th>Q2</th>
+<th>Q3</th>
+<th>Q4</th>
+<th>全年</th>
+</tr>
+<tr>
+<td>2022</td>
+<td>0.41</td>
+<td>0.31</td>
+<td>0.52</td>
+<td>0.45</td>
+<td>1.69</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>0.56</td>
+<td>0.57</td>
+<td>0.41</td>
+<td>-0.69</td>
+<td>0.85</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>-0.22</td>
+<td>-0.55</td>
+<td>-0.75</td>
+<td>-0.94</td>
+<td>-2.46</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>-0.48</td>
+<td>-0.58</td>
+<td>-0.39</td>
+<td>-0.87</td>
+<td>-2.32</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>-0.41</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</table>
+<hr>
+<h2> 八、投资检查清单与总结</h2>
+<h3> 李录式 5 问检查</h3>
+<table>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th>判断</th>
+<th>依据</th>
+</tr>
+<tr>
+<td>1</td>
+<td>**便宜吗？**</td>
+<td>🟡 合理偏低</td>
+<td>PE 0.0x，历史百分位 -4%，PB 1.1x</td>
+</tr>
+<tr>
+<td>2</td>
+<td>**生意好吗？**</td>
+<td>🔴 一般</td>
+<td>ROIC -10.3%，ROE -24.8%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>**管理层靠谱吗？**</td>
+<td>🟡 需验证</td>
+<td>待评估（持股比例、历史执行记录）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>**漏掉了什么？**</td>
+<td>🟡 关注风险</td>
+<td>检查隐藏债务、关联交易、大额担保</td>
+</tr>
+<tr>
+<td>5</td>
+<td>**为什么便宜？**</td>
+<td>🟡 理解中</td>
+<td>1yr 增速 +2.2%</td>
+</tr>
+</table>
+<h3> VL 综合信号汇总</h3>
+<table>
+<tr>
+<th>信号类型</th>
+<th>信号</th>
+</tr>
+<tr>
+<td>🟢 积极</td>
+<td>PE 估值处历史低区 (-4%)</td>
+</tr>
+<tr>
+<td>🟡 中性</td>
+<td>Timeliness 排名 3 — 中性</td>
+</tr>
+<tr>
+<td>🔴 警惕</td>
+<td>Safety 排名 5 — 高风险</td>
+</tr>
+</table>
+<h3> 关键验证节点</h3>
+<p>1. **2026 年中报**：营收增速是否保持？利润率趋势如何？</p>
+<p>2. **2026 年报**：全年业绩能否验证中报趋势？</p>
+<p>3. **行业动态**：关注竞争格局、监管变化、技术迭代等外部因素</p>
+<hr>
+<p>*本报告基于截至最新财年的公开财务数据，通过 Value Line 标准化框架生成。*</p>
+<p>*Timeliness / Safety 评分为算法自动计算，仅供参考。*</p>
+<p>*不构成投资建议。投资有风险，决策需谨慎。*</p>
+  <footer>Value Line Research · 不构成投资建议</footer>
+</div>
+</body>
+</html>
