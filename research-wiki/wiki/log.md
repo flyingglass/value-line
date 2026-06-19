@@ -1,5 +1,20 @@
 # 操作日志
 
+## [2026-06-19] fix | 新增标的流程：行业中文 + 前台交互输入 CF/PB
+
+### 改动
+- `wiki/concepts/新增标的流程.md`：
+  - Step 1 强调 **industry 必须用中文**
+  - Step 2 修正为 `build.py <code> --fetch`（去掉 `--cf N`），说明必须前台交互运行
+  - 补充步骤 7（`generate_index.py` 重建索引）
+  - 常见故障表新增"REFUSED: 未提供有效CF倍数"条目（根因：后台无 stdin）
+
+### 来源
+- TCL中环 002129 新增过程踩坑：后台运行 build.py 导致 `input()` EOFError，且 industry 初始用英文 `"Photovoltaic"`
+
+### 触及 Wiki 页面
+- [[新增标的流程]]
+
 ## [2026-06-19] refactor | 投资框架指导手册移至 research/ 命名空间
 
 ### 改动
