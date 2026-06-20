@@ -367,10 +367,35 @@ def _compute_adj_np(reader, rd, np_val, tax_rate, stock_cfg):
             val_b = deducted / 1e8
             diff_pct = abs(deducted - np_val) / abs(np_val) * 100 if np_val else 0
             if diff_pct > 0.5:  # 差异 >0.5% 才记录
-                footnotes.append(
-                    f"A股扣非净利润 {val_b:.1f}亿 (CAS审计标准), "
-                    f"较归母净利润{np_val/1e8:.1f}亿调整{diff_pct:.1f}%"
-                )
+                # 解析非经常性损益构成明细
+                cn_items = [
+                    ("投资收益", "INV"), ("公允价值变动收益", "FV"),
+                    ("资产处置收益", "AD"), ("其他收益", "OG"),
+                    ("资产减值损失", "IMPAIR"), ("信用减值损失", "CREDIT"),
+                    ("营业外收入", "NONOP"), ("营业外支出", "NONEX"),
+                    ("汇兑收益", "FX"),
+                ]
+                parts = []
+                for item_name, abbr in cn_items:
+                    sign = -1 if abbr in ("IMPAIR", "CREDIT", "NONEX") else 1
+                    val = reader.financial_item("income", item_name, rd)
+                    if val is None and abbr in ("FV", "NONOP"):
+                        val = reader.financial_item("income", f"加：{item_name}", rd)
+                    elif val is None and abbr == "NONEX":
+                        val = reader.financial_item("income", f"减：{item_name}", rd)
+                    if val is not None and abs(val) > 5e6:
+                        parts.append(f"{abbr} {val/1e8 * sign:+.2f}")
+                if parts:
+                    items_str = "  ".join(parts)
+                    footnotes.append(
+                        f"A股扣非 {val_b:.1f}亿 (归母{np_val/1e8:.1f}亿, "
+                        f"非经常{items_str}, 调整{diff_pct:.1f}%)"
+                    )
+                else:
+                    footnotes.append(
+                        f"A股扣非净利润 {val_b:.1f}亿 (CAS审计标准), "
+                        f"较归母净利润{np_val/1e8:.1f}亿调整{diff_pct:.1f}%"
+                    )
             return deducted, footnotes
 
     # 港股: 排除非经常项目 (FVTPL/汇兑/资产处置等), 保留经常性经营收益
