@@ -350,8 +350,11 @@ def step_1_fetch(code, stock, force_fetch=False):
     return True
 
 def step_2_pdf(code):
-    """Step 2: 年报PDF下载。智能检测: 新年报发布自动下载。"""
+    """Step 2: 年报PDF下载。智能检测: 新年报发布自动下载。美股跳过(SEC 10-K 待实现)。"""
     stock = config.STOCKS.get(code, {})
+    if stock.get("market") == "us":
+        print(f"  Step 2: {_green('SKIP')} (美股 SEC 10-K 下载待实现, 使用 config fallback)")
+        return True
     pdf_dir = _pdf_dir(code)
     existing = len([f for f in os.listdir(pdf_dir) if f.endswith(".pdf") or f.endswith(".htm")]) if os.path.isdir(pdf_dir) else 0
     # 检测最新PDF年份是否落后于当前年份
