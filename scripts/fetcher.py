@@ -441,7 +441,32 @@ def fetch_cn_financials(store, code):
         except Exception:
             pass
     store.conn.commit()
-    print(f"OK {len(df)}条")
+    div_count = len(df)
+    # 检测分红缺口: 最新年报已发布但无对应年度分红(预案尚未除权)
+    div_years = set()
+    for _, r in df.iterrows():
+        rpt_time = str(r.get("报告时间", ""))
+        fy = rpt_time[:4] if rpt_time and rpt_time[0].isdigit() else ""
+        if fy: div_years.add(fy)
+    fy_row = store.conn.execute(
+        "SELECT DISTINCT CAST(substr(report_date,1,4) AS INTEGER) FROM income "
+        "WHERE report_date LIKE '%-12-31' AND CAST(substr(report_date,1,4) AS INTEGER)>=2010 "
+        "ORDER BY 1 DESC LIMIT 1"
+    ).fetchone()
+    if fy_row and str(fy_row[0]) not in div_years:
+        # 尝试从年报PDF提取分红预案
+        pdf_dps = _extract_dps_from_pdf(code, str(fy_row[0]))
+        if pdf_dps:
+            store.conn.execute(
+                "INSERT OR REPLACE INTO dividend VALUES (?,?,?,?,?,?,?)",
+                (str(fy_row[0]), pdf_dps, 0.0, "", "", 0.0,
+                 f"10派{pdf_dps*10:.2f}元 | 来源: {fy_row[0]}年报PDF 利润分配情况"))
+            store.conn.commit()
+            print(f"OK {div_count}条 + 预案FY{fy_row[0]} DPS={pdf_dps:.2f}")
+        else:
+            print(f"OK {div_count}条 ⚠️ FY{fy_row[0]}年报已出但分红未除权, 待补入预案DPS")
+    else:
+        print(f"OK {div_count}条")
 
 
 # ============================================================
@@ -693,6 +718,34 @@ def fetch_us_financials(store, code):
             print("空 (无法获取分红数据)")
     except Exception as e:
         print(f"跳过 (API不可用: {str(e)[:60]})")
+
+
+def _extract_dps_from_pdf(code, year):
+    """从年报PDF提取分红预案DPS。返回每股股息或None。"""
+    import pdfplumber, re as _re
+    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root
+    pdf_dir = os.path.join(base, "data", "pdfs", code)
+    pdfs = [f for f in os.listdir(pdf_dir)
+            if year in f and '年报' in f and f.endswith('.pdf')]
+    if not pdfs:
+        return None
+    try:
+        pdf = pdfplumber.open(os.path.join(pdf_dir, pdfs[0]))
+        full_text = ""
+        for i in range(len(pdf.pages)):
+            t = pdf.pages[i].extract_text() or ""
+            full_text += t
+            # 搜到利润分配后即可停止
+            if '拟分配的利润或股利' in full_text and '每10股派' in full_text:
+                break
+        pdf.close()
+        # 匹配: 每10股派...X.XX元 (派发现金红利/派息/派发等)
+        m = _re.search(r'每\s*10\s*股\s*派[^\d]*?(\d+\.?\d*)\s*元', full_text)
+        if m:
+            return round(float(m.group(1)) / 10.0, 4)
+    except Exception:
+        pass
+    return None
 
 
 def _read_fx_rate(date_str):

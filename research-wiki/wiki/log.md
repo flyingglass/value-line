@@ -1,5 +1,12 @@
 # 操作日志
 
+## [2026-06-20] ingest | fetcher.py A 股 DPS 自动补入预案流程
+
+### 改动
+- `fetcher.py`：新增 `_extract_dps_from_pdf()` — 当巨潮 API 缺少最新年报分红时，从年报 PDF 提取预案 DPS
+- 正则 `每\s*10\s*股\s*派[^\d]*?(\d+\.?\d*)\s*元` 兼容「派发现金红利」「派息」「派发」
+- 更新 wiki: `fetcher.py.md` 写入 DPS 完整流程
+
 ## [2026-06-19] fix | 新增标的流程：行业中文 + 前台交互输入 CF/PB
 
 ### 改动

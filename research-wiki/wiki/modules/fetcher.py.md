@@ -22,7 +22,7 @@ updated: 2026-06-15
 | `balance` | 资产负债表 | **TDX** (2001+) → fallback AKShare | AKShare THS | AKShare EM |
 | `cashflow` | 现金流量表 | **TDX** (2001+) → fallback AKShare | AKShare THS | AKShare EM |
 | `indicators` | 分析指标 | AKShare (INSERT OR IGNORE) | AKShare THS | AKShare EM |
-| `dividend` | 股息数据 | AKShare | AKShare | income 表提取 |
+| `dividend` | 股息数据 | AKShare | 巨潮+PDF预案 | income 表提取 |
 
 ## 港股 TDX 改造 (2026-06-13)
 
@@ -42,6 +42,24 @@ updated: 2026-06-15
 [[config.py]] — ACTIVE_STOCK、STOCKS
 [[tdx_client.py]] — TDX HTTP API 封装
 [[build.py]] — Step 1 调用
+
+## A 股 DPS 获取流程 (2026-06-20)
+
+```
+stock_dividend_cninfo (巨潮 API)          ← 已实施方案 (有除权日)
+  ↓
+检测缺口: income 最新年报年份 vs dividend 表覆盖
+  ├─ 无缺口 → OK
+  └─ 有缺口 → _extract_dps_from_pdf()
+        ↓ 打开最新年报 PDF
+        ↓ 搜索 "每10股派...X.XX元"
+        ↓ 正则: 每\s*10\s*股\s*派[^\d]*?(\d+\.?\d*)\s*元
+        ↓ 兼容「派发现金红利」「派息」「派发」等表述
+        ↓ DPS = 提取值 ÷ 10
+        ↓ 自动写入 dividend 表
+```
+
+**背景**: 巨潮 API `p_sysapi1139` 仅返回已实施方案，不包括股东大会通过但未除权的预案。年报通常在 3 月底发布、分红预案 6-8 月才除权，存在 3-5 个月缺口。PDF 提取填补了这个时间窗口。
 
 ## 已知问题
 
