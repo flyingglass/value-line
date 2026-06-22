@@ -1,10 +1,10 @@
 # 投研索引
 
-> 最后更新：2026-06-19
+> 最后更新：2026-06-22
 
 ## 按标的
 
-- [[600079/overview]] — 人福医药 · 医药（中枢神经） · 数据目录 + CNS 业务深度分析（revenue_structure 表, 5 年制造业/批发拆分, CF 估值）
+- [[600079/overview]] — 人福医药 · Pharmaceuticals · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考)
 - [[09992/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度, 中国线上子渠道 21-25)
 - [[002129/overview]] — TCL中环 · 光伏 · 数据目录 (revenue_structure 表, by_product 5 年产品拆分, PB=1.0x)
 
