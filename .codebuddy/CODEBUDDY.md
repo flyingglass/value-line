@@ -19,6 +19,7 @@ research-wiki/
 |------|------|------|
 | 财务数据库 | `data/<code>.db` | 9 表：三大报表 + 指标 + 分红 + 行情 + 营收拆分 |
 | 年报 PDF | `data/pdfs/<code>/` | 500+ PDF 年报/中报/季报 |
+| 券商研报 | `ak.stock_research_report_em(symbol)` | 东方财富-个股研报列表（含 PDF 直链 + 盈利预测） |
 | 汇率 | `data/fx_rates.db` | HKD/CNY 每日汇率 |
 | 标的配置 | `config.py` | 42 只标的的基本信息 |
 
@@ -46,6 +47,16 @@ research-wiki/
 - 引用格式：`（来源：<文件名/API/IMA kb 名称>）`
 
 > 2026-06-19：宇通客车分析中编造市场保有量/份额/单价数据，已纠正。不可再犯。
+
+## 🔴 研报拉取（不可违背）
+**券商研报优先从 AKShare 拉取**，数据源为东方财富网-研究报告-个股研报。
+
+- 接口：`ak.stock_research_report_em(symbol)` — 返回研报列表（机构、评级、日期、PDF 直链、盈利预测）
+- 禁止手动从东方财富／同花顺网页翻找、手工复制粘贴研报内容
+- Ingest 时如需研报原文：先用 AKShare 拉取列表 → 找到目标研报 → 通过 PDF 直链下载 → 存 `raw/` → 提取关键信息写入 wiki
+- 研报 PDF 链接格式：`https://pdf.dfcfw.com/pdf/H3_AP<id>.pdf`，可直接 wget/requests 下载
+
+> 2026-06-23：TCL中环 ingest 时手工 web_fetch 百家号/中财网转载的二手摘要，未走 AKShare 研报接口。已验证 AKShare 可拉 113 条完整研报（含 PDF），此后必须走接口。
 
 ## 环境
 Python `.venv\Scripts\python.exe`，依赖 `requirements.txt`，凭证 `.env`（.gitignore）。
