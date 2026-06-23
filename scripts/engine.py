@@ -1543,9 +1543,11 @@ def _load_per_stock_script(code):
         script_path = os.path.join(os.path.dirname(__file__), code, "business_commentary.py")
         if not os.path.exists(script_path):
             return None
-        import importlib.util, importlib.machinery as _im3
-        loader = _im3.SourceFileLoader(f"bc_{code}", script_path)
-        spec = importlib.util.spec_from_file_location(f"bc_{code}", script_path, loader=loader)
+        import importlib.util, importlib.machinery as _im3, sys as _sys
+        # 每次强制重新编译，避免 pyc 缓存和 importlib 模块名冲突
+        _sys.dont_write_bytecode = True
+        loader = _im3.SourceFileLoader(f"bc_{code}_{id(script_path)}", script_path)
+        spec = importlib.util.spec_from_file_location(f"bc_{code}_{id(script_path)}", script_path, loader=loader)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         return mod if hasattr(mod, "build") else None
