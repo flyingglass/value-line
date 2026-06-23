@@ -4,6 +4,9 @@
 
 ## 按标的
 
+- [[600298/overview]] — 安琪酵母 · 必需消费 · 数据目录 (revenue_structure 3 维度, FY2025 产品/地区/渠道拆分, CF=15.0x)
+- [[600298/thesis]] — 安琪酵母 · 投资 Thesis (四业务赚钱逻辑 · 四大护城河 · 四风险 · 五催化剂)
+- [[600298/industry-chain]] — 安琪酵母 · 产业链全景 (酵母产业链 · 成本结构 · 竞争格局 · 毛利率周期)
 - [[600079/overview]] — 人福医药 · Pharmaceuticals · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考)
 - [[09992/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度, 中国线上子渠道 21-25)
 - [[002129/overview]] — TCL中环 · 光伏 · 数据目录 (revenue_structure 表, by_product 5 年产品拆分, PB=1.0x)
