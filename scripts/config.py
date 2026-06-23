@@ -821,6 +821,22 @@ STOCKS = {
         "valuation_method": "cf",
         "business_desc": "Alphabet（谷歌）是全球最大的互联网科技公司之一，核心业务涵盖搜索（Google Search，全球市占率90%+）、视频（YouTube，月活超25亿）、云计算（Google Cloud，全球第三）、广告（Google Ads/AdSense）、Android操作系统及AI（Gemini大模型、DeepMind）。2025年营收超3,500亿美元，AI驱动搜索和云业务加速增长。",
     },
+    "01579": {
+        "name": "颐海国际",
+        "name_en": "Yihai International",
+        "market": "hk",
+        "exchange": "SEHK",
+        "currency": "CNY",
+        "ceo": "郭强",
+        "inc": "开曼群岛",
+        "website": "www.yihaiintl.com",
+        "pfx": "hk",
+        "shares": 970000000,
+        "shares_str": "970,000,000",
+        "industry": "Consumer Staples",
+        "fiscal_yr_end": "12-31",
+        "business_desc": "颐海国际是中国领先的复合调味料生产商，起源于海底捞火锅底料独家供应商。核心业务涵盖火锅调味料（底料、蘸料）、中式复合调味料（即食酱、小龙虾调味料等）及方便速食（自热火锅、冲泡粉丝等）。第三方收入占比持续提升，渠道覆盖34个省级行政区及海外49个国家。",
+    },
     "600079": {
         "name": "人福医药",
         "name_en": "Humanwell Healthcare",
@@ -888,7 +904,7 @@ MARKET_CONFIG = {
 # ============================================================
 # 当前活跃标的
 # ============================================================
-ACTIVE_STOCK = "600079"
+ACTIVE_STOCK = "09992"
 
 # ============================================================
 # SQLite 路径
