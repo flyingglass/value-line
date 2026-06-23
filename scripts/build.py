@@ -466,6 +466,26 @@ def step_4_revenue(code):
     raise SystemExit(_red(
         f"  FAIL: revenue_structure为空, 需检查 scripts/{code}/insert_revenue.py"))
 
+def step_4_5_auto_gen_commentary(code):
+    """Step 4.5: 自动生成 business_commentary.py（如不存在）。
+    营收结构已就绪 → 生成个股专属 5 段 Commentary 模板。
+    已有手工精调版本的不覆盖。"""
+    script_path = os.path.join(BASE, "scripts", code, "business_commentary.py")
+    if os.path.exists(script_path):
+        print(f"  Step 4.5: business_commentary.py 已存在, 跳过生成")
+        return True
+    gen_script = os.path.join(BASE, "scripts", "generate_business_commentary.py")
+    if not os.path.exists(gen_script):
+        print(f"  Step 4.5: {_yellow('SKIP')} (生成器不存在)")
+        return True
+    print(f"  Step 4.5: 自动生成 business_commentary.py ...")
+    ok, out = _run(f'"{PYTHON}" {gen_script} {code}', timeout=30)
+    if ok:
+        print(f"  Step 4.5: {_green('OK')}")
+    else:
+        print(f"  Step 4.5: {_yellow('WARN')} 生成失败 (将使用通用模板), {out[-200:]}")
+    return True   # 非阻断：失败时回退通用模板
+
 def step_5_config_final(code, stock):
     """Step 5: 最终 config 检查 + 切回标的。"""
     _set_active(code)
@@ -876,6 +896,7 @@ def build(code, cf_mult=15.0, pb_mult=1.0, val_method="cf", force_fetch=False):
     step_2_pdf(code)                             # 2. PDF
     step_3_mda(code)                             # 3. MD&A
     step_4_revenue(code)                         # 4. 营收结构
+    step_4_5_auto_gen_commentary(code)           # 4.5. 自动生成 business_commentary.py
     step_5_config_final(code, stock)             # 5. config final
     # 先写入估值参数到 DB，确保 engine 读取最新值
     _write_valuation_meta(code, cf_mult, pb_mult, val_method)
