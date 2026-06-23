@@ -1,5 +1,57 @@
 # 操作日志
 
+## [2026-06-23] feat | business_commentary.py 自动生成 — build.py Step 4.5
+
+### 动机
+新增标的时需要手写 `business_commentary.py`（5段 Commentary + Business 描述），耗时且容易遗漏关键段落（现金流分析等）。14 个行业的壁垒/催化剂模板重复手写。
+
+### 改动
+- **新建** `scripts/generate_business_commentary.py`（376行）：
+  - 从 config.business_desc + DB revenue_structure 生成 Business 描述
+  - P1/P2/P4 纯数据驱动公式（营收/现金流/估值）
+  - P3/P5 行业专属模板：14 行业 moat + 9 行业 catalyst
+  - 未匹配行业 → 通用默认模板
+  - 已存在不覆盖（保护手工精调版本）
+- **修改** `scripts/build.py`：
+  - 新增 `step_4_5_auto_gen_commentary()` — Step 4 后自动调用生成器
+  - 失败不阻断 → 回退 engine 内置 `_build_commentary_from_data()`
+
+### 效果
+- 新增标的无需手写 commentary，build.py 自动生成初稿
+- 后续可选精调 P3（壁垒）和 P5（催化剂）段落
+- 安琪酵母 (600298) 测试通过：72 ALL PASS，Business + Commentary 来自自动生成脚本
+- `新增标的流程` 从 7 步简化为：config → build --fetch → insert_revenue → auto-gen commentary → reading → index
+
+### 触及 Wiki 页面
+- [[generate_business_commentary.py]] — 新建模块页
+- [[BUSINESS 生成链路]] — 新增自动生成级别
+- [[8 步流水线]] — 新增 Step 4.5
+- [[build.py]] — 新增 step_4_5_auto_gen_commentary
+- [[新增标的流程]] — 简化步骤 5（自动生成）
+- [[index.md]] — 新增模块条目
+- raw/2026-06-23-business-commentary-auto-gen.md — 原始设计记录
+
+---
+
+## [2026-06-23] add | 安琪酵母 (600298) VL 报告 + 专属 Commentary
+
+新增标的安琪酵母：
+- CF=15.0x，A股（SSE），Consumer Staples
+- 营收结构：酵母71%/食品原料13%/制糖8%/包装2%/其他5%
+- 地区：国内58.6%/国外40.9%（海外毛利率32%远高国内20%）
+- 专属 `business_commentary.py`：5段数据驱动分析
+- 阅读报告：`report/reading/600298.md` + `.html`
+- index.html 更新：50 标的 / 18 行业
+
+---
+
+## [2026-06-23] fix | 颐海国际 (01579) 报告重建 + index.html 更新
+
+颐海国际重新拉取数据（双源：AKShare + TDX），build.py 重建 + 阅读报告重生成。
+7 个数据缺口（PE_AVG/股息率等港股 AKShare 未提供）非拉取可修复，CrossCheck 54/60。
+
+---
+
 ## [2026-06-20] ingest | fetcher.py A 股 DPS 自动补入预案流程
 
 ### 改动

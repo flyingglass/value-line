@@ -1,19 +1,19 @@
 ---
 module: build.py
 category: 流水线编排
-depends_on: [config.py, fetcher.py, engine.py, pdf_downloader.py, extract_mda.py, generate_report.py]
-lines: 944
-updated: 2026-06-15
+depends_on: [config.py, fetcher.py, engine.py, pdf_downloader.py, extract_mda.py, generate_report.py, generate_business_commentary.py]
+lines: 965
+updated: 2026-06-23
 ---
 
-# build.py — 主入口，8 步流水线
+# build.py — 主入口，8+1 步流水线
 
 ## 职责
 
-系统唯一入口，编排 8 步强制流水线，处理估值倍数确认、前置校验、步骤调度。
+系统唯一入口，编排 8+1 步强制流水线，处理估值倍数确认、前置校验、步骤调度。
 任何一步失败即阻断，不生成报告。
 
-**2026-06-14 改造**：智能新鲜度检测，默认自动判断是否需要拉取最新数据，无需手动 `--fetch`。
+**2026-06-23 改**：新增 Step 4.5 自动生成 `business_commentary.py`，新增标的无需手写 Commentary。
 
 ## 关键函数
 
@@ -25,7 +25,8 @@ updated: 2026-06-15
 | `step_1_fetch()` | 双轨检测：股价按交易日 / 财报按报告期 → 自动拉取 |
 | `step_2_pdf()` | 年报 PDF 下载（检测新年报 → 自动下载） |
 | `step_3_mda()` | MD&A 提取（检测 PDF 年份 > 已提取年份 → 强制重提） |
-| `step_4_revenue()` | 营收结构入库（唯一步骤需手动脚本） |
+| `step_4_revenue()` | 营收结构入库（需手动 insert_revenue.py） |
+| `step_4_5_auto_gen_commentary()` | 🆕 自动生成 business_commentary.py（如不存在；失败不阻断） |
 | `step_6_engine()` | 调用 engine.py 计算指标 |
 | `step_7_generate()` | 调用 generate_report.py |
 | `step_8_verify()` | 72 项逐字段完整性校验 |
