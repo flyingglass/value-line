@@ -1,5 +1,34 @@
 # 操作日志
 
+## [2026-06-25] ingest | Arthur 收益递增与涌现 — 概念页创建 + 三层涌现补充
+
+### 摄入内容
+- 对话中探讨 W. Brian Arthur 复杂经济学中收益递增（increasing returns）与涌现（emergence）的关系
+- 原始资料：Arthur 1999 *Science* 论文原文引用（web_search → web_fetch PDF 验证）
+- 存为 `raw/2026-06-25-arthur-increasing-returns-emergence.md`
+
+### Wiki 产出
+- `wiki/concepts/Arthur-收益递增与涌现.md` — 新建概念页
+  - Arthur 原文引用：涌现定义 + 正反馈主导论（1999 Science）
+  - 四种自强化机制（1996 HBR）
+  - **三层涌现分类**（结构涌现 / 行为涌现 / 技术涌现）— AI 推演框架，基于 Arthur 不同著作串联
+  - 两者的因果链条：正反馈 → 涌现
+  - 与投资框架的衔接
+
+### 补充更新（11:52）
+- raw 第四部分展开三层涌现的完整论述（原有仅一行简述）
+- wiki 概念页新增 §2「涌现的三个层次」，含表格和 El Farol Bar 详解
+
+### 交叉引用
+- `research/投资框架-复杂经济学指导手册.md` §1.1 添加交叉引用链接
+
+### 页面更新
+- `wiki/index.md` — 新增条目
+- `wiki/log.md` — 本次
+- `research/log.md` — 本次
+
+---
+
 ## [2026-06-23] feat | business_commentary.py 自动生成 — build.py Step 4.5
 
 ### 动机

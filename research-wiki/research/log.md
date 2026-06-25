@@ -1,5 +1,22 @@
 # 投研操作日志
 
+## [2026-06-25] ingest | Arthur 收益递增与涌现 — 理论深化
+
+### 摄入内容
+- W. Brian Arthur 1999 *Science* 论文《Complexity and the Economy》原文核对
+- 涌现定义 + 正反馈/收益递增主导论的关系梳理
+- 原始资料：`raw/2026-06-25-arthur-increasing-returns-emergence.md`
+
+### Wiki 产出
+- `wiki/concepts/Arthur-收益递增与涌现.md` — 新建理论概念页
+- `research/投资框架-复杂经济学指导手册.md` §1.1 — 添加交叉引用
+
+### 核心要点
+- Arthur 1999 年即提出：涌现 = 复杂系统定义，正反馈 = 涌现的机制条件
+- 与投资框架衔接：识别正反馈回路是识别极端赢家的第一步
+
+---
+
 ## [2026-06-23] ingest | 安琪酵母 (600298) 投研体系初始化 — 3 wiki 页面
 
 ### 摄入内容
