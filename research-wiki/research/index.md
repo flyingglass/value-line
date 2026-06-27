@@ -35,7 +35,8 @@
 - [[articles/papers/投资框架-参考著作]] — 12 项原始资料来源记录
 
 ### 综合分析 (articles/synthesis/)
-- [[articles/synthesis/popmart-cycle-defense-comparison]] — 🆕 外部观点 vs 我们框架 — Chason 该文对比（平台化·3年周期·The Monster化）
+- [[articles/synthesis/popmart-chason-rebuttal]] — 🆕 驳论 — 拆解 Chason 七个论断（3年周期·代际无共鸣·毛绒退烧·The Monster化）
+- [[articles/synthesis/popmart-cycle-defense-comparison]] — 外部观点 vs 我们框架 — Chason 该文对比
 - [[articles/synthesis/popmart-historical-cycle-defense]] — 泡泡玛特历史周期防御 — 四模式归纳 × 三条防线演绎 × 冗余备份
 - [[articles/synthesis/popmart-ip-cycle-defense]] — 泡泡玛特抵御IP/品类周期 — 代际转化的本质
 - [[articles/synthesis/popmart-demand-decomposition]] — 泡泡玛特"买不买 vs 买多少" — 三层拆解 × 茅台对称性

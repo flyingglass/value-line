@@ -1,5 +1,11 @@
 # 投研操作日志
 
+## [2026-06-27] query | 驳论 — 拆解 Chason 对抗周期的七个论断
+
+- 新建 `articles/synthesis/popmart-chason-rebuttal.md`
+- 方法论：Molly 19年寿命证伪"3年周期"；Hello Kitty 52年证伪"代际无共鸣"；泡泡2021盲盒→2023毛绒证伪"品类转换不可靠"
+- 核心反向判断："很难 ≠ 不是好生意"——泡泡的苦生意本质恰恰是护城河（别人做不了）
+
 ## [2026-06-27] ingest + query | 泡泡玛特外部观点 × 框架对比
 
 - 原始资料：`raw/research/articles/2026-06-17-popmart-past-present-future.md`（Chason《泡泡的过去、现在、未来》）
