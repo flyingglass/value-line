@@ -92,4 +92,4 @@
 - [[overview]] — 润泽科技数据目录
 - [[thesis]] — 投资 Thesis
 - [[industry-chain]] — 产业链全景
-- [[../wiki/concepts/Arthur-收益递增与涌现]] — AIDC 的正反馈回路分析
+- [[../vl/concepts/Arthur-收益递增与涌现]] — AIDC 的正反馈回路分析

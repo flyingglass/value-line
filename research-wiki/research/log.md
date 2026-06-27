@@ -68,7 +68,7 @@
 - 原始资料：`raw/research/articles/2026-06-25-arthur-increasing-returns-emergence.md`
 
 ### Wiki 产出
-- `wiki/concepts/Arthur-收益递增与涌现.md` — 新建理论概念页
+- `vl/concepts/Arthur-收益递增与涌现.md` — 新建理论概念页
 - `raw/research/articles/投资框架-复杂经济学指导手册.md` §1.1 — 添加交叉引用
 
 ### 核心要点

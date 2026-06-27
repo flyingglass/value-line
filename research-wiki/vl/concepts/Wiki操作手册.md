@@ -22,31 +22,31 @@ Wiki 工作流和页面格式规范。操作流程详见 `CODEBUDDY.md` 中定�
 执行流程：
 1. 将相关资料引用记录到 `raw/`
 2. 阅读内容，与用户讨论关键要点
-3. 在 `wiki/modules/` 创建或更新相关模块页
-4. 在 `wiki/concepts/` 更新或创建相关概念页
-5. 在 `wiki/entities/` 更新或创建相关实体页
-6. 更新 `wiki/index.md` 添加新页面索引
-7. 追加 `wiki/log.md` 记录本次摄入
+3. 在 `vl/modules/` 创建或更新相关模块页
+4. 在 `vl/concepts/` 更新或创建相关概念页
+5. 在 `vl/entities/` 更新或创建相关实体页
+6. 更新 `vl/index.md` 添加新页面索引
+7. 追加 `vl/log.md` 记录本次摄入
 8. 汇报触及了哪些 Wiki 页面
 
 ### 2. Query（对知识库提问）
 
-1. 先读 `wiki/index.md` 找到相关页面
+1. 先读 `vl/index.md` 找到相关页面
 2. 深入阅读相关 Wiki 页面
 3. 综合回答，引用具体来源
-4. 如果回答有持续价值，存回 `wiki/synthesis/`
-5. 追加 `wiki/log.md`
+4. 如果回答有持续价值，存回 `vl/synthesis/`
+5. 追加 `vl/log.md`
 
 ### 3. Lint（健康检查）
 
 1. 扫描所有 Wiki 页面，查找不一致、过时声明、孤立页面
 2. 自动修复能修复的问题
 3. 报告需要人工判断的问题
-4. 追加 `wiki/log.md`
+4. 追加 `vl/log.md`
 
 ## 页面格式规范
 
-### 模块页（wiki/modules/）
+### 模块页（vl/modules/）
 
 ```markdown
 ---
@@ -75,7 +75,7 @@ updated: 2026-06-09
 - [ ] 待改进项
 ```
 
-### 概念页（wiki/concepts/）
+### 概念页（vl/concepts/）
 
 ```markdown
 ---
@@ -100,7 +100,7 @@ created: 2026-06-09
 补充信息、边界条件、陷阱。
 ```
 
-### 实体页（wiki/entities/）
+### 实体页（vl/entities/）
 
 ```markdown
 ---

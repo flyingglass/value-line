@@ -9,7 +9,7 @@ source: ../raw/research/articles/2026-06-25-arthur-increasing-returns-emergence.
 
 > 来源：W. Brian Arthur, *Complexity and the Economy*, *Science* 284(5411), 1999
 > 原始资料：[[../raw/research/articles/2026-06-25-arthur-increasing-returns-emergence]]
-> 概念页：[[../../wiki/concepts/Arthur-收益递增与涌现]]
+> 概念页：[[../../vl/concepts/Arthur-收益递增与涌现]]
 
 ## 核心概念
 

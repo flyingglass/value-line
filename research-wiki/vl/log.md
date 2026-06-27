@@ -8,7 +8,7 @@
 - 存为 `raw/research/articles/2026-06-25-arthur-increasing-returns-emergence.md`
 
 ### Wiki 产出
-- `wiki/concepts/Arthur-收益递增与涌现.md` — 新建概念页
+- `vl/concepts/Arthur-收益递增与涌现.md` — 新建概念页
   - Arthur 原文引用：涌现定义 + 正反馈主导论（1999 Science）
   - 四种自强化机制（1996 HBR）
   - **三层涌现分类**（结构涌现 / 行为涌现 / 技术涌现）— AI 推演框架，基于 Arthur 不同著作串联
@@ -23,8 +23,8 @@
 - `raw/research/articles/投资框架-复杂经济学指导手册.md` §1.1 添加交叉引用链接
 
 ### 页面更新
-- `wiki/index.md` — 新增条目
-- `wiki/log.md` — 本次
+- `vl/index.md` — 新增条目
+- `vl/log.md` — 本次
 - `research/log.md` — 本次
 
 ---
@@ -91,7 +91,7 @@
 ## [2026-06-19] fix | 新增标的流程：行业中文 + 前台交互输入 CF/PB
 
 ### 改动
-- `wiki/concepts/新增标的流程.md`：
+- `vl/concepts/新增标的流程.md`：
   - Step 1 强调 **industry 必须用中文**
   - Step 2 修正为 `build.py <code> --fetch`（去掉 `--cf N`），说明必须前台交互运行
   - 补充步骤 7（`generate_index.py` 重建索引）
@@ -106,8 +106,8 @@
 ## [2026-06-19] refactor | 投资框架指导手册移至 research/ 命名空间
 
 ### 改动
-- `wiki/投资框架-复杂经济学指导手册.md` → `raw/research/articles/投资框架-复杂经济学指导手册.md`
-- `wiki/index.md`：更新链接指向新位置
+- `vl/投资框架-复杂经济学指导手册.md` → `raw/research/articles/投资框架-复杂经济学指导手册.md`
+- `vl/index.md`：更新链接指向新位置
 - `research/index.md`：新增投资框架条目
 
 ### 触及 Wiki 页面
@@ -121,7 +121,7 @@
 ### 摄入内容
 - 新建 `raw/research/articles/投资框架-复杂经济学指导手册.md` — 四本著作 + 外部文章 + 访谈的整合框架
 - 新建 `raw/research/articles/投资框架-参考著作.md` — 12 项原始资料来源记录（4 核心著作、2 辅助、3 论文、1 公众号、2 访谈）
-- 更新 `wiki/index.md` — 新增「投资框架」章节
+- 更新 `vl/index.md` — 新增「投资框架」章节
 
 ### 来源
 - 4 本核心著作：复杂经济学(阿瑟) / 竞争优势(格林沃尔德) / 技术革命与金融资本(佩蕾丝) / 柏基投资之道(李正)
@@ -416,9 +416,9 @@ def build(stock, metrics, revenue_structure, years, cagr, spot):
 ## [2026-06-13] cleanup | 移除微云上传下载及相关 wiki 页面
 
 删除内容：
-- `research-wiki/wiki/entities/工具-微云网盘.md` — 整页删除
+- `research-wiki/vl/entities/工具-微云网盘.md` — 整页删除
 - `concepts/跨电脑迁移与云备份.md` — 移除微云引用，更新为两 Tool 方案
-- `wiki/index.md` — 移除微云条目
+- `vl/index.md` — 移除微云条目
 - `.env` / `.env.example` — 移除 `WEIYUN_MCP_TOKEN`
 - `tencent-weiyun/` 空目录 — 待手动删除
 

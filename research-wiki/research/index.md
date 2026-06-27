@@ -54,4 +54,4 @@
 2. **Query**：从 wiki 页面提取观点，结合 DB/PDF 数据验证或深化
 3. **Wiki**：将 query 结果写回 wiki 页面（thesis/moat/risks 等），更新 index.md + log.md
 
-详细规范见 [[Wiki操作手册]]（`wiki/concepts/Wiki操作手册.md`）。
+详细规范见 [[Wiki操作手册]]（`vl/concepts/Wiki操作手册.md`）。

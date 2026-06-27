@@ -17,7 +17,7 @@ research-wiki/
 │   └── research/              投研原始资料
 │       ├── articles/          通用文章
 │       └── <code>/            按标的的原始资料
-├── wiki/                      VL 项目内部 wiki
+├── vl/                      VL 项目内部 wiki
 │   ├── index.md              索引
 │   ├── overview.md           概述
 │   ├── log.md                操作日志
@@ -34,7 +34,7 @@ research-wiki/
     │   ├── industry-chain.md 产业链全景
     │   ├── operating-metrics.md 运营指标
     │   └── research-reports.md  券商研报索引
-    └── articles/             通用投研文章（与 wiki/ 同构）
+    └── articles/             通用投研文章（与 vl/ 同构）
         ├── concepts/         投资概念与框架
         ├── entities/         人物/机构
         ├── papers/           论文与参考书目
@@ -43,7 +43,7 @@ research-wiki/
 
 ### 🔴 命名空间规则
 
-**wiki/** — VL 项目内部文档：
+**vl/** — VL 项目内部文档：
 - 模块代码、流水线概念、数据源实体等
 - 结构与 `research/` 并行，两者交叉链接互通
 

@@ -83,7 +83,7 @@ Python 3 + AKShare + SQLite + pdfplumber + ECharts (前端) + Jinja2 (模板)
 ```
 research-wiki/
 ├── raw/                   # 原始资料（不可变，只进不改）
-├── wiki/                  # LLM 维护的 Wiki
+├── vl/                    # VL 项目内部 wiki
 │   ├── index.md           # 内容目录
 │   ├── log.md             # 操作日志（只追加）
 │   ├── overview.md        # 本页 — 项目全景概述
