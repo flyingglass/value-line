@@ -29,7 +29,7 @@
 ### 摄入内容
 - W. Brian Arthur 1999 *Science* 论文《Complexity and the Economy》原文核对
 - 涌现定义 + 正反馈/收益递增主导论的关系梳理
-- 原始资料：`raw/articles/2026-06-25-arthur-increasing-returns-emergence.md`
+- 原始资料：`raw/research/articles/2026-06-25-arthur-increasing-returns-emergence.md`
 
 ### Wiki 产出
 - `wiki/concepts/Arthur-收益递增与涌现.md` — 新建理论概念页

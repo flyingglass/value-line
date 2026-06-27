@@ -8,11 +8,15 @@ VL 单页报告（`build.py` 8 步流水线）是其中一个子功能。
 ```
 research-wiki/
 ├── raw/                       原始资料，只进不改 (共享)
-│   ├── articles/              通用话题/文章
-│   ├── research/<code>/       按标的分类的原始资料
-│   ├── akshare-reference/     数据源参考
-│   ├── tdx-reference/
-│   └── vl-reference/
+│   ├── vl/                    VL 项目内部
+│   │   ├── articles/          VL 项目通用文章
+│   │   ├── akshare-reference/ 数据源参考
+│   │   ├── tdx-reference/
+│   │   ├── karpathy-reference/
+│   │   └── vl-reference/
+│   └── research/              投研资料
+│       ├── articles/          投研通用文章
+│       └── <code>/            按标的的原始资料
 ├── wiki/                      VL 项目内部文档，按概念/模块/实体组织
 │   ├── concepts/              核心概念
 │   ├── modules/               代码模块
@@ -22,10 +26,11 @@ research-wiki/
     └── index.md               投研索引
 ```
 
-🔴 raw/ 文件必须按话题归类：
+🔴 raw/ 文件必须按分类归入：
+- VL 项目相关 → `raw/vl/articles/`
+- 投研通用话题/文章 → `raw/research/articles/`
 - 标的专项 → `raw/research/<code>/`
-- 通用话题/文章 → `raw/articles/`
-- 数据源/工具参考 → `raw/<source>-reference/`
+- 数据源/工具参考 → `raw/vl/<source>-reference/`
 
 两个 wiki 通过交叉链接互通，共享 `data/` 数据层。
 
