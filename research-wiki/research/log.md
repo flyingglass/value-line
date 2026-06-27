@@ -1,5 +1,12 @@
 # 投研操作日志
 
+## [2026-06-27] query | 泡泡玛特历史周期防御 — 归纳四模式 × 演绎三防线 × 芒格八模型
+
+- 新建 `articles/synthesis/popmart-historical-cycle-defense.md`
+- 归纳四模式：IP矩阵熨平 / 品类形态转换（IP不变载体变）/ 地理扩张对冲 / 价格带拉宽
+- 演绎三防线：签约-孵化-分发链条 / IP先行品类跟随 / 全球=周期地理对冲
+- 核心发现：护城河不是2021年前有的，是2022年危机中建造的（冗余备份的工程学思维）
+
 ## [2026-06-27] query | 泡泡玛特抵御IP/品类周期 — 代际转化的本质
 
 - 新建 `articles/synthesis/popmart-ip-cycle-defense.md`
