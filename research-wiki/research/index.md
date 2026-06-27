@@ -17,9 +17,12 @@
 
 ## 按主题
 
-- [[../raw/research/articles/投资框架-复杂经济学指导手册]] — 四本著作整合框架：柏基智慧基石 + 竞争优势 + 三段式估值 + 三周期叠加
-
-<!-- 格式: [[themes/<topic>]] -->
+- [[articles/index]] — 🆕 投研文章索引（投资大师 · 投资框架 · 行业跟踪）
+- [[articles/arthur-increasing-returns]] — Arthur 收益递增与涌现
+- [[articles/seth-klarman-interview]] — 塞斯·卡拉曼访谈：44年年化20%的企业分析原则
+- [[articles/投资框架-复杂经济学指导手册]] — 四本著作整合框架
+- [[articles/投资框架-参考著作]] — 核心著作、论文、重要来源记录
+- [[articles/dahang-weekly-76]] — 大航周报76：2026年第26周持仓回顾
 
 ## 共享数据
 

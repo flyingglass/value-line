@@ -1,0 +1,31 @@
+---
+topic: Arthur 收益递增与涌现
+category: 投研-投资框架
+created: 2026-06-25
+source: ../raw/research/articles/2026-06-25-arthur-increasing-returns-emergence.md
+---
+
+# Arthur 收益递增与涌现
+
+> 来源：W. Brian Arthur, *Complexity and the Economy*, *Science* 284(5411), 1999
+> 原始资料：[[../raw/research/articles/2026-06-25-arthur-increasing-returns-emergence]]
+> 概念页：[[../../wiki/concepts/Arthur-收益递增与涌现]]
+
+## 核心概念
+
+### 收益递增（Increasing Returns）
+经济由正反馈（positive feedbacks）主导，而非新古典经济学假设的收益递减。知识密集型产业中边际成本趋近于零，正反馈驱动市场动态。
+
+### 四种自强化机制
+1. **规模经济**：产量越大 → 单位成本越低
+2. **学习效应**：做得越久 → 做得越好
+3. **网络外部性**：用的人越多 → 价值越大
+4. **信息递增**：知道的人越多 → 传播越快
+
+### 涌现（Emergence）
+基本单元之间的相互作用导致更高层次上结构的涌现。正反馈是微观互动被放大为宏观结构的机制条件。
+
+### 三层涌现
+1. **结构涌现**：正反馈放大局部互动 → 技术标准锁定、产业集群、泡沫
+2. **行为涌现**：归纳推理 + 规则正反馈竞擇 → 价格模式、市场周期
+3. **技术涌现**：组合 + 模块广泛采用 → 技术生态的自我进化

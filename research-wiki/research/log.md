@@ -1,5 +1,21 @@
 # 投研操作日志
 
+## [2026-06-27] ingest | research/articles/ — 投研文章目录
+
+### 新建 articles 目录
+- `research/articles/index.md` — 文章索引（投资大师/投资框架/行业跟踪）
+- `research/articles/seth-klarman-interview.md` — Klarman 访谈 wiki 页
+- `research/articles/arthur-increasing-returns.md` — Arthur wiki 页
+- `research/articles/dahang-weekly-76.md` — 大航周报76
+- `research/articles/投资框架-参考著作.md` — 参考著作 wiki 页
+
+### 原始资料
+- `raw/research/articles/2026-06-25-seth-klarman-interview.md`
+- `raw/research/articles/2026-06-26-dahang-weekly-76.md`
+
+### 索引更新
+- `research/index.md` 新增 articles/ 入口
+
 ## [2026-06-26] ingest | 润泽科技 300442 — IDC/AIDC 运营指标跟踪
 
 ### 摄入内容
