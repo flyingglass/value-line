@@ -50,6 +50,6 @@
 
 ## 投资框架
 
-- [[../research/投资框架-复杂经济学指导手册]] — 四本著作整合框架，已移至 research/（投研 wiki 命名空间）
+- [[../raw/research/articles/投资框架-复杂经济学指导手册]] — 四本著作整合框架，已移至 raw/research/articles/（原始资料命名空间）
 
 ## 综合分析 (synthesis/)

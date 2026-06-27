@@ -20,7 +20,7 @@
 - wiki 概念页新增 §2「涌现的三个层次」，含表格和 El Farol Bar 详解
 
 ### 交叉引用
-- `research/投资框架-复杂经济学指导手册.md` §1.1 添加交叉引用链接
+- `raw/research/articles/投资框架-复杂经济学指导手册.md` §1.1 添加交叉引用链接
 
 ### 页面更新
 - `wiki/index.md` — 新增条目
@@ -106,12 +106,12 @@
 ## [2026-06-19] refactor | 投资框架指导手册移至 research/ 命名空间
 
 ### 改动
-- `wiki/投资框架-复杂经济学指导手册.md` → `research/投资框架-复杂经济学指导手册.md`
+- `wiki/投资框架-复杂经济学指导手册.md` → `raw/research/articles/投资框架-复杂经济学指导手册.md`
 - `wiki/index.md`：更新链接指向新位置
 - `research/index.md`：新增投资框架条目
 
 ### 触及 Wiki 页面
-- [[../research/投资框架-复杂经济学指导手册]]
+- [[../raw/research/articles/投资框架-复杂经济学指导手册]]
 - [[index.md]] (wiki + research)
 
 ---
@@ -119,7 +119,7 @@
 ## [2026-06-18] ingest | 投资框架知识体系导入
 
 ### 摄入内容
-- 新建 `wiki/投资框架-复杂经济学指导手册.md` — 四本著作 + 外部文章 + 访谈的整合框架
+- 新建 `raw/research/articles/投资框架-复杂经济学指导手册.md` — 四本著作 + 外部文章 + 访谈的整合框架
 - 新建 `raw/research/articles/投资框架-参考著作.md` — 12 项原始资料来源记录（4 核心著作、2 辅助、3 论文、1 公众号、2 访谈）
 - 更新 `wiki/index.md` — 新增「投资框架」章节
 
