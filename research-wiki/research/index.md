@@ -24,6 +24,8 @@
 
 ### 概念 (articles/concepts/)
 - [[articles/concepts/arthur-increasing-returns]] — Arthur 收益递增与涌现
+- [[articles/concepts/munger-poor-charlie-lecture2]] — 芒格多元思维模型（《穷查理宝典》第二讲 · 七大学科 · 投资检查清单）
+- [[articles/concepts/munger-mental-models-analysis]] — 芒格推演与分析（9步投资流程 · 双轨分析 · Lollapalooza）
 - [[articles/concepts/投资框架-复杂经济学指导手册]] — 四本著作整合框架（柏基 + 竞争优势 + 三段式估值 + 三周期）
 
 ### 实体 (articles/entities/)
