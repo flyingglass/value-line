@@ -35,6 +35,7 @@
 - [[articles/papers/投资框架-参考著作]] — 12 项原始资料来源记录
 
 ### 综合分析 (articles/synthesis/)
+- [[articles/synthesis/maotai-drink-logic-analysis]] — 🆕 茅台"喝不喝 vs 喝多少" — 归纳演绎法 × 芒格多元模型
 - [[articles/synthesis/dahang-weekly-76]] — 大航周报76：2026年第26周
 
 ## 共享数据
