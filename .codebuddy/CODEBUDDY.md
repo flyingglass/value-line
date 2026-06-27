@@ -7,10 +7,25 @@ VL 单页报告（`build.py` 8 步流水线）是其中一个子功能。
 ### Wiki 双轨架构
 ```
 research-wiki/
-├── raw/         原始资料，只进不改 (共享)
-├── wiki/        VL 项目内部文档，按概念/模块/实体组织
-└── research/    投研 wiki，按标的/主题组织
+├── raw/                       原始资料，只进不改 (共享)
+│   ├── articles/              通用话题/文章
+│   ├── research/<code>/       按标的分类的原始资料
+│   ├── akshare-reference/     数据源参考
+│   ├── tdx-reference/
+│   └── vl-reference/
+├── wiki/                      VL 项目内部文档，按概念/模块/实体组织
+│   ├── concepts/              核心概念
+│   ├── modules/               代码模块
+│   └── entities/              实体（数据源/工具等）
+└── research/                  投研 wiki，按标的/主题组织
+    ├── <code>/                标的目录 (overview.md / thesis.md / industry-chain.md 等)
+    └── index.md               投研索引
 ```
+
+🔴 raw/ 文件必须按话题归类：
+- 标的专项 → `raw/research/<code>/`
+- 通用话题/文章 → `raw/articles/`
+- 数据源/工具参考 → `raw/<source>-reference/`
 
 两个 wiki 通过交叉链接互通，共享 `data/` 数据层。
 
