@@ -1,24 +1,39 @@
 # 投研索引
 
-> 最后更新：2026-06-26
+> 最后更新：2026-06-27
+
+## 概述
+
+- [[overview]] — 投研 wiki 概述与目录结构
 
 ## 按标的
 
 - [[600298/overview]] — 安琪酵母 · 必需消费 · 数据目录 (revenue_structure 3 维度, FY2025 产品/地区/渠道拆分, CF=15.0x)
-- [[600298/thesis]] — 安琪酵母 · 投资 Thesis (四业务赚钱逻辑 · 四大护城河 · 四风险 · 五催化剂)
-- [[600298/industry-chain]] — 安琪酵母 · 产业链全景 (酵母产业链 · 成本结构 · 竞争格局 · 毛利率周期)
-- [[600079/overview]] — 人福医药 · Pharmaceuticals · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考)
-- [[09992/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度, 中国线上子渠道 21-25)
-- [[002129/overview]] — TCL中环 · 光伏 · 数据目录 (revenue_structure 表, by_product 5 年产品拆分, PB=1.0x)
-- [[002129/thesis]] — TCL中环 · 投资 Thesis (四业务赚钱逻辑 · 四大护城河 · 六风险 · 五催化剂)
-- [[002129/industry-chain]] — TCL中环 · 产业链全景 (光伏 + 半导体双链 · 竞争格局 · 周期判断)
+- [[600298/thesis]] — 安琪酵母 · 投资 Thesis
+- [[600298/industry-chain]] — 安琪酵母 · 产业链全景
+- [[600079/overview]] — 人福医药 · Pharmaceuticals · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考 + 应收账款分析)
+- [[09992/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度)
+- [[002129/overview]] — TCL中环 · 光伏 · 数据目录
+- [[002129/thesis]] — TCL中环 · 投资 Thesis
+- [[002129/industry-chain]] — TCL中环 · 产业链全景
+- [[002129/research-reports]] — TCL中环 · 券商研报索引 (民生/国金/国联 5 篇)
 - [[300442/overview]] — 润泽科技 · 数据中心/AIDC · 数据目录
-- [[300442/operating-metrics]] — 润泽科技 · 运营指标跟踪 (上架率/PUE/电费成本/折旧 2022-2025)
+- [[300442/operating-metrics]] — 润泽科技 · 运营指标跟踪 (上架率/PUE/电费 2022-2025)
 
-## 按主题
+## 按主题 — 文章目录
 
-- [[articles/index]] — 🆕 投研文章目录（concepts · entities · papers · synthesis）
-- [[articles/overview]] — 文章目录概述与定位
+### 概念 (articles/concepts/)
+- [[articles/concepts/arthur-increasing-returns]] — Arthur 收益递增与涌现
+- [[articles/concepts/投资框架-复杂经济学指导手册]] — 四本著作整合框架
+
+### 实体 (articles/entities/)
+- [[articles/entities/seth-klarman-interview]] — Klarman：44年年化20%的企业分析原则
+
+### 论文与参考 (articles/papers/)
+- [[articles/papers/投资框架-参考著作]] — 12 项原始资料来源记录
+
+### 综合分析 (articles/synthesis/)
+- [[articles/synthesis/dahang-weekly-76]] — 大航周报76：2026年第26周
 
 ## 共享数据
 
@@ -29,13 +44,13 @@
 | 财务数据库 | `data/<code>.db` | 三大报表、分析指标、分红、行情、营收拆分 (9 表) |
 | 年报 PDF | `data/pdfs/<code>/` | 港交所/A股年报/中报/季报原始文件 |
 | 汇率 | `data/fx_rates.db` | HKD/CNY 每日汇率 |
-| 标的配置 | `config.py` > STOCKS | 42 只标的的基本信息 |
+| 标的配置 | `config.py` > STOCKS | 53 只标的的基本信息 |
 
 ## 工作流
 
 遵循 ingest → query → wiki 循环：
 
-1. **Ingest**：将原始资料全文存入 `raw/research/<code>/`，再读取后创建 wiki 页面
+1. **Ingest**：将原始资料全文存入 `raw/research/<code>/` 或 `raw/research/articles/`，再读取后创建 wiki 页面
 2. **Query**：从 wiki 页面提取观点，结合 DB/PDF 数据验证或深化
 3. **Wiki**：将 query 结果写回 wiki 页面（thesis/moat/risks 等），更新 index.md + log.md
 

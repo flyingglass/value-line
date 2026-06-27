@@ -1,5 +1,25 @@
 # 投研操作日志
 
+## [2026-06-27] ingest | research/ 全面重组 + raw/research/ 全面 ingest
+
+### 目录重组
+- 合并 articles/index.md、log.md、overview.md → research/ 级别
+- 新建 `research/overview.md` — 投研 wiki 命名空间概述
+- 更新 `research/index.md` — 含 articles/concepts|entities|papers|synthesis 四子目录
+
+### 全面 ingest
+- `research/002129/research-reports.md` — 新建券商研报索引 (民生/国金/国联 5篇)
+- `research/articles/` 四子目录全部已覆盖：
+  - concepts/: Arthur收益递增、投资框架
+  - entities/: Seth Klarman 访谈
+  - papers/: 投资框架参考著作
+  - synthesis/: 大航周报76
+
+### 原始资料验证
+- `raw/research/articles/` 5 篇全部有对应 wiki (含重建的 dahang-weekly)
+- `raw/research/002129/` 5 篇研报已通过 research-reports.md 索引
+- `raw/research/300442/` idc-operating-metrics 已有 wiki
+
 ## [2026-06-27] ingest | research/articles/ — 投研文章目录
 
 ### 新建 articles 目录
