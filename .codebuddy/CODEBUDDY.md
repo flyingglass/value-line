@@ -30,6 +30,13 @@ research-wiki/
 ### VL 流水线（不可修改其流程）
 `build.py` → `engine.py` → `report/`。入口、8 步、输出格式、估值方法均不动。
 
+### 🔴 新增标的必须创建 `business_commentary.py`
+每个标的在 `scripts/<code>/` 下**必须**有 `business_commentary.py`，定义 `build()` 函数返回 `{"business": "...", "commentary": ["p1","p2","p3","p4","p5"]}`。
+- business：1 段公司概述 + 最新年核心数据
+- commentary：5 段 AI 评论（经营分析 / 现金流与资本配置 / 盈利质量与护城河 / 估值分析 / 催化剂）
+- 所有数据引用 `metrics`、`revenue_structure`、`cagr`、`spot` 参数，不硬编码
+- 不含可比公司 PE 中枢、行业规模等 DB 中不存在的数字，此类数据必须引用年报或外部来源
+
 ## 🔴 安全（不可违背）
 **严禁硬编码任何密钥 / Token / 密码。** 凭证一律 `.env` + `os.getenv()`。
 - 写新模块：确认凭证从 `.env` 读
