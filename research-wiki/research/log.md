@@ -1,5 +1,12 @@
 # 投研操作日志
 
+## [2026-06-27] ingest + query | 泡泡玛特外部观点 × 框架对比
+
+- 原始资料：`raw/research/articles/2026-06-17-popmart-past-present-future.md`（Chason《泡泡的过去、现在、未来》）
+- 对比分析：`articles/synthesis/popmart-cycle-defense-comparison.md`
+- Chason 补充了三个我们遗漏的维度：用户3年周期/平台化效率/The Monster化
+- 框架升级为四层防御：IP矩阵 → 平台化 → 用户代际获取 → The Monster化
+
 ## [2026-06-27] query | 泡泡玛特历史周期防御 — 归纳四模式 × 演绎三防线 × 芒格八模型
 
 - 新建 `articles/synthesis/popmart-historical-cycle-defense.md`
