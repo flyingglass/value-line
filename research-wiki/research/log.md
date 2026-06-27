@@ -1,5 +1,12 @@
 # 投研操作日志
 
+## [2026-06-27] query | 泡泡玛特抵御IP/品类周期 — 代际转化的本质
+
+- 新建 `articles/synthesis/popmart-ip-cycle-defense.md`
+- 核心：两种周期（IP可管理 / 品类需转换）→ 代际转化的本质（身份表达需求的载体代际更替）
+- 防御：唱片公司模型（批量制造中等IP）、形态转换（盲盒→毛绒→MEGA→下一形态）
+- 茅泡对比：茅台产品不变用户变，泡玛产品可随用户一起变
+
 ## [2026-06-27] query | 泡泡玛特"买不买 vs 买多少" — 三层拆解 × 茅台对称性
 
 - 新建 `articles/synthesis/popmart-demand-decomposition.md`
