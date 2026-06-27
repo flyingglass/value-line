@@ -3,22 +3,29 @@ topic: BUSINESS 生成链路
 category: 数据流
 source: docs/BUILD.md, docs/DATA_VERIFICATION.md
 created: 2026-06-09
+updated: 2026-06-23
 ---
 
 # BUSINESS & Commentary 生成链路
 
-## 3 级优先级 (2026-06-14 改)
+## 3 级优先级 + 自动生成 (2026-06-23 改)
 
 ```
 1. 个股动态脚本 scripts/<code>/business_commentary.py::build(stock, metrics, ...)
-       ↓ 14只已有, 从实时数据动态生成, 无硬编码
+       ↓ 手工精调 或 自动生成（Step 4.5），从实时数据动态生成，无硬编码
 2. PDF 年报 MDA 提取 (extract_mda.py → engine 无条件解析)
        ↓ engine 不再 gate by quality, 直接尝试 _parse_mda_text()
 3. 引擎通用自生成 _build_business_from_data() + _build_commentary_from_data()
 ```
 
+**自动生成机制 (2026-06-23 新增)**：
+- `generate_business_commentary.py` 在 Step 4.5 自动生成脚本
+- 14 个行业专属 moat 模板 + 9 个行业催化剂模板
+- 生成的脚本 100% 数据驱动，运行时从 metrics/revenue_structure/spot 动态读取
+- 已存在不覆盖（保护手工精调版本）
+
 **已废弃**：config.py 的 `analyst.commentary`（engine 不消费，仅 generate_report.py 以前可能引用）。
-config `business_desc` 仅作为 engine 自生成时的补充信息，不独立成级。
+config `business_desc` 仅作为自动生成时的 Business 叙事来源，不独立成级。
 
 ## 动态脚本接口
 
@@ -56,3 +63,4 @@ engine.py
 [[extract_mda.py]]
 [[build.py]]
 [[generate_report.py]]
+[[generate_business_commentary.py]]

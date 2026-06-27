@@ -25,6 +25,11 @@ os.makedirs(READING_DIR, exist_ok=True)
 
 # ---- helpers ----
 
+def _sf(v, default=0.0):
+    """safe float: 兼容 '-' 等非数字字符串"""
+    try: return float(v)
+    except (ValueError, TypeError): return default
+
 def _fmt(val, unit="", decimals=1):
     if val is None: return "-"
     if isinstance(val, float):
@@ -84,9 +89,9 @@ def _render_quick_screen(data):
     latest_yr = years[-1]
     ly = metrics.get(latest_yr, {})
 
-    price = spot.get("price", 0) or 0
-    pe = spot.get("pe", 0) or 0
-    pb = spot.get("pb", 0) or 0
+    price = _sf(spot.get("price")) or 0
+    pe = _sf(spot.get("pe")) or 0
+    pb = _sf(spot.get("pb")) or 0
     median_pe = spot.get("median_pe")
     bps = ly.get("BPS")
     roce = ly.get("ROIC")
@@ -377,7 +382,7 @@ def _render_ratings(data):
     s_label = {1: "最安全", 2: "较安全", 3: "中性", 4: "较低", 5: "不安全"}
     tech_label = {1: "最强", 2: "偏强", 3: "中性", 4: "偏弱", 5: "最弱"}
 
-    pe = spot.get("pe", 0) or 0
+    pe = _sf(spot.get("pe")) or 0
     median_pe = spot.get("median_pe")
 
     lines = []
@@ -582,10 +587,10 @@ def _render_commentary(data):
         lines.append(commentary[3])
         lines.append("")
     else:
-        pe = spot.get("pe", 0) or 0
+        pe = _sf(spot.get("pe")) or 0
         median_pe = spot.get("median_pe")
-        pb = spot.get("pb", 0) or 0
-        div_yield = spot.get("div_yield", 0) or 0
+        pb = _sf(spot.get("pb")) or 0
+        div_yield = _sf(spot.get("div_yield")) or 0
         bps = ly.get("BPS")
         working_cap = ly.get("WORKING_CAPITAL") or 0
 
@@ -668,7 +673,7 @@ def _render_commentary(data):
 
     # 验证信号
     watch_items = []
-    pe = spot.get("pe", 0) or 0
+    pe = _sf(spot.get("pe")) or 0
     median_pe = spot.get("median_pe")
     if net_ps is not None and net_ps < 0:
         watch_items.append(f"关注 {int(latest_yr)+1} 年中报净留存是否回升")
@@ -992,15 +997,15 @@ def _render_financial_health(data):
     # ---- Capital Structure ----
     if cap_struct:
         cs_unit = cap_struct.get("unit", "亿")
-        cs_total_debt = cap_struct.get("total_debt", 0)
-        cs_lt_debt = cap_struct.get("lt_debt", 0)
-        cs_total_int = cap_struct.get("total_int", 0)
+        cs_total_debt = _sf(cap_struct.get("total_debt", 0))
+        cs_lt_debt = _sf(cap_struct.get("lt_debt", 0))
+        cs_total_int = _sf(cap_struct.get("total_int", 0))
         cs_coverage = cap_struct.get("coverage", "NMF")
-        cs_lt_debt_pct = cap_struct.get("lt_debt_pct", 0)
+        cs_lt_debt_pct = _sf(cap_struct.get("lt_debt_pct", 0))
         cs_common_shares = cap_struct.get("common_shares_str", "N/A")
-        cs_mkt_cap = cap_struct.get("mkt_cap", 0)
+        cs_mkt_cap = _sf(cap_struct.get("mkt_cap", 0))
         cs_cap_label = cap_struct.get("cap_label", "")
-        cs_total_equity = cap_struct.get("total_equity", 0)
+        cs_total_equity = _sf(cap_struct.get("total_equity", 0))
 
         lines.append("### 资本结构")
         lines.append("")
@@ -1116,7 +1121,7 @@ def _render_price_history(data):
     else:
         val_label = f"现金流基准线 = {cf_mult:.1f} × 每股现金流"
 
-    price = spot.get("price", 0) or 0
+    price = _sf(spot.get("price")) or 0
     val_line_last = valuation_line[-1].get("value") if valuation_line else None
 
     lines.append("### 价格图三线解读")
@@ -1307,9 +1312,9 @@ def _render_checklist(data):
     lines.append("")
 
     # 李录 5 问
-    pe = spot.get("pe", 0) or 0
+    pe = _sf(spot.get("pe")) or 0
     median_pe = spot.get("median_pe")
-    pb = spot.get("pb", 0) or 0
+    pb = _sf(spot.get("pb")) or 0
     bps = ly.get("BPS")
     roce = ly.get("ROIC")
     roe = ly.get("ROE")

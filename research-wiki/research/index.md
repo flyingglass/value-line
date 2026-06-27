@@ -1,12 +1,19 @@
 # 投研索引
 
-> 最后更新：2026-06-19
+> 最后更新：2026-06-26
 
 ## 按标的
 
-- [[600079/overview]] — 人福医药 · 医药（中枢神经） · 数据目录 + CNS 业务深度分析（revenue_structure 表, 5 年制造业/批发拆分, CF 估值）
+- [[600298/overview]] — 安琪酵母 · 必需消费 · 数据目录 (revenue_structure 3 维度, FY2025 产品/地区/渠道拆分, CF=15.0x)
+- [[600298/thesis]] — 安琪酵母 · 投资 Thesis (四业务赚钱逻辑 · 四大护城河 · 四风险 · 五催化剂)
+- [[600298/industry-chain]] — 安琪酵母 · 产业链全景 (酵母产业链 · 成本结构 · 竞争格局 · 毛利率周期)
+- [[600079/overview]] — 人福医药 · Pharmaceuticals · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考)
 - [[09992/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度, 中国线上子渠道 21-25)
 - [[002129/overview]] — TCL中环 · 光伏 · 数据目录 (revenue_structure 表, by_product 5 年产品拆分, PB=1.0x)
+- [[002129/thesis]] — TCL中环 · 投资 Thesis (四业务赚钱逻辑 · 四大护城河 · 六风险 · 五催化剂)
+- [[002129/industry-chain]] — TCL中环 · 产业链全景 (光伏 + 半导体双链 · 竞争格局 · 周期判断)
+- [[300442/overview]] — 润泽科技 · 数据中心/AIDC · 数据目录
+- [[300442/operating-metrics]] — 润泽科技 · 运营指标跟踪 (上架率/PUE/电费成本/折旧 2022-2025)
 
 ## 按主题
 
