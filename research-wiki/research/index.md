@@ -24,7 +24,7 @@
 
 ### 概念 (articles/concepts/)
 - [[articles/concepts/arthur-increasing-returns]] — Arthur 收益递增与涌现
-- [[articles/concepts/投资框架-复杂经济学指导手册]] — 四本著作整合框架
+- [[articles/concepts/投资框架-复杂经济学指导手册]] — 四本著作整合框架（柏基 + 竞争优势 + 三段式估值 + 三周期）
 
 ### 实体 (articles/entities/)
 - [[articles/entities/seth-klarman-interview]] — Klarman：44年年化20%的企业分析原则
