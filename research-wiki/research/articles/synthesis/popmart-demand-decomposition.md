@@ -8,7 +8,7 @@ updated: 2026-06-27
 # 泡泡玛特需求拆解——归纳法 × 演绎法 × 芒格多元模型
 
 > 方法论：从消费行为历史数据归纳第一性原理 → 演绎推演需求的可持续性 → 芒格多元模型映射
-> 相关：[[../09992/overview]] · [[articles/concepts/munger-poor-charlie-lecture2]]
+> 相关：[[../泡泡玛特/overview]] · [[articles/concepts/munger-poor-charlie-lecture2]]
 > 姊妹篇：[[popmart-historical-cycle-defense]]（公司层面的周期防御）· 本文聚焦消费者层面
 
 ---

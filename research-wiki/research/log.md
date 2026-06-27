@@ -8,7 +8,7 @@
 
 ## [2026-06-27] ingest + query | 泡泡玛特外部观点 × 框架对比
 
-- 原始资料：`raw/research/articles/2026-06-17-popmart-past-present-future.md`（Chason《泡泡的过去、现在、未来》）
+- 原始资料：`raw/research/泡泡玛特/2026-06-17-popmart-past-present-future.md`（Chason《泡泡的过去、现在、未来》）
 - 对比分析：`articles/synthesis/popmart-cycle-defense-comparison.md`
 - Chason 补充了三个我们遗漏的维度：用户3年周期/平台化效率/The Monster化
 - 框架升级为四层防御：IP矩阵 → 平台化 → 用户代际获取 → The Monster化
@@ -58,7 +58,7 @@
 - 更新 `research/index.md` — 含 articles/concepts|entities|papers|synthesis 四子目录
 
 ### 全面 ingest
-- `research/002129/research-reports.md` — 新建券商研报索引 (民生/国金/国联 5篇)
+- `research/TCL中环/research-reports.md` — 新建券商研报索引 (民生/国金/国联 5篇)
 - `research/articles/` 四子目录全部已覆盖：
   - concepts/: Arthur收益递增、投资框架
   - entities/: Seth Klarman 访谈
@@ -67,8 +67,8 @@
 
 ### 原始资料验证
 - `raw/research/articles/` 5 篇全部有对应 wiki (含重建的 dahang-weekly)
-- `raw/research/002129/` 5 篇研报已通过 research-reports.md 索引
-- `raw/research/300442/` idc-operating-metrics 已有 wiki
+- `raw/research/TCL中环/` 5 篇研报已通过 research-reports.md 索引
+- `raw/research/润泽科技/` idc-operating-metrics 已有 wiki
 
 ## [2026-06-27] ingest | research/articles/ — 投研文章目录
 
@@ -90,10 +90,10 @@
 
 ### 摄入内容
 - pdfplumber 从 2022-2025 年报 + 中报提取成本构成表（电费/折旧/薪酬）和经营讨论章节
-- 原始资料：`raw/research/300442/2026-06-26-idc-operating-metrics.md`
+- 原始资料：`raw/research/润泽科技/2026-06-26-idc-operating-metrics.md`
 
 ### Wiki 产出
-- `research/300442/operating-metrics.md` — 新建运营指标跟踪页
+- `research/润泽科技/operating-metrics.md` — 新建运营指标跟踪页
   - 核心 KPI：上架率(>90%)、PUE(1.09)、运营规模(750MW)、规划规模(6GW)
   - 电费成本：年报半年度完整对比表（2022-2025），IDC+AIDC 分拆
   - 电费比率趋势：70%→43%→46%，AIDC折旧(28%)远超电费(10.5%)
@@ -105,7 +105,7 @@
 - 2025年交付220MW，超过去16年累计的40%
 
 ### 页面更新
-- `research/index.md` — 新增 [[300442/overview]] + [[300442/operating-metrics]]
+- `research/index.md` — 新增 [[润泽科技/overview]] + [[润泽科技/operating-metrics]]
 - `research/log.md` — 本次
 
 ---
@@ -130,16 +130,16 @@
 ## [2026-06-23] ingest | 安琪酵母 (600298) 投研体系初始化 — 3 wiki 页面
 
 ### 摄入内容
-- 2025年报 MDA 全文 → `raw/research/600298/2025-mda-text.md`（pdfplumber 自动提取）
-- VL 阅读报告摘要 → `raw/research/600298/2026-06-23-vl-report.md`（generate_reading.py 生成）
+- 2025年报 MDA 全文 → `raw/research/安琪酵母/2025-mda-text.md`（pdfplumber 自动提取）
+- VL 阅读报告摘要 → `raw/research/安琪酵母/2026-06-23-vl-report.md`（generate_reading.py 生成）
 
 ### 创建的 wiki 页面
 
 | # | 页面 | 内容 |
 |---|------|------|
-| 1 | `research/600298/overview.md` | 数据目录（DB表结构、revenue_structure、毛利率趋势、数据源映射） |
-| 2 | `research/600298/industry-chain.md` | 产业链全景（酵母上中下游、成本结构、竞争格局、毛利率周期） |
-| 3 | `research/600298/thesis.md` | 投资Thesis（四业务赚钱逻辑、四大护城河、四风险、五催化剂、VL评级） |
+| 1 | `research/安琪酵母/overview.md` | 数据目录（DB表结构、revenue_structure、毛利率趋势、数据源映射） |
+| 2 | `research/安琪酵母/industry-chain.md` | 产业链全景（酵母上中下游、成本结构、竞争格局、毛利率周期） |
+| 3 | `research/安琪酵母/thesis.md` | 投资Thesis（四业务赚钱逻辑、四大护城河、四风险、五催化剂、VL评级） |
 
 ### 核心发现
 - **海外毛利率 32.1% vs 国内 19.7%**：全球化利润结构性改善是最大 alpha
@@ -149,8 +149,8 @@
 - **数据源混合**：财务指标/报表来自 AKShare（自动），营收拆分/竞争格局来自年报手动录入
 
 ### 页面更新
-- `raw/research/600298/`：新增 2 份原始资料
-- `research/600298/`：新增 3 个 wiki 页面
+- `raw/research/安琪酵母/`：新增 2 份原始资料
+- `research/安琪酵母/`：新增 3 个 wiki 页面
 - `research/index.md`：新增 3 条目（置顶）
 - `research/log.md`：本次
 
@@ -177,19 +177,19 @@
 - 研报拉取优先级：用户手动传入 > web_search > AKShare 列表
 
 ### 页面更新
-- `raw/research/002129/`：新增 3 份研报摘要
-- `research/002129/thesis.md`：新增「七、券商研报跟踪」（盈利预测对比 + 信号分析）
+- `raw/research/TCL中环/`：新增 3 份研报摘要
+- `research/TCL中环/thesis.md`：新增「七、券商研报跟踪」（盈利预测对比 + 信号分析）
 - `research/index.md`、`log.md`：本次
 
 ## [2026-06-23] ingest | TCL中环 002129 深度分析 — 投资 Thesis + 产业链全景
 
 ### 摄入内容
-- 新建 `raw/research/002129/2026-03-25-证券之星-2025年报分析.md` — 2025 年报经营分析（财务数据、业务进展、核心竞争力、行业破局）
-- 新建 `raw/research/002129/2026-04-02-国联民生证券-2025年报点评.md` — 券商点评（硅片龙头 + 一体化布局 + 盈利预测 + 风险）
+- 新建 `raw/research/TCL中环/2026-03-25-证券之星-2025年报分析.md` — 2025 年报经营分析（财务数据、业务进展、核心竞争力、行业破局）
+- 新建 `raw/research/TCL中环/2026-04-02-国联民生证券-2025年报点评.md` — 券商点评（硅片龙头 + 一体化布局 + 盈利预测 + 风险）
 
 ### Wiki 产出
-- `research/002129/thesis.md` — 投资 Thesis（四业务赚钱逻辑、四大护城河、六大风险、五大催化剂、估值观点、验证节点）
-- `research/002129/industry-chain.md` — 产业链全景（光伏产业链定位 + 半导体硅片产业链 + 商业模式演进 + 竞争格局 + 行业周期判断）
+- `research/TCL中环/thesis.md` — 投资 Thesis（四业务赚钱逻辑、四大护城河、六大风险、五大催化剂、估值观点、验证节点）
+- `research/TCL中环/industry-chain.md` — 产业链全景（光伏产业链定位 + 半导体硅片产业链 + 商业模式演进 + 竞争格局 + 行业周期判断）
 
 ### 数据细节
 - 硅片工费同比降超 40%，全球市占率第一（23.5%），G12 出货 +40.8%
@@ -198,7 +198,7 @@
 - 券商预计 2027 年扭亏（24.57 亿），PE=15x
 
 ### 页面更新
-- `research/index.md` — 新增 [[002129/thesis]] + [[002129/industry-chain]]
+- `research/index.md` — 新增 [[TCL中环/thesis]] + [[TCL中环/industry-chain]]
 - `research/log.md` — 本次
 
 ## [2026-06-22] ingest | 人福医药 600079 子公司营收全景
@@ -213,7 +213,7 @@
 - 归母结构：宜昌人福贡献 118% 归母净利，其他 5 家拖累
 
 ### Wiki 产出
-- `600079/overview.md` — 更新为子公司营收全景（表 + ROE + 净利率 + 毛利率参考 + 归母拆分）
+- `人福医药/overview.md` — 更新为子公司营收全景（表 + ROE + 净利率 + 毛利率参考 + 归母拆分）
 - `index.md` + `log.md` — 更新
 
 ## [2026-06-20] ingest | 人福医药 600079 应收账款深度分析
@@ -237,7 +237,7 @@
 - 外部：商务部药品流通报告、Investing.com 恩华 AR 周转率、行业对比文章
 
 ### 页面更新
-- `research/600079/overview.md` 新增「应收账款分析」六大模块
+- `research/人福医药/overview.md` 新增「应收账款分析」六大模块
 
 ### 原始资料
 - 行业背景 web search 结果已整合进 wiki，无需另存 raw
@@ -258,10 +258,10 @@
 - `report_data.json`（600079 完整数据）
 
 ### 数据目录页
-- `research/600079/overview.md` — revenue_structure + CNS 业务 6 大模块
+- `research/人福医药/overview.md` — revenue_structure + CNS 业务 6 大模块
 
 ### 索引更新
-- `research/index.md` 新增 [[600079/overview]]
+- `research/index.md` 新增 [[人福医药/overview]]
 
 ## [2026-06-19] ingest | TCL中环 002129 首次入库 + VL 报告
 
@@ -279,11 +279,11 @@
 - `report/reading/002129.md` + `.html` — 李录阅读法融合版
 
 ### 数据目录页
-- `research/002129/overview.md` — revenue_structure 表结构 + 产品速查表 + 占比演变
+- `research/TCL中环/overview.md` — revenue_structure 表结构 + 产品速查表 + 占比演变
 
 ### 索引更新
 - `report/index.html` 重建（43 标的 16 行业）
-- `research/index.md` 新增 [[002129/overview]]
+- `research/index.md` 新增 [[TCL中环/overview]]
 
 ## [2026-06-17] ingest | 泡泡玛特 09992 数据目录
 
@@ -293,7 +293,7 @@
 - 金额单位：百万元人民币
 
 ### 数据目录页
-- `09992/overview.md` — revenue_structure 表结构 + 全维度说明 + SQL 查询示例 + 速查表 + 二元汇总
+- `泡泡玛特/overview.md` — revenue_structure 表结构 + 全维度说明 + SQL 查询示例 + 速查表 + 二元汇总
 
 ### 原始资料
 - 年报 PDF 原文保留在 `data/pdfs/09992/`（2021-2025 年报），不再另存 raw

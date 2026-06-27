@@ -2,13 +2,13 @@
 topic: 泡泡玛特周期对抗 — 外部观点 vs 我们的框架对比
 category: 投研-综合分析
 created: 2026-06-27
-source: ../../raw/research/articles/2026-06-17-popmart-past-present-future.md
+source: ../../raw/research/泡泡玛特/2026-06-17-popmart-past-present-future.md
 ---
 
 # 泡泡玛特周期对抗：外部观点 vs 我们的框架对比
 
 > 对照：Chason《泡泡的过去、现在、未来》× 我们的归纳演绎框架
-> 原始资料：[[../../raw/research/articles/2026-06-17-popmart-past-present-future]]
+> 原始资料：[[../../raw/research/泡泡玛特/2026-06-17-popmart-past-present-future]]
 
 ---
 

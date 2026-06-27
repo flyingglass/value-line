@@ -8,17 +8,17 @@
 
 ## 按标的
 
-- [[600298/overview]] — 安琪酵母 · 必需消费 · 数据目录 (revenue_structure 3 维度, FY2025 产品/地区/渠道拆分, CF=15.0x)
-- [[600298/thesis]] — 安琪酵母 · 投资 Thesis
-- [[600298/industry-chain]] — 安琪酵母 · 产业链全景
-- [[600079/overview]] — 人福医药 · Pharmaceuticals · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考 + 应收账款分析)
-- [[09992/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度)
-- [[002129/overview]] — TCL中环 · 光伏 · 数据目录
-- [[002129/thesis]] — TCL中环 · 投资 Thesis
-- [[002129/industry-chain]] — TCL中环 · 产业链全景
-- [[002129/research-reports]] — TCL中环 · 券商研报索引 (民生/国金/国联 5 篇)
-- [[300442/overview]] — 润泽科技 · 数据中心/AIDC · 数据目录
-- [[300442/operating-metrics]] — 润泽科技 · 运营指标跟踪 (上架率/PUE/电费 2022-2025)
+- [[安琪酵母/overview]] — 安琪酵母 · 必需消费 · 数据目录 (revenue_structure 3 维度, FY2025 产品/地区/渠道拆分, CF=15.0x)
+- [[安琪酵母/thesis]] — 安琪酵母 · 投资 Thesis
+- [[安琪酵母/industry-chain]] — 安琪酵母 · 产业链全景
+- [[人福医药/overview]] — 人福医药 · Pharmaceuticals · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考 + 应收账款分析)
+- [[泡泡玛特/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度)
+- [[TCL中环/overview]] — TCL中环 · 光伏 · 数据目录
+- [[TCL中环/thesis]] — TCL中环 · 投资 Thesis
+- [[TCL中环/industry-chain]] — TCL中环 · 产业链全景
+- [[TCL中环/research-reports]] — TCL中环 · 券商研报索引 (民生/国金/国联 5 篇)
+- [[润泽科技/overview]] — 润泽科技 · 数据中心/AIDC · 数据目录
+- [[润泽科技/operating-metrics]] — 润泽科技 · 运营指标跟踪 (上架率/PUE/电费 2022-2025)
 
 ## 按主题 — 文章目录
 

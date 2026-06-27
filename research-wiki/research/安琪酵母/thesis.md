@@ -6,7 +6,7 @@ updated: 2026-06-23
 sources:
   - scripts/600298/business_commentary.py
   - report/reading/600298.md
-  - raw/research/600298/2026-06-23-vl-report.md
+  - raw/research/安琪酵母/2026-06-23-vl-report.md
   - data/600298.db
 ---
 
@@ -36,7 +36,7 @@ sources:
 - YE（酵母抽提物）替代味精趋势，国内 YE 市占率 60%+，毛利率高于传统酵母
 - 工业 4.0 柔性制造 + 集团化招采，糖蜜采购成本较预算显著降低
 
-（来源：`scripts/600298/business_commentary.py` Business + P1；`raw/research/600298/2025-mda-text.md` 【成本与效率】）
+（来源：`scripts/600298/business_commentary.py` Business + P1；`raw/research/安琪酵母/2025-mda-text.md` 【成本与效率】）
 
 ---
 
@@ -63,14 +63,14 @@ sources:
 - 酵母蛋白与酿酒酵母通过美国 FDA 认证
 - 2025 年度湖北省科学技术进步奖一等奖
 
-（来源：`raw/research/600298/2025-mda-text.md` 【产品/业务结构】【分地区表现】）
+（来源：`raw/research/安琪酵母/2025-mda-text.md` 【产品/业务结构】【分地区表现】）
 
 ### 护城河 4：品牌与客户黏性
 - "安琪 = 中国酵母代名词"，四十年品牌积累
 - B 端客户切换成本高（配方稳定性依赖特定酵母菌株）
 - 线上渠道占比 25.1%，直播电商 + 营销矩阵构建中
 
-（来源：`raw/research/600298/2025-mda-text.md` 【产品/业务结构】）
+（来源：`raw/research/安琪酵母/2025-mda-text.md` 【产品/业务结构】）
 
 ---
 
@@ -139,7 +139,7 @@ sources:
 
 ## 相关页面
 
-- [[600298/overview]] — 数据目录（产品结构、DB 表结构）
-- [[600298/industry-chain]] — 产业链全景
+- [[安琪酵母/overview]] — 数据目录（产品结构、DB 表结构）
+- [[安琪酵母/industry-chain]] — 产业链全景
 - [[../report/安琪酵母]] — VL 完整报告
 - [[../report/reading/600298]] — VL 阅读报告

@@ -1,7 +1,7 @@
 # 润泽科技 300442 — IDC/AIDC 运营指标跟踪
 
 > 来源：年报 PDF 原文（2022-2025），pdfplumber 从成本构成表 + 经营讨论章节提取
-> 原始资料：`raw/research/300442/2026-06-26-idc-operating-metrics.md`
+> 原始资料：`raw/research/润泽科技/2026-06-26-idc-operating-metrics.md`
 
 ---
 

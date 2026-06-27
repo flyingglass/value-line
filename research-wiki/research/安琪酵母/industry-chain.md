@@ -4,7 +4,7 @@ category: 投研-行业分析
 created: 2026-06-23
 updated: 2026-06-23
 sources:
-  - raw/research/600298/2025-mda-text.md
+  - raw/research/安琪酵母/2025-mda-text.md
   - scripts/600298/business_commentary.py
   - scripts/config.py (600298 business_desc)
   - report/reading/600298.md
@@ -50,7 +50,7 @@ sources:
 | 下游酿酒 | 认证突破 | 酿酒酵母通过美国 FDA 认证 |
 | 下游动物营养 | 稳定需求 | 饲料酵母，畜牧养殖刚需 |
 
-（来源：`scripts/600298/business_commentary.py` P1/P3；`raw/research/600298/2025-mda-text.md` 【产品/业务结构】）
+（来源：`scripts/600298/business_commentary.py` P1/P3；`raw/research/安琪酵母/2025-mda-text.md` 【产品/业务结构】）
 
 ---
 
@@ -88,7 +88,7 @@ sources:
 
 > ⚠️ 糖蜜价格是毛利率最大变量。2021 年糖蜜暴涨 → 毛利率从 37.6% 断崖跌至 27.3%。
 
-（来源：`scripts/600298/business_commentary.py` P3；`raw/research/600298/2025-mda-text.md` 【成本与效率】）
+（来源：`scripts/600298/business_commentary.py` P3；`raw/research/安琪酵母/2025-mda-text.md` 【成本与效率】）
 
 ---
 
@@ -112,7 +112,7 @@ sources:
 | 品牌认知 | 🟡 高 | "安琪 = 中国酵母代名词"，国内消费者心智占领 |
 | 客户黏性 | 🟡 中高 | B 端客户切换成本高（配方稳定性） |
 
-（来源：`scripts/600298/business_commentary.py` Business + P3；`raw/research/600298/2025-mda-text.md` 【分地区表现】）
+（来源：`scripts/600298/business_commentary.py` Business + P3；`raw/research/安琪酵母/2025-mda-text.md` 【分地区表现】）
 
 ---
 
@@ -147,7 +147,7 @@ sources:
 
 ## 相关页面
 
-- [[600298/overview]] — 数据目录
-- [[600298/thesis]] — 投资 Thesis（赚钱逻辑 + 护城河 + 风险 + 催化剂）
+- [[安琪酵母/overview]] — 数据目录
+- [[安琪酵母/thesis]] — 投资 Thesis（赚钱逻辑 + 护城河 + 风险 + 催化剂）
 - [[../report/安琪酵母]] — VL 报告
 - [[../report/reading/600298]] — VL 阅读报告
