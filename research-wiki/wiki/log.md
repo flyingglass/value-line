@@ -5,7 +5,7 @@
 ### 摄入内容
 - 对话中探讨 W. Brian Arthur 复杂经济学中收益递增（increasing returns）与涌现（emergence）的关系
 - 原始资料：Arthur 1999 *Science* 论文原文引用（web_search → web_fetch PDF 验证）
-- 存为 `raw/2026-06-25-arthur-increasing-returns-emergence.md`
+- 存为 `raw/articles/2026-06-25-arthur-increasing-returns-emergence.md`
 
 ### Wiki 产出
 - `wiki/concepts/Arthur-收益递增与涌现.md` — 新建概念页
@@ -120,7 +120,7 @@
 
 ### 摄入内容
 - 新建 `wiki/投资框架-复杂经济学指导手册.md` — 四本著作 + 外部文章 + 访谈的整合框架
-- 新建 `raw/投资框架-参考著作.md` — 12 项原始资料来源记录（4 核心著作、2 辅助、3 论文、1 公众号、2 访谈）
+- 新建 `raw/articles/投资框架-参考著作.md` — 12 项原始资料来源记录（4 核心著作、2 辅助、3 论文、1 公众号、2 访谈）
 - 更新 `wiki/index.md` — 新增「投资框架」章节
 
 ### 来源

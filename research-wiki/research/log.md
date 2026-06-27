@@ -4,7 +4,7 @@
 
 ### 摄入内容
 - pdfplumber 从 2022-2025 年报 + 中报提取成本构成表（电费/折旧/薪酬）和经营讨论章节
-- 原始资料：`raw/2026-06-26-300442-idc-operating-metrics.md`
+- 原始资料：`raw/research/300442/2026-06-26-idc-operating-metrics.md`
 
 ### Wiki 产出
 - `research/300442/operating-metrics.md` — 新建运营指标跟踪页
@@ -29,7 +29,7 @@
 ### 摄入内容
 - W. Brian Arthur 1999 *Science* 论文《Complexity and the Economy》原文核对
 - 涌现定义 + 正反馈/收益递增主导论的关系梳理
-- 原始资料：`raw/2026-06-25-arthur-increasing-returns-emergence.md`
+- 原始资料：`raw/articles/2026-06-25-arthur-increasing-returns-emergence.md`
 
 ### Wiki 产出
 - `wiki/concepts/Arthur-收益递增与涌现.md` — 新建理论概念页
