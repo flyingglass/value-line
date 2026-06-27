@@ -7,26 +7,52 @@ VL 单页报告（`build.py` 8 步流水线）是其中一个子功能。
 ### Wiki 双轨架构
 ```
 research-wiki/
-├── raw/                       原始资料，只进不改 (共享)
+├── raw/                       原始资料，只进不改
 │   ├── vl/                    VL 项目内部
 │   │   ├── articles/          VL 项目通用文章
 │   │   ├── akshare-reference/ 数据源参考
 │   │   ├── tdx-reference/
 │   │   ├── karpathy-reference/
 │   │   └── vl-reference/
-│   └── research/              投研资料
-│       ├── articles/          投研通用文章
+│   └── research/              投研原始资料
+│       ├── articles/          通用文章
 │       └── <code>/            按标的的原始资料
-├── wiki/                      VL 项目内部文档，按概念/模块/实体组织
-│   ├── concepts/              核心概念
-│   ├── modules/               代码模块
-│   └── entities/              实体（数据源/工具等）
-└── research/                  投研 wiki，按标的/主题组织
-    ├── <code>/                标的目录 (overview.md / thesis.md / industry-chain.md 等)
-    └── index.md               投研索引
+├── wiki/                      VL 项目内部 wiki
+│   ├── index.md              索引
+│   ├── overview.md           概述
+│   ├── log.md                操作日志
+│   ├── concepts/             核心概念
+│   ├── modules/              代码模块
+│   └── entities/             实体（数据源/工具）
+└── research/                  投研 wiki
+    ├── index.md              索引（按标的 + 按主题）
+    ├── overview.md           概述
+    ├── log.md                操作日志
+    ├── <code>/               标的目录
+    │   ├── overview.md       数据目录
+    │   ├── thesis.md         投资 Thesis
+    │   ├── industry-chain.md 产业链全景
+    │   ├── operating-metrics.md 运营指标
+    │   └── research-reports.md  券商研报索引
+    └── articles/             通用投研文章（与 wiki/ 同构）
+        ├── concepts/         投资概念与框架
+        ├── entities/         人物/机构
+        ├── papers/           论文与参考书目
+        └── synthesis/        综合分析
 ```
 
-🔴 raw/ 文件必须按分类归入：
+### 🔴 命名空间规则
+
+**wiki/** — VL 项目内部文档：
+- 模块代码、流水线概念、数据源实体等
+- 结构与 `research/` 并行，两者交叉链接互通
+
+**research/** — 投研 wiki：
+- 标的专项 → `research/<code>/`（overview / thesis / industry-chain 等）
+- 通用知识 → `research/articles/concepts|entities|papers|synthesis/`
+- 必须有 `index.md`、`overview.md`、`log.md`
+
+**raw/** — 原始资料，只进不改：
 - VL 项目相关 → `raw/vl/articles/`
 - 投研通用话题/文章 → `raw/research/articles/`
 - 标的专项 → `raw/research/<code>/`
