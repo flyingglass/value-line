@@ -1,6 +1,6 @@
 # 投研索引
 
-> 最后更新：2026-06-27
+> 最后更新：2026-06-28
 
 ## 概述
 
@@ -27,6 +27,7 @@
 - [[articles/concepts/munger-poor-charlie-lecture2]] — 芒格多元思维模型（《穷查理宝典》第二讲 · 七大学科 · 投资检查清单）
 - [[articles/concepts/munger-mental-models-analysis]] — 芒格推演与分析（9步投资流程 · 双轨分析 · Lollapalooza）
 - [[articles/concepts/投资框架-复杂经济学指导手册]] — 四本著作整合框架（柏基 + 竞争优势 + 三段式估值 + 三周期）
+- [[articles/concepts/芒格格栅理论-多学科思维投资框架]] — 🔥 哈格斯特朗《查理·芒格的智慧》全书解读：7 大学科 × 投资模型，格栅思维构建指南
 
 ### 实体 (articles/entities/)
 - [[articles/entities/seth-klarman-interview]] — Klarman：44年年化20%的企业分析原则

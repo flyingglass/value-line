@@ -1,5 +1,13 @@
 # 投研操作日志
 
+## [2026-06-28] ingest | 《查理·芒格的智慧：投资的格栅理论》全书入库
+
+- 来源：IMA 知识库「投资」PDF → 151,258 字全文提取
+- 存档：`raw/research/articles/2026-06-28-charlie-munger-wisdom-latticework.md`（9 章完整摘要）
+- Wiki 概念页：`articles/concepts/芒格格栅理论-多学科思维投资框架.md`
+  - 7 学科 × 投资模型 + VL 体系关联 + 可深化方向
+- 更新：`research/index.md`、`research/log.md`
+
 ## [2026-06-27] query | 驳论 — 拆解 Chason 对抗周期的七个论断
 
 - 新建 `articles/synthesis/popmart-chason-rebuttal.md`
