@@ -1,5 +1,35 @@
 # 投研操作日志
 
+## [2026-07-17] ingest | 《查理·芒格的智慧：投资的格栅理论》— enriched raw 再 ingest
+
+### 背景
+- 原始 raw 文件（`raw/research/articles/2026-06-28-charlie-munger-wisdom-latticework.md`）与 hagstrom 深度分析合并，含 9 类遗漏内容补全
+- 合并文件移至 `raw/research/book/hagstrom_2023_investing_last_liberal_art.md`
+- 原 articles 文件已删除（内容不丢失）
+
+### 新增/更新内容
+- **raw/research/book/**：新建 `hagstrom_2023_investing_last_liberal_art.md`（enriched 完整版）
+- **articles/concepts/**：更新 `芒格格栅理论-多学科思维投资框架.md`
+  - 补充：芒格最爱两个模型（机会成本 + 激励机制）、具体模型示例清单（8个）、库恩范式革命、C.P.斯诺两种文化、格雷厄姆投资vs投机、芒格哈佛法学院50周年演讲、E.O.威尔逊契合、9学科总结表
+  - 新增第8学科（文学）完整展开：四级阅读法表格化、三大侦探方法论、圣约翰学院教育
+  - 扩展第9学科（决策科学）：心智程序、勤勉的投资者、模块化思维+动态性
+  - 修复来源链接 → `raw/research/book/`
+- **articles/papers/**：新建 `hagstrom-grid-theory.md`（章节结构 + 人物索引 + VL关联 + 交叉引用）
+- 更新：`research/index.md`、`research/log.md`
+
+### 9 类遗漏补充明细
+| # | 内容 | 融入位置 |
+|---|------|------|
+| 1 | 译者/出版社/推荐人/附录 | metadata |
+| 2 | 8个具体思维模型示例 | 一、什么是思维模型 |
+| 3 | 芒格最爱两个模型 | 一、什么是思维模型 |
+| 4 | 库恩范式革命 + 简·雅各布斯 | 二、生物学 |
+| 5 | C.P.斯诺两种文化 | 二、哲学 |
+| 6 | 格雷厄姆投资vs投机 | 二、心理学 |
+| 7 | 芒格哈佛法学院50周年演讲 | 二、决策科学 |
+| 8 | E.O.威尔逊契合 | 二、决策科学 |
+| 9 | 核心公式 + 9学科表 | 一、核心思想 + 三 |
+
 ## [2026-06-28] ingest | 《查理·芒格的智慧：投资的格栅理论》全书入库
 
 - 来源：IMA 知识库「投资」PDF → 151,258 字全文提取
