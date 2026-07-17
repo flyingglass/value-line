@@ -46,4 +46,4 @@ source: ../../raw/research/articles/2026-06-27-munger-poor-charlie-lecture2.md
 
 ## 相关
 
-- [[../munger-mental-models-analysis]] — 推演与分析（9步投资流程、格栅vs清单、性格前提）
+- [[芒格格栅理论-多学科思维投资框架]] — 哈格斯特朗全书解读，9大学科×投资模型，格栅思维构建指南

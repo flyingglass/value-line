@@ -1,5 +1,44 @@
 # 投研操作日志
 
+## [2026-07-17] lint | 全站链接校验 — 4 处断链修复
+
+### 修复
+- munger-poor-charlie-lecture2.md / hagstrom-grid-theory.md: `munger-mental-models-analysis` → `芒格格栅理论`
+- 安琪酵母/overview.md: `600298/` → `安琪酵母/`
+- research/index.md: `[[Wiki操作手册]]` → `[[../vl/concepts/Wiki操作手册]]`
+
+### 状态
+103 页面 · 411 链接 · 0 真实断链
+
+
+## [2026-07-17] lint | Wiki 健康检查 — P0/P2 修复
+
+### 修复清单
+- 创建 `research-wiki/WIKI-SCHEMA.md`（llm-wiki 规范，整合双轨目录结构+模板+工作流）
+- 修复断链：移除 `articles/concepts/munger-mental-models-analysis`（文件不存在，index.md 孤立引用）
+- 修复孤儿：收录 `articles/synthesis/generational-risk-sanrio-disney-popmart` 到 index.md
+
+### Lint 发现（P1 已修复）
+- 5 标的 13 个缺失页面已全部补全（thesis/industry-chain/operating-metrics/research-reports）
+- 安琪酵母 + 人福医药 raw/ 目录已创建
+
+---
+
+## [2026-07-17] lint | Wiki 健康检查 — P1 标的目录补全
+
+## [2026-07-17] ingest | hagstrom_2023 — raw 文件归位 + wiki 链接修正
+
+### 操作
+- raw 文件从 `raw/research/book/` → `raw/research/articles/`（统一归入 articles 目录）
+- 原 `book/` 目录已空
+
+### 页面更新
+- `articles/concepts/芒格格栅理论-多学科思维投资框架.md`：修复来源链接 → `raw/research/articles/`
+- `articles/papers/hagstrom-grid-theory.md`：修复原始资料链接 → `raw/research/articles/`
+- `research/log.md`：本次
+
+---
+
 ## [2026-07-17] ingest | 《查理·芒格的智慧：投资的格栅理论》— enriched raw 再 ingest
 
 ### 背景

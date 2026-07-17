@@ -119,5 +119,5 @@ VL 报告采用 **CF=15.0x**（必需消费股），PB 备用 1.0x。见 `report
 
 ## 相关页面
 
-- [[600298/industry-chain]] — 产业链全景
-- [[600298/thesis]] — 投资 Thesis
+- [[安琪酵母/industry-chain]] — 产业链全景
+- [[安琪酵母/thesis]] — 投资 Thesis

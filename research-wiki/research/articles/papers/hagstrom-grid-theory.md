@@ -4,7 +4,7 @@
 > 作者：罗伯特·G·哈格斯特朗 (Robert G. Hagstrom)
 > 译者：郑磊 | 出版社：机械工业出版社
 > 年份：2023（第2版纪念版）
-> 原始资料：[[../../../raw/research/book/hagstrom_2023_investing_last_liberal_art|raw/research/book/]]
+> 原始资料：[[../../../raw/research/articles/hagstrom_2023_investing_last_liberal_art|raw/research/articles/]]
 > Wiki 概念页：[[../concepts/芒格格栅理论-多学科思维投资框架|芒格格栅理论]]
 
 ---
@@ -51,7 +51,7 @@
 
 - [[../concepts/芒格格栅理论-多学科思维投资框架]] — 完整概念页
 - [[../concepts/munger-poor-charlie-lecture2]] — 芒格多元思维模型（《穷查理宝典》）
-- [[../concepts/munger-mental-models-analysis]] — 芒格推演与分析（9步投资流程）
+- [[../concepts/芒格格栅理论-多学科思维投资框架]] — 哈格斯特朗全书解读，格栅思维构建指南
 - [[../concepts/投资框架-复杂经济学指导手册]] — 复杂经济学框架
 - [[../concepts/arthur-increasing-returns]] — Arthur 收益递增与涌现
 - [[../../index]] — 投研索引

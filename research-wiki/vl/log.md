@@ -1,5 +1,44 @@
 # 操作日志
 
+## [2026-07-17] lint | 全站链接校验 — 4 处残留断链修复
+
+### 修复
+- 2x `munger-mental-models-analysis` 残留断链 → `芒格格栅理论-多学科思维投资框架`
+- `安琪酵母/overview.md` 旧代码前缀修复
+- `research/index.md` 跨命名空间链接修复
+
+### 状态
+103 页面 · 411 链接 · 0 真实断链 · 0 孤儿
+
+
+## [2026-07-17] lint | Wiki P1 标的目录全面补全
+
+### 新增 13 个标的页面
+- **泡泡玛特**: thesis / industry-chain / operating-metrics / research-reports (4页)
+- **润泽科技**: thesis / industry-chain / research-reports (3页)
+- **人福医药**: thesis / industry-chain / operating-metrics / research-reports + raw/ (5项)
+- **安琪酵母**: operating-metrics / research-reports + raw/ (3项)
+- **TCL中环**: operating-metrics (1页)
+
+### 触及 Wiki 页面
+- [[research/index.md]] — 收录全部 13 个新页面
+- [[research/log.md]] — 本次
+
+---
+
+## [2026-07-17] lint | Wiki 健康检查 — WIKI-SCHEMA + vl/synthesis/ + 断链修复
+
+### 修复
+- 创建 `WIKI-SCHEMA.md`：完整 Schema 配置（双轨目录结构 + 5 类页面模板 + 交叉引用规则 + 工作流）
+- 创建 `vl/synthesis/` 目录（宪法要求但未建）
+- 修复 research/index.md 断链 + 孤儿收录
+
+### 触及 Wiki 页面
+- [[WIKI-SCHEMA.md]] — 新建
+- [[research/index.md]] — 断链修复 + 孤儿收录
+
+---
+
 ## [2026-06-25] ingest | Arthur 收益递增与涌现 — 概念页创建 + 三层涌现补充
 
 ### 摄入内容
