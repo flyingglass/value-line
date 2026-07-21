@@ -49,7 +49,8 @@
 ### 论文与参考 (articles/papers/)
 - [[articles/papers/投资框架-参考著作]] — 12 项原始资料来源记录
 - [[articles/papers/hagstrom-grid-theory]] — 🆕 哈格斯特朗《投资的格栅理论》参考页（章节结构 + 人物索引 + VL 关联）
-- [[../../raw/research/articles/hagstrom_2023_investing_last_liberal_art_艾德勒阅读法|艾德勒阅读法解全书]] — 🆕 用艾德勒四级阅读法重解《查理·芒格的智慧》全书：检视/通读/分析/比较（2026-07-21）
+- [[../../raw/research/articles/hagstrom_2023_investing_last_liberal_art_艾德勒阅读法|艾德勒阅读法解哈格斯特朗]] — 用艾德勒四级阅读法重解《查理·芒格的智慧》全书：检视/通读/分析/比较（2026-07-21）
+- [[../../raw/research/articles/穷查理宝典_艾德勒阅读法|穷查理宝典·艾德勒阅读法]] — 🆕 用艾德勒四级阅读法重解《穷查理宝典》：检视/通读/分析/比较 + 推荐阅读顺序（2026-07-21）
 
 ### 综合分析 (articles/synthesis/)
 - [[articles/synthesis/popmart-chason-rebuttal]] — 🆕 驳论 — 拆解 Chason 七个论断（3年周期·代际无共鸣·毛绒退烧·The Monster化）
