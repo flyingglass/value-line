@@ -1,6 +1,6 @@
 # 投研索引
 
-> 最后更新：2026-07-21
+> 最后更新：2026-07-22
 
 ## 概述
 
@@ -33,6 +33,46 @@
 - [[润泽科技/industry-chain]] — 🆕 润泽科技 · 数据中心产业链全景 (上游资源/IDC vs AIDC/竞争格局)
 - [[润泽科技/operating-metrics]] — 润泽科技 · 运营指标跟踪 (上架率/PUE/电费 2022-2025)
 - [[润泽科技/research-reports]] — 🆕 润泽科技 · 券商研报索引
+- [[宁德时代/overview]] — 🆕 宁德时代 · Energy · 数据目录 (revenue_structure 1 维度 FY2025, CF=15.0x)
+- [[宁德时代/thesis]] — 🆕 宁德时代 · 投资 Thesis (全球动力电池龙头/储能第二曲线/全产业链闭环)
+- [[宁德时代/industry-chain]] — 🆕 宁德时代 · 产业链全景 (矿产→材料→电芯→回收/竞争格局/行业周期)
+- [[宁德时代/operating-metrics]] — 🆕 宁德时代 · 运营指标跟踪 (产品结构/盈利能力/现金流/资产负债)
+- [[宁德时代/research-reports]] — 🆕 宁德时代 · 券商研报索引
+- [[紫金矿业/overview]] — 🆕 紫金矿业 · Metals & Mining · 数据目录 (revenue_structure 1 维度 FY2025, PB=1.0x)
+- [[紫金矿业/thesis]] — 🆕 紫金矿业 · 投资 Thesis (全球铜金龙头/金铜超级周期/低成本逆周期并购)
+- [[紫金矿业/industry-chain]] — 🆕 紫金矿业 · 产业链全景 (矿产→冶炼→终端/全球矿山布局/竞争格局)
+- [[紫金矿业/operating-metrics]] — 🆕 紫金矿业 · 运营指标跟踪 (金铜双核+锂成长/利润超级弹性/现金流)
+- [[紫金矿业/research-reports]] — 🆕 紫金矿业 · 券商研报索引
+- [[腾讯控股/overview]] — 🆕 腾讯控股 · Technology · 数据目录 (2 维度 2011-2025 全覆盖, CF=15.0x)
+- [[腾讯控股/thesis]] — 🆕 腾讯控股 · 投资 Thesis (社交平台+游戏+广告+金融科技)
+- [[腾讯控股/industry-chain]] — 🆕 腾讯控股 · 互联网科技产业链全景
+- [[腾讯控股/operating-metrics]] — 🆕 腾讯控股 · 运营指标跟踪 (毛利率 43→56%/降杠杆)
+- [[腾讯控股/research-reports]] — 🆕 腾讯控股 · 券商研报索引
+- [[时代天使/overview]] — 🆕 时代天使 · Healthcare · 数据目录 (2 维度 FY2025, CF=15.0x)
+- [[时代天使/thesis]] — 🆕 时代天使 · 投资 Thesis (隐形矫治龙头/海外扩张)
+- [[时代天使/industry-chain]] — 🆕 时代天使 · 口腔隐形矫治产业链
+- [[时代天使/operating-metrics]] — 🆕 时代天使 · 运营指标 (盈利恢复/PE回归)
+- [[时代天使/research-reports]] — 🆕 时代天使 · 券商研报索引
+- [[云铝股份/overview]] — 🆕 云铝股份 · Metals & Mining · 数据目录 (1 维度 FY2025, CF=15.0x)
+- [[云铝股份/thesis]] — 🆕 云铝股份 · 投资 Thesis (水电铝龙头/成本优势)
+- [[云铝股份/industry-chain]] — 🆕 云铝股份 · 电解铝产业链全景
+- [[云铝股份/operating-metrics]] — 🆕 云铝股份 · 运营指标 (利润弹性/低负债)
+- [[云铝股份/research-reports]] — 🆕 云铝股份 · 券商研报索引
+- [[神火股份/overview]] — 🆕 神火股份 · Metals & Mining · 数据目录 (1 维度 FY2025, CF=15.0x)
+- [[神火股份/thesis]] — 🆕 神火股份 · 投资 Thesis (煤电铝一体化)
+- [[神火股份/industry-chain]] — 🆕 神火股份 · 煤电铝产业链
+- [[神火股份/operating-metrics]] — 🆕 神火股份 · 运营指标跟踪
+- [[神火股份/research-reports]] — 🆕 神火股份 · 券商研报索引
+- [[京东方/overview]] — 🆕 京东方 · 面板 · 数据目录 (6 产品 FY2025, PB=1.0x)
+- [[京东方/thesis]] — 🆕 京东方 · 投资 Thesis (全球LCD龙头/OLED突破)
+- [[京东方/industry-chain]] — 🆕 京东方 · 显示面板产业链全景
+- [[京东方/operating-metrics]] — 🆕 京东方 · 运营指标跟踪
+- [[京东方/research-reports]] — 🆕 京东方 · 券商研报索引
+- [[TCL科技/overview]] — 🆕 TCL科技 · 面板 · 数据目录 (4 产品 FY2025, PB=1.0x)
+- [[TCL科技/thesis]] — 🆕 TCL科技 · 投资 Thesis (面板+光伏双主线/盈利恢复)
+- [[TCL科技/industry-chain]] — 🆕 TCL科技 · 面板+光伏双产业链
+- [[TCL科技/operating-metrics]] — 🆕 TCL科技 · 运营指标 (面板周期低谷后恢复)
+- [[TCL科技/research-reports]] — 🆕 TCL科技 · 券商研报索引
 
 ## 按主题 — 文章目录
 

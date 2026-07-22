@@ -1,5 +1,93 @@
 # 投研操作日志
 
+## [2026-07-22] ingest | 批量初始化 — 腾讯/时代天使/云铝/神火/京东方/TCL科技 共 30 wiki 页面
+
+| # | 标的 | 代码 | 行业 | 估值 | 核心发现 |
+|---|------|------|------|:---:|------|
+| 1 | 腾讯控股 | 00700 | Technology | CF | 毛利率 43→56% 四年提升, 净利 2,248 亿, ROE 21% |
+| 2 | 时代天使 | 06699 | Healthcare | CF | 毛利率 63% 极稳, 海外占比 44%, 盈利从低谷恢复 |
+| 3 | 云铝股份 | 000807 | Metals | CF | 水电铝成本优势, PE 10.4x, 负债率仅 19.8% |
+| 4 | 神火股份 | 000933 | Metals | CF | 煤电铝一体化, PE 10.5x |
+| 5 | 京东方 | 000725 | 面板 | PB | 全球 LCD 龙头, 面板周期行业, PE 36.7x |
+| 6 | TCL科技 | 000100 | 面板 | PB | 面板+光伏双主业, 2024 低谷后盈利恢复中 |
+
+各标的均按 5 页面模板生成: overview / thesis / industry-chain / operating-metrics / research-reports。
+
+### 数据说明
+- 腾讯(00700) + 时代天使(06699): 港股, indicators 表数据完整 (4 年)
+- 云铝/神火/京东方/TCL: A股, indicators 以 FY2025 为主, 通过 income 表补充历史数据
+- 所有数据来源: `data/<code>.db` + `scripts/<code>/`
+
+### 页面更新
+- 6 标的 × 5 页面 = 30 wiki 页面
+- `research/index.md`: 新增 30 条目
+- `research/log.md`: 本次
+
+---
+
+## [2026-07-22] ingest | 紫金矿业 (02899) 投研体系初始化 — 5 wiki 页面
+
+### Wiki 产出
+
+| # | 页面 | 内容 |
+|---|------|------|
+| 1 | `research/紫金矿业/overview.md` | 数据目录（DB 表结构、营收拆分 FY2025 五产品、四年财务指标、资产负债、现金流） |
+| 2 | `research/紫金矿业/thesis.md` | 投资 Thesis（铜/金/锌/锂/银五产品赚钱逻辑、四大护城河、五风险、五催化剂） |
+| 3 | `research/紫金矿业/industry-chain.md` | 产业链全景（矿山→冶炼→终端、全球八大主力矿山、竞争格局、铜/金/锂周期） |
+| 4 | `research/紫金矿业/operating-metrics.md` | 运营指标跟踪（金铜双核+锂成长、利润超级弹性、现金流翻倍、敏感度分析） |
+| 5 | `research/紫金矿业/research-reports.md` | 券商研报索引（待拉取方向：铜行业/金价展望/锂板块/矿山跟踪） |
+
+### 数据来源
+- `data/02899.db` — 9 表完整财务数据库（港股格式）
+- `scripts/02899/business_commentary.py` — VL 流水线 business + commentary
+- `scripts/config.py` — 标的配置
+
+### 核心发现
+- **利润超级弹性**：营收 +29% 但归母净利 +159%（2022→2025），毛利率 15.7%→27.7% 近乎翻倍
+- **金铜共振**：铜价+金价同时处于历史高位，紫金是全球金铜双轮驱动最纯的标的
+- **降杠杆**：资产负债率 59.3%→51.6%，经营 CF 287→754 亿（三年翻 2.6 倍）
+- **极致低估值**：PE 3.44x，受益于商品超级周期但市场仍未充分定价
+- **牛市弹性**：铜价 +$1000/吨 ≈ 年化利润 +100 亿（估算）
+
+### 页面更新
+- `research/紫金矿业/`：新建 5 个 wiki 页面
+- `research/index.md`：新增 5 条目
+- `research/log.md`：本次
+
+---
+
+## [2026-07-22] ingest | 宁德时代 (300750) 投研体系初始化 — 5 wiki 页面
+
+### Wiki 产出
+
+| # | 页面 | 内容 |
+|---|------|------|
+| 1 | `research/宁德时代/overview.md` | 数据目录（DB 表结构、营收拆分 FY2025、六年财务指标、资产负债、现金流） |
+| 2 | `research/宁德时代/thesis.md` | 投资 Thesis（四层业务赚钱逻辑、四大护城河、五风险、五催化剂） |
+| 3 | `research/宁德时代/industry-chain.md` | 产业链全景（矿产→材料→电芯→回收/应用、五梯队竞争格局、行业周期） |
+| 4 | `research/宁德时代/operating-metrics.md` | 运营指标跟踪（产品结构/盈利能力趋势/现金流/资产负债/行业信号） |
+| 5 | `research/宁德时代/research-reports.md` | 券商研报索引（待拉取方向 + 后续行动计划） |
+
+### 数据来源
+- `data/300750.db` — 9 表完整财务数据库（income/balance/cashflow/indicators/revenue_structure/spot/meta）
+- `scripts/300750/business_commentary.py` — VL 流水线 business + commentary
+- `scripts/300750/insert_revenue.py` — revenue_structure 录入脚本
+- `scripts/config.py` — 标的配置
+
+### 核心发现
+- **盈利能力持续改善**：毛利率 20.3%→26.3% 四年连升，净利率 10.2%→18.1% 加速改善
+- **储能第二曲线**：储能营收 624 亿（14.7%），增速超动力电池
+- **降杠杆**：资产负债率 70.6%→61.9%，货币资金 3335 亿远超短期借款 129 亿
+- **V 型反转**：2024 年营收下滑 9.7%，2025 年恢复增长 17%，归母净利大增 42%
+- **data boundary**：营收拆分仅 FY2025 有 by_product，历史年份/渠道/地区不可得
+
+### 页面更新
+- `research/宁德时代/`：新建 5 个 wiki 页面
+- `research/index.md`：新增 5 条目
+- `research/log.md`：本次
+
+---
+
 ## [2026-07-21] ingest | 格栅理论全书摘要精炼 + 艾德勒阅读法元摘要
 
 ### 本轮完成
