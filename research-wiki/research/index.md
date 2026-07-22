@@ -42,6 +42,7 @@
 - [[articles/concepts/投资框架-复杂经济学指导手册]] — 四本著作整合框架（柏基 + 竞争优势 + 三段式估值 + 三周期）
 - [[articles/concepts/芒格格栅理论-多学科思维投资框架]] — 🔥 哈格斯特朗《查理·芒格的智慧》全书解读：9 大学科 × 投资模型，格栅思维构建指南（2026-07-17 enriched raw 再 ingest）
 - [[articles/concepts/艾德勒-四级阅读法]] — 🆕 艾德勒《如何阅读一本书》方法论：四级阅读层次 × 四个基本问题 × 批判性阅读分析师报告（2026-07-21 ingest）
+- [[articles/concepts/技术自创生与组合进化]] — 🆕 阿瑟《技术的本质》核心框架：三层定义 × 三个原理 × 机会利基 × 对投资的意义（2026-07-22 ingest）
 
 ### 实体 (articles/entities/)
 - [[articles/entities/seth-klarman-interview]] — Klarman：44年年化20%的企业分析原则
