@@ -594,6 +594,22 @@ STOCKS = {
         "valuation_method": "pb",  # 保险股适合PB估值
         "business_desc": "中国财险是中国最大的财产保险公司，主营机动车辆保险、企业财产保险、责任保险、意外伤害保险等业务，市场份额长期保持行业第一。公司隶属于中国人民保险集团，H股香港上市。",
     },
+    "02359": {
+        "name": "药明康德",
+        "name_en": "WuXi AppTec",
+        "market": "hk",
+        "exchange": "SEHK",
+        "currency": "CNY",
+        "ceo": "李革",
+        "inc": "中国江苏无锡",
+        "website": "www.wuxiapptec.com",
+        "pfx": "hk",
+        "shares": 2984000000,
+        "shares_str": "2,984,000,000",
+        "industry": "Healthcare",
+        "fiscal_yr_end": "12-31",
+        "business_desc": "药明康德是全球领先的医药研发外包服务(CRO/CDMO)企业，提供从药物发现、临床前测试到商业化生产的一体化CRDMO平台。服务全球6000+客户，涵盖全球TOP20药企。核心业务包括小分子化学药、多肽/TCR寡核苷酸、细胞与基因治疗等。2025年营收454.56亿元(+15.8%)，归母净利润191.51亿元(+102.6%)。",
+    },
     "02099": {
         "name": "中国黄金国际",
         "name_en": "China Gold Intl",
