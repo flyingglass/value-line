@@ -350,18 +350,17 @@ def step_1_fetch(code, stock, force_fetch=False):
     return True
 
 def step_2_pdf(code):
-    """Step 2: 年报PDF下载。智能检测: 新年报发布自动下载。美股跳过(SEC 10-K 待实现)。"""
+    """Step 2: 年报PDF下载。智能检测: 新年报发布自动下载。
+    A/港股: 东方财富/港交所下载。美股: SEC EDGAR 10-K (fetch_us_pdf.py)。"""
     stock = config.STOCKS.get(code, {})
-    if stock.get("market") == "us":
-        print(f"  Step 2: {_green('SKIP')} (美股 SEC 10-K 下载待实现, 使用 config fallback)")
-        return True
     pdf_dir = _pdf_dir(code)
     existing = len([f for f in os.listdir(pdf_dir) if f.endswith(".pdf") or f.endswith(".htm")]) if os.path.isdir(pdf_dir) else 0
-    # 检测最新PDF年份是否落后于当前年份
+    # 检测最新PDF年份是否落后于当前年份 (支持 A股/H股 _YYYY_ 和美股 -YYYY-MM-DD 格式)
     latest_yr = 0
     if os.path.isdir(pdf_dir):
         for f in os.listdir(pdf_dir):
-            m = re.match(r'[A-Za-z0-9]+_(\d{4})_', f)
+            # A/H股格式: xxx_2024_c.pdf / 美股10-K格式: GOOGL-10K-2025-12-31.htm
+            m = re.match(r'[A-Za-z0-9]+[_-](\d{4})[_-]', f)
             if m: latest_yr = max(latest_yr, int(m.group(1)))
     current_yr = date.today().year
     # 年报通常在次年3-4月发布，6月后还缺当年-1年的PDF才触发下载
@@ -385,11 +384,10 @@ def step_2_pdf(code):
     return True
 
 def step_3_mda(code):
-    """Step 3: MD&A提取。缺失即阻断。美股跳过(SEC 10-K 英文PDF)。检测到年报更新→强制重提。"""
+    """Step 3: MD&A提取。缺失即阻断。美股: SEC 10-K HTML 提取 (extract_mda_us.py)。
+    检测到年报更新→强制重提。"""
     stock = config.STOCKS.get(code, {})
-    if stock.get("market") == "us":
-        print(f"  Step 3: {_green('SKIP')} (美股 MD&A 提取待实现, 使用 config fallback)")
-        return True
+    is_us = stock.get("market") == "us"
     db = _db_path(code)
     conn = sqlite3.connect(db)
     has_mda = conn.execute("SELECT value FROM meta WHERE key='mda_text'").fetchone()
@@ -401,8 +399,14 @@ def step_3_mda(code):
     if os.path.isdir(pdf_dir):
         import re as _re
         for f in os.listdir(pdf_dir):
-            m = _re.match(r'[A-Za-z0-9]+_(\d{4})_', f)
+            m = _re.match(r'[A-Za-z0-9]+[_-](\d{4})[_-]', f)
             if m: latest_pdf_yr = max(latest_pdf_yr or 0, int(m.group(1)))
+    stale = (extracted_yr and latest_pdf_yr and int(extracted_yr[0]) < latest_pdf_yr)
+    if has_mda and has_mda[0] and len(has_mda[0]) > 200 and not stale:
+        print(f"  Step 3: mda_text已存在 ({len(has_mda[0])} chars), 跳过提取")
+        return True
+    if stale:
+        print(f"  Step 3: 检测到新年报PDF (已提取{extracted_yr[0]} < 最新{latest_pdf_yr})，强制重新提取")
     stale = (extracted_yr and latest_pdf_yr and int(extracted_yr[0]) < latest_pdf_yr)
     if has_mda and has_mda[0] and len(has_mda[0]) > 200 and not stale:
         print(f"  Step 3: mda_text已存在 ({len(has_mda[0])} chars), 跳过提取")
@@ -412,13 +416,20 @@ def step_3_mda(code):
 
     # Check PDF exists before extracting
     pdf_dir = _pdf_dir(code)
-    pdfs = [f for f in os.listdir(pdf_dir) if f.endswith(".pdf")] if os.path.isdir(pdf_dir) else []
+    if is_us:
+        # 美股: SEC 10-K HTML 文件
+        pdfs = [f for f in os.listdir(pdf_dir) if f.endswith(".htm")] if os.path.isdir(pdf_dir) else []
+    else:
+        pdfs = [f for f in os.listdir(pdf_dir) if f.endswith(".pdf")] if os.path.isdir(pdf_dir) else []
     if not pdfs:
-        raise SystemExit(_red(f"  FAIL: 无PDF文件, 先执行 step_2"))
+        raise SystemExit(_red(f"  FAIL: 无年报文件, 先执行 step_2"))
 
     print(f"  Step 3: 提取MD&A...")
     _set_active(code)
-    ok, out = _run(f'"{PYTHON}" scripts/extract_mda.py', timeout=120)
+    if is_us:
+        ok, out = _run(f'"{PYTHON}" scripts/extract_mda_us.py', timeout=120)
+    else:
+        ok, out = _run(f'"{PYTHON}" scripts/extract_mda.py', timeout=120)
     if not ok:
         raise SystemExit(_red(f"  FAIL: MD&A提取失败\n{out[-500:]}"))
     # Verify
@@ -431,11 +442,9 @@ def step_3_mda(code):
     return True
 
 def step_4_revenue(code):
-    """Step 4: 营收结构。缺失则尝试自动运行 scripts/<code>/insert_revenue.py。美股跳过。"""
+    """Step 4: 营收结构。缺失则尝试自动运行 scripts/<code>/insert_revenue.py。
+    美股: 由 fetch_us_westock.py 从 westock-data BusinessDist/RegionDist 写入。"""
     stock = config.STOCKS.get(code, {})
-    if stock.get("market") == "us":
-        print(f"  Step 4: {_green('SKIP')} (美股营收结构待实现)")
-        return True
     db = _db_path(code)
     conn = sqlite3.connect(db)
     try:
