@@ -1,5 +1,54 @@
 # 投研操作日志
 
+## [2026-07-24] ingest | 《穷查理宝典》完整 Wiki 入库
+
+### 过程
+1. EPUB 全文提取（UTF-8 无损，避开了 PDF 编码乱码问题）
+2. 原始资料入库 → `raw/research/articles/kaufman_2005_poor_charlies_almanack.md`（深度阅读摘要）
+3. 艾德勒四级阅读法摘要 → `raw/research/articles/穷查理宝典_艾德勒阅读法.md`
+4. Wiki 实体页 → `articles/entities/查理·芒格.md`
+5. 思维模型 → `articles/concepts/芒格-临界质量.md`、`竞争性毁灭.md`、`倾覆力矩.md`
+6. 更新 index + log
+
+### 关键发现
+- 芒格明确列出"最重要的模型"：冗余备份、复利、临界点、倾覆力矩、自我催化、达尔文综合、认知误判
+- 第二讲列出"必须掌握的基础知识"：数学→会计学→硬科学→心理学→微观经济学
+- 竞争性毁灭的1911年证据：50家最活跃公司仅存通用电气
+- Lollapalooza = 临界质量的心理学版本
+
+## [2026-07-24] lint | 全站健康检查 — concepts/ 改名后扫尾
+
+### 状态
+85 页面 · 0 断链 · 0 孤儿
+
+### 已知遗留
+- `raw/.../哈格斯特朗_...格栅理论.md` L687 引用 `[[articles/concepts/arthur-increasing-returns]]`（旧 wiki 页名），raw/ 只进不改不动
+
+## [2026-07-24] lint | raw/research/articles/ 中文改名后全站断链修复
+
+### 背景
+`raw/research/articles/` 下 8 个英文文件名改为中文，1 个文件被删除。导致 wiki 页面中 10 处 raw 源链接断链。
+
+### 修复清单 (P0)
+| # | 文件 | 修复内容 |
+|---|------|------|
+| 1 | `articles/concepts/arthur-increasing-returns.md` | raw 源链接 `arthur-increasing-returns-emergence` → `阿瑟-收益递增与涌现` (×2) |
+| 2 | `articles/entities/seth-klarman-interview.md` | raw 源链接 `seth-klarman-interview` → `塞斯卡拉曼访谈-企业分析原则` (×2) |
+| 3 | `articles/synthesis/dahang-weekly-76.md` | raw 源链接 `dahang-weekly-76` → `大航周报76-贵州茅台专题` (×2) |
+| 4 | `articles/concepts/munger-poor-charlie-lecture2.md` | raw 源指向已删除文件 → 重定向到 `考夫曼_2005_穷查理宝典`（全本）+ `芒格-多元思维模型-推演与分析` |
+| 5 | `articles/papers/hagstrom-grid-theory.md` | raw 源链接 `hagstrom_2023_investing_last_liberal_art` → `哈格斯特朗_2023_查理芒格的智慧-投资的格栅理论` |
+| 6 | `articles/concepts/芒格格栅理论-多学科思维投资框架.md` | 同上 |
+| 7 | `articles/concepts/艾德勒-四级阅读法.md` | 同上 |
+| 8 | `articles/concepts/munger-critical-mass.md` | 引用 `kaufman_2005_poor_charlies_almanack` → `考夫曼_2005_穷查理宝典` |
+| 9 | `index.md` | `hagstrom_2023_..._艾德勒阅读法` → `哈格斯特朗_2023_查理芒格的智慧_艾德勒阅读法` |
+| 10 | `vl/concepts/Arthur-收益递增与涌现.md` | raw 源链接 `arthur-increasing-returns-emergence` → `阿瑟-收益递增与涌现` |
+
+### P1 — 孤儿页面收录
+- `articles/concepts/munger-critical-mass.md`（芒格临界质量）→ 添加到 `index.md`
+
+### 状态
+0 断链 · 0 孤儿
+
 ## [2026-07-22] ingest | 批量初始化 — 腾讯/时代天使/云铝/神火/京东方/TCL科技 共 30 wiki 页面
 
 | # | 标的 | 代码 | 行业 | 估值 | 核心发现 |

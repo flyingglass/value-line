@@ -3,13 +3,13 @@ topic: 大航周报76 — 贵州茅台端午动销与Q2业绩测算
 category: 投研-行业跟踪
 created: 2026-06-27
 updated: 2026-06-27
-source: ../../raw/research/articles/2026-06-26-dahang-weekly-76.md
+source: ../../raw/research/articles/2026-06-26-大航周报76-贵州茅台专题.md
 ---
 
 # 大航周报76：贵州茅台端午动销与Q2业绩测算
 
 > 来源：微信公众号「大航的后花园」，2026-06-26
-> 原始资料：[[../../raw/research/articles/2026-06-26-dahang-weekly-76]]
+> 原始资料：[[../../raw/research/articles/2026-06-26-大航周报76-贵州茅台专题]]
 
 ## 持仓
 

@@ -2,13 +2,13 @@
 topic: 塞斯·卡拉曼访谈
 category: 投研-投资大师
 created: 2026-06-27
-source: ../raw/research/articles/2026-06-25-seth-klarman-interview.md
+source: ../raw/research/articles/2026-06-25-塞斯卡拉曼访谈-企业分析原则.md
 ---
 
 # 塞斯·卡拉曼：44年年化20%的企业分析原则
 
 > 来源：彭博社 Masters in Business 播客，2026-06-19
-> 原始资料：[[../raw/research/articles/2026-06-25-seth-klarman-interview]]
+> 原始资料：[[../raw/research/articles/2026-06-25-塞斯卡拉曼访谈-企业分析原则]]
 
 ## 核心要点
 

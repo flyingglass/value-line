@@ -1,6 +1,6 @@
 # 投研索引
 
-> 最后更新：2026-07-22
+> 最后更新：2026-07-24
 
 ## 概述
 
@@ -77,20 +77,23 @@
 ## 按主题 — 文章目录
 
 ### 概念 (articles/concepts/)
-- [[articles/concepts/arthur-increasing-returns]] — Arthur 收益递增与涌现
-- [[articles/concepts/munger-poor-charlie-lecture2]] — 芒格多元思维模型（《穷查理宝典》第二讲 · 七大学科 · 投资检查清单）
+- [[articles/concepts/阿瑟-收益递增与涌现]] — Arthur 收益递增与涌现
 - [[articles/concepts/投资框架-复杂经济学指导手册]] — 四本著作整合框架（柏基 + 竞争优势 + 三段式估值 + 三周期）
 - [[articles/concepts/芒格格栅理论-多学科思维投资框架]] — 🔥 哈格斯特朗《查理·芒格的智慧》全书解读：9 大学科 × 投资模型，格栅思维构建指南（2026-07-17 enriched raw 再 ingest）
 - [[articles/concepts/艾德勒-四级阅读法]] — 🆕 艾德勒《如何阅读一本书》方法论：四级阅读层次 × 四个基本问题 × 批判性阅读分析师报告（2026-07-21 ingest）
 - [[articles/concepts/技术自创生与组合进化]] — 🆕 阿瑟《技术的本质》核心框架：三层定义 × 三个原理 × 机会利基 × 对投资的意义（2026-07-22 ingest）
+- [[articles/concepts/芒格-临界质量]] — 🆕 芒格思维模型：临界质量（Critical Mass），来自《穷查理宝典》（2026-07-24 ingest）
+- [[articles/concepts/竞争性毁灭]] — 🆕 芒格思维模型：竞争性毁灭——技术和竞争持续淘汰企业，源自生物学"现代达尔文综合模型"（2026-07-24 ingest）
+- [[articles/concepts/倾覆力矩]] — 🆕 芒格思维模型：倾覆力矩——方向和角度的阈值效应（2026-07-24 ingest）
 
 ### 实体 (articles/entities/)
+- [[articles/entities/查理·芒格]] — 🆕 查理·芒格（1924-2023），伯克希尔·哈撒韦副主席，多元思维模型创立者（2026-07-24 ingest）
 - [[articles/entities/seth-klarman-interview]] — Klarman：44年年化20%的企业分析原则
 
 ### 论文与参考 (articles/papers/)
 - [[articles/papers/投资框架-参考著作]] — 12 项原始资料来源记录
-- [[articles/papers/hagstrom-grid-theory]] — 🆕 哈格斯特朗《投资的格栅理论》参考页（章节结构 + 人物索引 + VL 关联）
-- [[../../raw/research/articles/hagstrom_2023_investing_last_liberal_art_艾德勒阅读法|艾德勒阅读法解哈格斯特朗]] — 用艾德勒四级阅读法重解《查理·芒格的智慧》全书：检视/通读/分析/比较（2026-07-21）
+- [[articles/papers/哈格斯特朗-格栅理论参考]] — 🆕 哈格斯特朗《投资的格栅理论》参考页（章节结构 + 人物索引 + VL 关联）
+- [[../../raw/research/articles/哈格斯特朗_2023_查理芒格的智慧_艾德勒阅读法|艾德勒阅读法解哈格斯特朗]] — 用艾德勒四级阅读法重解《查理·芒格的智慧》全书：检视/通读/分析/比较（2026-07-21）
 - [[../../raw/research/articles/穷查理宝典_艾德勒阅读法|穷查理宝典·艾德勒阅读法]] — 🆕 用艾德勒四级阅读法重解《穷查理宝典》：检视/通读/分析/比较 + 推荐阅读顺序（2026-07-21）
 
 ### 综合分析 (articles/synthesis/)

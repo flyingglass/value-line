@@ -7,7 +7,7 @@ created: 2026-06-27
 # 茅台"喝不喝 vs 喝多少"——多元思维模型下的归纳与演绎分析
 
 > 推演来源：大航周报76 贵州茅台端午动销反思 × 芒格多元思维模型第二讲
-> 相关：[[articles/concepts/munger-poor-charlie-lecture2]] · [[articles/synthesis/dahang-weekly-76]]
+> 相关：[[articles/synthesis/dahang-weekly-76]]
 
 ---
 
