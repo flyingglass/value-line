@@ -1,5 +1,31 @@
 # 操作日志
 
+## [2026-07-24] lint | 扫尾 — 移除 raw/ 分析文章后确认全站健康
+
+### 状态
+36 页面 · 0 断链 · 0 孤儿
+
+## [2026-07-24] lint | VL 侧健康检查 — P0/P1 修复
+
+### 修复
+- **P0** `vl/index.md`：移除 `set_baba_meta.py` 条目（模块页不存在，属历史残留死链）
+- **P1** `vl/index.md`：收录孤儿页面 `个股脚本标准`（concepts/ 下存在但未入索引）
+- 更新 index.md 日期至 2026-07-24
+
+### 已知遗留
+- `raw/.../哈格斯特朗_...格栅理论.md` 引用 `[[articles/concepts/arthur-increasing-returns]]`（旧 wiki 页名），raw/ 只进不改不动
+
+### 状态
+36 页面 · 0 断链 · 0 孤儿
+
+## [2026-07-24] lint | raw/research/articles/ 改名后 VL 侧断链修复
+
+### 修复
+- `vl/concepts/Arthur-收益递增与涌现.md`：raw 源存档引用 `arthur-increasing-returns-emergence` → `阿瑟-收益递增与涌现`
+
+### 状态
+全站 0 断链
+
 ## [2026-07-17] lint | 全站链接校验 — 4 处残留断链修复
 
 ### 修复

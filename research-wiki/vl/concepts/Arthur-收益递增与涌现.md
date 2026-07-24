@@ -144,4 +144,4 @@ Arthur 在同一篇 *Science* 论文中同时提出：
 ## 来源验证
 
 - Arthur 1999 *Science* 论文：web_search → web_fetch PDF 文本提取 → 逐句核对
-- 原始资料存档：`raw/research/articles/2026-06-25-arthur-increasing-returns-emergence.md`
+- 原始资料存档：`raw/research/articles/2026-06-25-阿瑟-收益递增与涌现.md`

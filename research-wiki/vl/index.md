@@ -1,6 +1,6 @@
 # Wiki 索引
 
-> 最后更新：2026-06-25
+> 最后更新：2026-07-24
 
 ## 概述
 
@@ -21,7 +21,6 @@
 - [[generate_index.py]] — 索引页生成，按行业分组展示所有标的卡片
 - [[generate_business_commentary.py]] — 🆕 自动生成个股 Commentary 脚本（14 行业模板）
 - [[list_refs.py]] — 历史估值参考，批量 PE/PB 均值
-- [[set_baba_meta.py]] — 单次元数据补丁工具（09988 专用）
 
 ## 概念 (concepts/)
 
@@ -38,6 +37,7 @@
 - [[Wiki操作手册]] — Ingest / Query / Lint 工作流 + 页面格式模板
 - [[新增标的流程]] — 从 config 到报告的简化步骤（含自动生成 Commentary）
 - [[Arthur-收益递增与涌现]] — Arthur 复杂经济学：收益递增（正反馈）与涌现的关系及原文引用
+- [[个股脚本标准]] — 标准四件套：business_commentary / insert_revenue / metric_adjustment / extract_business
 
 ## 实体 (entities/)
 
