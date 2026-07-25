@@ -105,6 +105,7 @@
 - [[articles/synthesis/maotai-drink-logic-analysis]] — 茅台"喝不喝 vs 喝多少" — 归纳演绎法 × 芒格多元模型
 - [[articles/synthesis/dahang-weekly-76]] — 大航周报76：2026年第26周
 - [[articles/synthesis/generational-risk-sanrio-disney-popmart]] — 断代风险：三丽鸥与迪士尼如何跨越代际鸿沟，对泡泡玛特的启示
+- [[articles/synthesis/竞争性毁灭-四书格栅分析]] — 🆕 竞争性毁灭四重维度：《自私的基因》×《枪炮病菌与钢铁》×《基因组》×《冰河期》格栅交叉分析（2026-07-25 ingest）
 
 ## 共享数据
 
