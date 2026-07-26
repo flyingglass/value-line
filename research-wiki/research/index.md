@@ -1,6 +1,6 @@
 # 投研索引
 
-> 最后更新：2026-07-24
+> 最后更新：2026-07-26
 
 ## 概述
 
@@ -106,6 +106,8 @@
 - [[articles/synthesis/dahang-weekly-76]] — 大航周报76：2026年第26周
 - [[articles/synthesis/generational-risk-sanrio-disney-popmart]] — 断代风险：三丽鸥与迪士尼如何跨越代际鸿沟，对泡泡玛特的启示
 - [[articles/synthesis/竞争性毁灭-四书格栅分析]] — 🆕 竞争性毁灭四重维度：《自私的基因》×《枪炮病菌与钢铁》×《基因组》×《冰河期》格栅交叉分析（2026-07-25 ingest）
+- [[articles/synthesis/自私的基因-商业基因映射分析]] — 🆕 道金斯框架 × 五家公司：泡泡玛特/腾讯/字节/阿里/苹果的复制因子·延伸表型·ESS切换分析（2026-07-26 ingest）
+- [[articles/synthesis/ESS切换-企业跨越与失败分析]] — 🆕 ESS 切换存活的三个必要条件 × 四条可操作原则 × 五家公司生存力评分（2026-07-26 ingest）
 
 ## 共享数据
 
