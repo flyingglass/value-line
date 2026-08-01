@@ -76,3 +76,5 @@ AIDC 2025 年首次单独披露，收入 25 亿，成本结构迥异——折旧
 - [[overview]] — 数据目录
 - [[industry-chain]] — 数据中心产业链全景
 - [[operating-metrics]] — 运营指标跟踪（上架率/PUE/电费）
+[[research/润泽科技/research-reports.md]] · [[research/index.md]]
+[[research/润泽科技/research-reports.md]]

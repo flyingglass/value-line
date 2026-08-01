@@ -93,3 +93,5 @@ sources:
 - [[overview]] — 数据目录
 - [[industry-chain]] — 产业链全景
 - [[operating-metrics]] — 运营指标跟踪
+[[research/宁德时代/research-reports.md]] · [[research/index.md]]
+[[research/宁德时代/research-reports.md]]

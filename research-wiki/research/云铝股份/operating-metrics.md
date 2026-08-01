@@ -15,3 +15,5 @@ created: 2026-07-22
 利润弹性来自铝价+低成本水电。负债率 20% 极低。
 
 ## 参见: [[overview]] | [[thesis]]
+[[research/云铝股份/industry-chain.md]] · [[research/index.md]]
+[[research/云铝股份/industry-chain.md]]

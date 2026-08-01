@@ -70,3 +70,5 @@ stock_dividend_cninfo (巨潮 API)          ← 已实施方案 (有除权日)
 [[三市场数据适配]]
 [[数据源-AKShare]]
 [[数据源-通达信TDX]]
+[[vl/log.md]] · [[vl/concepts/多源交叉验证.md]]
+[[vl/index.md]] · [[vl/log.md]]

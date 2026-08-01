@@ -148,3 +148,5 @@ IP生命周期：3-5年（个体IP）→ IP矩阵熨平（公司整体可持续�
 - [[operating-metrics]] — 运营指标跟踪
 - [[../articles/synthesis/popmart-ip-cycle-defense]] — IP/品类周期防御
 - [[../articles/synthesis/generational-risk-sanrio-disney-popmart]] — 断代风险分析
+[[research/index.md]] · [[research/泡泡玛特/research-reports.md]]
+[[research/泡泡玛特/research-reports.md]]

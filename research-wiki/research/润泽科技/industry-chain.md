@@ -122,3 +122,5 @@ AI 资本开支周期：训练需求 → 推理需求 → 下一轮模型迭代
 - [[overview]] — 数据目录
 - [[thesis]] — 投资 Thesis
 - [[operating-metrics]] — 运营指标（上架率/PUE/电费成本）
+[[research/润泽科技/research-reports.md]] · [[research/index.md]]
+[[research/润泽科技/research-reports.md]]

@@ -7,3 +7,4 @@ created: 2026-07-22
 > ⚠️ 当前无已拉取研报。
 - [ ] 拉取面板周期 + OLED iPhone 供应链研报
 ## 参见: [[overview]] | [[thesis]]
+[[research/index.md]]

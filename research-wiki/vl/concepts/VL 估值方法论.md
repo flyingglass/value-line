@@ -87,3 +87,5 @@ CLI --cf/--pb  >  DB meta 已确认值  >  用户交互输入（显示历史PE/P
 [[24 行统计阵列]]
 [[多源交叉验证]]
 [[李录阅读法融合]]
+[[vl/log.md]] · [[vl/index.md]]
+[[vl/concepts/Wiki操作手册.md]] · [[vl/entities/原始资料-PDF-官方阅读指南2020.md]]

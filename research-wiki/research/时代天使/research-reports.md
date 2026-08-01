@@ -7,3 +7,4 @@ created: 2026-07-22
 > ⚠️ 当前无已拉取研报。
 - [ ] 拉取港股覆盖研报，关注海外扩张和盈利恢复
 ## 参见: [[overview]] | [[thesis]]
+[[research/index.md]]

@@ -60,3 +60,5 @@ Building Materials / Insurance / Financial Services / Utilities
 
 [[BUSINESS 生成链路]]
 [[新增标的流程]]
+[[vl/log.md]] · [[vl/index.md]]
+[[vl/index.md]] · [[vl/log.md]]

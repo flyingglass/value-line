@@ -84,3 +84,5 @@ Molly 占比从 2019 年的 40%+ 降至 2025 年的约 10%，SKULLPANDA + Labubu
 - [[../articles/synthesis/popmart-historical-cycle-defense]] — 历史周期防御分析
 - [[../articles/synthesis/popmart-demand-decomposition]] — 需求三层拆解
 - [[../articles/synthesis/generational-risk-sanrio-disney-popmart]] — 断代风险分析
+[[research/index.md]] · [[research/泡泡玛特/research-reports.md]]
+[[research/泡泡玛特/research-reports.md]]

@@ -51,3 +51,4 @@ sources:
 - [[overview]] — 数据目录
 - [[thesis]] — 投资 Thesis
 - [[industry-chain]] — IP 产业链全景
+[[research/index.md]]

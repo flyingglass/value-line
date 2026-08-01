@@ -63,3 +63,8 @@ created: 2026-06-22
 - [ ] EpicPharma 关税影响量化（2024 净利 1.40→2025 0.17 亿，-88%）
 - [ ] 招商局入主后"归核聚焦"进度（湖北人福 72 亿营收 0.86 亿净利，低效商业资产）
 - [ ] 2024 年子公司数据对比（需从 2024 年报提取）
+
+## 参见
+
+[[research/index.md]] · [[research/log.md]] · [[industry-chain]] · [[operating-metrics]] · [[research-reports]]
+[[research/人福医药/thesis.md]]

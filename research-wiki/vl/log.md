@@ -599,3 +599,45 @@ PB=1.0x, 新建 scripts/02899/business_commentary.py, valuation_method="pb" 写�
 - 删除 vl_handbook.txt（与已有 PDF 源重复）
 - 迁移 style-reference.md → raw/vl-reference/style-reference.md，创建实体页 entities/原始资料-VL样式参考.md
 触及页面：index.md。
+
+## [2026-08-01] lint | research-wiki 健康检查
+
+### 操作
+- 运行 `scripts/wiki_lint.py` 全量检查 166 个 .md 文件
+- 检查项：结构 / frontmatter / 断链 / 参见区块 / index 注册 / 孤立页面 / 内容质量 / raw 命名
+
+### 修复（7 处断链）
+- `generate_report.py.md`：`[[数据口径规范]]` → `[[数据口径与样式规范]]`
+- `index.md`：`[[项目全景概述]]` → `[[overview|项目全景概述]]`
+- `Wiki操作手册.md`：`[[相关模块]]` 占位 → `[[index|模块清单]]`
+- `research/articles/entities/查理·芒格.md`：raw 文件名 kaufman → 考夫曼
+- `倾覆力矩.md`、`竞争性毁灭.md`：同上 + munger-critical-mass → 芒格-临界质量
+- `research/TCL中环/research-reports.md`：目录 wikilink → 代码块
+
+### 剩余（76 WARN / 5 INFO）
+- 缺失概念页 20 处（均值回归、复杂适应系统、Lollapalooza效应…）
+- frontmatter 缺失 14 页（articles/concepts|synthesis + 润泽科技）
+- 参见区块缺失 24 页（synthesis 系列普遍缺失）
+- 内容过少 5 页（TCL科技/云铝/京东方/时代天使/神火 research-reports）
+- vl/synthesis/ 空目录
+- `[[项目全景概述]]` 在本 log 历史条目中，按只追加规则不改
+
+触及页面：vl/index.md、vl/concepts/Wiki操作手册.md、vl/modules/generate_report.py.md
+
+## [2026-08-01] fix | 批量修复 frontmatter + 参见区块 + 交叉引用
+
+### 操作
+- 编写 `scripts/wiki_fix.py`，基于 lint 数据自动补全缺失的 frontmatter、参见区块、交叉引用缺口
+- 两轮修复：138 + 81 = 219 项
+
+### 修复结果
+- frontmatter 缺失 → **全部清零**（原 14 页）
+- ## 参见 区块缺失 → **全部清零**（原 24 页）
+- 可修断链 → **全部清零**
+- 交叉引用缺口 → 剩余 ~343 处（系统性，增补一轮即产生新入链缺口，diminishing returns）
+
+### 未修
+- raw/ 文件 ~18 处断链（只读，不可改）— 标记为缺失概念页
+- 交叉引用缺口 343 处 — 增补已达均衡点
+
+触及页面：大量 vl/ + research/ 页面（批量修复）

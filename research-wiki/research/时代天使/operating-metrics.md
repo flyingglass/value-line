@@ -24,3 +24,5 @@ sources: [data/06699.db]
 PE: 99.9 → 206.9 → 103.6 → 42.7x，盈利恢复中估值回归。
 
 ## 参见: [[overview]] | [[thesis]]
+[[research/时代天使/industry-chain.md]] · [[research/index.md]]
+[[research/时代天使/industry-chain.md]]

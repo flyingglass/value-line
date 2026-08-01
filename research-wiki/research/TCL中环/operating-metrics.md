@@ -110,3 +110,5 @@ sources:
 - [[thesis]] — 投资 Thesis
 - [[industry-chain]] — 产业链全景
 - [[research-reports]] — 券商研报索引
+[[research/index.md]]
+[[research/安琪酵母/overview.md]] · [[research/安琪酵母/industry-chain.md]]

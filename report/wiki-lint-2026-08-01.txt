@@ -1,0 +1,196 @@
+============================================================
+research-wiki Lint Report
+============================================================
+Wiki 根: C:\LY\Repo\llm\value-line\research-wiki
+Markdown 文件总数: 166
+  raw/: 36
+  vl/: 36
+  research/: 93
+
+问题统计: ERROR=0  WARN=76  INFO=5
+
+--- raw/research/articles/哈格斯特朗_2023_查理芒格的智慧-投资的格栅理论.md ---
+  [WARN] 断链: [[articles/concepts/arthur-increasing-returns]] 无对应文件
+  [WARN] 断链: [[均值回归]] 无对应文件
+  [WARN] 断链: [[复杂适应系统]] 无对应文件
+  [WARN] 断链: [[实用主义]] 无对应文件
+  [WARN] 断链: [[思维格栅模型]] 无对应文件
+  [WARN] 断链: [[有效市场假说]] 无对应文件
+  [WARN] 断链: [[行为金融学]] 无对应文件
+  [WARN] 断链: [[贝叶斯定理]] 无对应文件
+
+--- raw/research/articles/考夫曼_2005_穷查理宝典.md ---
+  [WARN] 断链: [[articles/concepts/Lollapalooza效应]] 无对应文件
+  [WARN] 断链: [[articles/concepts/hagstrom_2023_investing_last_liberal_art]] 无对应文件
+  [WARN] 断链: [[articles/concepts/人类误判心理学]] 无对应文件
+  [WARN] 断链: [[articles/concepts/能力圈原则]] 无对应文件
+  [WARN] 断链: [[articles/concepts/逆向思维]] 无对应文件
+  [WARN] 断链: [[伯克希尔·哈撒韦]] 无对应文件
+  [WARN] 断链: [[沃伦·巴菲特]] 无对应文件
+
+--- raw/research/人福医药/2026-07-17-data-source-log.md ---
+  [INFO] 含占位符 '待补充'
+
+--- raw/research/安琪酵母/2026-07-17-data-source-log.md ---
+  [INFO] 含占位符 '待补充'
+
+--- raw/vl/akshare-reference/akshare-stock-api.md ---
+  [INFO] 含占位符 'XXX'
+
+--- research/TCL中环/overview.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/TCL中环/research-reports.md ---
+  [INFO] 含占位符 '待补充'
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/TCL科技/research-reports.md ---
+  [WARN] 内容过少（仅 4 行有效正文）
+
+--- research/articles/concepts/倾覆力矩.md ---
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/concepts/技术自创生与组合进化.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/concepts/竞争性毁灭.md ---
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/concepts/艾德勒-四级阅读法.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/concepts/芒格-临界质量.md ---
+  [WARN] 断链: [[Lollapalooza效应]] 无对应文件
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/concepts/芒格格栅理论-多学科思维投资框架.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/concepts/阿瑟-收益递增与涌现.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/entities/seth-klarman-interview.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/entities/查理·芒格.md ---
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/papers/哈格斯特朗-格栅理论参考.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/papers/投资框架-参考著作.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/ESS切换-企业跨越与失败分析.md ---
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/synthesis/dahang-weekly-76.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/generational-risk-sanrio-disney-popmart.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/maotai-drink-logic-analysis.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/popmart-chason-rebuttal.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/popmart-cycle-defense-comparison.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/popmart-demand-decomposition.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/popmart-historical-cycle-defense.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/popmart-ip-cycle-defense.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/枪炮病菌与钢铁-投资终极因框架.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/竞争性毁灭-四书格栅分析.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/articles/synthesis/自私的基因-商业基因映射分析.md ---
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/articles/synthesis/芒格多元学科投资决策框架.md ---
+  [WARN] 断链: [[均值回归]] 无对应文件
+  [WARN] 断链: [[思维格栅模型]] 无对应文件
+  [WARN] 断链: [[行为金融学]] 无对应文件
+  [WARN] 断链: [[贝叶斯定理]] 无对应文件
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/log.md ---
+  [WARN] 断链: [[articles/concepts/arthur-increasing-returns]] 无对应文件
+
+--- research/overview.md ---
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/云铝股份/research-reports.md ---
+  [WARN] 内容过少（仅 4 行有效正文）
+
+--- research/京东方/research-reports.md ---
+  [WARN] 内容过少（仅 4 行有效正文）
+
+--- research/人福医药/overview.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/时代天使/research-reports.md ---
+  [WARN] 内容过少（仅 4 行有效正文）
+
+--- research/泡泡玛特/overview.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- research/润泽科技/operating-metrics.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/润泽科技/overview.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- research/神火股份/research-reports.md ---
+  [WARN] 内容过少（仅 4 行有效正文）
+
+--- vl/concepts/Arthur-收益递增与涌现.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- vl/concepts/BUSINESS 生成链路.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- vl/concepts/Wiki操作手册.md ---
+  [INFO] 含占位符 'TODO'
+  [WARN] 断链: [[CF 估值法]] 无对应文件
+  [WARN] 断链: [[页面名]] 无对应文件
+
+--- vl/concepts/个股脚本标准.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+  [WARN] 缺少 YAML frontmatter (---...---)
+
+--- vl/concepts/跨电脑迁移与云备份.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- vl/concepts/项目目录结构.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- vl/entities/原始资料-VL样式参考.md ---
+  [WARN] 缺少 ## 参见 / ## 相关页面 反向链接区块
+
+--- vl/log.md ---
+  [WARN] 断链: [[articles/concepts/arthur-increasing-returns]] 无对应文件
+  [WARN] 断链: [[项目全景概述]] 无对应文件
+
+=== 空目录 ===
+  vl/synthesis/
+
+Lint 完成。

@@ -263,3 +263,8 @@ C: "花多少钱"有自然的向上迁移路径——不是强迫消费升级，
 ---
 
 > 推演日期：2026-06-27。从消费历史归纳第一性原理 × 演绎推演需求可持续性 × 芒格多元模型映射。
+
+## 参见
+
+[[popmart-cycle-defense-comparison]] · [[research/index.md]] · [[research/泡泡玛特/research-reports.md]] · [[research/泡泡玛特/thesis.md]]
+[[research/泡泡玛特/research-reports.md]] · [[research/泡泡玛特/thesis.md]]

@@ -72,3 +72,5 @@ updated: 2026-06-09
 
 [[24 行统计阵列]]
 [[VL 估值方法论]]
+[[vl/modules/generate_index.py.md]] · [[vl/index.md]]
+[[vl/modules/generate_business_commentary.py.md]] · [[vl/concepts/VL 估值方法论.md]]

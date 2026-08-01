@@ -30,3 +30,5 @@ sources: [data/06699.db]
 - 估值: PE 43x（2025），盈利恢复中但未到稳态
 
 ## 参见: [[overview]] | [[industry-chain]] | [[operating-metrics]]
+[[research/index.md]] · [[research/时代天使/research-reports.md]]
+[[research/时代天使/research-reports.md]]

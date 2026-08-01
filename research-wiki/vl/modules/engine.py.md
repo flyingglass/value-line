@@ -122,3 +122,5 @@ report_data.json → generate_report.py → HTML
 [[BUSINESS 生成链路]]
 [[三市场数据适配]]
 [[数据源-通达信TDX]]
+[[vl/log.md]] · [[vl/index.md]]
+[[vl/modules/extract_mda.py.md]] · [[vl/modules/generate_business_commentary.py.md]]

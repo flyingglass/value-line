@@ -96,3 +96,5 @@ sources:
 - [[overview]] — 数据目录
 - [[industry-chain]] — 产业链全景
 - [[operating-metrics]] — 运营指标跟踪
+[[research/index.md]] · [[research/紫金矿业/research-reports.md]]
+[[research/紫金矿业/research-reports.md]]

@@ -18,3 +18,5 @@ created: 2026-07-22
 
 ## 风险: 面板价格周期、OLED 盈利不及预期、高资本开支
 ## 参见: [[overview]] | [[industry-chain]] | [[operating-metrics]]
+[[research/京东方/research-reports.md]] · [[research/index.md]]
+[[research/京东方/research-reports.md]]

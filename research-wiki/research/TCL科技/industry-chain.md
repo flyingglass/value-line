@@ -12,3 +12,4 @@ created: 2026-07-22
 
 ## 行业周期: 面板 2-3 年 + 光伏硅片 3-5 年，双周期叠加
 ## 参见: [[overview]] | [[thesis]] | [[operating-metrics]]
+[[research/index.md]]

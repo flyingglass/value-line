@@ -383,3 +383,8 @@ Chason 做了一件有价值的事：把泡泡玛特的周期防御从"能不能
 > 延伸：[[generational-risk-sanrio-disney-popmart]] — 断代风险的深度分析，三丽鸥与迪士尼的跨代际防御机制如何对照泡泡玛特
 
 > **芒格最后的提醒**："我们寻找的是一英尺高的栏杆，而不是七英尺高的栏杆。我们只想跨越容易的障碍。泡泡玛特？那是一个七英尺高的栏杆——有风的时候可能跨过去，但风什么时候会停？"
+
+## 参见
+
+[[generational-risk-sanrio-disney-popmart]] · [[竞争性毁灭-四书格栅分析]] · [[research/index.md]] · [[research/泡泡玛特/research-reports.md]]
+[[research/泡泡玛特/research-reports.md]] · [[research/articles/synthesis/popmart-ip-cycle-defense.md]]

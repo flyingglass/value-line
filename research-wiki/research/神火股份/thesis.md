@@ -17,3 +17,5 @@ created: 2026-07-22
 
 ## 风险: 铝价/煤价波动、环保限产
 ## 参见: [[overview]] | [[industry-chain]] | [[operating-metrics]]
+[[research/神火股份/research-reports.md]] · [[research/index.md]]
+[[research/神火股份/research-reports.md]]

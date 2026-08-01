@@ -8,3 +8,4 @@ created: 2026-07-22
 - [ ] 拉取 2025 年报后更新研报
 - [ ] 关注 AI 大模型（混元）进展、视频号商业化加速
 ## 参见: [[overview]] | [[thesis]]
+[[research/index.md]]

@@ -9,3 +9,4 @@ created: 2026-07-22
 
 ## 竞争格局: 与云铝形成对比 — 云铝=水电优势，神火=煤电一体化
 ## 参见: [[overview]] | [[thesis]]
+[[research/index.md]]

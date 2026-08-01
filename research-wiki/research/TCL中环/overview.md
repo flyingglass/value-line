@@ -79,3 +79,8 @@ ORDER BY year;
 ## 估值
 
 VL 报告采用 **PB=1.0x**（光伏周期股，PB 估值优于 CF），见 `report/TCL中环.html`。
+
+## 参见
+
+[[operating-metrics]] · [[research/index.md]] · [[research/log.md]]
+

@@ -238,3 +238,8 @@ Chason 把"投文化和创始人"当作终极判断，但这个框架有一个�
 ---
 
 > 推演日期：2026-06-27。针对 Chason 文章的逐论断拆解，以芒格多元模型 + 归纳演绎 + 泡泡历史数据为方法论。
+
+## 参见
+
+[[research/index.md]] · [[research/泡泡玛特/research-reports.md]]
+[[research/泡泡玛特/research-reports.md]]

@@ -149,3 +149,8 @@ created: 2026-06-27
 ---
 
 > 推演日期：2026-06-27。基于大航周报76 + 芒格第二讲原文的方法论融合分析。
+
+## 参见
+
+[[research/index.md]]
+[[research/articles/synthesis/dahang-weekly-76.md]]

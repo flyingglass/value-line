@@ -39,3 +39,5 @@ created: 2026-06-11
 
 [[开发环境配置]]
 [[数据源-通达信TDX]]
+[[vl/index.md]] · [[vl/concepts/跨电脑迁移与云备份.md]]
+[[vl/index.md]]

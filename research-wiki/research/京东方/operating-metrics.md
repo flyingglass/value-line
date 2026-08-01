@@ -11,3 +11,5 @@ created: 2026-07-22
 | 总股本 | 370.4 亿 |
 > 面板行业盈利周期性强，PE 高企反映盈利低谷。
 ## 参见: [[overview]] | [[thesis]]
+[[research/京东方/industry-chain.md]] · [[research/index.md]]
+[[research/京东方/industry-chain.md]]

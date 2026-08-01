@@ -157,3 +157,8 @@ created: 2026-06-27
 ---
 
 > 推演日期：2026-06-27。基于茅-泡对称框架的追问延伸分析。
+
+## 参见
+
+[[popmart-cycle-defense-comparison]] · [[research/index.md]] · [[research/泡泡玛特/industry-chain.md]] · [[research/泡泡玛特/research-reports.md]]
+[[research/泡泡玛特/industry-chain.md]] · [[research/泡泡玛特/research-reports.md]]

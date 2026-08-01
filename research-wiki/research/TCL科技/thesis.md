@@ -25,3 +25,5 @@ created: 2026-07-22
 - 双主业管理复杂度高
 
 ## 参见: [[overview]] | [[industry-chain]] | [[operating-metrics]]
+[[research/index.md]] · [[research/TCL科技/research-reports.md]]
+[[research/TCL科技/research-reports.md]]

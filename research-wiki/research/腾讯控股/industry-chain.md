@@ -27,3 +27,4 @@ sources: [data/00700.db]
 - AI 大模型（混元）为下一增长点
 
 ## 参见: [[overview]] | [[thesis]] | [[operating-metrics]]
+[[research/index.md]]

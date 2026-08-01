@@ -1,3 +1,10 @@
+---
+topic: Arthur 收益递增与涌现
+category: 投资框架
+created: 2026-08-01
+updated: 2026-08-01
+---
+
 # Arthur 收益递增与涌现
 
 > 布莱恩·阿瑟（W. Brian Arthur）复杂经济学的两个核心概念及其关系。
@@ -145,3 +152,8 @@ Arthur 在同一篇 *Science* 论文中同时提出：
 
 - Arthur 1999 *Science* 论文：web_search → web_fetch PDF 文本提取 → 逐句核对
 - 原始资料存档：`raw/research/articles/2026-06-25-阿瑟-收益递增与涌现.md`
+
+## 参见
+
+[[vl/index.md]] · [[research/articles/concepts/阿瑟-收益递增与涌现.md]] · [[research/润泽科技/operating-metrics.md]]
+[[research/润泽科技/operating-metrics.md]] · [[vl/index.md]]

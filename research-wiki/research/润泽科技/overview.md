@@ -1,3 +1,10 @@
+---
+topic: 润泽科技 300442 — 数据目录
+category: 数据目录
+created: 2026-08-01
+updated: 2026-08-01
+---
+
 # 润泽科技 300442 — 数据目录
 
 > 润泽智算科技集团股份有限公司 | A 股 SZSE | Technology（数据中心/AIDC）
@@ -28,3 +35,8 @@
 - 2022 年重组上市（原壳：普丽盛），财务数据 2018 年前为原壳数据
 - 规划算力 6GW，运营 750MW，全球 9 个园区
 - AIDC 2025 年首次单独披露，营收占比 44%、同比爆发增长
+
+## 参见
+
+[[research/index.md]] · [[research/log.md]] · [[industry-chain]] · [[operating-metrics]] · [[research-reports]]
+[[research/润泽科技/thesis.md]]

@@ -133,3 +133,4 @@ sources:
 - [[thesis]] — 投资 Thesis
 - [[operating-metrics]] — 运营指标跟踪
 - [[research-reports]] — 券商研报索引
+[[research/index.md]]

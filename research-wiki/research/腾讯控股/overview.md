@@ -67,3 +67,4 @@ sources:
 - [[industry-chain]] — 产业链全景
 - [[operating-metrics]] — 运营指标跟踪
 - [[research-reports]] — 券商研报索引
+[[research/index.md]]

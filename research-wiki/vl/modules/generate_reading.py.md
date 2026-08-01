@@ -37,3 +37,5 @@ updated: 2026-06-09
 ## 相关概念
 
 [[李录阅读法融合]]
+[[vl/modules/generate_report.py.md]] · [[vl/index.md]]
+[[vl/index.md]]

@@ -643,3 +643,8 @@ dopamine 疲劳的预测（如果是神经适应性 → 渐进）：
 
 > 推演日期：2026-06-29
 > 基于三丽鸥/迪士尼公开历史的归纳演绎分析 + Chason 3 年周期假设的芒格框架验证。
+
+## 参见
+
+[[popmart-cycle-defense-comparison]] · [[竞争性毁灭-四书格栅分析]] · [[research/index.md]] · [[research/泡泡玛特/industry-chain.md]] · [[research/泡泡玛特/research-reports.md]]
+[[research/泡泡玛特/industry-chain.md]] · [[research/泡泡玛特/research-reports.md]]

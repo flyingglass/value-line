@@ -1,3 +1,10 @@
+---
+topic: 投研 wiki 概述
+category: 索引
+created: 2026-08-01
+updated: 2026-08-01
+---
+
 # 投研 Wiki — 概述
 
 > 创建：2026-06-27

@@ -23,3 +23,5 @@ sources: [data/00700.db]
 资产负债率: 50.4% → 39.1%，出售美团/京东股权 + 利润增长。
 
 ## 参见: [[overview]] | [[thesis]]
+[[research/index.md]] · [[research/腾讯控股/industry-chain.md]]
+[[research/腾讯控股/industry-chain.md]]

@@ -28,3 +28,8 @@ generate_report.py 的 HTML 样式规范参考文档，记录布局尺寸、ECha
 
 - [[数据口径与样式规范]] — 概念页，Header/K 线/24 行数据口径
 - [[generate_report.py]] — 核心 HTML 生成模块
+
+## 参见
+
+[[vl/index.md]]
+[[vl/index.md]]

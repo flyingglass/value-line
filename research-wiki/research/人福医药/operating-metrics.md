@@ -92,3 +92,5 @@ sources:
 - [[overview]] — 数据目录（含子公司全景 + AR 分析）
 - [[thesis]] — 投资 Thesis
 - [[industry-chain]] — 麻醉药产业链全景
+[[research/index.md]] · [[research/人福医药/research-reports.md]]
+[[research/人福医药/research-reports.md]]

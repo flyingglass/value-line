@@ -143,3 +143,5 @@ sources:
 - [[安琪酵母/industry-chain]] — 产业链全景
 - [[../report/安琪酵母]] — VL 完整报告
 - [[../report/reading/600298]] — VL 阅读报告
+[[research/安琪酵母/operating-metrics.md]] · [[research/index.md]]
+[[research/安琪酵母/research-reports.md]] · [[research/安琪酵母/operating-metrics.md]]

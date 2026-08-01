@@ -117,3 +117,5 @@ sources:
 - [[overview]] — 数据目录（子公司全景 + 应收账款）
 - [[thesis]] — 投资 Thesis
 - [[operating-metrics]] — 运营指标跟踪
+[[research/index.md]] · [[research/人福医药/research-reports.md]]
+[[research/人福医药/research-reports.md]]

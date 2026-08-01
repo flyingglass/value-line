@@ -1,3 +1,10 @@
+---
+topic: 润泽科技 300442 — IDC/AIDC 运营指标跟踪
+category: 运营指标
+created: 2026-08-01
+updated: 2026-08-01
+---
+
 # 润泽科技 300442 — IDC/AIDC 运营指标跟踪
 
 > 来源：年报 PDF 原文（2022-2025），pdfplumber 从成本构成表 + 经营讨论章节提取
@@ -93,3 +100,8 @@
 - [[thesis]] — 投资 Thesis
 - [[industry-chain]] — 产业链全景
 - [[../vl/concepts/Arthur-收益递增与涌现]] — AIDC 的正反馈回路分析
+
+## 参见
+
+[[research/index.md]] · [[research/log.md]] · [[industry-chain]] · [[overview]] · [[research-reports]]
+[[research/润泽科技/thesis.md]]

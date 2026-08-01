@@ -26,3 +26,4 @@ sources: [data/00700.db, scripts/00700/business_commentary.py]
 - 监管（游戏版号、反垄断）、宏观经济放缓、AI 投入回报不确定性
 
 ## 参见: [[overview]] | [[industry-chain]] | [[operating-metrics]] | [[research-reports]]
+[[research/index.md]]

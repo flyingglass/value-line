@@ -698,3 +698,24 @@ raw summary 将 11 个话题平行罗列，丢失了原文"情绪/认知"二分�
 - 年报 PDF 原文保留在 `data/pdfs/09992/`（2021-2025 年报），不再另存 raw
 
 ## [2026-06-17] init | 投研 wiki 初始化
+
+## [2026-08-01] lint | research-wiki 健康检查
+
+### 操作
+- 运行 `scripts/wiki_lint.py` 全量检查 166 个 .md 文件（raw 36 / vl 36 / research 93）
+- 检查项：结构完整性 / frontmatter / 断链 / 参见区块 / index 注册 / 孤立页面 / 内容质量 / raw 命名
+
+### 修复（research/ 命名空间 5 处断链）
+- `查理·芒格.md`：raw 文件名 kaufman_2005_poor_charlies_almanack → 考夫曼_2005_穷查理宝典
+- `倾覆力矩.md`、`竞争性毁灭.md`：同上 + munger-critical-mass → 芒格-临界质量
+- `TCL中环/research-reports.md`：`[[../../raw/research/TCL中环/]]` 目录链接 → 代码块
+
+### 剩余发现（76 WARN / 5 INFO）
+- 缺失概念页 20 处（均值回归/复杂适应系统/实用主义/思维格栅模型/有效市场假说/行为金融学/贝叶斯定理/Lollapalooza效应/人类误判心理学/能力圈原则/逆向思维 等）
+- frontmatter 缺失 14 页（articles/concepts|synthesis + 润泽科技/operating-metrics + overview）
+- 参见区块缺失 24 页（synthesis 系列普遍缺失）
+- 内容过少 5 页（TCL科技/云铝/京东方/时代天使/神火 research-reports 仅 4 行）
+- vl/synthesis/ 空目录
+- `[[articles/concepts/arthur-increasing-returns]]` 在本 log 及 vl/log 历史条目中，按只追加规则不改
+
+触及页面：查理·芒格.md、倾覆力矩.md、竞争性毁灭.md、TCL中环/research-reports.md

@@ -10,3 +10,4 @@ created: 2026-07-22
 | 股价 | ¥27.31 |
 > ⚠️ DB 中指标数据以 FY2025 为主，历史年份需从 income 表手动提取补充。
 ## 参见: [[overview]] | [[thesis]]
+[[research/index.md]]

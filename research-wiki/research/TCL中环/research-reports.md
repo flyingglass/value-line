@@ -6,7 +6,7 @@ created: 2026-06-27
 
 # 002129 TCL中环 — 券商研报索引
 
-> 原始资料目录：[[../../raw/research/TCL中环/]]
+> 原始资料目录：`raw/research/TCL中环/`
 > 共 5 篇研报，覆盖 2025-2026 年。
 
 ## 研报列表
@@ -29,3 +29,8 @@ created: 2026-06-27
 
 - 各篇研报详细摘要与核心数据
 - 与同行（隆基、晶澳等）对比数据
+
+## 参见
+
+[[operating-metrics]] · [[research/index.md]]
+[[research/articles/synthesis/popmart-ip-cycle-defense.md]] · [[research/紫金矿业/thesis.md]]

@@ -14,3 +14,4 @@ created: 2026-07-22
 
 ## 行业周期: "液晶周期"约 2-3 年一轮
 ## 参见: [[overview]] | [[thesis]] | [[operating-metrics]]
+[[research/index.md]]

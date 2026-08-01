@@ -107,3 +107,4 @@ sources:
 - [[overview]] — 数据目录（含 DB 表结构 + SQL 查询示例）
 - [[thesis]] — 投资 Thesis
 - [[industry-chain]] — IP 产业链全景
+[[research/index.md]]

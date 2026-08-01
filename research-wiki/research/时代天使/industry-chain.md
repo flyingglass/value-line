@@ -24,3 +24,4 @@ created: 2026-07-22
 - 集采风险低（消费属性 > 医疗属性）
 
 ## 参见: [[overview]] | [[thesis]] | [[operating-metrics]]
+[[research/index.md]]

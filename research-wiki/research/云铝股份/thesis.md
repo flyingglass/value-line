@@ -18,3 +18,5 @@ sources: [data/000807.db]
 
 ## 风险: 铝价波动、云南枯水期限电
 ## 参见: [[overview]] | [[industry-chain]] | [[operating-metrics]]
+[[research/index.md]] · [[research/云铝股份/research-reports.md]]
+[[research/云铝股份/research-reports.md]]

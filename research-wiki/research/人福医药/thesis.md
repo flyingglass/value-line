@@ -83,3 +83,5 @@ sources:
 - [[overview]] — 数据目录（子公司全景 + 应收账款分析）
 - [[industry-chain]] — 麻醉药产业链全景
 - [[operating-metrics]] — 运营指标跟踪
+[[research/index.md]] · [[research/人福医药/research-reports.md]]
+[[research/人福医药/research-reports.md]]

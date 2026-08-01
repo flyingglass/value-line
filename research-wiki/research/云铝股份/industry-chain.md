@@ -10,3 +10,4 @@ created: 2026-07-22
 ## 竞争格局: 中国铝业 > 云铝 > 神火 > 南山铝业。核心差异 = 电价。
 ## 行业周期: 铝价受全球供需+能源成本驱动，产能天花板支撑价格中枢。
 ## 参见: [[overview]] | [[thesis]] | [[operating-metrics]]
+[[research/index.md]]

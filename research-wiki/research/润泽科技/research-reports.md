@@ -24,3 +24,4 @@ created: 2026-07-17
 - [[thesis]] — 投资 Thesis
 - [[industry-chain]] — 数据中心产业链全景
 - [[operating-metrics]] — 运营指标跟踪
+[[research/index.md]]

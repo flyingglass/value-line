@@ -590,3 +590,8 @@ C: 海外占比43%→60%+ = 大概率事件（5年内）
 ---
 
 > 推演日期：2026-06-27。基于泡泡玛特2016-2025年公开财报数据的归纳演绎 + 概率路线图分析。
+
+## 参见
+
+[[popmart-cycle-defense-comparison]] · [[popmart-demand-decomposition]] · [[research/index.md]] · [[research/泡泡玛特/research-reports.md]] · [[research/泡泡玛特/thesis.md]]
+[[research/泡泡玛特/research-reports.md]] · [[research/泡泡玛特/thesis.md]]

@@ -16,3 +16,5 @@ created: 2026-07-22
 TCL中环光伏亏损拖累显著。
 
 ## 参见: [[overview]] | [[thesis]]
+[[research/TCL科技/industry-chain.md]] · [[research/index.md]]
+[[research/TCL科技/industry-chain.md]]

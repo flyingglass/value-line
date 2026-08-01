@@ -22,3 +22,5 @@ updated: 2026-06-09
 ## 相关概念
 
 [[VL 估值方法论]]
+[[vl/index.md]]
+[[vl/index.md]]

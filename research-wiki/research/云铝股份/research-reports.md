@@ -7,3 +7,4 @@ created: 2026-07-22
 > ⚠️ 当前无已拉取研报。
 - [ ] 拉取铝行业专题 + 水电铝竞争优势研报
 ## 参见: [[overview]] | [[thesis]]
+[[research/index.md]]

@@ -19,3 +19,8 @@ source: ../raw/research/articles/2026-06-25-塞斯卡拉曼访谈-企业分析�
 5. **AI不可知论**：在被抛弃的大市值、高质量股票中也存在机会。
 6. **周期观**：意识到身处周期之中，大涨变贵时落袋为安，失宠时换仓。
 7. **给年轻人**："去一个如果换作是你、你也愿意把自己的资本投资进去的地方。"
+
+## 参见
+
+[[research/articles/concepts/投资框架-复杂经济学指导手册.md]] · [[research/index.md]]
+[[research/articles/concepts/投资框架-复杂经济学指导手册.md]]

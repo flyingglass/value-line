@@ -98,3 +98,5 @@ sources:
 - [[overview]] — 数据目录（含完整财务数据 + DB 查询示例）
 - [[thesis]] — 投资 Thesis
 - [[industry-chain]] — 产业链全景
+[[research/安琪酵母/research-reports.md]] · [[research/index.md]]
+[[research/安琪酵母/research-reports.md]]

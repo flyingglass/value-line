@@ -81,4 +81,6 @@ analyst.business (手写) → mda_text 解析 → config.business_desc
 ## 相关概念
 
 [[BUSINESS 生成链路]]
-[[数据口径规范]]
+[[数据口径与样式规范]]
+[[vl/log.md]] · [[vl/index.md]]
+[[vl/entities/原始资料-VL样式参考.md]] · [[vl/modules/generate_reading.py.md]]

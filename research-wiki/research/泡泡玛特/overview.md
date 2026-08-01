@@ -75,3 +75,8 @@ ORDER BY dim_type, amount DESC;
 | 2025 | 3,423M | 40.2% | 5,099M | 59.8% | 8,522M |
 
 第三方 = 天猫 + 京东 + 抖音 + 其他。抽盒机 = 微信小程序（魔镜洞察等公开数据源无法覆盖）。
+
+## 参见
+
+[[research/index.md]] · [[industry-chain]] · [[operating-metrics]] · [[research-reports]] · [[thesis]]
+
