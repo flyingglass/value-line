@@ -123,11 +123,11 @@ var DATA = {DATA_JS};
   html+='<div style="font-size:10px;font-weight:700;margin-bottom:2px">CAPITAL STRUCTURE as of '+csDate+'</div>';
   html+='<table style="width:100%;border-collapse:collapse;font-size:10px;line-height:1.5">';
   // Row 1: Total Debt | Due in 5 Yrs
-  html+='<tr><td style="white-space:nowrap;font-weight:700">Total Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.total_debt||0).toFixed(1)+' '+csUnit+'</td>';
-  html+='<td style="width:8px"></td><td style="white-space:nowrap;font-weight:700">Due in 5 Yrs</td><td style="text-align:right;font-weight:700">'+(cs.due_in_5yr||0).toFixed(1)+' '+csUnit+'</td></tr>';
+  html+='<tr><td style="white-space:nowrap;font-weight:700">Total Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(Number(cs.total_debt)||0).toFixed(1)+' '+csUnit+'</td>';
+  html+='<td style="width:8px"></td><td style="white-space:nowrap;font-weight:700">Due in 5 Yrs</td><td style="text-align:right;font-weight:700">'+(Number(cs.due_in_5yr)||0).toFixed(1)+' '+csUnit+'</td></tr>';
   // Row 2: LT Debt | LT Interest
-  html+='<tr><td style="white-space:nowrap;font-weight:700">LT Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(cs.lt_debt||0).toFixed(1)+' '+csUnit+'</td>';
-  html+='<td></td><td style="white-space:nowrap;font-weight:700">LT Interest</td><td style="text-align:right;font-weight:700">'+(cs.total_int||0).toFixed(2)+' '+csUnit+'</td></tr>';
+  html+='<tr><td style="white-space:nowrap;font-weight:700">LT Debt</td><td style="text-align:right;font-weight:700;padding-right:8px">'+(Number(cs.lt_debt)||0).toFixed(1)+' '+csUnit+'</td>';
+  html+='<td></td><td style="white-space:nowrap;font-weight:700">LT Interest</td><td style="text-align:right;font-weight:700">'+(Number(cs.total_int)||0).toFixed(2)+' '+csUnit+'</td></tr>';
   // Row 3: (coverage)
   html+='<tr><td colspan="5" style="font-size:10px;color:#000;padding-left:0">(Total interest coverage: '+cs.coverage+')</td></tr>';
   // Row 4: (% of Cap\u2019l) — 右对齐
@@ -142,7 +142,7 @@ var DATA = {DATA_JS};
   html+='</div>';
   // MARKET CAP
   html+='<div style="margin-top:4px;font-size:10px;line-height:1.4">';
-  html+='<div style="display:flex;justify-content:space-between;font-weight:700"><span>MARKET CAP:</span><span>'+(cs.mkt_cap||0).toFixed(0)+' '+csUnit+' ('+cs.cap_label+')</span></div>';
+  var mktCap=Number(cs.mkt_cap)||0; html+='<div style="display:flex;justify-content:space-between;font-weight:700"><span>MARKET CAP:</span><span>'+mktCap.toFixed(0)+' '+csUnit+' ('+cs.cap_label+')</span></div>';
   html+='</div>';
   html+='<div style="border-bottom:1px solid #000;margin-top:4px"></div>';
   html+='</div>';
@@ -284,10 +284,10 @@ var DATA = {DATA_JS};
   html+='<div class="center-col">';
 
   // ===== VL Header: HTML table 2行, rowspan=2跨两行 =====
-  var medianPE=spot.median_pe||null;
-  var trailingPE=spot.pe||ly.PE_AVG||null;
-  var relPE=ly.PE_RELATIVE||(pos.pe?pos.pe.avg:null);
-  var divYld=spot.div_yield||ly.DIV_YIELD;
+  var medianPE=Number(spot.median_pe)||null;
+  var trailingPE=Number(spot.pe)||Number(ly.PE_AVG)||null;
+  var relPE=Number(ly.PE_RELATIVE)||(pos.pe?Number(pos.pe.avg):null);
+  var divYld=Number(spot.div_yield)||Number(ly.DIV_YIELD);
 
   html+='<table class="header" style="border-collapse:collapse;border-bottom:2px solid #000;margin:0 0 2px 0;width:100%"><tr>';
 

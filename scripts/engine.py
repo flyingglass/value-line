@@ -1440,8 +1440,9 @@ def _build_capital_structure(reader, spot, latest_yr, metrics, fx_rate=None, nee
     # Market Cap (价格(交易货币) × 股数 → 换算为报表货币 CNY)
     price = spot.get("price", 0) if spot else 0
     if need_fx and (fx_rate is None or fx_rate <= 0):
-        # 无汇率 — 拒绝计算市值 (无法将 HKD 价格转为 CNY)
-        result["mkt_cap"] = "-"
+        # 无汇率 — 用交易货币直接计算市值 (单位: 交易货币, 非 CNY)
+        mkt_cap_raw = price * result["common_shares_raw"] if result["common_shares_raw"] else 0
+        result["mkt_cap"] = round(mkt_cap_raw / divisor, 1) if divisor else 0
         result["cap_label"] = "-"
     else:
         # 汇率换算: price(HKD) → CNY. 1 HKD = fx CNY, 所以 price_cny = price * fx
@@ -2133,9 +2134,9 @@ def build_report(code=None):
             # 折算: 股价(HKD) → CNY, 一次换算, 后续所有指标用 CNY 直接算
             fx = fx_rate if fx_rate and fx_rate > 0 else 1.0
             if need_spot_fx and not fx_available:
-                spot["pe"] = "-"
-                spot["pb"] = "-"
-                spot["div_yield"] = "-"
+                spot["pe"] = None
+                spot["pb"] = None
+                spot["div_yield"] = None
             else:
                 price_cny = price * fx
                 if ttm_eps and ttm_eps > 0:
