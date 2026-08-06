@@ -1,6 +1,6 @@
 # 投研索引
 
-> 最后更新：2026-08-06
+> 最后更新：2026-08-06 (stockanalysis transcripts 数据源入库)
 
 ## 概述
 
@@ -94,6 +94,7 @@
 ### 实体 (articles/entities/)
 - [[articles/entities/查理·芒格]] — 🆕 查理·芒格（1924-2023），伯克希尔·哈撒韦副主席，多元思维模型创立者（2026-07-24 ingest）
 - [[articles/entities/seth-klarman-interview]] — Klarman：44年年化20%的企业分析原则
+- [[articles/entities/stockanalysis-transcripts]] — 🆕 StockAnalysis.com 美股业绩会 transcript 数据源（2026-08-06 ingest）
 
 ### 论文与参考 (articles/papers/)
 - [[articles/papers/投资框架-参考著作]] — 12 项原始资料来源记录

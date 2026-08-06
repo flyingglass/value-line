@@ -9,3 +9,6 @@ report/node_modules/
 build_*.txt
 .env
 
+# raw/ 目录下的 PDF 不提交
+research-wiki/raw/**/*.pdf
+

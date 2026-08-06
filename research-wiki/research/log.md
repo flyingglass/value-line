@@ -1,10 +1,33 @@
 # 投研操作日志
 
+## [2026-08-06] ingest | StockAnalysis.com 美股 transcript 数据源 + AMD Q2 2026 业绩会入库
+
+### 背景
+用户发现 stockanalysis.com 可以获取美股 earnings call transcripts，这是投研的重要信息来源。
+
+### 摄入内容
+- **raw 原始资料**：`raw/research/articles/amd-q2-2026-earnings-call.md` — AMD Q2 2026 业绩会关键信息摘要
+  - 来源：stockanalysis.com/stocks/amd/transcripts/660937-q2-2026/（数据提供：Quartr）
+  - 营收 $115 亿（+50% YoY），数据中心 $67 亿（+107%），毛利率 56%
+  - Anthropic 签 2 GW MI450 大单，Microsoft Azure Helios 大规模部署
+  - Q3 指引 ~$130 亿，2027 数据中心收入翻倍以上
+- **wiki 实体页**：`articles/entities/stockanalysis-transcripts.md` — 美股 transcript 数据源完整指南
+  - stockanalysis / seekingalpha / motley fool / SEC EDGAR 四大渠道对比
+  - 投研用途：管理层语气分析、分析师关注点、指引变化跟踪、客户披露
+  - 中文翻译工作流
+
+### 页面更新
+- `index.md` — 收录 stockanalysis-transcripts 实体页
+- `log.md` — 本文
+
+---
+
 ## [2026-08-06] ingest | 伯克希尔股东大会 1994-2021 全 PDF → 16 类深度摘要 + 格栅对照
 
 ### 新增
 - `raw/research/articles/伯克希尔股东大会1994-2021-分类版深度摘要.md` — 685 页全文 16 类摘要 + 与哈格斯特朗 8 学科格栅对照
 - `articles/synthesis/巴芒论迪士尼.md` — 巴芒论迪士尼原文汇编：消费者心智/米老鼠/艾斯纳/卖出原因/泡泡玛特类比
+- `articles/synthesis/巴芒论迪士尼.md` 更新 — 第八节重写：基于 Kingswell 2023 Daily Journal 年会 62 问答全文深度解读芒格晚年迪士尼观点（在位者困境/否认偏差/几乎一切都会消亡/从"例外"到"一员"）
 
 ---
 
