@@ -193,13 +193,13 @@ def build_index_html():
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }}
-  .container {{ max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; }}
-  header {{ text-align: center; padding: 48px 0 32px; }}
-  header h1 {{ font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }}
+  .container {{ max-width: 960px; margin: 0 auto; padding: 16px 20px 40px; }}
+  header {{ background: #1a1a1a; color: #fff; padding: 14px 20px; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }}
+  header h1 {{ font-size: 17px; font-weight: 600; }}
   header h1 span {{ color: var(--blue); }}
-  header p {{ color: var(--text-muted); margin-top: 8px; font-size: 14px; }}
-  .stats {{ display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 13px; color: var(--text-muted); }}
-  .stats strong {{ color: var(--text); }}
+  header p {{ display: none; }}
+  .stats {{ display: flex; gap: 16px; font-size: 12px; color: #999; }}
+  .stats strong {{ color: #ccc; }}
 
   /* ===== 标签栏 ===== */
   .tabs {{
@@ -278,10 +278,9 @@ def build_index_html():
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1><span>价值线+</span>阅读报告</h1>
-    <p>基于年报提取的标准化财务分析 · 对标 Value Line Survey</p>
+<header>
+  <h1><span>价值线+</span>阅读报告</h1>
+  <div style="display:flex;align-items:center;gap:16px">
     <div class="stats">
       <span>共 <strong>{total}</strong> 只标的</span>
       <span>·</span>
@@ -289,8 +288,10 @@ def build_index_html():
       <span>·</span>
       <span>更新: {now}</span>
     </div>
-  </header>
-
+    <a href="../research-wiki/index.html" style="color:#ccc;text-decoration:none;font-size:13px;padding:6px 14px;border:1px solid #555;border-radius:6px;transition:all .2s" onmouseover="this.style.color='#fff';this.style.borderColor='#888';this.style.background='#333'" onmouseout="this.style.color='#ccc';this.style.borderColor='#555';this.style.background='transparent'">📚 投研 Wiki</a>
+  </div>
+</header>
+<div class="container">
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('all')">全部<span class="count">({total})</span></button>
     <button class="tab-btn" onclick="switchTab('featured')">精选<span class="count">({featured_count})</span></button>
