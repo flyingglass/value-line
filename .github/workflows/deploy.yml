@@ -5,6 +5,8 @@ on:
     paths:
       - 'report/**'
       - 'reading/**'
+      - 'research-wiki/**'
+      - 'index.html'
       - '.nojekyll'
 
 jobs:
@@ -23,7 +25,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './report'
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
