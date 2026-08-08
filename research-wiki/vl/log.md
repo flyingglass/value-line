@@ -1,5 +1,11 @@
 # 操作日志
 
+## [2026-08-08] fix | 修复根目录 index.html 空文件
+
+- index.html 内容被清空为 0 字节，导致 `https://flyingglass.github.io/value-line/` 404
+- 重新写入 `<meta http-equiv="refresh">` 重定向到 `report/index.html`
+- 根路径恢复可访问
+
 ## [2026-08-08] feat | 投研 Wiki 索引页 + 双页面导航 + 分类整理
 
 ### 新增

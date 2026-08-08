@@ -1,5 +1,10 @@
 # 投研操作日志
 
+## [2026-08-08] fix | 修复根目录 index.html 空文件导致 404
+
+- index.html 被清空为 0 字节，重新写入重定向代码
+- `https://flyingglass.github.io/value-line/` 恢复可访问
+
 ## [2026-08-08] feat | 投研 Wiki 索引页上线 + 全量 industry 中文化 + 分类合并精简
 
 ### 新增
