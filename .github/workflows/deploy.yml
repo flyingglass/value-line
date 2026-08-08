@@ -26,7 +26,6 @@ jobs:
           cp -r report _deploy/
           cp -r research-wiki _deploy/
           cp -r reading _deploy/ 2>/dev/null || true
-          cp index.html _deploy/
           touch _deploy/.nojekyll
       - name: Setup Pages
         uses: actions/configure-pages@v4
