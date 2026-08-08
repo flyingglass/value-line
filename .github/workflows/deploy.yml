@@ -7,7 +7,7 @@ on:
       - 'reading/**'
       - 'research-wiki/**'
       - 'index.html'
-      - '.nojekyll'
+      - '.github/workflows/deploy.yml'
 
 jobs:
   deploy:
@@ -20,12 +20,20 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Prepare deploy directory
+        run: |
+          mkdir -p _deploy
+          cp -r report _deploy/
+          cp -r research-wiki _deploy/
+          cp -r reading _deploy/ 2>/dev/null || true
+          cp index.html _deploy/
+          touch _deploy/.nojekyll
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_deploy'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
