@@ -1,5 +1,27 @@
 # 操作日志
 
+## [2026-08-08] feat | 投研 Wiki 索引页 + 双页面导航 + 分类整理
+
+### 新增
+- **generate_wiki_index.py**: 扫描 research-wiki/ 下所有 md，生成自包含 SPA HTML 索引页
+- **research-wiki/index.html**: 131 篇文章，按标的(19 个)+多学科(5 个主题)分组展示
+- 多学科分类: 芒格·格栅理论 / 复杂经济学 / 生物学 / 心理学 / 书籍摘要
+- report/index.html 和 wiki index 统一黑底 sticky bar 样式，双页面互链导航
+- 根目录 index.html 重定向到 report/index.html
+
+### 修复
+- generate_report.py: .toFixed() TypeError — capital structure/trailingPE 字段加 Number() 防御
+- engine.py: spot.pe/pb/div_yield 无汇率时从 "-" 改为 None；mkt_cap 无汇率时以交易货币计算
+- deploy.yml: 扩展部署范围至 research-wiki/ + index.html
+
+### 分类整理
+- 全量 18 个英文 industry → 中文统一命名
+- 安琪酵母/食品添加剂/磷化工 → 并入"化工"
+- 保险+金融服务 → 合并"金融"
+- 科技 → 重命名"互联网"
+- 必需消费品 → 合并"消费"
+- 奢侈品 → 合并"消费"
+
 ## [2026-07-31] build | 批量新增 5 标的 + 1 待补
 
 - 康臣药业 (01681)、海天味业 (603288)、万华化学 (600309)、中国平安 (601318)、海康威视 (002415) — 完整 VL + Reading 报告
