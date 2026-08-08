@@ -81,36 +81,39 @@
 
 ## 按主题 — 文章目录
 
+> 🆕 投研 Wiki 索引页已上线：`https://flyingglass.github.io/value-line/research-wiki/index.html`  
+> 131 篇文章按标的(19 个) + 多学科(5 主题)分组：🧠芒格·格栅理论 / 🔄复杂经济学 / 🧬生物学 / 🧩心理学 / 📚书籍摘要
+
 ### 概念 (articles/concepts/)
-- [[articles/concepts/阿瑟-收益递增与涌现]] — Arthur 收益递增与涌现
-- [[articles/concepts/投资框架-复杂经济学指导手册]] — 四本著作整合框架（柏基 + 竞争优势 + 三段式估值 + 三周期）
-- [[articles/concepts/芒格格栅理论-多学科思维投资框架]] — 🔥 哈格斯特朗《查理·芒格的智慧》全书解读：9 大学科 × 投资模型，格栅思维构建指南（2026-07-17 enriched raw 再 ingest）
-- [[articles/concepts/艾德勒-四级阅读法]] — 🆕 艾德勒《如何阅读一本书》方法论：四级阅读层次 × 四个基本问题 × 批判性阅读分析师报告（2026-07-21 ingest）
-- [[articles/concepts/技术自创生与组合进化]] — 🆕 阿瑟《技术的本质》核心框架：三层定义 × 三个原理 × 机会利基 × 对投资的意义（2026-07-22 ingest）
-- [[articles/concepts/芒格-临界质量]] — 🆕 芒格思维模型：临界质量（Critical Mass），来自《穷查理宝典》（2026-07-24 ingest）
-- [[articles/concepts/竞争性毁灭]] — 🆕 芒格思维模型：竞争性毁灭——技术和竞争持续淘汰企业，源自生物学"现代达尔文综合模型"（2026-07-24 ingest）
-- [[articles/concepts/倾覆力矩]] — 🆕 芒格思维模型：倾覆力矩——方向和角度的阈值效应（2026-07-24 ingest）
+- [[articles/concepts/阿瑟-收益递增与涌现]] — 🔄复杂经济学 — Arthur 收益递增与涌现
+- [[articles/concepts/投资框架-复杂经济学指导手册]] — 🔄复杂经济学 — 四本著作整合框架（柏基 + 竞争优势 + 三段式估值 + 三周期）
+- [[articles/concepts/芒格格栅理论-多学科思维投资框架]] — 🧠芒格·格栅理论 — 🔥 哈格斯特朗《查理·芒格的智慧》全书解读：9 大学科 × 投资模型，格栅思维构建指南（2026-07-17 enriched raw 再 ingest）
+- [[articles/concepts/艾德勒-四级阅读法]] — 📚书籍摘要 — 🆕 艾德勒《如何阅读一本书》方法论：四级阅读层次 × 四个基本问题 × 批判性阅读分析师报告（2026-07-21 ingest）
+- [[articles/concepts/技术自创生与组合进化]] — 🔄复杂经济学 — 🆕 阿瑟《技术的本质》核心框架：三层定义 × 三个原理 × 机会利基 × 对投资的意义（2026-07-22 ingest）
+- [[articles/concepts/芒格-临界质量]] — 🧠芒格·格栅理论 — 🆕 芒格思维模型：临界质量（Critical Mass），来自《穷查理宝典》（2026-07-24 ingest）
+- [[articles/concepts/竞争性毁灭]] — 🧠芒格·格栅理论 — 🆕 芒格思维模型：竞争性毁灭——技术和竞争持续淘汰企业，源自生物学"现代达尔文综合模型"（2026-07-24 ingest）
+- [[articles/concepts/倾覆力矩]] — 🧠芒格·格栅理论 — 🆕 芒格思维模型：倾覆力矩——方向和角度的阈值效应（2026-07-24 ingest）
 
 ### 实体 (articles/entities/)
-- [[articles/entities/查理·芒格]] — 🆕 查理·芒格（1924-2023），伯克希尔·哈撒韦副主席，多元思维模型创立者（2026-07-24 ingest）
-- [[articles/entities/seth-klarman-interview]] — Klarman：44年年化20%的企业分析原则
-- [[articles/entities/stockanalysis-transcripts]] — 🆕 StockAnalysis.com 美股业绩会 transcript 数据源（2026-08-06 ingest）
+- [[articles/entities/查理·芒格]] — 🧠芒格·格栅理论 — 🆕 查理·芒格（1924-2023），伯克希尔·哈撒韦副主席，多元思维模型创立者（2026-07-24 ingest）
+- [[articles/entities/seth-klarman-interview]] — 📌其他 — Klarman：44年年化20%的企业分析原则
+- [[articles/entities/stockanalysis-transcripts]] — 📌其他 — 🆕 StockAnalysis.com 美股业绩会 transcript 数据源（2026-08-06 ingest）
 
 ### 论文与参考 (articles/papers/)
-- [[articles/papers/投资框架-参考著作]] — 12 项原始资料来源记录
-- [[articles/papers/哈格斯特朗-格栅理论参考]] — 🆕 哈格斯特朗《投资的格栅理论》参考页（章节结构 + 人物索引 + VL 关联）
-- [[../../raw/research/articles/哈格斯特朗_2023_查理芒格的智慧_艾德勒阅读法|艾德勒阅读法解哈格斯特朗]] — 用艾德勒四级阅读法重解《查理·芒格的智慧》全书：检视/通读/分析/比较（2026-07-21）
-- [[../../raw/research/articles/穷查理宝典_艾德勒阅读法|穷查理宝典·艾德勒阅读法]] — 🆕 用艾德勒四级阅读法重解《穷查理宝典》：检视/通读/分析/比较 + 推荐阅读顺序（2026-07-21）
+- [[articles/papers/投资框架-参考著作]] — 📚书籍摘要 — 12 项原始资料来源记录
+- [[articles/papers/哈格斯特朗-格栅理论参考]] — 🧠芒格·格栅理论 — 🆕 哈格斯特朗《投资的格栅理论》参考页（章节结构 + 人物索引 + VL 关联）
+- [[../../raw/research/articles/哈格斯特朗_2023_查理芒格的智慧_艾德勒阅读法|艾德勒阅读法解哈格斯特朗]] — 📚书籍摘要 — 用艾德勒四级阅读法重解《查理·芒格的智慧》全书：检视/通读/分析/比较（2026-07-21）
+- [[../../raw/research/articles/穷查理宝典_艾德勒阅读法|穷查理宝典·艾德勒阅读法]] — 📚书籍摘要 — 🆕 用艾德勒四级阅读法重解《穷查理宝典》：检视/通读/分析/比较 + 推荐阅读顺序（2026-07-21）
 
 ### 综合分析 (articles/synthesis/)
-- [[articles/synthesis/popmart-chason-rebuttal]] — 🆕 驳论 — 拆解 Chason 七个论断（3年周期·代际无共鸣·毛绒退烧·The Monster化）
-- [[articles/synthesis/popmart-cycle-defense-comparison]] — 外部观点 vs 我们框架 — Chason 该文对比
-- [[articles/synthesis/popmart-historical-cycle-defense]] — 泡泡玛特历史周期防御 — 四模式归纳 × 三条防线演绎 × 冗余备份
-- [[articles/synthesis/popmart-ip-cycle-defense]] — 泡泡玛特抵御IP/品类周期 — 代际转化的本质
-- [[articles/synthesis/popmart-demand-decomposition]] — 泡泡玛特"买不买 vs 买多少" — 三层拆解 × 茅台对称性
-- [[articles/synthesis/maotai-drink-logic-analysis]] — 茅台"喝不喝 vs 喝多少" — 归纳演绎法 × 芒格多元模型
-- [[articles/synthesis/dahang-weekly-76]] — 大航周报76：2026年第26周
-- [[articles/synthesis/generational-risk-sanrio-disney-popmart]] — 断代风险：三丽鸥与迪士尼如何跨越代际鸿沟，对泡泡玛特的启示
+- [[articles/synthesis/popmart-chason-rebuttal]] — 🧠芒格·格栅理论 — 🆕 驳论 — 拆解 Chason 七个论断（3年周期·代际无共鸣·毛绒退烧·The Monster化）
+- [[articles/synthesis/popmart-cycle-defense-comparison]] — 🧠芒格·格栅理论 — 外部观点 vs 我们框架 — Chason 该文对比
+- [[articles/synthesis/popmart-historical-cycle-defense]] — 🧠芒格·格栅理论 — 泡泡玛特历史周期防御 — 四模式归纳 × 三条防线演绎 × 冗余备份
+- [[articles/synthesis/popmart-ip-cycle-defense]] — 🧠芒格·格栅理论 — 泡泡玛特抵御IP/品类周期 — 代际转化的本质
+- [[articles/synthesis/popmart-demand-decomposition]] — 🧠芒格·格栅理论 — 泡泡玛特"买不买 vs 买多少" — 三层拆解 × 茅台对称性
+- [[articles/synthesis/maotai-drink-logic-analysis]] — 🧠芒格·格栅理论 — 茅台"喝不喝 vs 喝多少" — 归纳演绎法 × 芒格多元模型
+- [[articles/synthesis/dahang-weekly-76]] — 📌其他 — 大航周报76：2026年第26周
+- [[articles/synthesis/generational-risk-sanrio-disney-popmart]] — 🧠芒格·格栅理论 — 断代风险：三丽鸥与迪士尼如何跨越代际鸿沟，对泡泡玛特的启示
 - [[articles/synthesis/芒格多元学科投资决策框架]] — 🆕 芒格多元学科投资决策框架：7步标准决策流程（2026-07-29 ingest）
 - [[articles/synthesis/竞争性毁灭-四书格栅分析]] — 🆕 竞争性毁灭四重维度：《自私的基因》×《枪炮病菌与钢铁》×《基因组》×《冰河期》格栅交叉分析（2026-07-25 ingest）
 - [[articles/synthesis/枪炮病菌与钢铁-投资终极因框架]] — 🆕 戴蒙德七维框架映射投资：终极因/安娜·卡列尼娜原则/大陆轴线/病菌vs枪炮/占先驯化/自然实验/现金流=文明发动机（2026-07-31）
