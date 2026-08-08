@@ -1,6 +1,6 @@
 # 投研索引
 
-> 最后更新：2026-08-06 (stockanalysis transcripts 数据源入库)
+> 最后更新：2026-08-08 (投研 Wiki 索引页 + 全量 industry 中文化 + 分类合并精简)
 
 ## 概述
 
@@ -8,17 +8,17 @@
 
 ## 按标的
 
-- [[安琪酵母/overview]] — 安琪酵母 · 必需消费 · 数据目录 (revenue_structure 3 维度, FY2025 产品/地区/渠道拆分, CF=15.0x)
+- [[安琪酵母/overview]] — 安琪酵母 · 化工 · 数据目录 (revenue_structure 3 维度, FY2025 产品/地区/渠道拆分, CF=15.0x)
 - [[安琪酵母/thesis]] — 安琪酵母 · 投资 Thesis
 - [[安琪酵母/industry-chain]] — 安琪酵母 · 产业链全景
 - [[安琪酵母/operating-metrics]] — 🆕 安琪酵母 · 运营指标跟踪 (毛利率反转/海外vs国内剪刀差/产品结构)
 - [[安琪酵母/research-reports]] — 🆕 安琪酵母 · 券商研报索引
-- [[人福医药/overview]] — 人福医药 · Pharmaceuticals · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考 + 应收账款分析)
+- [[人福医药/overview]] — 人福医药 · 制药 · 数据目录 (6 子公司营收全景 + ROE + 毛利率参考 + 应收账款分析)
 - [[人福医药/thesis]] — 🆕 人福医药 · 投资 Thesis (麻醉药龙头/ST摘帽/招商局入主)
 - [[人福医药/industry-chain]] — 🆕 人福医药 · 麻醉药产业链全景
 - [[人福医药/operating-metrics]] — 🆕 人福医药 · 运营指标跟踪 (宜昌人福/AR质量/毛利率/归核聚焦)
 - [[人福医药/research-reports]] — 🆕 人福医药 · 券商研报索引
-- [[泡泡玛特/overview]] — 泡泡玛特 · Consumer · 数据目录 (revenue_structure 表 5 维度)
+- [[泡泡玛特/overview]] — 泡泡玛特 · 消费 · 数据目录 (revenue_structure 表 5 维度)
 - [[泡泡玛特/thesis]] — 🆕 泡泡玛特 · 投资 Thesis (IP矩阵/四防线/三维矩阵平台)
 - [[泡泡玛特/industry-chain]] — 🆕 泡泡玛特 · IP产业链全景 (上中下游/品类进化/渠道矩阵/竞争格局)
 - [[泡泡玛特/operating-metrics]] — 🆕 泡泡玛特 · 运营指标跟踪 (IP集中度/品类/渠道转化/地理扩张)
@@ -33,32 +33,32 @@
 - [[润泽科技/industry-chain]] — 🆕 润泽科技 · 数据中心产业链全景 (上游资源/IDC vs AIDC/竞争格局)
 - [[润泽科技/operating-metrics]] — 润泽科技 · 运营指标跟踪 (上架率/PUE/电费 2022-2025)
 - [[润泽科技/research-reports]] — 🆕 润泽科技 · 券商研报索引
-- [[宁德时代/overview]] — 🆕 宁德时代 · Energy · 数据目录 (revenue_structure 1 维度 FY2025, CF=15.0x)
+- [[宁德时代/overview]] — 🆕 宁德时代 · 能源 · 数据目录 (revenue_structure 1 维度 FY2025, CF=15.0x)
 - [[宁德时代/thesis]] — 🆕 宁德时代 · 投资 Thesis (全球动力电池龙头/储能第二曲线/全产业链闭环)
 - [[宁德时代/industry-chain]] — 🆕 宁德时代 · 产业链全景 (矿产→材料→电芯→回收/竞争格局/行业周期)
 - [[宁德时代/operating-metrics]] — 🆕 宁德时代 · 运营指标跟踪 (产品结构/盈利能力/现金流/资产负债)
 - [[宁德时代/research-reports]] — 🆕 宁德时代 · 券商研报索引
-- [[紫金矿业/overview]] — 🆕 紫金矿业 · Metals & Mining · 数据目录 (revenue_structure 1 维度 FY2025, PB=1.0x)
+- [[紫金矿业/overview]] — 🆕 紫金矿业 · 金属与矿业 · 数据目录 (revenue_structure 1 维度 FY2025, PB=1.0x)
 - [[紫金矿业/thesis]] — 🆕 紫金矿业 · 投资 Thesis (全球铜金龙头/金铜超级周期/低成本逆周期并购)
 - [[紫金矿业/industry-chain]] — 🆕 紫金矿业 · 产业链全景 (矿产→冶炼→终端/全球矿山布局/竞争格局)
 - [[紫金矿业/operating-metrics]] — 🆕 紫金矿业 · 运营指标跟踪 (金铜双核+锂成长/利润超级弹性/现金流)
 - [[紫金矿业/research-reports]] — 🆕 紫金矿业 · 券商研报索引
-- [[腾讯控股/overview]] — 🆕 腾讯控股 · Technology · 数据目录 (2 维度 2011-2025 全覆盖, CF=15.0x)
+- [[腾讯控股/overview]] — 🆕 腾讯控股 · 互联网 · 数据目录 (2 维度 2011-2025 全覆盖, CF=15.0x)
 - [[腾讯控股/thesis]] — 🆕 腾讯控股 · 投资 Thesis (社交平台+游戏+广告+金融科技)
 - [[腾讯控股/industry-chain]] — 🆕 腾讯控股 · 互联网科技产业链全景
 - [[腾讯控股/operating-metrics]] — 🆕 腾讯控股 · 运营指标跟踪 (毛利率 43→56%/降杠杆)
 - [[腾讯控股/research-reports]] — 🆕 腾讯控股 · 券商研报索引
-- [[时代天使/overview]] — 🆕 时代天使 · Healthcare · 数据目录 (2 维度 FY2025, CF=15.0x)
+- [[时代天使/overview]] — 🆕 时代天使 · 医疗健康 · 数据目录 (2 维度 FY2025, CF=15.0x)
 - [[时代天使/thesis]] — 🆕 时代天使 · 投资 Thesis (隐形矫治龙头/海外扩张)
 - [[时代天使/industry-chain]] — 🆕 时代天使 · 口腔隐形矫治产业链
 - [[时代天使/operating-metrics]] — 🆕 时代天使 · 运营指标 (盈利恢复/PE回归)
 - [[时代天使/research-reports]] — 🆕 时代天使 · 券商研报索引
-- [[云铝股份/overview]] — 🆕 云铝股份 · Metals & Mining · 数据目录 (1 维度 FY2025, CF=15.0x)
+- [[云铝股份/overview]] — 🆕 云铝股份 · 金属与矿业 · 数据目录 (1 维度 FY2025, CF=15.0x)
 - [[云铝股份/thesis]] — 🆕 云铝股份 · 投资 Thesis (水电铝龙头/成本优势)
 - [[云铝股份/industry-chain]] — 🆕 云铝股份 · 电解铝产业链全景
 - [[云铝股份/operating-metrics]] — 🆕 云铝股份 · 运营指标 (利润弹性/低负债)
 - [[云铝股份/research-reports]] — 🆕 云铝股份 · 券商研报索引
-- [[神火股份/overview]] — 🆕 神火股份 · Metals & Mining · 数据目录 (1 维度 FY2025, CF=15.0x)
+- [[神火股份/overview]] — 🆕 神火股份 · 金属与矿业 · 数据目录 (1 维度 FY2025, CF=15.0x)
 - [[神火股份/thesis]] — 🆕 神火股份 · 投资 Thesis (煤电铝一体化)
 - [[神火股份/industry-chain]] — 🆕 神火股份 · 煤电铝产业链
 - [[神火股份/operating-metrics]] — 🆕 神火股份 · 运营指标跟踪
@@ -127,7 +127,7 @@
 | 财务数据库 | `data/<code>.db` | 三大报表、分析指标、分红、行情、营收拆分 (9 表) |
 | 年报 PDF | `data/pdfs/<code>/` | 港交所/A股年报/中报/季报原始文件 |
 | 汇率 | `data/fx_rates.db` | HKD/CNY 每日汇率 |
-| 标的配置 | `config.py` > STOCKS | 53 只标的的基本信息 |
+| 标的配置 | `config.py` > STOCKS | 65 只标的的基本信息 |
 
 ## 工作流
 
