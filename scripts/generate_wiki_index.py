@@ -339,36 +339,35 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 .kind-header{{font-size:14px;font-weight:600;color:#555;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}}
 .kind-header .count{{font-size:12px;color:#999;font-weight:400}}
 .general-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}}
-.modal-overlay{{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;overflow-y:auto}}
-.modal-overlay.active{{display:block}}
-.modal{{background:#fff;max-width:860px;margin:40px auto;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2)}}
-.modal-header{{padding:16px 24px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:flex-start}}
-.modal-header h2{{font-size:16px;font-weight:600;flex:1;padding-right:16px}}
-.modal-close{{background:none;border:none;font-size:24px;cursor:pointer;color:#999;padding:4px 8px;border-radius:4px}}
-.modal-close:hover{{background:#f0f0f0;color:#333}}
-.modal-body{{padding:24px;font-size:14px;line-height:1.8;max-height:70vh;overflow-y:auto}}
-.modal-body h1{{font-size:20px;margin:16px 0 8px}}
-.modal-body h2{{font-size:17px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid #eee}}
-.modal-body h3{{font-size:15px;margin:12px 0 6px}}
-.modal-body p{{margin:8px 0}}
-.modal-body blockquote{{border-left:3px solid #1a73e8;padding:8px 16px;margin:12px 0;background:#f8f9fa;color:#555}}
-.modal-body table{{border-collapse:collapse;width:100%;margin:12px 0;font-size:13px}}
-.modal-body th,.modal-body td{{border:1px solid #ddd;padding:6px 10px;text-align:left}}
-.modal-body th{{background:#f5f5f5;font-weight:600}}
-.modal-body code{{background:#f0f0f0;padding:1px 4px;border-radius:3px;font-size:13px}}
-.modal-body pre{{background:#f5f5f5;padding:12px;border-radius:6px;overflow-x:auto;font-size:13px;margin:12px 0}}
-.modal-body ul,.modal-body ol{{padding-left:24px;margin:8px 0}}
-.modal-body li{{margin:4px 0}}
-.modal-body a{{color:#1a73e8}}
-.modal-body img{{max-width:100%}}
-.modal-body hr{{border:none;border-top:1px solid #eee;margin:16px 0}}
+.reader{{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f8f9fa;z-index:200;flex-direction:column;opacity:0;transition:opacity .2s}}
+.reader.active{{display:flex;opacity:1}}
+.reader-topbar{{flex-shrink:0;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #e0e0e0;box-shadow:0 1px 4px rgba(0,0,0,.05)}}
+.reader-topbar h2{{font-size:16px;font-weight:600;flex:1;padding-right:16px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+.reader-close{{flex-shrink:0;background:#f0f0f0;border:none;font-size:22px;cursor:pointer;color:#666;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .15s}}
+.reader-close:hover{{background:#e0e0e0;color:#111}}
+.reader-body{{flex:1;overflow-y:auto;padding:32px 24px 60px;-webkit-overflow-scrolling:touch}}
+.reader-body-inner{{max-width:780px;margin:0 auto}}
+.reader-body h1{{font-size:22px;margin:20px 0 10px}}
+.reader-body h2{{font-size:18px;margin:18px 0 10px;padding-bottom:4px;border-bottom:1px solid #eee}}
+.reader-body h3{{font-size:15px;margin:14px 0 8px}}
+.reader-body p{{margin:10px 0}}
+.reader-body blockquote{{border-left:3px solid #1a73e8;padding:8px 16px;margin:14px 0;background:#f8f9fa;color:#555}}
+.reader-body table{{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px}}
+.reader-body th,.reader-body td{{border:1px solid #ddd;padding:6px 10px;text-align:left}}
+.reader-body th{{background:#f5f5f5;font-weight:600}}
+.reader-body code{{background:#f0f0f0;padding:1px 4px;border-radius:3px;font-size:13px}}
+.reader-body pre{{background:#f5f5f5;padding:14px;border-radius:6px;overflow-x:auto;font-size:13px;margin:14px 0}}
+.reader-body ul,.reader-body ol{{padding-left:24px;margin:10px 0}}
+.reader-body li{{margin:4px 0}}
+.reader-body a{{color:#1a73e8}}
+.reader-body img{{max-width:100%}}
+.reader-body hr{{border:none;border-top:1px solid #eee;margin:18px 0}}
 .no-results{{text-align:center;padding:60px 20px;color:#999;font-size:14px}}
 @media (max-width:768px){{
 .content{{padding:12px}}
 .stock-articles{{grid-template-columns:1fr}}
 .general-grid{{grid-template-columns:1fr}}
-.modal{{margin:16px;border-radius:8px}}
-.modal-body{{padding:16px}}
+.reader-body{{padding:20px 14px 48px}}
 }}
 </style>
 </head>
@@ -392,13 +391,13 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   </select>
 </div>
 <div class="content" id="content"></div>
-<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-header">
-      <h2 id="modalTitle"></h2>
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
+<div class="reader" id="reader">
+  <div class="reader-topbar">
+    <h2 id="readerTitle"></h2>
+    <button class="reader-close" onclick="closeReader()">&times;</button>
+  </div>
+  <div class="reader-body">
+    <div class="reader-body-inner" id="readerBody"></div>
   </div>
 </div>
 
@@ -550,9 +549,9 @@ function openArticle(groupId, idx) {{
   }} else {{
     a = GROUPS[groupId].articles[idx];
   }}
-  document.getElementById('modalTitle').textContent = a.title;
-  document.getElementById('modalBody').innerHTML = marked.parse(decodeBody(a));
-  document.getElementById('modalOverlay').classList.add('active');
+  document.getElementById('readerTitle').textContent = a.title;
+  document.getElementById('readerBody').innerHTML = marked.parse(decodeBody(a));
+  document.getElementById('reader').classList.add('active');
   document.body.style.overflow = 'hidden';
 }}
 
@@ -563,8 +562,8 @@ function toggleStock(el) {{
   arrow.textContent = arts.classList.contains('hidden') ? arrow.textContent.replace('▾','▸') : arrow.textContent.replace('▸','▾');
 }}
 
-function closeModal() {{
-  document.getElementById('modalOverlay').classList.remove('active');
+function closeReader() {{
+  document.getElementById('reader').classList.remove('active');
   document.body.style.overflow = '';
 }}
 
@@ -575,7 +574,7 @@ function escapeHtml(s) {{
 }}
 
 document.addEventListener('keydown', function(e) {{
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') closeReader();
 }});
 
 render();
