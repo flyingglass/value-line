@@ -19,7 +19,7 @@
 - [[generate_report.py]] — VL 单页 HTML 生成，ECharts K 线 + 24 行阵列
 - [[generate_reading.py]] — 深度阅读报告（Markdown + HTML，李录方法融合）
 - [[generate_index.py]] — 索引页生成，按行业分组展示所有标的卡片
-- [[generate_wiki_index.py]] — 🆕 投研 Wiki 索引页生成，扫描 research-wiki/ 生成 SPA 单页
+- [[generate_wiki_index.py]] — 🆕 投研 Wiki 索引页生成，扫描 research-wiki/ 生成自包含 SPA 单页 (base64 + marked.js)
 - [[generate_business_commentary.py]] — 🆕 自动生成个股 Commentary 脚本（14 行业模板）
 - [[list_refs.py]] — 历史估值参考，批量 PE/PB 均值
 
