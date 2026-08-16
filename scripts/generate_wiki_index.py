@@ -182,6 +182,7 @@ def scan_wiki():
         'dahang': '贵州茅台', 'disney': '迪士尼',
         'sanrio': '泡泡玛特', 'generational': '泡泡玛特',
         '国企激励机制': '贵州茅台',
+        '京东方': '京东方',
     }
     if os.path.isdir(synthesis_dir):
         for fname in sorted(os.listdir(synthesis_dir)):
