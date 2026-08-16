@@ -1,5 +1,18 @@
 # 投研操作日志
 
+## [2026-08-16] reorg | 投研 Wiki HTML 分类调整——茅台内容归入贵州茅台·消费
+
+### 操作
+- `scripts/generate_wiki_index.py`：`stock_info` 新增 `'贵州茅台': '消费'`；`synthesis_stock_map` 新增 `'国企激励机制': '贵州茅台'`
+- 移动 `raw/research/articles/2026-06-26-大航周报76-贵州茅台专题.md` → `raw/research/贵州茅台/`（标的专项原始资料归位），并更新 `dahang-weekly-76.md` 中 2 处 source/原始资料链接
+- 重新生成 `research-wiki/index.html`
+- `index.md` — 茅台三条目（maotai / dahang / 国企激励机制）topic 标注统一为 🍶贵州茅台
+- `topic_rules` 心理学关键词新增「卡尼曼 / 思考快与慢」，《思考，快与慢》归入心理学
+
+### 结果
+- 贵州茅台分类（消费）现聚合 4 篇：国企激励机制 / 大航周报76（raw + synthesis）/ 茅台喝不喝 vs 喝多少
+- 《思考，快与慢》（卡尼曼）归入 🧩心理学
+
 ## [2026-08-16] ingest | 《置身事内：中国政府与经济发展》深度阅读 + 国企激励机制分析（茅台案例）
 
 ### 深度阅读

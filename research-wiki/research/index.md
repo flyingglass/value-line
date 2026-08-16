@@ -1,6 +1,6 @@
 # 投研索引
 
-> 最后更新：2026-08-08 (投研 Wiki 索引页 + 全量 industry 中文化 + 分类合并精简)
+> 最后更新：2026-08-16 (茅台内容归入贵州茅台·消费分类)
 
 ## 概述
 
@@ -111,8 +111,8 @@
 - [[articles/synthesis/popmart-historical-cycle-defense]] — 🧠芒格·格栅理论 — 泡泡玛特历史周期防御 — 四模式归纳 × 三条防线演绎 × 冗余备份
 - [[articles/synthesis/popmart-ip-cycle-defense]] — 🧠芒格·格栅理论 — 泡泡玛特抵御IP/品类周期 — 代际转化的本质
 - [[articles/synthesis/popmart-demand-decomposition]] — 🧠芒格·格栅理论 — 泡泡玛特"买不买 vs 买多少" — 三层拆解 × 茅台对称性
-- [[articles/synthesis/maotai-drink-logic-analysis]] — 🧠芒格·格栅理论 — 茅台"喝不喝 vs 喝多少" — 归纳演绎法 × 芒格多元模型
-- [[articles/synthesis/dahang-weekly-76]] — 📌其他 — 大航周报76：2026年第26周
+- [[articles/synthesis/maotai-drink-logic-analysis]] — 🍶贵州茅台 — 茅台"喝不喝 vs 喝多少" — 归纳演绎法 × 芒格多元模型
+- [[articles/synthesis/dahang-weekly-76]] — 🍶贵州茅台 — 大航周报76：2026年第26周
 - [[articles/synthesis/generational-risk-sanrio-disney-popmart]] — 🧠芒格·格栅理论 — 断代风险：三丽鸥与迪士尼如何跨越代际鸿沟，对泡泡玛特的启示
 - [[articles/synthesis/芒格多元学科投资决策框架]] — 🆕 芒格多元学科投资决策框架：7步标准决策流程（2026-07-29 ingest）
 - [[articles/synthesis/竞争性毁灭-四书格栅分析]] — 🆕 竞争性毁灭四重维度：《自私的基因》×《枪炮病菌与钢铁》×《基因组》×《冰河期》格栅交叉分析（2026-07-25 ingest）
@@ -121,7 +121,7 @@
 - [[articles/synthesis/ESS切换-企业跨越与失败分析]] — 🆕 ESS 切换存活的三个必要条件 × 四条可操作原则 × 五家公司生存力评分（2026-07-26 ingest）
 - [[articles/synthesis/巴芒论迪士尼]] — 🆕 巴菲特与芒格 1994-2021 年股东大会论迪士尼原文汇编：消费者心智/米老鼠无代理人/艾斯纳/卖出原因/与泡泡玛特类比（2026-08-06）
 - [[articles/synthesis/竞争演化初步框架-五书多元思维模型]] — 🆕 竞争演化初步框架：五本书（自私的基因/盲眼钟表匠/GGS/冰河期/基因组）× 多元思维模型 × 五个公理 × 三层结构 × 五重拷问（2026-08-12）
-- [[articles/synthesis/国企激励机制-置身事内框架与茅台案例]] — 📌其他 — 🆕 国企激励机制：以《置身事内》框架分析茅台（官场+市场+财政三重激励/高分红转向/事实与推导严格区分）（2026-08-16）
+- [[articles/synthesis/国企激励机制-置身事内框架与茅台案例]] — 🍶贵州茅台 — 🆕 国企激励机制：以《置身事内》框架分析茅台（官场+市场+财政三重激励/高分红转向/事实与推导严格区分）（2026-08-16）
 
 ## 共享数据
 
