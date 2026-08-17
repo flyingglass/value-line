@@ -55,9 +55,15 @@ def scan_wiki():
         'AMZN': '互联网', 'GOOGL': '互联网', 'MSFT': '互联网',
     }
     page_labels = {
+        # 英文文件名（旧标的）
         'overview': '数据目录', 'thesis': '投资 Thesis',
         'industry-chain': '产业链全景', 'operating-metrics': '运营指标',
         'research-reports': '研报索引',
+        # 中文文件名（如贵州茅台）
+        '数据目录': '数据目录', '投资论点': '投资 Thesis',
+        '产业链': '产业链全景', '运营指标': '运营指标',
+        '渠道改革': '渠道改革', '销量与吨价': '销量与吨价',
+        '券商研报': '研报索引',
     }
     
     groups = {}  # group_id -> {name, industry, articles: []}

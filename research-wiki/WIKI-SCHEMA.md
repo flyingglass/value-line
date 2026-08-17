@@ -33,12 +33,13 @@ research-wiki/
     ├── index.md             # 索引（按标的 + 按主题）
     ├── overview.md          # 投研 wiki 概述
     ├── log.md               # 操作日志（只追加）
-    ├── <code>/              # 标的目录
-    │   ├── overview.md      # 数据目录
-    │   ├── thesis.md        # 投资 Thesis
-    │   ├── industry-chain.md # 产业链全景
-    │   ├── operating-metrics.md # 运营指标
-    │   └── research-reports.md  # 券商研报索引
+    ├── <code>/              # 标的目录（页面文件名用中文，见「约定」第 7 条）
+    │   ├── 数据目录.md       # 数据目录（原 overview.md）
+    │   ├── 投资论点.md       # 投资 Thesis（原 thesis.md）
+    │   ├── 产业链.md         # 产业链全景（原 industry-chain.md）
+    │   ├── 运营指标.md       # 运营指标（原 operating-metrics.md）
+    │   ├── 渠道改革.md       # 渠道改革（可选，拆分自运营指标）
+    │   └── 销量与吨价.md     # 销量与吨价（可选）
     └── articles/            # 通用投研文章
         ├── concepts/        # 投资概念与框架
         ├── entities/        # 人物/机构
@@ -217,3 +218,4 @@ tags: [<标签>]
 4. **log.md**: 只追加，不修改历史条目
 5. **raw 命名**: 日期前缀 `YYYY-MM-DD-<描述>.md`（允许例外如 `hagstrom_2023_...`）
 6. **禁止编造数据**: 所有数据必须有出处，优先级：年报 PDF > DB > report_data.json > 外部来源
+7. **页面文件名用中文**: `research/<code>/` 标的目录下的页面文件名一律使用中文（如 `数据目录.md`、`投资论点.md`、`产业链.md`、`券商研报.md`、`运营指标.md`、`渠道改革.md`、`销量与吨价.md`），不使用英文名（overview.md / thesis.md 等）。页面内交叉引用 `[[链接]]` 亦使用中文文件名。
