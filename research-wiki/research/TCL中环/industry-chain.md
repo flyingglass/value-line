@@ -139,4 +139,4 @@ TCL中环通过子公司 **中环领先** 切入半导体硅片赛道：
 - [[TCL中环/thesis]] — 投资 Thesis（护城河 + 风险 + 催化剂）
 - [[../report/reading/002129]] — VL 阅读报告
 [[research/安琪酵母/thesis.md]] · [[research/log.md]]
-[[research/TCL科技/operating-metrics.md]] · [[research/时代天使/operating-metrics.md]]
+[[research/TCL科技/operating-metrics.md]] · [[research/时代天使/运营指标.md]]

@@ -23,8 +23,14 @@ REQUIRED = {
     "vl/index.md", "vl/overview.md", "vl/log.md",
     "research/index.md", "research/overview.md", "research/log.md",
 }
-STOCK_FILES = ["overview.md", "thesis.md", "industry-chain.md",
-               "operating-metrics.md", "research-reports.md"]
+# 标的必需文件（中英文文件名等价，任一存在即可）
+STOCK_FILES = {
+    "overview.md": ["overview.md", "概览.md", "数据目录.md"],
+    "thesis.md": ["thesis.md", "投资论点.md"],
+    "industry-chain.md": ["industry-chain.md", "产业链.md"],
+    "operating-metrics.md": ["operating-metrics.md", "运营指标.md"],
+    "research-reports.md": ["research-reports.md", "研报索引.md", "券商研报.md"],
+}
 STOCK_DIRS = [d.name for d in (WIKI / "research").iterdir()
               if d.is_dir() and d.name != "articles"]
 VL_DIRS = ["modules", "concepts", "entities", "synthesis"]
@@ -95,10 +101,10 @@ def main():
             errs.append(("WARN", f"vl/{d}/", f"vl/ 缺失子目录 {d}/"))
     # 标的目录
     for code in STOCK_DIRS:
-        for sf in STOCK_FILES:
-            rel = f"research/{code}/{sf}"
-            if rel not in all_rels:
-                errs.append(("ERROR", rel, f"标的 {code} 缺失 {sf}"))
+        for sf, alts in STOCK_FILES.items():
+            if not any(f"research/{code}/{a}" in all_rels for a in alts):
+                errs.append(("ERROR", f"research/{code}/{sf}",
+                             f"标的 {code} 缺失 {sf}"))
     # research/articles 子目录
     for d in RESEARCH_ARTICLE_DIRS:
         ap = WIKI / "research" / "articles" / d
