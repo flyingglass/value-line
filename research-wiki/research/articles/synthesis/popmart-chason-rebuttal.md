@@ -241,5 +241,5 @@ Chason 把"投文化和创始人"当作终极判断，但这个框架有一个�
 
 ## 参见
 
-[[research/index.md]] · [[research/泡泡玛特/research-reports.md]]
-[[research/泡泡玛特/research-reports.md]]
+[[research/index.md]] · [[research/泡泡玛特/券商研报.md]]
+[[research/泡泡玛特/券商研报.md]]

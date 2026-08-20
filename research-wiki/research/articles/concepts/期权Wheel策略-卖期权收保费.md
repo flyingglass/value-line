@@ -131,6 +131,6 @@ updated: 2026-08-19
 ## 相关链接
 
 - [[../../raw/research/articles/2026-08-19-期权wheel策略-泡泡玛特分析]] — 原始资料（含原文引用）
-- [[泡泡玛特/thesis]] — 泡泡玛特投资 Thesis
+- [[泡泡玛特/投资论点]] — 泡泡玛特投资 Thesis
 - 概念页待创建：期权卖方 / 隐含波动率溢价 / 现金担保put
 [[research/index.md]] · [[research/log.md]]
