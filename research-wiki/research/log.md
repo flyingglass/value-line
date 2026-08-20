@@ -1,5 +1,22 @@
 # 投研操作日志
 
+## [2026-08-20] ingest | Ben Thompson 播客综合页（AI 资本周期 + 聚合理论）
+
+### 背景
+用户对聚合理论（Ben Thompson Aggregation Theory）表示兴趣，检查发现《本汤普森_2026_BenThompson播客-AI融资与科技巨头护城河.md》此前只入到 raw 层（无 wiki 页面、无 index 注册），HTML 索引中 raw 条目摘要提取为 `---`（extract_summary 未跳过分隔线），用户检索不到。
+
+### 操作
+- 新建 `research/articles/synthesis/ben-thompson-ai-capital-cycle.md`：核心命题（AI 资本开支时间错配）+ 聚合理论专节（重述 + AI 推理成本打破零边际成本前提 + 广告飞轮 + 广告即验证器）+ 五个核心判断（Google=伯克希尔/Amazon 护城河/英伟达隐性降价/电力遗产/高价格解药）+ 框架表 + 引用边界
+- `research/index.md` 注册新页面 + 更新最后更新日期（注册行含"聚合理论"关键词便于检索）
+- `scripts/generate_wiki_index.py` 修复 extract_summary：跳过 `---` 分隔线，raw 条目摘要不再显示为 `---`
+- 重新生成 `research-wiki/index.html`
+- `research/log.md` 本文
+
+### 核心结论
+- 聚合理论重述：供给极度丰富时代难题是"发现"而非分发；解决发现者支配市场（正反馈）；关键前提是交易成本趋零
+- AI 改变前提：推理成本是真实边际成本（测试时扩展"每多思考一秒都要花钱"），零边际成本假设被打破
+- 观点性内容已标注：所有判断为 Ben Thompson 个人观点，数字未经独立核验
+
 ## [2026-08-19] ingest | 期权 Wheel 策略（卖期权收保费模式）概念页
 
 ### 背景

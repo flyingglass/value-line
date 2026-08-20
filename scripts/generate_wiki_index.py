@@ -30,7 +30,7 @@ def extract_summary(body, max_len=120):
     summary = ''
     for line in lines:
         stripped = line.strip()
-        if not stripped or stripped.startswith('#') or stripped.startswith('>') or stripped.startswith('|') or stripped.startswith('- ') or stripped.startswith('* '):
+        if not stripped or stripped == '---' or stripped.startswith('#') or stripped.startswith('>') or stripped.startswith('|') or stripped.startswith('- ') or stripped.startswith('* '):
             if summary:
                 break
             continue
