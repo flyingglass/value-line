@@ -1,5 +1,13 @@
 # 投研操作日志
 
+## [2026-08-23] reorg | 三浦展《第五消费时代》摘要归位至泡泡玛特原始资料
+
+### 操作
+- 移动 `raw/research/articles/三浦展_2025_第五消费时代.md` → `raw/research/泡泡玛特/三浦展_2025_第五消费时代.md`（书籍摘要按标的归位，与《造梦九局》一致——情绪价值/消费时代理论作为泡泡玛特行业 beta 框架的支撑资料）
+- 更新 `research/index.md`（论文与参考条目链接路径 → `[[../../raw/research/泡泡玛特/三浦展_2025_第五消费时代]]` + 标注归位日期）
+- 更新 `research/泡泡玛特/情绪需求持续性跟踪.md` sources（`raw/research/articles/...` → `raw/research/泡泡玛特/...`）
+- 重新生成 `research-wiki/index.html`
+
 ## [2026-08-23] research | 三浦展《第五消费时代》深度摘要入库（deep-read-summary）
 
 ### 背景
