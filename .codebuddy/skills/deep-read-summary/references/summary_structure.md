@@ -166,9 +166,10 @@ ASCII 树形图呈现全书结构
 
 ## 五、工作流
 
-1. **提取原文**：使用 `scripts/extract_epub.py` 将 epub 全文提取为 txt
-2. **保存 raw/**：将提取的全文保存到 `research-wiki/raw/research/articles/` 目录
-3. **深度阅读**：从头到尾通读全文，理解论证结构
-4. **按结构生成摘要**：遵循上述模板，逐层构建
+1. **提取原文**：使用 `scripts/extract_epub.py` 将 epub 全文提取为临时 txt（仅作读取源，不入 raw/）
+2. **粗读目录**：用 search_content 定位全部章节标题 + 行号范围，画出全书骨架
+3. **按章大块读取 + 逐章立即成文**：每章用 1-2 次 read_file（offset + 400-600 行大 limit）读完一整章，随即把该章固化进摘要文件；同一段原文只读一次，补漏用 search_content 精准定位（详见 SKILL.md「读取与写作策略」）
+4. **保存摘要**：按上述模板生成结构化摘要，保存到 `research-wiki/raw/research/articles/作者_年份_书名.md`（raw/ 存摘要，不存原文全文）
 5. **交叉链接**：标注与 wiki 中已有概念的关联
 6. **写入笔记**：提炼元洞见和实践启示
+7. **更新索引与日志**：更新 `research-wiki/research/index.md` + `log.md`；如有 `generate_wiki_index.py` 则运行刷新 HTML 索引页
