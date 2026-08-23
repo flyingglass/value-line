@@ -160,5 +160,5 @@ created: 2026-06-27
 
 ## 参见
 
-[[popmart-cycle-defense-comparison]] · [[research/index.md]] · [[research/泡泡玛特/产业链.md]] · [[research/泡泡玛特/券商研报.md]]
-[[research/泡泡玛特/产业链.md]] · [[research/泡泡玛特/券商研报.md]]
+[[popmart-cycle-defense-comparison]] · [[research/index.md]] · [[research/泡泡玛特/产业链.md]]
+[[research/泡泡玛特/产业链.md]]

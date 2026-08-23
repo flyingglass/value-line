@@ -386,5 +386,5 @@ Chason 做了一件有价值的事：把泡泡玛特的周期防御从"能不能
 
 ## 参见
 
-[[generational-risk-sanrio-disney-popmart]] · [[竞争性毁灭-四书格栅分析]] · [[research/index.md]] · [[research/泡泡玛特/券商研报.md]]
-[[research/泡泡玛特/券商研报.md]] · [[research/articles/synthesis/popmart-ip-cycle-defense.md]]
+[[generational-risk-sanrio-disney-popmart]] · [[竞争性毁灭-四书格栅分析]] · [[research/index.md]]
+[[research/articles/synthesis/popmart-ip-cycle-defense.md]]

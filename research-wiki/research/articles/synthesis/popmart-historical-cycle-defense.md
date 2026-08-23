@@ -593,5 +593,5 @@ C: 海外占比43%→60%+ = 大概率事件（5年内）
 
 ## 参见
 
-[[popmart-cycle-defense-comparison]] · [[popmart-demand-decomposition]] · [[research/index.md]] · [[research/泡泡玛特/券商研报.md]] · [[research/泡泡玛特/投资论点.md]]
-[[research/泡泡玛特/券商研报.md]] · [[research/泡泡玛特/投资论点.md]]
+[[popmart-cycle-defense-comparison]] · [[popmart-demand-decomposition]] · [[research/index.md]] · [[research/泡泡玛特/投资论点.md]]
+[[research/泡泡玛特/投资论点.md]]
