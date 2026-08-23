@@ -24,6 +24,15 @@ def parse_frontmatter(text):
         meta = {}
     return meta, parts[2].strip()
 
+def iter_md(root):
+    """递归遍历 root 下所有 .md 文件，返回 (相对路径, 绝对路径)"""
+    for dirpath, dirnames, filenames in os.walk(root):
+        for fname in sorted(filenames):
+            if not fname.endswith('.md'):
+                continue
+            full = os.path.join(dirpath, fname)
+            yield os.path.relpath(full, root), full
+
 def extract_summary(body, max_len=120):
     """从 body 提取摘要：取第一个非空非标题段落"""
     lines = body.strip().split('\n')
@@ -74,7 +83,7 @@ def scan_wiki():
             groups[group_id] = {'name': group_name, 'industry': industry, 'articles': []}
         groups[group_id]['articles'].append(article)
     
-    # 1. research/<code>/ — 标的 wiki 页
+    # 1. research/<code>/ — 标的 wiki 页（含子目录：业绩/经营/需求 等）
     research_dir = os.path.join(WIKI_DIR, "research")
     if os.path.isdir(research_dir):
         for sub in sorted(os.listdir(research_dir)):
@@ -82,26 +91,24 @@ def scan_wiki():
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
             industry = stock_info.get(sub, '其他')
-            for fname in sorted(os.listdir(subpath)):
-                if not fname.endswith('.md'):
-                    continue
-                fpath = os.path.join(subpath, fname)
+            for relpath, fpath in iter_md(subpath):
                 with open(fpath, 'r', encoding='utf-8') as f:
                     text = f.read()
                 meta, body = parse_frontmatter(text)
-                page_key = fname.replace('.md', '')
+                page_key = os.path.splitext(os.path.basename(fpath))[0]
                 page_label = page_labels.get(page_key, page_key)
-                title = meta.get('topic') or f"{page_label}"
+                subdir = os.path.dirname(relpath)
+                title = f"[{subdir}] {meta.get('topic') or page_label}" if subdir else (meta.get('topic') or page_label)
                 add_article(sub, sub, industry, {
                     'title': title,
                     'kind': 'wiki',
-                    'path': f"research/{sub}/{fname}",
+                    'path': f"research/{sub}/{relpath}",
                     'date': meta.get('created') or meta.get('updated') or '',
                     'summary': extract_summary(body),
                     'body': body,
                 })
     
-    # 2. raw/research/<code>/ — 标的原始资料
+    # 2. raw/research/<code>/ — 标的原始资料（含子目录）
     raw_research_dir = os.path.join(WIKI_DIR, "raw", "research")
     if os.path.isdir(raw_research_dir):
         for sub in sorted(os.listdir(raw_research_dir)):
@@ -109,18 +116,19 @@ def scan_wiki():
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
             industry = stock_info.get(sub, '其他')
-            for fname in sorted(os.listdir(subpath)):
-                if not fname.endswith('.md'):
-                    continue
-                fpath = os.path.join(subpath, fname)
+            for relpath, fpath in iter_md(subpath):
                 with open(fpath, 'r', encoding='utf-8') as f:
                     text = f.read()
                 meta, body = parse_frontmatter(text)
-                title = meta.get('topic') or meta.get('title') or fname.replace('.md', '')
+                base = os.path.splitext(os.path.basename(fpath))[0]
+                title = meta.get('topic') or meta.get('title') or base
+                subdir = os.path.dirname(relpath)
+                if subdir:
+                    title = f"[{subdir}] {title}"
                 add_article(sub, sub, industry, {
                     'title': title,
                     'kind': 'raw',
-                    'path': f"raw/research/{sub}/{fname}",
+                    'path': f"raw/research/{sub}/{relpath}",
                     'date': meta.get('created') or meta.get('date') or '',
                     'summary': extract_summary(body),
                     'body': body,
