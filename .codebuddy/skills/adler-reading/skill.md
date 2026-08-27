@@ -19,7 +19,12 @@ description: |
 1. 通读原文全文
 2. 按四级阅读层次生成摘要（见 `references/reading_levels.md`）
 3. 回答四个基本问题
-4. 输出摘要，可选保存到 `research-wiki/raw/research/<标的或articles>/`
+4. 输出摘要，保存到 wiki 对应位置（注意：摘要属于 research/，不进 raw/）：
+
+   - **业绩会逐字稿** → `research-wiki/research/<code>/业绩/<时间>-<业绩会名称>-艾德勒阅读摘要.md`
+     - 参照标杆：`research/拼多多/业绩/2026-Q2业绩电话会-艾德勒阅读摘要.md`、`research/泡泡玛特/业绩/2026-中报业绩发布会-艾德勒阅读摘要.md`
+   - 其他资料（研报/文章/书籍）→ `research-wiki/research/<code>/` 或 `research/articles/` 对应子目录
+   - 头部加 frontmatter：`topic`（标题）/ `category`（如"投研-资料摘要"）/ `created`（日期）/ `source`（指向 raw 原文相对路径，如 `raw/research/拼多多/2026-08-24-xxx.md`）
 
 ## 核心原则
 
