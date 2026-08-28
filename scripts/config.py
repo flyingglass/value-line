@@ -1151,6 +1151,47 @@ STOCKS = {
         "valuation_method": "pb",
         "business_desc": "建滔积层板是全球最大的覆铜面板（CCL）制造商，连续20年全球刚性覆铜板销量第一。核心产品覆铜面板是PCB的基础材料，深度受益于AI服务器、汽车电子、5G通信等高端需求。2025年营收204亿港元（+10%），持有人应占溢利24.42亿港元（+84%），毛利率19.6%。公司为建滔集团（00148）控股子公司，业务高度聚焦覆铜板单一赛道。",
     },
+    "000596": {
+        "name": "古井贡酒",
+        "name_en": "Anhui Gujing Distillery Co., Ltd.",
+        "market": "cn",
+        "exchange": "SZSE",
+        "currency": "CNY",
+        "ceo": "梁金辉",
+        "inc": "中国安徽亳州",
+        "website": "www.gujing.com",
+        "org_id": "gssz0000596",
+        "pfx": "sz",
+        "shares": 528600000,           # 总股本 5.286亿股 (A股；另有B股 200596)
+        "shares_str": "528,600,000",
+        "industry": "消费",
+        "fiscal_yr_end": "12-31",
+        "valuation_method": "cf",
+        "business_desc": "古井贡酒是中国老八大名酒企业、徽酒龙头，主营白酒研发生产与销售。核心产品为年份原浆系列（古5/古8/古16/古20/古26）覆盖次高端与中高端价格带，另有古井贡酒老名酒系列，并通过黄鹤楼酒业布局湖北市场。公司是中国第一家同时发行A、B股的白酒上市公司（A股000596、B股200596），1996年9月于深交所上市，实控人为亳州市国资。",
+    },
+    "200596": {
+        "name": "古井贡B",
+        "name_en": "Anhui Gujing Distillery Co., Ltd. (B Share)",
+        "market": "cn",
+        "exchange": "SZSE",
+        "currency": "CNY",             # 财报货币
+        "price_currency": "HKD",       # 交易货币: 深市B股以港元计价
+        "share_class": "B",            # B股: 与A股同股同权, 仅交易场所/计价货币不同
+        "a_share_code": "000596",      # 同公司A股代码 (折价对比)
+        "financials_from": "000596",   # 财务报表与A股完全一致, 直接复用
+        "pdf_code": "000596",          # 年报PDF与A股一致, 复用A股目录
+        "ceo": "梁金辉",
+        "inc": "中国安徽亳州",
+        "website": "www.gujing.com",
+        "org_id": "gssz0000596",
+        "pfx": "sz",
+        "shares": 528600000,           # 总股本 A+B 合计 (同股同权)
+        "shares_str": "528,600,000",
+        "industry": "消费",
+        "fiscal_yr_end": "12-31",
+        "valuation_method": "cf",
+        "business_desc": "古井贡B是古井贡酒（000596.SZ）在深交所上市的B股，与A股同股同权、共享同一份财务报表与分红方案，但以港元计价交易。B股股本1.2亿股，占总股本5.286亿股的22.7%；因投资者准入限制与流动性折价，长期相对A股大幅折价交易。",
+    },
 }
 
 # ============================================================
@@ -1209,8 +1250,12 @@ ACTIVE_STOCK = "09992"
 def db_path(code):
     return os.path.join(DATA_DIR, f"{code}.db")
 
+def pdf_code(code):
+    """年报PDF归属代码。B股与A股共用同一份年报 → 复用A股PDF目录。"""
+    return STOCKS.get(code, {}).get("pdf_code", code)
+
 def pdf_dir(code):
-    d = os.path.join(DATA_DIR, "pdfs", code)
+    d = os.path.join(DATA_DIR, "pdfs", pdf_code(code))
     os.makedirs(d, exist_ok=True)
     return d
 

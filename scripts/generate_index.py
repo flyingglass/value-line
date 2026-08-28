@@ -113,8 +113,12 @@ def _card_html(code, stock):
     name = stock["name"]
     name_en = stock.get("name_en", "")
     market = stock.get("market", "hk")
-    mkt_label = MARKET_LABEL.get(market, market)
-    mkt_class = MARKET_CLASS.get(market, "hk")
+    # B股: market 仍为 cn (复用A股财务口径), 但展示标签需区分
+    if stock.get("share_class") == "B":
+        mkt_label, mkt_class = "B股", "b"
+    else:
+        mkt_label = MARKET_LABEL.get(market, market)
+        mkt_class = MARKET_CLASS.get(market, "hk")
     rpt_file = f"{name}.html"
 
     return f'''      <div class="card">
@@ -182,6 +186,7 @@ def build_index_html():
     --hk: #e03131;
     --cn: #e8590c;
     --us: #2f9e44;
+    --b: #7048e8;
     --radius: 12px;
     --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
   }}
@@ -253,6 +258,7 @@ def build_index_html():
   .badge-hk {{ background: var(--hk); }}
   .badge-cn {{ background: var(--cn); }}
   .badge-us {{ background: var(--us); }}
+  .badge-b {{ background: var(--b); }}
 
   .card-links {{ display: flex; gap: 6px; }}
   .pill {{

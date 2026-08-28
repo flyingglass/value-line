@@ -218,7 +218,9 @@ def main(code="09992"):
     name = stock.get("name", code)
 
     import glob
-    pdfs = sorted(glob.glob(os.path.join(pdf_dir, f"{code}_*_年报.pdf")), reverse=True)
+    # B股复用A股年报 → 文件名前缀用 pdf_code (如 000596_2025_年报.pdf)
+    fprefix = config.pdf_code(code)
+    pdfs = sorted(glob.glob(os.path.join(pdf_dir, f"{fprefix}_*_年报.pdf")), reverse=True)
 
     mda_text = None
     quality_ok = False

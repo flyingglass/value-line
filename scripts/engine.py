@@ -810,8 +810,9 @@ def _compute_pe_metrics(table, reader, market="hk"):
         yearly_closes[m[:4]].append(c)
 
     # 计算每年均价和PE (汇率调整: 仅当交易币种 ≠ 财报币种时需要换算)
-    price_ccy = config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
+    # 交易币种: 个股 price_currency 覆盖 > 市场默认 (B股以HKD交易, 但市场仍属cn)
     stock_cfg = config.STOCKS.get(reader.code, {})
+    price_ccy = stock_cfg.get("price_currency") or config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
     rpt_ccy = stock_cfg.get("currency", "CNY")
     need_fx = (price_ccy != rpt_ccy)  # e.g. HKD交易+CNY财报 → 需要; USD交易+USD财报 → 不需要
     for yr, row in table.items():
@@ -1249,7 +1250,18 @@ def fetch_market_index(market="hk"):
         return []
     try:
         import subprocess, json
-        managed_py = r"C:\Users\fly\.workbuddy\binaries\python\versions\3.13.12\python.exe"
+        # 解释器选择: 环境变量 PYTHON_BIN > 项目 venv (.venv) > 当前解释器
+        # 注: 原硬编码的托管 Python 未安装 akshare, 导致市场指数获取静默失败 (Index: 空)
+        import os as _os
+        managed_py = _os.environ.get("PYTHON_BIN", "")
+        if not managed_py or not _os.path.exists(managed_py):
+            _venv_py = _os.path.join(
+                _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+                ".venv", "Scripts", "python.exe")
+            if _os.path.exists(_venv_py):
+                managed_py = _venv_py
+            else:
+                managed_py = sys.executable
         # 不同市场的指数获取函数不同
         if func_name == "stock_hk_index_daily_sina":
             script = f"""
@@ -2036,7 +2048,8 @@ def _detect_rpt_ccy(reader, stock):
 def _get_fx_rate(date_str):
     """获取 HKD/CNY 汇率 (100 HKD = ? CNY)，失败返回 None"""
     import sqlite3, os
-    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "fx_rates.db")
+    # 项目根 data/fx_rates.db (原为 scripts/data/... 不存在, 导致汇率恒为None)
+    db_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "fx_rates.db")
     if not os.path.exists(db_path):
         return None
     try:
@@ -2106,7 +2119,8 @@ def build_report(code=None):
 
     # 补算 Header PE(TTM) / PB / 股息率 / 市值 + 汇率转换
     # price_ccy = 交易货币(HKD), rpt_ccy = 报表货币(CNY), 不一致时换算
-    price_ccy = config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
+    # 交易币种: 个股 price_currency 覆盖 > 市场默认 (深市B股以HKD交易)
+    price_ccy = stock.get("price_currency") or config.MARKET_CONFIG.get(market, {}).get("currency", "CNY")
     rpt_ccy = _detect_rpt_ccy(reader, stock)
     need_spot_fx = (price_ccy != rpt_ccy and rpt_ccy == "CNY")
     fx_rate = None
@@ -2152,10 +2166,12 @@ def build_report(code=None):
                 dps_latest = latest.get("DPS")
                 if dps_latest and dps_latest > 0:
                     spot["div_yield"] = round(dps_latest / price_cny * 100, 2)
-            # 市值 = 股价(HKD) × 股数, 不依赖汇率
-            shares_raw = reader.share_count(_fye(years[-1])) or config.STOCKS.get(code, {}).get("shares")
-            if shares_raw and shares_raw > 0:
-                spot["mkt_cap"] = round(price * shares_raw / 1e8, 1)  # 股数×股价÷1亿
+                # 市值 = 股价(CNY) × 股数 → 亿
+                # 口径须与 capital_structure.mkt_cap 一致 (原先用未换算的HKD股价,
+                # 导致同报告内 Header 与资本结构两处市值相差一个汇率)
+                shares_raw = reader.share_count(_fye(years[-1])) or config.STOCKS.get(code, {}).get("shares")
+                if shares_raw and shares_raw > 0:
+                    spot["mkt_cap"] = round(price_cny * shares_raw / 1e8, 1)
 
     # Median P/E: VL 10年PE中位数 (IQR过滤异常值)
     pe_history = [metrics[y]["PE_AVG"] for y in years if y in metrics and metrics[y].get("PE_AVG")]
@@ -2591,8 +2607,8 @@ def build_report(code=None):
             "ceo": stock.get("ceo", ""),
             "inc": stock.get("inc", ""),
             "website": stock.get("website", ""),
-            # 股价货币 & 市场指数 — 从 MARKET_CONFIG 驱动, 不硬编码
-            "price_ccy": config.MARKET_CONFIG.get(stock.get("market", ""), {}).get("currency", "CNY"),
+            # 股价货币 & 市场指数 — 个股 price_currency 覆盖 > MARKET_CONFIG 默认
+            "price_ccy": stock.get("price_currency") or config.MARKET_CONFIG.get(stock.get("market", ""), {}).get("currency", "CNY"),
             "index_name": config.MARKET_CONFIG.get(stock.get("market", ""), {}).get("index_name", "Index"),
             "index_name_cn": config.MARKET_CONFIG.get(stock.get("market", ""), {}).get("index_name_cn", "市场指数"),
             # 财报货币: DB meta优先, 其次config, 最后从IS_CNY_CODE推断

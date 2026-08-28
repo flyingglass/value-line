@@ -34,6 +34,7 @@ import akshare as ak
 # ============================================================
 class Store:
     def __init__(self, code):
+        self.code = code
         self.path = config.db_path(code)
         self.conn = sqlite3.connect(self.path)
         self._init_tables()
@@ -185,6 +186,102 @@ def fetch_kline_hk(store, code):
              float(r.get("volume", 0)), "qfq"))
     store.conn.commit()
     print(f"OK {len(df)}条")
+
+def fetch_spot_b(store, code, pfx):
+    """B股实时行情 (深市B股以HKD计价)"""
+    print("  [spot_b] ", end="", flush=True)
+    try:
+        df = ak.stock_zh_b_spot()
+        full_code = f"{pfx}{code}"
+        row = df[df["代码"] == full_code]
+        if row.empty:
+            print(f"未找到 {full_code}")
+            return
+        r = row.iloc[0]
+        store.conn.execute("DELETE FROM spot")
+        store.conn.execute(
+            "INSERT INTO spot VALUES (?,?,?,?,?,?,?,?,?,?)",
+            (str(pd.Timestamp.now().date()), float(r.get("最新价", 0)),
+             0.0, 0.0, 0.0, 0.0,                      # PE/PB/股息率/市值 由 engine 计算
+             float(r.get("涨跌幅", 0)), float(r.get("成交量", 0)),
+             0.0, 0.0))
+        store.conn.commit()
+        print(f"OK 股价={r['最新价']} HKD")
+    except Exception as e:
+        print(f"跳过 (API不可用: {str(e)[:120]})")
+
+
+def fetch_kline_b(store, code, pfx):
+    """B股日线K线 (新浪)。深市B股 symbol 需带前缀, 如 sz200596"""
+    print("  [kline_b] ", end="", flush=True)
+    try:
+        df = ak.stock_zh_b_daily(symbol=f"{pfx}{code}", adjust="qfq")
+    except Exception as e:
+        print(f"跳过 (API不可用: {str(e)[:120]})")
+        return
+    store.conn.execute("DELETE FROM kline WHERE adjust='qfq'")
+    n = 0
+    for _, r in df.iterrows():
+        store.conn.execute(
+            "INSERT OR REPLACE INTO kline VALUES (?,?,?,?,?,?,?)",
+            (str(r["date"]).split(" ")[0],
+             float(r.get("open", 0)), float(r.get("high", 0)),
+             float(r.get("low", 0)), float(r.get("close", 0)),
+             float(r.get("volume", 0)), "qfq"))
+        n += 1
+    store.conn.commit()
+    print(f"OK {n}条")
+
+
+def copy_financials_from(store, src_code):
+    """复用同公司A股财务报表 (B股与A股为同一法律主体, 报表完全一致)。
+
+    复制 income / balance / cashflow / indicators / dividend / revenue_structure,
+    仅股价序列(K线、spot)使用B股自身数据。
+    """
+    src_db = config.db_path(src_code)
+    if not os.path.exists(src_db):
+        print(f"  [copy_fin] 源库不存在 {src_db}")
+        return
+    print(f"  [copy_fin] 复用 {src_code} 财务报表 ... ", end="", flush=True)
+    src = sqlite3.connect(src_db)
+    total = 0
+    for tbl in ["income", "balance", "cashflow", "indicators", "dividend"]:
+        try:
+            rows = src.execute(f"SELECT * FROM {tbl}").fetchall()
+        except Exception:
+            continue
+        if not rows:
+            continue
+        ncol = len(rows[0])
+        store.conn.execute(f"DELETE FROM {tbl}")
+        store.conn.executemany(
+            f"INSERT OR REPLACE INTO {tbl} VALUES ({','.join(['?'] * ncol)})", rows)
+        total += len(rows)
+    # 营收结构: code 列需改写为本股代码
+    try:
+        rows = src.execute("SELECT * FROM revenue_structure").fetchall()
+        store.conn.execute("DELETE FROM revenue_structure")
+        for r in rows:
+            r = list(r)
+            r[0] = store.code
+            store.conn.execute(
+                "INSERT OR REPLACE INTO revenue_structure VALUES (?,?,?,?,?,?)", tuple(r))
+        total += len(rows)
+    except Exception:
+        pass
+    # meta: 复制 mda_text 等, 但剔除本股自身的行情相关标记
+    try:
+        for k, v in src.execute("SELECT key, value FROM meta").fetchall():
+            if k in ("last_fetch", "last_fetch_date", "code", "market"):
+                continue
+            store.conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", (k, v))
+    except Exception:
+        pass
+    store.conn.commit()
+    src.close()
+    print(f"OK {total}行")
+
 
 def fetch_kline_cn(store, code, pfx):
     """A股日线K线 (新浪)"""
@@ -839,6 +936,20 @@ def fetch(code=None):
             fetch_kline_us(store, code)
             time.sleep(0.5)
             fetch_us_financials(store, code)
+        elif stock.get("share_class") == "B":
+            # B股: 行情用自身(HKD计价), 财务报表复用同公司A股(同一法律主体)
+            pfx = stock.get("pfx", "sz")
+            fetch_fx_rates()           # 需要 HKD/CNY 汇率供引擎换算
+            time.sleep(0.3)
+            fetch_spot_b(store, code, pfx)
+            time.sleep(1)
+            fetch_kline_b(store, code, pfx)
+            time.sleep(1)
+            src = stock.get("financials_from")
+            if src:
+                copy_financials_from(store, src)
+            else:
+                fetch_cn_financials(store, code)
         else:
             # A股
             pfx = stock.get("pfx", "sh")

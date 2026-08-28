@@ -16,6 +16,7 @@
     --hk: #e03131;
     --cn: #e8590c;
     --us: #2f9e44;
+    --b: #7048e8;
     --radius: 12px;
     --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
   }
@@ -87,6 +88,7 @@
   .badge-hk { background: var(--hk); }
   .badge-cn { background: var(--cn); }
   .badge-us { background: var(--us); }
+  .badge-b { background: var(--b); }
 
   .card-links { display: flex; gap: 6px; }
   .pill {
@@ -116,7 +118,7 @@
   <h1><span>价值线+</span>阅读报告</h1>
   <div style="display:flex;align-items:center;gap:16px">
     <div class="stats">
-      <span>共 <strong>67</strong> 只标的</span>
+      <span>共 <strong>69</strong> 只标的</span>
       <span>·</span>
       <span>18 个行业</span>
       <span>·</span>
@@ -127,7 +129,7 @@
 </header>
 <div class="container">
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('all')">全部<span class="count">(67)</span></button>
+    <button class="tab-btn active" onclick="switchTab('all')">全部<span class="count">(69)</span></button>
     <button class="tab-btn" onclick="switchTab('featured')">精选<span class="count">(22)</span></button>
   </div>
 
@@ -312,6 +314,26 @@
         <div class="card-links">
           <a href="海天味业.html" class="pill pill-blue">价值线</a>
           <a href="reading/603288.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>      <div class="card">
+        <div class="card-title">Anhui Gujing Distillery Co., Ltd. · 古井贡酒</div>
+        <div class="card-meta">
+          <span class="code">000596</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="古井贡酒.html" class="pill pill-blue">价值线</a>
+          <a href="reading/000596.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>      <div class="card">
+        <div class="card-title">Anhui Gujing Distillery Co., Ltd. (B Share) · 古井贡B</div>
+        <div class="card-meta">
+          <span class="code">200596</span>
+          <span class="badge badge-b">B股</span>
+        </div>
+        <div class="card-links">
+          <a href="古井贡B.html" class="pill pill-blue">价值线</a>
+          <a href="reading/200596.html" class="pill pill-green">阅读报告</a>
         </div>
       </div>    </div>
     <h3 class="section-title">🎯 医疗健康</h3>
