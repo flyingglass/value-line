@@ -29,8 +29,17 @@ STOCK_FILES = {
     "thesis.md": ["thesis.md", "投资论点.md"],
     "industry-chain.md": ["industry-chain.md", "产业链.md"],
     "operating-metrics.md": ["operating-metrics.md", "运营指标.md"],
+}
+# 标的【可选】文件：不存在不报错；存在但为占位页则 WARN
+# 背景：研报索引的内容依赖外部研报获取（宪法规定 AKShare 列表 + web_search 转载，
+# PDF 不可直链下载），强制要求会催生无内容的占位页（2026-08-30 已清理 6 个）。
+# 故改为可选：有实质内容才保留，没有就不建。
+OPTIONAL_STOCK_FILES = {
     "research-reports.md": ["research-reports.md", "研报索引.md", "券商研报.md"],
 }
+# 研报索引页的占位特征
+REPORT_STUB_MARKERS = ["无已拉取研报", "当前无研报", "暂无研报", "待拉取", "无研报"]
+REPORT_MIN_LINES = 5
 STOCK_DIRS = [d.name for d in (WIKI / "research").iterdir()
               if d.is_dir() and d.name != "articles"]
 VL_DIRS = ["modules", "concepts", "entities", "synthesis"]
@@ -99,12 +108,25 @@ def main():
         dp = WIKI / "vl" / d
         if not dp.exists():
             errs.append(("WARN", f"vl/{d}/", f"vl/ 缺失子目录 {d}/"))
-    # 标的目录
+    # 标的目录（必需文件）
     for code in STOCK_DIRS:
         for sf, alts in STOCK_FILES.items():
             if not any(f"research/{code}/{a}" in all_rels for a in alts):
                 errs.append(("ERROR", f"research/{code}/{sf}",
                              f"标的 {code} 缺失 {sf}"))
+        # 可选文件：存在则校验内容，防止无实质内容的占位页
+        for sf, alts in OPTIONAL_STOCK_FILES.items():
+            hit = next((a for a in alts
+                        if f"research/{code}/{a}" in all_rels), None)
+            if not hit:
+                continue
+            rel = f"research/{code}/{hit}"
+            _, text = pages[rel]
+            body = FRONT_RE.sub("", text).strip()
+            n_lines = len([l for l in body.splitlines() if l.strip()])
+            if n_lines < REPORT_MIN_LINES or any(m in body for m in REPORT_STUB_MARKERS):
+                errs.append(("WARN", rel,
+                             f"研报索引为占位页（仅 {n_lines} 行有效正文），建议填充或删除"))
     # research/articles 子目录
     for d in RESEARCH_ARTICLE_DIRS:
         ap = WIKI / "research" / "articles" / d
