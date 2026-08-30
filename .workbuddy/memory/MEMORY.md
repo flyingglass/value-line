@@ -73,7 +73,12 @@ config.py: business_desc / analyst.commentary 仅作为最后兜底 (可选)
 - 004011999 = 利润总额/除税前利润 (A股→profit_total)
 
 ## A股 vs 港股差异 (2026-06-02 固化)
-- **item_code**: A股 income/balance/cashflow 表的 item_code 为空, 全部用 item_name(英文) 查询
+- **item_code**: A股 income/balance/cashflow 表的 item_code 为空, 全部用 item_name 查询
+- ⚠️ **item_name 实测为中文** (600519 于 2026-08-29 验证, 非英文): 如 `一、营业总收入`、
+  `其中：营业收入`、`其中：营业成本`、`归属于母公司所有者的净利润`、`合同负债`、
+  `销售商品、提供劳务收到的现金`。**注意"一、""其中："等前缀必须原样匹配**。
+- **revenue_structure**: 600519 实测含 by_channel(直销/批发代理) + by_product + by_region
+  （无 by_industry），与下面"不含 by_channel"的旧记录不符，按标的实测为准
 - **cn_map 兜底**: financial_item_by_code() 对A股通过 cn_map 将 STD_ITEM_CODE 映射为英文 item_name
 - **TAX_EBT**: A股 indicators 表无此字段, engine在 indicators 路径末尾回退到 income 表当面计算
 - **EPS HKD**: A股无效, build.py step_8 仅对港股检查
@@ -95,6 +100,31 @@ config.py: business_desc / analyst.commentary 仅作为最后兜底 (可选)
 - **Wiki 新增概念 (2026-06-28)**: `芒格格栅理论-多学科思维投资框架` — 哈格斯特朗对芒格方法全解
   - 7 大学科模型: 物理(均衡vs复杂系统)、生物(进化论/创造性破坏)、社会(多样性/自组织临界)、心理(损失趋避/系统1-2)、哲学(实用主义)、文学(分析阅读)、数学(贝叶斯/凯利/DCF)、决策科学
   - 与 VL 体系直接关联: Commentary 狐狸思维、新增标的格栅检查清单、估值实用主义
+
+## Wiki 落库规范 (2026-08-30 固化)
+**落库四件套**（缺一不可）：
+1. 新建页面（必须有 YAML frontmatter: `topic` / `category` / `created` / `sources`，sources 带完整 URL）
+2. `research/index.md` 新增 `[[路径]] — 🆕 描述` 条目 + 更新首行「最后更新：」
+3. `research/log.md` 追加 `## [YYYY-MM-DD] 类型 | 标题` 条目（末尾追加，末尾写「触及页面：」）
+4. `./.venv/Scripts/python.exe scripts/generate_wiki_index.py` 重建 `research-wiki/index.html`
+
+**参见区块必须双向**：新页底部写 `## 参见`，同时**反向补齐**被引用页的参见区块，
+否则 `scripts/wiki_lint.py` 报「交叉引用缺口」WARN。
+
+**证据等级约定**（投研页强制）：🟢 观测（财报精确数/管理层原话）· 🟡 推算（假设需交代+给区间）· 🔴 不可识别/倒逼。
+被推翻的推导**保留在页面「存证」节**，不删除——防止以后重复踩坑。
+
+脚本：`.venv/Scripts/python.exe scripts/wiki_lint.py`（健康检查）/ `generate_wiki_index.py`（重建 HTML）
+
+## 数据口径陷阱 (2026-08-29 新增)
+- 🔴 **dividend 表只存"年度分红"单笔，不含中期分红** → 直接取 `cash_dps` 算股息率会严重低估
+  - 600519 实测: DB 记 2025 年度 cash_dps=28.0242（仅年度，10派280.242元）
+  - 真实全年 = 中期 23.957 + 年度 27.993 = **51.95 元/股**，650.33 亿，分红率 79%
+  - 股息率差异: 误用 28.02 → 2.17%；正确 51.95 → **4.02%**
+  - 结论: 算股息率前必须查该年度是否存在中期分红公告并手工相加
+- **单季拆分跨年**: Q1 必须用"当年 Q1 累计值本身"，不可算作 `Q1累计 − 上年Q4累计`（会得到负值垃圾数据）
+- **报表项目口径**: 茅台"营业总收入"含财务公司利息收入，与"营业收入"差约 15 亿；
+  计算毛利率用**营业收入**（`其中：营业收入`），算费用率/净利率可用营业总收入，需保持一致
 
 ## 已知Bug模式
 - **单引号Bug**: `DIV'D` 等含 `'` 的词在 JS 单引号字符串中会截断。Python `\'` 在 f-string 中输出为字面量 `'`，必须改用 Unicode `\u2019`（右单引号）如 `DIV\u2019D`
