@@ -13,3 +13,7 @@ build_*.txt
 # raw/ 目录下的 PDF 不提交
 research-wiki/raw/**/*.pdf
 
+# local scratch: yearly deep-read notes and ad-hoc scans  
+_tmp_yearly/  
+_tmp_scan.py  
+_tmp_lint_out.txt  
