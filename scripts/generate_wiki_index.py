@@ -76,13 +76,26 @@ def scan_wiki():
         '券商研报': '研报索引',
     }
     
-    groups = {}  # group_id -> {name, industry, articles: []}
+    groups = {}  # group_id -> {name, industry, articles: []}  (可交易标的)
+    cases = {}   # group_id -> {name, articles: []}  (投资案例/作者专题，如 疯狂的里海)
     general = []  # 通用文章（不归属任何标的）
-    
+
+    # 投资案例专题目录（research/ 与 raw/research/ 下的子目录名 → 组显示名）
+    # 这类目录是"作者案例档案"而非可交易标的，html 中归入独立的『投资案例』视图，
+    # 不再显示在『按标的』下。
+    CASE_GROUP_NAMES = {
+        '疯狂的里海': '里海 · 作者案例专题',
+    }
+
     def add_article(group_id, group_name, industry, article):
         if group_id not in groups:
             groups[group_id] = {'name': group_name, 'industry': industry, 'articles': []}
         groups[group_id]['articles'].append(article)
+
+    def add_case(group_id, group_name, article):
+        if group_id not in cases:
+            cases[group_id] = {'name': group_name, 'articles': []}
+        cases[group_id]['articles'].append(article)
     
     # 1. research/<code>/ — 标的 wiki 页（含子目录：业绩/经营/需求 等）
     research_dir = os.path.join(WIKI_DIR, "research")
@@ -91,6 +104,8 @@ def scan_wiki():
             subpath = os.path.join(research_dir, sub)
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
+            is_case = sub in CASE_GROUP_NAMES
+            case_name = CASE_GROUP_NAMES.get(sub, sub)
             industry = stock_info.get(sub, '其他')
             for relpath, fpath in iter_md(subpath):
                 with open(fpath, 'r', encoding='utf-8') as f:
@@ -100,14 +115,18 @@ def scan_wiki():
                 page_label = page_labels.get(page_key, page_key)
                 subdir = os.path.dirname(relpath)
                 title = f"[{subdir}] {meta.get('topic') or page_label}" if subdir else (meta.get('topic') or page_label)
-                add_article(sub, sub, industry, {
+                article = {
                     'title': title,
                     'kind': 'wiki',
                     'path': f"research/{sub}/{relpath}",
                     'date': meta.get('created') or meta.get('updated') or '',
                     'summary': extract_summary(body),
                     'body': body,
-                })
+                }
+                if is_case:
+                    add_case(sub, case_name, article)
+                else:
+                    add_article(sub, sub, industry, article)
     
     # 2. raw/research/<code>/ — 标的原始资料（含子目录）
     raw_research_dir = os.path.join(WIKI_DIR, "raw", "research")
@@ -116,6 +135,8 @@ def scan_wiki():
             subpath = os.path.join(raw_research_dir, sub)
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
+            is_case = sub in CASE_GROUP_NAMES
+            case_name = CASE_GROUP_NAMES.get(sub, sub)
             industry = stock_info.get(sub, '其他')
             for relpath, fpath in iter_md(subpath):
                 with open(fpath, 'r', encoding='utf-8') as f:
@@ -126,14 +147,18 @@ def scan_wiki():
                 subdir = os.path.dirname(relpath)
                 if subdir:
                     title = f"[{subdir}] {title}"
-                add_article(sub, sub, industry, {
+                article = {
                     'title': title,
                     'kind': 'raw',
                     'path': f"raw/research/{sub}/{relpath}",
                     'date': meta.get('created') or meta.get('date') or '',
                     'summary': extract_summary(body),
                     'body': body,
-                })
+                }
+                if is_case:
+                    add_case(sub, case_name, article)
+                else:
+                    add_article(sub, sub, industry, article)
     
     # 3. research/articles/concepts/ — 概念框架
     concepts_dir = os.path.join(WIKI_DIR, "research", "articles", "concepts")
@@ -251,6 +276,10 @@ def scan_wiki():
         for a in g['articles']:
             if isinstance(a.get('date'), (date, dt)):
                 a['date'] = a['date'].isoformat()[:10]
+    for c in cases.values():
+        for a in c['articles']:
+            if isinstance(a.get('date'), (date, dt)):
+                a['date'] = a['date'].isoformat()[:10]
     for a in general:
         if isinstance(a.get('date'), (date, dt)):
             a['date'] = a['date'].isoformat()[:10]
@@ -275,10 +304,10 @@ def scan_wiki():
                 break
         a['topic'] = matched or '其他'
     
-    return groups, general
+    return groups, cases, general
 
-def build_html(groups, general):
-    """生成自包含 SPA HTML，按标的分组"""
+def build_html(groups, cases, general):
+    """生成自包含 SPA HTML，按标的 + 投资案例 + 多学科分组"""
     # 将 body 字段 base64 编码，避免 JSON 序列化时的转义问题
     def encode_bodies(obj):
         if isinstance(obj, dict):
@@ -297,12 +326,16 @@ def build_html(groups, general):
         return obj
     
     groups_encoded = encode_bodies({k: {'name': v['name'], 'industry': v['industry'], 'articles': v['articles']} for k, v in groups.items()})
+    cases_encoded = encode_bodies({k: {'name': v['name'], 'articles': v['articles']} for k, v in cases.items()})
     general_encoded = encode_bodies(general)
     groups_json = json.dumps(groups_encoded, ensure_ascii=False)
+    cases_json = json.dumps(cases_encoded, ensure_ascii=False)
     general_json = json.dumps(general_encoded, ensure_ascii=False)
     
     # 按行业排序标的
     stock_order = sorted(groups.items(), key=lambda x: (x[1]['industry'], x[0]))
+    # 投资案例组按目录名排序
+    case_order = sorted(cases.items(), key=lambda x: x[0])
     
     total_stocks = len(groups)
     total_general = len(general)
@@ -404,6 +437,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   <select id="filterView" onchange="render()">
     <option value="all">全部</option>
     <option value="stocks">按标的</option>
+    <option value="cases">投资案例</option>
     <option value="general">多学科</option>
   </select>
 </div>
@@ -420,6 +454,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 
 <script>
 var GROUPS = {groups_json};
+var CASES = {cases_json};
 var GENERAL = {general_json};
 
 var kindTags = {{
@@ -432,6 +467,7 @@ var kindTags = {{
 }};
 
 var stockOrder = {json.dumps([k for k, v in stock_order], ensure_ascii=False)};
+var caseOrder = {json.dumps([k for k, v in case_order], ensure_ascii=False)};
 
 var allArticles = [];
 Object.keys(GROUPS).forEach(function(k) {{
@@ -442,6 +478,14 @@ Object.keys(GROUPS).forEach(function(k) {{
     allArticles.push(a);
   }});
 }});
+Object.keys(CASES).forEach(function(k) {{
+  CASES[k].articles.forEach(function(a) {{
+    a._group = '_case:' + k;
+    a._caseGroup = k;
+    a._groupName = CASES[k].name;
+    allArticles.push(a);
+  }});
+}});
 GENERAL.forEach(function(a) {{ a._group = '_general'; a._groupName = '多学科'; allArticles.push(a); }});
 
 function render() {{
@@ -449,6 +493,7 @@ function render() {{
   var view = document.getElementById('filterView').value;
   
   var stockArticles = {{}};
+  var caseArticles = {{}};
   var matchedGeneral = [];
   
   allArticles.forEach(function(a) {{
@@ -458,6 +503,9 @@ function render() {{
     }}
     if (a._group === '_general') {{
       matchedGeneral.push(a);
+    }} else if (a._group.indexOf('_case:') === 0) {{
+      if (!caseArticles[a._caseGroup]) caseArticles[a._caseGroup] = [];
+      caseArticles[a._caseGroup].push(a);
     }} else {{
       if (!stockArticles[a._group]) stockArticles[a._group] = [];
       stockArticles[a._group].push(a);
@@ -466,7 +514,12 @@ function render() {{
   
   var totalVisible = matchedGeneral.length;
   Object.values(stockArticles).forEach(function(arr) {{ totalVisible += arr.length; }});
-  document.getElementById('stats').innerHTML = '<span>共 <strong>' + totalVisible + '</strong> 篇</span><span>·</span><span><strong>' + Object.keys(stockArticles).length + '</strong> 个标的</span>';
+  Object.values(caseArticles).forEach(function(arr) {{ totalVisible += arr.length; }});
+  var statsHtml = '<span>共 <strong>' + totalVisible + '</strong> 篇</span><span>·</span><span><strong>' + Object.keys(stockArticles).length + '</strong> 个标的</span>';
+  if (Object.keys(caseArticles).length > 0) {{
+    statsHtml += '<span>·</span><span><strong>' + Object.keys(caseArticles).length + '</strong> 个案例专题</span>';
+  }}
+  document.getElementById('stats').innerHTML = statsHtml;
   
   var html = '';
   
@@ -480,6 +533,29 @@ function render() {{
         html += '<div class="stock-group">';
         html += '<div class="stock-header" onclick="toggleStock(this)">';
         html += '<div><span class="stock-name">' + escapeHtml(g.name) + '</span><span class="stock-industry">' + escapeHtml(g.industry) + '</span></div>';
+        html += '<span style="font-size:12px;color:#999">' + arts.length + ' 篇 ▾</span>';
+        html += '</div>';
+        html += '<div class="stock-articles">';
+        arts.forEach(function(a) {{
+          html += articleCard(a);
+        }});
+        html += '</div></div>';
+      }});
+    }}
+  }}
+  
+  if (view === 'all' || view === 'cases') {{
+    if (Object.keys(caseArticles).length > 0) {{
+      var caseTotal = 0;
+      Object.keys(caseArticles).forEach(function(ck) {{ caseTotal += caseArticles[ck].length; }});
+      html += '<div class="section-title">💼 投资案例 <span class="count">' + caseTotal + ' 篇</span></div>';
+      caseOrder.forEach(function(k) {{
+        if (!caseArticles[k]) return;
+        var g = CASES[k];
+        var arts = caseArticles[k];
+        html += '<div class="stock-group">';
+        html += '<div class="stock-header" onclick="toggleStock(this)">';
+        html += '<div><span class="stock-name">' + escapeHtml(g.name) + '</span><span class="stock-industry">作者案例</span></div>';
         html += '<span style="font-size:12px;color:#999">' + arts.length + ' 篇 ▾</span>';
         html += '</div>';
         html += '<div class="stock-articles">';
@@ -549,6 +625,9 @@ function articleCard(a) {{
 Object.keys(GROUPS).forEach(function(k) {{
   GROUPS[k].articles.forEach(function(a, i) {{ a._idx = i; }});
 }});
+Object.keys(CASES).forEach(function(k) {{
+  CASES[k].articles.forEach(function(a, i) {{ a._idx = i; }});
+}});
 GENERAL.forEach(function(a, i) {{ a._idx = i; }});
 
 function decodeBody(a) {{
@@ -563,6 +642,9 @@ function openArticle(groupId, idx) {{
   var a;
   if (groupId === '_general') {{
     a = GENERAL[idx];
+  }} else if (groupId.indexOf('_case:') === 0) {{
+    var ck = groupId.slice(6);
+    a = CASES[ck].articles[idx];
   }} else {{
     a = GROUPS[groupId].articles[idx];
   }}
@@ -602,12 +684,13 @@ render();
 
 def main():
     print("扫描 research-wiki/ ...")
-    groups, general = scan_wiki()
+    groups, cases, general = scan_wiki()
     total_stocks = len(groups)
-    total_articles = sum(len(v['articles']) for v in groups.values()) + len(general)
-    print(f"  标的: {total_stocks} 个 | 通用: {len(general)} 篇 | 共 {total_articles} 篇")
+    total_cases = sum(len(v['articles']) for v in cases.values())
+    total_articles = sum(len(v['articles']) for v in groups.values()) + total_cases + len(general)
+    print(f"  标的: {total_stocks} 个 | 投资案例: {len(cases)} 个专题({total_cases} 篇) | 通用: {len(general)} 篇 | 共 {total_articles} 篇")
     
-    html = build_html(groups, general)
+    html = build_html(groups, cases, general)
     with open(OUTPUT, 'w', encoding='utf-8') as f:
         f.write(html)
     print(f"\n生成: {OUTPUT}")
