@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海案例·中泰股份</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md img{max-width:100%}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海案例-中泰股份.html">里海案例·中泰股份</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海案例·中泰股份</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-06</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/案例</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E6%A1%88%E4%BE%8B">← 返回 案例</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/案例/里海案例-中泰股份.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDph4zmtbfmoYjkvosgwrcg5Lit5rOw6IKh5Lu9Cgo+ICoq5LiA5Y+l6K+d5a6a5L2NKirvvJoqKjIwMjUuOSDku47ljZrpmoYv5YeM546u5YiH5o2i6ICM5p2l55qE5oyB5LuT77yI5bm05pyrIDIzOTAwIOiCoe+8ieKAlOKAlCLnn63mnJ/noa7lrprmgKfkuI3lpJ/ihpLmnInmta7nm4jml7bmjaLmm7TmnInmiormj6HmoIfnmoQi55qE5qCH5YeG5YiH5o2i5Yqo5L2c55qE5omn6KGM5a+56LGhKirvvJvkvYYqKuaho+ahiOWvueivpeWFrOWPuOaXoOS7u+S9leWfuuacrOmdouWIhuaekOWOn+aWhyoq77yM5pys6aG15Y+q6IO96K6w5b2V5pON5L2c5bGC5LqL5a6e77yM5bGeIuW+heihpei1hOaWmeWeiyLmoYjkvovpobXjgIIKPgo+IOacrOmhteS4uiBbW+mHjOa1t+S9k+ezuy3mgLvop4hdXSDnmoTmoYjkvovor4Hmja7lsYLvvIgqKumBk8K35qaC546HPeehruWumuaAp+S8mOWFiCArIOaImOacr+WIh+aNoue6quW+iyoq77yJ44CC6LSm5oi35Y+j5b6EPTMwIOS4h+ekuuiMg+i0puaIt++8iDIwMjUg5bm05pyr5oyB5LuTIDIzOTAwIOiCoe+8ie+8myoq5Lia57up5Li65L2c6ICF6Ieq6L+w5Y+j5b6EKirvvIzmnKrni6znq4vmoLjlrp7vvJvntKDmnZDku6Ugd2lraSDml7bpl7Tnur/moaPmoYggKyByYXcg5Y6f5paH5pGY5b2V5Li65Li744CCCgotLS0KCiMjIOS4gOOAgeS9k+ezuyDDlyDor4Hmja4g5pig5bCE77yI5qC45b+D6KGo77yJCgojIyMgMS4g5pyv4oCU4oCU566A5Y2VIMK3IOW6lemDqCDCtyDlj5jljJYgwrcg5YiG5LuTCgotICoq5pyvwrflj5jljJYv5YiG5LuT77yI5YiH5o2i6YC76L6R77yM5L2c6ICF5Y6f6K+d77yJKirvvJpyYXctMjAyNS0xMi0zMe+8miLmnInkuobml7bpl7TlkI7vvIzmiJHorqTnnJ/nkKLno6jkuobkuIvmjIHku5PnmoTlh6DkuKrmoIfnmoTvvIwqKuiupOS4uuWNmumahuWSjOWHjOeOruefreacn+eahOehruWumuaAp+S4jeWkquWkn++8jOS6juaYr+WcqOaciea1ruebiOeahOaDheWGteS4i++8jOWIh+aNouWIsOS6huS4reazsOiCoeS7vSoq44CCIuKAlOKAlOS5sOWFpeS4reazsD3lr7nliY3mjIHku5Mi55+t5pyf56Gu5a6a5oCn5LiN6LazIueahOS/ruato++8jOiAjOmdnuWvueS4reazsOacrOi6q+eahOa3seW6pueglOeptuWPmeS6i+OAggoKIyMjIDIuIOmBk+KAlOKAlOW4uOivhiDCtyDmpoLnjocgwrcg6LWU546HIMK3IOmikeeOhwoKLSAqKumBk8K35qaC546H77yI56Gu5a6a5oCn5LyY5YWI77yM5pys6aG15ZSv5LiA5L2T57O754K577yJKirvvJrliIfmjaLmoIflh4Y95YmN5qCH55qE5LiN56Gu5a6a5oCn55+t5pyf5peg5rOV5raI6Zmk77yI5Y2a6ZqGL+WHjOeOru+8ieKGkuWcqOaciea1ruebiOaXtuS4u+WKqOaNouS7k++8jOaKiui1hOmHkeaUvuWIsCLnm7jlr7nmm7TmnInmiormj6Ei55qE5qCH55qE5LiK4oCU4oCUMjAyNSDlubQgOSDmnIgi5oGi5aSN56CU56m26IqC5aWPIuWQjueahOesrOS4gOeslOS4u+WKqOaTjeS9nO+8iOWJjSA4IOS4quaciOmdoOS9k+ezu+OAgTkg5pyI5ZCO5byA5aeL55Ci56Oo5oyB5LuT77yJ44CCCi0gKirpgZPCt+mikeeOhyoq77ya5YWo5bm0IDIwIOadpeasoeS6pOaYk+S5i+S4gO+8m+S7jiA5IOaciOS5sOiHs+W5tOacqyAyMzkwMCDogqHmnKrlho3liqjjgIIKCiMjIyAzLiDog73lipvigJTigJTku7flgLzliKTmlq0gwrcg5biC5Zy65YWI55SfIMK3IOW/g+aApyDCtyDlro/op4IKCi0gKirog73lipvCt+eglOeptuaBouWkje+8iOiDjOaZr++8iSoq77yaNS03IOaciOW4puWog+Wkh+iAg++8iOWwj+WNh+WIne+8ieOAgTcg5pyI5bqV5Ye65Zu9IDE1IOWkqeOAgTgg5pyI6Zmq6K+74oCU4oCU5L2c6ICFIDkg5pyIIue7iOS6juacieaXtumXtOi/m+ihjOinhOW+i+aAp+eahOW3peS9nOWSjOWtpuS5oCLvvIzpmo/lkI7orqTnnJ/nkKLno6jmjIHku5PlubblgZrlh7rmnKzmrKHliIfmjaLvvIhyYXctMjAyNS0xMi0zMSDoh6rov7DvvInjgIIKCiMjIyA0LiDlvLHogIXmgJ3nu7QKCi0gKirml6Dku47liKTmlq3vvIjotYTmlpnkuI3otrPvvIkqKu+8muS5sOWFpeS+neaNru+8iCLmm7TmnInmiormj6Ei5YW35L2T5oyH5LuA5LmI4oCU4oCU5Lyw5YC8L+mAu+i+kS/kvY3nva7vvInmoaPmoYjmnKrlsZXlvIDjgIIKCiMjIyA1LiDmiJjnlaUgdnMg5oiY5pyv6IKhCgotICoq5oiY5pyv6IKh77yI5piO56Gu77yJKirvvJrku47mta7nm4jnmoTljZrpmoYv5YeM546u5bmz56e75Yiw5Lit5rOw77yM5bGe5oiY5pyv57qn5o2i6ams77yb5peg5oiY55Wl5oyB5pyJ5Y+Z5LqL44CCCgotLS0KCiMjIOS6jOOAgeS6i+S7tuaXtumXtOe6v++8iOWQq+WHuuWkhO+8iQoKfCDml7bpl7QgfCDkuovku7YgfCDlh7rlpIQgfAp8LS0tfC0tLXwtLS18CnwgMjAyNSDkuIrljYrlubQgfCDljZrpmoYv5YeM546u5Li65bm05Yid5Y2W56GF5a6d5ZCO55qE6YOo5YiG6LWE6YeR5Y675ZCR77yIMjAyNS4yLTMg56GF5a6d5riF5LuT5YiH5o2i5a+56LGh77yJ4oCU4oCU5Lmw5YWl5pe254K5L+S7t+S9jeacquaKq+mcsiB8IHJhdy0yMDI1LTEyLTMx77yI5Zue5rqv77yJIHwKfCAqKjIwMjUuOSoqIHwgKirljZblh7rljZrpmoYv5YeM546u77yI5pyJ5rWu55uI77yJ44CB5YiH5o2i5Lmw5YWl5Lit5rOw6IKh5Lu9KirvvJrnkIbnlLE95Y2a6ZqGL+WHjOeOriLnn63mnJ/nmoTnoa7lrprmgKfkuI3lpKrlpJ8iIHwgcmF3LTIwMjUtMTItMzEgfAp8IDIwMjUuMTIuMzEgfCDlubTluqbmgLvnu5PvvJrlubTmnKvmjIHku5MgKioyMzkwMCDogqEqKu+8iOa7oeS7k+Wbm+WPquS5i+S4gO+8muS6keWbviAyODcwMC/kuK3ms7AgMjM5MDAv5Yip5a6J6ZqGIDEwMTAwL+e0oumAmiAxNTgwMO+8iSB8IHJhdy0yMDI1LTEyLTMxIHwKfCAyMDI2IOiHsyA2LjkgfCDmoaPmoYjml6DkuK3ms7DlkI7nu63mk43kvZwv6Lef6Liq6K6w5b2VIHwgcmF3LTIwMjYgLyDml7bpl7Tnur8tMjAyNiB8CgotLS0KCiMjIOS4ieOAgeefm+ebviAvIOWtmOeWke+8iOeFp+W9le+8iQoKMS4gKirml6Dln7rmnKzpnaLntKDmnZAqKu+8mnJhdy0yMDI1LzIwMjYg5Lit5rOw6IKh5Lu95LuF5Ye6546w5LqOIDIwMjUuMTIuMzEg5oC757uT77yI5Lmw5Y2W6YC76L6R5ZCE5LiA5Y+l77yJ77yMKirml6Dlhazlj7jkuLvkuJrjgIHotKLliqHjgIHkvLDlgLzliIbmnpAqKuKAlOKAlOW7uuiuruS7jiByYXcg5ZCO57ut5paH56ug5oiW5YWs5byA6LWE5paZ6KGlIuWFrOWPuOaYr+W5suS7gOS5iOeahCLvvIjlvoXooaXvvInjgIIKMi4gKirljZrpmoYv5YeM546u55qE5YmN5oOF5pyq5oqr6ZyyKirvvJrkubDljZrpmoYv5YeM546u55qE5pe254K5L+S7t+S9jeOAgea1ruebiOW5heW6puOAgeS4uuS9leW9k+WInemAieaLqeWug+S7rOWdh+acquinge+8iDIwMjUuMi0zIOWNluehheWuneWQjueahOi1hOmHkeWIhumFjeaho+ahiOWPquiusCLliIfmjaLliLDljZrpmoYv5YeM546uIu+8ieOAggozLiAqKiLnoa7lrprmgKfkuI3lpJ8i55qE5YW35L2T5Yik5pat5L6d5o2u5pyq5bGV5byAKirvvJrkuK3ms7Dnm7jlr7nljZrpmoYv5YeM546uIuabtOehruWumiLlnKjlk6rvvIjkvLDlgLwv5Z+65pys6Z2iL+WCrOWMluWJgu+8ieaXoOWOn+aWh+OAggo0LiAqKuWOu+eVmeacquefpSoq77yaMjAyNSDlubTmnKvmjIHmnInoh7Pku4rnmoTlkI7nu63nirbmgIHjgIEyMDI2IOW5tOaYr+WQpuWNluWHuuWdh+acquaKq+mcsu+8iDIwMjYg5oyB5LuT5LiN5oqr6Zyy5Y6f5YiZ77yJ44CCCgojIyDlj4Lop4EKCi0gW1vph4zmtbfkvZPns7st5oC76KeIXV0g4oCUIOS9k+ezu+mqqOaetu+8iOacrOmhteS4uiLnoa7lrprmgKfkvJjlhYggLyDmiJjmnK/mjaLpqawi5p2h55uu55qE6K+B5o2u5bGC77yJCi0gW1vph4zmtbfmoYjkvost56GF5a6d56eR5oqAXV0g4oCUIOi1hOmHkea6kOWktO+8iDIwMjUuMi0zIOa4heS7k+ehheWuneKGkuWNmumahi/lh4znjq7ihpIyMDI1LjnihpLkuK3ms7DnmoTlrozmlbTpk77mnaHvvIkKLSBbW+mHjOa1t+ahiOS+iy3kupHlm77mjqfogqFdXSAvIFtb6YeM5rW35qGI5L6LLeWIqeWuiemahl1dIOKAlCAyMDI1IOW5tOacq+WQjOaJueaMgeS7k++8iOWIh+aNoumTvuaIkOWRmO+8iQotIFtb6YeM5rW3LeS4mue7qeW9kuWboF1dIOKAlCAyMDI1IOaImOacr+i9ruWKqOaXtuS7o+iDjOaZr++8iCs1OC4wNSXvvIk=";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}</script></body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海案例·莱美药业</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md img{max-width:100%}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海案例-莱美药业.html">里海案例·莱美药业</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海案例·莱美药业</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-06</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/案例</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E6%A1%88%E4%BE%8B">← 返回 案例</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/案例/里海案例-莱美药业.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDph4zmtbfmoYjkvosgwrcg6I6x576O6I2v5LiaCgo+ICoq5LiA5Y+l6K+d5a6a5L2NKirvvJoqKuS9nOiAheWUr+S4gOaKq+mcsueahCLnm5jlj6PmioDmnK/mk43kvZwi5L6L5aSW5qC35pys4oCU4oCU5oyJ5biC5Zy65YWI55Sf5oOF57uq5YGa55+t57q/5Y+N5by577yINiDlpKkgMzAg5aSa5Liq54K577yJ77yM5piO56Gu6Ieq6K6kIui/meeslOS4jeaYr+aMieWfuuacrOmdouadpSIqKu+8m+WFrOWPuOacrOi6q+aYr+mHjeW6huacrOWcsOiNr+S8geOAgeS9nOiAhei3n+i4quS4ieW5tOetieS9k+ezu+S5sOeCueacquaenO+8jOacgOe7iOS7pSLmmKXoioLliY3mnIDlkI7kuqTmmJPml6XnmoTmg4Xnu6roobDnq63kubDngrki5LuL5YWl4oCU4oCUKirog73lipvlnIgv5pys5Zyw6Lef6LiqICsg5biC5Zy65YWI55Sf5Yip55So55qE5re35ZCI5qC35pys77yM5LiU6KKr5L2c6ICF55So5L2cIui3n+Wkp+WutuS4gOi1t+S6j+aXtuaAjuS5iOiHquaVkSLnmoTlrp7kvosqKuOAggo+Cj4g5pys6aG15Li6IFtb6YeM5rW35L2T57O7LeaAu+iniF1dIOeahOahiOS+i+ivgeaNruWxgu+8iCoq6IO95YqbwrfnkIbop6PluILlnLrlhYjnlJ8gKyDkvovlpJbmk43kvZzovrnnlYwqKu+8ieOAgui0puaIt+WPo+W+hD0zMCDkuIfnpLrojIPotKbmiLfvvIgyMDI0PSs0LjU3Je+8ie+8myoq5Lia57up5Li65L2c6ICF6Ieq6L+w5Y+j5b6EKirvvIzmnKrni6znq4vmoLjlrp7vvJvntKDmnZDku6Ugd2lraSDml7bpl7Tnur/moaPmoYjovazov7DkuLrkuLvjgIIKCi0tLQoKIyMg5LiA44CB5L2T57O7IMOXIOivgeaNriDmmKDlsITvvIjmoLjlv4PooajvvIkKCiMjIyAxLiDmnK/igJTigJTnroDljZUgwrcg5bqV6YOoIMK3IOWPmOWMliDCtyDliIbku5MKCi0gKirmnK/Ct+W6lemDqO+8iOS7pSLmg4Xnu6rlupUi5pu/5Luj5Z+65pys6Z2i5bqV77yJKirvvJrkvZzogIXot5/ouKrojrHnvo7kuInlubTvvIjph43luobmnKzlnLDkvIHkuJrvvInliKTmlq0i5Lia57up5bm05bm05LqP77yIMTLihpIyIOWFg++8ieOAgemdoOWbvei1hOWFpeS4u+Winui1hOS/ruWkjei1hOS6p+i0n+WAuuihqOOAgei0n+WAuueOh+W+iOS9juOAgei0p+W4gei1hOmHkeWkmuOAgeWHgOi1hOS6pyAyMCDlpJrkur895oyB57ut5LqP5o2f5Lmf5rKh5YCS6Zet6aOO6ZmpIu+8jCoq5LiA55u0562J5LiN5Yiw5L2T57O75Lmw54K5KirvvJsyMDI0IOaYpeiKguWJjeacgOWQjuS6pOaYk+aXpeWHuueOsCLml6DljpjlpLTkuIvot4zihpJWIOWei+WPjei9rCLnibnlvoHml7bvvIzku6UqKuWNluebmOihsOerreeCuSoq5LuL5YWl4oCU4oCU5Lmw5YWl55qE5pivIuaDhee7quW6lemDqCLogIzpnZ7ln7rmnKzpnaLlupXpg6jjgIIKLSAqKuacr8K3566A5Y2VL+WPmOWMlu+8iOS4muWKoeWJjeaPkO+8iSoq77ya6YeN5bqG5pys5Zyw6I2v5LyB44CB6Lef6Liq5LiJ5bm077yI5pys5Zyw5LyY5Yq/Pei0tOW+l+i/ke+8ie+8m+WPmOWMlj3lm73otYTlhaXkuLvlkI7nmoTotYTkuqfotJ/lgLrooajkv67lpI3vvIzkvYbkuJrnu6nnq6/lj5jljJbkuIDnm7TmnKrlhZHnjrDvvIzmlYXplb/mnJ/kuI3lnKjkvZPns7vkubDlhaXmuIXljZXlhoXjgIIKCiMjIyAyLiDpgZPigJTigJTluLjor4Ygwrcg5qaC546HIMK3IOi1lOeOhyDCtyDpopHnjocKCi0gKirpgZPCt+mikeeOh++8iOi/meeslOeahOaguOW/g++8iSoq77yaNiDlpKkgMzAg5aSa5Liq54K555qE55+t57q/5Y+N5by55YWR546w5Y2z6LWw77yM5bGeKirmiJjmnK/nuqfpq5jpopHliqjkvZwqKu+8m+S9nOiAheiHquivhCLotZrkuobngrnlsI/pkrEi77yM5LiN6L+95rGC5aSn56m66Ze044CCCi0gKirpgZPCt+amgueOh++8iOWvueW4guWcuuaDhee7queahOmihOWIpOiAjOmdnuWvueWFrOWPuO+8iSoq77ya5pON5L2c6YC76L6RPeWkp+ebmOaZrui3jOS4rSA5MCUg5bCP56Wo5bey5LuO6LeM5YWr5Lmd5Liq54K55Zue5Yiw5q2j5LqU5YWt54K577yMKioi6L+Z6IKh5Y2W55uY6ams5LiK6KaB6KGw56utIioq55qE5Yik5pat4oCU4oCU6LWM55qE5piv5oOF57uq44CB5LiN5piv5Z+65pys6Z2i44CCCgojIyMgMy4g6IO95Yqb4oCU4oCU5Lu35YC85Yik5patIMK3IOW4guWcuuWFiOeUnyDCtyDlv4PmgKcgwrcg5a6P6KeCCgotICoq6IO95YqbwrfnkIbop6PluILlnLrlhYjnlJ/vvIjlj5HmjKXliLDmnoHoh7TnmoTljZXmrKHmk43kvZzvvIkqKu+8muS9nOiAheiHquensCIqKueOqeebmOWPo++8jOaIkeS5n+aYr+aKgOacr+a0vu+8jOS5n+e7j+W4uOWBmiBUKioi77yb5pys56yU5YWo56iL55uv55uY5Y+j77ya5pil6IqC5YmN5pyA5ZCO5LiA5Liq5Lqk5piT5pel5LiL5p2A5Yeg5LmO6LeM5YGc4oaS5Lmw55uY5Ye6546w5ZyoIC01JX4tOCXihpLliKTmlq3ljZbnm5joobDnq63ihpIqKuWFqOmDqOmXsuaVo+i1hOmHkSvono3otYTkubDlhaUqKuKGkjExIOeCuSAxMCDliIbljZbnm5joobDnq63jgIHogqHku7flj43lvLnihpLlvZPlpKnmta7nm4ggMTUg5Liq54K577yI5Yeg5LmO5pyA5L2O54K577yJ4oaS5oyB5Yeg5aSp6LWa5Yeg5Y2B5Liq54K55pKk6YCA44CC5L2c6ICF5piO6KiA6L+Z56yU5pivIioq5biC5Zy65YWI55Sf5Zyo5YGa5Y+N5by5Kioi77yI5LiO5ZCM5om5IuS6keWNl+iDveaKlT3ln7rmnKzpnaIi5piO56Gu5Yy65YiG77yJ44CCCi0gKirog73lipvCt+S7t+WAvOWIpOaWre+8iOi3n+i4quS4ieW5tOayoeetieWIsOS9k+ezu+S5sOeCue+8iSoq77ya6K+05piO5YW25a+55Z+65pys6Z2i6KaB5rGC55qEIuS5sOeCuSLmmK/nm7jlvZPoi5vliLvnmoTvvIjkuJrnu6nlhZHnjrAv5L6/5a6c5Yiw5L2N5omN5Lmw77yJ77yM6I6x576O6ZW/5pyf5LiN5ruh6Laz77yM5Y+q5piv55uY5Y+j5py65Lya5Ye6546w5omN5Ye65omL4oCU4oCUKirkvZzogIXlr7ki5L2T57O75aSW5pON5L2cIueahOWFi+WItuS4jui+ueeVjCoq44CCCi0gKirog73lipvCt+W/g+aApy/kv67ooYwqKu+8muS9nOS4uiAyMDI0LjIi56Wt5peXIuWIh+WJsuW9k+WkqeeahOi1hOmHkeWOu+WQkeS5i+S4gO+8jOaYryLkuo8gMzAlIOWQjuWmguS9leW/q+mAn+WbnuihgCLnmoTlrp7mk43vvJvkvZzogIXlpI3nm5jlvZLlm6A9IuaDhee7quW/q+aJkyLogIzpnZ4i54asIuOAggoKIyMjIDQuIOW8seiAheaAnee7tAoKLSAqKumDqOWIhuespuWQiCoq77ya5Lmw5YWl55CG55SxPeWHgOi1hOS6pyAyMCDlpJrkur/jgIHlm73otYTmiZjlupXjgIHlhazlj7jlnq7kuI3kuobvvIjlvLHogIXlvI/kuI3kuo/liKTmlq3vvInvvJvkvYbmk43kvZzmnKzouqvvvIjono3otYQr55+t57q/55uY5Y+j77yJ5bGe5by65Lqk5piT77yM6Z2e5bi46KeE5byx6ICF5Yqo5L2c4oCU4oCUKirkvZzogIXljZXliJfkuLrkvovlpJbvvIzkuI3mjqjkuLrkvZPns7sqKuOAggoKIyMjIDUuIOaImOeVpSB2cyDmiJjmnK/ogqEKCi0gKirmiJjmnK/mgKfmk43kvZzvvIjpnZ7miJjnlaUv6Z2e5oiY5pyv6IKh5oyB5pyJ77yJKirvvJrlv6vov5vlv6vlh7rvvIzkuI3ov5vlhaUi5oyB5pyJLei3n+i4qi3lhZHnjrAi55qE5oiY5pyv6IKh5rWB56iL4oCU4oCU5L2c6ICF5a6a5L2N5Li6Iui1muS6hueCueWwj+mSsSLnmoTmlZHmgKXliqjkvZzjgIIKCi0tLQoKIyMg5LqM44CB5LqL5Lu25pe26Ze057q/77yI5ZCr5Ye65aSE77yJCgp8IOaXtumXtCB8IOS6i+S7tiB8IOWHuuWkhCB8CnwtLS18LS0tfC0tLXwKfCAyMDIxLTIwMjMgfCAqKui3n+i4quS4ieW5tCoq77yI6YeN5bqG5pys5Zyw6I2v5LyB77yb5Zu96LWE5YWl5Li75aKe6LWE5L+u5aSN6LWE5Lqn6LSf5YC66KGo77yb5Lia57up5bm05bm05LqPIDEy4oaSMiDlhYPvvJvotJ/lgLrnjofkvY4v6LSn5biB5aSaL+WHgOi1hOS6pyAyMCDlpJrkur/vvInigJTigJTlp4vnu4jmnKrnrYnliLDkvZPns7vkubDngrkgfCByYXctMjAyNC00LTPvvIjlm57muq/vvIkgfAp8ICoqMjAyNC4yLjgg5YmN5ZCO77yI5pil6IqC5YmN5pyA5ZCO5Lqk5piT5pel77yJKiogfCAqKuebmOWPo+S7i+WFpSoq77ya6IKh5Lu35LiL5p2A5Yeg5LmO6LeM5YGc4oaS5Lmw55uY5ZyoIC01JX4tOCUg5Ye6546w4oaS5Yik5patIui/meiCoeWNluebmOmprOS4iuimgeihsOerrSLihpIqKuWFqOmDqOmXsuaVo+i1hOmHkSvono3otYTkubDlhaUqKu+8mzExIOeCuSAxMCDliIbljZbnm5joobDnq63jgIHogqHku7flj43lvLnvvJsqKuW9k+Wkqea1ruebiCAxNSDkuKrngrnvvIjlh6DkuY7mnIDkvY7ngrnvvIkqKiB8IHJhdy0yMDI0LTQtMyB8CnwgMjAyNC4yLTMgfCAqKuaMgeWHoOWkqei1muWHoOWNgeS4queCueaSpOmAgCoq77yIMTIuMzEg5Y+j5b6EPTYg5aSpIDMwIOWkmuS4queCueWNluWHuu+8iSB8IHJhdy0yMDI0LTEyLTMxIHwKfCAqKjIwMjQuNC4zKiogfCDlpI3nm5jkuJPmlofjgIrotZrkuobngrnlsI/pkrHjgIvvvJoqKiLov5nnrJTkuI3mmK/mjInln7rmnKzpnaLmnaXnmoQiKirvvJsi6Lef6Liq5LiJ5bm05rKh562J5Yiw5L2T57O75Lmw54K54oaS6L+Z5rOi5peg5Y6Y5aS05LiL6LeMPVYg5Z6L5Y+N6L2s77yM5L2G5L2O54K56Zq+5Yik5pat4oaS55So55uY5Y+j6KGw56ut54K55Luj5pu/Iu+8m+aTjeS9nOWFqOeoiz3luILlnLrlhYjnlJ/vvIjmma7ot4zkuK3nnIsgOTAlIOWwj+elqOS7jui3jOWFq+S5neS4queCueWIsOato+S6lOWFreeCue+8ie+8myoq6Ieq6K+E5oqA5pyv5rS+5YGaIFQg6auY5omL77yb5pyq5p2l5oyB57ut6Lef6Liq77yM55yL5piv5ZCm56ym5ZCI5L2T57O75YaN6ICD6JmRKiogfCByYXctMjAyNC00LTMgfAp8IDIwMjQuMTIuMzEgfCDlubTluqblm57muq/vvJoi55uY5Y+j5Lmw5YWl6I6x576O6I2v5Lia77yINiDlpKkgMzAg5aSa5Liq54K55Y2W5Ye677yJIu+8jOW9kuWFpSAyMDI0IOWIh+WJsuWQjueahOaIkOWKn+iHquaVkeW6j+WIl++8iOWQq+S6keWNl+iDveaKlS/noYXlrp3vvIkgfCByYXctMjAyNC0xMi0zMSB8CnwgMjAyNS4xMS4xNyB8IOWIl+WFpSLph43luoblgZrov4fmoIfnmoTntK/orqEi5riF5Y2V77yI5raq6Zm15qao6I+cL+WkquaegS/mtqrpmbXnlLXlipsv5YaN5Y2HL+enpuWuiS/ojrHnvo7vvInigJTigJQ2IOWutuacrOWcsOWFrOWPuOS5i+S4gO+8jCLku47ogqHku7fkvY3nva7nnIvpmaTnp6blronlpJbpg73ovoPokI7pnaEiIHwgcmF3LTIwMjUtMTEtMTcgfAoKLS0tCgojIyDkuInjgIHnn5vnm74gLyDlrZjnlpHvvIjnhaflvZXvvIkKCjEuICoqIuaMgeWHoOWkqSIgdnMgIjYg5aSpIuWPo+W+hCoq77yaNC4zIOWkjeebmOiHqui/sCLmjIHlh6DlpKnotZrlh6DljYHkuKrngrnmkqTpgIAi77yMMTIuMzEg5oC757uT5Y+j5b6EIjYg5aSpIDMwIOWkmuS4queCueWNluWHuiLigJTigJTku6UiNiDlpKkgMzAg5aSa5Liq54K5IuS4uuW5tOW6puWPo+W+hO+8jOeyvuehruaMgeS7k+WkqeaVsOacquaKq+mcsuOAggoyLiAqKuiejei1hOS9v+eUqCoq77ya5L2c6ICF5L2T57O75by66LCD5peg5p2g5p2GL+a7oeS7k+WIhuaVo++8jOacrOeslOWNtCLlhajpg6jpl7LmlaPotYTph5Er6J6N6LWE5Lmw5YWlIuKAlOKAlOS9nOiAheacquino+mHiuivpeeslOS4uuS9leegtOadoOadhuaIkuW+i++8jOS7heS9nOefree6v+aVkeaApeW/q+aJk++8iOS4jiAyMDE2IOWPjOi0puaIt+aXtuS7o+adoOadhueUqOazleS4jeWQjO+8ieOAggozLiAqKuS5sOWNluS7t+agvOacquaKq+mcsioq77ya5peg5YW35L2T5Lu35L2NL+iCoeaVsO+8jCLotZrlh6DljYHkuKrngrki5Yy66Ze05pyq5qC444CCCjQuICoq5Lmw54K55pel5pyf5o6o5a6aKirvvJrmoaPmoYjorrDkuLoi5pil6IqC5YmN5pyA5ZCO5Lqk5piT5pelIu+8jOaMiSAyMDI0IOWGnOWOhu+8iDIuOCDliY3lkI7vvInmjqjlrprvvIzljp/mlofmnKrnu5npmLPljobml6XmnJ/vvIzop4EgcmF3LTIwMjQg5ZCI6ZuG5Y6f5paH5a6a5L2N44CCCgojIyDlj4Lop4EKCi0gW1vph4zmtbfkvZPns7st5oC76KeIXV0g4oCUIOS9k+ezu+mqqOaetu+8iOacrOmhteS4uiLluILlnLrlhYjnlJ8gLyDkvovlpJbmk43kvZzovrnnlYwgLyDmnKzlnLDog73lipvlnIgi5p2h55uu55qE6K+B5o2u5bGC77yJCi0gW1vph4zmtbfmoYjkvost5LqR5Y2X6IO95oqVXV0g4oCUIDIwMjQuMiDlkIzmibnmm7/mjaLmoIfnmoTvvIjkupHljZfog73mipU95Z+65pys6Z2i77yb6I6x576OPeebmOWPoy/luILlnLrlhYjnlJ/vvIkKLSBbW+mHjOa1t+ahiOS+iy3np6blronogqHku71dXSDigJQg5Y+m5LiA6YeN5bqG5pys5Zyw5qCH55qE77yI5YGaIFQv6LS057Sn6Lef6Liq5qC35pys77yJCi0gW1vph4zmtbfmoYjkvost5YaN5Y2H56eR5oqAXV0gLyBbW+mHjOa1t+ahiOS+iy3lm73mnpfnp5HmioBdXSDigJQgMjAyNC4yIOiiqyLnpa3ml5ci56CN5o6J55qE5qCH55qE77yI5ZCM5LiA5aSp55qE6LWE6YeR5YaN5YiG6YWN5p2l5rqQ77yJCi0gW1vph4zmtbct5Lia57up5b2S5ZugXV0g4oCUIDIwMjQg5oiY5pyv6L2u5Yqo5pe25Luj6IOM5pmv";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}</script></body></html>
