@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>人福医药 (600079) — 产业链全景</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md img{max-width:100%}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">人福医药</a> › <a href="industry-chain.html">人福医药 (600079) — 产业链全景</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">人福医药 (600079) — 产业链全景</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-07-17</span><span style="margin-left:auto;color:#b0b5bd">research/人福医药</span></div><div class="md" id="md"></div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/人福医药/industry-chain.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDkurrnpo/ljLvoja8gKDYwMDA3OSkg4oCUIOm6u+mGieiNr+S6p+S4mumTvuWFqOaZrwoKIyMg5Lq656aP5Yy76I2v5Zyo5Lqn5Lia6ZO+5Lit55qE5L2N572uCgrkurrnpo/ljLvoja/lpITkuo4qKum6u+mGiemVh+eXmy/plYfpnZnoja/lk4HliLbpgKDkuK3muLgqKuKAlOKAlOS4iua4uOWvueaOpeWOn+aWmeiNr++8iEFQSe+8ie+8jOS4i+a4uOmAmui/h+WbveiNry/kuIroja/nrYnllYbkuJrlhazlj7jliIbplIDoh7PljLvpmaLnu4jnq6/jgILmoLjlv4PlrZDlhazlj7jlnKjpurvphonoja/lhajpk77mnaHvvIjnoJTlj5HihpLljp/mlpnoja/ihpLliLbliYLihpLliIbplIDvvInlnYfmnInluIPlsYDjgIIKCi0tLQoKIyMg5LiA44CB6bq76YaJ6I2v5Lqn5Lia6ZO+CgpgYGAK5LiK5ri4ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDkuK3muLggICAgICAgICAgICAgICAgICAgICAgICAgICAgICDkuIvmuLgK4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACuWOn+aWmeiNr++8iEFQSe+8iSAgICAgICAgICAgICAgICAgICDliLbliYLliLbpgKDvvIjlrpzmmIzkurrnpo/kuLvmiJjlnLrvvIkgICAgICAgICAgICAg5YiG6ZSA57uI56uvCiAg4pSCICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pSCICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pSCCiAg4pa8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pa8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pa8CuiKrOWkquWwvOexu+WOn+aWmeiNryAgICAgICAgICDilIDilIDilrYgIOWItuWJgueglOWPke+8iOmmluS7vy/ni6zlrrbvvIkgICAgICAgIOKUgOKUgOKWtiAg6bq757K+6I2v5ZOB5om55Y+R77yI5rmW5YyX5Lq656aP77yJCueUvuS9k+a/gOe0oOWOn+aWmSAgICAgICAgICAgICAgICAgICAgIEdNUOeUn+S6p++8iOeuoeWItueJjOeFp++8iSAgICAgICAgICAgICAgICDljLvpmaLoja/miL/vvIjpurvphonnp5EvSUNVL+eWvOeXm+enke+8iQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDlrabmnK/mjqjlub8gICAgICAgICAgICAgICAgICAgICAgICAgIOmbtuWUruiNr+W6l++8iOS7hemDqOWIhu+8iQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDlh7rlj6PvvIhFcGljUGhhcm1hIOe+juWbveW4guWcuu+8iQpgYGAKCioq5YWz6ZSu54m55q6K5oCnKirvvJrpurvphonoja/lsZ7kuo7lm73lrrbnibnmrornrqHliLboja/lk4HvvIjpurvnsr7oja/lk4HvvInvvIzlhajpk77mnaHigJTigJTnlJ/kuqfjgIHmibnlj5HjgIHpm7bllK7jgIHkvb/nlKjigJTigJTlnYflj5fjgIrpurvphonoja/lk4Hlkoznsr7npZ7oja/lk4HnrqHnkIbmnaHkvovjgIvkuKXmoLznrqHliLbjgILov5nkuI3mmK/mma7pgJrnmoTliLboja/kuqfkuJrpk77vvIzmmK8qKueJueiuuOe7j+iQpSoq44CCCgotLS0KCiMjIOS6jOOAgeS4iua4uO+8muWOn+aWmeiNrwoKfCDnsbvliKsgfCDku6Pooajlk4Hnp40gfCDlrZDlhazlj7ggfCDoh6rnu5nnjocgfAp8LS0tLS0tfC0tLS0tLS0tLXwtLS0tLS0tLXw6LS0tOnwKfCDoiqzlpKrlsLznsbsgfCDoiJLoiqzlpKrlsLwv55Ge6Iqs5aSq5bC8L+mYv+iKrOWkquWwvCB8IOWunOaYjOS6uuemj++8iOmDqOWIhuiHquS6p++8iSB8IOmDqOWIhiB8Cnwg55S+5L2T5r+A57SgIHwg6buE5L2T6YWuL+WcsOWxiOWtlemFruetiSB8IOiRm+W6l+S6uuemjyB8IOmrmCB8Cnwg57u05ZC+5bCU6I2vIHwg56WW5Y2h5pyoL+mAmua7nuiLj+etiSB8IOaWsOeWhue7tOiNryB8IOeJueauiu+8iOWcsOWfn+aAp+iNr+adkO+8iSB8Cgrljp/mlpnoja/oh6rnu5nmmK/miJDmnKzmjqfliLbnmoTlhbPplK7lj5jph4/jgILnrqHliLbljp/mlpnoja/nmoTph4fotK3lkIzmoLflj5fniYznhafpmZDliLbvvIzkvpvmlrnmnInpmZDjgIIKCi0tLQoKIyMg5LiJ44CB5Lit5ri477ya5Yi25YmC5Yi26YCg77yI5a6c5piM5Lq656aP77yJCgojIyMg5qC45b+D5ZOB56eN566h57q/Cgp8IOWTgeenjSB8IOexu+WIqyB8IOW4guWcuuWcsOS9jSB8IOi2i+WKvyB8CnwtLS0tLS18LS0tLS0tfC0tLS0tLS0tLXwtLS0tLS18CnwgKiroiJLoiqzlpKrlsLwqKiB8IOm6u+mGiemVh+eXm++8iOW8uumYv+eJh++8iSB8IOW4guWNoOeOhyA+NTAl77yM54us5a626aaW5Lu/IHwg56iz5Lit5pyJ5aKeIHwKfCAqKueRnuiKrOWkquWwvCoqIHwg6bq76YaJ6ZWH55eb77yI6LaF55+t5pWI77yJIHwg5biC5Y2g546HID41MCUgfCDnqLPkuK3mnInlop4gfAp8ICoq5rCi5ZCX5ZWh6YWuKiogfCDkuK3ph43luqbnlrznl5sgfCDni6zlrrYgfCDlop7plb8gfAp8ICoq55Ge6ams5ZSR5LuRKiogfCDpurvphonplYfpnZkgfCDpppbku78gfCDwn5SlIOS6p+mHjys0Ny41Je+8jOaUvumHj+acnyB8CnwgKirpmL/oiqzlpKrlsLwqKiB8IOm6u+mGiemVh+eXm++8iOi2heefreaViO+8iSB8IDIwMjEg6I635om5IHwg5riX6YCP5Yid5pyfIHwKfCDnurPluIPllaEgfCDplYfnl5vvvIjOuua/gOWKqOWJgu+8iSB8IHwg56iz5a6aIHwKCiMjIyDnoJTlj5HnrqHnur8KCnwg6aG555uuIHwg6Zi25q61IHwg6YCC5bqU55eHIHwKfC0tLS0tLXwtLS0tLS18LS0tLS0tfAp8IENYSk0tNjYgfCBJSUkg5pyfIHwg57K+56We5YiG6KOC55eHIHwKfCBIVzIzMTAxOSB8IElJIOacnyB8IEFESEQgfAp8IOeQpeePgOmFuOWcsOaWh+aLieazlei+myB8IDIwMjUg6I635om5IHwg5oqR6YOB55eHIHwKfCDnm5Dphbjku5bllrfku5blpJogfCAyMDI1IOiOt+aJuSB8IOS4remHjeW6pueWvOeXmyB8Cgo+IOS7jum6u+mGiemVh+eXm+WQkeeyvuelnuelnue7j+mihuWfn+aLk+Wxle+8jOaJk+W8gCBDTlPvvIjkuK3mnqLnpZ7nu4/vvInotZvpgZPlpKnoirHmnb/jgIIKCi0tLQoKIyMg5Zub44CB5LiL5ri477ya5YiG6ZSA5LiO57uI56uvCgojIyMg5Zu95YaF5YiG6ZSA77yI54m56K6457uP6JCl77yJCgrpurvphonoja/lk4HlkoznrKzkuIDnsbvnsr7npZ7oja/lk4HnmoTmibnlj5Hlv4Xpobvnu4/nlLEqKuWFqOWbveaAp+aJueWPkeS8geS4mioq77yI5Zu96I2v5o6n6IKh44CB5LiK6I2v6ZuG5Zui562J77yJKyAqKuWMuuWfn+aAp+aJueWPkeS8geS4mioq77yI5rmW5YyX5Lq656aP77yJ44CC6L+Z5piv5by65Yi25oCn55qE5LiJ5bGC5YiG6ZSA5L2T5Yi277yM5rmW5YyX5Lq656aP5L2c5Li65Yy65Z+f5oCn5om55Y+R5LyB5Lia5Lqr5pyJ5pS/562W5oCn6YCa6YGT44CCCgojIyMg5Zu96ZmF5YiG6ZSA77yIRXBpY1BoYXJtYe+8iQoKLSDnvo7lm70gRkRBIOiupOivgeS7v+WItuiNr+S8geS4mgotIDIwMjUg5bm05Y+X5YWz56iO5Yay5Ye777yM5YeA5Yip5LuOIDEuNDAg5Lq/6ZmN6IezIDAuMTcg5Lq/77yILTg4Je+8iQotIOWFqOa4oOmBk+imhueblu+8iOaJueWPkSArIOmbtuWUriArIOaUv+W6nO+8ie+8jOS9huWFs+eojueOr+Wig+aBtuWMlgoKLS0tCgojIyDkupTjgIHnq57kuonmoLzlsYAKCnwg57G75Z6LIHwg5Luj6KGoIHwg56ue5LqJ57u05bqmIHwg5Lq656aP5LyY5Yq/IHwKfC0tLS0tLXwtLS0tLS18LS0tLS0tLS0tfC0tLS0tLS0tLXwKfCDpurvphonplYfnl5sgfCAqKuS6uuemj++8iOWunOaYjOS6uuemj++8iSoqIHwg6Iqs5aSq5bC85YWo57O75YiXIHwg5biC5Y2g546HID41MCXvvIwzOCDkuKrni6zlrrblk4Hop4QgfAp8IOm6u+mGiemVh+eXmyB8IOaBqeWNjuiNr+S4miAoMDAyMjYyKSB8IOWPs+e+juaJmOWSquWumi/lkqrovr7llJHku5EgfCDlk4Hnp43kuI3lkIzvvIznm7TmjqXnq57kuonlsJEgfAp8IOm6u+mGiemVh+eXmyB8IOaBkueRnuWMu+iNryAoNjAwMjc2KSB8IOWIm+aWsOiNr+euoee6v++8iOW4g+aJmOWVoeivuuetie+8iSB8IOeglOWPkeaKleWFpeW3rui3neWkpyB8Cnwg57K+56We56We57uPIHwg5oGp5Y2OL+aBkueRni/ljY7mtbcgfCDmipfmipHpg4Ev57K+5YiGIHwg5Lq656aP5Yia6L+b5YWl77yM56ue5LqJ5r+A54OIIHwKCioq5qC45b+D5Yik5patKirvvJrlnKjnrqHliLbpurvphonoja/lk4Hpoobln5/vvIzkurrnpo/lh6DkuY7mmK/lnoTmlq3lnLDkvY3jgILnnJ/mraPnmoTnq57kuonmnaXoh6rmgZLnkZ7ljLvoja/nmoTliJvmlrDoja/nrqHnur/vvIjplb/mnJ/lqIHog4HvvInvvIzogIzpnZ7lkIznsbvku7/liLboja/jgIIKCi0tLQoKIyMg5YWt44CB6KGM5Lia55uR566h5LiO5YWz6ZSu5Y+Y6YePCgojIyMg566h5Yi25pS/562W5qGG5p62Ci0gKirpurvphonoja/lk4EqKu+8mueUn+S6p+mcgOWbveWutuiNr+ebkeWxgOaJueWHhu+8jOW5tOW6pueUn+S6p+iuoeWIkuS4i+i+vu+8jOa1gemAmueOr+iKguS4iee6p+euoeaOpwotICoq56ys5LiA57G757K+56We6I2v5ZOBKirvvJrlkIzpurvphonoja/lk4HnrqHnkIYKLSAqKumbhumHh+mjjumZqSoq77ya6bq757K+6I2v5ZOB55uu5YmN5LiN5Y+C5LiO6ZuG6YeH77yM5L2G5pS/562W5pa55ZCR6ZyA5oyB57ut5YWz5rOoCgojIyMg5YWz6ZSu6Lef6Liq5Y+Y6YePCi0g566h5Yi25ZOB56eN55uu5b2V6LCD5pW077yI5paw5aKeL+enu+mZpOWTgeenje+8iQotIOmbhumHh+aUv+etluWQkem6u+eyvuiNr+WTgeW7tuS8uOeahOS/oeWPtwotIOiKrOWkquWwvOexu+WbvemZheeuoeWItuWKqOaAge+8iFVOIOm6u+mGieiNr+WTgeWnlOWRmOS8mu+8iQotIENOUyDmlrDoja/ojrfmibnov5vlsZXvvIjnoJTlj5HnrqHnur/lhZHnjrDvvIkKCiMjIOWPguingQoKLSBbW292ZXJ2aWV3XV0g4oCUIOaVsOaNruebruW9le+8iOWtkOWFrOWPuOWFqOaZryArIOW6lOaUtui0puasvu+8iQotIFtbdGhlc2lzXV0g4oCUIOaKlei1hCBUaGVzaXMKLSBbW29wZXJhdGluZy1tZXRyaWNzXV0g4oCUIOi/kOiQpeaMh+agh+i3n+i4qgpbW3Jlc2VhcmNoL2luZGV4Lm1kXV0gwrcgW1tyZXNlYXJjaC/kurrnpo/ljLvoja8vcmVzZWFyY2gtcmVwb3J0cy5tZF1dCltbcmVzZWFyY2gv5Lq656aP5Yy76I2vL3Jlc2VhcmNoLXJlcG9ydHMubWRdXQ==";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}</script></body></html>

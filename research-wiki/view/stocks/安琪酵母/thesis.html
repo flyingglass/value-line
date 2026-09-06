@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>安琪酵母 (600298) — 投资 Thesis</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md img{max-width:100%}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">安琪酵母</a> › <a href="thesis.html">安琪酵母 (600298) — 投资 Thesis</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">安琪酵母 (600298) — 投资 Thesis</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-23</span><span style="margin-left:auto;color:#b0b5bd">research/安琪酵母</span></div><div class="md" id="md"></div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/安琪酵母/thesis.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDlronnkKrphbXmr40gKDYwMDI5OCkg4oCUIOaKlei1hCBUaGVzaXMKCiMjIOS4gOWPpeivneaAu+e7kwoK5a6J55Cq6YW15q+N5piv5Lqa5rSy56ys5LiA44CB5YWo55CD56ys5LqM55qE6YW15q+N5YWs5Y+477yM5qC45b+D6LWa6ZKx5qih5byP5pivKirop4TmqKHlj5HphbXliLbpgKAgKyDlhajnkIPljJbmuKDpgZPliIbplIAqKuOAguWbveWGheW4guWNoOeOhyA1NSUg57ud5a+56aKG5YWI77yM5rW35aSW5q+b5Yip546HIDMyLjElIOi/nOmrmOS6juWbveWGhSAxOS43Je+8jOa1t+WkluaUtuWFpeWNoOavlOS7jiA0MSUg5ZCRIDUwJSDmj5DljYfmmK/moLjlv4PliKnmtqbpqbHliqjlipvjgILlvZPliY0gUEUgMTkuNnjvvIjkvY7kuo7ljoblj7LkuK3kvY3mlbAgMjYuOXjvvInvvIxWTCBUaW1lbGluZXNzIOivhOe6pyAx77yI5pyA6auY77yJ77yM5aSE5LqO5Y6G5Y+y5Lyw5YC85L2O5Yy677yI55m+5YiG5L2NIC0xNSXvvInjgIIKCu+8iOadpea6kO+8mmByZXBvcnQvcmVhZGluZy82MDAyOTgubWRg44CBYHNjcmlwdHMvNjAwMjk4L2J1c2luZXNzX2NvbW1lbnRhcnkucHlg77yJCgotLS0KCiMjIOS4gOOAgeaAjuS5iOi1mumSse+8muWbm+S4muWKoeadv+Wdl++8iEZZMjAyNe+8iQoKfCDkuJrliqEgfCDokKXmlLYgfCDljaDmr5QgfCDmr5vliKnnjocgfCDotovlir8gfAp8LS0tLS0tfDotLS0tLS06fDotLS0tOnw6LS0tLTp8LS0tLS0tfAp8IOmFteavjeWPiua3seWKoOW3pSB8IDExOS41IOS6vyB8IDcxLjQlIHwg4oCUIHwg5qC45b+D5Li75Lia77yM6YeP5aKe5Lu356izIHwKfCDpo5/lk4Hljp/mlpkgfCAyMi4yIOS6vyB8IDEzLjMlIHwg4oCUIHwg5aKe6ZW/5pyA5b+r77yIKzU0LjQl77yJ77yM6YW15q+N6JuL55m95paw5ZOB57G7IHwKfCDliLbns5YgfCAxMy40IOS6vyB8IDguMCUgfCAqKi00LjklKiogfCDmjIHnu63kuo/mjZ/mi5bntK/vvIzkuLvopoHnm67nmoTkuLrns5bonJzoh6rnu5kgfAp8IOWFtuS7lu+8iOiQpeWFu+WBpeW6t+etie+8iSB8IDcuOSDkur8gfCA0LjclIHwg4oCUIHwg5L+d5YGl5ZOB44CB5Yqo54mp6JCl5YW7IHwKfCDljIXoo4UgfCAzLjYg5Lq/IHwgMi4yJSB8IOKAlCB8IOmFjeWll+S4muWKoSB8CgoqKuaguOW/g+i1mumSsemAu+i+kSoq77yaCi0g6YW15q+N5Li75Lia6Z2g6KeE5qih5pWI5bqUICsg5Y+R6YW15bel6Im66ZmN5pys77yM5LiA5qyh5ZCI5qC8546HIDk5LjYlCi0g5rW35aSW5Lia5Yqh5q+b5Yip546HIDMyLjEl77yIdnMg5Zu95YaFIDE5Ljcl77yJ77yM5q+P5o+Q5Y2HIDEg5Liq55m+5YiG54K55rW35aSW5Y2g5q+U77yM5pW05L2T5Yip5ram546H5oqs5Y2HCi0gWUXvvIjphbXmr43mir3mj5DnianvvInmm7/ku6PlkbPnsr7otovlir/vvIzlm73lhoUgWUUg5biC5Y2g546HIDYwJSvvvIzmr5vliKnnjofpq5jkuo7kvKDnu5/phbXmr40KLSDlt6XkuJogNC4wIOaflOaAp+WItumAoCArIOmbhuWbouWMluaLm+mHh++8jOezluicnOmHh+i0reaIkOacrOi+g+mihOeul+aYvuiRl+mZjeS9jgoK77yI5p2l5rqQ77yaYHNjcmlwdHMvNjAwMjk4L2J1c2luZXNzX2NvbW1lbnRhcnkucHlgIEJ1c2luZXNzICsgUDHvvJtgcmF3L3Jlc2VhcmNoL+WuieeQqumFteavjS8yMDI1LW1kYS10ZXh0Lm1kYCDjgJDmiJDmnKzkuI7mlYjnjofjgJHvvIkKCi0tLQoKIyMg5LqM44CB5oqk5Z+O5rKz77yITW9hdO+8iQoKIyMjIOaKpOWfjuaysyAx77ya6KeE5qih5LiO5oiQ5pys5LyY5Yq/Ci0g5YWo55CD56ys5LqM5aSn6YW15q+N5Lqn6IO977yINDkg5LiH5ZCo77yJ77yM5Zu95YaF5biC5Y2g546HIDU1Je+8jOmBpemBpemihuWFiO+8iOS5kOaWr+emjyAxNCXjgIHpqazliKkgMTEl77yJCi0g57OW6Jyc6YeH6LSt6K6u5Lu35Yqb5by677yI5pyA5aSn5Lmw5a6277yJ77yM6KeE5qih5pWI5bqU5pGK6JaE5Zu65a6a5oiQ5pysCi0g56GF54mH5bel6LS56ZmN6LaFIDQwJe+8iOexu+avlOWFieS8j+WRqOacn+iCoeeahOaIkOacrOaOp+WItuWKm++8iQoK77yI5p2l5rqQ77yaYHNjcmlwdHMvNjAwMjk4L2J1c2luZXNzX2NvbW1lbnRhcnkucHlgIEJ1c2luZXNz77yJCgojIyMg5oqk5Z+O5rKzIDLvvJrlhajnkIPljJbmuKDpgZPnvZHnu5wKLSDkuqflk4Hlh7rlj6MgMTcwKyDkuKrlm73lrrblkozlnLDljLrvvIzmtbflpJYgNiDkuKrnlJ/kuqfln7rlnLDvvIjln4Plj4rjgIHkv4TnvZfmlq/nrYnvvIkKLSDmnKzlnLDljJbkvpvlupTnu5Xov4flhbPnqI7lo4HlnpLvvIzmtbflpJbmr5vliKnnjocgMzIuMSUg5pi+6JGX6auY5LqO5Zu95YaFCi0g5rW35aSW5pS25YWl5aKe6YCfICsxOS45JSDov5zotoXlm73lhoUgKzQuMSUKCu+8iOadpea6kO+8mmBzY3JpcHRzLzYwMDI5OC9idXNpbmVzc19jb21tZW50YXJ5LnB5YCBQMe+8m2BkYXRhLzYwMDI5OC5kYmAgcmV2ZW51ZV9zdHJ1Y3R1cmUgYnlfcmVnaW9u77yJCgojIyMg5oqk5Z+O5rKzIDPvvJrmioDmnK/lo4HlnpIKLSDoj4znp43pgInogrIgKyDlj5HphbXlt6XoibogS25vdy1ob3fvvIjlm5vljYHlubTnp6/ntK/vvInvvIzmlrDov5vlhaXogIXpmr7ku6XlpI3liLYKLSDkuLvlr7zkuqflk4HkuIDmrKHlkIjmoLznjocgOTkuNiUKLSDlj4LkuI7lj5HluIPlhajnkIPpppbkuKrng5jnhJnphbXmr43lm73pmYXmoIflh4YKLSDphbXmr43om4vnmb3kuI7phb/phZLphbXmr43pgJrov4fnvo7lm70gRkRBIOiupOivgQotIDIwMjUg5bm05bqm5rmW5YyX55yB56eR5a2m5oqA5pyv6L+b5q2l5aWW5LiA562J5aWWCgrvvIjmnaXmupDvvJpgcmF3L3Jlc2VhcmNoL+WuieeQqumFteavjS8yMDI1LW1kYS10ZXh0Lm1kYCDjgJDkuqflk4Ev5Lia5Yqh57uT5p6E44CR44CQ5YiG5Zyw5Yy66KGo546w44CR77yJCgojIyMg5oqk5Z+O5rKzIDTvvJrlk4HniYzkuI7lrqLmiLfpu4/mgKcKLSAi5a6J55CqID0g5Lit5Zu96YW15q+N5Luj5ZCN6K+NIu+8jOWbm+WNgeW5tOWTgeeJjOenr+e0rwotIEIg56uv5a6i5oi35YiH5o2i5oiQ5pys6auY77yI6YWN5pa556iz5a6a5oCn5L6d6LWW54m55a6a6YW15q+N6I+M5qCq77yJCi0g57q/5LiK5rig6YGT5Y2g5q+UIDI1LjEl77yM55u05pKt55S15ZWGICsg6JCl6ZSA55+p6Zi15p6E5bu65LitCgrvvIjmnaXmupDvvJpgcmF3L3Jlc2VhcmNoL+WuieeQqumFteavjS8yMDI1LW1kYS10ZXh0Lm1kYCDjgJDkuqflk4Ev5Lia5Yqh57uT5p6E44CR77yJCgotLS0KCiMjIOS4ieOAgemjjumZqe+8iFJpc2tz77yJCgp8IOmjjumZqSB8IOS4pemHjeeoi+W6piB8IOivtOaYjiB8CnwtLS0tLS18Oi0tLS06fC0tLS0tLXwKfCDns5bonJzku7fmoLzms6LliqggfCDwn5S0IOmrmCB8IOWNoOaIkOacrCA0MCUr77yMMjAyMSDlubTmmrTmtqjlr7zoh7Tmr5vliKnnjofmlq3ltJYgMzcuNiUg4oaSIDI3LjMlIHwKfCDlm73lhoXpnIDmsYLlop7pgJ/mlL7nvJMgfCDwn5+hIOS4rSB8IOeDmOeEmeihjOS4muWinumAn+aUvue8k++8jOWbveWGheiQpeaUtuS7hSArNC4xJSB8Cnwg5rW35aSW5Zyw57yY5pS/5rK7IHwg8J+foSDkuK0gfCDkv4TnvZfmlq/lt6XljoLlj5fliLboo4Hpo47pmanvvIzmsYfnjofms6LliqggfAp8IOWItuezluS4muWKoeaLlue0ryB8IPCfn6Eg5LitIHwg5q+b5Yip546HIC00Ljkl77yMOCUg6JCl5pS25L2G5oyB57ut5LqP5o2fIHwKfCDkuqfog73mianlvKDoioLlpY8gfCDwn5+hIOS4rSB8IENBUEVYL+aKmOaXpyA9IDIyOXjvvIzmtbflpJblu7rljoLpq5jls7DmnJ/njrDph5HmtYHlgY/ntKcgfAp8IOernuS6ieWKoOWJpyB8IPCfn6Ig5L2OIHwg5Zu95YaF5qC85bGA56iz5a6a77yI5LiA6LaF5qC85bGA77yJ77yM5L2G5LmQ5pav56aP5Y+v6IO95Yqg56CB5Lit5Zu9IHwKCu+8iOadpea6kO+8mmByZXBvcnQvcmVhZGluZy82MDAyOTgubWRgIOi1hOacrOe7k+aehOOAgWBzY3JpcHRzLzYwMDI5OC9idXNpbmVzc19jb21tZW50YXJ5LnB5YCBQMy9QNe+8iQoKLS0tCgojIyDlm5vjgIHlgqzljJbliYLvvIhDYXRhbHlzdHPvvIkKCjEuICoq5rW35aSW5Lqn6IO96YeK5pS+Kiog4oaSIOWfg+WPii/kv4TnvZfmlq/lt6XljoLmiankuqfvvIzmtbflpJbpq5jmr5vliKnljaDmr5Tku44gNDElIOWQkSA1MCUg5o+Q5Y2HCjIuICoq6YW15q+N6JuL55m95paw5ZOB57G7Kiog4oaSIOmjn+WTgeWOn+aWmSArNTQuNCXvvIzmm7/ku6PmpI3nianom4vnmb3otovlir/vvIzlhajnkIPliqjmpI3nianom4vnmb3kvpvlupTpnaLkuLTmjJHmiJgKMy4gKipZRSDmuJfpgI/njofmj5DljYcqKiDihpIg6YW15q+N5oq95o+Q54mp5pu/5Luj5ZGz57K+56m66Ze05aSn77yMWUUg5q+b5Yip546H6auY5LqO5Lyg57uf6YW15q+NCjQuICoq57OW6Jyc5Lu35qC85Zue6JC9Kiog4oaSIOiLpeWbnuW9kuWOhuWPsuWdh+WAvO+8jOavm+WIqeeOh+WPr+S/ruWkjSAyLTNwcAo1LiAqKjIwMjYg5bm05Lit5oqlKiog4oaSIOWFs+mUrumqjOivgeiKgueCue+8muWIqea2pueOh+aYr+WQpuaMgee7reWbnuWNh++8n+a1t+WkluWinumAn+iDveWQpuS/neaMgSAyMCUr77yfCgrvvIjmnaXmupDvvJpgc2NyaXB0cy82MDAyOTgvYnVzaW5lc3NfY29tbWVudGFyeS5weWAgUDXvvIkKCi0tLQoKIyMg5LqU44CB5Lyw5YC86KeC54K5CgotICoqVkwg5Lyw5YC8KirvvJpDRj0xNS4weO+8jOavj+iCoeeOsOmHkea1gSAyLjYxIOWFgyDihpIg5Lyw5YC8IDM5LjEg5YWD77yI6L6D5b2T5YmNIDM1LjY1IOWFg+a6ouS7t+e6piAxMCXvvIkKLSAqKlBFIOinhuinkioq77ya5b2T5YmNIFBFIDE5LjZ477yM5Y6G5Y+y5Lit5L2N5pWwIDI2Ljl477yM5Y6G5Y+y5Yy66Ze0IDIzLTQ3eCDihpIg5aSE5LqO5Y6G5Y+y5L2O5Yy677yI55m+5YiG5L2NIC0xNSXvvIkKLSAqKlBCIOinhuinkioq77yaUEIgMi40eO+8jOavj+iCoeWHgOi1hOS6pyAxNC44NiDlhYMg4oaSIOi1hOS6p+eVpea6ouS7t++8jOS9hiBST0UgMTAuNSUg5pSv5pKRCi0gKirmoLjlv4Pkv6Hlj7cqKu+8muavm+WIqeeOh+S8geeos+WbnuWNh+W3sumqjOivge+8iDI0Ljcl77yMKzEuMnBw77yJ77yM5LiL5LiA5YWz6ZSu5L+h5Y+35Li65rW35aSW5pS25YWl5Y2g5q+U56qB56C0IDQ1JQoK77yI5p2l5rqQ77yaYHJlcG9ydC9yZWFkaW5nLzYwMDI5OC5tZGAg5q61NOOAgWByZXBvcnQv5a6J55Cq6YW15q+NLmh0bWxg77yJCgotLS0KCiMjIOWFreOAgVZMIOivhOe6p+S4juS/oeWPtwoKfCDnu7TluqYgfCDor4TnuqcgfCDor7TmmI4gfAp8LS0tLS0tfDotLS0tOnwtLS0tLS18CnwgVGltZWxpbmVzcyDml7bmlYjmgKcgfCAqKjEqKiAo5pyA6auYKSB8IFBFIOS9juWMuiArIEVQUyDlop7plb8gKzE2LjMlICsg5Lu35qC85Yqo6YePICsyMy4yJSB8CnwgU2FmZXR5IOWuieWFqOaApyB8ICoqMioqICjovoPlronlhagpIHwg6LSf5YC6546HIDE2Je+8jFJPRSBDVj0wLjE077yM6LSi5Yqh56iz5YGlIHwKfCBUZWNobmljYWwg5oqA5pyvIHwgKioyKiogKOWBj+W8uikgfCDku7fmoLzliqjph4/mraPpnaIgfAoKKirovazmipjngrnkv6Hlj7cqKu+8mgotIOWIqea2pueOh+WPjei9rO+8muKchSDop6blj5HvvIjmr5vliKnnjocgMjQuNyUgdnMg5Y675bm0IDIzLjUl77yJCi0g5YW25L2Z5LiJ6aG577ya5pyq6Kem5Y+RCgrvvIjmnaXmupDvvJpgcmVwb3J0L3JlYWRpbmcvNjAwMjk4Lm1kYCDkuozjgIHlhavvvIkKCi0tLQoKIyMg5LiD44CB5YWz6ZSu6aqM6K+B6IqC54K5CgoxLiAqKjIwMjYg5bm05Lit5oqlKirvvJrmr5vliKnnjofmmK/lkKbmjIHnu63lm57ljYfvvJ/mtbflpJbmlLblhaXlop7pgJ/mmK/lkKbkv53mjIEgMjAlK++8nwoyLiAqKuezluicnOS7t+agvOi1sOWKvyoq77ya5paw5qao5a2j57OW6Jyc5Lu35qC85piv5q+b5Yip546H55qE5qC45b+D5Y+Y6YePCjMuICoq6aOf5ZOB5Y6f5paZ5p2/5Z2XKirvvJrphbXmr43om4vnmb3mlL7ph4/og73lkKbmjIHnu60gNTAlKyDlop7pgJ/vvJ8KNC4gKirmtbflpJbkuqfog73ov5vlsZUqKu+8muWfg+WPii/kv4TnvZfmlq/lt6XljoLmiankuqfov5vluqYKCi0tLQoKIyMg55u45YWz6aG16Z2iCgotIFtb5a6J55Cq6YW15q+NL292ZXJ2aWV3XV0g4oCUIOaVsOaNruebruW9le+8iOS6p+WTgee7k+aehOOAgURCIOihqOe7k+aehO+8iQotIFtb5a6J55Cq6YW15q+NL2luZHVzdHJ5LWNoYWluXV0g4oCUIOS6p+S4mumTvuWFqOaZrwotIFtbLi4vcmVwb3J0L+WuieeQqumFteavjV1dIOKAlCBWTCDlrozmlbTmiqXlkYoKLSBbWy4uL3JlcG9ydC9yZWFkaW5nLzYwMDI5OF1dIOKAlCBWTCDpmIXor7vmiqXlkYoKW1tyZXNlYXJjaC/lronnkKrphbXmr40vb3BlcmF0aW5nLW1ldHJpY3MubWRdXSDCtyBbW3Jlc2VhcmNoL2luZGV4Lm1kXV0KW1tyZXNlYXJjaC/lronnkKrphbXmr40vcmVzZWFyY2gtcmVwb3J0cy5tZF1dIMK3IFtbcmVzZWFyY2gv5a6J55Cq6YW15q+NL29wZXJhdGluZy1tZXRyaWNzLm1kXV0=";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}</script></body></html>

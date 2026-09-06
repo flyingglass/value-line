@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>贵州茅台</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md img{max-width:100%}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">贵州茅台</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><div class="page-hd"><h1>贵州茅台</h1><span class="pill industry" style="background:#fce7f3;color:#be185d">消费</span><span style="font-size:12px;color:#9aa0a6">14 篇</span></div><div class="meta-line">文件夹标签点击即切换，无需跳转 · 点击文章进入阅读</div><div class="tabbar"><button class="tabbtn" data-dir="经营">经营<span class="n">5</span></button><button class="tabbtn" data-dir="概览">概览<span class="n">5</span></button><button class="tabbtn" data-dir="原始资料">原始资料<span class="n">4</span></button></div><div class="panel" data-dir="经营"><div class="grid"><a class="card" href="经营/渠道价格链与经销商利润推演.html"><div class="t">贵州茅台 (600519) — 渠道价格链与经销商利润推演</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-27</span></div><div class="sum">一句话核心：2026 年茅台出厂价两轮上调 + 自营渠道低价扩容，把经销商单瓶差价从 ~330 元抽到 ~270 元以下；叠加批价疲软与自营分流，专卖店毛利率约 22–24%、净利率仅 3–8%（单瓶净利 50–150 元），不少门店贴近盈...</div></a><a class="card" href="经营/渠道改革.html"><div class="t">贵州茅台 (600519) — 渠道改革与定价变革</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-17</span></div><div class="sum">2026 年 1 月 1 日 i茅台 改版，&quot;享约·申购&quot;与&quot;畅享·云购&quot;合并为统一&quot;i购&quot;入口，500ml 普飞首次上架 i茅台（此前 4 年一直把普飞挡在 i茅台 之外）。</div></a><a class="card" href="经营/销量与吨价.html"><div class="t">贵州茅台 (600519) — 销量与吨价跟踪</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-17</span></div><div class="sum">茅台酒成本吨价</div></a><a class="card" href="经营/非标价格体系与吨价分解.html"><div class="t">贵州茅台 (600519) — 非标价格体系与吨价分解</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-30</span></div><div class="sum">一句话核心：26H1 茅台酒吨价约 292 万/吨（每瓶 1,374 元，不含税），同比 −9.9%，区间 278~308 万/吨——量在增（约 +14%）、价在降，驱动是产品单价回归真实消费（非标 26 年 1 月打款价 −37% 为标志...</div></a><a class="card" href="经营/黄牛套利与市场规模.html"><div class="t">贵州茅台 (600519) — 黄牛套利与市场规模</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-27</span></div><div class="sum">（来源：渠道改革.md §四，web_search 2026-08-16/17 渠道与定价改革调研）</div></a></div></div><div class="panel" data-dir="概览"><div class="grid"><a class="card" href="dahang-weekly-76.html"><div class="t">大航周报76 — 贵州茅台端午动销与Q2业绩测算</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span></div><div class="sum">大航净值指数 990.12（基准1000），周跌3.06%。茅台股息→腾讯、泡泡玛特、分众。</div></a><a class="card" href="maotai-drink-logic-analysis.html"><div class="t">茅台&quot;喝不喝 vs 喝多少&quot; — 多元思维模型下的演绎与归纳分析</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span></div><div class="sum">大航在端午白酒动销数据中，发现一个关键断裂：</div></a><a class="card" href="产业链.html"><div class="t">贵州茅台 (600519) — 白酒产业链全景</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-16</span></div><div class="sum">年报原文表述：&quot;构建批发、线下零售、线上零售、餐饮、私域五大渠道并行的渠道布局&quot;（来源：data/600519.db meta.mda_text）。</div></a><a class="card" href="国企激励机制-置身事内框架与茅台案例.html"><div class="t">国企激励机制 — 以《置身事内》框架分析茅台案例</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-16</span></div><div class="sum">茅台作为一家盈利能力极强的国企，其管理层的激励机制是什么样的？管理层如何在「做大当期利润」和「长远平衡」之间取舍？</div></a><a class="card" href="运营指标.html"><div class="t">贵州茅台 (600519) — 运营指标跟踪：渠道结构</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-16</span></div><div class="sum">``` 主营业务收入 1,687.75 亿（2025 全年） │ ┌───────────────────┴───────────────────┐ │                                       │ 【按产...</div></a></div></div><div class="panel" data-dir="原始资料"><div class="grid"><a class="card" href="原始资料/2026-03-28-两轮茅台下跌有何异同.html"><div class="t">2026-03-28-两轮茅台下跌有何异同</div><div class="meta"><span class="tag tag-raw">原始</span></div><div class="sum">一句话核心：2012 年与 2025–2026 年两轮茅台下跌，本质原因 70% 相同（易存储增值 + 社交需求随商业活跃度波动所构建的&quot;囤货—螺旋&quot;周期），差异的 30% 在宏观背景——2012 年是&quot;政策刺破泡沫但经济在上行&quot;，本轮是&quot;...</div></a><a class="card" href="原始资料/2026-08-21-2026年半年度业绩说明会完整逐字稿.html"><div class="t">2026-08-21-2026年半年度业绩说明会完整逐字稿</div><div class="meta"><span class="tag tag-raw">原始</span></div><div class="sum">一句话核心：管理层对增长模式重新定义，明确告别依赖渠道压货和非标产品提价的惯性，把真实动销、动态定价和直接触达消费者放到经营核心——代价已反映在利润与吨酒收入上，接下来要验证的是渠道库存能否持续健康、系列酒能否稳住价盘、市场化改革能否重新打...</div></a><a class="card" href="原始资料/2026-08-27-茅台专卖店店长-跟了3年卖了2箱.html"><div class="t">2026-08-27-茅台专卖店店长-跟了3年卖了2箱</div><div class="meta"><span class="tag tag-raw">原始</span></div><div class="sum">一句话核心：茅台&quot;非对称调价&quot; + 自营体系扩容背景下，渠道商（专卖店）客户被自营店分流、利润空间被压缩，群体情绪由活跃转向沉默与焦虑，部分萌生退意；年轻从业者仍保有激情。</div></a><a class="card" href="原始资料/2026-08-27-茅台代售进程全记录-探访动销疑虑下的真实进展.html"><div class="t">2026-08-27-茅台代售进程全记录-探访动销疑虑下的真实进展</div><div class="meta"><span class="tag tag-raw">原始</span></div><div class="sum">一句话核心：代售制是茅台厂商关系重塑的核心机制——货权回归厂家、经销商转&quot;服务商&quot;（5% 服务费），2026 年飞天批价站稳 1700 元上方、年内两次提价均顺利传导，市场化改革&quot;已跑通并得到验证&quot;；但代售存在定位不清（与 i茅台 重合度高...</div></a></div></div></div><script>(function(){
+var btns=[].slice.call(document.querySelectorAll('.tabbtn'));
+var panels=[].slice.call(document.querySelectorAll('.panel'));
+function first(){return btns.length?btns[0].getAttribute('data-dir'):'';}
+function activate(dir){
+  if(!dir){dir=first();}
+  btns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-dir')===dir);});
+  panels.forEach(function(p){var isActive=p.getAttribute('data-dir')===dir; p.classList.toggle('active',isActive); p.style.display=isActive?'block':'none';});
+}
+function fromHash(){
+  var h=(location.hash||'').replace(/^#/,'');
+  try{h=decodeURIComponent(h);}catch(e){}
+  var m=h.match(/(?:^|&)dir=([^&]*)/);
+  return m?m[1]:'';
+}
+btns.forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();activate(this.getAttribute('data-dir'));});});
+window.addEventListener('hashchange',function(){var d=fromHash();if(d)activate(d);});
+activate(fromHash());
+})();</script></body></html>

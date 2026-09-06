@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>多学科</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md img{max-width:100%}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../index.html">投研 Wiki</a> › <a href="index.html">多学科</a></div><div class="topnav"><a href="../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><div class="page-hd"><h1>多学科</h1><span class="pill case">通用知识</span><span style="font-size:12px;color:#9aa0a6">49 篇</span></div><div class="meta-line">主题标签点击即切换，无需跳转 · 点击文章进入阅读</div><div class="tabbar"><button class="tabbtn" data-dir="芒格·格栅理论">芒格·格栅理论<span class="n">11</span></button><button class="tabbtn" data-dir="复杂经济学">复杂经济学<span class="n">9</span></button><button class="tabbtn" data-dir="生物学">生物学<span class="n">12</span></button><button class="tabbtn" data-dir="心理学">心理学<span class="n">2</span></button><button class="tabbtn" data-dir="书籍摘要">书籍摘要<span class="n">7</span></button><button class="tabbtn" data-dir="其他">其他<span class="n">8</span></button></div><div class="panel" data-dir="芒格·格栅理论"><div class="grid"><a class="card" href="concepts/倾覆力矩.html"><div class="t">芒格思维模型：倾覆力矩（Overturning Moment / Tipping Point）</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">在第二章&quot;芒格的生活、学习和决策方法&quot;中，编者考夫曼将&quot;倾覆力矩&quot;列为芒格最重要的思维模型之一，与临界点和自我催化并列：</div></a><a class="card" href="concepts/竞争性毁灭.html"><div class="t">芒格思维模型：竞争性毁灭（Competitive Destruction）</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">在第二章&quot;芒格的生活、学习和决策方法&quot;中，编者将&quot;竞争性毁灭&quot;描述为一种长期围困大多数公司的力量：</div></a><a class="card" href="concepts/芒格-临界质量.html"><div class="t">芒格思维模型：临界质量（Critical Mass）</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">在第二章&quot;芒格的生活、学习和决策方法&quot;中，编者考夫曼将&quot;临界点&quot;列为芒格最重要的思维模型之一：</div></a><a class="card" href="concepts/芒格格栅理论-多学科思维投资框架.html"><div class="t">芒格格栅理论——多学科思维投资框架</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">投资不是一门孤立的技能，而是通识智慧的一个应用分支。查理·芒格主张从多学科中提取关键思维模型，形成「思维模型的格栅」（latticework of mental models），提高决策质量。</div></a><a class="card" href="entities/查理·芒格.html"><div class="t">查理·芒格 (Charles T. Munger, 1924-2023)</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">伯克希尔·哈撒韦公司董事会副主席（1978年起），沃伦·巴菲特的合伙人。1924年1月1日生于内布拉斯加州奥马哈市，2023年去世，享年99岁。</div></a><a class="card" href="papers/哈格斯特朗-格栅理论参考.html"><div class="t">《查理·芒格的智慧：投资的格栅理论》— 论文参考页</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">如何成为一个更好的投资者？答案：不是靠更多的金融公式，而是靠构建一个跨学科的「思维格栅模型」（Latticework of Mental Models）。挑选股票是通识智慧（Worldly Wisdom）的一个应用分支。</div></a><a class="card" href="papers/投资框架-参考著作.html"><div class="t">投资框架参考著作</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span></div><div class="sum">1. 《投资中最简单的事》邱国鹭 — 便宜是硬道理、逆向投资、定价权是核心竞争力的体现 2. 《投资中不简单的事》邱国鹭等 — 高毅资产投研方法论 3. 《周期》霍华德·马克斯 — 周期定位、钟摆理论、第二层次思维 4. 《投资最重要的事》...</div></a><a class="card" href="synthesis/巴芒论迪士尼.html"><div class="t">巴芒论迪士尼</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这是巴菲特区分迪士尼和普通电影公司的最核心洞见：</div></a><a class="card" href="raw/伯克希尔股东大会1994-2021-分类版深度摘要.html"><div class="t">伯克希尔股东大会1994-2021-分类版深度摘要</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这份 PDF 是伯克希尔·哈撒韦公司 1994 年至 2021 年（共 28 年）股东大会问答环节的中文翻译汇编，按 16 个主题类别 重新编排（非按年份排列）。每个类别由编号的问答对组成，标注了提问年份。</div></a><a class="card" href="raw/哈格斯特朗_2023_查理芒格的智慧-投资的格栅理论.html"><div class="t">哈格斯特朗_2023_查理芒格的智慧-投资的格栅理论</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：如何成为一个更好的投资者？</div></a><a class="card" href="raw/考夫曼_2005_穷查理宝典.html"><div class="t">考夫曼_2005_穷查理宝典</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：如何获得普世智慧（Worldly Wisdom），并用它过上更好的人生？</div></a></div></div><div class="panel" data-dir="复杂经济学"><div class="grid"><a class="card" href="concepts/技术自创生与组合进化.html"><div class="t">技术自创生与组合进化——布莱恩·阿瑟</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">技术是自创生的（autopoiesis）——所有新技术都是从已有技术的组合中产生，技术自己创造了自己。人类是中介，不是源头。</div></a><a class="card" href="concepts/投资框架-复杂经济学指导手册.html"><div class="t">投资框架 — 复杂经济学指导手册</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span></div><div class="sum">1. 柏基智慧基石（Baillie Gifford）— 长期主义，10年视角 2. 竞争优势（Michael Porter）— 五力模型、护城河、定价权 3. 三段式估值 — 资产价值 + 盈利能力 + 增长价值 4. 三周期叠加 — 经济...</div></a><a class="card" href="concepts/阿瑟-收益递增与涌现.html"><div class="t">Arthur 收益递增与涌现</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-25</span></div><div class="sum">经济由正反馈（positive feedbacks）主导，而非新古典经济学假设的收益递减。知识密集型产业中边际成本趋近于零，正反馈驱动市场动态。</div></a><a class="card" href="raw/2026-06-25-阿瑟-收益递增与涌现.html"><div class="t">2026-06-25-阿瑟-收益递增与涌现</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">论文：W. Brian Arthur, *Complexity and the Economy*, *Science*, Vol. 284, Issue 5411, pp. 107-109, 1999. DOI: 10.1126/scien...</div></a><a class="card" href="raw/复杂经济学_艾德勒阅读法.html"><div class="t">复杂经济学_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这是一本在&quot;新旧经济学&quot;交替期出版的宣言式文集。 它不是一本系统的教材，而是一个学科奠基人30年探索过程的文献记录。每章最初都是独立发表的论文，后被整合为一本书。</div></a><a class="card" href="raw/技术的本质_艾德勒阅读法.html"><div class="t">技术的本质_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这是一本回答&quot;技术究竟是什么&quot;的哲学著作，不是一本科技史或工程手册。 作者17岁学电子工程时就困惑于&quot;技术的本质&quot;，花了30多年试图回答这个问题。</div></a><a class="card" href="raw/技术革命与金融资本_艾德勒阅读法.html"><div class="t">技术革命与金融资本_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这不是一本投资操作手册，而是一本解释资本主义长期节律的宏观框架著作。</div></a><a class="card" href="raw/投资框架-参考著作.html"><div class="t">投资框架-参考著作</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div></a><a class="card" href="raw/投资框架-复杂经济学指导手册.html"><div class="t">投资框架-复杂经济学指导手册</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">来源：《柏基投资之道》（李正）× 詹姆斯·安德森公开访谈 × 贝塞姆宾德论文 × 佩蕾丝原著</div></a></div></div><div class="panel" data-dir="生物学"><div class="grid"><a class="card" href="synthesis/ESS切换-企业跨越与失败分析.html"><div class="t">ESS 切换：企业如何跨越适应性毁灭</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">道金斯说：&quot;进化不是稳步爬坡，是从一个稳定台阶跳到另一个不连续的台阶。&quot;</div></a><a class="card" href="synthesis/枪炮病菌与钢铁-投资终极因框架.html"><div class="t">《枪炮、病菌与钢铁》投资启示——终极因框架</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-07-31</span></div><div class="sum">戴蒙德花了 500 页只论证了一件事——皮萨罗打败印加帝国不是因为西班牙人更聪明、更勇敢或拥有更好的文化，而是因为 13,000 年前欧亚大陆在地理上继承了&quot;更好的不动产&quot;：东西向的大陆轴线让作物和技术可以快速传播，13 种可驯化的大型哺乳...</div></a><a class="card" href="synthesis/盲眼钟表匠-芒格评价与多元思维模型启示.html"><div class="t">《盲眼钟表匠》— 芒格评价与多元思维模型启示</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-12</span></div><div class="sum">读过。而且高度评价。</div></a><a class="card" href="synthesis/竞争性毁灭-四书格栅分析.html"><div class="t">竞争性毁灭——四本书的格栅分析</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-07-25</span></div><div class="sum">自然选择的单位不是物种，不是群体，不是个体，而是基因。个体是基因的&quot;生存机器&quot;，用过即弃。核心概念：</div></a><a class="card" href="synthesis/竞争演化初步框架-五书多元思维模型.html"><div class="t">竞争演化初步框架——五本书的多元思维模型整合</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-12</span></div><div class="sum">芒格在《穷查理宝典》第二章推荐了四本书来理解&quot;竞争性毁灭&quot;问题：</div></a><a class="card" href="synthesis/自私的基因-商业基因映射分析.html"><div class="t">自私的基因 × 商业基因映射：五家公司道金斯式分析</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">1. 复制因子识别：公司的商业基因是什么？不是问&quot;它卖什么&quot;，是问&quot;什么在复制自己&quot;。</div></a><a class="card" href="synthesis/芒格多元学科投资决策框架.html"><div class="t">芒格多元学科投资决策框架</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">第一轨 ≠ 经济学，而是 Σ(所有学科的理性工具)。任何可用的模型都应进入第一轨。</div></a><a class="card" href="raw/戴蒙德_1997_枪炮病菌与钢铁-人类社会的命运.html"><div class="t">戴蒙德_1997_枪炮病菌与钢铁-人类社会的命运</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：为什么不同大洲上的人类社会，以如此不同的速度演进？为什么是欧洲人征服了美洲、澳大利亚和非洲，而不是反过来？</div></a><a class="card" href="raw/格里宾_2001_冰河期-从冷宫中走出的理论.html"><div class="t">格里宾_2001_冰河期-从冷宫中走出的理论</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：为什么地球上会有冰河期？什么力量驱动了冰河期的节律？</div></a><a class="card" href="raw/道金斯_1976_自私的基因.html"><div class="t">道金斯_1976_自私的基因</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：我们为什么会存在？利他行为如何从自私的基因中进化出来？</div></a><a class="card" href="raw/道金斯_1986_盲眼钟表匠.html"><div class="t">道金斯_1986_盲眼钟表匠</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：我们以及所有复杂生物，是怎么出现的？为什么它们看起来&quot;像是精心设计出来的&quot;？</div></a><a class="card" href="raw/里德利_1999_基因组-生命之书23章.html"><div class="t">里德利_1999_基因组-生命之书23章</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本观察：人类基因组是一部用遗传密码书写的人类自传，记录了从40亿年前生命诞生到最近的数千年人类迁徙的全部历史。</div></a></div></div><div class="panel" data-dir="心理学"><div class="grid"><a class="card" href="raw/卡尼曼_2011_思考快与慢.html"><div class="t">卡尼曼_2011_思考快与慢</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：为什么人类会做出不理性的判断和决策？</div></a><a class="card" href="raw/西奥迪尼_2021_影响力-全新升级版.html"><div class="t">西奥迪尼_2021_影响力-全新升级版</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：到底是什么因素让一个人向另一个人说&quot;行&quot;？</div></a></div></div><div class="panel" data-dir="书籍摘要"><div class="grid"><a class="card" href="concepts/艾德勒-四级阅读法.html"><div class="t">艾德勒四级阅读法——如何成为一个明辨是非的读者</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span></div><div class="sum">艾德勒认为，阅读一本书的主要目的是为了理解，不是为了收集信息。两者的区别对投资者特别重要。</div></a><a class="card" href="raw/伯克希尔股东大会_艾德勒阅读法.html"><div class="t">伯克希尔股东大会_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这不是一本&quot;书&quot;——这是28年的现场对话记录，按主题而不是按时间重组。 阅读它就像坐在伯克希尔股东大会现场，听巴菲特和芒格如何思考。</div></a><a class="card" href="raw/哈格斯特朗_2023_查理芒格的智慧_艾德勒阅读法.html"><div class="t">哈格斯特朗_2023_查理芒格的智慧_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这本书不是一本投资操作手册。 作者在前言中明确声明：不包含选股步骤或组合管理技巧。它提供的是&quot;一个思考投资的新途径&quot;。</div></a><a class="card" href="raw/大侦探投资学_艾德勒阅读法.html"><div class="t">大侦探投资学_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">本书是哈格斯特朗&quot;跨学科投资&quot;三部曲的第三本，也是《格栅理论》第7章&quot;三大侦探&quot;的完整展开版。</div></a><a class="card" href="raw/投资最重要的事_艾德勒阅读法.html"><div class="t">投资最重要的事_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这不是一本讲&quot;怎么选股&quot;的书，而是一本讲&quot;怎么思考投资&quot;的书。 全书几乎不涉及数字、公式、估值模型，核心在心理学、风险认知和第二层次思维。</div></a><a class="card" href="raw/柏基投资之道_艾德勒阅读法.html"><div class="t">柏基投资之道_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这是一本机构投资方法论的案例研究，不是通用投资教材。 核心卖点是柏基在特斯拉、英伟达、阿里巴巴、字节跳动等超级成长股上的早期布局。</div></a><a class="card" href="raw/穷查理宝典_艾德勒阅读法.html"><div class="t">穷查理宝典_艾德勒阅读法</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">这不是一本投资操作手册。 芒格在前言中明确说，他感兴趣的是&quot;更为广泛的普世智慧&quot;，挑选股票只是它的一个应用分支。全书以11篇演讲为骨架，辅以编者考夫曼撰写的传记、方法论总结和芒格的即席谈话，展示了一种基于&quot;多元思维模型&quot;的思考方式。</div></a></div></div><div class="panel" data-dir="其他"><div class="grid"><a class="card" href="concepts/期权Wheel策略-卖期权收保费.html"><div class="t">期权 Wheel 策略（卖出期权收保费模式）</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-19</span></div><div class="sum">Wheel 策略（轮动策略） 是期权卖方的一种循环打法：</div></a><a class="card" href="entities/seth-klarman-interview.html"><div class="t">塞斯·卡拉曼访谈</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span></div><div class="sum">1. 自下而上锚定：不买指数，买特殊个案，自下而上寻找被错价的资产。独立于市场赚钱。 2. 下行保护是基石：格雷厄姆教会——不被杠杆强平、不被赎回，就能在最强对手无法上场时保持进攻。 3. 历史的学生：每个投资者都需要成为历史的学生。历史不...</div></a><a class="card" href="entities/stockanalysis-transcripts.html"><div class="t">美股业绩会 transcript 数据源</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-06</span></div><div class="sum">每个 transcript 页面包含：</div></a><a class="card" href="synthesis/ben-thompson-ai-capital-cycle.html"><div class="t">Ben Thompson 播客：AI 资本周期、聚合理论与科技巨头护城河</div><div class="meta"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-20</span></div><div class="sum">一个根本问题：AI 资本开支狂潮（2026 年约 8000 亿美元，明年或升至 1.3 万亿美元）能否在资本耗尽之前，由 AI 收入及时接棒？</div></a><a class="card" href="raw/2026-06-25-塞斯卡拉曼访谈-企业分析原则.html"><div class="t">2026-06-25-塞斯卡拉曼访谈-企业分析原则</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">塞斯·卡拉曼（Seth Klarman），资管集团 The Baupost 合伙创始人，投资经典《安全边际》作者。Baupost 自1982年创立至今44年，年化净收益近20%，仅5个年份亏损。卡拉曼极为低调，很少公开露面。</div></a><a class="card" href="raw/2026-08-19-期权wheel策略-泡泡玛特分析.html"><div class="t">2026-08-19-期权wheel策略-泡泡玛特分析</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">1. 卖出 145 的 put 获得 6.88 的权利金 2. 如果被 assign，需要准备 145 × 200 的现金买入 3. 卖出 145 的 call，如果也有 5 块的权利金 4. 如果 call 行权被 assign 5. 计...</div></a><a class="card" href="raw/兰小欢_2021_置身事内-中国政府与经济发展.html"><div class="t">兰小欢_2021_置身事内-中国政府与经济发展</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：中国过去几十年的经济高速增长，背后的微观机制和宏观后果究竟是什么？</div></a><a class="card" href="raw/本汤普森_2026_BenThompson播客-AI融资与科技巨头护城河.html"><div class="t">本汤普森_2026_BenThompson播客-AI融资与科技巨头护城河</div><div class="meta"><span class="tag tag-wiki">Wiki</span></div><div class="sum">一个根本问题：AI 资本开支狂潮（2026 年约 8000 亿美元，明年或升至 1.3 万亿美元）能否在资本耗尽之前，由 AI 收入及时接棒？</div></a></div></div></div><script>(function(){
+var btns=[].slice.call(document.querySelectorAll('.tabbtn'));
+var panels=[].slice.call(document.querySelectorAll('.panel'));
+function first(){return btns.length?btns[0].getAttribute('data-dir'):'';}
+function activate(dir){
+  if(!dir){dir=first();}
+  btns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-dir')===dir);});
+  panels.forEach(function(p){var isActive=p.getAttribute('data-dir')===dir; p.classList.toggle('active',isActive); p.style.display=isActive?'block':'none';});
+}
+function fromHash(){
+  var h=(location.hash||'').replace(/^#/,'');
+  try{h=decodeURIComponent(h);}catch(e){}
+  var m=h.match(/(?:^|&)dir=([^&]*)/);
+  return m?m[1]:'';
+}
+btns.forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();activate(this.getAttribute('data-dir'));});});
+window.addEventListener('hashchange',function(){var d=fromHash();if(d)activate(d);});
+activate(fromHash());
+})();</script></body></html>
