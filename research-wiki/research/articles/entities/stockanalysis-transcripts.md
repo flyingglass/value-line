@@ -55,5 +55,5 @@ updated: 2026-08-06
 
 ## 相关链接
 
-- [[../concepts/投研框架-复杂经济学指导手册]] — 投研框架
-- [[../../../raw/research/articles/amd-q2-2026-earnings-call]] — AMD Q2 2026 业绩会摘要（raw）
+- [[../concepts/投资框架-复杂经济学指导手册]] — 投研框架
+[[research/index.md]]

@@ -179,3 +179,4 @@ tags: []
 - [[竞争性毁灭-四书格栅分析]] — 《自私的基因》《枪炮病菌与钢铁》《基因组》《冰河期》四重格栅
 - [[../concepts/芒格格栅理论-多学科思维投资框架]] — 哈格斯特朗全书解读
 [[research/log.md]] · [[research/index.md]]
+[[research/articles/synthesis/盲眼钟表匠-芒格评价与多元思维模型启示.md]]

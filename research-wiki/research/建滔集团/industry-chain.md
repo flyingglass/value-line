@@ -1,3 +1,10 @@
+---
+topic: 建滔集团 — 电子材料产业链全景
+category: 产业链
+created: 2026-09-10
+updated: 2026-09-10
+---
+
 # 建滔集团 — 电子材料产业链全景
 
 > 最后更新：2026-08-06
@@ -56,3 +63,4 @@
 - [[../建滔积层板/industry-chain|建滔积层板产业链]]
 - [[overview]] — 数据目录
 - [[thesis]] — 投资 Thesis
+[[research/index.md]]

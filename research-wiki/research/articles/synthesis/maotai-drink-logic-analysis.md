@@ -154,3 +154,4 @@ created: 2026-06-27
 
 [[research/index.md]]
 [[research/articles/synthesis/dahang-weekly-76.md]]
+[[research/articles/synthesis/国企激励机制-置身事内框架与茅台案例.md]] · [[research/贵州茅台/运营指标.md]]

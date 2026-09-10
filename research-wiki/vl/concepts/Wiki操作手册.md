@@ -131,3 +131,4 @@ created: 2026-06-09
 5. **index.md**：按类别（模块/概念/实体/综合分析）组织，每个条目一行摘要
 [[vl/index.md]] · [[research/log.md]]
 [[research/index.md]] · [[vl/overview.md]]
+[[vl/overview.md]] · [[research/index.md]]

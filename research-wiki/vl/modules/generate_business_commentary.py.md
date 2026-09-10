@@ -62,3 +62,4 @@ Building Materials / Insurance / Financial Services / Utilities
 [[新增标的流程]]
 [[vl/log.md]] · [[vl/index.md]]
 [[vl/index.md]] · [[vl/log.md]]
+[[vl/concepts/新增标的流程.md]] · [[vl/concepts/8 步流水线.md]]

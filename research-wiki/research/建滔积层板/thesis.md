@@ -1,3 +1,10 @@
+---
+topic: 建滔积层板 (01888) — 投资 Thesis
+category: 投资论点
+created: 2026-09-10
+updated: 2026-09-10
+---
+
 # 建滔积层板 (01888) — 投资 Thesis
 
 > 最后更新：2026-08-06
@@ -38,3 +45,4 @@
 ## 相关
 - [[../建滔集团/thesis|建滔集团 Thesis]] — 母公司多元化版本
 - [[overview]] — 数据目录
+[[research/index.md]]

@@ -34,3 +34,4 @@ created: 2026-06-27
 
 [[operating-metrics]] · [[research/index.md]]
 [[research/articles/synthesis/popmart-ip-cycle-defense.md]] · [[research/紫金矿业/thesis.md]]
+[[research/紫金矿业/industry-chain.md]] · [[research/人福医药/industry-chain.md]]

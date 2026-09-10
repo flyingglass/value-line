@@ -33,3 +33,4 @@ generate_report.py 的 HTML 样式规范参考文档，记录布局尺寸、ECha
 
 [[vl/index.md]]
 [[vl/index.md]]
+[[vl/index.md]] · [[vl/modules/generate_report.py.md]]

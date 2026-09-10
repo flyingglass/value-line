@@ -74,3 +74,4 @@ updated: 2026-06-09
 [[VL 估值方法论]]
 [[vl/modules/generate_index.py.md]] · [[vl/index.md]]
 [[vl/modules/generate_business_commentary.py.md]] · [[vl/concepts/VL 估值方法论.md]]
+[[vl/concepts/新增标的流程.md]] · [[vl/modules/generate_report.py.md]]

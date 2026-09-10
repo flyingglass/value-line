@@ -124,3 +124,4 @@ report_data.json → generate_report.py → HTML
 [[数据源-通达信TDX]]
 [[vl/log.md]] · [[vl/index.md]]
 [[vl/modules/extract_mda.py.md]] · [[vl/modules/generate_business_commentary.py.md]]
+[[vl/modules/config.py.md]] · [[vl/modules/build.py.md]]

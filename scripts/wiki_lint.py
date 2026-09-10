@@ -42,6 +42,9 @@ REPORT_STUB_MARKERS = ["无已拉取研报", "当前无研报", "暂无研报", 
 REPORT_MIN_LINES = 5
 STOCK_DIRS = [d.name for d in (WIKI / "research").iterdir()
               if d.is_dir() and d.name != "articles"]
+# 研究专题目录：与标的目录平级但无 overview/thesis 四件套，不参与标的完整性检查
+NON_STOCK_DIRS = {"疯狂的里海"}
+STOCK_DIRS = [d for d in STOCK_DIRS if d not in NON_STOCK_DIRS]
 VL_DIRS = ["modules", "concepts", "entities", "synthesis"]
 RESEARCH_ARTICLE_DIRS = ["concepts", "entities", "papers", "synthesis"]
 
@@ -155,6 +158,9 @@ def main():
         if rel in ("WIKI-SCHEMA.md",):
             continue
         # 3. 链接检查
+        # raw/ 只进不改（原始语料内的链接不纳入校验）；
+        # log.md 只追加（改名记录里必然保留旧路径，不能当断链要求修）
+        skip_link_check = rel.startswith("raw/") or rel.rsplit("/", 1)[-1] == "log.md"
         for m in WIKILINK_RE.finditer(text):
             raw = m.group(1)
             if raw.startswith("!"):  # 图片嵌入
@@ -162,8 +168,8 @@ def main():
             link, alias = split_link(raw)
             if not link:
                 continue
-            # 跳过外部 URL
-            if link.startswith("http"):
+            # 跳过外部 URL 与页内锚点
+            if link.startswith("http") or link.startswith("#"):
                 continue
             # 跨域引用: 指向 report/ 生成报告 (不在 wiki 内, 合理)
             if "../report/" in link or "report/reading/" in link:
@@ -177,7 +183,7 @@ def main():
                     incoming[cn].add(rel)
                     found = True
                     break
-            if not found:
+            if not found and not skip_link_check:
                 errs.append(("WARN", rel, f"断链: [[{raw}]] 无对应文件"))
         # 4. 参见区块 (vl/research 页面, 非 index/log)
         if not rel.startswith("raw/"):
@@ -251,18 +257,43 @@ def main():
             errs.append(("INFO", rel, "孤立页面（无入链）"))
 
     # 6.5 交叉引用缺口
+    # 口径（2026-09-10 收窄）：
+    #  a) 容器页（顶层 index/overview/log、各级 log）被引用是正常现象，不要求反引；
+    #  b) 仅当来源与目标属于同一分组（同标的 / 同专题 / 同 vl 子类 / 同文章子类）
+    #     时才强制双向；跨标的、跨命名空间的引用不强制。
+    # 原口径为全站强制互引，随页面增长永不收敛（曾达 589 处）。
+    CONTAINERS = {"vl/index.md", "vl/overview.md", "vl/log.md",
+                  "research/index.md", "research/overview.md", "research/log.md"}
+
+    def _is_container(rel):
+        return rel in CONTAINERS or rel.rsplit("/", 1)[-1] == "log.md"
+
+    def _group(rel):
+        parts = rel.split("/")
+        if rel.startswith("vl/"):
+            return "/".join(parts[:2])
+        if rel.startswith("research/articles/"):
+            return "/".join(parts[:3])
+        if rel.startswith("research/"):
+            return "/".join(parts[:2])
+        return ""
+
     for target_rel, sources in incoming.items():
         if target_rel.startswith("raw/"):
             continue  # raw 不要求参见区块
         if target_rel in seealso_missing:
             continue  # 已在上面报"缺参见区块"
+        if _is_container(target_rel):
+            continue  # 容器页不要求反引
         target_refs = seealso_refs.get(target_rel, set())
+        target_group = _group(target_rel)
         for source_rel in sorted(sources):
             if source_rel.startswith("raw/"):
                 continue  # raw 不要求反引
-            src_base = source_rel.split("/")[-1]
-            if src_base in ("index.md", "log.md"):
-                continue
+            if _is_container(source_rel):
+                continue  # 容器页作为来源时不要求被反引
+            if _group(source_rel) != target_group:
+                continue  # 跨分组不强制双向
             if source_rel in target_refs:
                 continue
             errs.append(("WARN", target_rel,

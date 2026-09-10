@@ -9,7 +9,7 @@ source: ../../raw/research/泡泡玛特/2026-06-17-popmart-past-present-future.m
 # 泡泡玛特周期对抗：芒格多元思维模型检视
 
 > 对照：Chason《泡泡的过去、现在、未来》× 芒格心智模型格栅
-> 原始资料：[[../../raw/research/泡泡玛特/2026-06-17-popmart-past-present-future]]
+> 原始资料：`raw/research/泡泡玛特/2026-06-17-popmart-past-present-future.md`（原 raw 文件已清理，见 frontmatter source）
 
 ---
 
@@ -388,3 +388,4 @@ Chason 做了一件有价值的事：把泡泡玛特的周期防御从"能不能
 
 [[generational-risk-sanrio-disney-popmart]] · [[竞争性毁灭-四书格栅分析]] · [[research/index.md]]
 [[research/articles/synthesis/popmart-ip-cycle-defense.md]]
+[[research/articles/synthesis/popmart-historical-cycle-defense.md]] · [[research/articles/synthesis/popmart-demand-decomposition.md]]

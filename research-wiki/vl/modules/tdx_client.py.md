@@ -43,3 +43,4 @@ TDX 返回英文短名 (`TurnOver`, `SHProfit`, `TAssets` 等)，`_transform_row
 [[数据源-通达信TDX]]
 [[vl/log.md]] · [[vl/index.md]]
 [[vl/log.md]] · [[vl/modules/engine.py.md]]
+[[vl/log.md]] · [[vl/modules/fetcher.py.md]]

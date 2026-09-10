@@ -63,3 +63,4 @@ PDF 年报 → pdfplumber 提取文本
 [[BUSINESS 生成链路]]
 [[vl/log.md]] · [[vl/concepts/多源交叉验证.md]]
 [[vl/concepts/个股脚本标准.md]] · [[vl/log.md]]
+[[vl/modules/build.py.md]] · [[vl/modules/engine.py.md]]

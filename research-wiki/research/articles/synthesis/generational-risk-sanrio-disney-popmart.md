@@ -648,3 +648,4 @@ dopamine 疲劳的预测（如果是神经适应性 → 渐进）：
 
 [[popmart-cycle-defense-comparison]] · [[竞争性毁灭-四书格栅分析]] · [[research/index.md]] · [[research/泡泡玛特/产业链.md]]
 [[research/泡泡玛特/产业链.md]]
+[[research/泡泡玛特/产业链.md]] · [[research/泡泡玛特/需求/情绪需求持续性跟踪.md]]

@@ -3,6 +3,7 @@
 修复: frontmatter 缺失 + ## 参见 区块缺失 + 交叉引用缺口。
 """
 import re
+import sys
 from pathlib import Path
 from collections import defaultdict
 
@@ -10,7 +11,10 @@ WIKI = Path(__file__).resolve().parent.parent / "research-wiki"
 FRONT_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
 WIKILINK_RE = re.compile(r"\[\[([^\]]+)\]\]")
 ALIAS_SPLIT = re.compile(r"\s*\|\s*")
-TODAY = "2026-08-01"
+TODAY = "2026-09-10"
+# 默认只补 frontmatter / 参见区块；交叉引用缺口属系统性（历史结论 diminishing
+# returns），仅在显式传 --crossref 时追加，避免一次改动上千行。
+CROSSREF = "--crossref" in sys.argv
 
 
 def split_link(raw):
@@ -56,6 +60,36 @@ def infer_frontmatter(rel, text):
         if line.startswith("# ") and not line.startswith("# 0"):
             title = line[2:].strip()
             break
+    if not title:
+        title = Path(rel).stem
+
+    # vl 模块页
+    if rel.startswith("vl/modules/"):
+        return f"""---
+module: {Path(rel).name}
+category: 流水线编排
+depends_on: []
+updated: {TODAY}
+---
+"""
+    # 疯狂的里海专题（研究专题目录，非标的目录，无四件套）
+    if rel.startswith("research/疯狂的里海/"):
+        if "/时间线/" in rel:
+            topic, cat = "疯狂的里海 · 年度时间线", "年度档案"
+        elif "/案例/" in rel:
+            topic, cat = "疯狂的里海 · 案例档案", "案例档案"
+        elif "/方法论/" in rel:
+            topic, cat = "疯狂的里海 · 方法论", "方法论"
+        else:
+            topic, cat = "疯狂的里海", "投研-投资体系"
+        return f"""---
+title: {Path(rel).stem}
+topic: {topic}
+category: {cat}
+created: {TODAY}
+updated: {TODAY}
+---
+"""
 
     if rel.startswith("vl/concepts/") or rel.startswith("research/articles/concepts/"):
         return f"""---
@@ -97,13 +131,14 @@ updated: {TODAY}
 ---
 """
     elif rel.startswith("research/") and "/" in rel[9:]:
-        # 标的子页面
-        if "operating-metrics" in rel:
-            cat = "运营指标"
-        elif "overview" in rel:
-            cat = "数据目录"
-        else:
-            cat = "标的分析"
+        # 标的子页面（中英文文件名均可）
+        cat = {
+            "overview": "数据目录", "概览": "数据目录", "数据目录": "数据目录",
+            "thesis": "投资论点", "投资论点": "投资论点",
+            "industry-chain": "产业链", "产业链": "产业链",
+            "operating-metrics": "运营指标", "运营指标": "运营指标",
+            "research-reports": "研报索引", "研报索引": "研报索引",
+        }.get(Path(rel).stem, "标的分析")
         return f"""---
 topic: {title}
 category: {cat}
@@ -114,37 +149,66 @@ updated: {TODAY}
     return ""
 
 
+def seealso_specific(rel):
+    """按目录返回确定性参见链接。
+
+    一律使用全局唯一的页面名，避免 resolve_link 的 stem 兜底匹配到同名页
+    （如各标的目录下都有「运营指标.md」）。
+    """
+    if rel.startswith("research/泡泡玛特/业绩/"):
+        if rel.endswith("业绩会纪要索引（2020-2026）.md"):
+            return ["[[经营时间序列（2020-2026）]]"]
+        return ["[[业绩会纪要索引（2020-2026）]]"]
+    if rel.startswith(("research/拼多多/业绩/", "research/阿里巴巴/业绩/",
+                       "research/TME/业绩/")):
+        return ["[[艾德勒-四级阅读法]]"]
+    if rel.startswith("research/疯狂的里海/"):
+        if rel.endswith("疯狂的里海.md"):
+            return ["[[里海体系-总览]]", "[[里海-2444投资体系]]"]
+        if rel.endswith("里海-2444投资体系.md"):
+            return ["[[里海体系-总览]]", "[[疯狂的里海]]"]
+        if "/时间线/" in rel:
+            return ["[[里海体系-总览]]", "[[里海-2444投资体系]]"]
+    if rel.endswith("渠道价格链与经销商利润推演.md"):
+        return ["[[渠道改革]]", "[[销量与吨价]]"]
+    if rel.endswith(("ben-thompson-ai-capital-cycle.md",
+                     "盲眼钟表匠-芒格评价与多元思维模型启示.md")):
+        return ["[[芒格格栅理论-多学科思维投资框架]]"]
+    return []
+
+
 def gen_seealso(rel, incoming, seealso_refs, pages):
     """为页面生成 ## 参见 区块内容。"""
-    links = []
+    links = list(seealso_specific(rel))
     # 已有的参见链接
     existing = seealso_refs.get(rel, set())
-    # 从 incoming 里取 3-5 个最相关的来源页
+    # 从 incoming 里取 3-5 个最相关的来源页（仅在无确定性规则时使用）
     candidates = []
-    for src in incoming.get(rel, set()):
-        if src.startswith("raw/"):
-            continue
-        # 同在 research/articles/ 或 vl/ 下，优先
-        if src.startswith("vl/") and rel.startswith("vl/"):
-            candidates.append((0, src))
-        elif src.startswith("research/") and rel.startswith("research/"):
-            candidates.append((0, src))
-        else:
-            candidates.append((1, src))
-    candidates.sort()
-    added = set(existing)
-    for _, cand in candidates[:5]:
-        if cand not in added:
-            # 生成相对 wikilink
-            cand_stem = Path(cand).stem
-            cand_parts = Path(cand).parts
-            rel_parts = Path(rel).parts
-            # 如果同目录，直接用 stem
-            if cand_parts[:-1] == rel_parts[:-1]:
-                links.append(f"[[{cand_stem}]]")
+    if not links:
+        for src in incoming.get(rel, set()):
+            if src.startswith("raw/"):
+                continue
+            # 同在 research/articles/ 或 vl/ 下，优先
+            if src.startswith("vl/") and rel.startswith("vl/"):
+                candidates.append((0, src))
+            elif src.startswith("research/") and rel.startswith("research/"):
+                candidates.append((0, src))
             else:
-                links.append(f"[[{cand}]]")
-            added.add(cand)
+                candidates.append((1, src))
+        candidates.sort()
+        added = set(existing)
+        for _, cand in candidates[:5]:
+            if cand not in added:
+                # 生成相对 wikilink
+                cand_stem = Path(cand).stem
+                cand_parts = Path(cand).parts
+                rel_parts = Path(rel).parts
+                # 如果同目录，直接用 stem
+                if cand_parts[:-1] == rel_parts[:-1]:
+                    links.append(f"[[{cand_stem}]]")
+                else:
+                    links.append(f"[[{cand}]]")
+                added.add(cand)
     if not links:
         return ""
     return "## 参见\n\n" + " · ".join(links) + "\n"
@@ -250,8 +314,8 @@ def main():
                     modified = True
                     fixes_done.append(f"{rel}: +seealso")
                     seealso_missing.discard(rel)
-            elif rel in seealso_refs:
-                # 有参见但可能缺反引 → 在已有参见后追加
+            elif rel in seealso_refs and CROSSREF:
+                # 有参见但可能缺反引 → 在已有参见后追加（仅 --crossref）
                 incoming_srcs = {s for s in incoming.get(rel, set())
                                  if not s.startswith("raw/")}
                 missing = incoming_srcs - seealso_refs[rel]

@@ -1,3 +1,10 @@
+---
+topic: 建滔积层板 (01888) — 数据目录
+category: 数据目录
+created: 2026-09-10
+updated: 2026-09-10
+---
+
 # 建滔积层板 (01888) — 数据目录
 
 > 最后更新：2026-08-06 | VL 报告：[report/建滔积层板.html](../../report/建滔积层板.html)
@@ -59,3 +66,4 @@
 
 - [[thesis]] — 投资 Thesis
 - [[../建滔集团/overview|建滔集团 (母公司)]]
+[[research/index.md]]

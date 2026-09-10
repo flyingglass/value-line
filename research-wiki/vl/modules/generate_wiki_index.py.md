@@ -1,3 +1,10 @@
+---
+module: generate_wiki_index.py.md
+category: 流水线编排
+depends_on: []
+updated: 2026-09-10
+---
+
 # generate_wiki_index.py
 
 ## 概述
@@ -74,3 +81,4 @@ view/general/<分类>/<文章>.html     通用文章阅读页
 - [[generate_report.py]] — VL 单页报告生成
 - [[generate_index.py]] — Value Line 索引页生成
 - `research-wiki/research/log.md` — wiki 每次重建/改版的操作日志
+[[vl/index.md]]

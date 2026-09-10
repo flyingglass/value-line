@@ -102,3 +102,4 @@ CLI --cf/--pb  >  DB meta 已确认值  >  用户交互输入
 [[VL 估值方法论]]
 [[vl/modules/pdf_downloader.py.md]] · [[vl/concepts/8 步流水线.md]]
 [[vl/modules/extract_mda.py.md]] · [[vl/modules/generate_business_commentary.py.md]]
+[[vl/concepts/新增标的流程.md]] · [[vl/modules/fetcher.py.md]]

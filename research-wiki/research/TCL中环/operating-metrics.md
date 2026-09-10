@@ -112,3 +112,4 @@ sources:
 - [[research-reports]] — 券商研报索引
 [[research/index.md]]
 [[research/安琪酵母/overview.md]] · [[research/安琪酵母/industry-chain.md]]
+[[research/泡泡玛特/投资论点.md]] · [[research/泡泡玛特/数据目录.md]]

@@ -176,3 +176,4 @@ TCL中环是全球光伏硅片龙头 + 国内最大半导体硅片供应商，�
 - [[../report/reading/002129]] — VL 阅读报告
 [[research/log.md]] · [[research/index.md]]
 [[research/安琪酵母/industry-chain.md]] · [[research/articles/synthesis/popmart-historical-cycle-defense.md]]
+[[research/TCL中环/operating-metrics.md]] · [[research/articles/synthesis/京东方激励机制-置身事内框架分析.md]]

@@ -134,3 +134,4 @@ updated: 2026-08-19
 - [[泡泡玛特/投资论点]] — 泡泡玛特投资 Thesis
 - 概念页待创建：期权卖方 / 隐含波动率溢价 / 现金担保put
 [[research/index.md]] · [[research/log.md]]
+[[research/articles/synthesis/ben-thompson-ai-capital-cycle.md]]

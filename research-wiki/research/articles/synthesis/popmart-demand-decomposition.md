@@ -268,3 +268,4 @@ C: "花多少钱"有自然的向上迁移路径——不是强迫消费升级，
 
 [[popmart-cycle-defense-comparison]] · [[research/index.md]] · [[research/泡泡玛特/投资论点.md]]
 [[research/泡泡玛特/投资论点.md]]
+[[research/articles/synthesis/国企激励机制-置身事内框架与茅台案例.md]] · [[research/articles/synthesis/popmart-historical-cycle-defense.md]]

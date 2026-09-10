@@ -75,3 +75,8 @@ source: ../../raw/research/articles/本汤普森_2026_BenThompson播客-AI融资
 - 本页所有判断均为 Ben Thompson 播客对话中的个人观点，非事实陈述
 - 文中数字（资本开支 8000 亿/1.3 万亿美元、英伟达 5000 亿融资安排、Google 为 Anthropic 提供约 20% TPU、BNSF 单年 FCF 超喜诗历史总和等）均为对话陈述，未经独立核验
 - 论证方法可借鉴：反复用"类比 + 反类比"（Dropbox→OpenAI、IBM→Microsoft、伊朗→内存厂商、航运→算力），并在每一步标注置信度与不确定性
+
+## 参见
+
+[[芒格格栅理论-多学科思维投资框架]]
+[[research/index.md]]

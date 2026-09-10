@@ -1,3 +1,10 @@
+---
+topic: 建滔集团 (00148) — 投资 Thesis
+category: 投资论点
+created: 2026-09-10
+updated: 2026-09-10
+---
+
 # 建滔集团 (00148) — 投资 Thesis
 
 > 最后更新：2026-08-06
@@ -33,3 +40,4 @@
 - [[../建滔积层板/thesis|建滔积层板 Thesis]] — 纯赛道版本
 - [[overview]] — 数据目录
 - [[industry-chain]] — 产业链全景
+[[research/index.md]]
