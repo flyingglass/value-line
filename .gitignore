@@ -25,6 +25,6 @@ scripts/_tmp_*.py
 _tmp_*.txt
 .tmp_*
 
-# 例外：wiki 文章配图需要入库（全局 gitignore 的 assets/ 规则会误伤此目录）
-!research-wiki/**/assets/
-!research-wiki/**/assets/**
+# 例外：项目内所有 assets/ 都要入库（全局 gitignore 的 assets/ 规则会误伤任意层级）
+!**/assets/
+!**/assets/**
