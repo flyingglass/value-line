@@ -1,6 +1,7 @@
 .venv/
 pdfs_archive/
 data/pdfs
+data/disclosure/
 weiyun_upload_pdfs.py
 report_data.json
 .vscode/
@@ -22,3 +23,8 @@ _tmp_lint_out.txt
 scripts/_tmp_*.py
 .diff_*.txt
 _tmp_*.txt
+.tmp_*
+
+# 例外：wiki 文章配图需要入库（全局 gitignore 的 assets/ 规则会误伤此目录）
+!research-wiki/**/assets/
+!research-wiki/**/assets/**

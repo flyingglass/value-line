@@ -546,9 +546,28 @@ def article_layout(art, gid, raw_name):
         return raw_name, seg
     return '概览', []
 
+IMG_RX = re.compile(r'(!\[[^\]]*\]\()([^)\s]+)(\))')
+
+
+def rewrite_md_assets(body, md_dir, out):
+    out_dir = os.path.dirname(out)
+
+    def rep(m):
+        src = m.group(2)
+        if src.startswith(('http://', 'https://', 'data:', '//', '#', '/')):
+            return m.group(0)
+        p = os.path.normpath(os.path.join(md_dir, src))
+        rel = os.path.relpath(p, out_dir).replace(os.sep, '/')
+        return m.group(1) + rel + m.group(3)
+
+    return IMG_RX.sub(rep, body)
+
+
 def group_article_page(art, seg, out, display_name, group_idx):
     md_file = os.path.join(WIKI_DIR, art['path'].replace('/', os.sep))
-    body_b64 = base64.b64encode(art['body'].encode('utf-8')).decode('ascii')
+    body_b64 = base64.b64encode(
+        rewrite_md_assets(art['body'], os.path.dirname(md_file), out).encode('utf-8')
+    ).decode('ascii')
     tab = seg[0] if seg else '概览'
     back_target = posix_rel(out, group_idx) + '#dir=' + quote(tab)
     os.makedirs(os.path.dirname(out), exist_ok=True)
@@ -688,7 +707,9 @@ def generate_group(scope, gid, info):
 
 def general_article_page(art, out):
     md_file = os.path.join(WIKI_DIR, art['path'].replace('/', os.sep))
-    body_b64 = base64.b64encode(art['body'].encode('utf-8')).decode('ascii')
+    body_b64 = base64.b64encode(
+        rewrite_md_assets(art['body'], os.path.dirname(md_file), out).encode('utf-8')
+    ).decode('ascii')
     topic = art.get('topic', '通用')
     frag = 'dir=' + quote(topic)
     back_target = posix_rel(out, GENERAL_IDX) + '#' + frag
