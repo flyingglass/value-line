@@ -1,0 +1,10 @@
+新增涪陵榨菜(002507)标的：8 步流水线报告 + 营收结构 + 个股 commentary
+
+- config.py: 新增 002507 配置（深市主板，org_id 9900015937，总股本 1,153,919,030）
+- scripts/002507/insert_revenue.py: 2025 年报营收拆分（分产品/分地区/分销售模式，
+  合计 24.32 亿元，各维度占比均 100%）
+- scripts/002507/business_commentary.py: 参数驱动的 business + 5 段 commentary
+  （覆盖原自动模板：修正未定义变量与硬编码数字）
+- 产物: report/涪陵榨菜.html、report/reading/002507.md/.html、report/index.html（74 标的）
+- 清理: 移除误入库的临时调试文件 .diff_tmp.txt、scripts/_tmp_diff_probe.py，
+  并补充 .gitignore 忽略规则
