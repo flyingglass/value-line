@@ -2612,3 +2612,28 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 - 单行元数据块 3 个无需处理
 
 触及页面：research-wiki/raw/**（47 个 md）、.codebuddy/CODEBUDDY.md、.codebuddy/skills/research-ingest/references/raw_template.md、research/log.md
+
+## [2026-09-11] delete | 时代天使 raw 存档删除 + wiki 引用标记（方案 C）
+
+### 用户要求
+- 删除 `raw/research/时代天使/` 下全部 7 篇文章；带出的悬空引用按方案 C 处理（清引用 + 标记 + 重建 view）
+
+### 执行
+- 删除 7 份 raw 原文（⚠️ 违反「raw 只进不改」，按用户明确要求执行；文件已在 git 历史中，可回溯）：
+  - `2026-08-18-钛媒体-6000亿市值蒸发-隐形正畸行业价格战.md`
+  - `2026-08-18-i财评社-时代天使辉煌不再.md`
+  - `2026-08-18-财经网-16省口腔正畸集采开标结果.md`
+  - `2026-08-18-新浪财经-坠落的时代天使集采重压下净利两连降.md`
+  - `2026-08-18-界面新闻-口腔集采2.0杀到.md`
+  - `2026-08-18-陕西省公共资源交易中心-正畸集采接续采购通知.md`
+  - `2026-08-18-公司公告-收购巴西Aditek.md`
+- `research/时代天使/竞争时间线.md`：frontmatter `sources:` 由「7 raw + DB」收敛为 `[data/06699.db]`；页首新增「来源状态（2026-09-11）」说明；正文 36 处 🟩/🟨 署名加 `〔存档已删〕` 标记；勘误句改指本条日志
+- `research/时代天使/产业链.md`：页首加来源状态说明，2 处署名加标记
+- 删除 `view/stocks/时代天使/原始资料/` 7 个孤立 HTML；重跑 `scripts/generate_wiki_index.py`（265 页），时代天使组页不再有「原始资料」标签
+- 临时脚本 `scripts/_tmp_mark_offline_sources.py`（dry-run + 落盘，跑完删除）
+
+### 影响与遗留
+- ⚠️ 竞争时间线/产业链 中引自 钛媒体 / i财评社 / 财经网 / 新浪财经 / 界面新闻 / 陕西公共资源交易中心 / 公司公告 的数据（集采降幅 43.23%、市占率 42%、案例 24.4 万例、换帅等）**在仓库内已不可回溯**，仅存页内摘录；重新取证须回外部原始网页
+- 🟦 `data/06699.db` 数据不受影响（营收/净利/毛利率/ROIC 等以 DB 为准）；百家号/36氪、知乎「好的牙」、华泰证券、天风证券等来源本就未归档
+
+触及页面：research-wiki/raw/research/时代天使/**（7 份，删除）、research/时代天使/竞争时间线.md、research/时代天使/产业链.md、research-wiki/view/stocks/时代天使/**、research/index.md、research/log.md
