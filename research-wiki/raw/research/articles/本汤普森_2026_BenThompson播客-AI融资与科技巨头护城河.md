@@ -2,12 +2,12 @@
 
 > 记录日期：2026-08-19
 > 原文来源：微信公众号「我有充足的时间」（园丁推荐）编译转载
-> 原文链接：https://mp.weixin.qq.com/s/FniYgvEfBCI6B5pizAXzMA
-> 原载：Stratechery（Ben Thompson）
-> 对话嘉宾：Ben Thompson（Stratechery）× Patrick O'Shaughnessy（主持）
-> 播出日期：2026-08-18（对话原始记录）
-> 主题：AI 融资 · 台积电与 Intel · 聚合理论 · 科技巨头护城河 · 英伟达
-> 定位：一期以聚合理论视角审视 AI 资本周期与科技巨头格局的播客对话
+> 原文链接：https://mp.weixin.qq.com/s/FniYgvEfBCI6B5pizAXzMA\
+> 原载：Stratechery（Ben Thompson）\
+> 对话嘉宾：Ben Thompson（Stratechery）× Patrick O'Shaughnessy（主持）\
+> 播出日期：2026-08-18（对话原始记录）\
+> 主题：AI 融资 · 台积电与 Intel · 聚合理论 · 科技巨头护城河 · 英伟达\
+> 定位：一期以聚合理论视角审视 AI 资本周期与科技巨头格局的播客对话\
 > 结构：引言 + 9 个话题段（美国与 AI 竞赛 / AI 的融资难题 / AI 的能力与边界 / 聚合理论、AI 与广告 / 算力、台积电与 Intel / Amazon 与 Apple 的 AI 护城河 / 前沿 AI 玩家 / 英伟达与商品化的智能 / AI 泡沫之后，什么会留下）
 
 ---

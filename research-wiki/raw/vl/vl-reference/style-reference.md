@@ -1,7 +1,7 @@
 # Value Line Report — 样式参考
 
-> 保存时间: 2026-05-28
-> 当前标的: 09988.HK (阿里巴巴)
+> 保存时间: 2026-05-28\
+> 当前标的: 09988.HK (阿里巴巴)\
 > 文件: generate_report.py → report.html
 
 ---
