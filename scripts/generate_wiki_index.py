@@ -473,7 +473,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
-.md img{max-width:100%}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
 .md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
 .backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
 .backrow a{color:#555;text-decoration:none;font-size:13px}
@@ -482,6 +486,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 """
+
+# 正文图片点击放大（灯箱）：md 内任意 img 点击后全屏显示原图，点任意处 / Esc 关闭
+LIGHTBOX_JS = (
+    'var lb=document.createElement("div");lb.id="lb";'
+    'lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";'
+    'document.body.appendChild(lb);'
+    'var lbImg=lb.querySelector("img");'
+    'el.addEventListener("click",function(e){'
+    'if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}'
+    '});'
+    'lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});'
+    'document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});'
+)
 
 def kind_tag(kind):
     m = {'wiki': 'tag-wiki', 'raw': 'tag-raw', 'concept': 'tag-concept',
@@ -589,6 +606,7 @@ def group_article_page(art, seg, out, display_name, group_idx):
              'function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};'
              'var el=document.getElementById("md");'
              'if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}'
+             + LIGHTBOX_JS +
              '</script></body></html>')
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html)
@@ -731,6 +749,7 @@ def general_article_page(art, out):
              'function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};'
              'var el=document.getElementById("md");'
              'if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}'
+             + LIGHTBOX_JS +
              '</script></body></html>')
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, 'w', encoding='utf-8') as f:
