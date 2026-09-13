@@ -1322,6 +1322,123 @@ STOCKS = {
         "business_desc": "涪陵电力（重庆涪陵电力实业，上交所主板）主营重庆涪陵区域电网运营（购售电、输配电），并依托国网综能开展配电网节能服务（电网节能改造收益分享），属公用事业型现金流标的，是里海「涪陵三剑客」虚拟对照组之一（2020.4.9 建组、2022.10.24 复盘：+58.18%）。",
         "alt_names": ["涪陵电力", "Fuling Power"],
     },
+    # ============================================================
+    # 里海案例标的（research-wiki 案例页数据底座）
+    #   用途：案例页「事件时间线」的业绩（间隔/公告）列 + 周K复盘图（scripts/linhai_chart.py）
+    #   数据：scripts/fetcher.py                      → data/<code>.db（kline + 三大报表 + 指标 + 分红）
+    #         scripts/tools/fetch_disclosure_cn.py     → data/disclosure/<code>_disclosure.json
+    #   说明：以下条目仅作**数据源登记**，供 research-wiki 使用；无需为它们准备报告层资产。
+    # ============================================================
+    "000830": {
+        "name": "鲁西化工",
+        "name_en": "Luxi Chemical",
+        "market": "cn",
+        "exchange": "SZSE",
+        "currency": "CNY",
+        "inc": "中国山东聊城",
+        "pfx": "sz",
+        "industry": "化工",
+        "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "300435": {
+        "name": "中泰股份",
+        "name_en": "Zhongtai Cryogenic",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "机械设备", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "002053": {
+        "name": "云南能投",
+        "name_en": "Yunnan Energy Investment",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "公用事业", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "002539": {
+        "name": "云图控股",
+        "name_en": "Yuntu Holdings",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "化工", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "300596": {
+        "name": "利安隆",
+        "name_en": "Rianlon",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "化工", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "605077": {
+        "name": "华康股份",
+        "name_en": "Huakang",
+        "market": "cn", "exchange": "SSE", "currency": "CNY",
+        "pfx": "sh", "industry": "食品饮料", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "603612": {
+        "name": "索通发展",
+        "name_en": "Sunstone Development",
+        "market": "cn", "exchange": "SSE", "currency": "CNY",
+        "pfx": "sh", "industry": "化工", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "300401": {
+        "name": "花园生物",
+        "name_en": "Garden Biology",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "医药", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "300006": {
+        "name": "莱美药业",
+        "name_en": "Lummy Pharmaceutical",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "医药", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "002478": {
+        "name": "常宝股份",
+        "name_en": "Changbao Steel Tube",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "钢铁", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "300547": {
+        "name": "川环科技",
+        "name_en": "Chuanhuan Technology",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "汽车零部件", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "300019": {
+        "name": "硅宝科技",
+        "name_en": "Guibao Technology",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "化工", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "300786": {
+        "name": "国林科技",
+        "name_en": "Guolin Technology",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "机械设备", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "002353": {
+        "name": "杰瑞股份",
+        "name_en": "Jereh Oilfield Services",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "机械设备", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "000625": {
+        "name": "长安汽车",
+        "name_en": "Changan Automobile",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "汽车", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
 }
 
 # ============================================================
