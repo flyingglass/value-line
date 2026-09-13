@@ -13,6 +13,8 @@
 用法：.venv\\Scripts\\python scripts\\linhai_chart.py [code]
       不带参数 = 生成全部已配置标的
 """
+import io
+import json
 import os
 import sqlite3
 import sys
@@ -39,6 +41,13 @@ PHASE_EC = "#2f6fd0"                     # 阶段框边界（蓝）
 YEAR_C, MID_C = "#c3ccd9", "#b9c3d1"     # 年度分割线 / 年中分割线
 LEVEL_C = "#b3261e"
 PHASE_BG = ["#f4f7fb", "#fbf7f0"]
+DISC_QC, DISC_RC = "#c2570c", "#5a6473"   # 业绩先声（预告/快报，橙） / 定期披露（灰）
+
+# 公告类别 → 报告期标签。A 股口径（一季报/三季报/业绩快报）与港股口径（Q1/Q3/预告）都收。
+CAT_FMT = {"年报": "%sA", "中报": "%sH1", "半年报": "%sH1", "Q1": "%sQ1", "Q3": "%sQ3",
+           "一季报": "%sQ1", "三季报": "%sQ3",
+           "业绩快报": "%s快", "业绩预告": "%s预", "快报": "%s快", "预告": "%s预"}
+QUICK_CATS = {"业绩快报", "业绩预告", "快报", "预告"}   # 橙色：业绩先声
 
 # ---------------------------------------------------------------------------
 # 配置：每只标的的复盘图要素（买卖点价位均为案例页原文口径）
@@ -169,6 +178,47 @@ SPECS["600452"] = dict(
         ("2026", "H", "2026 高点：创出新高（案例未覆盖）", -40),
     ],
     levels=[],
+)
+
+SPECS["09992"] = dict(
+    name="泡泡玛特", start="2020-12-01",
+    title=("泡泡玛特（09992 · 港股）周K复盘（前复权）· 2020-12 上市 ~ 2026-08　｜　"
+           "关键顶底 × 里海「错过点」× 关键水平位",
+           "注意：本图不标买卖点 —— 里海从未买卖过泡泡玛特（原话「我连 1 秒钟都不会迟疑，我不会买」"
+           "「一直以来我没有买卖过港股」「宁愿错过，不愿错买」）；灰圈是他的表态时点，不是交易"),
+    footnote=(
+        "数据：data/09992.db（kline 前复权 qfq，按周 W-FRI 聚合成周K）· 引语与事件出处见 "
+        "research-wiki/raw/research/疯狂的里海/【疯狂的里海】公众号文章合集2025年 - 里海.txt\n"
+        "※ 本图为什么不标「买点 / 卖点」：作者从未买卖过泡泡玛特。2025.6.18 原文：「再来说泡泡玛特，两年涨了 20 倍……"
+        "买不买？我连 1 秒钟都不会迟疑，我不会买。为什么？已经早就不符合我的『追求安全边际第一』高胜率的投资模式了。"
+        "早期是符合我的搞法的，但是，我无精力跟踪，也暂时没有涉足港股」「一直以来我没有买卖过港股」「宁愿错过，不愿错买」。\n"
+        "作者对它的定性（2025 年）：典型的困境反转模式 —— 盲盒业务本已下滑，出海却成功、基本面大反转，"
+        "再叠加市场情绪共振，「形成了战略级的投资机会」；但他认为发现时「涨了许多之后才发现，就已经错过其最佳买入区间了」。"
+        "据此他提炼的判据是「没变化少言底」与「高位不要去研究基本面，低位研究」。\n"
+        "顶底：由脚本按「该年最高 / 最低周」自动定位取价，未手填日期。2025 年高点 333.88（前复权）即作者笔下的「最高点 339」，"
+        "两者为同一位置（复权 / 名义口径微差）。窗口截至 2026-08-26（数据源末行）。"),
+    phases=[
+        ("2020-12-01", "2021-12-31", "阶段一 · 上市爆炒后见顶\n2020.12-2021", "2020.12.11 港股上市；2021 年最高 102.96（前复权）"),
+        ("2022-01-01", "2023-12-31", "阶段二 · 盲盒下滑 + 杀估值\n2022-2023", "从 102.96 跌至 2022 年最低 9.60（-90.7%）；2023 年在 15-27 区间横盘"),
+        ("2024-01-01", "2024-12-31", "阶段三 · 出海成功 → 基本面反转\n2024", "作者：「没想到出海却成功了，基本面大反转」；16.39 → 94.82"),
+        ("2025-01-01", "2025-12-31", "阶段四 · 戴维斯双击主升\n2025", "2025.8 最高 333.88；作者 6.18 明确「我不会买」、10.23 记「从最高点 339 跌三分之一」"),
+        ("2026-01-01", "2026-08-31", "阶段五 · 高位回落震荡\n2026", "2026.3 回落至 137.66，8 月 154.30（窗口截至 2026-08-26）"),
+    ],
+    trades=[],                      # 作者无交易 → 不标买卖点
+    neutrals=[                      # 中性标记：作者的表态时点（非交易）
+        ("2025-06-18", "2025.6.18 作者：「我连 1 秒钟都不会迟疑，我不会买」", (0, 44)),
+        ("2025-10-23", "2025.10.23 作者：「从最高点 339 下跌了三分之一」", (-74, -48)),
+    ],
+    hilo=[
+        ("2021", "H", "2021 高点：上市爆炒后见顶"),
+        ("2022", "L", "2022 低点 9.60：盲盒下滑 + 杀估值最深处"),
+        ("2025", "H", "2025 高点 333.88（作者笔下「最高点 339」）"),
+        ("2026", "L", "2026 低点：高位回落"),
+    ],
+    levels=[
+        (102.96, "2021 高点 102.96（前复权）", "#5a6473"),
+        (333.88, "2025 高点 333.88 ＝ 作者笔下「最高点 339」", LEVEL_C),
+    ],
 )
 
 SPECS["603325"] = dict(
@@ -303,6 +353,30 @@ def draw_candles(ax, seg, idx, lw=0.55, width=0.82):
 # ---------------------------------------------------------------------------
 # 绘图
 # ---------------------------------------------------------------------------
+def load_disclosures(code):
+    """读 data/disclosure/{code}_disclosure.json（A 股 = 巨潮 cninfo，港股 = 港交所披露易）。
+
+    返回 (records, source)：records = [{date, kind, label, title}]，按日期升序；无文件时返回 ([], None)。
+    标签年份口径 = 报告期：年报在次年披露，故披露年 −1；其余（中报 / 季报 / 预告 / 运营数据）取披露年。
+    """
+    path = os.path.join(BASE, "data", "disclosure", "%s_disclosure.json" % code)
+    if not os.path.exists(path):
+        return [], None
+    with io.open(path, encoding="utf-8") as f:
+        js = json.load(f)
+    out = []
+    for d in js.get("disclosures") or []:
+        kind = d.get("category", "")
+        fmt = CAT_FMT.get(kind)
+        if fmt is None:
+            continue
+        y = int(str(d["date"])[:4]) - (1 if kind == "年报" else 0)
+        out.append({"date": pd.Timestamp(d["date"]), "kind": kind,
+                    "label": fmt % str(y)[2:], "title": d.get("title", "")})
+    out.sort(key=lambda x: x["date"])
+    return out, js.get("source")
+
+
 def draw(code, spec):
     w = to_week(load_kline(code, spec["start"]))
     wi = w["date"].to_numpy()
@@ -311,7 +385,7 @@ def draw(code, spec):
     fig = plt.figure(figsize=(21, 9.6), dpi=150)
     fig.patch.set_facecolor("#ffffff")
     gs = fig.add_gridspec(2, 1, height_ratios=[4.0, 0.72],
-                          left=0.052, right=0.984, top=0.885, bottom=0.155, hspace=0.07)
+                          left=0.052, right=0.984, top=0.885, bottom=0.155, hspace=0.205)
     ax_m = fig.add_subplot(gs[0])
     ax_v = fig.add_subplot(gs[1], sharex=ax_m)
 
@@ -344,6 +418,25 @@ def draw(code, spec):
                       color="#2b3138", zorder=6,
                       bbox=dict(boxstyle="round,pad=0.42", fc="#ffffff",
                                 ec="#9aa2ae", lw=1.0, alpha=0.94))
+
+    # 业绩公告披露日：短线与标签都放在主图轴外（X 轴刻度下方），不占 K 线空间
+    # 橙 = 业绩预告（先声），灰 = 年度 / 中期业绩与季度运营数据；年报标签再低一行，避让同月一季报
+    disc, disc_src = load_disclosures(code)
+    for d in disc:
+        p = week_pos(wi, d["date"])
+        quick = d["kind"] in QUICK_CATS
+        col = DISC_QC if quick else DISC_RC
+        ax_m.vlines(p, -0.020, 0.0, color=col,
+                    lw=1.5 if quick else 1.1,
+                    alpha=0.85 if quick else 0.45, clip_on=False,
+                    transform=ax_m.get_xaxis_transform(),
+                    zorder=1.5 if quick else 1.4)
+        ax_m.annotate(d["label"], (p, 0), xycoords=("data", "axes fraction"),
+                      xytext=(0, -33 if d["kind"] == "年报" else -20),
+                      textcoords="offset points", ha="center", va="top",
+                      fontsize=7.0, fontweight="bold", color=col,
+                      alpha=1.0 if quick else 0.85, zorder=1.6,
+                      annotation_clip=False)
 
     # 关键水平位
     for px, txt, col in spec["levels"]:
@@ -391,6 +484,21 @@ def draw(code, spec):
                       arrowprops=dict(arrowstyle="-", color=col, lw=0.8,
                                       alpha=0.55, shrinkA=2, shrinkB=4))
 
+    # 中性标记（非交易）：如作者复盘时追认的「错过点」/ 明确表态时点，用空心圈 + 灰框
+    for date, txt, (dx, dy) in spec.get("neutrals", []):
+        p = week_pos(wi, date)
+        y = w["close"].iloc[p]
+        ax_m.plot([p], [y], marker="o", ms=9, mfc="none", mec="#6b7280",
+                  mew=1.5, zorder=15)
+        ax_m.annotate(txt, (p, y), xytext=(dx, dy), textcoords="offset points",
+                      ha="center" if dx == 0 else ("left" if dx > 0 else "right"),
+                      va="bottom" if dy > 0 else "top",
+                      fontsize=8.0, fontweight="bold", color="#4b5563", zorder=27,
+                      bbox=dict(boxstyle="round,pad=0.26", fc="#ffffff",
+                                ec="#9aa2ae", lw=0.9, alpha=0.94),
+                      arrowprops=dict(arrowstyle="-", color="#9aa2ae", lw=0.8,
+                                      alpha=0.6, shrinkA=2, shrinkB=4))
+
     # 年份分割线 + 年中分割线
     yrs = pd.Series(wi).dt.year
     ypos = [int(i) for i in yrs.ne(yrs.shift()).to_numpy().nonzero()[0]]
@@ -407,24 +515,32 @@ def draw(code, spec):
         ax_v.axvline(int(i), color=MID_C, lw=0.95, ls=(0, (4, 3)), zorder=0.6)
 
     ax_m.set_xticks(ypos)
-    ax_m.set_xticklabels(ylab, fontsize=10)
-    ax_m.tick_params(axis="x", labelbottom=True, labelsize=10, colors="#333a42",
-                     length=0, pad=4)
+    # 主图不显示年份刻度（该位置让给轴外下方的公告标签），年份读成交量面板下方那套
+    ax_m.set_xticklabels([])
+    ax_m.tick_params(axis="x", length=0)
 
-    # 标题 + 图例
-    ax_m.set_title(spec["title"][0] + "\n" + spec["title"][1],
+    # 标题 + 图例（matplotlib 不解析 markdown，星号需去掉，否则会原样渲染）
+    ax_m.set_title((spec["title"][0] + "\n" + spec["title"][1]).replace("**", ""),
                    fontsize=13.2, fontweight="bold", color="#1a1d22",
                    loc="left", pad=16)
+    # 图例按配置动态生成：无 trades 的标的（如作者从未交易的标的）不显示买卖点图例
+    ev = []
+    if spec.get("trades"):
+        ev += [Line2D([], [], marker="^", color="none", mfc=BUY_C, mec="white", ms=10, label="里海买点"),
+               Line2D([], [], marker="v", color="none", mfc=SELL_C, mec="white", ms=10, label="里海卖点")]
+    if spec.get("neutrals"):
+        ev += [Line2D([], [], marker="o", color="none", mfc="none", mec="#6b7280", ms=9,
+                      label="里海表态时点（非交易）")]
+    if disc:
+        ev += [Line2D([], [], color=DISC_QC, lw=1.5, label="业绩预告披露日（先声）"),
+               Line2D([], [], color=DISC_RC, lw=1.1, label="定期披露日（年报 / 中报 / 季报）")]
+    ev += [Line2D([], [], marker="o", color="none", mfc="white", mec="#2b3138", ms=7,
+                  label="关键顶 / 底（年份最高最低周）"),
+           Line2D([], [], color=PHASE_EC, lw=1.2, ls=(0, (5, 3)), label="阶段框边界"),
+           Line2D([], [], color=YEAR_C, lw=1.1, label="年度分割线"),
+           Line2D([], [], color=MID_C, lw=1.1, ls=(0, (4, 3)), label="年中分割线")]
     ax_m.legend(
-        handles=[
-            Line2D([], [], marker="^", color="none", mfc=BUY_C, mec="white", ms=10, label="里海买点"),
-            Line2D([], [], marker="v", color="none", mfc=SELL_C, mec="white", ms=10, label="里海卖点"),
-            Line2D([], [], marker="o", color="none", mfc="white", mec="#2b3138", ms=7,
-                   label="关键顶 / 底（年份最高最低周）"),
-            Line2D([], [], color=PHASE_EC, lw=1.2, ls=(0, (5, 3)), label="阶段框边界"),
-            Line2D([], [], color=YEAR_C, lw=1.1, label="年度分割线"),
-            Line2D([], [], color=MID_C, lw=1.1, ls=(0, (4, 3)), label="年中分割线"),
-        ],
+        handles=ev,
         loc="lower right", ncol=2, fontsize=9.2, frameon=True, facecolor="white",
         edgecolor="#d5dae2", framealpha=0.94, handlelength=1.5, columnspacing=1.2,
         handletextpad=0.5, borderaxespad=0.5).set_zorder(40)
@@ -451,8 +567,14 @@ def draw(code, spec):
                 handlelength=1.5, columnspacing=1.6, handletextpad=0.5,
                 borderaxespad=0.25)
 
-    # 脚注
-    fig.text(0.052, 0.008, spec["footnote"], fontsize=8.3, color="#5a6068",
+    # 脚注（有公告数据时追加一行口径说明）
+    fn = spec["footnote"].replace("**", "")
+    if disc:
+        fn += ("\n业绩公告：主图底部短线 = 披露日（橙 = 业绩预告，灰 = 年度 / 中期业绩与季度运营数据），"
+               "标签为报告期（24A = 2024 年度业绩 / 25H1 = 2025 中期 / 25Q3 = 2025 三季度 / 25预 = 业绩预告）；"
+               "来源 %s，数据见 data/disclosure/%s_disclosure.json，共 %d 条。"
+               % (disc_src or "巨潮资讯 cninfo", code, len(disc)))
+    fig.text(0.052, 0.008, fn, fontsize=8.3, color="#5a6068",
              va="bottom", linespacing=1.6)
 
     out = os.path.join(ASSETS, "kline-%s-review.png" % code)
