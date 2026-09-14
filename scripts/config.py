@@ -1341,6 +1341,24 @@ STOCKS = {
         "business_desc": "",
         "alt_names": ["重庆川仪", "川仪", "Chuanyi"],
     },
+    "000429": {
+        "name": "粤高速A",
+        "name_en": "Guangdong Provincial Expressway Development Co., Ltd.",
+        "market": "cn",
+        "exchange": "SZSE",
+        "currency": "CNY",
+        "ceo": "苗德山",              # 董事长/法人代表(2022-08-19 起)
+        "inc": "中国广东广州",
+        "website": "www.gpedcl.com",   # 巨潮公司概况
+        "org_id": "",                # 巨潮自动发现
+        "pfx": "sz",
+        "shares": 2090806126,        # 总股本(A+B合计) = 注册资本 20.908 亿元 / 面值1元 (巨潮)
+        "shares_str": "2,090,806,126",
+        "industry": "交通运输",
+        "fiscal_yr_end": "12-31",
+        "business_desc": "",
+        "alt_names": ["粤高速", "广东省高速公路发展股份有限公司", "Guangdong Expressway"],
+    },
     # ============================================================
     # 里海案例标的（research-wiki 案例页数据底座）
     #   用途：案例页「事件时间线」的业绩（间隔/公告）列 + 周K复盘图（scripts/linhai_chart.py）
