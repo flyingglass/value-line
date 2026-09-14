@@ -28,3 +28,7 @@ _tmp_*.txt
 # 例外：项目内所有 assets/ 都要入库（全局 gitignore 的 assets/ 规则会误伤任意层级）
 !**/assets/
 !**/assets/**
+
+# 广州上市公司中报批量下载产物（PDF + 打包 zip，体积大，不入版本库）
+data/广州/
+data/广州.zip
