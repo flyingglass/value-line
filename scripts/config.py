@@ -1322,6 +1322,25 @@ STOCKS = {
         "business_desc": "涪陵电力（重庆涪陵电力实业，上交所主板）主营重庆涪陵区域电网运营（购售电、输配电），并依托国网综能开展配电网节能服务（电网节能改造收益分享），属公用事业型现金流标的，是里海「涪陵三剑客」虚拟对照组之一（2020.4.9 建组、2022.10.24 复盘：+58.18%）。",
         "alt_names": ["涪陵电力", "Fuling Power"],
     },
+    "603100": {
+        "name": "川仪股份",
+        "name_en": "Chongqing Chuanyi Automation Co.,Ltd",     # 2025年报 P9 外文名称
+        "market": "cn",
+        "exchange": "SSE",
+        "currency": "CNY",
+        "ceo": "李赐犁",              # 2025年报 P2 公司负责人 / 2025-12-03 当选董事长
+        "inc": "中国重庆市",
+        "website": "www.cqcy.com",    # 2025年报 P9 公司网址
+        "org_id": "",                # 巨潮自动发现
+        "pfx": "sh",
+        "shares": 513173176,         # 总股本 513,173,176股 (巨潮股本变动 + 东财f84 双源一致)
+        "shares_str": "513,173,176",
+        "industry": "机械设备",
+        "fiscal_yr_end": "12-31",
+        "valuation_method": "cf",
+        "business_desc": "",
+        "alt_names": ["重庆川仪", "川仪", "Chuanyi"],
+    },
     # ============================================================
     # 里海案例标的（research-wiki 案例页数据底座）
     #   用途：案例页「事件时间线」的业绩（间隔/公告）列 + 周K复盘图（scripts/linhai_chart.py）
