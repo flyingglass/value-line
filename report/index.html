@@ -131,6 +131,8 @@
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('all')">全部<span class="count">(94)</span></button>
     <button class="tab-btn" onclick="switchTab('featured')">精选<span class="count">(22)</span></button>
+    <button class="tab-btn" onclick="switchTab('guangshen')">广深<span class="count">(2)</span></button>
+    <button class="tab-btn" onclick="switchTab('baima')">白马<span class="count">(4)</span></button>
   </div>
 
   <div id="tab-all" class="tab-content active">
@@ -1406,6 +1408,85 @@
         </div>
       </div>    </div>
   </div>
+  <div id="tab-guangshen" class="tab-content">
+    <h3 class="section-title">🎯 化工</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Asia-Potash International Investment (Guangzhou) · 亚钾国际</div>
+        <div class="card-meta">
+          <span class="code">000893</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="亚钾国际.html" class="pill pill-blue">价值线</a>
+          <a href="reading/000893.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>    </div>
+    <h3 class="section-title">🎯 交通运输</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Guangdong Provincial Expressway Development Co., Ltd. · 粤高速A</div>
+        <div class="card-meta">
+          <span class="code">000429</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="粤高速A.html" class="pill pill-blue">价值线</a>
+          <a href="reading/000429.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>    </div>
+  </div>
+  <div id="tab-baima" class="tab-content">
+    <h3 class="section-title">🎯 消费</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">POP MART · 泡泡玛特</div>
+        <div class="card-meta">
+          <span class="code">09992</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="泡泡玛特.html" class="pill pill-blue">价值线</a>
+          <a href="reading/09992.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>      <div class="card">
+        <div class="card-title">Kweichow Moutai · 贵州茅台</div>
+        <div class="card-meta">
+          <span class="code">600519</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="贵州茅台.html" class="pill pill-blue">价值线</a>
+          <a href="reading/600519.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>    </div>
+    <h3 class="section-title">🎯 互联网</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Tencent Holdings · 腾讯控股</div>
+        <div class="card-meta">
+          <span class="code">00700</span>
+          <span class="badge badge-hk">港股</span>
+        </div>
+        <div class="card-links">
+          <a href="腾讯控股.html" class="pill pill-blue">价值线</a>
+          <a href="reading/00700.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>    </div>
+    <h3 class="section-title">🎯 传媒</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Focus Media · 分众传媒</div>
+        <div class="card-meta">
+          <span class="code">002027</span>
+          <span class="badge badge-cn">A股</span>
+        </div>
+        <div class="card-links">
+          <a href="分众传媒.html" class="pill pill-blue">价值线</a>
+          <a href="reading/002027.html" class="pill pill-green">阅读报告</a>
+        </div>
+      </div>    </div>
+  </div>
 
   <script>
     function switchTab(tab) {
@@ -1414,11 +1495,13 @@
       document.querySelector('.tab-btn[onclick*="' + tab + '"]').classList.add('active');
       document.getElementById('tab-' + tab).classList.add('active');
       // 更新 URL hash
-      window.location.hash = tab === 'featured' ? '#精选' : '';
+      window.location.hash = tab === 'all' ? '' : '#' + tab;
     }
     // 页面加载时根据 URL hash 切换
     (function() {
-      if (window.location.hash === '#精选') switchTab('featured');
+      var h = decodeURIComponent(window.location.hash.replace('#', ''));
+      if (h === '精选' || h === 'featured') { switchTab('featured'); return; }
+      if (h && document.getElementById('tab-' + h)) switchTab(h);
     })();
   </script>
 

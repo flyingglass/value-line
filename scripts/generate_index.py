@@ -39,6 +39,23 @@ FEATURED_CODES = [
     "002129", # TCL中环
 ]
 
+# ============================================================
+# 自定义分组 (在标签页展示，不改变原行业分组)
+# 格式: (tab_id, 中文名, [代码])
+# ============================================================
+CUSTOM_GROUPS = [
+    ("guangshen", "广深", [
+        "000429",  # 粤高速A
+        "000893",  # 亚钾国际
+    ]),
+    ("baima", "白马", [
+        "600519",  # 贵州茅台
+        "00700",   # 腾讯控股
+        "09992",   # 泡泡玛特
+        "002027",  # 分众传媒
+    ]),
+]
+
 # 行业中文名
 INDUSTRY_CN = {
     "Consumer": "消费",
@@ -134,6 +151,23 @@ def _card_html(code, stock):
       </div>'''
 
 
+def _group_html(codes, groups):
+    """按行业分组渲染指定代码集合（与「全部」同排版）"""
+    code_set = set(codes)
+    html = ""
+    for ind, items in groups.items():
+        selected = [(c, s) for c, s in items if c in code_set]
+        if not selected:
+            continue
+        ind_cn = INDUSTRY_CN.get(ind, ind)
+        html += f'    <h3 class="section-title">🎯 {ind_cn}</h3>\n'
+        html += '    <div class="grid">\n'
+        for code, stock in selected:
+            html += _card_html(code, stock)
+        html += '    </div>\n'
+    return html
+
+
 def build_index_html():
     """生成 index.html"""
     groups = group_by_industry()
@@ -141,18 +175,21 @@ def build_index_html():
     featured_count = len([c for c in FEATURED_CODES if c in STOCKS])
 
     # --- 精选区域（按行业分组，与全部同排版） ---
-    featured_set = set(FEATURED_CODES)
-    featured_html = ""
-    for ind, items in groups.items():
-        featured_items = [(c, s) for c, s in items if c in featured_set]
-        if not featured_items:
-            continue
-        ind_cn = INDUSTRY_CN.get(ind, ind)
-        featured_html += f'    <h3 class="section-title">🎯 {ind_cn}</h3>\n'
-        featured_html += '    <div class="grid">\n'
-        for code, stock in featured_items:
-            featured_html += _card_html(code, stock)
-        featured_html += '    </div>\n'
+    featured_html = _group_html(FEATURED_CODES, groups)
+
+    # --- 自定义分组 ---
+    custom_html = ""
+    tabs = [("all", "全部", total), ("featured", "精选", featured_count)]
+    for gid, label, codes in CUSTOM_GROUPS:
+        cnt = len([c for c in codes if c in STOCKS])
+        tabs.append((gid, label, cnt))
+        custom_html += f'  <div id="tab-{gid}" class="tab-content">\n{_group_html(codes, groups)}  </div>\n'
+
+    # --- 标签栏 ---
+    tabs_html = ""
+    for i, (gid, label, cnt) in enumerate(tabs):
+        active = " active" if i == 0 else ""
+        tabs_html += f'    <button class="tab-btn{active}" onclick="switchTab(\'{gid}\')">{label}<span class="count">({cnt})</span></button>\n'
 
     # --- 行业分组（全部） ---
     cards_html = ""
@@ -299,16 +336,14 @@ def build_index_html():
 </header>
 <div class="container">
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('all')">全部<span class="count">({total})</span></button>
-    <button class="tab-btn" onclick="switchTab('featured')">精选<span class="count">({featured_count})</span></button>
-  </div>
+{tabs_html}  </div>
 
   <div id="tab-all" class="tab-content active">
 {cards_html}  </div>
 
   <div id="tab-featured" class="tab-content">
 {featured_html}  </div>
-
+{custom_html}
   <script>
     function switchTab(tab) {{
       document.querySelectorAll('.tab-btn').forEach(function(b) {{ b.classList.remove('active'); }});
@@ -316,11 +351,13 @@ def build_index_html():
       document.querySelector('.tab-btn[onclick*="' + tab + '"]').classList.add('active');
       document.getElementById('tab-' + tab).classList.add('active');
       // 更新 URL hash
-      window.location.hash = tab === 'featured' ? '#精选' : '';
+      window.location.hash = tab === 'all' ? '' : '#' + tab;
     }}
     // 页面加载时根据 URL hash 切换
     (function() {{
-      if (window.location.hash === '#精选') switchTab('featured');
+      var h = decodeURIComponent(window.location.hash.replace('#', ''));
+      if (h === '精选' || h === 'featured') {{ switchTab('featured'); return; }}
+      if (h && document.getElementById('tab-' + h)) switchTab(h);
     }})();
   </script>
 
