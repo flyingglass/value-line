@@ -74,17 +74,13 @@ page_labels = {
 # 作者案例专题目录（research/ 下的子目录名 → 组显示名）
 CASE_GROUP_NAMES = {
     '疯狂的里海': '里海 · 作者案例专题',
-}
-
-# 归入其他案例组的目录（research/<sub>/ 合并到 owner 组下，显示为组内一个子目录标签）
-CASE_GROUP_ALIAS = {
-    '学股': '疯狂的里海',
+    '学股': '学股 · 广深名单池',
 }
 
 # 组顶层文件夹（标签）的展示顺序；未列出的按名称字典序；概览 紧随其后；原始资料始终垫底
 GROUP_DIR_ORDER = {
     '泡泡玛特': ['跟踪', '经营', '需求', '业绩'],
-    '疯狂的里海': ['案例', '方法论', '时间线', '学股'],
+    '疯狂的里海': ['案例', '方法论', '时间线'],
 }
 
 RAW_DIR_NAMES = ('原始资料', '原始资料·源')
@@ -228,15 +224,13 @@ def scan_wiki():
             subpath = os.path.join(research_dir, sub)
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
-            owner = CASE_GROUP_ALIAS.get(sub)
-            is_case = sub in CASE_GROUP_NAMES or owner is not None
-            gname = CASE_GROUP_NAMES.get(owner or sub, owner or sub)
+            is_case = sub in CASE_GROUP_NAMES
+            gname = CASE_GROUP_NAMES.get(sub, sub)
             industry = stock_info.get(sub, '其他')
             for rel, fpath in iter_md(subpath):
-                logic = f"research/{owner}/{sub}/{rel}" if owner else f"research/{sub}/{rel}"
-                art = read_article(fpath, logic)
+                art = read_article(fpath, f"research/{sub}/{rel}")
                 if is_case:
-                    add_case(owner or sub, gname, art)
+                    add_case(sub, gname, art)
                 else:
                     add_article(sub, sub, industry, art)
 
@@ -247,15 +241,13 @@ def scan_wiki():
             subpath = os.path.join(raw_dir, sub)
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
-            owner = CASE_GROUP_ALIAS.get(sub)
-            is_case = sub in CASE_GROUP_NAMES or owner is not None
-            gname = CASE_GROUP_NAMES.get(owner or sub, owner or sub)
+            is_case = sub in CASE_GROUP_NAMES
+            gname = CASE_GROUP_NAMES.get(sub, sub)
             industry = stock_info.get(sub, '其他')
             for rel, fpath in iter_md(subpath):
-                logic = f"raw/research/{owner}/{sub}/{rel}" if owner else f"raw/research/{sub}/{rel}"
-                art = read_article(fpath, logic)
+                art = read_article(fpath, f"raw/research/{sub}/{rel}")
                 if is_case:
-                    add_case(owner or sub, gname, art)
+                    add_case(sub, gname, art)
                 else:
                     add_article(sub, sub, industry, art)
 
@@ -422,7 +414,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 #sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
 #sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
 #sec-cases .grp-hd .pill{align-self:center}
-#sec-cases .grp-tabs{font-size:11px;color:#8b7fa5;text-align:center;line-height:1.6;word-break:break-word}
 .grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .grp-hd h2{font-size:16px;font-weight:700}
 .grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
@@ -841,10 +832,6 @@ def home_section_blocks(pairs, from_file, scope):
             html += ('<span class="pill industry" style="' + style + '">' +
                      esc(ind) + '</span>')
         html += '</div>'
-        if scope == 'cases':
-            tabs = ordered_tabs(gid, build_group_tree(info['articles'], gid))
-            html += ('<div class="grp-tabs">' +
-                     esc(' · '.join(n + ' ' + str(c) for n, c in tabs)) + '</div>')
         html += '</div>'
     return html
 
