@@ -422,6 +422,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 #sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
 #sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
 #sec-cases .grp-hd .pill{align-self:center}
+#sec-cases .grp-tabs{font-size:11px;color:#8b7fa5;text-align:center;line-height:1.6;word-break:break-word}
 .grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .grp-hd h2{font-size:16px;font-weight:700}
 .grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
@@ -840,6 +841,10 @@ def home_section_blocks(pairs, from_file, scope):
             html += ('<span class="pill industry" style="' + style + '">' +
                      esc(ind) + '</span>')
         html += '</div>'
+        if scope == 'cases':
+            tabs = ordered_tabs(gid, build_group_tree(info['articles'], gid))
+            html += ('<div class="grp-tabs">' +
+                     esc(' · '.join(n + ' ' + str(c) for n, c in tabs)) + '</div>')
         html += '</div>'
     return html
 
