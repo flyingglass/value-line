@@ -76,10 +76,15 @@ CASE_GROUP_NAMES = {
     '疯狂的里海': '里海 · 作者案例专题',
 }
 
+# 归入其他案例组的目录（research/<sub>/ 合并到 owner 组下，显示为组内一个子目录标签）
+CASE_GROUP_ALIAS = {
+    '学股': '疯狂的里海',
+}
+
 # 组顶层文件夹（标签）的展示顺序；未列出的按名称字典序；概览 紧随其后；原始资料始终垫底
 GROUP_DIR_ORDER = {
     '泡泡玛特': ['跟踪', '经营', '需求', '业绩'],
-    '疯狂的里海': ['案例', '方法论', '时间线'],
+    '疯狂的里海': ['案例', '方法论', '时间线', '学股'],
 }
 
 RAW_DIR_NAMES = ('原始资料', '原始资料·源')
@@ -223,13 +228,15 @@ def scan_wiki():
             subpath = os.path.join(research_dir, sub)
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
-            is_case = sub in CASE_GROUP_NAMES
-            gname = CASE_GROUP_NAMES.get(sub, sub)
+            owner = CASE_GROUP_ALIAS.get(sub)
+            is_case = sub in CASE_GROUP_NAMES or owner is not None
+            gname = CASE_GROUP_NAMES.get(owner or sub, owner or sub)
             industry = stock_info.get(sub, '其他')
             for rel, fpath in iter_md(subpath):
-                art = read_article(fpath, f"research/{sub}/{rel}")
+                logic = f"research/{owner}/{sub}/{rel}" if owner else f"research/{sub}/{rel}"
+                art = read_article(fpath, logic)
                 if is_case:
-                    add_case(sub, gname, art)
+                    add_case(owner or sub, gname, art)
                 else:
                     add_article(sub, sub, industry, art)
 
@@ -240,13 +247,15 @@ def scan_wiki():
             subpath = os.path.join(raw_dir, sub)
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
-            is_case = sub in CASE_GROUP_NAMES
-            gname = CASE_GROUP_NAMES.get(sub, sub)
+            owner = CASE_GROUP_ALIAS.get(sub)
+            is_case = sub in CASE_GROUP_NAMES or owner is not None
+            gname = CASE_GROUP_NAMES.get(owner or sub, owner or sub)
             industry = stock_info.get(sub, '其他')
             for rel, fpath in iter_md(subpath):
-                art = read_article(fpath, f"raw/research/{sub}/{rel}")
+                logic = f"raw/research/{owner}/{sub}/{rel}" if owner else f"raw/research/{sub}/{rel}"
+                art = read_article(fpath, logic)
                 if is_case:
-                    add_case(sub, gname, art)
+                    add_case(owner or sub, gname, art)
                 else:
                     add_article(sub, sub, industry, art)
 
