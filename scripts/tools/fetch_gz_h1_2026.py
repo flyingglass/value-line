@@ -37,7 +37,7 @@ for _k in list(os.environ.keys()):
 import requests  # noqa: E402
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-MD = os.path.join(BASE, "research-wiki", "research", "articles", "synthesis",
+MD = os.path.join(BASE, "research-wiki", "research", "学股", "广州",
                   "广州上市公司名单-A股与港股.md")
 OUT_DIR = os.path.join(BASE, "data", "广州")
 MANIFEST = os.path.join(OUT_DIR, "_manifest.json")
@@ -60,8 +60,11 @@ _TITLE_BLACKLIST_RE = re.compile(
 # ============================================================
 # 1. 解析名单 md
 # ============================================================
-def parse_md(path):
-    """返回 [(code, name, market, extra), ...]；market ∈ {cn, hk}"""
+def parse_md(path, include_passed=False):
+    """返回 [(code, name, market, extra, struck), ...]；market ∈ {cn, hk}
+
+    include_passed=False（默认）跳过名单中被划掉（~~…~~，＝ 初筛 pass）的行。
+    """
     out = []
     section = None  # 'cn' | 'hk'
     with open(path, encoding="utf-8") as f:
@@ -82,13 +85,19 @@ def parse_md(path):
             cells = [c.strip() for c in s.strip("|").split("|")]
             if len(cells) < 2:
                 continue
-            code = cells[0]
-            if not re.fullmatch(r"\d{6}", code):
+            raw = cells[0]
+            struck = raw.startswith("~~") and raw.endswith("~~")
+            code = raw.strip("~").strip()
+            # A股 6 位，港股 4~5 位
+            if not re.fullmatch(r"\d{4,6}", code):
                 continue  # 表头 / 分隔行 / 非代码行
-            name = cells[1]
+            if struck and not include_passed:
+                continue  # 初筛已 pass，默认不下载
+            name = cells[1].strip("~").strip()
             if name in ("名称", "代码"):
                 continue
-            out.append((code, name, section, cells[2] if len(cells) > 2 else ""))
+            out.append((code, name, section,
+                        cells[2].strip("~") if len(cells) > 2 else "", struck))
     return out
 
 
@@ -125,8 +134,13 @@ def cninfo_find(code):
     org = _org_map().get(code, "")
     if not org:
         return None, "cninfo orgId 列表中无此代码（可能为已退市/非大盘代码）"
-    plate = "sh" if code.startswith("6") else "sz"
-    column = "sse" if code.startswith("6") else "szse"
+    # 沪 sh/sse ｜ 北交所（43/83/87/92 开头）bj/bj ｜ 深 sz/szse
+    if code.startswith("6"):
+        plate, column = "sh", "sse"
+    elif code.startswith(("4", "8", "9")):
+        plate, column = "bj", "bj"
+    else:
+        plate, column = "sz", "szse"
     data = {
         "pageNum": "1", "pageSize": "30", "column": column,
         "tabName": "fulltext", "plate": plate,
@@ -198,8 +212,9 @@ def hkex_find(code):
         return None, "无法解析披露易 stockId"
     params = {
         "lang": "zh", "category": "0", "market": "SEHK", "stockId": sid,
+        # t2code=-2：不限文件子类（t2code=40200 在部分公司分类下取不到），改由标题筛选
         "searchType": "1", "documentType": "-1", "t1code": "40000",
-        "t2code": "40200", "t2Gcode": "-2",
+        "t2code": "-2", "t2Gcode": "-2",
         "fromDate": "%s0101" % _YEAR, "toDate": "%s1231" % _YEAR,
         "MB-Daterange": "0", "rowRange": "200",
         "sortByOptions": "DateTime", "sortDir": "0",
@@ -213,8 +228,14 @@ def hkex_find(code):
     rows = d if isinstance(d, list) else []
     if isinstance(d, dict):
         for k in ("result", "data", "records", "rows"):
-            if isinstance(d.get(k), list):
-                rows = d[k]
+            v = d.get(k)
+            if isinstance(v, str):
+                try:
+                    v = json.loads(v)  # 披露易 result 是 JSON 字符串
+                except Exception:
+                    continue
+            if isinstance(v, list):
+                rows = v
                 break
 
     picks = []
@@ -228,13 +249,14 @@ def hkex_find(code):
         up = title.upper()
         if not any(k in up for k in ("INTERIM", "中期", "半年度", "HALF-YEAR")):
             continue
-        if not re.search(r"[\u4e00-\u9fff]", title) and re.search(r"interim\s+report", up):
-            continue  # 纯英文版，跳过（中文优先）
+        # 年份锚定：中文数字 / 阿拉伯数字均可
+        if not re.search(r"2026|二零二六|二〇二六", title):
+            continue
         url = fl if fl.startswith("http") else HKEX_BASE + fl
         picks.append((url, title, str(ann.get("DATE_TIME", ""))))
 
     if not picks:
-        return None, "未找到 %s 年中期报告" % _YEAR
+        return None, "披露易尚无 %s 年中期报告（截至取数日未披露）" % _YEAR
     picks.sort(key=lambda x: x[2], reverse=True)
     return (picks[0][0], picks[0][1]), None
 
@@ -281,9 +303,11 @@ def main():
     ap.add_argument("--market", choices=["cn", "hk"], help="只处理某市场")
     ap.add_argument("--dry-run", action="store_true", help="只解析名单，不下载")
     ap.add_argument("--force", action="store_true", help="已存在也重新下载")
+    ap.add_argument("--include-passed", action="store_true",
+                    help="连名单里已划掉（初筛 pass）的标的也一并下载（用于补齐历史存量）")
     args = ap.parse_args()
 
-    entries = parse_md(MD)
+    entries = parse_md(MD, include_passed=args.include_passed)
     if args.only:
         entries = [e for e in entries if e[0] == args.only]
     if args.market:
@@ -293,10 +317,13 @@ def main():
 
     n_cn = sum(1 for e in entries if e[2] == "cn")
     n_hk = sum(1 for e in entries if e[2] == "hk")
-    print("名单解析：A股 %d 家 + 港股 %d 家 = %d" % (n_cn, n_hk, len(entries)))
+    print("名单解析：A股 %d 家 + 港股 %d 家 = %d%s" % (
+        n_cn, n_hk, len(entries),
+        "（含已划掉/pass）" if args.include_passed else "（仅未划掉）"))
     if args.dry_run:
-        for code, name, market, extra in entries:
-            print("  %s  %-12s %s  %s" % (code, name, market, extra))
+        for code, name, market, extra, struck in entries:
+            print("  %s  %-12s %s  %s%s" % (code, name, market, extra,
+                                            "  [pass已划掉]" if struck else ""))
         return
 
     os.makedirs(OUT_DIR, exist_ok=True)
@@ -309,7 +336,7 @@ def main():
             manifest = {}
 
     stat = {"ok": 0, "skip": 0, "fail": 0}
-    for i, (code, name, market, extra) in enumerate(entries, 1):
+    for i, (code, name, market, extra, struck) in enumerate(entries, 1):
         fname = "%s_%s_%s%s.pdf" % (code, safe_name(name), _YEAR, _PERIOD)
         path = os.path.join(OUT_DIR, fname)
         print("\n[%d/%d] %s %s (%s)" % (i, len(entries), code, name, market))
@@ -317,6 +344,9 @@ def main():
         if os.path.exists(path) and not args.force:
             print("  SKIP 已存在")
             stat["skip"] += 1
+            old = manifest.get(code)
+            if old and old.get("status") == "ok":
+                continue  # 保留原 ok 记录（含来源 url），不被 skip 覆盖
             manifest[code] = {"name": name, "market": market, "status": "skip",
                               "file": fname}
             continue
