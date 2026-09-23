@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>茅台&quot;喝不喝 vs 喝多少&quot; — 多元思维模型下的演绎与归纳分析</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>茅台&quot;喝不喝 vs 喝多少&quot; — 多元思维模型下的演绎与归纳分析</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,171 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">贵州茅台</a> › <a href="maotai-drink-logic-analysis.html">茅台&quot;喝不喝 vs 喝多少&quot; — 多元思维模型下的演绎与归纳分析</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">茅台&quot;喝不喝 vs 喝多少&quot; — 多元思维模型下的演绎与归纳分析</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span><span style="margin-left:auto;color:#b0b5bd">research/articles/synthesis</span></div><div class="md" id="md"></div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/synthesis/maotai-drink-logic-analysis.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDojIXlj7Ai5Zad5LiN5ZadIHZzIOWWneWkmuWwkSLigJTigJTlpJrlhYPmgJ3nu7TmqKHlnovkuIvnmoTlvZLnurPkuI7mvJTnu47liIbmnpAKCj4g5o6o5ryU5p2l5rqQ77ya5aSn6Iiq5ZGo5oqlNzYg6LS15bee6IyF5Y+w56uv5Y2I5Yqo6ZSA5Y+N5oCdIMOXIOiKkuagvOWkmuWFg+aAnee7tOaooeWei+esrOS6jOiusgo+IOebuOWFs++8mltbYXJ0aWNsZXMvc3ludGhlc2lzL2RhaGFuZy13ZWVrbHktNzZdXQoKLS0tCgojIyDkuIDjgIHpl67popjmoLjlv4MKCuWkp+iIquWcqOerr+WNiOeZvemFkuWKqOmUgOaVsOaNruS4re+8jOWPkeeOsOS4gOS4quWFs+mUruaWreijgu+8mgoKPiAi5oiQ55i+5bGe5oCn5Zu654S25a2Y5Zyo77yM6YWS5paH5YyW5Zu654S25Zyo5Y6G5Y+y5LiK5LiA55u05a2Y57ut77yM5L2G6L+Z6YOo5YiG6YC76L6R5pu05aSa5YWz6IGU55qE5pivJ+WWneS4jeWWnSfnmoTpl67popjjgILnm7jmr5TkuYvkuIvvvIznu4/mtY7lkajmnJ/jgIHmtojotLnlnLrmma/nrYnlm6DntKDliJnlhbPogZTnnYAn5Zad5aSa5bCRJ+eahOmXrumimOOAgiIKCui/meaYr+S4gOenjSoq57u05bqm5ouG5YiGKirigJTigJTlsIbkuIDkuKrnnIvkvLzljZXkuIDnmoTpl67popjvvIgi55m96YWS5raI6LS55pyJ5rKh5pyJ6Z+n5oCn77yfIu+8ieaLhuaIkOS4pOS4quS4jeWQjOacuuWItumpseWKqOeahOWtkOmXrumimOOAggoKLS0tCgojIyDkuozjgIHlvZLnurPms5Xop4bop5LvvJrlpKfoiKrnmoTmjqjnkIbot6/lvoTkuI7plJnor6/ov5jljp8KCiMjIyAyLjEg5Y6f5aeL5b2S57qz5o6o55CGCgpgYGAK5YmN5o+QMe+8mueZvemFkuacieWNg+W5tOaWh+WMlu+8jOWFt+acieaIkOeYvuaAp++8iOWOhuWPsuW9kue6s++8iQrliY3mj5Ay77ya5oiQ55i+5ZOB5raI6LS56YCa5bi45YW35pyJ56iz5a6a5oCn77yI6Leo5ZOB57G75b2S57qz4oCU4oCU54Of6I2J44CB5ZKW5ZWh77yJCuWJjeaPkDPvvJrnpoHphZLku6Top6PpmaTlkI7vvIzljovliLbpnIDmsYLlupTph4rmlL7vvIjmlL/nrZblj43ovazlvZLnurPvvIkK4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACue7k+iuuu+8mueZvemFkua2iOi0ueWFt+aciemfp+aAp++8jOiMheWPsOa2iOi0ueWwhuaBouWkjeWinumVvwpgYGAKCiMjIyAyLjIg6IqS5qC85qC85qCF6K+K5pat77ya5b2S57qz6Lez6LeD55qE5pat5bGCCgrmmKDlsITliLDoipLmoLzlpJrlhYPmgJ3nu7TmqKHlnovvvJoKCnwg6IqS5qC85Y6f5YiZIHwg6K+K5patIHwKfC0tLS0tLS0tLXwtLS0tLS18CnwgKirmqKHlnovlv4Xpobvot6jlrabnp5EqKiB8IOWPqueUqOW/g+eQhuWtpu+8iOaIkOeYvu+8iSsg5Y6G5Y+y5a2m77yI5paH5YyW5oOv5oCn77yJ5Lik5Liq5qih5Z6L77yM57y657uP5rWO5a2m5qih5Z6LIHwKfCAqKuWPjei/h+adpeaDsyoqIHwg5rKh6Zeu77yaIuS7gOS5iOaDheWGteS4i++8jOaIkOeYvuWTgea2iOi0ueS8muS4i+mZje+8nyIgfAp8ICoqTG9sbGFwYWxvb3phIOaViOW6lCoqIHwg5oiQ55i+Pee7tOaMgSLllp3kuI3llp0i77yM5L2G5aSa5Zug57Sg5YWx5oyv5Yaz5a6aIuWWneWkmuWwkSLigJTigJTnu4/mtY7kuIvooYwrQuerr+e8qeWHjyvmtojotLnlnLrmma/okI7nvKnihpLkuInph43lkIzlkJHlj6DliqAgfAp8ICoq6ZOB6ZSk5Lq65YC+5ZCRKiogfCDmiYvph4zmi7/nnYAi5oiQ55i+5oCnIui/meaKiumTgemUpO+8jOaJgOaciea2iOi0uemfp+aAp+mXrumimOmDveWDj+mSieWtkCB8CnwgKirlj4zovajliIbmnpDnvLrlpLEqKiB8IOi9qOS4gO+8iOeQhuaAp+WIhuaekO+8ieWIsOS9jeS6hu+8jOi9qOS6jO+8iOa9nOaEj+ivhuWIhuaekO+8iea8j+S6huKAlOKAlOW3suacieaMgeS7k+W4puadpeeahOemgOi1i+aViOW6lOWPr+iDveW8uuWMluS6hiLpn6fmgKci5L+h5b+1IHwKCiMjIyAyLjMg5b2S57qz5rOV55qE5qC45b+D6ZSZ6K+vCgrlvZLnurPmjqjnkIbkuK3nmoTnu4/lhbjpmbfpmLHvvJoqKuS7juWxnuaAp+W9kue6s+i3s+i3g+WIsOaVsOmHj+W9kue6syoq44CCCgpgYGAK5bGe5oCn77yaIOaIkOeYvuWTgSDihpIg5oiR5LiN5Lya5LiN5ZadICAgICAgICAgIOKckyDlvZLnurPmnInmlYgK5pWw6YeP77yaIOaIkOeYvuWTgSDihpIg5oiR5Zad55qE6YeP5LiN5Lya5YeP5bCRICAgICAgIOKclyDlvZLnurPml6DmlYgKYGBgCgoi5Zad5LiN5ZadIuaYr+S6jOWFg+WPmOmHj++8iDAvMe+8ie+8jOeUseeUn+eQhi/lv4PnkIbkvp3otZbpqbHliqjjgIIKIuWWneWkmuWwkSLmmK/ov57nu63lj5jph4/vvIznlLHlnLrmma/vvIjllYbliqHlrrTor7fjgIHogZrppa7popHmrKHjgIFC56uv6aKE566X77yJ6amx5Yqo44CCCgrkuKTkuKrlj5jph4/nlLEqKuWujOWFqOS4jeWQjOeahOacuuWItioq5o6n5Yi244CC5oqK5LiA5Liq5Y+Y6YeP55qE54m55b6B77yI5oiQ55i+5oCn6amx5Yqo55qE56iz5a6a5oCn77yJ5aWX5Yiw5Y+m5LiA5Liq5Y+Y6YeP5LiK77yM5bCx5piv5b2S57qz6IyD5Zu055qE6Z2e5rOV5omp5byg44CCCgotLS0KCiMjIOS4ieOAgea8lOe7juazleinhuinku+8muS7juesrOS4gOaAp+WOn+eQhumHjeaWsOaOqOa8lAoKIyMjIDMuMSDmvJTnu47otbfngrnigJTigJTnmb3phZLmtojotLnnmoTniannkIblrablvI/mi4bop6MKCmBgYArnmb3phZLmtojotLnmgLvph48gPSDppa7phZLkurrmlbAgw5cg5Lq65Z2H5raI6LS56aKR5qyhIMOXIOWNleasoea2iOi0uemHjyDDlyDlnYfku7cKICAgICAgICAgICAgICDihpEgICAgICAgICAgIOKGkSAgICAgICAgICAgICAgIOKGkSAgICAgICAgICDihpEKICAgICAgICAgICAgIuWWneS4jeWWnSIgICAgIuWkmuS5heWWneS4gOasoSIgICAgIuWWneWkmuWwkSIgICAgIuWWneS7gOS5iOS7t+S9jSIKICAgICAgICAgICAg5oiQ55i+L+aWh+WMliAgICDnpL7kuqTlnLrmma8gICAgICAg5Zy65pmv6KeE5qihICAgIOWTgeeJjC/mlLblhaUKYGBgCgotICoqIuWWneS4jeWWnSIqKu+8iOmlrumFkuS6uuaVsO+8ie+8mueUseaWh+WMluaDr+aApyArIOeUn+eQhuaIkOeYvuWGs+WumuOAguS4i+ihjOWRqOacn+S4rei/meS4quWPmOmHj+ehruWunuebuOWvueeos+WumuOAggotICoqIuWkmuS5heWWneS4gOasoSIqKu+8iOa2iOi0uemikeasoe+8ie+8mueUseekvuS6pOmcgOaxgumikeeOh+WGs+WumuOAguWVhuWKoeWutOivt+WcqOiQp+adoeacn+Wkp+W5heWHj+WwkeKGkumikeasoeS4i+mZjeOAggotICoqIuWWneWkmuWwkSIqKu+8iOWNleasoea2iOi0uemHj++8ie+8mueUseWcuuaZr+exu+Wei+WGs+WumuOAguiHqumlrjLkuKQgdnMg5a606K+35Y2K5pak4oCUMeaWpO+8jOWcuuaZr+S4gOWPmO+8jOmHj+W3ruaVsOWAjeOAggotICoqIuWWneS7gOS5iOS7t+S9jSIqKu+8iOWdh+S7t++8ie+8mueUseaUr+S7mOaEj+aEv+WGs+WumuOAgkLnq6/lrqLmiLfnvKnlh4/okKXplIDpooTnrpfihpLpmY3moaPoh7PmrKHpq5jnq6/jgIIKCiMjIyAzLjIg5ryU57uO5o6o5ryU77ya57uP5rWO5LiL6KGM5ZGo5pyf55qE5Lyg5a+86ZO+CgpgYGAK57uP5rWO5LiL6KGMCiAg4oaSIOS8oOe7n+ihjOS4mu+8iOWcsOS6p+OAgeWfuuW7uu+8iemhueebruWHj+Wwke+8jOWIqea2puiWhAogICAg4oaSIELnq6/lrqLmiLfnvKnlh4/llYbliqHlrrTor7fpooTnrpcKICAgICAg4oaSIOWutOivt+mikeasoSDihpPvvIgi5aSa5LmF5Zad5LiA5qyhIu+8iQogICAgICDihpIg5Y2V5qGM5raI6LS56YePIOKGk++8iCLllp3lpJrlsJEi4oCU4oCU5bCR5LqG5Yqd6YWS5Zy65pmv77yM5bCR5LqGIuS4jemGieS4jeW9kiLnmoTmsJvlm7TvvIkKICAgICAg4oaSIOS6uuWdh+a2iOi0uemHkeminSDihpPvvIgi5Zad5LuA5LmI5Lu35L2NIuKAlOKAlOS7jumrmOerr+mZjeaho+iHs+asoemrmOerr++8iQogIOKGkiDkvYbmiJDnmL7mgKfnoa7kv53kuoboh6rppa7lnLrmma/kuI3lj5flvbHlk43vvIgi5Zad5LiN5ZadIue7tOaMge+8iQpgYGAKCioq5YWz6ZSu5rSe6KeBKirvvJrlm5vkuKrlj5jph4/kuK3vvIzlj6rmnIki5Zad5LiN5ZadIueUseaIkOeYvuaAp+S/neaKpO+8jOWQjuS4ieS4quWFqOmDqOeUsee7j+a1juWRqOacn+mpseWKqOOAguiAjOaIkOeYvuaAp+WPquiDveS/neaKpOesrOS4gOS4quWPmOmHj+KAlOKAlOi/meWwseaYr+S4uuS7gOS5iCLmtojotLnpn6fmgKci55qE5Yik5pat5aSx5pWI44CCCgojIyMgMy4zIOiKkuagvOW8jyLlj43ov4fmnaXmg7MiCgrlj43ov4fmnaXpl67vvJoqKuS7gOS5iOaDheWGteS4i++8jOiMheWPsOa2iOi0ueS8muWkp+i3jO+8nyoqCgrkuI3mmK8i5aSn5a625LiN5Zad6YWS5LqGIu+8iOaIkOeYvuaAp+S/neaKpCLllp3kuI3llp0i77yJ77yM6ICM5piv77yaCjEuIOWutOivt+WcuuaZr+Wkp+mHj+a2iOWkse+8iOWVhuWKoea0u+WKqOWGu+e7k++8ieKGkiDpopHmrKHlvZLpm7YKMi4g6Ieq6aWu5Zy65pmv5Zad5b6X5p6B5bCR77yI5q+P5aSpMuS4pO+8jOS4gOW5tOaJjX4255O2L+S6uu+8iQozLiBC56uv6aKE566X5LuOIumrmOerr+WutOivtyLlj5gi5pmu6YCa6IGa6aSQIuKGkiDku7fkvY3pmY3moaMKCuWNs+S9v+avj+S4qumlrumFkuiAhemDvee7p+e7reWWnemFku+8iCLllp3kuI3llp0i5LiN5Y+Y77yJ77yM5Y2V5Lq655qE5bm05Z2H5raI6LS56YeP5Y+v5Lul5LuO77yaCi0g5Zy65pmv5ruh6YWN5pe277ya5a606K+3NTDmrKEv5bm0IMOXIDAuNeaWpC/mrKEgKyDoh6rppa4zNjXlpKkgw5cgMC4x5pakID0gMjUrMzYuNSDiiYggNjDmlqQKLSDlnLrmma/okI7nvKnml7bvvJrlrrTor7c15qyhL+W5tCDDlyAwLjPmlqQv5qyhICsg6Ieq6aWuMzY15aSpIMOXIDAuMeaWpCA9IDEuNSszNi41IOKJiCAzOOaWpAoKKirpmY3luYUzNyXigJTigJTogIzppa7phZLogIUi5LiA55u05Zyo5ZadIioq44CCCgotLS0KCiMjIOWbm+OAgeiKkuagvOaAnee7tOaooeWei+WvueeFp+ihqAoKfCDoipLmoLzmqKHlnosgfCDlupTnlKjkuo7ojIXlj7DliIbmnpAgfAp8LS0tLS0tLS0tfC0tLS0tLS0tLS0tLS0tfAp8ICoq5pWw5a2mL+aLhuinoyoqIHwg5raI6LS56YePID0g5Lq65pWwIMOXIOmikeasoSDDlyDljZXmrKHph48gw5cg5Z2H5Lu377yM5Zub5Liq5Y+Y6YeP54us56uL6amx5YqoIHwKfCAqKuWPjei/h+adpeaDsyoqIHwgIuS7gOS5iOWvvOiHtOWWnemFkueahOS6uuWWneW+l+WwkeS6hu+8nyLihpIg5LiN5piv5LiN5Zad77yM5piv5Zy65pmv5raI5aSxIHwKfCAqKuWPjOi9qOWIhuaekCoqIHwg6L2o5LiA77ya55CG5oCn5ouG6Kej5Zub5Liq5Y+Y6YeP44CC6L2o5LqM77ya5oiR5piv5ZCm5Zug5Li65oyB5LuT6ZSa5a6a5ZyoIuaIkOeYvj3pn6fmgKci77yfIHwKfCAqKkxvbGxhcGFsb296YSoqIHwg57uP5rWO5LiL6KGMK+WcuuaZr+iQjue8qStC56uv6aKE566X57yp5YePK+iHqumlrumHj+Wwj+KAlOKAlOWbm+WKm+WQjOWQkSB8CnwgKirlv4PnkIblrabvvJrov5Hlm6DlgY/lt64qKiB8IOWJjeWHoOW5tOiMheWPsOa2iOi0ueWPquWinuS4jeWHj+eahOaVsOaNruW8uuWMluS6hiLmsLjnu63lop7plb8i55qE6ZSZ6KeJIHwKfCAqKuS8muiuoeWtpu+8muWMuuWIhuWtmOmHj+S4jua1gemHjyoqIHwg6aWu6YWS5Lq65pWw5pivIuWtmOmHjyLvvIjnqLPlrprvvInvvIzmtojotLnph4/mmK8i5rWB6YePIu+8iOmaj+WcuuaZr+WJp+eDiOazouWKqO+8iSB8CnwgKirnlJ/nianlrabvvJrnlJ/mgIHkvY0qKiB8IOiMheWPsOWkhOWcqCLpq5jnq6/lrrTor7ci6L+Z5Liq55Sf5oCB5L2N4oCU4oCU55Sf5oCB5L2N6JCO57yp77yM54mp56eN5YaN5by65Lmf5Y+X5oyk5Y6LIHwKCi0tLQoKIyMg5LqU44CB5pa55rOV6K665oC757uTCgojIyMgNS4xIOW9kue6s+azlemAgueUqOi+ueeVjAoKLSAqKumAgueUqCoq77ya5bu656uLIuafkOexu+S6i+eJqemAmuW4uOWFt+acieafkOWxnuaApyLnmoTnu5/orqHop4TlvosKLSAqKuS4jemAgueUqCoq77ya5LuO5bGe5oCn5o6o5pat5pWw6YeP77yM5LuO5a6a5oCn6Lez5Yiw5a6a6YePCi0gKirnuqDmraMqKu+8muW9kue6s+e7k+iuuuW/hemhu+e7j+i/h+a8lOe7juaLhuino+mqjOivge+8iCLov5nkuKrop4TlvovlnKjku4DkuYjmnaHku7bkuIvkvJrlpLHmlYjvvJ8i77yJCgojIyMgNS4yIOa8lOe7juazlemAgueUqOi+ueeVjAoKLSAqKumAgueUqCoq77ya5LuO5bey55+l5py65Yi25o6o5a+85YW35L2T57uT6K66Ci0gKirkuI3pgILnlKgqKu+8muW9k+acuuWItuacrOi6q+S4jeehruWumuaXtu+8jOa8lOe7jumTvuadoeeahOWIneWni+WJjeaPkOWPr+iDveaYr+mUmeeahAotICoq57qg5q2jKirvvJrmvJTnu47liY3mj5DpnIDopoHlvZLnurPms5Xmj5DkvpvvvIgi5oiQ55i+5oCn56Gu5a6e5a2Y5ZyoIuadpeiHqui3qOWTgeexu+eahOW9kue6s+inguWvn++8iQoKIyMjIDUuMyDoipLmoLzlvI/ono3lkIgKCmBgYArlvZLnurPvvIjot6jlk4Hnsbvop4Llr5/vvIkgIOKGkiAg5ryU57uO77yI5py65Yi25ouG6Kej77yJICDihpIgIOWPjei/h+adpeaDs++8iOWvu+aJvuWkseaViOadoeS7tu+8iQogICAgICDihpEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKICAgICAg4pSU4pSA4pSA4pSA4pSA4pSA4pSAIOWunuivgemqjOivge+8iOerr+WNiOWKqOmUgOaVsOaNru+8iSDihpDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilJgKYGBgCgoqKuW9kue6s+aPkOS+m+WBh+iuvu+8jOa8lOe7juaLhuino+acuuWItu+8jCLlj43ov4fmnaXmg7Mi5a+75om+5Y+N5L6L77yM5a6e6K+B6Zet546v6aqM6K+B44CCKiog57y65Lu75L2V5LiA546v77yM5oqV6LWE5Yik5pat5bqV55uY5LiN5a6M5pW044CCCgotLS0KCj4g5o6o5ryU5pel5pyf77yaMjAyNi0wNi0yN+OAguWfuuS6juWkp+iIquWRqOaKpTc2ICsg6IqS5qC856ys5LqM6K6y5Y6f5paH55qE5pa55rOV6K666J6N5ZCI5YiG5p6Q44CCCgojIyDlj4Lop4EKCltbcmVzZWFyY2gvaW5kZXgubWRdXQpbW3Jlc2VhcmNoL2FydGljbGVzL3N5bnRoZXNpcy9kYWhhbmctd2Vla2x5LTc2Lm1kXV0KW1tyZXNlYXJjaC9hcnRpY2xlcy9zeW50aGVzaXMv5Zu95LyB5r+A5Yqx5py65Yi2Lee9rui6q+S6i+WGheahhuaetuS4juiMheWPsOahiOS+iy5tZF1dIMK3IFtbcmVzZWFyY2gv6LS15bee6IyF5Y+wL+i/kOiQpeaMh+aghy5tZF1d";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">贵州茅台</a> › <a href="maotai-drink-logic-analysis.html">茅台&quot;喝不喝 vs 喝多少&quot; — 多元思维模型下的演绎与归纳分析</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">茅台&quot;喝不喝 vs 喝多少&quot; — 多元思维模型下的演绎与归纳分析</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span><span style="margin-left:auto;color:#b0b5bd">research/articles/synthesis</span></div><div class="md" id="md"><h1>茅台&quot;喝不喝 vs 喝多少&quot;——多元思维模型下的归纳与演绎分析</h1>
+<blockquote>
+<p>推演来源：大航周报76 贵州茅台端午动销反思 × 芒格多元思维模型第二讲
+相关：<a href="dahang-weekly-76.html">articles/synthesis/dahang-weekly-76</a></p>
+</blockquote>
+<hr />
+<h2>一、问题核心</h2>
+<p>大航在端午白酒动销数据中，发现一个关键断裂：</p>
+<blockquote>
+<p>&quot;成瘾属性固然存在，酒文化固然在历史上一直存续，但这部分逻辑更多关联的是'喝不喝'的问题。相比之下，经济周期、消费场景等因素则关联着'喝多少'的问题。&quot;</p>
+</blockquote>
+<p>这是一种<strong>维度拆分</strong>——将一个看似单一的问题（&quot;白酒消费有没有韧性？&quot;）拆成两个不同机制驱动的子问题。</p>
+<hr />
+<h2>二、归纳法视角：大航的推理路径与错误还原</h2>
+<h3>2.1 原始归纳推理</h3>
+<pre><code>前提1：白酒有千年文化，具有成瘾性（历史归纳）
+前提2：成瘾品消费通常具有稳定性（跨品类归纳——烟草、咖啡）
+前提3：禁酒令解除后，压制需求应释放（政策反转归纳）
+──────────────────────────────
+结论：白酒消费具有韧性，茅台消费将恢复增长
+</code></pre>
+<h3>2.2 芒格格栅诊断：归纳跳跃的断层</h3>
+<p>映射到芒格多元思维模型：</p>
+<table>
+<thead>
+<tr>
+<th>芒格原则</th>
+<th>诊断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>模型必须跨学科</strong></td>
+<td>只用心理学（成瘾）+ 历史学（文化惯性）两个模型，缺经济学模型</td>
+</tr>
+<tr>
+<td><strong>反过来想</strong></td>
+<td>没问：&quot;什么情况下，成瘾品消费会下降？&quot;</td>
+</tr>
+<tr>
+<td><strong>Lollapalooza 效应</strong></td>
+<td>成瘾=维持&quot;喝不喝&quot;，但多因素共振决定&quot;喝多少&quot;——经济下行+B端缩减+消费场景萎缩→三重同向叠加</td>
+</tr>
+<tr>
+<td><strong>铁锤人倾向</strong></td>
+<td>手里拿着&quot;成瘾性&quot;这把铁锤，所有消费韧性问题都像钉子</td>
+</tr>
+<tr>
+<td><strong>双轨分析缺失</strong></td>
+<td>轨一（理性分析）到位了，轨二（潜意识分析）漏了——已有持仓带来的禀赋效应可能强化了&quot;韧性&quot;信念</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 归纳法的核心错误</h3>
+<p>归纳推理中的经典陷阱：<strong>从属性归纳跳跃到数量归纳</strong>。</p>
+<pre><code>属性： 成瘾品 → 我不会不喝          ✓ 归纳有效
+数量： 成瘾品 → 我喝的量不会减少       ✗ 归纳无效
+</code></pre>
+<p>&quot;喝不喝&quot;是二元变量（0/1），由生理/心理依赖驱动。
+&quot;喝多少&quot;是连续变量，由场景（商务宴请、聚饮频次、B端预算）驱动。</p>
+<p>两个变量由<strong>完全不同的机制</strong>控制。把一个变量的特征（成瘾性驱动的稳定性）套到另一个变量上，就是归纳范围的非法扩张。</p>
+<hr />
+<h2>三、演绎法视角：从第一性原理重新推演</h2>
+<h3>3.1 演绎起点——白酒消费的物理学式拆解</h3>
+<pre><code>白酒消费总量 = 饮酒人数 × 人均消费频次 × 单次消费量 × 均价
+              ↑           ↑               ↑          ↑
+            &quot;喝不喝&quot;    &quot;多久喝一次&quot;    &quot;喝多少&quot;    &quot;喝什么价位&quot;
+            成瘾/文化    社交场景       场景规模    品牌/收入
+</code></pre>
+<ul>
+<li><strong>&quot;喝不喝&quot;</strong>（饮酒人数）：由文化惯性 + 生理成瘾决定。下行周期中这个变量确实相对稳定。</li>
+<li><strong>&quot;多久喝一次&quot;</strong>（消费频次）：由社交需求频率决定。商务宴请在萧条期大幅减少→频次下降。</li>
+<li><strong>&quot;喝多少&quot;</strong>（单次消费量）：由场景类型决定。自饮2两 vs 宴请半斤—1斤，场景一变，量差数倍。</li>
+<li><strong>&quot;喝什么价位&quot;</strong>（均价）：由支付意愿决定。B端客户缩减营销预算→降档至次高端。</li>
+</ul>
+<h3>3.2 演绎推演：经济下行周期的传导链</h3>
+<pre><code>经济下行
+  → 传统行业（地产、基建）项目减少，利润薄
+    → B端客户缩减商务宴请预算
+      → 宴请频次 ↓（&quot;多久喝一次&quot;）
+      → 单桌消费量 ↓（&quot;喝多少&quot;——少了劝酒场景，少了&quot;不醉不归&quot;的氛围）
+      → 人均消费金额 ↓（&quot;喝什么价位&quot;——从高端降档至次高端）
+  → 但成瘾性确保了自饮场景不受影响（&quot;喝不喝&quot;维持）
+</code></pre>
+<p><strong>关键洞见</strong>：四个变量中，只有&quot;喝不喝&quot;由成瘾性保护，后三个全部由经济周期驱动。而成瘾性只能保护第一个变量——这就是为什么&quot;消费韧性&quot;的判断失效。</p>
+<h3>3.3 芒格式&quot;反过来想&quot;</h3>
+<p>反过来问：<strong>什么情况下，茅台消费会大跌？</strong></p>
+<p>不是&quot;大家不喝酒了&quot;（成瘾性保护&quot;喝不喝&quot;），而是：</p>
+<ol>
+<li>宴请场景大量消失（商务活动冻结）→ 频次归零</li>
+<li>自饮场景喝得极少（每天2两，一年才~6瓶/人）</li>
+<li>B端预算从&quot;高端宴请&quot;变&quot;普通聚餐&quot;→ 价位降档</li>
+</ol>
+<p>即使每个饮酒者都继续喝酒（&quot;喝不喝&quot;不变），单人的年均消费量可以从：</p>
+<ul>
+<li>场景满配时：宴请50次/年 × 0.5斤/次 + 自饮365天 × 0.1斤 = 25+36.5 ≈ 60斤</li>
+<li>场景萎缩时：宴请5次/年 × 0.3斤/次 + 自饮365天 × 0.1斤 = 1.5+36.5 ≈ 38斤</li>
+</ul>
+<p><strong>降幅37%——而饮酒者&quot;一直在喝&quot;</strong>。</p>
+<hr />
+<h2>四、芒格思维模型对照表</h2>
+<table>
+<thead>
+<tr>
+<th>芒格模型</th>
+<th>应用于茅台分析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数学/拆解</strong></td>
+<td>消费量 = 人数 × 频次 × 单次量 × 均价，四个变量独立驱动</td>
+</tr>
+<tr>
+<td><strong>反过来想</strong></td>
+<td>&quot;什么导致喝酒的人喝得少了？&quot;→ 不是不喝，是场景消失</td>
+</tr>
+<tr>
+<td><strong>双轨分析</strong></td>
+<td>轨一：理性拆解四个变量。轨二：我是否因为持仓锚定在&quot;成瘾=韧性&quot;？</td>
+</tr>
+<tr>
+<td><strong>Lollapalooza</strong></td>
+<td>经济下行+场景萎缩+B端预算缩减+自饮量小——四力同向</td>
+</tr>
+<tr>
+<td><strong>心理学：近因偏差</strong></td>
+<td>前几年茅台消费只增不减的数据强化了&quot;永续增长&quot;的错觉</td>
+</tr>
+<tr>
+<td><strong>会计学：区分存量与流量</strong></td>
+<td>饮酒人数是&quot;存量&quot;（稳定），消费量是&quot;流量&quot;（随场景剧烈波动）</td>
+</tr>
+<tr>
+<td><strong>生物学：生态位</strong></td>
+<td>茅台处在&quot;高端宴请&quot;这个生态位——生态位萎缩，物种再强也受挤压</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>五、方法论总结</h2>
+<h3>5.1 归纳法适用边界</h3>
+<ul>
+<li><strong>适用</strong>：建立&quot;某类事物通常具有某属性&quot;的统计规律</li>
+<li><strong>不适用</strong>：从属性推断数量，从定性跳到定量</li>
+<li><strong>纠正</strong>：归纳结论必须经过演绎拆解验证（&quot;这个规律在什么条件下会失效？&quot;）</li>
+</ul>
+<h3>5.2 演绎法适用边界</h3>
+<ul>
+<li><strong>适用</strong>：从已知机制推导具体结论</li>
+<li><strong>不适用</strong>：当机制本身不确定时，演绎链条的初始前提可能是错的</li>
+<li><strong>纠正</strong>：演绎前提需要归纳法提供（&quot;成瘾性确实存在&quot;来自跨品类的归纳观察）</li>
+</ul>
+<h3>5.3 芒格式融合</h3>
+<pre><code>归纳（跨品类观察）  →  演绎（机制拆解）  →  反过来想（寻找失效条件）
+      ↑                                               |
+      └────── 实证验证（端午动销数据） ←───────────────┘
+</code></pre>
+<p><strong>归纳提供假设，演绎拆解机制，&quot;反过来想&quot;寻找反例，实证闭环验证。</strong> 缺任何一环，投资判断底盘不完整。</p>
+<hr />
+<blockquote>
+<p>推演日期：2026-06-27。基于大航周报76 + 芒格第二讲原文的方法论融合分析。</p>
+</blockquote>
+<h2>参见</h2>
+<p><a href="../../../research/index.md">research/index.md</a>
+<a href="../../../research/articles/synthesis/dahang-weekly-76.md">research/articles/synthesis/dahang-weekly-76.md</a>
+<a href="../../../research/articles/synthesis/%E5%9B%BD%E4%BC%81%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6-%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%8C%85%E5%8F%B0%E6%A1%88%E4%BE%8B.md">research/articles/synthesis/国企激励机制-置身事内框架与茅台案例.md</a> · <a href="../../../research/%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E8%BF%90%E8%90%A5%E6%8C%87%E6%A0%87.md">research/贵州茅台/运营指标.md</a></p>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/synthesis/maotai-drink-logic-analysis.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

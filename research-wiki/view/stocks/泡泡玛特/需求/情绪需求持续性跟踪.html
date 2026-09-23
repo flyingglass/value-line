@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 情绪需求持续性跟踪（行业 beta）</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 情绪需求持续性跟踪（行业 beta）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,243 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="情绪需求持续性跟踪.html">泡泡玛特 (09992) — 情绪需求持续性跟踪（行业 beta）</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 情绪需求持续性跟踪（行业 beta）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-23</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/需求</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E9%9C%80%E6%B1%82">← 返回 需求</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/泡泡玛特/需求/情绪需求持续性跟踪.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDmg4Xnu6rpnIDmsYLmjIHnu63mgKfot5/ouKrvvIjooYzkuJogYmV0Ye+8iQoKPiDmipXotYTorrror4Hnu5PmnoTvvJrnrKzkuIDngrnvvIjmg4Xnu6rku7flgLzmtojotLnlj6/plb/kuYXvvInmmK/ooYzkuJogYmV0Ye+8jOesrOS6jOeCue+8iOazoeazoeeOm+eJuei/kOiQpeiDveWKm+eqgeWHuu+8ieaYr+WFrOWPuCBhbHBoYeOAgioq5pS25YWl5LiK6ZmQID0g6KGM5Lia5aSp6Iqx5p2/IMOXIOS7veminSoq4oCU4oCU6Iul56ys5LiA54K55LiN5oiQ56uL77yM56ys5LqM54K55Y+q5pivIuWcqOmAgOa9ruihjOS4mumHjOacgOS8mOengOeahOa4uOazs+iAhSLjgILmnKznr4flu7rnq4vnrKzkuIDngrnnmoTot5/ouKrkvZPns7vjgIIKCi0tLQoKIyMg5LiA44CB6Lef6Liq5a+56LGh5a6a5LmJCgrnrKzkuIDngrkgPSAi5Li65oOF57uq5Lu35YC85LuY6LS5IueahOmVv+acn+mcgOaxguaIkOeri+OAguWPr+aLhuS4uuS4ieS4quWIhumHj++8mgoKYGBgCuaDhee7quS7t+WAvOa2iOi0ueaAu+mHjyA9IOS7mOi0ueaEj+aEv++8iOaEv+S4jeaEv+aEj+S4uiLmsqHnlKjkvYblvIDlv4Mi6Iqx6ZKx77yJCiAgICAgICAgICAgICAgICAgw5cg5pSv5LuY6IO95Yqb77yI5pS25YWl5LiK5Y2H5ZCO5pyJ5rKh5pyJ5L2Z6ZKx77yJCiAgICAgICAgICAgICAgICAgw5cg5Luj6ZmF6L+e57ut5oCn77yI5LiL5LiA5Luj5Lq65piv5ZCm5ZCM5qC36K6k5Y+v6L+Z5Lu25LqL77yJCmBgYAoK5Lu75L2V5LiA5bGC5Z2N57yp77yM56ys5LiA54K55Y2z5aSx6LSl44CC5Zub5bGC6Lef6Liq5qGG5p625YiG5Yir55uv6L+Z5LiJ5Liq5YiG6YeP44CCCgotLS0KCiMjIOS6jOOAgeesrOS4gOWxgu+8muWPjea8lO+8iEludmVyc2lvbu+8ieKAlCDnrKzkuIDngrnkvJrmgI7kuYjmrbvvvJ8KCj4g6IqS5qC877yaIuWPjei/h+adpeaDs++8jOaAu+aYr+WPjei/h+adpeaDs+OAgiLvvIjpm4Xlj6/mr5TvvIkKCnwg5q275Lqh6Lev5b6EIHwg5py65Yi2IHwg5Y+v6KeC5a+f5L+h5Y+3IHwg5b2T5YmN54q25oCBIHwKfC0tLXwtLS18LS0tfC0tLXwKfCAqKkQxIOiZmuaLn+WujOWFqOabv+S7oyoqIHwg5pWw5a2X5L2T6aqM77yIQUkg5Ly05L6jL1ZSL+a4uOaIj+earuiCpC/ohJHmnLrmjqXlj6PvvInlrozlhajopobnm5blrp7kvZPmg4Xnu6rku7flgLwgfCDlubTovbvkuroi5a6e5L2T5pS26JeP5pSv5Ye6IuWNoCLlqLHkuZDmgLvmlK/lh7oi5q+U6YeN77yb6Jma5ouf5ZWG5ZOB5raI6LS55aKe6YCfIHZzIOWunuS9k+a9rueOqeWinumAnyB8IPCfn6Eg5ri45oiP6KGM5Lia5Y6G5Y+y6KGo5piOKirovb3kvZPova7mjaLogIzpnZ7mtojkuqEqKu+8iOihl+acuuKGkuaJi+a4uO+8jOS7mOi0ueaEj+aEv+ayoeatu++8iSB8CnwgKipEMiDmlLblhaXplb/mnJ/lgZzmu54qKiB8IOWPr+aUr+mFjeaUtuWFpeS4i+a7kSDihpIg5oOF57uq5raI6LS56KKr5LyY5YWI5oyk5Ye6IHwg5bGF5rCR5Y+v5pSv6YWN5pS25YWl5aKe6YCf77yb5oGp5qC85bCU57O75pWw5Y+N5ZCR77yI55Sf5a2Y5oCn5pSv5Ye65Y2g5q+U5LiK5Y2HID0g5oOF57uq5pSv5Ye66KKr5oyk5Ye677yJIHwg8J+foiDkuK3lm70v5Lic5Y2X5Lqa5pS25YWl5LuN5Zyo5LiK6KGM5pyfIHwKfCAqKkQzIOS7t+WAvOinguWPjea2iOi0uSoqIHwg56S+5Lya6L2s5ZCR5p6B56uv566A57qmL+emgeassi/lj43nianotKjkuLvkuYnmiJDkuLrkuLvmtYEgfCAi5pat6IiN56a7IiLkuI3mjIHmnIki57G75oCd5r2u5riX6YCP546H77yb5p6B566A55Sf5rS75pa55byP5omp5pWj56iL5bqmIHwg8J+foSDkuInmtablsZXop4Llr5/liLDvvJrlubTovbvkuroqKuWPjeeahOaYr+WbpOenr++8jOS4jeaYr+S9k+mqjCoq4oCU4oCUIuS5sOW8gOebkueerOmXtCLkuI4i5Y+N5Zuk56evIuWFvOWuuSB8CnwgKipENCDlhY3otLnljJYqKiB8IOaDhee7quS7t+WAvOS+m+e7meWujOWFqOWFjei0ue+8iOW8gOa6kOWGheWuuS9BSSDnlJ/miJDml6DpmZDop5LoibLvvInihpIg5LuY6LS55oSP5oS/5raI5aSxIHwgQUkg55Sf5oiQ6KeS6Imy5L2/55So546H77yb55So5oi35a+55YWN6LS55oOF57uq5YaF5a6555qE6buP5oCnIHwg8J+foSDmuLjmiI/ooYzkuJror4HmmI7ku5jotLnkuI3kubDlhoXlrrnvvIzkubAi56iA57y6K+S7quW8jyvnpL7kuqQi77yM5YWN6LS55YyW5p2A5LiN5q2756iA57y65oCnIHwKCioq5YWz6ZSu5rSe5a+fKirvvJrlm5vmnaHmrbvkuqHot6/lvoQqKuayoeacieS4gOadoeaYryLkurrnsbvkuI3lho3pnIDopoHmg4Xnu6rku7flgLwiKirigJTigJTlhajmmK8i6L295L2T6KKr5pu/5LujIuaIliLmlK/ku5jog73lipvmtojlpLEi44CC6L+Z5pqX56S656ys5LiA54K55q+U55u06KeJ5pu05Z2a5Zu644CCCgotLS0KCiMjIOS4ieOAgeesrOS6jOWxgu+8mui/m+WMluW/g+eQhuWtpuS4juS6uuexu+WtpiDigJQg5bqV5bGC5L+h5Luw55qE6ZSaCgo+IOeQhuino+S4gOS4quihjOS4uu+8jOWFiOmXruWug+WcqOi/m+WMluWPsuS4iuWtmOWcqOS6huWkmuS5heOAguWtmOWcqOi2iuS5he+8jOi2iuaYr+acrOiDve+8jOi2iuS4jeS8mua2iOWkseOAggoKLSAqKuijhemlsOWTgSoq77yaNyDkuIflubTliY3nmoTotJ3lo7Ppobnpk77vvIjmmbrkurrmnIDml6nnmoQi6Z2e5Yqf6IO95oCn54mp5ZOBIu+8ieKAlOKAlOS4uiLlpb3nnIsv6Lqr5Lu9L+ekvuS6pCLku5jotLnmmK8qKuS4h+W5tOmHj+e6pyoqCi0gKirmlLbol4/mnKzog70qKu+8muaUtumbhuaYr+i/m+WMluaui+eVme+8iOWbpOenr+i1hOa6kOeahOWuieWFqOaEn+e8luegge+8ieKAlOKAlCLmlLbol48i5Yay5Yqo5piv55Sf55CG57qn55qECi0gKirlqLHkuZAqKu+8mumfs+S5kC/muLjmiI8v6Iie6LmI5Zyo5omA5pyJ5paH5piO44CB5omA5pyJ5pe25Luj6YO95a2Y5Zyo4oCU4oCU5oOF57uq5L2T6aqM5raI6LS55piv5Lq657G75paH5piO55qEKirmgZLph48qKgoKYGBgCumAu+i+kemTvu+8muaDhee7quS7t+WAvOa2iOi0uSDiiYgg6KOF6aWwICsg5pS26JePICsg5aix5LmQ77yI5LiJ5Liq5LiH5bm057qn5Lq657G75pys6IO977yJCiAgICAgIOKGkiDlupXlsYLpnIDmsYLkuI3kvJrnga3nu53vvIzlj6rkvJrmjaLlvaLmgIEKICAgICAg4oaSIOi3n+i4qumHjeeCueS4jeWcqCLpnIDmsYLlnKjkuI3lnKgi77yM6ICM5ZyoIuW9ouaAgeWIh+aNouWIsOWTqiIKYGBgCgoqKuS9jumikei3n+i4quS/oeWPtyoq77yI5Yaz5a6a5L+h5Luw5piv5ZCm5Yqo5pGH77yJ77yaCi0g5ZCE5Zu95aix5LmQL+aWh+Wosea2iOi0ueWNoCBHRFAg5q+U55qE6ZW/5pyf6LaL5Yq/77yI576O5Zu955S15b2x55m+5bm044CB5pel5pys5Yqo55S75LqU5Y2B5bm04oCU4oCU5Y+q5Y2H5LiN6ZmN77yJCi0g5pS26JeP5ZOB5biC5Zy65oC76KeE5qih77yI6YKu56Wo4oaS55CD5pif5Y2h4oaS5omL5Yqe4oaS5pWw5a2X6JeP5ZOB77yM5ZOB57G75oC755uY5a2Q5piv5ZCm5oyB57ut5omp5byg77yJCgotLS0KCiMjIOWbm+OAgeesrOS4ieWxgu+8muS6uuWPo+WtpiArIOe7j+a1juWtpiDigJQg57uT5p6E5oCn5oWi5Y+Y6YePCgo+IOS+neaNruS4iea1puWxleOAiuesrOS6lOa2iOi0ueaXtuS7o+OAi+S6uuWPo+iuuuivgeOAgioq5oWi5Y+Y6YeP77ya5LiA5pem5oiQ56uL77yM5bCx5pivIDMwIOW5tOmHj+e6p+ehruWumuaAp+OAgioqIOi3n+i4qumikeeOh++8muavj+W5tOS4gOasoeOAggoKfCDnu5PmnoTlj5jph48gfCDkuI7nrKzkuIDngrnnmoTlhbPns7sgfCDot5/ouKrmjIfmoIcgfAp8LS0tfC0tLXwtLS18CnwgKirlsJHlrZDljJYgKyDljZXouqvljJYqKiB8IOWutuW6reino+S9kyDihpIg5oOF5oSf6ZyA5rGC5aSW6YOo5YyWIOKGkiDmg4Xnu6rmtojotLnmiJAi5Yia6ZyA5pu/5Luj5ZOBIiB8IOeUn+iCsueOh+OAgeeLrOWxheS6uuWPo+WNoOavlOOAgeW5s+Wdh+WutuW6reinhOaooe+8iOaXpeacrOW3sumqjOivge+8muWNlei6q+WMluS4juayu+aEiOe7j+a1juWQjOatpeaJqeW8oO+8iSB8CnwgKirogIHpvoTljJYqKiB8IOayu+aEiC/pmarkvLTpnIDmsYLmsaDmianlpKfvvIjlrqDniannu4/mtY7jgIHmsrvmhIjns7vmtojotLnlkIzmm7Lnur/vvIkgfCA2MCDlsoEr5Lq65Y+j5Y2g5q+U77yb6ICB5bm05paH5aix5raI6LS55aKe6YCfIHwKfCAqKuaUtuWFpeW8ueaApyoq77yI5oGp5qC85bCU5a6a5b6L6ZWc5YOP77yJIHwg5pS25YWl5q+P5Y2HIDEl77yM57K+56WeL+aDhee7qua2iOi0ueWNhyA+MSUgfCDkuK3lm70v5Lic5Y2X5Lqa5Lq65Z2HIEdEUCDkuI4i5paH5aixK+aDhee7qua2iOi0ueWNoOavlCLlvLnmgKfns7vmlbAgfAp8ICoq57K+56We55Sf5rS76YeN6KeG5bqmKiogfCDph43op4bnsr7npZ7nlJ/mtLvogIXlgY/lpb0gQ29uc3VtbWF0b3J577yI5L2T6aqML+e+juWlveaXtuWFie+8iea2iOi0uSB8IOS9k+mqjOexu+aUr+WHuiB2cyDlrp7nianmlK/lh7rmr5TlgLzvvIjlhajnkIPotovlir/vvJrkvZPpqozlnovmtojotLnljaDmr5TkuIrljYfvvIkgfAoKKirmlK/ku5jmhI/mhL/nmoTlrp7lvLnmo4DpqowqKu+8iOihjOS4uuS6pOWPiemqjOivge+8ie+8mgotICoq5Y+j57qi5pWI5bqUL+ayu+aEiOe7j+a1jioq77ya57uP5rWO5LiL6KGM5pyf5bCP6aKd5oOF57uq5raI6LS55Y+N6ICM5Z2a5oy677yI55uy55uSIDU5IOWFgy/muLjmiI/mnIjljaHvvInigJTigJTmg4Xnu6rmtojotLnmnIkqKumAhuWRqOacn+WxnuaApyoq77yM5oqs6auY56ys5LiA54K555qE5LiL6ZmQCi0gKirmlLblhaXlvLnmgKflrp7mtYsqKu+8mjIwMjZIMSDms6Hms6HnjpvnibnkuK3lm73lhoXlnLAgKzQ3LjMl77yI5ZCM5pyf56S+6Zu25Liq5L2N5pWw5aKe6ZW/77yJ4oCU4oCU5by55oCnID4xIOeahOebtOaOpeivgeaNrgoKLS0tCgojIyDkupTjgIHnrKzlm5vlsYLvvJrpq5jpopHooYzkuLrkv6Hlj7cg4oCUIOWto+W6pi/mnIjluqblj6/op4Llr58KCj4g5a6e5by55oiY5Zy644CC5q+P5Liq5L+h5Y+36YO95b+F6aG75pyJIuivgeS8quadoeS7tiLjgIIKCnwg5L+h5Y+3IHwg6KeC5a+f5LuA5LmIIHwg56ys5LiA54K55oiQ56uLIOKGkiDlupTnnIvliLAgfCDnrKzkuIDngrnlj5fmjZ8g4oaSIOS8mueci+WIsCB8CnwtLS18LS0tfC0tLXwtLS18CnwgKirkuozmiYvluILlnLrmrovlgLwqKiB8IOa9rueOqeWcqOmXsumxvC9TdG9ja1gg5oqY5Lu3546HIHwg5LqM5omL5Lu36ZW/5pyf57u05oyB77yI5oOF57uq5Lu35YC85pyJ5q6L5YC877yJIHwg5LqM5omL5Lu35bSp5aGM77yI5Y+q5Ymp5aGR5paZ77yJIHwKfCAqKumAgOWdkSB2cyDlhaXlnZEqKiB8IOmAgOWdkeW4luivjeS6kSArIOaWsOWFpeWdkeS6uue+pOWinumAnyB8IOmAgOWdkeaYr+S4quS9k+ihjOS4uu+8iDMg5bm05ZGo5pyf77yJ77yM5L2GKirmlrDlhaXlnZHmupDmupDkuI3mlq0qKu+8iOenjee+pOWxgumdouWHgOa1geWFpe+8iSB8IOaVtOS9k+WFpeWdkeWinumAn+i9rOi0n+OAgeS6jOaJiyLlh7rmuIXmva4i5oiQ5bi45oCBIHwKfCAqKuWTgeexu+a4l+mAj+eOh+aJqeaVoyoqIHwg5oOF57uq5raI6LS55LuOIuW5tOi9u+S6uua9rua1gSLotbDlkJEi5YWo5bm06b6E5q6155Sf5rS75pa55byPIiB8IOa4l+mAj+eOh+S7juS4gOe6vy/lubTovbvkuroqKuaJqeaVo+WIsOS9jue6vy/lhajlubTpvoQqKu+8iOWDj+i/kOWKqC/lkpbllaHkuIDmoLfljrvmva7mtYHljJbvvIkgfCDplb/mnJ/lgZznlZnlnKjljZXkuIDnvqTkvZPlhoXvvIjor7TmmI7mmK/mva7mtYHvvIzkuI3mmK/nlJ/mtLvmlrnlvI/vvIkgfAp8ICoq5pSv5LuY5oSP5oS/5Luj6ZmF5rWL6K+VKiogfCAyMCDlsoHkurrnvqTlr7ki5Li65oOF57uq5Lu35YC85LuY5rqi5Lu3IueahOaAgeW6piB8IOavj+S4gOS7o+aWsCAyMCDlsoHph43njrDnsbvkvLzku5jotLnooYzkuLogfCDmlrDkuIDku6MgMjAg5bKB5piO56GuIuWunuS9k+aDhee7qua2iOi0ueS4juaIkeaXoOWFsyLvvIjku7flgLzop4Lmlq3lsYLliY3lhYbvvIkgfAp8ICoq5raI6LS55pSv5Ye65Y2g5q+UKiogfCDmg4Xnu6rmtojotLnljaDkuKrkurrmgLvmlK/lh7rmr5Tph40gfCDplb/mnJ/nvJPljYcgfCDplb/mnJ/lgZzmu57miJbkuIvmu5EgfAoKLS0tCgojIyDlha3jgIHmoLzmoIXkuqTlj4npqozor4Hop4TliJkKCj4g6IqS5qC85pa55rOV6K665qC45b+D77yaKirlpJrkuKrni6znq4vlrabnp5HmqKHlnovmjIflkJHlkIzkuIDnu5Porrrml7bmiY3ooYzliqgqKu+8jOS4jeaYr+WNleS/oeWPt+WGs+etluOAggoKYGBgCumrmOmikeS/oeWPt++8iOesrOS6lOWxgu+8ieW8guW4uCDihpIg5YWI55yL57uT5p6E5oCn5Y+Y6YeP77yI56ys5LiJ5bGC77yJ5piv5ZCm6Kej6YeKCiAgICDnu5PmnoTmgKflj5jph4/lj5jkuoYg4oaSIOesrOS4gOeCueecn+WPl+aNn++8iOS6uuWPo+e7k+aehOmAhui9rC/mlLblhaXlgZzmu57vvIkKICAgIOe7k+aehOaAp+WPmOmHj+ayoeWPmCDihpIg5aSn5qaC546H5piv5ZGo5pyf5oCn5Zmq6Z+z77yI5r2u5rWB6L2u5o2i77yJ77yM5LiN5piv6LaL5Yq/56C05Z2PCgrlupXlsYLkv6Hku7DvvIjnrKzkuozlsYLvvInlh6DkuY7kuI3liqgg4oaSIOWPquWcqCBEMS1ENCDlh7rnjrDml7bmiY3liqjmkYcK5Y+N5ryU77yI56ys5LiA5bGC77yJ5a6a5pyf5omr5o+P5q275Lqh6Lev5b6EIOKGkiDmn5DmnaHot6/lvoTnjrDml6nmnJ/ov7nosaEg4oaSIOaPkOWNh+WFs+azqApgYGAKCioq57u85ZCI5Yik5pat6KeE5YiZKirvvJoKLSDwn5+iICoq5LiJ5bGC5LiA6Ie055yL5aSaKirvvIjnu5PmnoTlkJHkuIogKyDooYzkuLrlkJHlpb0gKyDml6DmrbvkuqHot6/lvoTov7nosaHvvInihpIg56ys5LiA54K55oiQ56uL77yM5Y+v5pS+5b+D6LWMIGJldGEKLSDwn5+hICoq6auY6aKR5Y+Y5beu5L2G57uT5p6E5pyq5Y+YKiog4oaSIOS4jeaFjO+8jOaYr+i9ruaNouacn++8iOS+i++8muebsuebkumAgOa9ruS9huavm+e7kuaOpeajkuKAlOKAlDIwMjZIMSDmraPmmK/mraTnirbmgIHvvIznrKzkuIDngrnmr6vlj5Hml6DmjZ/vvIkKLSDwn5S0ICoq57uT5p6E5Y+Y6YeP5byA5aeL6YCG6L2sICsg6KGM5Li656Gu6K6kKiog4oaSIOesrOS4gOeCueWPl+aNn++8jOaXoOiuuuazoeazoeeOm+eJueWkmuW8uumDveimgemZjSBiZXRhIOaVnuWPowoKLS0tCgojIyDkuIPjgIHkuI7muLjmiI/ooYzkuJrnu4/pqoznmoTlr7nmjqXvvIjmlrnms5XorrrmnaXmupDvvIkKCua4uOaIj+S7juS4mue7j+mqjCoq5bey5YaF572u6L+Z5aWX5qC85qCF55qE57uT6K66KirvvJoKLSDop4Hov4fmg4Xnu6rku7flgLzmtojotLnnqb/otorooZfmnLrihpLkuLvmnLrihpLmiYvmuLjkuInmrKHovb3kvZPova7mjaLvvIjlj43mvJTlsYIgRDEg55qE5a6e6K+B77ya6L295L2T5o2i44CB6ZyA5rGC5LiN54Gt77yJCi0g6KeB6L+H5q+P5LiA5Luj5paw546p5a626YO95pyJ5paw55qE5LuY6LS55oOF57uq77yI5Luj6ZmF6L+e57ut5oCn5L+h5Y+3IOKck++8iQotIOingei/h+aUtuiXjy/nmq7ogqQv5oq95Y2h6L+Z5LqbIuaDhee7qua6ouS7tyLmqKHlvI/ooqvlj43lpI3pqozor4HvvIjmlK/ku5jmhI/mhL8g4pyT77yJCgoi5r2u546p5Y+v5Lul5b6I6ZW/5LmFIueahOebtOiniSA9IOWkmuW5tOinguWvn+mqjOivgei/h+eahOihjOS4miBiZXRhIOe7k+iuuuOAguacrOahhuaetuaKiuWug+WPmOaIkOWPr+abtOaWsOOAgeWPr+ivgeS8queahOS7quihqOebmOOAggoKLS0tCgojIyDlhavjgIHmlrnms5XovrnnlYzvvIjor5rlrp7moIfms6jvvIkKCnwg5qGG5p626YOo5Lu2IHwg5Ye65aSEIHwKfC0tLXwtLS18CnwgKirlj43mvJTvvIhJbnZlcnNpb27vvIkqKiB8IOiKkuagvOW8leeUqOmbheWPr+avlO+8miLlj43ov4fmnaXmg7PvvIzmgLvmmK/lj43ov4fmnaXmg7PjgIIiIHwKfCAqKuWkmuWFg+aAnee7tOaooeWei+agvOaghe+8iExhdHRpY2V3b3Jr77yJKiogfCDoipLmoLzmoLjlv4PkuLvlvKDvvJrnu4TlkIjmlbDlraYv57uP5rWO5a2mL+W/g+eQhuWtpi/nlJ/nianlraYv56S+5Lya5a2m562J5aSa5a2m56eR5qih5Z6LIHwKfCAqKuivr+WIpOW/g+eQhuWtpioq77yI56S+5Lya6K6k5ZCML+eogOe8ui/lt7TnlKvmtJvlpKvogZTmg7Mv5r+A5Yqx77yJIHwg6IqS5qC844CK5Lq657G76K+v5Yik5b+D55CG5a2m44CL5ryU6K6yIHwKfCAqKua/gOWKseacuuWItioq77yI6Lef6Liq5pSv5LuY5oSP5oS/6ICM6Z2e5Y+j5Y+377yJIHwg6IqS5qC877yaIuawuOi/nOS4jeimgeS9juS8sOa/gOWKseeahOWKm+mHjyIgfAp8ICoq55Sf54mp5a2mL+i/m+WMluinhuinkueci+WVhuS4mioqIHwg6IqS5qC85bi455So77yI54mp56eN6YCC5bqUL+eUn+aAgeS9jS/nga3nu53nsbvmr5TvvIkgfAp8ICoq5Zub5bGC57uT5p6EICsg5Lqk5Y+J6aqM6K+B6KeE5YiZKiogfCAqKuiHquWIm+e8luaOkioq4oCU4oCU5YCf55So6IqS5qC85pa55rOV6K665pCt5bu677yM6Z2e6IqS5qC85Y6f5paHIHwKCj4g6IqS5qC85o+Q5L6b55qE5pivKirop6Pph4rkuJbnlYznmoTlv4Pmmbrlt6XlhbflupMqKu+8jOS4jeaYr+aTjeS9nOaJi+WGjOOAguWwhuWFtui9rOivkeS4uuWPr+aJp+ihjOi3n+i4quS/oeWPtyA9IOacrOahhuaetueahOW6lOeUqOWxguOAggoKLS0tCgojIyDlj4Lop4EKCi0gW1suLi8uLi9hcnRpY2xlcy9zeW50aGVzaXMvZ2VuZXJhdGlvbmFsLXJpc2stc2FucmlvLWRpc25leS1wb3BtYXJ0XV0g4oCUIOaWreS7o+mjjumZqe+8muWFrOWPuOWxgumdoueahCAzIOW5tOWRqOacn+i3n+i4qu+8iOacrOevh+i3n+i4queahOaYr+ihjOS4muWxgumdou+8iQotIFtbLi4v5oqV6LWE6K6654K5XV0g4oCUIOWbm+e7tOaUtuWFpeaooeWeiyAvIOWbm+adoemYsue6vyAvIOaWreS7o+mjjumZqQotIFtbLi4v6L+Q6JCl5oyH5qCHXV0g4oCUIElQIOmbhuS4reW6piAvIOWTgeexu+a8lOi/myAvIOa4oOmBk+i9rOWMliAvIOWcsOeQhuaJqeW8oAotIFtbLi4v5pWw5o2u55uu5b2VXV0g4oCUIOaVsOaNruWPr+eUqOaAp+i+ueeVjAotIFtbLi4vLi4vYXJ0aWNsZXMvc3ludGhlc2lzL3BvcG1hcnQtZGVtYW5kLWRlY29tcG9zaXRpb25dXSDigJQg6ZyA5rGC5LiJ5bGC5ouG6KejCi0gW1suLi/ot5/ouKovMDQt5rW35YaF5aSW5pS25YWl5YiG5YyW77yIMjAyNkgx77yJ5py65Yi25LiO5Yik5o2uXV0g4oCUIOa1t+WGheWkluWIhuWMlu+8mumcgOaxgumYtuauteW3ruW8gu+8iOS4reWbve+8neWtmOmHj+Wkjei0reW4guWcuiAvIOa1t+Wklu+8nea1gemHj+W4gu+8iQpbW3Jlc2VhcmNoL2luZGV4Lm1kXV0KW1tyZXNlYXJjaC9sb2cubWRdXSDCtyBbW3Jlc2VhcmNoL+azoeazoeeOm+eJuS/kuJrnu6kv5Lia57up5Lya57qq6KaB57Si5byV77yIMjAyMC0yMDI277yJLm1kXV0=";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="情绪需求持续性跟踪.html">泡泡玛特 (09992) — 情绪需求持续性跟踪（行业 beta）</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 情绪需求持续性跟踪（行业 beta）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-23</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/需求</span></div><div class="md" id="md"><h1>情绪需求持续性跟踪（行业 beta）</h1>
+<blockquote>
+<p>投资论证结构：第一点（情绪价值消费可长久）是行业 beta，第二点（泡泡玛特运营能力突出）是公司 alpha。<strong>收入上限 = 行业天花板 × 份额</strong>——若第一点不成立，第二点只是&quot;在退潮行业里最优秀的游泳者&quot;。本篇建立第一点的跟踪体系。</p>
+</blockquote>
+<hr />
+<h2>一、跟踪对象定义</h2>
+<p>第一点 = &quot;为情绪价值付费&quot;的长期需求成立。可拆为三个分量：</p>
+<pre><code>情绪价值消费总量 = 付费意愿（愿不愿意为&quot;没用但开心&quot;花钱）
+                 × 支付能力（收入上升后有没有余钱）
+                 × 代际连续性（下一代人是否同样认可这件事）
+</code></pre>
+<p>任何一层坍缩，第一点即失败。四层跟踪框架分别盯这三个分量。</p>
+<hr />
+<h2>二、第一层：反演（Inversion）— 第一点会怎么死？</h2>
+<blockquote>
+<p>芒格：&quot;反过来想，总是反过来想。&quot;（雅可比）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>死亡路径</th>
+<th>机制</th>
+<th>可观察信号</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>D1 虚拟完全替代</strong></td>
+<td>数字体验（AI 伴侣/VR/游戏皮肤/脑机接口）完全覆盖实体情绪价值</td>
+<td>年轻人&quot;实体收藏支出&quot;占&quot;娱乐总支出&quot;比重；虚拟商品消费增速 vs 实体潮玩增速</td>
+<td>🟡 游戏行业历史表明<strong>载体轮换而非消亡</strong>（街机→手游，付费意愿没死）</td>
+</tr>
+<tr>
+<td><strong>D2 收入长期停滞</strong></td>
+<td>可支配收入下滑 → 情绪消费被优先挤出</td>
+<td>居民可支配收入增速；恩格尔系数反向（生存性支出占比上升 = 情绪支出被挤出）</td>
+<td>🟢 中国/东南亚收入仍在上行期</td>
+</tr>
+<tr>
+<td><strong>D3 价值观反消费</strong></td>
+<td>社会转向极端简约/禁欲/反物质主义成为主流</td>
+<td>&quot;断舍离&quot;&quot;不持有&quot;类思潮渗透率；极简生活方式扩散程度</td>
+<td>🟡 三浦展观察到：年轻人<strong>反的是囤积，不是体验</strong>——&quot;买开盒瞬间&quot;与&quot;反囤积&quot;兼容</td>
+</tr>
+<tr>
+<td><strong>D4 免费化</strong></td>
+<td>情绪价值供给完全免费（开源内容/AI 生成无限角色）→ 付费意愿消失</td>
+<td>AI 生成角色使用率；用户对免费情绪内容的黏性</td>
+<td>🟡 游戏行业证明付费不买内容，买&quot;稀缺+仪式+社交&quot;，免费化杀不死稀缺性</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键洞察</strong>：四条死亡路径<strong>没有一条是&quot;人类不再需要情绪价值&quot;</strong>——全是&quot;载体被替代&quot;或&quot;支付能力消失&quot;。这暗示第一点比直觉更坚固。</p>
+<hr />
+<h2>三、第二层：进化心理学与人类学 — 底层信仰的锚</h2>
+<blockquote>
+<p>理解一个行为，先问它在进化史上存在了多久。存在越久，越是本能，越不会消失。</p>
+</blockquote>
+<ul>
+<li><strong>装饰品</strong>：7 万年前的贝壳项链（智人最早的&quot;非功能性物品&quot;）——为&quot;好看/身份/社交&quot;付费是<strong>万年量级</strong></li>
+<li><strong>收藏本能</strong>：收集是进化残留（囤积资源的安全感编码）——&quot;收藏&quot;冲动是生理级的</li>
+<li><strong>娱乐</strong>：音乐/游戏/舞蹈在所有文明、所有时代都存在——情绪体验消费是人类文明的<strong>恒量</strong></li>
+</ul>
+<pre><code>逻辑链：情绪价值消费 ≈ 装饰 + 收藏 + 娱乐（三个万年级人类本能）
+      → 底层需求不会灭绝，只会换形态
+      → 跟踪重点不在&quot;需求在不在&quot;，而在&quot;形态切换到哪&quot;
+</code></pre>
+<p><strong>低频跟踪信号</strong>（决定信仰是否动摇）：</p>
+<ul>
+<li>各国娱乐/文娱消费占 GDP 比的长期趋势（美国电影百年、日本动画五十年——只升不降）</li>
+<li>收藏品市场总规模（邮票→球星卡→手办→数字藏品，品类总盘子是否持续扩张）</li>
+</ul>
+<hr />
+<h2>四、第三层：人口学 + 经济学 — 结构性慢变量</h2>
+<blockquote>
+<p>依据三浦展《第五消费时代》人口论证。<strong>慢变量：一旦成立，就是 30 年量级确定性。</strong> 跟踪频率：每年一次。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>结构变量</th>
+<th>与第一点的关系</th>
+<th>跟踪指标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>少子化 + 单身化</strong></td>
+<td>家庭解体 → 情感需求外部化 → 情绪消费成&quot;刚需替代品&quot;</td>
+<td>生育率、独居人口占比、平均家庭规模（日本已验证：单身化与治愈经济同步扩张）</td>
+</tr>
+<tr>
+<td><strong>老龄化</strong></td>
+<td>治愈/陪伴需求池扩大（宠物经济、治愈系消费同曲线）</td>
+<td>60 岁+人口占比；老年文娱消费增速</td>
+</tr>
+<tr>
+<td><strong>收入弹性</strong>（恩格尔定律镜像）</td>
+<td>收入每升 1%，精神/情绪消费升 &gt;1%</td>
+<td>中国/东南亚人均 GDP 与&quot;文娱+情绪消费占比&quot;弹性系数</td>
+</tr>
+<tr>
+<td><strong>精神生活重视度</strong></td>
+<td>重视精神生活者偏好 Consummatory（体验/美好时光）消费</td>
+<td>体验类支出 vs 实物支出比值（全球趋势：体验型消费占比上升）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>支付意愿的实弹检验</strong>（行为交叉验证）：</p>
+<ul>
+<li><strong>口红效应/治愈经济</strong>：经济下行期小额情绪消费反而坚挺（盲盒 59 元/游戏月卡）——情绪消费有<strong>逆周期属性</strong>，抬高第一点的下限</li>
+<li><strong>收入弹性实测</strong>：2026H1 泡泡玛特中国内地 +47.3%（同期社零个位数增长）——弹性 &gt;1 的直接证据</li>
+</ul>
+<hr />
+<h2>五、第四层：高频行为信号 — 季度/月度可观察</h2>
+<blockquote>
+<p>实弹战场。每个信号都必须有&quot;证伪条件&quot;。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>观察什么</th>
+<th>第一点成立 → 应看到</th>
+<th>第一点受损 → 会看到</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>二手市场残值</strong></td>
+<td>潮玩在闲鱼/StockX 折价率</td>
+<td>二手价长期维持（情绪价值有残值）</td>
+<td>二手价崩塌（只剩塑料）</td>
+</tr>
+<tr>
+<td><strong>退坑 vs 入坑</strong></td>
+<td>退坑帖词云 + 新入坑人群增速</td>
+<td>退坑是个体行为（3 年周期），但<strong>新入坑源源不断</strong>（种群层面净流入）</td>
+<td>整体入坑增速转负、二手&quot;出清潮&quot;成常态</td>
+</tr>
+<tr>
+<td><strong>品类渗透率扩散</strong></td>
+<td>情绪消费从&quot;年轻人潮流&quot;走向&quot;全年龄段生活方式&quot;</td>
+<td>渗透率从一线/年轻人<strong>扩散到低线/全年龄</strong>（像运动/咖啡一样去潮流化）</td>
+<td>长期停留在单一群体内（说明是潮流，不是生活方式）</td>
+</tr>
+<tr>
+<td><strong>支付意愿代际测试</strong></td>
+<td>20 岁人群对&quot;为情绪价值付溢价&quot;的态度</td>
+<td>每一代新 20 岁重现类似付费行为</td>
+<td>新一代 20 岁明确&quot;实体情绪消费与我无关&quot;（价值观断层前兆）</td>
+</tr>
+<tr>
+<td><strong>消费支出占比</strong></td>
+<td>情绪消费占个人总支出比重</td>
+<td>长期缓升</td>
+<td>长期停滞或下滑</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>六、格栅交叉验证规则</h2>
+<blockquote>
+<p>芒格方法论核心：<strong>多个独立学科模型指向同一结论时才行动</strong>，不是单信号决策。</p>
+</blockquote>
+<pre><code>高频信号（第五层）异常 → 先看结构性变量（第三层）是否解释
+    结构性变量变了 → 第一点真受损（人口结构逆转/收入停滞）
+    结构性变量没变 → 大概率是周期性噪音（潮流轮换），不是趋势破坏
+
+底层信仰（第二层）几乎不动 → 只在 D1-D4 出现时才动摇
+反演（第一层）定期扫描死亡路径 → 某条路径现早期迹象 → 提升关注
+</code></pre>
+<p><strong>综合判断规则</strong>：</p>
+<ul>
+<li>🟢 <strong>三层一致看多</strong>（结构向上 + 行为向好 + 无死亡路径迹象）→ 第一点成立，可放心赌 beta</li>
+<li>🟡 <strong>高频变差但结构未变</strong> → 不慌，是轮换期（例：盲盒退潮但毛绒接棒——2026H1 正是此状态，第一点毫发无损）</li>
+<li>🔴 <strong>结构变量开始逆转 + 行为确认</strong> → 第一点受损，无论泡泡玛特多强都要降 beta 敞口</li>
+</ul>
+<hr />
+<h2>七、与游戏行业经验的对接（方法论来源）</h2>
+<p>游戏从业经验<strong>已内置这套格栅的结论</strong>：</p>
+<ul>
+<li>见过情绪价值消费穿越街机→主机→手游三次载体轮换（反演层 D1 的实证：载体换、需求不灭）</li>
+<li>见过每一代新玩家都有新的付费情绪（代际连续性信号 ✓）</li>
+<li>见过收藏/皮肤/抽卡这些&quot;情绪溢价&quot;模式被反复验证（支付意愿 ✓）</li>
+</ul>
+<p>&quot;潮玩可以很长久&quot;的直觉 = 多年观察验证过的行业 beta 结论。本框架把它变成可更新、可证伪的仪表盘。</p>
+<hr />
+<h2>八、方法边界（诚实标注）</h2>
+<table>
+<thead>
+<tr>
+<th>框架部件</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>反演（Inversion）</strong></td>
+<td>芒格引用雅可比：&quot;反过来想，总是反过来想。&quot;</td>
+</tr>
+<tr>
+<td><strong>多元思维模型格栅（Latticework）</strong></td>
+<td>芒格核心主张：组合数学/经济学/心理学/生物学/社会学等多学科模型</td>
+</tr>
+<tr>
+<td><strong>误判心理学</strong>（社会认同/稀缺/巴甫洛夫联想/激励）</td>
+<td>芒格《人类误判心理学》演讲</td>
+</tr>
+<tr>
+<td><strong>激励机制</strong>（跟踪支付意愿而非口号）</td>
+<td>芒格：&quot;永远不要低估激励的力量&quot;</td>
+</tr>
+<tr>
+<td><strong>生物学/进化视角看商业</strong></td>
+<td>芒格常用（物种适应/生态位/灭绝类比）</td>
+</tr>
+<tr>
+<td><strong>四层结构 + 交叉验证规则</strong></td>
+<td><strong>自创编排</strong>——借用芒格方法论搭建，非芒格原文</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>芒格提供的是<strong>解释世界的心智工具库</strong>，不是操作手册。将其转译为可执行跟踪信号 = 本框架的应用层。</p>
+</blockquote>
+<hr />
+<h2>参见</h2>
+<ul>
+<li><a href="../generational-risk-sanrio-disney-popmart.html">../../articles/synthesis/generational-risk-sanrio-disney-popmart</a> — 断代风险：公司层面的 3 年周期跟踪（本篇跟踪的是行业层面）</li>
+<li><a href="../%E6%8A%95%E8%B5%84%E8%AE%BA%E7%82%B9.html">../投资论点</a> — 四维收入模型 / 四条防线 / 断代风险</li>
+<li><a href="../../%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E8%BF%90%E8%90%A5%E6%8C%87%E6%A0%87.html">../运营指标</a> — IP 集中度 / 品类演进 / 渠道转化 / 地理扩张</li>
+<li><a href="../%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95.html">../数据目录</a> — 数据可用性边界</li>
+<li><a href="../popmart-demand-decomposition.html">../../articles/synthesis/popmart-demand-decomposition</a> — 需求三层拆解</li>
+<li><a href="../%E8%B7%9F%E8%B8%AA/04-%E6%B5%B7%E5%86%85%E5%A4%96%E6%94%B6%E5%85%A5%E5%88%86%E5%8C%96%EF%BC%882026H1%EF%BC%89%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%88%A4%E6%8D%AE.html">../跟踪/04-海内外收入分化（2026H1）机制与判据</a> — 海内外分化：需求阶段差异（中国＝存量复购市场 / 海外＝流量市）
+<a href="../../../../research/index.md">research/index.md</a>
+<a href="../../../../research/log.md">research/log.md</a> · <a href="../../../../research/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E4%B8%9A%E7%BB%A9/%E4%B8%9A%E7%BB%A9%E4%BC%9A%E7%BA%AA%E8%A6%81%E7%B4%A2%E5%BC%95%EF%BC%882020-2026%EF%BC%89.md">research/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E9%9C%80%E6%B1%82">← 返回 需求</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/泡泡玛特/需求/情绪需求持续性跟踪.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

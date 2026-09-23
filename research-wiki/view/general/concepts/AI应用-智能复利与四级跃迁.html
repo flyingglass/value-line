@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AI 应用投资框架 — 智能复利与四级跃迁</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AI 应用投资框架 — 智能复利与四级跃迁</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,237 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">AI 应用投资框架 — 智能复利与四级跃迁</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-20</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/AI应用-智能复利与四级跃迁.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyBBSSDlupTnlKjmipXotYTmoYbmnrbvvJrmmbrog73lpI3liKnkuI7lm5vnuqfot4Pov4EKCj4g5pS25b2V5pel5pyf77yaMjAyNi0wOS0yMAo+IOadpea6kO+8muW+ruS/oeWFrOS8l+WPt+OAjOW6tuS6uuaKlei1hOeslOiusOOAje+8jOS9nOiAhSAqKuW6tuS6uuWTkeWjqyoq77yM44CK5YWz5LqOQUnlupTnlKjnmoTljYHkuKrliKTmlq3jgIvvvIwyMDI2LTA5LTE5IOWPkeW4gwo+IOWOn+aWh+mTvuaOpe+8mmh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL3puM2t4cXI2Vy1mMDBSNmtKU3hkdlEKPiDljp/lp4votYTmlpnop4EgYHJhdy9yZXNlYXJjaC9hcnRpY2xlcy8yMDI2LTA5LTE5LeW6tuS6uuWTkeWjqy3lhbPkuo5BSeW6lOeUqOeahOWNgeS4quWIpOaWrS5tZGAKCj4g4pqg77iPIOWumuS9jeWjsOaYju+8muS9nOiAheiHqui/sCIqKuS7peS4iuWIpOaWre+8jOWHhuehruaAp+e6puetieS6juelnuajjSoqIuOAguacrOmhteaYryoq5oqV6LWE5qGG5p625LiO5YGH6K6+6ZuGKirvvIzkuI3mmK/kuovlrp7pmYjov7DvvJvlvJXnlKjku7vkvZXmlbDlrZfliY3or7flhYjlm57muq/ljp/mlofmiJbkuIDmiYvotKLmiqXjgIIKCi0tLQoKIyMg5LiA44CB5a6a5LmJ77ya5Lik5Liq5qC45b+D5qaC5b+1CgojIyMg5pm66IO95aSN5Yip77yIQUkg5pe25Luj55qE572R57uc5pWI5bqU77yJCgp8IOaXtuS7oyB8IOS4u+WvvOe7j+a1jueJueW+gSB8IOmjnui9riB8CnwtLS18LS0tfC0tLXwKfCDlt6XkuJrml7bku6MgfCDop4TmqKHmlYjlupQgfCDkuqfph4/ihpEg4oaSIOWNleS9jeaIkOacrOKGkyB8Cnwg5LqS6IGU572R5pe25LujIHwg572R57uc5pWI5bqUIHwg55So5oi3IOKGlCDnlKjmiLcgLyDkv6Hmga8gLyDllYblk4EgfAp8ICoq5pm66IO95pe25LujKiogfCAqKuaZuuiDveWkjeWIqSoqIHwgKirnlKjmiLcg4oaUIOiDveWKmyoqIHwKCuWbnui3r++8mioq6LaK5rex5YWl5a6i5oi35Lia5Yqh5Zy65pmvIOKGkiDotornkIbop6PlrqLmiLfopoHku4DkuYgg4oaSIEFnZW50L0xMTSDlrablvpfotorlv6vjgIHog73lipvotorlvLog4oaSIOeUqOeahOS6uui2iuWkmiDihpIg6LaK5aW955SoIOKGkiDotorlpJrkurrnlKgqKuOAggoK5Y6f5paH5om/6K6kIuaZuuiDveWkjeWIqSLmpoLlv7XmnaXoh6oqKuabvum4o+OAiuaZuuiDve+8mkFJ5pe25Luj55qE5ZWG5Lia44CB57uE57uH5LiO5oiY55Wl55qE5pys6LSo44CLKirvvIzkvZzogIXoh6rnp7Ai5LuW5piv5oiR55qE5Zi05pu/IuOAggoKIyMjIOWbm+e6p+i3g+i/ge+8iOWVhuS4muaooeW8j+WIhuWxguagh+Wwuu+8iQoKYGBgCuWcn+i3ryAgICAgICAg4oaSICDpk7roo4Xot6/pnaIgICAgICDihpIgIOmrmOmAn+WFrOi3ryAgICAgICAg4oaSICBBSSDot5Hovabpo5notbfmnaUK5pWw5o2u5rK755CGICAgIOKGkiAg6JC95pWw5o2u5Lit5Y+wICAgIOKGkiAg5pys5L2T5bGCIE9udG9sb2d5IOKGkiAgQUlPU++8iOexuyBGb3VuZHJ577yJCmBgYAoK5Y6f5paH5by66LCD77yaKirmr4/lvoDkuIvkuIDmraXvvIzpg73ku6PooajllYbkuJrmqKHlvI/nmoTot4Pov4HvvIzkvLDlgLzojIPlvI/pg73lgLzlvpfph43mnoTjgIIqKiDov5nmnaHnur/nmoTnlKjpgJTmmK8i6K+E5Lyw5b2T5LiL6L+Z5Lqb5bqU55So5YWs5Y+45Yiw5ZOq5LiA5bGC5LqGIuOAggoKLS0tCgojIyDkuozjgIHljYHmnaHliKTmlq3vvIjmtZPnvKnvvIkKCjEuICoqQUkg55yf6IO96ZmN5pys5aKe5pWIKiog4oCUIOivgeaNruadpeiHquS6p+S4muS4gOe6vyLnlKjpkp7npajmipXnpajnmoTkubDlrrbooYzkuLoi77yM6ICM6Z2e5qih5Z6L5Y6CL+S6keWOguWNluWutuengAoyLiAqKuS8geS4muerr+W8gOWniyBGT01PKiog4oCUIOeUqCBBSSDkuI3kuIDlrprmnInkvJjlir/vvIzkvYbkuI3nlKjkuIDlrprmnInnm7jlr7nliqPlir8KMy4gKirnlKggQUkg55qE5YmN5o+Q5piv5pWw5a2X5YyWKiog4oCUIOW9k+S4i+W+iOWkmiBBSSDlupTnlKjlhazlj7jokKXmlLbniIblj5HlvI/lop7plb/vvIzlhbblrp7mnaXoh6oqKuaVsOaNruayu+eQhioqCjQuICoqTExNIOeahOeTtumiiOaYr+mrmOi0qOmHj+engeacieaVsOaNrioqIOKAlCDkupLogZTnvZHlj6/mipPmlofmnKznuqYgMTAwVO+8jOa4hea0l+WQjuWPr+eUqOS6jiBwcmUtdHJhaW4g57qmIDE1VO+8jOaegeiHtOaMluaOmOacgOWkmiAzMDBU77yMIuaXqemDveiiq+eUqOWujOS6hiLvvJsqKuWPquiDveiuqSBMTE0g5oiQIuept+e/sOaelyLvvIzlubLkuI3kuoYi5Y6/5LukIuW8j+eahOa0uyoqCjUuICoq5q+U56eB5pyJ5pWw5o2u5pu056iA57y655qE5piv55yf5a6e5Lia5Yqh5Zy65pmvKiog4oCUIEVSUC9DUk0g5pivIuWumuagvOeFp+eJhyLvvIzmsqHmnInku44gQSDliLAgQiDnmoTov4fnqIvvvJvkuI3orqkgQWdlbnQg5Y+C5LiO6L+H56iL5bCxIuaAu+acieS6m+malOmdtOaQlOeXkiIKNi4gKirmmbrog73ml7bku6PnmoTnvZHnu5zmlYjlupTmmK/mmbrog73lpI3liKkqKu+8iOingeS4iuaWh++8iQo3LiAqKuaZuuiDveWkjeWIqei/h+S6huS4tOeVjOeCueS8muiHquaIkeWKoOW8uioqIOKAlCAi5aSp5LiL5q2m5Yqf5ZSv5b+r5LiN56C0IuS7jeeuoeeUqO+8jOS9humjnui9ruS7jiLnlKjmiLfkuI7llYblk4Ei5o2i5oiQIioq55So5oi35LiO6IO95YqbKioiCjguICoq55yLIEFJIOW6lOeUqOS4jeiDveWPquebr+iQpeaUtuWinumVvyoqIOKAlCDopoHnnIsqKui3keW+l+W/qyoq77yI6JCl5pS277yJKyoq5YGa5b6X5rexKirvvIhORFLvvInkuKTkuKrmjIfmoIcKOS4gKirkuK3lm73niYggUGFsYW50aXIg55qE546w5a6e6Lev5b6EKiog4oCUIOaVsOaNruayu+eQhiDihpIg5pWw5o2u5Lit5Y+wIOKGkiDmnKzkvZPlsYIg4oaSIEFJT1MKMTAuICoqQUkg5bqU55So5piv55uY5aSn6IKJ77yM5rKh5pyJ5LiA5a626IO96YCa5ZCDKiog4oCUIOingeesrOWbm+iKguS4ieS4quWtkOWIpOaWrQoKLS0tCgojIyDkuInjgIHmoLjlv4Ppqozor4HmjIfmoIfvvJpORFLvvIjlh4Dnvo7lhYPnlZnlrZjnjofvvIkKCuWOn+aWh+e7meWHuueahOWIpOaNru+8mgoKLSAqKuiQpeaUtuWinumVvyoqID0g6LCB6LeR5b6X5b+r77yI5ouT5bGV55qE55So5oi35Zy65pmv5aSa77yJCi0gKipORFLvvIjlpI3otK3njocgKyDlop7otK3njofvvIkqKiA9IOiwgeWBmuW+l+a3se+8iOmVv+WHuueUqOaIt+emu+S4jeW8gOeahOiDveWKm++8iQotICoqIui/meWwseaYr+WFuOWei+eahOi/h+S6huS4tOeVjOeCueiHquaIkeWKoOW8uueahOi0ouWKoeivgeaNriIqKgoK5Y6f5paH5byVIFBhbGFudGlyIOWIhumDqOmXqCBORFLvvIgqKuacqumZhOWHuuWkhO+8jOW+heaguCoq77yJ77yaCgp8IOmDqOmXqCB8IE5EUiB8CnwtLS18LS0tfAp8IFVTIENvbW1lcmNpYWwgfCAqKjE1MCUqKiB8CnwgR292ZXJubWVudCDmlbTkvZMgfCAqKjE0NiUqKiB8CnwgQ29tbWVyY2lhbCDmlbTkvZMgfCAxMTMlIHwKfCBJbnRlcm5hdGlvbmFsIENvbW1lcmNpYWwgfCAqKjEwMyUqKu+8iOaLlue0r+aVtOS9k++8iSB8Cgo+IPCfk4wg5Lqk5Y+J5a+554Wn77yaUGFsYW50aXIgKirmlbTkvZMqKiBORFIg5Li6ICoqMTU3JSoq77yIUTIgMjAyNiDotKLmiqXnlLXor53kvJrlj6PlvoTvvIznjq/mr5QgKzcwMGJw77yJ44CC5LiO5Y6f5paHIFVTIENvbW1lcmNpYWwgMTUwJSDph4/nuqflkLvlkIjvvIzkvYYqKuWIhumDqOmXqOaVsOWtl+S7jemcgOWbnua6r+S4gOaJi+i0ouaKpS/nlLXor53kvJrljp/mlocqKu+8jOacrOmhteaaguaMieS9nOiAheWPo+W+hOaUtuW9leOAggoKKirlm77or4HvvIjljp/mlofphY3lm77vvIwyMDI2LTA5LTIwIOihpeW9le+8iSoq77yaUGFsYW50aXIgKirokKXkuJrmgLvmlLblhaXvvIjntK/orqHvvIkqKiA1Ljk177yIMjAxOO+8ieKGkiA3LjQzIOKGkiAxMC45MyDihpIgMTkuMDYg4oaSIDIyLjI1IOKGkiAyOC42NiDihpIgKio0NC43NSDkur/nvo7lhYPvvIgyMDI177yJKirvvJsqKue0r+iuoeWQjOavlCoqIDIwMjUgKiorNTYuMTglKirjgIEyNi1RMiDiiYgqKjkwJSoq77yI5Y2K5bm05bqm5Y+j5b6E77yM5Y6f5Zu+5peg5pWw5a2X5qCH562+77yM5Y+z5L6n6L206K+75pWw77yJ44CCCgp8IOacn+mXtCB8IDIwMTggfCAyMDE5IHwgMjAyMCB8IDIwMjEgfCAyMDIyIHwgMjAyMyB8IDIwMjQgfCAyMDI1IHwgMjYtUTIgfAp8LS0tfC0tLXwtLS18LS0tfC0tLXwtLS18LS0tfC0tLXwtLS18LS0tfAp8IOiQpeaUtu+8iOe0r+iuoe+8jOS6v+e+juWFg++8iSB8IDUuOTUgfCA3LjQzIHwgMTAuOTMgfCDvvIjmnKrmoIfms6jvvIkgfCAxOS4wNiB8IDIyLjI1IHwgMjguNjYgfCAqKjQ0Ljc1KiogfCDvvIjmnKrmoIfms6jvvIkgfAp8IOe0r+iuoeWQjOavlCB8IOKAlCB8ICsyNC43MSUgfCArNDcuMTUlIHwgKzQxLjExJSB8ICsyMy42MSUgfCArMTYuNzUlIHwgKzI4Ljc5JSB8ICoqKzU2LjE4JSoqIHwg4omIOTAlIHwKCj4g5Y6f5Zu+77yI5Y6f5paH6YWN5Zu+77yMKirlt7LovazlhpnkuLrkuIrooajvvIzkuI3lrZjmnKzlnLDlia/mnKwqKu+8ie+8mmBodHRwczovL21tYml6LnFwaWMuY24vbW1iaXpfcG5nL3pnWjREOW53cWdHU0RGaWJZaWFadHZSM1ZzUXpKUlJIOVNuOW56VmY3MWNKczNMV1pJRlhDdVlyOTFGR0JIRkIxbWFqd29IOXNBMmN5UGVXa2tuNkkyQm56clZ3aWF2aWNkWlZzZzZNNmpUNVM0OC82NDA/d3hfZm10PXBuZyZmcm9tPWFwcG1zZ2DvvJvpgJDmoLzmoLjlr7nor7TmmI7op4EgcmF3IOesrCA4IOadoeOAggo+IOi/meaYr+WOn+aWhyLlhbjlnovnmoTov4fkuobkuLTnlYzngrnoh6rmiJHliqDlvLrnmoTotKLliqHor4Hmja4i6YKj5Y+l55qE55u05o6l5L6d5o2u77yb5Zu+5Li6KirnrKzkuInmlrnvvIjnkIbmnY/ku4EgbGl4aW5nZXIuY29t77yJ5pWw5o2u5Zu+77yM6Z2e5YWs5Y+46LSi5oql5Y6f5paHKirvvIwyNi1RMiDkuI4gMjAyMSDkuKTlpITkuLrmjqjnrpcv55uu5rWL77yM5byV55So5YmN6ZyA5Zue5rqv6LSi5oql44CCCgotLS0KCiMjIOWbm+OAgeesrOWNgeadoe+8muS4ieS4quWtkOWIpOaWre+8iOWIhuexu+azle+8iQoKfCDnsbvlnosgfCDnibnlvoEgfCDmqKHlnovog73lipvnmoTkvZznlKjmmK8gfCDkvovlrZDvvIjljp/mloflj6PlvoTvvIkgfAp8LS0tfC0tLXwtLS18LS0tfAp8ICoqYS4g5rWF5bGC5bel5YW35Z6LKiogfCDlj6rmu6HotrPmnIDlpKflhaznuqbmlbDnmoTpgJrnlKjpnIDmsYIgfCAqKuiiq+WQnuWZrCoqIHwg576O5Zu+44CB5YGaIFBQVCDnrYkgfAp8ICoqYi4g5rex6YeN5Z6L5Z6C55u0KiogfCDmnInnp4HmnInmlbDmja4gKyDov5vlvpfljrvnnJ/lrp7kuJrliqHlnLrmma8gfCAqKuiiq+i1i+iDvSoqIHwgUGFsYW50aXLvvIgi5LiA5bqn5pWw5o2u54K85rK55Y6C77yMTExNIOaYr+i2hee6p+mlpea4tOeahOaVsOaNruaAqueJqSLvvIkgfAp8ICoqYy4g6ZW/5bC+57uG5YiGKiogfCDopoHlgZrmt7HlgZrph43kvYbku7flgLzph4/kuI3lpKfvvIzplb/kuI3lh7ogUGFsYW50aXIgfCDmqKHlnovlhazlj7jov5vkuI3ljrsgfCB3b3JrYnVkZHkg57G75bqU55So5biC5Zy6IHwKCuWvuSBjIOexu+eahOWFs+mUruWIpOaWre+8mioq5bqU55So5biC5Zy65pyA56iA57y655qE6IO95Yqb5LiN5pivIuS4sOWvjCLvvIzogIzmmK8i562b6YCJ5Yik5patIioq4oCU4oCU5biu55So5oi3562b5Ye65LiO5YW35L2T5Lu75Yqh5pyA5Yy56YWN55qEIEFnZW50L1NraWxs44CCCgotLS0KCiMjIOS6lOOAgeS4reWbveeJiOi3r+W+hO+8muS4pOadoea4l+mAj+i3r+e6v++8iOmavuW6puS4jeWQjO+8iQoKfCDot6/nur8gfCDpobrluo8gfCDpmr7luqYgfCDor7TmmI4gfAp8LS0tfC0tLXwtLS18LS0tfAp8ICoq5q2j5ZCRKiogfCDlhYjluK7lrqLmiLfmlbDmja7msrvnkIYg4oaSIOWAn+acuuiQveiHquW3seeahOaVsOaNruS4reWPsCDihpIg5YaN5Y2W5ZCE56eN5Lia5YqhIEFnZW50IHwg6L6D5piTIHwgIuimgeiHtOWvjO+8jOWFiOS/rui3r++8jOS9huWPiOS4jeiDveWPquaYr+S/rui3ryIgfAp8ICoq5Y+N5ZCRKiogfCDlhYjmiormn5DkuKogQWdlbnQg5Y2W6L+b5Y67IOKGkiDlho3muJfpgI/mlbDmja7kuK3lj7AgfCAqKumavuW+l+WkmioqIHwg5L6L77ya6L+I5a+M5pe26JCl6ZSAIEFnZW5044CB5YyX5qOuIEhSIEFnZW5077ybKioi5o2i5pWw5o2u5Lit5Y+w5YOP6auY6YCf5o2i6L2u5a2Q77yM6L275piT5LiN5Lya5o2iIioqIHwKCuWFs+mUruWNoeeCue+8mioq5pys5L2T5bGC77yIT250b2xvZ3nvvInmkK3lu7rmioDmnK/kuI3pmr7vvIzpmr7nmoTmmK/lr7nkuJrliqHnmoTmt7HluqbnkIbop6MqKuKAlOKAlOWPluWGs+S6juS4pOS7tuS6i++8mioq5a6i5oi36YWN5ZCI5bqmICsgRkRFIOS4k+S4muW6pioq44CCCgo+IOS4juacrOW6k+WFs+iBlO+8mkZERe+8iEZvcndhcmQgRGVwbG95ZWQgRW5naW5lZXLvvIzpqbvlnLrlt6XnqIvluIjvvInnlLEgKipQYWxhbnRpcioqIOmmluWIm++8jOaYr+acrOahhuaetueahOiQveWcsOi9veS9k++8jOingeWvueivneayiea3gCBgcmVzZWFyY2gtd2lraS9yZXNlYXJjaC9gIOebuOWFs+mhte+8iFBhbGFudGlyIOacquWNleeLrOeri+W6k++8jOW+heeUqOaIt+WGs+Wumu+8ieOAggoKLS0tCgojIyDlha3jgIHmgI7kuYjnlKjov5nkuKrmoYbmnrbvvIjmk43kvZzljJbvvIkKCjEuICoq5YWI5YiG5bGC5YaN5q+U6L6DKirvvJrmi78i5Zub57qn6LeD6L+BIue7meWAmemAieWFrOWPuOWumuS9je+8jOS4jeimgei3qOWxgue6p+avlOWinumAn+KAlOKAlOWkhOWcqCLmlbDmja7msrvnkIYi5bGC55qE5YWs5Y+46JCl5pS254iG5Y+R77yM5LiO5aSE5ZyoIkFJT1Mi5bGC55qE5YWs5Y+45LiN5piv5ZCM5LiA6Zeo55Sf5oSPCjIuICoq55uvIE5EUiDkuI3nm6/okKXmlLYqKu+8muiQpeaUtuWinumVv+WPr+iDveaYryBGT01PIOmpseWKqOeahOS4gOasoeaAp+mhueebruaUtuWFpe+8m05EUiDmiY3or4HmmI4i5pm66IO95aSN5YipIuecn+WcqOi9rAozLiAqKumXruacrOS9k+WxguiAjOmdnuaooeWei+iDveWKmyoq77ya5oqA5pyv6Zeo5qeb5LiN5Zyo5qih5Z6L77yM5Zyo5Lia5Yqh55CG6KejIOKGkiDlhbPplK7lj5jph4/mmK/lrqLmiLfphY3lkIjluqbkuI4gRkRFIOS4k+S4muW6pgo0LiAqKueUqOS4ieS4quWtkOWIpOaWreWBmuaOkumZpCoq77ya5rWF5bGC5bel5YW35Z6L5YWI5o6S6Zmk77yI5Lya6KKr5qih5Z6L5ZCe5o6J77yJCgotLS0KCiMjIOS4g+OAgeWxgOmZkCAvIOW+heaguAoKLSAqKuS9nOiAheiHqui/sCLlh4bnoa7mgKfnuqbnrYnkuo7npZ7mo40iKirvvIzlhajpg6jkuLrlrprmgKfliKTmlq3vvIzml6Dph4/ljJbmqKHlnovmlK/mkpEKLSAqKuW+heaguOaVsOaNru+8iOS9nOiAheWPo+W+hO+8jOacqumZhOWHuuWkhO+8iSoq77ya5LqS6IGU572R5paH5pysIDEwMFQgLyAxNVQgLyAzMDBU77ybUGFsYW50aXIg5Zub5Liq5YiG6YOo6ZeoIE5EUu+8iDE1MCUgLyAxNDYlIC8gMTEzJSAvIDEwMyXvvIkKLSAqKua2ieWPiuWFrOWPuOeahOWIpOaWreS4uuS9nOiAheingueCuSoq77yaUGFsYW50aXLvvIjmnIDkvbPlrp7ot7Uv5YyX5p6B5pif77yJ44CB6L+I5a+M5pe244CB5YyX5qOu44CB576O5Zu+Ci0gKirmoYbmnrbmnKrooqvor4HkvKrmo4DpqowqKu+8miLmmbrog73lpI3liKnmmK/lkKbnnJ/nmoTlrZjlnKjkuLTnlYzngrkiIk5EUiDpq5jmmK/lkKbnrYnkuo7ov4fkuobkuLTnlYzngrki4oCU4oCU5Y6f5paH5LulIFBhbGFudGlyIOWNleS4gOagt+acrOiuuuivge+8jOagt+acrOmHjyA9IDHvvIzlrZjlnKgqKuW5uOWtmOiAheWBj+W3rioq6aOO6ZmpCi0g5pys5bqT5bCa5pyq5bu656uLIFBhbGFudGlyIC8g6L+I5a+M5pe2IC8g5YyX5qOuIOeahOagh+eahOmhte+8jOiLpeimgeWunumZheS9v+eUqOivpeahhuaetumAieiCoe+8jOmcgOWFiOihpeagh+eahOmhteS4juS4gOaJi+i0ouaKpeaVsOaNrgoKLS0tCgojIyDlhbPogZQKCi0gW1vpmL/nkZ8t5pS255uK6YCS5aKe5LiO5raM546wXV0g4oCUIOWQjOS4uiLpgJLlop4v5q2j5Y+N6aaIIuexu+acuuWItu+8jOWPr+S9nOeQhuiuuuWvueeFp++8iOaUtuebiumAkuWiniB2cyDmmbrog73lpI3liKnvvIkKLSBbW+iKkuagvC3kuLTnlYzotKjph49dXSDigJQgIuS4tOeVjOeCueiHquaIkeWKoOW8uiLnmoTmgJ3nu7TmqKHlnovlkIzmnoQKLSBbW+aKlei1hOahhuaeti3lpI3mnYLnu4/mtY7lrabmjIflr7zmiYvlhoxdXQotIOabvum4o+iuv+iwiO+8iOS6p+S4muWPsuingu+8ie+8mmByYXcvcmVzZWFyY2gvYXJ0aWNsZXMvMjAyNi0wOS0wNy3mm77puKPorr/osIgt5ZKM5pu+6bij6IGK5Lqn5Lia5Y+y6KeCLeaIkeeahOmdnuWFseivhuWIpOaWrS5tZGAg4oCUIOacrOahhuaetiLmmbrog73lpI3liKki5qaC5b+155qE55u05o6l5p2l5rqQ";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">AI 应用投资框架 — 智能复利与四级跃迁</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-20</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"><h1>AI 应用投资框架：智能复利与四级跃迁</h1>
+<blockquote>
+<p>收录日期：2026-09-20
+来源：微信公众号「庶人投资笔记」，作者 <strong>庶人哑士</strong>，《关于AI应用的十个判断》，2026-09-19 发布
+原文链接：https://mp.weixin.qq.com/s/zn3kxqr6W-f00R6kJSxdvQ
+原始资料见 <code>raw/research/articles/2026-09-19-庶人哑士-关于AI应用的十个判断.md</code></p>
+</blockquote>
+<blockquote>
+<p>⚠️ 定位声明：作者自述&quot;<strong>以上判断，准确性约等于神棍</strong>&quot;。本页是<strong>投资框架与假设集</strong>，不是事实陈述；引用任何数字前请先回溯原文或一手财报。</p>
+</blockquote>
+<hr />
+<h2>一、定义：两个核心概念</h2>
+<h3>智能复利（AI 时代的网络效应）</h3>
+<table>
+<thead>
+<tr>
+<th>时代</th>
+<th>主导经济特征</th>
+<th>飞轮</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工业时代</td>
+<td>规模效应</td>
+<td>产量↑ → 单位成本↓</td>
+</tr>
+<tr>
+<td>互联网时代</td>
+<td>网络效应</td>
+<td>用户 ↔ 用户 / 信息 / 商品</td>
+</tr>
+<tr>
+<td><strong>智能时代</strong></td>
+<td><strong>智能复利</strong></td>
+<td><strong>用户 ↔ 能力</strong></td>
+</tr>
+</tbody>
+</table>
+<p>回路：<strong>越深入客户业务场景 → 越理解客户要什么 → Agent/LLM 学得越快、能力越强 → 用的人越多 → 越好用 → 越多人用</strong>。</p>
+<p>原文承认&quot;智能复利&quot;概念来自<strong>曾鸣《智能：AI时代的商业、组织与战略的本质》</strong>，作者自称&quot;他是我的嘴替&quot;。</p>
+<h3>四级跃迁（商业模式分层标尺）</h3>
+<pre><code>土路        →  铺装路面      →  高速公路        →  AI 跑车飙起来
+数据治理    →  落数据中台    →  本体层 Ontology →  AIOS（类 Foundry）
+</code></pre>
+<p>原文强调：<strong>每往下一步，都代表商业模式的跃迁，估值范式都值得重构。</strong> 这条线的用途是&quot;评估当下这些应用公司到哪一层了&quot;。</p>
+<hr />
+<h2>二、十条判断（浓缩）</h2>
+<ol>
+<li><strong>AI 真能降本增效</strong> — 证据来自产业一线&quot;用钞票投票的买家行为&quot;，而非模型厂/云厂卖家秀</li>
+<li><strong>企业端开始 FOMO</strong> — 用 AI 不一定有优势，但不用一定有相对劣势</li>
+<li><strong>用 AI 的前提是数字化</strong> — 当下很多 AI 应用公司营收爆发式增长，其实来自<strong>数据治理</strong></li>
+<li><strong>LLM 的瓶颈是高质量私有数据</strong> — 互联网可抓文本约 100T，清洗后可用于 pre-train 约 15T，极致挖掘最多 300T，&quot;早都被用完了&quot;；<strong>只能让 LLM 成&quot;穷翰林&quot;，干不了&quot;县令&quot;式的活</strong></li>
+<li><strong>比私有数据更稀缺的是真实业务场景</strong> — ERP/CRM 是&quot;定格照片&quot;，没有从 A 到 B 的过程；不让 Agent 参与过程就&quot;总有些隔靴搔痒&quot;</li>
+<li><strong>智能时代的网络效应是智能复利</strong>（见上文）</li>
+<li><strong>智能复利过了临界点会自我加强</strong> — &quot;天下武功唯快不破&quot;仍管用，但飞轮从&quot;用户与商品&quot;换成&quot;<strong>用户与能力</strong>&quot;</li>
+<li><strong>看 AI 应用不能只盯营收增长</strong> — 要看<strong>跑得快</strong>（营收）+<strong>做得深</strong>（NDR）两个指标</li>
+<li><strong>中国版 Palantir 的现实路径</strong> — 数据治理 → 数据中台 → 本体层 → AIOS</li>
+<li><strong>AI 应用是盘大肉，没有一家能通吃</strong> — 见第四节三个子判断</li>
+</ol>
+<hr />
+<h2>三、核心验证指标：NDR（净美元留存率）</h2>
+<p>原文给出的判据：</p>
+<ul>
+<li><strong>营收增长</strong> = 谁跑得快（拓展的用户场景多）</li>
+<li><strong>NDR（复购率 + 增购率）</strong> = 谁做得深（长出用户离不开的能力）</li>
+<li><strong>&quot;这就是典型的过了临界点自我加强的财务证据&quot;</strong></li>
+</ul>
+<p>原文引 Palantir 分部门 NDR（<strong>未附出处，待核</strong>）：</p>
+<table>
+<thead>
+<tr>
+<th>部门</th>
+<th>NDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>US Commercial</td>
+<td><strong>150%</strong></td>
+</tr>
+<tr>
+<td>Government 整体</td>
+<td><strong>146%</strong></td>
+</tr>
+<tr>
+<td>Commercial 整体</td>
+<td>113%</td>
+</tr>
+<tr>
+<td>International Commercial</td>
+<td><strong>103%</strong>（拖累整体）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📌 交叉对照：Palantir <strong>整体</strong> NDR 为 <strong>157%</strong>（Q2 2026 财报电话会口径，环比 +700bp）。与原文 US Commercial 150% 量级吻合，但<strong>分部门数字仍需回溯一手财报/电话会原文</strong>，本页暂按作者口径收录。</p>
+</blockquote>
+<p><strong>图证（原文配图，2026-09-20 补录）</strong>：Palantir <strong>营业总收入（累计）</strong> 5.95（2018）→ 7.43 → 10.93 → 19.06 → 22.25 → 28.66 → <strong>44.75 亿美元（2025）</strong>；<strong>累计同比</strong> 2025 <strong>+56.18%</strong>、26-Q2 ≈<strong>90%</strong>（半年度口径，原图无数字标签，右侧轴读数）。</p>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th>2018</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>26-Q2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>营收（累计，亿美元）</td>
+<td>5.95</td>
+<td>7.43</td>
+<td>10.93</td>
+<td>（未标注）</td>
+<td>19.06</td>
+<td>22.25</td>
+<td>28.66</td>
+<td><strong>44.75</strong></td>
+<td>（未标注）</td>
+</tr>
+<tr>
+<td>累计同比</td>
+<td>—</td>
+<td>+24.71%</td>
+<td>+47.15%</td>
+<td>+41.11%</td>
+<td>+23.61%</td>
+<td>+16.75%</td>
+<td>+28.79%</td>
+<td><strong>+56.18%</strong></td>
+<td>≈90%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>原图（原文配图，<strong>已转写为上表，不存本地副本</strong>）：<code>https://mmbiz.qpic.cn/mmbiz_png/zgZ4D9nwqgGSDFibYiaZtvR3VsQzJRRH9Sn9nzVf71cJs3LWZIFXCuYr91FGBHFB1majwoH9sA2cyPeWkkn6I2BnzrVwiavicdZVsg6M6jT5S48/640?wx_fmt=png&amp;from=appmsg</code>；逐格核对说明见 raw 第 8 条。
+这是原文&quot;典型的过了临界点自我加强的财务证据&quot;那句的直接依据；图为<strong>第三方（理杏仁 lixinger.com）数据图，非公司财报原文</strong>，26-Q2 与 2021 两处为推算/目测，引用前需回溯财报。</p>
+</blockquote>
+<hr />
+<h2>四、第十条：三个子判断（分类法）</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特征</th>
+<th>模型能力的作用是</th>
+<th>例子（原文口径）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>a. 浅层工具型</strong></td>
+<td>只满足最大公约数的通用需求</td>
+<td><strong>被吞噬</strong></td>
+<td>美图、做 PPT 等</td>
+</tr>
+<tr>
+<td><strong>b. 深重型垂直</strong></td>
+<td>有私有数据 + 进得去真实业务场景</td>
+<td><strong>被赋能</strong></td>
+<td>Palantir（&quot;一座数据炼油厂，LLM 是超级饥渴的数据怪物&quot;）</td>
+</tr>
+<tr>
+<td><strong>c. 长尾细分</strong></td>
+<td>要做深做重但价值量不大，长不出 Palantir</td>
+<td>模型公司进不去</td>
+<td>workbuddy 类应用市场</td>
+</tr>
+</tbody>
+</table>
+<p>对 c 类的关键判断：<strong>应用市场最稀缺的能力不是&quot;丰富&quot;，而是&quot;筛选判断&quot;</strong>——帮用户筛出与具体任务最匹配的 Agent/Skill。</p>
+<hr />
+<h2>五、中国版路径：两条渗透路线（难度不同）</h2>
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>顺序</th>
+<th>难度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>正向</strong></td>
+<td>先帮客户数据治理 → 借机落自己的数据中台 → 再卖各种业务 Agent</td>
+<td>较易</td>
+<td>&quot;要致富，先修路，但又不能只是修路&quot;</td>
+</tr>
+<tr>
+<td><strong>反向</strong></td>
+<td>先把某个 Agent 卖进去 → 再渗透数据中台</td>
+<td><strong>难得多</strong></td>
+<td>例：迈富时营销 Agent、北森 HR Agent；<strong>&quot;换数据中台像高速换轮子，轻易不会换&quot;</strong></td>
+</tr>
+</tbody>
+</table>
+<p>关键卡点：<strong>本体层（Ontology）搭建技术不难，难的是对业务的深度理解</strong>——取决于两件事：<strong>客户配合度 + FDE 专业度</strong>。</p>
+<blockquote>
+<p>与本库关联：FDE（Forward Deployed Engineer，驻场工程师）由 <strong>Palantir</strong> 首创，是本框架的落地载体，见对话沉淀 <code>research-wiki/research/</code> 相关页（Palantir 未单独立库，待用户决定）。</p>
+</blockquote>
+<hr />
+<h2>六、怎么用这个框架（操作化）</h2>
+<ol>
+<li><strong>先分层再比较</strong>：拿&quot;四级跃迁&quot;给候选公司定位，不要跨层级比增速——处在&quot;数据治理&quot;层的公司营收爆发，与处在&quot;AIOS&quot;层的公司不是同一门生意</li>
+<li><strong>盯 NDR 不盯营收</strong>：营收增长可能是 FOMO 驱动的一次性项目收入；NDR 才证明&quot;智能复利&quot;真在转</li>
+<li><strong>问本体层而非模型能力</strong>：技术门槛不在模型，在业务理解 → 关键变量是客户配合度与 FDE 专业度</li>
+<li><strong>用三个子判断做排除</strong>：浅层工具型先排除（会被模型吞掉）</li>
+</ol>
+<hr />
+<h2>七、局限 / 待核</h2>
+<ul>
+<li><strong>作者自述&quot;准确性约等于神棍&quot;</strong>，全部为定性判断，无量化模型支撑</li>
+<li><strong>待核数据（作者口径，未附出处）</strong>：互联网文本 100T / 15T / 300T；Palantir 四个分部门 NDR（150% / 146% / 113% / 103%）</li>
+<li><strong>涉及公司的判断为作者观点</strong>：Palantir（最佳实践/北极星）、迈富时、北森、美图</li>
+<li><strong>框架未被证伪检验</strong>：&quot;智能复利是否真的存在临界点&quot;&quot;NDR 高是否等于过了临界点&quot;——原文以 Palantir 单一样本论证，样本量 = 1，存在<strong>幸存者偏差</strong>风险</li>
+<li>本库尚未建立 Palantir / 迈富时 / 北森 的标的页，若要实际使用该框架选股，需先补标的页与一手财报数据</li>
+</ul>
+<hr />
+<h2>关联</h2>
+<ul>
+<li><a href="%E9%98%BF%E7%91%9F-%E6%94%B6%E7%9B%8A%E9%80%92%E5%A2%9E%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">阿瑟-收益递增与涌现</a> — 同为&quot;递增/正反馈&quot;类机制，可作理论对照（收益递增 vs 智能复利）</li>
+<li><a href="%E8%8A%92%E6%A0%BC-%E4%B8%B4%E7%95%8C%E8%B4%A8%E9%87%8F.html">芒格-临界质量</a> — &quot;临界点自我加强&quot;的思维模型同构</li>
+<li><a href="../raw/%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6-%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%8C%87%E5%AF%BC%E6%89%8B%E5%86%8C.html">投资框架-复杂经济学指导手册</a></li>
+<li>曾鸣访谈（产业史观）：<code>raw/research/articles/2026-09-07-曾鸣访谈-和曾鸣聊产业史观-我的非共识判断.md</code> — 本框架&quot;智能复利&quot;概念的直接来源</li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/AI应用-智能复利与四级跃迁.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

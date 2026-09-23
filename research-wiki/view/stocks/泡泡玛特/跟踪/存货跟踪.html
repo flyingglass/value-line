@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 存货跟踪</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 存货跟踪</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,313 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="存货跟踪.html">泡泡玛特 (09992) — 存货跟踪</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 存货跟踪</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-20</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/跟踪</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E8%B7%9F%E8%B8%AA">← 返回 跟踪</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/泡泡玛特/跟踪/存货跟踪.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDms6Hms6HnjpvnibkgKDA5OTkyKSDigJQg5a2Y6LSn6Lef6LiqCgo+IOebrueahO+8muaMiSAqKuW8gOW6lyjmuKDpgZPmianlvKApIMOXIOiQpeaUtijop4TmqKEpIMOXIOWtmOi0p+WHj+WAvCjotKjph48pKiog5LiJ57u06Lef6Liq5a2Y6LSn6Zeu6aKY44CCCj4g5pWw5o2u5oiq6IezIDIwMjZIMeOAguaguOW/g+efm+ebvu+8muWtmOi0pyA2MS4wMiDkur8gLyDlkajovawgMjAxIOWkqSAvIOWHj+WAvOiuoeaPkOWKoOmAn++8jDcg5pyI5bqT5a2Y6KeB6aG25Zue6JC944CCCgotLS0KCiMjIOS4gOOAgeaAu+mHj+S4juWinumAn++8iOWtmOi0pyB2cyDokKXmlLbvvIkKCnwg5pyf6Ze0IHwg5a2Y6LSnKOS6vykgfCDokKXmlLYo5Lq/KSB8IOWtmOi0py/okKXmlLYgfCDlrZjotKcgWW9ZIHwg6JCl5pS2IFlvWSB8IOWkh+azqCB8CnwtLS0tLS18LS0tLS0tOnwtLS0tLS06fDotLS06fDotLS06fDotLS06fC0tLS0tLXwKfCAyMDIxQSB8IDcuODkgfCA0NC45MSB8IDE3LjYlIHwg4oCUIHwg4oCUIHwgfAp8IDIwMjJBIHwgOC42NyB8IDQ2LjE3IHwgMTguOCUgfCArMTAlIHwgKzMlIHwgfAp8IDIwMjNBIHwgOS4wNSB8IDYzLjAxIHwgMTQuNCUgfCArNCUgfCArMzYlIHwg5q2j5bi45Zue6JC9IHwKfCAyMDI0QSB8IDE1LjI1IHwgMTMwLjM4IHwgMTEuNyUgfCArNjklIHwgKzEwNyUgfCDlgaXlurcgfAp8IDIwMjVBIHwgNTQuNzMgfCAzNzEuMjAgfCAxNC43JSB8ICoqKzI1OSUqKiB8ICsxODUlIHwg8J+UtCDlrZjotKflop7pgJ/ov5zotoXokKXmlLYgfAp8IDIwMjZIMSB8IDYxLjAyIHwgMTcxLjczIHwgMzUuNSUqIHwgKzE2OCUqIHwgKzI0JSogfCDwn5S0IOWtmOi0py/ljYrlubTokKXmlLYgMTYuNCXihpIzNS41JSB8Cgo+ICoyMDI2SDEg5Li65Y2K5bm05bqm5Y+j5b6E77yM5LiO5bm05bqm5LiN5Y+v55u05o6l5q+U77yb5ZCM5q+U5a+5IDIwMjVIMe+8iOWtmOi0pyAyMi43NCDkur8gLyDokKXmlLYgMTM4Ljc2IOS6v++8jOWtmOi0p+iQpeaUtuavlCAxNi40Je+8ieOAggo+IDIwMjZIMSDlrZjotKfnjq/mr5QgKzExLjUl77yINTQuNzPihpI2MS4wMiDkur/vvInvvIzokKXmlLblkIzmr5QgKzIzLjgl44CCCgoqKuaguOW/g+S/oeWPtyoq77yaCi0gMjAyNSDlubTlrZjotKcgKzI1OSUg6L+c6LaF6JCl5pS2ICsxODUl77yM5a2Y6LSnL+iQpeaUtuS7jiAxMS43JSDlj43lvLnliLAgMTQuNyUKLSAyMDI2SDEg5a2Y6LSnL+WNiuW5tOiQpeaUtiAzNS41JSDlr7nmr5QgMjAyNUgxIOeahCAxNi40Je+8jCoq57+75YCN5Lul5LiK5oG25YyWKioKLSDnrqHnkIblsYLlvZLlm6DvvJoyMDI1IOeIhuWPkeW8j+WinumVv+eahCoq6ZSA5ZSu6aKE5rWL5YGP5beuKirntK/np6/vvIjogIzpnZ7ljZXlupfooaXotKfpnIDopoHvvIkKCi0tLQoKIyMg5LqM44CB5ZGo6L2s5aSp5pWw77yI566h55CG5bGC5Y+j5b6E77yM5bm05oqlL+S4reaKpeaKq+mcsu+8iQoKfCDmnJ/pl7QgfCDlkajovazlpKnmlbAgfCDlj5jljJYgfAp8LS0tLS0tfDotLS06fC0tLS0tLXwKfCAyMDIxQSB8IDE2NiB8IOmrmOWfuuaVsOW5tOS7vSB8CnwgMjAyMkEgfCAxNjEgfCB8CnwgMjAyM0EgfCAxMzYgfCDmlLnlloQgfAp8IDIwMjRBIHwgKioxMDIqKiB8IOacgOS8mOawtOW5syB8CnwgMjAyNUEgfCAxMjMgfCArMjEg5aSpIHwKfCAyMDI1SDEgfCA4MyB8IOS4reaKpeWPo+W+hCB8CnwgMjAyNkgxIHwgKioyMDEqKiB8IPCflLQg546v5q+UIDIwMjVIMSArMTE4IOWkqSAvIOi+gyAyMDI1QSArNzgg5aSpIHwKCioq6Kej6K+7KirvvJoyMDI2SDEg5ZGo6L2s5aSp5pWwIDIwMSDlpKnvvIzmmK8gMjAyNUgxIOeahCAyLjQg5YCN77yM5Zue5Yiw5bm26LaF6L+HIDIwMjEtMjAyMiDnmoTmsLTlubPjgILlj4LogIPoi7nmnpzvvIjkuKrkvY3mlbB+5Y2B5Yeg5aSp55qE6YeP57qn77yJ5beu6Led6L+b5LiA5q2l5ouJ5aSn44CCCgotLS0KCiMjIOS4ieOAgeW8gOW6ly/muKDpgZPmianlvKDnu7TluqbvvIjljZXlupflrZjotKfvvIkKCumXqOW6l+aVsOmHj+adpea6kO+8mua4oOmBk+i3n+i4quihqO+8iDI0SDEvMjRBLzI1SDEvMjVB77yJKyDkuJrnu6nkvJrvvIgyMDI2SDHvvInjgIIKCnwg5pyf6Ze0IHwg5YWo55CD6Zu25ZSu5bqXIHwg5YeA5aKeIHwg5YWo55CD5py65Zmo5Lq6IHwg5a2Y6LSnKOS6vykgfCDljZXlupflrZjotKco5LiH5YWDKSB8CnwtLS0tLS18Oi0tLTp8Oi0tLTp8Oi0tLTp8LS0tLS0tOnwtLS0tLS06fAp8IDIwMjRBIHwgNTIxIHwgKzE1OCogfCAyLDMzOSogfCAxNS4yNSB8IDI5MyB8CnwgMjAyNUEgfCA2MzAgfCArMTA5IHwgMiw2MzcgfCA1NC43MyB8ICoqODY5KiogfAp8IDIwMjZIMSB8IDY3NiB8ICs0NiB8IDIsODI3IHwgNjEuMDIgfCAqKjkwMyoqIHwKCj4gKjIwMjRBIOacuuWZqOS6uuWVhuW6l+S4uuS4reWbveWGheWcsCvmuK/mvrPlj7Dlj6PlvoTvvIjmtbflpJbmnKrmiqvpnLLmlbDph4/vvInvvIzlhajnkIPlrp7pmYXmm7Tpq5jvvJsyMDI1QS8yMDI2SDEg5Li65YWo55CD5Y+j5b6E44CCCgoqKuaguOW/g+S/oeWPtyoq77yaCi0g5Y2V5bqX5a2Y6LSn5LuOIDIwMjRBIOeahCAyOTMg5LiHIOKGkiAyMDI1QSA4Njkg5LiHIOKGkiAyMDI2SDEgOTAzIOS4h++8jCoq5LiJ5bm057+7IDMg5YCNKioKLSAyMDI2SDEg5Y+q5YeA5aKeIDQ2IOWutuW6l++8iOW8gOW6l+aYjuaYvuaUvue8k++8ie+8jOS9huWNleW6l+WtmOi0p+S7jSArNCXigJTigJQqKuW8gOW6l+aJqeW8oOS4jeaYr+WtmOi0p+a/gOWinueahOS4u+WboO+8jOWkh+i0p+WvhuW6pi/pooTmtYvlgY/lt67miY3mmK8qKgotIOa1t+WkliAyMDI2SDEg5YeA5aKeIDM2IOWutu+8iOS6muWkqiA5MC/nvo7mtLIgODYv5qyn5rSyIDQ177yJ77yM576O5rSy44CB5qyn5rSy6ZW/54mp5rWB5pe25pWIIOKGkiDliY3nva7lupPlrZjnu5PmnoTmgKflgY/pq5jvvIjor6bop4Hov5DokKXmjIfmoIfnrKzlha3nq6DvvIkKCi0tLQoKIyMg5Zub44CB5a2Y6LSn5YeP5YC857u05bqm77yI6LSo6YeP77yJCgrmnaXmupDvvJoyMDI1IOW5tOaKpemZhOazqCAyMuOAgTIwMjYg5Lit5oql6ZmE5rOoIDE044CCCgp8IOacn+mXtCB8IOWtmOi0p+WOn+WAvCjkur8pIHwg5YeP5YC85ouo5aSH5L2Z6aKdKOeZvuS4hykgfCDmi6jlpIfnjocgfCDlvZPmnJ/orqHmj5Ao55m+5LiHKSB8CnwtLS0tLS18LS0tLS0tOnwtLS0tLS06fDotLS06fC0tLS0tLTp8CnwgMjAyNEEgfCAxNS41NiB8IDMxLjUgfCAqKjIuMDMlKiogfCAxNC40IHwKfCAyMDI1QSB8IDU1LjI2IHwgNTIuNyB8ICoqMC45NSUqKiB8IDIxLjIgfAp8IDIwMjZIMSB8IDYxLjc3IHwgNzUuNSB8ICoqMS4yMiUqKiB8ICoqMjIuOCoqIHwKfCAyMDI1SDEgfCDigJQgfCDigJQgfCDigJQgfCA0LjMgfAoKKirmoLjlv4Pkv6Hlj7cqKu+8mgotICoq5b2T5pyf6K6h5o+Q5Yqg6YCfKirvvJoyMDI2SDEg6K6h5o+QIDIyLjgg55m+5LiHID0gMjAyNUgx77yINC4zIOeZvuS4h++8ieeahCAqKjUuMyDlgI0qKu+8jOW3sui2hSAyMDI1IOWFqOW5tO+8iDIxLjIg55m+5LiH77yJCi0gKirmi6jlpIfnjofku43kvY7kvYbop6blupXlm57ljYcqKu+8mjAuOTUlKDIwMjVBKSDihpIgMS4yMiUoMjAyNkgxKe+8jOWdj+W6k+m+hOWNoOavlO+8iDIg5bm05Lul5LiKIDI1UTEg6LW35LiK5Y2H77yJ5byA5aeL5YWR546w5Li65YeP5YC8Ci0g5ouo5aSH5L2Z6aKdIDUyLjcg4oaSIDc1LjUg55m+5LiH77yIKzQzJe+8ie+8jOW/q+S6juWtmOi0p+WinumAn+KAlOKAlCoq5YeP5YC85Y6L5Yqb5Zyo57Sv56ev77yM5bCa5pyq5YWF5YiG5pq06ZyyKioKLSDnrqHnkIblsYLnrZbnlaXvvJrkuI3lgZrlpKfkv4PvvIjlk4HniYzkv53miqTvvInvvIzpnaDot6jljLrln5/osIPmi6ggKyDorqLotKfnq6/nrqHmjqfljrvljJYg4oaSIOWdj+W6k+m+hOa2iOWMluaFou+8jOWHj+WAvOWPr+iDveWQjue9rumHiuaUvgoKLS0tCgojIyDkupTjgIHkuInop5LoibLkuqTlj4nnu5PorroKCnwg57u05bqmIHwgMjAyNEEgfCAyMDI1QSB8IDIwMjZIMSB8IOWIpOaWrSB8CnwtLS0tLS18Oi0tLTp8Oi0tLTp8Oi0tLTp8LS0tLS0tfAp8IOWtmOi0py/okKXmlLYgfCAxMS43JSB8IDE0LjclIHwgMzUuNSUo5Y2K5bm0KSB8IPCflLQg5oG25YyWIHwKfCDljZXlupflrZjotKco5LiHKSB8IDI5MyB8IDg2OSB8IDkwMyB8IPCflLQgMyDlubQgMyDlgI0gfAp8IOWRqOi9rOWkqeaVsCB8IDEwMiB8IDEyMyB8IDIwMSB8IPCflLQg5oG25YyWIHwKfCDlvZPmnJ/lh4/lgLzorqHmj5Ao55m+5LiHKSB8IDE0LjQgfCAyMS4yIHwgMjIuOCB8IPCfn6Eg5Yqg6YCfIHwKfCDmi6jlpIfnjocgfCAyLjAzJSB8IDAuOTUlIHwgMS4yMiUgfCDwn5+hIOinpuW6leWbnuWNhyB8CgoxLiAqKuWtmOi0p+WinumAnyA+IOiQpeaUtuWinumAnyA+IOW8gOW6l+WinumAnyoq77yaMjAyNkgxIOW8gOW6l+aUvue8k+S9huWNleW6l+WtmOi0p+S7jeWNhyDihpIg5Li75Zug5piv6aKE5rWL5YGP5beu5LiO5rW35aSW5YmN572u5aSH6LSn77yM5LiN5piv5rig6YGT5omp5byg5pys6LqrCjIuICoq5ZGo6L2sIDIwMSDlpKkgdnMg6Iu55p6c6YeP57qnKirvvJrotKflgLzlr4bluqbvvIjkvY7otKflgLwv6auY6L+Q6LS577yJ5Yaz5a6a5Y+q6IO955So5rW36L+Q6ZW/5ZGo5pyf77yM57uT5p6E5oCn5YGP6auY77ybMjAyNkgxIOeahOaBtuWMluWPoOWKoOS6huWOu+W5tOmihOa1i+WBj+W3rueahOS4gOasoeaAp+enr+WOiwozLiAqKuWHj+WAvOiuoeaPkOWKoOmAn+S9huaLqOWkh+eOh+S7jeS9jioq77ya55yf5a6e5YeP5YC86aOO6Zmp6KKrIuaLkue7neWkp+S/gyArIOiwg+aLqOa2iOWMliLnrZbnlaXlkI7nva7vvIwqKuW6k+m+hOe7k+aehO+8iDIg5bm05Lul5LiK5Y2g5q+U77yJ5piv5ZCO57ut6Lef6Liq55qE56ys5LiA5oyH5qCHKioKCi0tLQoKIyMg5YWt44CB6Lef6Liq5riF5Y2V77yI5ZCO57ut5q+P5qyh6LSi5oql5pu05paw77yJCgotIFsgXSDlrZjotKfkvZnpop3vvIjpmYTms6ggMTQvMjIg5Y+j5b6E77yJCi0gWyBdIOWRqOi9rOWkqeaVsO+8iOeuoeeQhuWxguaKq+mcsu+8iQotIFsgXSDlh4/lgLzmi6jlpIfkvZnpop0gKyDlvZPmnJ/orqHmj5DvvIjmmK/lkKbnu6fnu63liqDpgJ/vvIkKLSBbIF0g5bqT6b6E57uT5p6E77yIMiDlubTku6XkuIrljaDmr5TvvJvkuJrnu6nkvJrnp7AgMjVRMSDotbfkuIrljYfvvIkKLSBbIF0g5YWo55CD6Zeo5bqXL+acuuWZqOS6uuWHgOWiniB2cyDljZXlupflrZjotKcKLSBbIF0g5rW35aSW5LuTL+acrOWcsOW3peWOgui/m+W6pu+8iOe8qeefreeJqea1geaXtuaViCDihpIg57yT6Kej57uT5p6E5oCn5bqT5a2Y77yJCgojIyDlj4Lop4EKCi0gW1vmqKrliIflj5jph4/ot5/ouKpdXSDigJQg5YWt5p2h6LSv56m/6ZO+5p2h55qE5qiq5YiH5Y+Y6YeP77yI5bqT5a2Y5Li65YW25LiA77yM5pys6aG15Li65bqT5a2Y6K+m6KGo77yJCi0gW1suLi/ov5DokKXmjIfmoIddXSDigJQg56ys5YWt56ug44CM5bqT5a2Y5LiO5L6b5bqU6ZO+44CN77yI5ZCr6LSn5YC85a+G5bqmIHZzIOiLueaenOWIhuaekO+8iQotIFtbLi4v5oqV6LWE6K6654K5XV0KLSBbWy4uL+S6p+S4mumTvl1dCltbcmVzZWFyY2gvaW5kZXgubWRdXSDCtyBbW3Jlc2VhcmNoL+azoeazoeeOm+eJuS/nu4/okKUvMDIt5Yi26YCg5LiO6LSo5o6n546v6IqCLm1kXV0=";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="存货跟踪.html">泡泡玛特 (09992) — 存货跟踪</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 存货跟踪</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-20</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/跟踪</span></div><div class="md" id="md"><h1>泡泡玛特 (09992) — 存货跟踪</h1>
+<blockquote>
+<p>目的：按 <strong>开店(渠道扩张) × 营收(规模) × 存货减值(质量)</strong> 三维跟踪存货问题。
+数据截至 2026H1。核心矛盾：存货 61.02 亿 / 周转 201 天 / 减值计提加速，7 月库存见顶回落。</p>
+</blockquote>
+<hr />
+<h2>一、总量与增速（存货 vs 营收）</h2>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th style="text-align:right">存货(亿)</th>
+<th style="text-align:right">营收(亿)</th>
+<th style="text-align:center">存货/营收</th>
+<th style="text-align:center">存货 YoY</th>
+<th style="text-align:center">营收 YoY</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021A</td>
+<td style="text-align:right">7.89</td>
+<td style="text-align:right">44.91</td>
+<td style="text-align:center">17.6%</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td></td>
+</tr>
+<tr>
+<td>2022A</td>
+<td style="text-align:right">8.67</td>
+<td style="text-align:right">46.17</td>
+<td style="text-align:center">18.8%</td>
+<td style="text-align:center">+10%</td>
+<td style="text-align:center">+3%</td>
+<td></td>
+</tr>
+<tr>
+<td>2023A</td>
+<td style="text-align:right">9.05</td>
+<td style="text-align:right">63.01</td>
+<td style="text-align:center">14.4%</td>
+<td style="text-align:center">+4%</td>
+<td style="text-align:center">+36%</td>
+<td>正常回落</td>
+</tr>
+<tr>
+<td>2024A</td>
+<td style="text-align:right">15.25</td>
+<td style="text-align:right">130.38</td>
+<td style="text-align:center">11.7%</td>
+<td style="text-align:center">+69%</td>
+<td style="text-align:center">+107%</td>
+<td>健康</td>
+</tr>
+<tr>
+<td>2025A</td>
+<td style="text-align:right">54.73</td>
+<td style="text-align:right">371.20</td>
+<td style="text-align:center">14.7%</td>
+<td style="text-align:center"><strong>+259%</strong></td>
+<td style="text-align:center">+185%</td>
+<td>🔴 存货增速远超营收</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td style="text-align:right">61.02</td>
+<td style="text-align:right">171.73</td>
+<td style="text-align:center">35.5%*</td>
+<td style="text-align:center">+168%*</td>
+<td style="text-align:center">+24%*</td>
+<td>🔴 存货/半年营收 16.4%→35.5%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>*2026H1 为半年度口径，与年度不可直接比；同比对 2025H1（存货 22.74 亿 / 营收 138.76 亿，存货营收比 16.4%）。
+2026H1 存货环比 +11.5%（54.73→61.02 亿），营收同比 +23.8%。</p>
+</blockquote>
+<p><strong>核心信号</strong>：</p>
+<ul>
+<li>2025 年存货 +259% 远超营收 +185%，存货/营收从 11.7% 反弹到 14.7%</li>
+<li>2026H1 存货/半年营收 35.5% 对比 2025H1 的 16.4%，<strong>翻倍以上恶化</strong></li>
+<li>管理层归因：2025 爆发式增长的<strong>销售预测偏差</strong>累积（而非单店补货需要）</li>
+</ul>
+<hr />
+<h2>二、周转天数（管理层口径，年报/中报披露）</h2>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th style="text-align:center">周转天数</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021A</td>
+<td style="text-align:center">166</td>
+<td>高基数年份</td>
+</tr>
+<tr>
+<td>2022A</td>
+<td style="text-align:center">161</td>
+<td></td>
+</tr>
+<tr>
+<td>2023A</td>
+<td style="text-align:center">136</td>
+<td>改善</td>
+</tr>
+<tr>
+<td>2024A</td>
+<td style="text-align:center"><strong>102</strong></td>
+<td>最优水平</td>
+</tr>
+<tr>
+<td>2025A</td>
+<td style="text-align:center">123</td>
+<td>+21 天</td>
+</tr>
+<tr>
+<td>2025H1</td>
+<td style="text-align:center">83</td>
+<td>中报口径</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td style="text-align:center"><strong>201</strong></td>
+<td>🔴 环比 2025H1 +118 天 / 较 2025A +78 天</td>
+</tr>
+</tbody>
+</table>
+<p><strong>解读</strong>：2026H1 周转天数 201 天，是 2025H1 的 2.4 倍，回到并超过 2021-2022 的水平。参考苹果（个位数~十几天的量级）差距进一步拉大。</p>
+<hr />
+<h2>三、开店/渠道扩张维度（单店存货）</h2>
+<p>门店数量来源：渠道跟踪表（24H1/24A/25H1/25A）+ 业绩会（2026H1）。</p>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th style="text-align:center">全球零售店</th>
+<th style="text-align:center">净增</th>
+<th style="text-align:center">全球机器人</th>
+<th style="text-align:right">存货(亿)</th>
+<th style="text-align:right">单店存货(万元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024A</td>
+<td style="text-align:center">521</td>
+<td style="text-align:center">+158*</td>
+<td style="text-align:center">2,339*</td>
+<td style="text-align:right">15.25</td>
+<td style="text-align:right">293</td>
+</tr>
+<tr>
+<td>2025A</td>
+<td style="text-align:center">630</td>
+<td style="text-align:center">+109</td>
+<td style="text-align:center">2,637</td>
+<td style="text-align:right">54.73</td>
+<td style="text-align:right"><strong>869</strong></td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td style="text-align:center">676</td>
+<td style="text-align:center">+46</td>
+<td style="text-align:center">2,827</td>
+<td style="text-align:right">61.02</td>
+<td style="text-align:right"><strong>903</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>*2024A 机器人商店为中国内地+港澳台口径（海外未披露数量），全球实际更高；2025A/2026H1 为全球口径。</p>
+</blockquote>
+<p><strong>核心信号</strong>：</p>
+<ul>
+<li>单店存货从 2024A 的 293 万 → 2025A 869 万 → 2026H1 903 万，<strong>三年翻 3 倍</strong></li>
+<li>2026H1 只净增 46 家店（开店明显放缓），但单店存货仍 +4%——<strong>开店扩张不是存货激增的主因，备货密度/预测偏差才是</strong></li>
+<li>海外 2026H1 净增 36 家（亚太 90/美洲 86/欧洲 45），美洲、欧洲长物流时效 → 前置库存结构性偏高（详见运营指标第六章）</li>
+</ul>
+<hr />
+<h2>四、存货减值维度（质量）</h2>
+<p>来源：2025 年报附注 22、2026 中报附注 14。</p>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th style="text-align:right">存货原值(亿)</th>
+<th style="text-align:right">减值拨备余额(百万)</th>
+<th style="text-align:center">拨备率</th>
+<th style="text-align:right">当期计提(百万)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024A</td>
+<td style="text-align:right">15.56</td>
+<td style="text-align:right">31.5</td>
+<td style="text-align:center"><strong>2.03%</strong></td>
+<td style="text-align:right">14.4</td>
+</tr>
+<tr>
+<td>2025A</td>
+<td style="text-align:right">55.26</td>
+<td style="text-align:right">52.7</td>
+<td style="text-align:center"><strong>0.95%</strong></td>
+<td style="text-align:right">21.2</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td style="text-align:right">61.77</td>
+<td style="text-align:right">75.5</td>
+<td style="text-align:center"><strong>1.22%</strong></td>
+<td style="text-align:right"><strong>22.8</strong></td>
+</tr>
+<tr>
+<td>2025H1</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">—</td>
+<td style="text-align:center">—</td>
+<td style="text-align:right">4.3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心信号</strong>：</p>
+<ul>
+<li><strong>当期计提加速</strong>：2026H1 计提 22.8 百万 = 2025H1（4.3 百万）的 <strong>5.3 倍</strong>，已超 2025 全年（21.2 百万）</li>
+<li><strong>拨备率仍低但触底回升</strong>：0.95%(2025A) → 1.22%(2026H1)，坏库龄占比（2 年以上 25Q1 起上升）开始兑现为减值</li>
+<li>拨备余额 52.7 → 75.5 百万（+43%），快于存货增速——<strong>减值压力在累积，尚未充分暴露</strong></li>
+<li>管理层策略：不做大促（品牌保护），靠跨区域调拨 + 订货端管控去化 → 坏库龄消化慢，减值可能后置释放</li>
+</ul>
+<hr />
+<h2>五、三角色交叉结论</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th style="text-align:center">2024A</th>
+<th style="text-align:center">2025A</th>
+<th style="text-align:center">2026H1</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存货/营收</td>
+<td style="text-align:center">11.7%</td>
+<td style="text-align:center">14.7%</td>
+<td style="text-align:center">35.5%(半年)</td>
+<td>🔴 恶化</td>
+</tr>
+<tr>
+<td>单店存货(万)</td>
+<td style="text-align:center">293</td>
+<td style="text-align:center">869</td>
+<td style="text-align:center">903</td>
+<td>🔴 3 年 3 倍</td>
+</tr>
+<tr>
+<td>周转天数</td>
+<td style="text-align:center">102</td>
+<td style="text-align:center">123</td>
+<td style="text-align:center">201</td>
+<td>🔴 恶化</td>
+</tr>
+<tr>
+<td>当期减值计提(百万)</td>
+<td style="text-align:center">14.4</td>
+<td style="text-align:center">21.2</td>
+<td style="text-align:center">22.8</td>
+<td>🟡 加速</td>
+</tr>
+<tr>
+<td>拨备率</td>
+<td style="text-align:center">2.03%</td>
+<td style="text-align:center">0.95%</td>
+<td style="text-align:center">1.22%</td>
+<td>🟡 触底回升</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>存货增速 &gt; 营收增速 &gt; 开店增速</strong>：2026H1 开店放缓但单店存货仍升 → 主因是预测偏差与海外前置备货，不是渠道扩张本身</li>
+<li><strong>周转 201 天 vs 苹果量级</strong>：货值密度（低货值/高运费）决定只能用海运长周期，结构性偏高；2026H1 的恶化叠加了去年预测偏差的一次性积压</li>
+<li><strong>减值计提加速但拨备率仍低</strong>：真实减值风险被&quot;拒绝大促 + 调拨消化&quot;策略后置，<strong>库龄结构（2 年以上占比）是后续跟踪的第一指标</strong></li>
+</ol>
+<hr />
+<h2>六、跟踪清单（后续每次财报更新）</h2>
+<ul>
+<li>[ ] 存货余额（附注 14/22 口径）</li>
+<li>[ ] 周转天数（管理层披露）</li>
+<li>[ ] 减值拨备余额 + 当期计提（是否继续加速）</li>
+<li>[ ] 库龄结构（2 年以上占比；业绩会称 25Q1 起上升）</li>
+<li>[ ] 全球门店/机器人净增 vs 单店存货</li>
+<li>[ ] 海外仓/本地工厂进度（缩短物流时效 → 缓解结构性库存）</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="%E6%A8%AA%E5%88%87%E5%8F%98%E9%87%8F%E8%B7%9F%E8%B8%AA.html">横切变量跟踪</a> — 六条贯穿链条的横切变量（库存为其一，本页为库存详表）</li>
+<li><a href="../../%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E8%BF%90%E8%90%A5%E6%8C%87%E6%A0%87.html">../运营指标</a> — 第六章「库存与供应链」（含货值密度 vs 苹果分析）</li>
+<li><a href="../%E6%8A%95%E8%B5%84%E8%AE%BA%E7%82%B9.html">../投资论点</a></li>
+<li><a href="../../%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E4%BA%A7%E4%B8%9A%E9%93%BE.html">../产业链</a>
+<a href="../../../../research/index.md">research/index.md</a> · <a href="../../../../research/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E7%BB%8F%E8%90%A5/02-%E5%88%B6%E9%80%A0%E4%B8%8E%E8%B4%A8%E6%8E%A7%E7%8E%AF%E8%8A%82.md">research/泡泡玛特/经营/02-制造与质控环节.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E8%B7%9F%E8%B8%AA">← 返回 跟踪</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/泡泡玛特/跟踪/存货跟踪.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

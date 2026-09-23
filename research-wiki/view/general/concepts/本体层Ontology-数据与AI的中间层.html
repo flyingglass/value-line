@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>本体层（Ontology）— 数据与 AI 之间的决策中间层</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>本体层（Ontology）— 数据与 AI 之间的决策中间层</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,214 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">本体层（Ontology）— 数据与 AI 之间的决策中间层</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-20</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/本体层Ontology-数据与AI的中间层.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDmnKzkvZPlsYLvvIhPbnRvbG9nee+8ie+8muaVsOaNruS4jiBBSSDkuYvpl7TnmoTlhrPnrZbkuK3pl7TlsYIKCj4g5pS25b2V5pel5pyf77yaMjAyNi0wOS0yMAo+IOadpea6kO+8muW+ruS/oeWFrOS8l+WPt+OAjOW6tuS6uuaKlei1hOeslOiusOOAje+8jOS9nOiAhSAqKuW6tuS6uuWTkeWjqyoq77yM44CKQUnlupTnlKjpmo/mg7PlvZXjgIvvvIwyMDI2LTA5LTAyIOWPkeW4gwo+IOWOn+aWh+mTvuaOpe+8mmh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL1RKWkZycU5xRDVmX2UzRlozMTRlTXcKPiDljp/lp4votYTmlpnop4EgYHJhdy9yZXNlYXJjaC9hcnRpY2xlcy8yMDI2LTA5LTAyLeW6tuS6uuWTkeWjqy1BSeW6lOeUqOmaj+aDs+W9lS5tZGAKCj4g4pqg77iPIOWumuS9je+8muacrOmhteS4uioq5qaC5b+16Kej6YeKICsg5oqV6LWE562b6YCJ5qCH5YeGKirvvIzmnaXmupDkuLrkuKrkurrmipXotYTpmo/nrJTvvIjpnZ4gUGFsYW50aXIg5a6Y5pa55oqr6Zyy77yJ44CC5paH5Lit5L6L5a2Q5L2c6ICF6Ieq6L+wIuaYr+aIkeS4jiBBSSDlpJrova7lr7nor53kuYvlkI7nlJ/miJDnmoQi77yM5bGeKiror7TmmI7mgKfnpLrkvosqKuOAggoKLS0tCgojIyDkuIDjgIHlrprkuYkKCioqT250b2xvZ3nvvIjmnKzkvZPlsYLvvIkqKu+8muaKiue7hOe7h+mHjOaVo+iQveWcqOWQhOWkhOeahOecn+WunuS6i+eJqe+8iOWNoei9puOAgeiuouWNleOAgeeXheS6uuOAgeWjq+WFteOAgeacuuWZqO+8ieWPiuWFtuWFs+ezu++8jOeUqOS4gOWllyoq57uf5LiA55qEIuS4muWKoeivreiogCIqKuaYoOWwhOWIsOi9r+S7tumHjO+8jOiuqeS6uuexu+WSjCBBSSDpg73og73nnIvmh4LjgIHlubbog73nm7TmjqXkuIvovr7liqjkvZzjgIIKCuS4ieS4qui6q+S7veWumuS9je+8mgoKfCDor7Tms5UgfCDlh7rlpIQv6K+t5aKDIHwKfC0tLXwtLS18CnwgKioi6L+e5o6l5pWw5o2u5ZKMIEFJIOeahOS4remXtOWxgiIqKiB8IOaXouS4jeaYr+aVsOaNru+8jOS5n+S4jeaYr+Wkp+aooeWeiyB8CnwgKioi5LiA5Liq5Yaz562W57O757ufIioqIHwgUGFsYW50aXIg566h55CG5bGC5Y+j5b6E77yI5L2c6ICF6L2s6L+w77yJIHwKfCAqKiLnv7vor5HlrpgiKiogfCDmiormnLrlmajnnIvlvpfmh4LnmoTor63oqIDvvIznv7vor5HmiJDkurrlkozmmbrog73kvZPnnIvlvpfmh4LnmoQi5Lq66K+dIiB8Cgo+IOWcqCLnv7DmnpcgdnMg5Y6/5LukIueahOivreWig+mHjO+8mioq5pys5L2T5bCx5piv5biu5Yqp5aSn5qih5Z6L55Sx57+w5p6X5Y+Y5oiQ5Y6/5Luk55qE5Lic6KW/KirjgIIKCiMjIOS6jOOAgeacrOS9k+ijheeahOS4pOagt+S4nOilvwoKIyMjIDEuIOivreS5ieWFg+e0oO+8iCLlkI3or40i77yJCgp8IOWFg+e0oCB8IOWQq+S5iSB8IOS+i+WtkCB8CnwtLS18LS0tfC0tLXwKfCAqKuWvueixoSoqIHwg546w5a6e5LiW55WM55qE5a6e5L2TIHwg5ZGY5bel44CB6aOe5py644CB6YeH6LSt6K6i5Y2V44CB5aiB6IOB6KGM5Li66ICFIHwKfCAqKuWxnuaApyoqIHwg5a+56LGh55qE5a2X5q61IHwg5ZGY5bel5aeT5ZCN44CB5rK55LqV57uP57qs5bqmIHwKfCAqKumTvuaOpSoqIHwg5a+56LGh5LmL6Ze055qE6YC76L6R5YWz57O7IHwgIuWRmOW3peWQkee7j+eQhuaxh+aKpSLjgIEi5Y+R56Wo5YyF5ZCr5piO57uG6aG5IiB8CgojIyMgMi4g5Yqo5Yqb5a2m5YWD57Sg77yIIuWKqOivjSLvvIkKCnwg5YWD57SgIHwg5ZCr5LmJIHwg5L6L5a2QIHwKfC0tLXwtLS18LS0tfAp8ICoq5Yqo5L2cKiogfCDlj6/lr7nlr7nosaHmiafooYznmoTmk43kvZwgfCAi5om55YeG6YeH6LSt6K6i5Y2VIuOAgSLmtL7pgaPmioDluIgiIHwKfCAqKuWHveaVsCoqIHwg5bCB6KOF5aW955qE5Lia5Yqh6YC76L6RIHwgIuiuoeeul+i1hOS6p+WIqeeUqOeOhyIgfAp8ICoq5a6J5YWoKiogfCDosIHlnKjku4DkuYjmnaHku7bkuIvog73nnIvku4DkuYjjgIHmlLnku4DkuYggfCDnuqbmnZ/nu5PmnpwgfAoKIyMg5LiJ44CB5LiOIEJJIC8g55yL5p2/55qE5YiG55WM57q/77ya6IO95LiN6IO9IuWGmeWbniIKCj4gKirlpKflpJrmlbAgQknvvIjnu4/okKXliIbmnpDvvInlt6Xlhbflj6rog70i6K+7IuaVsOaNru+8jOiAjOacrOS9k+eahOWKqOS9nOWPr+S7pSLlhpnlm54i5Yiw5bqV5bGC57O757uf5Y675omn6KGM44CCKioKCuWvueeFp+ekuuS+i++8iOWMu+eWl+WItumAoOWVhu+8jOW6leWxguWHoOeZvuS4quaVsOaNrua6kO+8mkVSUOOAgeS+m+W6lOmTvuOAgeeJqea1gei3n+i4quOAgeS6p+e6v+S8oOaEn+WZqO+8ie+8mgoKfCB8IOayoeacieacrOS9kyB8IOacieS6huacrOS9kyB8CnwtLS18LS0tfC0tLXwKfCDnirbmgIEgfCDmlbDmja7lraTlspvjgIHooajnu5PmnoTmt7fkubHvvJvnlJ/kuqflt6XnqIvluIjnnIvlt6XljZXooajjgIHku5PlupPlkZjnnIvlupPlrZjooajjgIHkvpvlupTpk77liIbmnpDluIjnnIvnianmtYHooajvvIwqKuS4ieiAheWvueS4jeS4iuivnSoqIHwg57uf5LiA5pig5bCE5Li65Lia5Yqh5a+56LGh77yaIueUn+S6p+W3peWOgiLjgIEi5bel5Y2VIuOAgSLlrqLmiLci44CBIuWFpeW6k+WMheijuSLjgIEi5Ye65bqT6LSn5Lu2IiB8Cnwg6aOT6aOO5p2l6KKt5pe2IHwg5by55Liq5aSp5rCU5Zu+77yMIioq5Ymp5LiL55qE5L2g6Ieq5bex5oOz5Yqe5rOVKioiIHwg6K+05LiA5Y+lIumHjeaWsOinhOWIkuaJgOaciee7j+i/h+WOpumXqOeahOi0p+i9pui3r+e6vyIg4oaSIEFnZW50IOeQhuino+S4muWKoeWFs+ezuyDihpIg6Ieq5Yqo566X5paw6Lev57q/IOKGkiAqKuebtOaOpeWPkeaMh+S7pOe7mSBTQVAg5pu05paw6L+Q5Y2VKiogfAoK5YWz6ZSu77yaKirmnKzkvZPmiooi5a+56LGhICsg54q25oCBICsg5YWB6K6455qE5Yqo5L2cICsg5omn6KGM5p2D6ZmQIumDveW7uuaooeWlveS6hu+8jEFJIOaJjeecn+ato+iDveWKqOaJiyoq44CCCgojIyDlm5vjgIHor63kuYnnv7vor5HnmoTmnLrliLbvvIjljp/mlofnpLrkvovvvIkKCmBgYArmlbDmja7lupPooYzvvJogIElEXzk5ODIsIFN0YXR1c18wLCBMb2NfTlkgICAgICAgICDihpAg5a+55py65Zmo5Y+L5aW977yM5a+55Lq6L0FJIOS4jeWPi+WlvQogICAgICAgICAgICAgICAgICAgIOKGkyDmnKzkvZPlgZror63kuYnnv7vor5EK5Lia5Yqh6K+t6KiA77yaICDljaHovaYgOTk4MiDCtyDmsrnnrrHkuLrnqbogwrcg5b2T5YmN5Zyo57q957qmICAg4oaQIOS6uuWSjCBBZ2VudCDpg73og73nm7TmjqXnlKjoh6rnhLbor63oqIDmk43kvZwKYGBgCgojIyDkupTjgIHmlbDlrZfljJYgdnMg5pWw5pm65YyW77yI5pys5L2T55qE5L2N572u77yJCgp8IHwg5ZCr5LmJIHwKfC0tLXwtLS18CnwgKirmlbDlrZfljJYqKiB8IOaKiuS8geS4mue7hOe7h+aWueaWuemdoumdoueahOimgee0oO+8jOWcqOaVsOWtl+WtqueUn+S4reeUn+aIkOS4gOS4quaYoOWwhO+8iOWOn+WtkCDihpIg5q+U54m577yJIHwKfCAqKuaVsOaZuuWMlioqIHwg5Zyo5pWw5a2X5LiW55WM5aSN5Yi75LiA5LiqKirog73oh6rmiJHlrozmiJDku7vliqHjgIHnlJroh7PlgZrkuIDkupvkuI3lpKrph43opoHlhrPnrZYqKueahOaVsOWtl+WtqueUn++8m+iuqSBBZ2VudCDor7vmh4LmlbDmja4gKyDor7vmh4LmlbDmja7kuYvpl7TnmoQqKuS4muWKoeWLvueoveWFs+ezuyoqIHwKCioq5LyB5Lia57qnIEFJIOW6lOeUqOeahOS4ieS4quWJjeaPkCoq77ya4pGgIOWujOaIkOaVsOWtl+WMlu+8m+KRoSDorqkgQUkg6K+75oeC6L+Z5Lqb5pWw5o2u5Zyo5LyB5Lia6K+t5aKD5Lit55qE5ZCr5LmJ77yb4pGiIEFJIOWPr+WfuuS6jui/meS6m+aVsOaNruWBmuaOqOeQhuWSjOWGs+etluOAggoK4oaSICoqUGFsYW50aXIg5YGa55qE5piv56ysIOKRoeKRoiDku7bkuosqKu+8jOWJjeaPkOaYryLlt7Lnu4/lrozmiJDmlbDlrZfljJbnmoTnvo7lm73kvIHkuJoi44CCCgojIyMg5pWw5a2X5YyW55qE5Zub6Zi25q6177yI5oyJ6KKr5pWw5a2X5YyW55qE5pe26Ze06aG65bqP77yJCgoxLiAqKuaWh+S7tuaWh+ahoyoq77ya57q46LSoIOKGkiBXb3JkIC8gRXhjZWwgLyBQUFQgLyBQREYgLyBDQUQg5Zu+57q4CjIuICoq5rKf6YCa5pa55byPKirvvJpRUeOAgeW+ruS/oeetieWNs+aXtumAmuiurwozLiAqKuS4muWKoeS/oeaBryoq77yaU0FQIEVSUOOAgVNhbGVzZm9yY2UgQ1JN77yI6L+b6ZSA5a2Y44CB6LSi5Yqh44CB6ZSA5ZSu6Lef6L+b77yJCjQuICoq57uE57uH5LiO5rWB56iLKirvvJpPQeOAgemSiemSie+8iOe7hOe7h+aetuaehOOAgeWuoeaJuea1geeoi+OAgeaxh+aKpeS4juWNj+S9nOWFs+ezu++8iQoK5Y6f5paH5by66LCD6L+Z5pivKirlvqrluo/muJDov5sqKueahOi/h+eoi++8jOS4lOWtmOWcqOair+W6pu+8mioq5aSn5LyB5LiaID4g5bCP5LyB5Lia77yb576O5Zu95LyB5LiaID4g5Lit5Zu95LyB5LiaKirjgIIKCiMjIOWFreOAgeaKlei1hOetm+mAieagh+WHhu+8iOWPr+ebtOaOpeeUqO+8iQoK5Y6f5paH57uT6K6677yaCgo+ICoq6YG/5byA6YKj5Lqb5bel5YW35Z6L55qEIFNhYVPvvIzljrvmib7liLDpgqPkupvlubLmnKzkvZPmtLvlhL/nmoTlhazlj7jjgILkvYbkuI3kuIDlrpropoHlg48gUGFsYW50aXIg6YKj5LmI5aSn6ICM5YWo55qE77yM5Y+q6KaB5piv5Zyo5p+Q5Liq57uG5YiG6aKG5Z+f77yM6IO95aSf6K6p5aSn5qih5Z6L55CG6Kej5YW35L2T5Lia5Yqh77yM6K6pIEFnZW50IOi3kei1t+adpeW5sua0u+WEv+eahOWwseihjOOAgioqCgrkuInmnaHliKTmja7vvJoKCnwgIyB8IOWIpOaNriB8IOWPjemdou+8iOimgemBv+W8gOeahO+8iSB8CnwtLS18LS0tfC0tLXwKfCAxIHwgKirlubIi5pys5L2T5rS75YS/Iioq77ya5pWw5o2u5rK755CGICsg5pWw5o2u5pig5bCEICsg54GM5YWl6KGM5LiaIGtub3ctaG93ICsg5bel5L2c5rWB5LiO5rGH5oql5YWz57O7IHwg6Lq65Zyo6YKj6YeM562J5Lq655So55qEKirlt6XlhbflnosgU2FhUyoqIHwKfCAyIHwgKirkuI3lv4XlpKfogIzlhagqKu+8mue7huWIhumihuWfn+iDveiuqSBBZ2VudCDot5HotbfmnaXlubLmtLvljbPlj68gfCDlj6rmnIkiQUkrIuamguW/teOAgeaXoOWFt+S9k+WcuuaZryB8CnwgMyB8ICoqK0FJIOiAjOmdniBBSSsqKu+8muWcuuaZr+adpeiHquS6p+S4mua3seiAlSB8IOWkp+WOguWHuuadpeeahOWIm+S4muiAheW4puedgOa2iOi0ueS6kuiBlOe9keaAnee7tOWBmiBBSSsgfAoKKirmmrTorrrvvIjljp/mlofvvIkqKu+8muefreacn+aKlei1hOacuuS8mioq5LiN5Zyo5LqO5Yib5Lia5YWs5Y+477yM6ICM5Zyo5LqOIuWcqOS6p+S4mueUsOmXtOWcsOWktOa3seiAleeahOWFrOWPuCIqKuOAggoK5Yik5o2uIDIg5b6I6YeN6KaB77ya5a6D5oqK6Zeo5qeb5LuOIuWkjeWItiBQYWxhbnRpciLpmY3kuLoiKirlnKjmn5Dnu4bliIbpoobln5/lu7rmiJDlj6/nlKjnmoTmnKzkvZMqKiLigJTigJTov5npmY3kvY7kuoYiUGFsYW50aXIg5Zyo5Lit5Zu95LiN5Y+v5aSN5Yi2Iui/meS4gOWQpuWumuWIpOaWreeahOWKm+W6puOAggoKLS0tCgojIyDkuIPjgIHkuI7mnKzlupMiQUkgVG8gQiDlubPlj7DnsbsgcGFzcyDorrDlvZUi55qE5YWz57O7CgrnlKjmiLfmraTliY0gcGFzcyDlm73lhoUgQUkgVG8gQiDlubPlj7DnsbvnmoTnkIbnlLHmmK8i6aG555uu5Yi25omL5YaZ5a6a5Yi25Luj56CB44CB5pegIE9udG9sb2d5IOS6p+WTgeWMluayiea3gOOAgeavm+WIqeS9jiLjgILmnKznr4fmj5DkvpvkuoYqKuabtOeyvuehrueahOetm+WtkCoq77yaCgotIOS4jeaUuee7k+iuuu+8jOS9huaKiuWIpOaNruS7jiLmmK/kuI3mmK/pobnnm67liLYi5o2i5oiQ5pu05Y+v6KeC5rWL55qE77yaKirmnInmsqHmnInlu7rmiJDlj6/lpI3nlKjnmoTmnKzkvZPlsYLvvIjlr7nosaEv5YWz57O7L+WKqOS9nOW7uuaooe+8iSoq44CBKirliqjkvZzog73lkKblhpnlm57lupXlsYLns7vnu58qKuOAgSoq5piv5ZCm5Y+q5Zyo57uG5YiG6aKG5Z+f5oiQ56uLKirvvIjnu4bliIbpoobln5/miJDnq4vkuZ/nrpfmlbDvvIkKLSDlr7nlupTnmoTlj6/op4LmtYvkv6Hlj7fvvJrkuqflk4Hph4zmmK/lkKbmmrTpnLIi5a+56LGh57G75Z6LICsg5YWz57O7ICsg5Y+v5omn6KGM5Yqo5L2cIueahOW7uuaooeeVjOmdou+8m+WuouaIt+ahiOS+i+mHjOaYr+WQpuWHuueOsCJBZ2VudCDnm7TmjqXmlLnlhpkgRVJQL01FUy9XTVMi6ICM6Z2e5Y+q5Ye65oql6KGoCgojIyDlhavjgIHlsYDpmZAgLyDlvoXmoLgKCi0g5YWo56+HKirlrprmgKfliKTmlq3jgIHml6DotKLliqHmlbDmja4qKu+8jOadpea6kOS4uuS4quS6uuaKlei1hOmaj+eslAotICoqT250b2xvZ3kg56S65L6L5Li65L2c6ICF5LiOIEFJIOWvueivneeUn+aIkOeahOivtOaYjuaAp+S+i+WtkCoq77yM6Z2eIFBhbGFudGlyIOWumOaWueaKq+mcsueahOecn+WunuWuouaIt+ahiOS+i++8myLnrqHnkIblsYLor7TmnKzkvZPmmK/lhrPnrZbns7vnu58i5Li65L2c6ICF6L2s6L+w77yM5pyq5rOo5piO5YW35L2T5Ye65aSE77yI5ZOq5qyh55S16K+d5LyaL+WTquS7veadkOaWme+8iQotICoqIkFJIOWcqCBDIOerr+aXoOaJgOS9nOS4uiLmmK/kvZzogIXliKTmlq0qKu+8jOS4jeaYr+S6i+Wunu+8m+mYheivu+aXtuazqOaEj+i+ueeVjAotIOacque7meWHuuS7u+S9leWFt+S9k+WFrOWPuOeahOacrOS9k+WxgumqjOivgee7k+iuuuKAlOKAlCoq562b6YCJ5qCH5YeG5bCa5b6F6JC95Yiw5YW35L2T5qCH55qE5LiK5LiA5LiA6aqM6K+BKioKCi0tLQoKIyMg5YWz6IGUCgotIFtbQUnlupTnlKgt5pm66IO95aSN5Yip5LiO5Zub57qn6LeD6L+BXV0g4oCUIOWQjOS4gOS9nOiAhSAyMDI2LTA5LTE544CK5YWz5LqOQUnlupTnlKjnmoTljYHkuKrliKTmlq3jgIvvvJrmnKzkvZPlsYLmmK/lm5vnuqfot4Pov4HvvIjmlbDmja7msrvnkIbihpLmlbDmja7kuK3lj7DihpIqKuacrOS9k+Wxgioq4oaSQUlPU++8ieeahOesrOS4iee6pwotIFtb6Zi/55GfLeaUtuebiumAkuWinuS4jua2jOeOsF1dIOKAlCDlj6/kvZwi5pWw5o2uL+efpeivhuenr+e0r+eahOmAkuWinuaViOW6lCLnkIborrrlr7nnhacKLSDns7vliJfnrKzkuInnr4fvvIjmnKrlhaXlupPvvInvvJrjgIpBSeS8geS4muerr+W6lOeUqOeOsOeKtu+8mueZvuaXoOS4gOeUqOept+e/sOael++8jOiNieWPsOePreWtkOaVsOaNruW6k+OAi++8iCLnv7DmnpcgdnMg5Y6/5LukIuivreWig+WHuuWkhO+8iQ==";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">本体层（Ontology）— 数据与 AI 之间的决策中间层</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-20</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"><h1>本体层（Ontology）：数据与 AI 之间的决策中间层</h1>
+<blockquote>
+<p>收录日期：2026-09-20
+来源：微信公众号「庶人投资笔记」，作者 <strong>庶人哑士</strong>，《AI应用随想录》，2026-09-02 发布
+原文链接：https://mp.weixin.qq.com/s/TJZFrqNqD5f_e3FZ314eMw
+原始资料见 <code>raw/research/articles/2026-09-02-庶人哑士-AI应用随想录.md</code></p>
+</blockquote>
+<blockquote>
+<p>⚠️ 定位：本页为<strong>概念解释 + 投资筛选标准</strong>，来源为个人投资随笔（非 Palantir 官方披露）。文中例子作者自述&quot;是我与 AI 多轮对话之后生成的&quot;，属<strong>说明性示例</strong>。</p>
+</blockquote>
+<hr />
+<h2>一、定义</h2>
+<p><strong>Ontology（本体层）</strong>：把组织里散落在各处的真实事物（卡车、订单、病人、士兵、机器）及其关系，用一套**统一的&quot;业务语言&quot;**映射到软件里，让人类和 AI 都能看懂、并能直接下达动作。</p>
+<p>三个身份定位：</p>
+<table>
+<thead>
+<tr>
+<th>说法</th>
+<th>出处/语境</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>&quot;连接数据和 AI 的中间层&quot;</strong></td>
+<td>既不是数据，也不是大模型</td>
+</tr>
+<tr>
+<td><strong>&quot;一个决策系统&quot;</strong></td>
+<td>Palantir 管理层口径（作者转述）</td>
+</tr>
+<tr>
+<td><strong>&quot;翻译官&quot;</strong></td>
+<td>把机器看得懂的语言，翻译成人和智能体看得懂的&quot;人话&quot;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>在&quot;翰林 vs 县令&quot;的语境里：<strong>本体就是帮助大模型由翰林变成县令的东西</strong>。</p>
+</blockquote>
+<h2>二、本体装的两样东西</h2>
+<h3>1. 语义元素（&quot;名词&quot;）</h3>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>含义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>对象</strong></td>
+<td>现实世界的实体</td>
+<td>员工、飞机、采购订单、威胁行为者</td>
+</tr>
+<tr>
+<td><strong>属性</strong></td>
+<td>对象的字段</td>
+<td>员工姓名、油井经纬度</td>
+</tr>
+<tr>
+<td><strong>链接</strong></td>
+<td>对象之间的逻辑关系</td>
+<td>&quot;员工向经理汇报&quot;、&quot;发票包含明细项&quot;</td>
+</tr>
+</tbody>
+</table>
+<h3>2. 动力学元素（&quot;动词&quot;）</h3>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>含义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>动作</strong></td>
+<td>可对对象执行的操作</td>
+<td>&quot;批准采购订单&quot;、&quot;派遣技师&quot;</td>
+</tr>
+<tr>
+<td><strong>函数</strong></td>
+<td>封装好的业务逻辑</td>
+<td>&quot;计算资产利用率&quot;</td>
+</tr>
+<tr>
+<td><strong>安全</strong></td>
+<td>谁在什么条件下能看什么、改什么</td>
+<td>约束结果</td>
+</tr>
+</tbody>
+</table>
+<h2>三、与 BI / 看板的分界线：能不能&quot;写回&quot;</h2>
+<blockquote>
+<p><strong>大多数 BI（经营分析）工具只能&quot;读&quot;数据，而本体的动作可以&quot;写回&quot;到底层系统去执行。</strong></p>
+</blockquote>
+<p>对照示例（医疗制造商，底层几百个数据源：ERP、供应链、物流跟踪、产线传感器）：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>没有本体</th>
+<th>有了本体</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态</td>
+<td>数据孤岛、表结构混乱；生产工程师看工单表、仓库员看库存表、供应链分析师看物流表，<strong>三者对不上话</strong></td>
+<td>统一映射为业务对象：&quot;生产工厂&quot;、&quot;工单&quot;、&quot;客户&quot;、&quot;入库包裹&quot;、&quot;出库货件&quot;</td>
+</tr>
+<tr>
+<td>飓风来袭时</td>
+<td>弹个天气图，&quot;<strong>剩下的你自己想办法</strong>&quot;</td>
+<td>说一句&quot;重新规划所有经过厦门的货车路线&quot; → Agent 理解业务关系 → 自动算新路线 → <strong>直接发指令给 SAP 更新运单</strong></td>
+</tr>
+</tbody>
+</table>
+<p>关键：<strong>本体把&quot;对象 + 状态 + 允许的动作 + 执行权限&quot;都建模好了，AI 才真正能动手</strong>。</p>
+<h2>四、语义翻译的机制（原文示例）</h2>
+<pre><code>数据库行：  ID_9982, Status_0, Loc_NY         ← 对机器友好，对人/AI 不友好
+                    ↓ 本体做语义翻译
+业务语言：  卡车 9982 · 油箱为空 · 当前在纽约   ← 人和 Agent 都能直接用自然语言操作
+</code></pre>
+<h2>五、数字化 vs 数智化（本体的位置）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数字化</strong></td>
+<td>把企业组织方方面面的要素，在数字孪生中生成一个映射（原子 → 比特）</td>
+</tr>
+<tr>
+<td><strong>数智化</strong></td>
+<td>在数字世界复刻一个<strong>能自我完成任务、甚至做一些不太重要决策</strong>的数字孪生；让 Agent 读懂数据 + 读懂数据之间的<strong>业务勾稽关系</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>企业级 AI 应用的三个前提</strong>：① 完成数字化；② 让 AI 读懂这些数据在企业语境中的含义；③ AI 可基于这些数据做推理和决策。</p>
+<p>→ <strong>Palantir 做的是第 ②③ 件事</strong>，前提是&quot;已经完成数字化的美国企业&quot;。</p>
+<h3>数字化的四阶段（按被数字化的时间顺序）</h3>
+<ol>
+<li><strong>文件文档</strong>：纸质 → Word / Excel / PPT / PDF / CAD 图纸</li>
+<li><strong>沟通方式</strong>：QQ、微信等即时通讯</li>
+<li><strong>业务信息</strong>：SAP ERP、Salesforce CRM（进销存、财务、销售跟进）</li>
+<li><strong>组织与流程</strong>：OA、钉钉（组织架构、审批流程、汇报与协作关系）</li>
+</ol>
+<p>原文强调这是<strong>循序渐进</strong>的过程，且存在梯度：<strong>大企业 &gt; 小企业；美国企业 &gt; 中国企业</strong>。</p>
+<h2>六、投资筛选标准（可直接用）</h2>
+<p>原文结论：</p>
+<blockquote>
+<p><strong>避开那些工具型的 SaaS，去找到那些干本体活儿的公司。但不一定要像 Palantir 那么大而全的，只要是在某个细分领域，能够让大模型理解具体业务，让 Agent 跑起来干活儿的就行。</strong></p>
+</blockquote>
+<p>三条判据：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>判据</th>
+<th>反面（要避开的）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>干&quot;本体活儿&quot;</strong>：数据治理 + 数据映射 + 灌入行业 know-how + 工作流与汇报关系</td>
+<td>躺在那里等人用的<strong>工具型 SaaS</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>不必大而全</strong>：细分领域能让 Agent 跑起来干活即可</td>
+<td>只有&quot;AI+&quot;概念、无具体场景</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>+AI 而非 AI+</strong>：场景来自产业深耕</td>
+<td>大厂出来的创业者带着消费互联网思维做 AI+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>暴论（原文）</strong>：短期投资机会<strong>不在于创业公司，而在于&quot;在产业田间地头深耕的公司&quot;</strong>。</p>
+<p>判据 2 很重要：它把门槛从&quot;复制 Palantir&quot;降为&quot;<strong>在某细分领域建成可用的本体</strong>&quot;——这降低了&quot;Palantir 在中国不可复制&quot;这一否定判断的力度。</p>
+<hr />
+<h2>七、与本库&quot;AI To B 平台类 pass 记录&quot;的关系</h2>
+<p>用户此前 pass 国内 AI To B 平台类的理由是&quot;项目制手写定制代码、无 Ontology 产品化沉淀、毛利低&quot;。本篇提供了<strong>更精确的筛子</strong>：</p>
+<ul>
+<li>不改结论，但把判据从&quot;是不是项目制&quot;换成更可观测的：<strong>有没有建成可复用的本体层（对象/关系/动作建模）</strong>、<strong>动作能否写回底层系统</strong>、<strong>是否只在细分领域成立</strong>（细分领域成立也算数）</li>
+<li>对应的可观测信号：产品里是否暴露&quot;对象类型 + 关系 + 可执行动作&quot;的建模界面；客户案例里是否出现&quot;Agent 直接改写 ERP/MES/WMS&quot;而非只出报表</li>
+</ul>
+<h2>八、局限 / 待核</h2>
+<ul>
+<li>全篇<strong>定性判断、无财务数据</strong>，来源为个人投资随笔</li>
+<li><strong>Ontology 示例为作者与 AI 对话生成的说明性例子</strong>，非 Palantir 官方披露的真实客户案例；&quot;管理层说本体是决策系统&quot;为作者转述，未注明具体出处（哪次电话会/哪份材料）</li>
+<li><strong>&quot;AI 在 C 端无所作为&quot;是作者判断</strong>，不是事实；阅读时注意边界</li>
+<li>未给出任何具体公司的本体层验证结论——<strong>筛选标准尚待落到具体标的上一一验证</strong></li>
+</ul>
+<hr />
+<h2>关联</h2>
+<ul>
+<li><a href="AI%E5%BA%94%E7%94%A8-%E6%99%BA%E8%83%BD%E5%A4%8D%E5%88%A9%E4%B8%8E%E5%9B%9B%E7%BA%A7%E8%B7%83%E8%BF%81.html">AI应用-智能复利与四级跃迁</a> — 同一作者 2026-09-19《关于AI应用的十个判断》：本体层是四级跃迁（数据治理→数据中台→<strong>本体层</strong>→AIOS）的第三级</li>
+<li><a href="%E9%98%BF%E7%91%9F-%E6%94%B6%E7%9B%8A%E9%80%92%E5%A2%9E%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">阿瑟-收益递增与涌现</a> — 可作&quot;数据/知识积累的递增效应&quot;理论对照</li>
+<li>系列第三篇（未入库）：《AI企业端应用现状：百无一用穷翰林，草台班子数据库》（&quot;翰林 vs 县令&quot;语境出处）</li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/本体层Ontology-数据与AI的中间层.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

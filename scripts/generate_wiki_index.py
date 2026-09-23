@@ -13,15 +13,17 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
 规则：
     · 组根散落的 md 收进「概览」标签（不叫「其他文档」、不单独铺卡片）
     · 组内子目录/主题点击 = 当前页 Tab 切换，不再生成子目录独立页
-    · 每篇 md 仍生成独立阅读页，正文由浏览器端 marked 渲染（base64 内嵌原文，可离线解码）
+    · 每篇 md 仍生成独立阅读页，正文在生成期用 markdown-it-py 预渲染为 HTML 内嵌
+      （不依赖任何 CDN / 联网，离线双击即看），[[页面名]] 解析为站内链接
     · 多学科整组页与标的/案例组页同构：主题 当 tab，首页只保留标题+主题 chip+进入
 
 运行：
     .venv\\Scripts\\python scripts\\generate_wiki_index.py
 """
-import os, re, yaml, sys, base64
+import os, re, yaml, sys
 from datetime import date, datetime as dt
 from urllib.parse import quote
+from markdown_it import MarkdownIt
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WIKI_DIR = os.path.join(BASE, "research-wiki")
@@ -475,6 +477,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -544,7 +547,6 @@ def head_html(title):
     return ('<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
             '<title>' + esc(title) + '</title>'
-            '<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>'
             '<style>' + CSS + '</style></head><body>')
 
 # ---------------------------------------------------------------------------
@@ -582,11 +584,102 @@ def rewrite_md_assets(body, md_dir, out):
     return IMG_RX.sub(rep, body)
 
 
+# ---------------------------------------------------------------------------
+# Markdown 渲染：服务端预渲染（离线可用，不依赖 CDN）+ [[wiki 链接]] 解析
+# ---------------------------------------------------------------------------
+_MDIT = MarkdownIt('gfm-like').disable('linkify').enable('table')
+
+LINK_MAP = {}   # 归一化页面名 -> 该页输出 html 绝对路径
+
+
+def _link_keys(name):
+    """页面名的可命中键（按优先级：原样 → 去空格 → 去分隔符）"""
+    n = (name or '').strip()
+    if not n:
+        return []
+    keys = []
+    for k in (n, n.replace(' ', ''), re.sub(r'[\s·・\-—–_/]+', '', n)):
+        if k and k not in keys:
+            keys.append(k)
+    return keys
+
+
+def register_link(art):
+    """登记「标题 / 文件名 / wiki 内相对路径」三种叫法，供 [[...]] 解析"""
+    rel = art['path'].replace(os.sep, '/')
+    names = [art.get('title', ''), os.path.splitext(os.path.basename(art['path']))[0]]
+    for pref in ('research/', 'raw/research/'):
+        if rel.startswith(pref):
+            short = rel[len(pref):]
+            names += [short, os.path.splitext(short)[0]]
+    for nm in names:
+        for k in _link_keys(nm):
+            LINK_MAP[k] = art['_out']
+
+
+def layout_all(groups, cases, general):
+    """第一遍：只算输出路径并登记链接映射（渲染必须在全部路径确定之后）"""
+    for scope, coll in (('stocks', groups), ('cases', cases)):
+        for gid, info in coll.items():
+            group_out_dir = os.path.join(VIEW_DIR, scope, gid)
+            raw_name = raw_top_name(gid, info['articles'])
+            for art in info['articles']:
+                _tab, seg = article_layout(art, gid, raw_name)
+                stem = safe_stem(os.path.splitext(os.path.basename(art['path']))[0])
+                art['_out'] = os.path.join(group_out_dir, *seg, stem + '.html')
+                register_link(art)
+    for art in general:
+        cat = art.get('category', 'other')
+        art['_out'] = os.path.join(VIEW_DIR, 'general', cat,
+                                   safe_stem(os.path.splitext(os.path.basename(art['path']))[0]) + '.html')
+        register_link(art)
+
+
+WIKI_RX = re.compile(r'\[\[([^\[\]]+?)\]\]')
+
+
+def convert_wikilinks(body, out):
+    """[[页面名]] → 站内链接；[[xx.md]] → 源文件链接；未命中 → 灰色标记（不再裸显双括号）"""
+
+    def rep(m):
+        raw = m.group(1).strip()
+        name, label = (raw.split('|', 1) + [raw])[:2]   # [[目标|显示名]]
+        name, label = name.strip(), label.strip()
+        if name.lower().endswith('.md'):
+            src = os.path.join(WIKI_DIR, name.replace('/', os.sep))
+            return '[' + label + '](' + posix_rel(out, src) + ')'
+        # 允许带目录前缀（学股/广州/xxx、../案例/xxx），按末段匹配
+        cands = [name, name.replace('\\', '/').split('/')[-1]]
+        target = None
+        for cand in cands:
+            for k in _link_keys(cand):
+                if k in LINK_MAP:
+                    target = LINK_MAP[k]
+                    break
+            if target:
+                break
+        if not target:
+            # 退而求其次：项目内真实存在的文件（如 ../report/reading/xxxx）
+            for base_dir in (WIKI_DIR, BASE):
+                p = os.path.normpath(os.path.join(base_dir, name))
+                if os.path.exists(p):
+                    return '[' + label + '](' + posix_rel(out, p) + ')'
+            return '<span class="wl-miss" title="未找到同名页面">' + esc(label) + '</span>'
+        return '[' + label + '](' + posix_rel(out, target) + ')'
+
+    return WIKI_RX.sub(rep, body)
+
+
+def render_md(body, md_dir, out):
+    """md 正文 → HTML（图片路径重写 + wiki 链接解析 + 服务端渲染）"""
+    text = rewrite_md_assets(body, md_dir, out)
+    text = convert_wikilinks(text, out)
+    return _MDIT.render(text)
+
+
 def group_article_page(art, seg, out, display_name, group_idx):
     md_file = os.path.join(WIKI_DIR, art['path'].replace('/', os.sep))
-    body_b64 = base64.b64encode(
-        rewrite_md_assets(art['body'], os.path.dirname(md_file), out).encode('utf-8')
-    ).decode('ascii')
+    body_html = render_md(art['body'], os.path.dirname(md_file), out)
     tab = seg[0] if seg else '概览'
     back_target = posix_rel(out, group_idx) + '#dir=' + quote(tab)
     os.makedirs(os.path.dirname(out), exist_ok=True)
@@ -598,18 +691,13 @@ def group_article_page(art, seg, out, display_name, group_idx):
     if art.get('date'):
         html += '<span class="date">' + esc(art['date']) + '</span>'
     html += '<span style="margin-left:auto;color:#b0b5bd">' + esc(os.path.dirname(art['path'])) + '</span></div>'
-    html += '<div class="md" id="md"></div>'
+    html += '<div class="md" id="md">' + body_html + '</div>'
     html += '<div class="backrow"><a href="' + esc(back_target) + '">← 返回 ' + esc(tab) + '</a>'
     html += '<a href="' + esc(posix_rel(out, group_idx)) + '">目录</a>'
     html += '<a href="' + esc(posix_rel(out, OUT_HOME)) + '">首页</a>'
     html += '<a href="' + esc(posix_rel(out, md_file)) + '" style="margin-left:auto">原文文件 ↗</a></div>'
     html += '</div>'
-    html += ('<script>var S="' + body_b64 + '";'
-             'function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};'
-             'var el=document.getElementById("md");'
-             'if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}'
-             + LIGHTBOX_JS +
-             '</script></body></html>')
+    html += LIGHTBOX_JS + '</body></html>'
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html)
 
@@ -727,9 +815,7 @@ def generate_group(scope, gid, info):
 
 def general_article_page(art, out):
     md_file = os.path.join(WIKI_DIR, art['path'].replace('/', os.sep))
-    body_b64 = base64.b64encode(
-        rewrite_md_assets(art['body'], os.path.dirname(md_file), out).encode('utf-8')
-    ).decode('ascii')
+    body_html = render_md(art['body'], os.path.dirname(md_file), out)
     topic = art.get('topic', '通用')
     frag = 'dir=' + quote(topic)
     back_target = posix_rel(out, GENERAL_IDX) + '#' + frag
@@ -741,18 +827,13 @@ def general_article_page(art, out):
     if art.get('date'):
         html += '<span class="date">' + esc(art['date']) + '</span>'
     html += '<span style="margin-left:auto;color:#b0b5bd">' + esc(os.path.dirname(art['path'])) + '</span></div>'
-    html += '<div class="md" id="md"></div>'
+    html += '<div class="md" id="md">' + body_html + '</div>'
     html += '<div class="backrow"><a href="' + esc(back_target) + '">← 返回 ' + esc(topic) + '</a>'
     html += '<a href="' + esc(posix_rel(out, GENERAL_IDX)) + '">目录</a>'
     html += '<a href="' + esc(posix_rel(out, OUT_HOME)) + '">首页</a>'
     html += '<a href="' + esc(posix_rel(out, md_file)) + '" style="margin-left:auto">原文文件 ↗</a></div>'
     html += '</div>'
-    html += ('<script>var S="' + body_b64 + '";'
-             'function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};'
-             'var el=document.getElementById("md");'
-             'if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}'
-             + LIGHTBOX_JS +
-             '</script></body></html>')
+    html += LIGHTBOX_JS + '</body></html>'
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html)
@@ -930,6 +1011,7 @@ def main():
 
     print("生成页面 ...")
     os.makedirs(VIEW_DIR, exist_ok=True)
+    layout_all(groups, cases, general)   # 先定路径，供 [[wiki 链接]] 解析
     written = []
     for gid, info in groups.items():
         written += generate_group('stocks', gid, info)

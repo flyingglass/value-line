@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>贵州茅台 (600519) — 渠道价格链与经销商利润推演</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>贵州茅台 (600519) — 渠道价格链与经销商利润推演</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,183 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">贵州茅台</a> › <a href="渠道价格链与经销商利润推演.html">贵州茅台 (600519) — 渠道价格链与经销商利润推演</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">贵州茅台 (600519) — 渠道价格链与经销商利润推演</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-27</span><span style="margin-left:auto;color:#b0b5bd">research/贵州茅台/经营</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E7%BB%8F%E8%90%A5">← 返回 经营</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/贵州茅台/经营/渠道价格链与经销商利润推演.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDojIXlj7DmuKDpgZPku7fmoLzpk77kuI7nu4/plIDllYbliKnmtqbmjqjmvJQKCiMjIOaRmOimgQoKPiDmoLjlv4Por53popjvvJrojIXlj7AgMjAyNiDku7fmoLzkvZPns7sgwrcg5rig6YGT5pS56Z2pIMK3IOe7j+mUgOWVhuWIqea2pue7k+aehCDCtyDoh6rokKUgdnMg57uP6ZSACgoqKuS4gOWPpeivneaguOW/gyoq77yaMjAyNiDlubTojIXlj7Dlh7rljoLku7fkuKTova7kuIrosIMgKyDoh6rokKXmuKDpgZPkvY7ku7fmianlrrnvvIzmiornu4/plIDllYbljZXnk7blt67ku7fku44gfjMzMCDlhYPmir3liLAgfjI3MCDlhYPku6XkuIvvvJvlj6DliqDmibnku7fnlrLova/kuI7oh6rokKXliIbmtYHvvIzkuJPljZblupfmr5vliKnnjofnuqYgKioyMuKAkzI0JSoq44CB5YeA5Yip546H5LuFICoqM+KAkzglKirvvIjljZXnk7blh4DliKkgNTDigJMxNTAg5YWD77yJ77yM5LiN5bCR6Zeo5bqX6LS06L+R55uI5LqP57q/44CCCgoqKuWFs+mUruaVsOaNrioq77yaCgotIOWHuuWOguS7t++8iOmUgOWUruWQiOWQjOS7t++8ie+8mjIwMjYtMDMtMzEg6LW3ICoqMTI2OSDlhYMqKu+8iCsxMDDvvInvvIwyMDI2LTA3LTE4IOi1tyAqKjEzNjkg5YWDKirvvIgrMTAw77yJCi0g5biC5Zy65om55Lu377yIOCDmnIjvvInvvJrmlaPnk7YgfioqMTcwMCDlhYMqKiAvIOWOn+eusSB+KioxNzE1IOWFgyoq77yI5LuK5pel6YWS5Lu377yJCi0gaeiMheWPsOmbtuWUriAqKjE2Mzkg5YWDKirvvJvoh6rokKXlupcgKioxNzE5IOKGkiAxNzUzIOWFgyoq77yIOCDmnIggOCDml6XvvIzpppbmrKHlr7nmlaPlrqLlvIDmlL7vvIkKLSDkuJPljZblupcv57uP6ZSA5ZWG57uI56uv5oiQ5LqkICoqfjE3NTDigJMxODAwIOWFgyoqCi0gMjAyNiBIMSDljYrlubTmiqXvvJrnm7TplIAgKio1MTkuNjIg5Lq/KirvvIgrMjkuODcl77yJ5Y+N6LaF5om55Y+RICoqMzg2Ljk3IOS6vyoq77yI4oiSMjEuNTgl77yJ77ybaeiMheWPsCAqKjQwMi42NCDkur8qKu+8iCsyNzQl77yJCgoqKuaguOW/g+efm+ebvioq77yaCgoxLiDlh7rljoLku7fmtqjlvpflpJrjgIHpm7bllK7mjIflr7zku7fmtqjlvpflsJHvvIjkuI3lr7nnp7DosIPku7fvvInihpIg5beu5Lu36KKr5rqQ5aS05oq96KGACjIuIOiHquiQpeS9k+ezu++8iGnojIXlj7AgMTYzOSAvIOiHquiQpeW6lyAxNzUz77yJ5Lu35qC84omk5LiT5Y2W5bqXIOKGkiDlrqLmiLfooqvlrpjmlrnmuKDpgZPmiKrmtYEKCioq6Lef6Liq6KaB54K5KirvvJoKCjEuIOiHquiQpeW6l+S7t+agvOaYr+WQpue7p+e7reS4iuiwg++8m+S4k+WNluW6l+mbtuWUruS7t+aYr+WQpuiiq+i/q+i3n+i3jAoyLiDnu4/plIDllYbmlbDph4/kuI7lkIjlkIzotJ/lgLrlj5jljJbvvIhIMSDlt7Llh4Dlh4/lsJEgNTMg5a6244CB5ZCI5ZCM6LSf5YC6IOKIkjYwLjMxJe+8iQozLiDns7vliJfphZLvvIjojIXlj7AgMTkzNe+8ieWAkuaMguS9leaXtue8k+ino++8m+S7o+WUruWItu+8iDUlIOacjeWKoei0ue+8ieaOqOi/m+iMg+WbtAo0LiAyMDI2IOWFqOW5tOebtOmUgOWNoOavlOS4juWIqea2pueOh+eahOWGjeW5s+ihoQoKLS0tCgojIyDkuIDjgIEyMDI2IOW5tOS7t+agvOmTvuWFqOWbvu+8iOaIquiHsyA4IOaciCAyNyDml6XvvIkKCnwg546v6IqCIHwg5Lu35qC877yI5YWDL+eTtu+8jDUzwrA1MDBtbCDpo57lpKnvvIkgfCDmnaXmupAgfAp8LS0tfC0tLXwtLS18Cnwg5Ye65Y6C5Lu377yI6ZSA5ZSu5ZCI5ZCM5Lu377yJIHwgKioxMzY5KiogfCDojIXlj7AgMDctMTcg5YWs5ZGK77yIMDctMTgg6LW35omn6KGM77yJIHwKfCDluILlnLrmibnku7fvvIjphZLllYbosIPotKfvvIkgfCDmlaPnk7YgfioqMTcwMCoqIC8g5Y6f566xIH4qKjE3MTUqKiB8IOS7iuaXpemFkuS7t++8iHZpYSDniLHkvIHmn6XvvIwwOCDmnIjvvIkgfAp8IGnojIXlj7DlubPlj7Dpm7bllK4gfCAqKjE2MzkqKiB8IDA3LTE3IOWFrOWRiiB8Cnwg57q/5LiL6Ieq6JCl5bqX6Zu25ZSuIHwgKioxNzUzKirvvIg3IOaciOW6lSAxNzE577yJIHwgMDgtMDgg6LCD5Lu377yM6aaW5qyh5a+55pWj5a6i5byA5pS+IHwKfCDkuJPljZblupcv57uP6ZSA5ZWG57uI56uv5oiQ5LqkIHwgKip+MTc1MOKAkzE4MDAqKu+8iOmDqOWIhumXqOW6lyAxNzk54oCTMTgxOe+8iSB8IOaWsOa1qui0oue7j+OAgeeIseS8geafpeOAgeS4reWNjue9kSB8CgropoHngrnvvJrkuJPljZblupfllK7ku7flt7Looqvoh6rokKXlupfvvIgxNzUz77yJKirplJrmrbvlnKggMTc1MCDpmYTov5EqKu+8jOS4juiHquiQpeW6l+WHoOS5juaXoOW3ruS7t++8m+WOhuWPsuS4iuS4k+WNluW6lyAyMDAwKyDnmoTmuqLku7fnqbrpl7TmtojlpLHjgIIKCiMjIOS6jOOAgeWHuuWOguS7t+S4pOi9ruS4iuiwg+aXtumXtOe6vwoKfCDml7bpl7QgfCDlh7rljoLku7fvvIjplIDllK7lkIjlkIzku7fvvIkgfCDoh6rokKXkvZPns7vpm7bllK4gfCDor7TmmI4gfAp8LS0tfC0tLXwtLS18LS0tfAp8IDIwMjMtMTEtMDEg6LW3IHwgOTY5IOKGkiAqKjExNjkqKiB8IOaMh+WvvOS7tyAxNDk5IOS4jeWPmCB8IOaXtumalOi/kSA2IOW5tOaPkOS7t++8iCsyMCXvvIkgfAp8IDIwMjYtMDMtMzEg6LW3IHwgMTE2OSDihpIgKioxMjY5KirvvIgrMTAw77yJIHwgMTQ5OSDihpIgKioxNTM5KirvvIgrNDDvvIkgfCDlh7rljoLmtqjlpJrpm7bllK7mtqjlsJHvvIzljZXnk7blt67ku7cgMzMw4oaSMjcw77yM5Yip5ram5Y6L57ypIOKJpTE4Je+8iOiFvuiuryAyMDI2LTA1LTEy77yJIHwKfCAyMDI2LTA3LTE4IOi1tyB8IDEyNjkg4oaSICoqMTM2OSoq77yIKzEwMO+8iSB8IGnojIXlj7AgMTUzOSDihpIgKioxNjM5KiogfCAi6Z2e5a+556ew6LCD5Lu3Iu+8jOWPquaPkCBp6IyF5Y+w5LiN5o+Q6Ieq6JCl5bqX77yI5o6q6L6e5Y+Y5YyW77yJIHwKfCAyMDI2LTA4LTA4IHwg4oCUIHwg6Ieq6JCl5bqXIDE3MTkg4oaSICoqMTc1MyoqIHwg57q/5LiK57q/5LiL5Lu35beu5ouJ6IezIDExNCDlhYPvvIzliJvlubTlhoXmnIDlpKcgfAoKIyMg5LiJ44CB5rig6YGT57uT5p6E77yIMjAyNiBIMSDljYrlubTmiqXvvIwwOC0xNCDmiqvpnLLvvIkKCnwg5rig6YGTIHwgMjAyNiBIMSB8IDIwMjUgSDEgfCDlkIzmr5QgfAp8LS0tfC0tLXwtLS18LS0tfAp8IOebtOmUgO+8iOiHquiQpSArIGnojIXlj7DvvIkgfCAqKjUxOS42MiDkur8qKiB8IDQwMC4xMCDkur8gfCAqKisyOS44NyUqKiB8Cnwg5om55Y+R5Luj55CG77yI57uP6ZSA77yJIHwgKiozODYuOTcg5Lq/KiogfCA0OTMuNDMg5Lq/IHwgKiriiJIyMS41OCUqKiB8Cnwg55u06ZSAIDog5om55Y+RIHwgKioxLjM0IDogMSoqIHwgMC44MSA6IDEgfCDpgIbovawgfAp8IGnojIXlj7DvvIjlkKvlhbbkuK3vvIkgfCA0MDIuNjQg5Lq/IHwgMTA3LjYwIOS6vyB8ICoqKzI3NCUqKiB8CgotIOebtOmUgOWNoOmFkuexu+aUtuWFpee6piAqKjU3JSoq77yINTE5LjYyLzkwNi41Oe+8ie+8m+WNoOaAu+iQpeaUtue6piA1NiUKLSDmgLvokKXmlLYgOTIyLjc4IOS6v++8iCsxLjMl77yJ77yM5b2S5q+N5YeA5YipIDQ0NS4xNyDkur/vvIgqKuKIkjEuOTUlKirvvIzkuIrluILku6XmnaXpppbku70i5aKe5pS25LiN5aKe5YipIuWNiuW5tOaKpe+8iQotIFEyIOWNleWto++8muiQpeaUtiDiiJI1LjIl44CB5b2S5q+N5YeA5YipIOKIkjYuOSXvvIjljZXlraPlj4zpmY3vvIkKLSDojIXlj7DphZIgNzc3LjI0IOS6v++8iCsyLjgyJe+8ie+8m+ezu+WIl+mFkiAxMjkuMzQg5Lq/77yIKiriiJI2LjAyJSoq77yM6L+e57ut5LiJ5a2j5LiL5ruR77yJCi0g57uP6ZSA5ZWG5LiK5Y2K5bm0Kirlh4Dlh4/lsJEgNTMg5a62KirvvJvlkIjlkIzotJ/lgLogKiriiJI2MC4zMSUqKu+8iOmihOS7mOaEj+aEv+Wkp+W5heiQjue8qe+8iQotIOS4iuWNiuW5tOWHgOWIqeeOhyAqKjQ5Ljg5JSoq77yI6ZmI5Y2O5Lia57up5Lya5Y+j5b6E77yJCgojIyDlm5vjgIHkuJPljZblupfliKnmtqbmjqjmvJTvvIjpnZ7lrpjmlrnmiqvpnLLvvIzph4/nuqfkvLDnrpfvvIkKCiMjIyDmr5vliKnnjofvvJrnuqYgMjLigJMyNCXvvIjplIDllK7lj6PlvoTvvIkKCmBgYArljZXnk7bmr5vliKkgPSAxNzUwfjE4MDDvvIjnu4jnq6/miJDkuqTvvIniiJIgMTM2Oe+8iOWHuuWOguS7t++8iSA9IDM4MX40MzEg5YWDCuavm+WIqeeOhyDiiYggMjIlfjI0Je+8m+aMieaIkOacrOWPo+W+hCDiiYggMjglfjMxJQpgYGAKCiMjIyDlh4DliKnnjofvvJrnuqYgM+KAkzgl77yI5Y2V55O25YeA5YipIDUw4oCTMTUwIOWFg++8iQoK5LuO5q+b5Yip5Lit5YaN5omj77ya6Zeo5bqX56ef6YeRL+S6uuW3pS/ojrflrqLjgIHljovotKfotYTph5HmiJDmnKzjgIHorqHliJLlpJbooaXotKfvvIjmjInmibnku7fmi7/vvIzlt67ku7flh6DkuY7kuLrpm7bvvInjgIIKCuWPguiAg+mUmueCue+8iOacieWHuuWkhO+8ie+8mgoKLSAyMDI1IOW5tOa1juWNl+afkOS4k+iQpeW6l++8mumjnuWkqSoq5Y2V55O25Yip5ram6ZmN6Iez57qmIDUwIOWFgyoq77yI5YeA5Yip546HIH4zJe+8ie+8jOWPoOWKoOaQreWUruS6j+aNn++8jOW9k+W5tCLkuo/kuInlm5vljYHkuIflvojluLjop4Ei77yI55m+5a625Y+3IDIwMjUtMTEtMDLvvIkKLSDnoJTmiqXlj6PlvoTvvJoyMDI1IOW5tOWJjeS4ieWto+W6pue7j+mUgOWVhuaVtOS9k+ebiOWIqeOAgSoqUTQg55Wl5pyJ5LqP5o2fKirvvIjliLjllYbnoJTmiqUgdmlhIOaQnOeLkCAyMDI2LTAzLTIx77yJCgoyMDI2IOW5tOWPmOmHj++8muW8uuWItuaQreWUruW3suWPlua2iO+8iOS4jeWGjeiiq+aQreWUruWTgeaLlue0r++8ie+8jOS9huWHuuWOguS7t+S4pOasoeS4iuiwg+aKiuW3ruS7t+aKvei1sOWkp+WNiu+8m+mdnuagh+WTgeaUueS7o+WUruWItuWQjuavj+eTtuS7hSAqKjUlIOacjeWKoei0uSoq77yIMjAyNi0wMy0xMyDotbfmiafooYzvvIx2aWEgc216ZG0gMjAyNi0wNC0xMO+8ieOAggoKIyMg5LqU44CBIuS4k+WNluW6l+ayoeWIqea2piLljp/lm6Dpk77mnaEKCjEuICoq6ZyA5rGC56uvKirvvJrllYbliqHlrrTor7cv56S86LWg5pS257yp77yM5biC5Zy66L2s5Lmw5pa55biC5Zy677yI5qC55rqQ77yJCjIuICoq5Lu35qC856uvKirvvJrkuI3lr7nnp7DosIPku7figJTigJTlh7rljoLku7cgKzIwMOOAgembtuWUruaMh+WvvOS7t+S7hSArNDDvvIzljZXnk7blt67ku7cgMzMw4oaSMjcw4oaS5pu05L2O77yI55u05o6l5Li75Zug77yJCjMuICoq5biC5Zy656uvKirvvJrmibnku7fnlrLova/vvIjlubTliJ3kuIDluqYgfjE1NTXvvIw4IOaciOWbnuWNh+iHsyB+MTcwMO+8ie+8jOmbtuWUrua2qOS7t+WQjueDn+mFkuW6ly/kuJPljZblupfkuI3mlaLot5/mtqgKNC4gKirmuKDpgZPnq68qKu+8muiHquiQpeWIhua1geKAlOKAlGnojIXlj7AgMTYzOSAvIOiHquiQpeW6lyAxNzUzIOS9juS6juaIluetieS6juS4k+WNluW6l++8jOiHquiQpeWNoOavlOWNh+iHsyB+NTclCjUuICoq5oiQ5pys56uvKirvvJrpl6jlupflm7rlrprmiJDmnKzliJrmgKfvvIzljovotKfljaDotYTph5EKNi4gKirmqKHlvI/nq68qKu+8mjIwMjYg5rig6YGT5pS56Z2p4oCU4oCU5Y+W5raI5pCt5ZSu44CB6Z2e5qCH5pS55Luj5ZSu5Yi277yINSUg5pyN5Yqh6LS577yJ77yM57uP6ZSA5ZWG5LuOIui1muW3ruS7tyLovawi6LWa5L2j6YeRIu+8m+ezu+WIl+mFku+8iDE5MzXvvInlgJLmjILku43lnKjvvIjmiZPmrL4gNjY4IHZzIOaJueS7tyA2MjDigJM2NzDvvInvvIzkuo/mjZ/kuLvkvZPkuLrns7vliJfphZLnu4/plIDllYbkuI7ljoLlrrbvvIzljYrlubQgMjY2IOWutue7j+mUgOWVhumAgOWHuu+8iOS7peezu+WIl+mFkue7j+mUgOWVhuS4uuS4u++8jHZpYSDkvIHpuYXlj7cgMjAyNi0wOC0xN++8iQoKIyMg5YWt44CB5pWw5o2u5Y+j5b6E5LiO6aOO6Zmp5o+Q56S6CgotICoq5LiT5Y2W5bqX5Li66Z2e5LiK5biC5YWs5Y+477yM5peg6LSi5Yqh5oqr6ZyyKirvvIznrKzlm5vpg6jliIbkuLrln7rkuo7lhazlvIDku7fmoLwgKyDooYzkuJrmiqXpgZPnmoQqKumHj+e6p+aOqOeulyoq77yM6Z2e57K+56Gu5YC877yb5Y2V5bqX5beu5byC5aSn77yI6YWN6aKd57uT5p6E44CB6Zeo5bqX6KeE5qih44CB5piv5ZCm5a2Y5Zyo6L+d6KeE6LS054mM6ZSA5ZSu5Z2H5b2x5ZON5Yip5ram77yJCi0g5om55Lu35pWw5o2u5a2Y5Zyo5aSa5Y+j5b6E5beu5byC77yINiDmnIjmlaPnk7YgMTYwMOKAkzE2NTAgdnMgOCDmnIggMTcwMO+8m+WPpuacieadpea6kOaKpeaVtOeusSAxOTEw77yJ77yM5byV55So5pe25rOo5piO5pel5pyf5LiO5Y+j5b6ECi0gIue7vOWQiOavm+WIqeeOhyA0MCUrIuS4uiAyMDI2IOW5tOS7peWJjeWQq+eUn+iClumFkua6ouS7t+eahOaXp+WPo+W+hO+8jOmdnuagh+WTgeaUueS7o+WUruWItuWQjuW3suS4jemAgueUqAotIOacrOaWh+aJgOacieW8leeUqOWdh+S4uuWFrOW8gOaKpemBk++8jOeyvuehruaVsOaNruS7peiMheWPsOWFrOWRii/otKLmiqXkuLrlh4YKCiMjIOWPguingQoKW1vmuKDpgZPmlLnpnaldXSDCtyBbW+mUgOmHj+S4juWQqOS7t11dCltbcmVzZWFyY2gvaW5kZXgubWRdXSDCtyBbW3Jlc2VhcmNoL+i0teW3nuiMheWPsC/nu4/okKUv6Z2e5qCH5Lu35qC85L2T57O75LiO5ZCo5Lu35YiG6KejLm1kXV0=";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">贵州茅台</a> › <a href="渠道价格链与经销商利润推演.html">贵州茅台 (600519) — 渠道价格链与经销商利润推演</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">贵州茅台 (600519) — 渠道价格链与经销商利润推演</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-27</span><span style="margin-left:auto;color:#b0b5bd">research/贵州茅台/经营</span></div><div class="md" id="md"><h1>茅台渠道价格链与经销商利润推演</h1>
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：茅台 2026 价格体系 · 渠道改革 · 经销商利润结构 · 自营 vs 经销</p>
+</blockquote>
+<p><strong>一句话核心</strong>：2026 年茅台出厂价两轮上调 + 自营渠道低价扩容，把经销商单瓶差价从 ~330 元抽到 ~270 元以下；叠加批价疲软与自营分流，专卖店毛利率约 <strong>22–24%</strong>、净利率仅 <strong>3–8%</strong>（单瓶净利 50–150 元），不少门店贴近盈亏线。</p>
+<p><strong>关键数据</strong>：</p>
+<ul>
+<li>出厂价（销售合同价）：2026-03-31 起 <strong>1269 元</strong>（+100），2026-07-18 起 <strong>1369 元</strong>（+100）</li>
+<li>市场批价（8 月）：散瓶 ~<strong>1700 元</strong> / 原箱 ~<strong>1715 元</strong>（今日酒价）</li>
+<li>i茅台零售 <strong>1639 元</strong>；自营店 <strong>1719 → 1753 元</strong>（8 月 8 日，首次对散客开放）</li>
+<li>专卖店/经销商终端成交 <strong>~1750–1800 元</strong></li>
+<li>2026 H1 半年报：直销 <strong>519.62 亿</strong>（+29.87%）反超批发 <strong>386.97 亿</strong>（−21.58%）；i茅台 <strong>402.64 亿</strong>（+274%）</li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li>出厂价涨得多、零售指导价涨得少（不对称调价）→ 差价被源头抽血</li>
+<li>自营体系（i茅台 1639 / 自营店 1753）价格≤专卖店 → 客户被官方渠道截流</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li>自营店价格是否继续上调；专卖店零售价是否被迫跟跌</li>
+<li>经销商数量与合同负债变化（H1 已净减少 53 家、合同负债 −60.31%）</li>
+<li>系列酒（茅台 1935）倒挂何时缓解；代售制（5% 服务费）推进范围</li>
+<li>2026 全年直销占比与利润率的再平衡</li>
+</ol>
+<hr />
+<h2>一、2026 年价格链全图（截至 8 月 27 日）</h2>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>价格（元/瓶，53°500ml 飞天）</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出厂价（销售合同价）</td>
+<td><strong>1369</strong></td>
+<td>茅台 07-17 公告（07-18 起执行）</td>
+</tr>
+<tr>
+<td>市场批价（酒商调货）</td>
+<td>散瓶 ~<strong>1700</strong> / 原箱 ~<strong>1715</strong></td>
+<td>今日酒价（via 爱企查，08 月）</td>
+</tr>
+<tr>
+<td>i茅台平台零售</td>
+<td><strong>1639</strong></td>
+<td>07-17 公告</td>
+</tr>
+<tr>
+<td>线下自营店零售</td>
+<td><strong>1753</strong>（7 月底 1719）</td>
+<td>08-08 调价，首次对散客开放</td>
+</tr>
+<tr>
+<td>专卖店/经销商终端成交</td>
+<td><strong>~1750–1800</strong>（部分门店 1799–1819）</td>
+<td>新浪财经、爱企查、中华网</td>
+</tr>
+</tbody>
+</table>
+<p>要点：专卖店售价已被自营店（1753）<strong>锚死在 1750 附近</strong>，与自营店几乎无差价；历史上专卖店 2000+ 的溢价空间消失。</p>
+<h2>二、出厂价两轮上调时间线</h2>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>出厂价（销售合同价）</th>
+<th>自营体系零售</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023-11-01 起</td>
+<td>969 → <strong>1169</strong></td>
+<td>指导价 1499 不变</td>
+<td>时隔近 6 年提价（+20%）</td>
+</tr>
+<tr>
+<td>2026-03-31 起</td>
+<td>1169 → <strong>1269</strong>（+100）</td>
+<td>1499 → <strong>1539</strong>（+40）</td>
+<td>出厂涨多零售涨少，单瓶差价 330→270，利润压缩 ≥18%（腾讯 2026-05-12）</td>
+</tr>
+<tr>
+<td>2026-07-18 起</td>
+<td>1269 → <strong>1369</strong>（+100）</td>
+<td>i茅台 1539 → <strong>1639</strong></td>
+<td>&quot;非对称调价&quot;，只提 i茅台不提自营店（措辞变化）</td>
+</tr>
+<tr>
+<td>2026-08-08</td>
+<td>—</td>
+<td>自营店 1719 → <strong>1753</strong></td>
+<td>线上线下价差拉至 114 元，创年内最大</td>
+</tr>
+</tbody>
+</table>
+<h2>三、渠道结构（2026 H1 半年报，08-14 披露）</h2>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>2026 H1</th>
+<th>2025 H1</th>
+<th>同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直销（自营 + i茅台）</td>
+<td><strong>519.62 亿</strong></td>
+<td>400.10 亿</td>
+<td><strong>+29.87%</strong></td>
+</tr>
+<tr>
+<td>批发代理（经销）</td>
+<td><strong>386.97 亿</strong></td>
+<td>493.43 亿</td>
+<td><strong>−21.58%</strong></td>
+</tr>
+<tr>
+<td>直销 : 批发</td>
+<td><strong>1.34 : 1</strong></td>
+<td>0.81 : 1</td>
+<td>逆转</td>
+</tr>
+<tr>
+<td>i茅台（含其中）</td>
+<td>402.64 亿</td>
+<td>107.60 亿</td>
+<td><strong>+274%</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>直销占酒类收入约 <strong>57%</strong>（519.62/906.59）；占总营收约 56%</li>
+<li>总营收 922.78 亿（+1.3%），归母净利 445.17 亿（<strong>−1.95%</strong>，上市以来首份&quot;增收不增利&quot;半年报）</li>
+<li>Q2 单季：营收 −5.2%、归母净利 −6.9%（单季双降）</li>
+<li>茅台酒 777.24 亿（+2.82%）；系列酒 129.34 亿（<strong>−6.02%</strong>，连续三季下滑）</li>
+<li>经销商上半年<strong>净减少 53 家</strong>；合同负债 <strong>−60.31%</strong>（预付意愿大幅萎缩）</li>
+<li>上半年净利率 <strong>49.89%</strong>（陈华业绩会口径）</li>
+</ul>
+<h2>四、专卖店利润推演（非官方披露，量级估算）</h2>
+<h3>毛利率：约 22–24%（销售口径）</h3>
+<pre><code>单瓶毛利 = 1750~1800（终端成交）− 1369（出厂价） = 381~431 元
+毛利率 ≈ 22%~24%；按成本口径 ≈ 28%~31%
+</code></pre>
+<h3>净利率：约 3–8%（单瓶净利 50–150 元）</h3>
+<p>从毛利中再扣：门店租金/人工/获客、压货资金成本、计划外补货（按批价拿，差价几乎为零）。</p>
+<p>参考锚点（有出处）：</p>
+<ul>
+<li>2025 年济南某专营店：飞天<strong>单瓶利润降至约 50 元</strong>（净利率 ~3%），叠加搭售亏损，当年&quot;亏三四十万很常见&quot;（百家号 2025-11-02）</li>
+<li>研报口径：2025 年前三季度经销商整体盈利、<strong>Q4 略有亏损</strong>（券商研报 via 搜狐 2026-03-21）</li>
+</ul>
+<p>2026 年变量：强制搭售已取消（不再被搭售品拖累），但出厂价两次上调把差价抽走大半；非标品改代售制后每瓶仅 <strong>5% 服务费</strong>（2026-03-13 起执行，via smzdm 2026-04-10）。</p>
+<h2>五、&quot;专卖店没利润&quot;原因链条</h2>
+<ol>
+<li><strong>需求端</strong>：商务宴请/礼赠收缩，市场转买方市场（根源）</li>
+<li><strong>价格端</strong>：不对称调价——出厂价 +200、零售指导价仅 +40，单瓶差价 330→270→更低（直接主因）</li>
+<li><strong>市场端</strong>：批价疲软（年初一度 ~1555，8 月回升至 ~1700），零售涨价后烟酒店/专卖店不敢跟涨</li>
+<li><strong>渠道端</strong>：自营分流——i茅台 1639 / 自营店 1753 低于或等于专卖店，自营占比升至 ~57%</li>
+<li><strong>成本端</strong>：门店固定成本刚性，压货占资金</li>
+<li><strong>模式端</strong>：2026 渠道改革——取消搭售、非标改代售制（5% 服务费），经销商从&quot;赚差价&quot;转&quot;赚佣金&quot;；系列酒（1935）倒挂仍在（打款 668 vs 批价 620–670），亏损主体为系列酒经销商与厂家，半年 266 家经销商退出（以系列酒经销商为主，via 企鹅号 2026-08-17）</li>
+</ol>
+<h2>六、数据口径与风险提示</h2>
+<ul>
+<li><strong>专卖店为非上市公司，无财务披露</strong>，第四部分为基于公开价格 + 行业报道的<strong>量级推算</strong>，非精确值；单店差异大（配额结构、门店规模、是否存在违规贴牌销售均影响利润）</li>
+<li>批价数据存在多口径差异（6 月散瓶 1600–1650 vs 8 月 1700；另有来源报整箱 1910），引用时注明日期与口径</li>
+<li>&quot;综合毛利率 40%+&quot;为 2026 年以前含生肖酒溢价的旧口径，非标品改代售制后已不适用</li>
+<li>本文所有引用均为公开报道，精确数据以茅台公告/财报为准</li>
+</ul>
+<h2>参见</h2>
+<p><a href="%E6%B8%A0%E9%81%93%E6%94%B9%E9%9D%A9.html">渠道改革</a> · <a href="%E9%94%80%E9%87%8F%E4%B8%8E%E5%90%A8%E4%BB%B7.html">销量与吨价</a>
+<a href="../../../../research/index.md">research/index.md</a> · <a href="../../../../research/%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E7%BB%8F%E8%90%A5/%E9%9D%9E%E6%A0%87%E4%BB%B7%E6%A0%BC%E4%BD%93%E7%B3%BB%E4%B8%8E%E5%90%A8%E4%BB%B7%E5%88%86%E8%A7%A3.md">research/贵州茅台/经营/非标价格体系与吨价分解.md</a></p>
+</div><div class="backrow"><a href="../index.html#dir=%E7%BB%8F%E8%90%A5">← 返回 经营</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/贵州茅台/经营/渠道价格链与经销商利润推演.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

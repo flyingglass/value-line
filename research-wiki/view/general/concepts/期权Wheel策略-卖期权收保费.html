@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>期权 Wheel 策略（卖出期权收保费模式）</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>期权 Wheel 策略（卖出期权收保费模式）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,156 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">期权 Wheel 策略（卖出期权收保费模式）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-19</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/期权Wheel策略-卖期权收保费.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDmnJ/mnYMgV2hlZWwg562W55Wl77yI5Y2W5Ye65pyf5p2D5pS25L+d6LS55qih5byP77yJCgo+IOaUtuW9leaXpeacn++8mjIwMjYtMDgtMTkKPiDmnaXmupDvvJpBSSDkuI7nlKjmiLfmipXnoJTlr7nor53vvIjms6Hms6HnjpvnibnmnJ/mnYPlj4LmlbDnpLrkvovvvInvvIzljp/lp4votYTmlpnop4EgYHJhdy9yZXNlYXJjaC9hcnRpY2xlcy8yMDI2LTA4LTE5Leacn+adg3doZWVs562W55WlLeazoeazoeeOm+eJueWIhuaekC5tZGAKCi0tLQoKIyMg5a6a5LmJCgoqKldoZWVsIOetlueVpe+8iOi9ruWKqOetlueVpe+8iSoqIOaYr+acn+adg+WNluaWueeahOS4gOenjeW+queOr+aJk+azle+8mgoKMS4g5Y2W5Ye6IHB1dCDmlLbmnYPliKnph5HvvIjnjrDph5Hmi4Xkv50gcHV0IC8gY2FzaC1zZWN1cmVkIHB1dO+8ie+8jOaEv+aEj+WcqOihjOadg+S7t+S5sOWFpeiCoeelqAoyLiDoi6XooqsgYXNzaWduIOKGkiDku6XooYzmnYPku7fkubDlhaXogqHnpajvvIzmjIHmnIkKMy4g5YaN5Y2W5Ye6IGNhbGwg5pS25p2D5Yip6YeR77yIY292ZXJlZCBjYWxs77yJ77yM5oS/5oSP5Zyo6KGM5p2D5Lu35Y2W5Ye66IKh56WoCjQuIOiLpeiiqyBhc3NpZ24g4oaSIOS7peihjOadg+S7t+WNluWHuuiCoeelqO+8jOWbnuWIsOeOsOmHkeeKtuaAge+8jOW+queOr+mHjeaWsOW8gOWniwoK5pys6LSo5pivKirljZbkv53miqTmlLbkv53otLkqKu+8muermeWcqOaJv+S/neS6uu+8iHNlbGxlcu+8ieS4gOS+p++8jOi1muazouWKqOeOh+mSse+8iHRoZXRhICsg6ZqQ5ZCr5rOi5Yqo546H5rqi5Lu377yJ77yM5om/5ouF5Lu35qC85rOi5Yqo6aOO6Zmp44CCCgojIyDlrozmlbTlvqrnjq/mnLrliLYKCuWcqCLmjIHmnInnjrDph5Ei5ZKMIuaMgeacieiCoeelqCLkuKTnp43nirbmgIHkuYvpl7Tlvqrnjq/vvIzmr4/kuIDmraXpg73ljZblh7rmnJ/mnYPmlLbmnYPliKnph5HvvIzooqvooYzmnYPmiY3liIfmjaLnirbmgIHvvJoKCmBgYArnirbmgIHvvJrnjrDph5Eg4pSA4pSA5Y2WIHB1dOKUgOKUgD4g5pS25p2D5Yip6YeRCiAg4pSCICAgICAgICAgICAgICAgICAgICAgIOKUggogIOKUgiBwdXQg5Yiw5pyf5L2c5bqfICAgICAgICAg4pSCIHB1dCDooqvooYzmnYPvvIjogqHku7fot4zliLDooYzmnYPku7fvvIkKICDilIIg6IKh5Lu35rKh6LeM5Yiw6KGM5p2D5Lu3ICAgICAg4pa8CiAg4pSCICAgICAgICAgICAgICAgIOeKtuaAge+8muaMgeiCoe+8iOS7peihjOadg+S7t+S5sOWFpe+8iQogIOKUgiAgICAgICAgICAgICAgICAgICAgICDilIIKICDilIIgICAgICAgICAgICAgICAgICAgICAg4pSCIOWNliBjYWxsIOaUtuadg+WIqemHkQogIOKUgiAgICAgICAgICAgICAgICAgICAgICDilrwKICDilIIgICAgICAgICAgICAgICAgIGNhbGwg5Yiw5pyf5L2c5bqf77yI6IKh5Lu35rKh5rao5Yiw77yJCiAg4pSCICAgICAgICAgICAgICAgICDihpIg57un57ut5oyB5pyJ77yM5YaN5Y2W5LiA5bygIGNhbGzvvIjmj5Dpq5jmlLbnm4rnjofvvIkKICDilIIKICDilIIgICAgICAgICAgICAgICAgIGNhbGwg6KKr6KGM5p2D77yI6IKh5Lu35rao5Zue6KGM5p2D5Lu377yJCiAg4pSCICAgICAgICAgICAgICAgICDihpIg5Lul6KGM5p2D5Lu35Y2W5Ye677yM5Zue5Yiw546w6YeRCiAg4pSU4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAIOW+queOr+mHjeaWsOW8gOWniwpgYGAKCiMjIyDpmLbmrrUgMSDigJQg546w6YeR54q25oCB77ya5Y2WIHB1dO+8iOeOsOmHkeaLheS/nSBwdXTvvIkKCi0g5omL5LiK5pyJ546w6YeR77yI5oiW5oS/5oSP5Lmw6IKh56Wo77yJ77yM5Y2W5Ye6IEsg55qEIHB1dO+8jOaUtuadg+WIqemHkQotIOacrOi0qO+8miLmiJHmhL/mhI/lnKggSyDku6XkuIvkubDogqHnpajvvIzogIzkuJTnjrDlnKjlsLHlvIDlp4vmlLbpkrHnrYnlroPot4zkuIvmnaUiCi0g5Lik56eN57uT5bGA77yaCiAgLSDliLDmnJ/ogqHku7cg4omlIEsg4oaSIHB1dCDkvZzlup/vvIznmb3otZrmnYPliKnph5HvvIzkvYbmsqHkubDliLDogqHnpajvvIjouI/nqbrpo47pmanvvIkKICAtIOWIsOacn+iCoeS7tyA8IEsg4oaSIOiiq+ihjOadg++8jOS7pSBLIOS5sOWFpe+8iOWunumZheaIkOacrCA9IEsg4oiSIHB1dCDmnYPliKnph5HvvIzmiZPmipjkubDlhaXvvIkKCiMjIyDpmLbmrrUgMiDigJQg5oyB6IKh54q25oCB77ya5Y2WIGNhbGzvvIhjb3ZlcmVkIGNhbGzvvIkKCi0g5omL6YeM5pyJ6IKh56Wo77yM5Y2W5Ye6IEsg55qEIGNhbGzvvIzlho3mlLbkuIDnrJTmnYPliKnph5EKLSDmnKzotKjvvJoi5oiR5oS/5oSP5ZyoIEsg5Lul5LiK5Y2W5o6J77yM5L2G5Y2W5Ye65LmL5YmN5YWI5oqK5pyq5p2l5Y2W5Lu355qE5p2D5Yip6YeR5pS25o6JIgotIOS4pOenjee7k+WxgO+8mgogIC0g5Yiw5pyf6IKh5Lu3IOKJpCBLIOKGkiBjYWxsIOS9nOW6n++8jOeZvei1muadg+WIqemHke+8jOe7p+e7reaMgeacie+8iOWPr+WGjeWNluS4i+S4gOW8oCBjYWxs77yJCiAgLSDliLDmnJ/ogqHku7cgPiBLIOKGkiDooqvooYzmnYPvvIzku6UgSyDljZblh7rvvIzlm57liLDnjrDph5EKCiMjIyDpmLbmrrUgMyDigJQg5b6q546vCgrlm57liLDnjrDph5Eg4oaSIOWGjeWNliBwdXQg4oaSIOKApuKApuOAguaUtuebiuS4jeS+nei1luiCoeS7t+a2qOi3jO+8mioq5Y+q6KaB6IKh5Lu35Zyo5Lik6IW/5LmL6Ze05qiq55uY5oiW5rip5ZKM5rOi5Yqo77yM6Iez5bCR5LiA5Liq5pyf5p2D5Yiw5pyf5L2c5bqf77yM5bCx5pS25ruh5p2D5Yip6YeRKirjgILotZrnmoTmmK/ms6LliqjnjofnmoTpkrHvvIjljZbmlrnlkJHvvInvvIzkuI3mmK/mlrnlkJHnmoTpkrHvvIjkubDmlrnvvInjgIIKCiMjIOaUtuebiuadpea6kOaLhuinowoKfCDmnaXmupAgfCDor7TmmI4gfAp8LS0tfC0tLXwKfCDOuO+8iOaXtumXtOS7t+WAvO+8iSB8IOacn+adg+avj+WkqemDveWcqOi0rOWAvO+8jOWNluaWuei1mua1gemAneeahOS7t+WAvCB8Cnwg6ZqQ5ZCr5rOi5Yqo546H5rqi5Lu3IHwg5biC5Zy65oGQ5oWM5pe2IElWIOmrmOOAgeadg+WIqemHkei0te+8jOWNluaWuemrmOS7t+WNluWHuiLkv53pmakiIHwKfCDooYzmnYPku7fmipjmiaMgfCBwdXQg6KKr6KGM5p2DID0g5omT5oqY5Lmw5YWl77ybY2FsbCDooqvooYzmnYMgPSDpq5jkvY3ljZblh7ogfAoKIyMg5rOh5rOh546b54m55Y+C5pWw56S65L6L77yI55So5oi35qGI5L6L77yJCgrlj4LmlbDvvJrooYzmnYPku7cgMTQ1IMOXIDIwMCDogqHvvJtwdXQg5p2D5Yip6YeRIDYuODgv6IKh77ybY2FsbCDmnYPliKnph5EgNS4wMC/ogqHjgIIKCiMjIyDnjrDph5HmtYEKCnwg5q2l6aqkIHwg546w6YeR5rWBIHwKfC0tLXwtLS18Cnwg5Y2WIDIg5bygIDE0NSBQVVQgQDYuODggfCArMSwzNzYgfAp8IFBVVCDooqvooYzmnYPvvIwkMTQ1IOS5sOWFpSAyMDAg6IKhIHwg4oiSMjksMDAwIHwKfCDljZYgMiDlvKAgMTQ1IENBTEwgQDUuMDAgfCArMSwwMDAgfAp8IENBTEwg6KKr6KGM5p2D77yMJDE0NSDljZblh7ogMjAwIOiCoSB8ICsyOSwwMDAgfAp8ICoq5YeA57uT5p6cKiogfCAqKisyLDM3NiDmnYPliKnph5HvvIzogqHnpajov5vlh7rnm7jmirUqKiB8Cgrlrp7pmYXljaDnlKjotYTph5EgPSAyOSwwMDAg4oiSIDEsMzc277yI5YWI5pS255qEIHB1dCDmnYPliKnph5HvvIk9ICoqMjcsNjI0KioKCiMjIyDmlLbnm4rnjocKCi0g5oyJ5YeA5oqV5YWl77yaMiwzNzYgLyAyNyw2MjQg4omIICoqOC42JSoqCi0g5oyJ5ZCN5LmJ5pys6YeR77yaMiwzNzYgLyAyOSwwMDAg4omIICoqOC4yJSoqCi0g5q+P6IKh6aqM6K+B77ya5oC75p2D5Yip6YeRIDExLjg4IC8g5YeA5oiQ5pysIDEzOC4xMiDiiYggOC42Je+8jOS4gOiHtAoKKirlubTljJbkvp3otZblkajmnJ8qKu+8muiLpSBwdXQgKyBjYWxsIOWQhOe6piAxIOS4quaciO+8iOWFsee6piAyIOS4quaciO+8ie+8jOWNleWIqeW5tOWMliDiiYggNTEl77ybMyDkuKrmnIjmnJ/pmZDliJnnuqYgMTcl44CC57q46Z2i5bm05YyW77yM5pyq6K6h5L2j6YeRL+a7keeCuS/kuqTmmJPmiYDotLkv5rOi5Yqo6aOO6Zmp44CCCgojIyDkuI7kv53pmanlhazlj7jnmoTlhbPns7sKCioq5piv5ZCM57G76YC76L6RKirvvJrmlLbkv53otLnjgIHmib/po47pmanjgIHlsI/otZrpopHnuYHjgIHlsL7pg6jlpKfkuo/pnaDnuqrlvovmjqfliLbjgIIKCi0g5Y2WIFBVVCA9IOaPkOS+myLkuIvot4zkv53miqQi5L+d6Zmp77yM5pS25L+d6LS577yb6LeM56C06KGM5p2D5Lu35Y2zIueQhui1lCLvvIjmjqXotKfvvIkKLSDljZYgQ0FMTCA9IOaPkOS+myLkuIrmtqjlsIHpobYi5pyf5p2D77yM5pS25L+d6LS577yb5rao6L+H6KGM5p2D5Lu35Y2zIuS6pOWHuui0pyIKCioq5Lik54K55pys6LSo5Yy65YirKirvvJoKCjEuICoq6aOO6Zmp5Y+v5YiG5pWj5oCnKirvvJrkv53pmanmib/kv53nmoTmmK/nm7jkupLni6znq4vnmoTkuKrkvZPpo47pmanvvIjlj6/nsr7nrpfjgIHlj6/lpKfmlbDlrprlvovmkYroloTvvInvvJvljZYgcHV0IOaJv+S/neeahOaYryoq5biC5Zy657O757uf5oCn6aOO6ZmpKirvvIzmmrTot4zml7bmiYDmnInljZbmlrnkuIDotbfkuo/vvIzml6Dms5XliIbmlaMKMi4gKirlrprku7fkvp3mja4qKu+8muS/nemZqemdoOeyvueul+i1lOS7mOeOh++8m+acn+adg+WNluaWuemdoOazouWKqOeOh+OAguazouWKqOeOh+S9juaXtiLkv53otLki5L6/5a6c5L2G6LWU5LuY5qaC546H5pyq5b+F5L2OCgojIyDpo47pmanot6/lvoTvvIjkuI3mraIi5omT5ruhIuS4gOadoe+8iQoKLSAqKuWkp+W5heS4i+i3jCoq77yaUFVUIOihjOadg+aOpei0p+WQjuiCoeS7t+e7rei3jO+8jENBTEwg5LiN6KGM5p2D77yM5oyB5pyJ5rWu5LqP5LuT5L2N44CC57u85ZCI5LiL6KGM5L+d5oqkID0g6KGM5p2D5Lu3IOKIkiDmgLvmnYPliKnph5EgPSAxNDUg4oiSIDExLjg4ID0gKioxMzMuMTIqKu+8m+i3jOegtOWQjuaVtOS9k+S6j+aNn+S4lOaXoOS4i+mZkO+8iOmZpOmdnuatouaNn++8iQotICoq5aSn5rao6LiP56m6KirvvJpDQUxMIOiiq+ihjOadg++8jOS7hei1muWbuuWumuadg+WIqemHke+8jOi2hemineaUtuebiuWFqOmDqOiuqeWHugotICoqUFVUIOacquihjOadgyoq77ya6IKh5Lu35LiK5rao44CBUFVUIOS9nOW6n++8jOWPqui1miBwdXQg5p2D5Yip6YeR5L2G6LiP56m65bu65LuTCgrmlLbnm4rmnJ/mnJsgPSDmu6Hpop3mlLbnm4og4oiSIOWwvumDqOS6j+aNnyDDlyDlj5HnlJ/mpoLnjofjgILliY3mj5DvvJrlr7nmoIfnmoTnmoTku7flgLzliKTmlq3lpJ/noazvvIzmhL/mhI/lnKjnm4jkuo/lubPooaHngrnku6XkuIvnu6fnu63mjIHmnInjgIIKCiMjIOmAgueUqOWcuuaZrwoK6YCC5ZCI77yaKirmnKzmnaXlsLHmiZPnrpfplb/mnJ/mjIHmnInmn5DmoIfnmoTjgIHlr7nkvLDlgLzmnInliKTmlq3jgIHmhL/mhI/lnKjkvY7ku7fkvY3mjqXotKfnmoTkuroqKuKAlOKAlOeUqOacn+adg+aKiiLnrYnlvoXkubDlhaUv562J5b6F5Y2W5Ye6IueahOmXsue9ruaXtumXtOS5n+WPmOaIkOeOsOmHkea1geOAggoK5LiA5Y+l6K+d5oC757uT77yaKipXaGVlbCA9IOeUqCLmhL/mhI/lnKggSyDkubDlhaXjgIHmhL/mhI/lnKggSyDljZblh7oi55qE5om/6K+65Y+N5aSN5Y2W5L+d6Zmp5pS25L+d6LS577yb5qiq55uY6LWa5ruh44CB5rip5ZKM5rOi5Yqo6LWa5LiA5Y2K44CB5pq06LeM5YWc5bqV5o6l6LSn44CB5pq05rao6ZSB5a6a5Y2W5Lu344CCKiog5pS255uK5pyf5pyb5pivIuadg+WIqemHkeaUtuWFpSDiiJIg5bC+6YOo5LqP5o2f5qaC546HIu+8jOS4jeaYr+aXoOmjjumZqeWll+WIqeOAggoKIyMg5Lyv5YWL5biM5bCU5YWI5L6L77yI5bey5qC45a6e77yJCgrkvK/lhYvluIzlsJQgMjAwNOKAkzIwMDgg5bm06Ze05YiG5om55Y2W5Ye65Zub5aSn6IKh5oyH6ZW/5pyf55yL6LeM5pyf5p2D77yIUyZQIDUwMCAvIEZUU0UgMTAwIC8gRXVybyBTdG94eCA1MCAvIE5pa2tlaSAyMjXvvInvvIwyMDA4IOW5tOiHtOiCoeS4nOS/oeaKq+mcsu+8muWQjeS5ieacrOmHkSAkMzcuMULvvIzlt7LmlLbkv53otLkgJDQuOULjgILlt7Toj7LnibnnlKggcHJlbWl1be+8iOS/nei0ue+8ieS4jiBpbnN1cmFuY2UgZmxvYXTvvIjkv53pmanmta7lrZjph5HvvInmoYbmnrborrrov7DljZYgcHV077yMQ0RTIOebtOaOpeWumuaAp+S4uiJjcmVkaXQgaW5zdXJhbmNlIu+8iOS/oeeUqOS/nemZqe+8ieOAggoK4pqg77iPICoq6L2s6L+w6L6555WMKirvvJrlt7Toj7Lnibnml6Ai5Y2WIHB1dCA9IOWNluS/nemZqSLnmoTljp/or53vvIzmraTkuLrlr7nljp/mlofmoYbmnrbnmoTlkIjnkIbovazov7DvvIzlvJXnlKjml7bkuI3lj6/lvZPkvZzpgJDlrZflvJXor63jgIIKCiMjIOebuOWFs+mTvuaOpQoKLSBbWy4uLy4uL3Jhdy9yZXNlYXJjaC9hcnRpY2xlcy8yMDI2LTA4LTE5Leacn+adg3doZWVs562W55WlLeazoeazoeeOm+eJueWIhuaekF1dIOKAlCDljp/lp4votYTmlpnvvIjlkKvljp/mloflvJXnlKjvvIkKLSBbW+azoeazoeeOm+eJuS/mipXotYTorrrngrldXSDigJQg5rOh5rOh546b54m55oqV6LWEIFRoZXNpcwotIOamguW/temhteW+heWIm+W7uu+8muacn+adg+WNluaWuSAvIOmakOWQq+azouWKqOeOh+a6ouS7tyAvIOeOsOmHkeaLheS/nXB1dApbW3Jlc2VhcmNoL2luZGV4Lm1kXV0gwrcgW1tyZXNlYXJjaC9sb2cubWRdXQpbW3Jlc2VhcmNoL2FydGljbGVzL3N5bnRoZXNpcy9iZW4tdGhvbXBzb24tYWktY2FwaXRhbC1jeWNsZS5tZF1d";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">期权 Wheel 策略（卖出期权收保费模式）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-19</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"><h1>期权 Wheel 策略（卖出期权收保费模式）</h1>
+<blockquote>
+<p>收录日期：2026-08-19
+来源：AI 与用户投研对话（泡泡玛特期权参数示例），原始资料见 <code>raw/research/articles/2026-08-19-期权wheel策略-泡泡玛特分析.md</code></p>
+</blockquote>
+<hr />
+<h2>定义</h2>
+<p><strong>Wheel 策略（轮动策略）</strong> 是期权卖方的一种循环打法：</p>
+<ol>
+<li>卖出 put 收权利金（现金担保 put / cash-secured put），愿意在行权价买入股票</li>
+<li>若被 assign → 以行权价买入股票，持有</li>
+<li>再卖出 call 收权利金（covered call），愿意在行权价卖出股票</li>
+<li>若被 assign → 以行权价卖出股票，回到现金状态，循环重新开始</li>
+</ol>
+<p>本质是<strong>卖保护收保费</strong>：站在承保人（seller）一侧，赚波动率钱（theta + 隐含波动率溢价），承担价格波动风险。</p>
+<h2>完整循环机制</h2>
+<p>在&quot;持有现金&quot;和&quot;持有股票&quot;两种状态之间循环，每一步都卖出期权收权利金，被行权才切换状态：</p>
+<pre><code>状态：现金 ──卖 put──&gt; 收权利金
+  │                      │
+  │ put 到期作废         │ put 被行权（股价跌到行权价）
+  │ 股价没跌到行权价      ▼
+  │                状态：持股（以行权价买入）
+  │                      │
+  │                      │ 卖 call 收权利金
+  │                      ▼
+  │                 call 到期作废（股价没涨到）
+  │                 → 继续持有，再卖一张 call（提高收益率）
+  │
+  │                 call 被行权（股价涨回行权价）
+  │                 → 以行权价卖出，回到现金
+  └──────────────────── 循环重新开始
+</code></pre>
+<h3>阶段 1 — 现金状态：卖 put（现金担保 put）</h3>
+<ul>
+<li>手上有现金（或愿意买股票），卖出 K 的 put，收权利金</li>
+<li>本质：&quot;我愿意在 K 以下买股票，而且现在就开始收钱等它跌下来&quot;</li>
+<li>两种结局：
+<ul>
+<li>到期股价 ≥ K → put 作废，白赚权利金，但没买到股票（踏空风险）</li>
+<li>到期股价 &lt; K → 被行权，以 K 买入（实际成本 = K − put 权利金，打折买入）</li>
+</ul>
+</li>
+</ul>
+<h3>阶段 2 — 持股状态：卖 call（covered call）</h3>
+<ul>
+<li>手里有股票，卖出 K 的 call，再收一笔权利金</li>
+<li>本质：&quot;我愿意在 K 以上卖掉，但卖出之前先把未来卖价的权利金收掉&quot;</li>
+<li>两种结局：
+<ul>
+<li>到期股价 ≤ K → call 作废，白赚权利金，继续持有（可再卖下一张 call）</li>
+<li>到期股价 &gt; K → 被行权，以 K 卖出，回到现金</li>
+</ul>
+</li>
+</ul>
+<h3>阶段 3 — 循环</h3>
+<p>回到现金 → 再卖 put → ……。收益不依赖股价涨跌：<strong>只要股价在两腿之间横盘或温和波动，至少一个期权到期作废，就收满权利金</strong>。赚的是波动率的钱（卖方向），不是方向的钱（买方）。</p>
+<h2>收益来源拆解</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>θ（时间价值）</td>
+<td>期权每天都在贬值，卖方赚流逝的价值</td>
+</tr>
+<tr>
+<td>隐含波动率溢价</td>
+<td>市场恐慌时 IV 高、权利金贵，卖方高价卖出&quot;保险&quot;</td>
+</tr>
+<tr>
+<td>行权价折扣</td>
+<td>put 被行权 = 打折买入；call 被行权 = 高位卖出</td>
+</tr>
+</tbody>
+</table>
+<h2>泡泡玛特参数示例（用户案例）</h2>
+<p>参数：行权价 145 × 200 股；put 权利金 6.88/股；call 权利金 5.00/股。</p>
+<h3>现金流</h3>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>现金流</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>卖 2 张 145 PUT @6.88</td>
+<td>+1,376</td>
+</tr>
+<tr>
+<td>PUT 被行权，$145 买入 200 股</td>
+<td>−29,000</td>
+</tr>
+<tr>
+<td>卖 2 张 145 CALL @5.00</td>
+<td>+1,000</td>
+</tr>
+<tr>
+<td>CALL 被行权，$145 卖出 200 股</td>
+<td>+29,000</td>
+</tr>
+<tr>
+<td><strong>净结果</strong></td>
+<td><strong>+2,376 权利金，股票进出相抵</strong></td>
+</tr>
+</tbody>
+</table>
+<p>实际占用资金 = 29,000 − 1,376（先收的 put 权利金）= <strong>27,624</strong></p>
+<h3>收益率</h3>
+<ul>
+<li>按净投入：2,376 / 27,624 ≈ <strong>8.6%</strong></li>
+<li>按名义本金：2,376 / 29,000 ≈ <strong>8.2%</strong></li>
+<li>每股验证：总权利金 11.88 / 净成本 138.12 ≈ 8.6%，一致</li>
+</ul>
+<p><strong>年化依赖周期</strong>：若 put + call 各约 1 个月（共约 2 个月），单利年化 ≈ 51%；3 个月期限则约 17%。纸面年化，未计佣金/滑点/交易所费/波动风险。</p>
+<h2>与保险公司的关系</h2>
+<p><strong>是同类逻辑</strong>：收保费、承风险、小赚频繁、尾部大亏靠纪律控制。</p>
+<ul>
+<li>卖 PUT = 提供&quot;下跌保护&quot;保险，收保费；跌破行权价即&quot;理赔&quot;（接货）</li>
+<li>卖 CALL = 提供&quot;上涨封顶&quot;期权，收保费；涨过行权价即&quot;交出货&quot;</li>
+</ul>
+<p><strong>两点本质区别</strong>：</p>
+<ol>
+<li><strong>风险可分散性</strong>：保险承保的是相互独立的个体风险（可精算、可大数定律摊薄）；卖 put 承保的是<strong>市场系统性风险</strong>，暴跌时所有卖方一起亏，无法分散</li>
+<li><strong>定价依据</strong>：保险靠精算赔付率；期权卖方靠波动率。波动率低时&quot;保费&quot;便宜但赔付概率未必低</li>
+</ol>
+<h2>风险路径（不止&quot;打满&quot;一条）</h2>
+<ul>
+<li><strong>大幅下跌</strong>：PUT 行权接货后股价续跌，CALL 不行权，持有浮亏仓位。综合下行保护 = 行权价 − 总权利金 = 145 − 11.88 = <strong>133.12</strong>；跌破后整体亏损且无下限（除非止损）</li>
+<li><strong>大涨踏空</strong>：CALL 被行权，仅赚固定权利金，超额收益全部让出</li>
+<li><strong>PUT 未行权</strong>：股价上涨、PUT 作废，只赚 put 权利金但踏空建仓</li>
+</ul>
+<p>收益期望 = 满额收益 − 尾部亏损 × 发生概率。前提：对标的的价值判断够硬，愿意在盈亏平衡点以下继续持有。</p>
+<h2>适用场景</h2>
+<p>适合：<strong>本来就打算长期持有某标的、对估值有判断、愿意在低价位接货的人</strong>——用期权把&quot;等待买入/等待卖出&quot;的闲置时间也变成现金流。</p>
+<p>一句话总结：<strong>Wheel = 用&quot;愿意在 K 买入、愿意在 K 卖出&quot;的承诺反复卖保险收保费；横盘赚满、温和波动赚一半、暴跌兜底接货、暴涨锁定卖价。</strong> 收益期望是&quot;权利金收入 − 尾部亏损概率&quot;，不是无风险套利。</p>
+<h2>伯克希尔先例（已核实）</h2>
+<p>伯克希尔 2004–2008 年间分批卖出四大股指长期看跌期权（S&amp;P 500 / FTSE 100 / Euro Stoxx 50 / Nikkei 225），2008 年致股东信披露：名义本金 $37.1B，已收保费 $4.9B。巴菲特用 premium（保费）与 insurance float（保险浮存金）框架论述卖 put，CDS 直接定性为&quot;credit insurance&quot;（信用保险）。</p>
+<p>⚠️ <strong>转述边界</strong>：巴菲特无&quot;卖 put = 卖保险&quot;的原话，此为对原文框架的合理转述，引用时不可当作逐字引语。</p>
+<h2>相关链接</h2>
+<ul>
+<li><a href="../raw/2026-08-19-%E6%9C%9F%E6%9D%83wheel%E7%AD%96%E7%95%A5-%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9%E5%88%86%E6%9E%90.html">../../raw/research/articles/2026-08-19-期权wheel策略-泡泡玛特分析</a> — 原始资料（含原文引用）</li>
+<li><a href="../../stocks/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E6%8A%95%E8%B5%84%E8%AE%BA%E7%82%B9.html">泡泡玛特/投资论点</a> — 泡泡玛特投资 Thesis</li>
+<li>概念页待创建：期权卖方 / 隐含波动率溢价 / 现金担保put
+<a href="../../../research/index.md">research/index.md</a> · <a href="../../../research/log.md">research/log.md</a>
+<a href="../../../research/articles/synthesis/ben-thompson-ai-capital-cycle.md">research/articles/synthesis/ben-thompson-ai-capital-cycle.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/期权Wheel策略-卖期权收保费.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

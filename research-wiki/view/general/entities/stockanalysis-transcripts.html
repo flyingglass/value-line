@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>美股业绩会 transcript 数据源</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>美股业绩会 transcript 数据源</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,99 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">美股业绩会 transcript 数据源</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-06</span><span style="margin-left:auto;color:#b0b5bd">research/articles/entities</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/entities/stockanalysis-transcripts.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyBTdG9ja0FuYWx5c2lzLmNvbSDigJQg576O6IKhIEVhcm5pbmdzIENhbGwgVHJhbnNjcmlwdHMKCj4g5pWw5o2u5rqQ5a6e5L2TIMK3IOaKleeglOW3peWFtwoKIyMg5Z+65pys5L+h5oGvCgp8IOWxnuaApyB8IOWGheWuuSB8CnwtLS0tLS18LS0tLS0tfAp8IOe9keWdgCB8IGBzdG9ja2FuYWx5c2lzLmNvbS9zdG9ja3MvPHRpY2tlcj4vdHJhbnNjcmlwdHMvYCB8Cnwg5YaF5a65IHwg576O6IKh5LiK5biC5YWs5Y+45a2j5bqm5Lia57up55S16K+d5Lya6K6u5paH5a2X6K6w5b2V77yIdHJhbnNjcmlwdO+8iSB8Cnwg6KaG55uWIHwg576O6IKh77yITkFTREFRICsgTllTRe+8ieS4u+imgeS4iuW4guWFrOWPuCB8Cnwg5pWw5o2u5o+Q5L6bIHwgUXVhcnRy77yI6Z+z6aKRICsg5paH5a2X56i/77yJIHwKfCDotLnnlKggfCDlhY3otLnvvIjnvZHpobXniYggdHJhbnNjcmlwdCDmkZjopoHlj6/or7vvvIzlrozmlbTpgJDlrZfnqL/pnIAgUXVhcnRyIOaOiOadg++8iSB8Cnwg6K+t6KiAIHwg6Iux5paH5Y6f5paHIHwKCiMjIOmhtemdoue7k+aehAoK5q+P5LiqIHRyYW5zY3JpcHQg6aG16Z2i5YyF5ZCr77yaCi0gKirml6XmnJ8gKyDogqHku7cqKu+8muS4mue7qeS8muW9k+aXpeaUtuebmOS7t+WPiuebmOWQjuWPmOWKqAotICoq5Y+R6KiA5Lq65YiX6KGoKirvvJrlhazlj7jnrqHnkIblsYLvvIhDRU8vQ0ZPL0lS77yJKyDmj5Dpl67liIbmnpDluIjvvIjmnLrmnoTlkI3vvIkKLSAqKuW8gOWcuumZiOi/sCoq77yaQ0VPIOaImOeVpeamgui/sCArIENGTyDotKLliqHmlbDmja4KLSAqKlEmQSDnjq/oioIqKu+8muWIhuaekOW4iOmAkOadoemXruetlAotICoq55u45YWz5paH5Lu26ZO+5o6lKirvvJpTbGlkZXMgUERG44CBRWFybmluZ3MgUmVsZWFzZQoKIyMg6I635Y+W5a6M5pW0IHRyYW5zY3JpcHQg55qE5pa55rOVCgoxLiAqKlN0b2NrQW5hbHlzaXMg572R6aG1KirvvJrlj6/or7vnu5PmnoTljJbmkZjopoHvvIzkvYblrozmlbTpgJDlrZfnqL/lj5fniYjmnYPkv53miqTvvIhRdWFydHIg5o6I5p2D77yJ77yM5LiN6IO95YWo5paH5aSN5Yi2CjIuICoqUXVhcnRyIOW5s+WPsCoq77yaYHF1YXJ0ci5jb21gIOKAlCDljp/lp4vmlbDmja7mj5DkvpvmlrnvvIzmnInlrozmlbTpn7PpopEgKyDmloflrZfnqL8KMy4gKipTZWVraW5nIEFscGhhKirvvJpgc2Vla2luZ2FscGhhLmNvbS9zeW1ib2wvPFRJQ0tFUj4vZWFybmluZ3MvdHJhbnNjcmlwdHNgIOKAlCDlj6bkuIDkuKrlhY3otLkgdHJhbnNjcmlwdCDmnaXmupDvvIzpgJrluLjlhajmloflj6/or7sKNC4gKipUaGUgTW90bGV5IEZvb2wqKu+8mmBmb29sLmNvbS9lYXJuaW5ncy1jYWxsLXRyYW5zY3JpcHRzL2Ag4oCUIOWFjei0ueS9huacieaXtua7nuWQjgoKIyMg5oqV56CU55So6YCUCgotICoq566h55CG5bGC6K+t5rCUKirvvJrpgJrov4cgUSZBIOaOqui+nuWIpOaWreeuoeeQhuWxguWvueacquadpeeahOS/oeW/g+eoi+W6pu+8iHF1YWxpdGF0aXZlIHNpZ25hbO+8iQotICoq5YiG5p6Q5biI5YWz5rOo54K5KirvvJrlk6rkupvpl67popjooqvlj43lpI3ov73pl64g4oaSIOW4guWcuuacgOWFs+W/g+eahOmjjumZqS/mnLrkvJoKLSAqKuaMh+W8leWPmOWMlioq77ya5a+55q+U5aSa5Liq5a2j5bqmIGd1aWRhbmNlIOeahOihqOi/sOWPmOWMlu+8iCJjb25maWRlbnQiIHZzICJjYXV0aW91cyLvvIkKLSAqKuWuouaIt+aKq+mcsioq77ya5aSn5a6i5oi35ZCN56ew44CB5ZCI5L2c6KeE5qih77yI5aaCIEdXIOe6p+WIq+mDqOe9su+8ieW+gOW+gOWcqOS4mue7qeS8mummluasoeaKq+mcsgotICoq5Lit5paH57+76K+RKirvvJrlj6/nlKggQUkg57+76K+R5oiQ5Lit5paH6ZiF6K+777yM5o+Q54K85YWz6ZSu5L+h5oGv5YWl5bqTCgojIyDlhbbku5YgdHJhbnNjcmlwdCDmnaXmupAKCnwg5p2l5rqQIHwg54m554K5IHwKfC0tLS0tLXwtLS0tLS18CnwgU2Vla2luZyBBbHBoYSB8IOiAgeeJjO+8jOimhuebluWFqOmdou+8jOWFqOaWh+mAmuW4uOWFjei0ueWPr+ivuyB8CnwgVGhlIE1vdGxleSBGb29sIHwg5YWN6LS577yM57yW6L6R5pW055CG77yM5YG25pyJ5rue5ZCOIHwKfCBTRUMgRURHQVIgKDgtSykgfCDpg6jliIblhazlj7jkvJrlnKggOC1LIOS4remZhCB0cmFuc2NyaXB077yM5L2G6Z2e5by65Yi2IHwKfCDlhazlj7ggSVIg6aG16Z2iIHwg6YOo5YiG5YWs5Y+45a6Y572R5o+Q5L6bIHJlcGxheSArIHRyYW5zY3JpcHQgfAoKIyMg55u45YWz6ZO+5o6lCgotIFtbLi4vY29uY2VwdHMv5oqV6LWE5qGG5p62LeWkjeadgue7j+a1juWtpuaMh+WvvOaJi+WGjF1dIOKAlCDmipXnoJTmoYbmnrYKW1tyZXNlYXJjaC9pbmRleC5tZF1d";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">美股业绩会 transcript 数据源</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-06</span><span style="margin-left:auto;color:#b0b5bd">research/articles/entities</span></div><div class="md" id="md"><h1>StockAnalysis.com — 美股 Earnings Call Transcripts</h1>
+<blockquote>
+<p>数据源实体 · 投研工具</p>
+</blockquote>
+<h2>基本信息</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>网址</td>
+<td><code>stockanalysis.com/stocks/&lt;ticker&gt;/transcripts/</code></td>
+</tr>
+<tr>
+<td>内容</td>
+<td>美股上市公司季度业绩电话会议文字记录（transcript）</td>
+</tr>
+<tr>
+<td>覆盖</td>
+<td>美股（NASDAQ + NYSE）主要上市公司</td>
+</tr>
+<tr>
+<td>数据提供</td>
+<td>Quartr（音频 + 文字稿）</td>
+</tr>
+<tr>
+<td>费用</td>
+<td>免费（网页版 transcript 摘要可读，完整逐字稿需 Quartr 授权）</td>
+</tr>
+<tr>
+<td>语言</td>
+<td>英文原文</td>
+</tr>
+</tbody>
+</table>
+<h2>页面结构</h2>
+<p>每个 transcript 页面包含：</p>
+<ul>
+<li><strong>日期 + 股价</strong>：业绩会当日收盘价及盘后变动</li>
+<li><strong>发言人列表</strong>：公司管理层（CEO/CFO/IR）+ 提问分析师（机构名）</li>
+<li><strong>开场陈述</strong>：CEO 战略概述 + CFO 财务数据</li>
+<li><strong>Q&amp;A 环节</strong>：分析师逐条问答</li>
+<li><strong>相关文件链接</strong>：Slides PDF、Earnings Release</li>
+</ul>
+<h2>获取完整 transcript 的方法</h2>
+<ol>
+<li><strong>StockAnalysis 网页</strong>：可读结构化摘要，但完整逐字稿受版权保护（Quartr 授权），不能全文复制</li>
+<li><strong>Quartr 平台</strong>：<code>quartr.com</code> — 原始数据提供方，有完整音频 + 文字稿</li>
+<li><strong>Seeking Alpha</strong>：<code>seekingalpha.com/symbol/&lt;TICKER&gt;/earnings/transcripts</code> — 另一个免费 transcript 来源，通常全文可读</li>
+<li><strong>The Motley Fool</strong>：<code>fool.com/earnings-call-transcripts/</code> — 免费但有时滞后</li>
+</ol>
+<h2>投研用途</h2>
+<ul>
+<li><strong>管理层语气</strong>：通过 Q&amp;A 措辞判断管理层对未来的信心程度（qualitative signal）</li>
+<li><strong>分析师关注点</strong>：哪些问题被反复追问 → 市场最关心的风险/机会</li>
+<li><strong>指引变化</strong>：对比多个季度 guidance 的表述变化（&quot;confident&quot; vs &quot;cautious&quot;）</li>
+<li><strong>客户披露</strong>：大客户名称、合作规模（如 GW 级别部署）往往在业绩会首次披露</li>
+<li><strong>中文翻译</strong>：可用 AI 翻译成中文阅读，提炼关键信息入库</li>
+</ul>
+<h2>其他 transcript 来源</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seeking Alpha</td>
+<td>老牌，覆盖全面，全文通常免费可读</td>
+</tr>
+<tr>
+<td>The Motley Fool</td>
+<td>免费，编辑整理，偶有滞后</td>
+</tr>
+<tr>
+<td>SEC EDGAR (8-K)</td>
+<td>部分公司会在 8-K 中附 transcript，但非强制</td>
+</tr>
+<tr>
+<td>公司 IR 页面</td>
+<td>部分公司官网提供 replay + transcript</td>
+</tr>
+</tbody>
+</table>
+<h2>相关链接</h2>
+<ul>
+<li><a href="../raw/%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6-%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%8C%87%E5%AF%BC%E6%89%8B%E5%86%8C.html">../concepts/投资框架-复杂经济学指导手册</a> — 投研框架
+<a href="../../../research/index.md">research/index.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/entities/stockanalysis-transcripts.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

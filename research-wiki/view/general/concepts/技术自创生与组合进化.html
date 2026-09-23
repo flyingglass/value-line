@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>技术自创生与组合进化——布莱恩·阿瑟</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>技术自创生与组合进化——布莱恩·阿瑟</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,83 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6">复杂经济学</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">技术自创生与组合进化——布莱恩·阿瑟</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6">← 返回 复杂经济学</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/技术自创生与组合进化.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDmioDmnK/oh6rliJvnlJ/kuI7nu4TlkIjov5vljJbigJTigJTluIPojrHmganCt+mYv+eRnwoKPiDmnaXmupDvvJpbWy4uLy4uL3Jhdy9yZXNlYXJjaC9hcnRpY2xlcy/mioDmnK/nmoTmnKzotKhf6Im+5b635YuS6ZiF6K+75rOVfOOAiuaKgOacr+eahOacrOi0qOOAi++8iOW4g+iOseaBqcK36Zi/55Gf77yJXV0gKyBbWy4uLy4uL3Jhdy9yZXNlYXJjaC9hcnRpY2xlcy/lpI3mnYLnu4/mtY7lraZf6Im+5b635YuS6ZiF6K+75rOVfOOAiuWkjeadgue7j+a1juWtpuOAi++8iOW4g+iOseaBqcK36Zi/55Gf77yJXV0KPiDlhaXlupPvvJoyMDI2LTA3LTIyCgotLS0KCiMjIOS4gOOAgeaguOW/g+WumuS5iQoK5oqA5pyv5pivKiroh6rliJvnlJ/nmoQqKu+8iGF1dG9wb2llc2lz77yJ4oCU4oCU5omA5pyJ5paw5oqA5pyv6YO95piv5LuO5bey5pyJ5oqA5pyv55qE57uE5ZCI5Lit5Lqn55Sf77yM5oqA5pyv6Ieq5bex5Yib6YCg5LqG6Ieq5bex44CC5Lq657G75piv5Lit5LuL77yM5LiN5piv5rqQ5aS044CCCgojIyMg5oqA5pyv55qE5LiJ5bGC5a6a5LmJCgp8IOWxguasoSB8IOWumuS5iSB8IOS4vuS+iyB8CnwtLS0tLS18LS0tLS0tfC0tLS0tLXwKfCDljZXmlbDmioDmnK8gfCDlhbfkvZPoo4Xnva7miJbmlrnms5UgfCDkuIDlj7DllrfmsJTlvI/lj5HliqjmnLogfAp8IOWkjeaVsOaKgOacryB8IOaKgOacr+mbhuWQiO+8iOaKgOacr+S9k++8iSB8IOiIquepuuaKgOacr+OAgeiuoeeul+aKgOacryB8Cnwg55+l6K+G5bGCIHwg5L2/5oqA5pyv5oiQ5Li65Y+v6IO955qE6K6k55+lL+WOn+eQhiB8IOepuuawlOWKqOWKm+WtpuOAgeWNiuWvvOS9k+eJqeeQhiB8CgotLS0KCiMjIOS6jOOAgeS4ieS4quWOn+eQhgoKIyMjIOWOn+eQhuS4gO+8muaKgOacr+aYr+eOsOixoeeahOW6lOeUqAoK5q+P5Liq5oqA5pyv6YO95Z+65LqO5p+Q5Liq6Ieq54S2546w6LGh5Y+K5YW25pWI5bqU44CC6K6h566X5py65Z+65LqO5Y2K5a+85L2T55S15a2Q546w6LGh77yM5r+A5YWJ5Z+65LqO5Y+X5r+A6L6Q5bCE77yM5Y+R5Yqo5py65Z+65LqO54eD54On44CC5paw5oqA5pyv5LiN5piv5Yet56m6IuWPkeaYjiLnmoTigJTigJTmmK/lj5HnjrDkuobmlrDnjrDosaHvvIzmiJbmib7liLDkuoblt7LmnInnjrDosaHnmoTmlrDlupTnlKjmlrnlvI/jgIIKCiMjIyDljp/nkIbkuozvvJrmioDmnK/mmK/pgJLlvZLmgKfnu5PmnoQKCuS4gOS4quaKgOacr+eUsemDqOS7tue7hOaIkO+8jOmDqOS7tuacrOi6q+S5n+aYr+aKgOacr+OAguWIhuino+WIsOW6leWxgu+8jOS4gOWIh+aKgOacr+acgOe7iOmDvei/vea6r+WIsOWvueiHqueEtueOsOixoeeahOaNleaNieWSjOW6lOeUqOOAguWWt+awlOW8j+WPkeWKqOacuiDihpIg5Y6L57yp5py6L+eHg+eDp+WupC/mtqHova4g4oaSIOWPtueJhy/ovbTmib8v5a+G5bCB5Lu2IOKGkiAuLi4g4oaSIOWGtumHkeeOsOixoS/mtYHkvZPlipvlrabnjrDosaHjgIIKCiMjIyDljp/nkIbkuInvvJrmioDmnK/pgJrov4fnu4TlkIjov5vljJYKCuaWsOaKgOacryA9IOW3suacieaKgOacr+eahOmHjeaWsOe7hOWQiOOAguS4ieaegeeuoSDihpIg5oyv6I2h5ZmoIOKGkiDml6Dnur/nlLUg4oaSIOmbt+i+viDihpIgLi4uIOaKgOacr+S4jeaYr+e6v+aAp+i/m+atpeeahO+8jOiAjOaYr+WDj+eUn+eJqeS4gOagt+mAmui/hyLkuqTlj4npgZfkvKAi5LiN5pat5Lqn55Sf5paw54mp56eN44CC5LiO55Sf54mp6L+b5YyW5LiN5ZCM77ya5oqA5pyv57uE5ZCI5pyJ5LiA5a6a55uu55qE5oCn77yI5Lq657G75pyJ5oSP6K+G5a+75om+5paw57uE5ZCI77yJ77yM5L2G5LiN6IO95L+d6K+B5pyA5LyY6Kej77yIUVdFUlRZ6ZSB5a6a77yJ44CCCgotLS0KCiMjIOS4ieOAgee7hOWQiOi/m+WMlueahOacuuWItgoKYGBgCuW3suacieaKgOacr+axoO+8iOenr+acqOWdl++8iQogICAg4oaTCuWPkeaYjuWutuWPkeeOsOaWsOe7hOWQiOaWueW8jwogICAg4oaTCuino+WGs+afkOS4qumXrumimCDihpIg6KKr5biC5Zy6L+ekvuS8mumHh+e6s++8iCLpgInmi6ki77yJCiAgICDihpMK5paw5oqA5pyv5oiQ5Li65paw56ev5pyo5Z2X77yM5Y+C5LiO5LiL5LiA6L2u57uE5ZCICiAgICDihpMK5oqA5pyv6LaK5p2l6LaK5aSN5p2C77yM57uE5ZCI56m66Ze06LaK5p2l6LaK5aSnCmBgYAoK5YWz6ZSu5qaC5b+177yaCi0gKirnu5PmnoTmt7HljJYqKu+8mueOsOacieaKgOacr+mAmui/h+S4jeaWrea3u+WKoOWtkOezu+e7n+WPmOW+l+abtOWkjeadggotICoq5py65Lya5Yip5Z+6KirvvJrmlrDmioDmnK/kuLrmm7TmlrDnmoTmioDmnK/liJvpgKAi56m65L2NIu+8jOmpseWKqOi/m+S4gOatpei/m+WMlgotICoq5qCH5YeG5bel56iLKirvvJrmioDmnK/nqLPlrprlkI7ov5vlhaXmoIflh4bljJbjgIHlj6/lpI3liLbnmoTpmLbmrrUKCi0tLQoKIyMg5Zub44CB5oqA5pyv5LiO57uP5rWO55qE5YWx55SfCgotIOe7j+a1juaYr+aKgOacr+eahOS4gOenjeihqOi+vuKAlOKAlOe7j+a1jue7k+aehOS7juWug+aJgOW6lOeUqOeahOaKgOacr+S4rea2jOeOsAotIOaKgOacr+i/m+WMlumpseWKqOe7j+a1jumHjeaehO+8muavj+asoeaWsOaKgOacr+mbhue+pOWCrOeUn+aWsOS6p+S4mue7k+aehOOAgeaWsOWVhuS4muaooeW8j+OAgeaWsOWItuW6puWuieaOkgotIOS4juS9qembt+aWr+eahOWvueaOpe+8muaKgOacr+mdqeWRvSA9IOe7hOWQiOi/m+WMluWcqOWuj+inguWxgumdoueahOWRqOacn+aAp+eIhuWPke+8iOavjzUw5bm05LiA5qyh77yJCi0g5LiO5aSN5p2C57uP5rWO5a2m55qE5a+55o6l77ya57uP5rWO5piv6L+b5YyW55qE5aSN5p2C57O757uf77yM5oqA5pyv6L+b5YyW5piv57uP5rWO6L+b5YyW55qE5bqV5bGC6amx5Yqo5YqbCgotLS0KCiMjIOS6lOOAgeWvueaKlei1hOeahOaEj+S5iQoKMS4gKiror4bliKvmioDmnK/ojIPlvI8qKu+8muW9k+WJjeWkhOS6juWTquS4gOi9ruaKgOacry3nu4/mtY7ojIPlvI/nmoTlk6rkuKrpmLbmrrXvvJ8KMi4gKirkuI3ooqsi5Y+R5piO56We6K+dIui/t+aDkSoq77ya5paw5oqA5pyv5LiN5piv5aSp5omN54G15YWJ5LiA546w77yM6ICM5piv5bey5pyJ5oqA5pyv55qE57uE5ZCI4oCU4oCU5Yik5pat57uE5ZCI55qE5ZCI55CG5oCn5q+U5Yik5patIuWkqeaJjSLmm7Tph43opoEKMy4gKirmnLrkvJrliKnln7rmgJ3nu7QqKu+8muS4gOmhueaWsOaKgOacr+WHuueOsOWQju+8jOWFs+azqOWug+WIm+mAoOeahOaWsOWIqeWfuuKAlOKAlOesrOS6jOazouWPl+ebiuiAhe+8iOWfuuehgOiuvuaWveOAgemFjeWll+acjeWKoe+8ieW+gOW+gOavlOesrOS4gOazou+8iOS4k+WIqeadg+S6uu+8ieabtOWPr+mihOingQo0LiAqKumUgeWumuaViOW6lCoq77ya5oqA5pyv56ue5LqJ5LiN5LiA5a6a5pivIuacgOS8mOaWueahiOiDnOWHuiLvvIzot6/lvoTkvp3otZblkozmraPlj43ppojlj6/og73plIHlrprmrKHkvJjmlrnmoYjigJTigJTlhbPms6jnvZHnu5zmlYjlupTlkozmoIflh4bnq57kuokKCiMjIOWPguingQoKW1tyZXNlYXJjaC9pbmRleC5tZF1d";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6">复杂经济学</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">技术自创生与组合进化——布莱恩·阿瑟</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"><h1>技术自创生与组合进化——布莱恩·阿瑟</h1>
+<blockquote>
+<p>来源：<a href="../raw/%E6%8A%80%E6%9C%AF%E7%9A%84%E6%9C%AC%E8%B4%A8_%E8%89%BE%E5%BE%B7%E5%8B%92%E9%98%85%E8%AF%BB%E6%B3%95.html">《技术的本质》（布莱恩·阿瑟）</a> + <a href="../raw/%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6_%E8%89%BE%E5%BE%B7%E5%8B%92%E9%98%85%E8%AF%BB%E6%B3%95.html">《复杂经济学》（布莱恩·阿瑟）</a>
+入库：2026-07-22</p>
+</blockquote>
+<hr />
+<h2>一、核心定义</h2>
+<p>技术是<strong>自创生的</strong>（autopoiesis）——所有新技术都是从已有技术的组合中产生，技术自己创造了自己。人类是中介，不是源头。</p>
+<h3>技术的三层定义</h3>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>定义</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单数技术</td>
+<td>具体装置或方法</td>
+<td>一台喷气式发动机</td>
+</tr>
+<tr>
+<td>复数技术</td>
+<td>技术集合（技术体）</td>
+<td>航空技术、计算技术</td>
+</tr>
+<tr>
+<td>知识层</td>
+<td>使技术成为可能的认知/原理</td>
+<td>空气动力学、半导体物理</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>二、三个原理</h2>
+<h3>原理一：技术是现象的应用</h3>
+<p>每个技术都基于某个自然现象及其效应。计算机基于半导体电子现象，激光基于受激辐射，发动机基于燃烧。新技术不是凭空&quot;发明&quot;的——是发现了新现象，或找到了已有现象的新应用方式。</p>
+<h3>原理二：技术是递归性结构</h3>
+<p>一个技术由部件组成，部件本身也是技术。分解到底层，一切技术最终都追溯到对自然现象的捕捉和应用。喷气式发动机 → 压缩机/燃烧室/涡轮 → 叶片/轴承/密封件 → ... → 冶金现象/流体力学现象。</p>
+<h3>原理三：技术通过组合进化</h3>
+<p>新技术 = 已有技术的重新组合。三极管 → 振荡器 → 无线电 → 雷达 → ... 技术不是线性进步的，而是像生物一样通过&quot;交叉遗传&quot;不断产生新物种。与生物进化不同：技术组合有一定目的性（人类有意识寻找新组合），但不能保证最优解（QWERTY锁定）。</p>
+<hr />
+<h2>三、组合进化的机制</h2>
+<pre><code>已有技术池（积木块）
+    ↓
+发明家发现新组合方式
+    ↓
+解决某个问题 → 被市场/社会采纳（&quot;选择&quot;）
+    ↓
+新技术成为新积木块，参与下一轮组合
+    ↓
+技术越来越复杂，组合空间越来越大
+</code></pre>
+<p>关键概念：</p>
+<ul>
+<li><strong>结构深化</strong>：现有技术通过不断添加子系统变得更复杂</li>
+<li><strong>机会利基</strong>：新技术为更新的技术创造&quot;空位&quot;，驱动进一步进化</li>
+<li><strong>标准工程</strong>：技术稳定后进入标准化、可复制的阶段</li>
+</ul>
+<hr />
+<h2>四、技术与经济的共生</h2>
+<ul>
+<li>经济是技术的一种表达——经济结构从它所应用的技术中涌现</li>
+<li>技术进化驱动经济重构：每次新技术集群催生新产业结构、新商业模式、新制度安排</li>
+<li>与佩雷斯的对接：技术革命 = 组合进化在宏观层面的周期性爆发（每50年一次）</li>
+<li>与复杂经济学的对接：经济是进化的复杂系统，技术进化是经济进化的底层驱动力</li>
+</ul>
+<hr />
+<h2>五、对投资的意义</h2>
+<ol>
+<li><strong>识别技术范式</strong>：当前处于哪一轮技术-经济范式的哪个阶段？</li>
+<li><strong>不被&quot;发明神话&quot;迷惑</strong>：新技术不是天才灵光一现，而是已有技术的组合——判断组合的合理性比判断&quot;天才&quot;更重要</li>
+<li><strong>机会利基思维</strong>：一项新技术出现后，关注它创造的新利基——第二波受益者（基础设施、配套服务）往往比第一波（专利权人）更可预见</li>
+<li><strong>锁定效应</strong>：技术竞争不一定是&quot;最优方案胜出&quot;，路径依赖和正反馈可能锁定次优方案——关注网络效应和标准竞争</li>
+</ol>
+<h2>参见</h2>
+<p><a href="../../../research/index.md">research/index.md</a></p>
+</div><div class="backrow"><a href="../index.html#dir=%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6">← 返回 复杂经济学</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/技术自创生与组合进化.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

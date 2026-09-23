@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>《查理·芒格的智慧：投资的格栅理论》— 论文参考页</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>《查理·芒格的智慧：投资的格栅理论》— 论文参考页</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,116 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">芒格·格栅理论</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">《查理·芒格的智慧：投资的格栅理论》— 论文参考页</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span><span style="margin-left:auto;color:#b0b5bd">research/articles/papers</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">← 返回 芒格·格栅理论</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/papers/哈格斯特朗-格栅理论参考.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDjgIrmn6XnkIbCt+iKkuagvOeahOaZuuaFp++8muaKlei1hOeahOagvOagheeQhuiuuuOAi+KAlCDorrrmloflj4LogIPpobUKCj4g5Y6f5Lmm5ZCN77yaSW52ZXN0aW5nOiBUaGUgTGFzdCBMaWJlcmFsIEFydCwgMm5kIEVkaXRpb24KPiDkvZzogIXvvJrnvZfkvK/nibnCt0fCt+WTiOagvOaWr+eJueaclyAoUm9iZXJ0IEcuIEhhZ3N0cm9tKQo+IOivkeiAhe+8mumDkeejiiB8IOWHuueJiOekvu+8muacuuaisOW3peS4muWHuueJiOekvgo+IOW5tOS7ve+8mjIwMjPvvIjnrKwy54mI57qq5b+154mI77yJCj4g5Y6f5aeL6LWE5paZ77yaW1suLi8uLi8uLi9yYXcvcmVzZWFyY2gvYXJ0aWNsZXMv5ZOI5qC85pav54m55pyXXzIwMjNf5p+l55CG6IqS5qC855qE5pm65oWnLeaKlei1hOeahOagvOagheeQhuiuunxyYXcvcmVzZWFyY2gvYXJ0aWNsZXMvXV0KPiBXaWtpIOamguW/temhte+8mltbLi4vY29uY2VwdHMv6IqS5qC85qC85qCF55CG6K66LeWkmuWtpuenkeaAnee7tOaKlei1hOahhuaetnzoipLmoLzmoLzmoIXnkIborrpdXQoKLS0tCgojIyDkuabnsY3kv6Hmga8KCi0gKirlrprkvY0qKu+8mueZvuS4h+e6p+eVhemUgOS5puOAiuW3tOiPsueJueS5i+mBk+OAi+WniuWmueevhwotICoq5o6o6I2Q5Lq6KirvvJrpnI3ljY7lvrfCt+mprOWFi+aWr+OAgeW9vOW+l8K35Lyv5oGp5pav5Z2m44CB6L+I5YWL5bCUwrfojqvluIPmo67jgIHoqbnlp4bmlq/Ct+e0oue9l+e7tOWfugotICoq57uT5p6EKirvvJo5IOeroCArIOWvvOivuyArIOWJjeiogCArIOmZhOW9le+8iOWco+e6pue/sOWtpumZouaOqOiNkOmYheivu+S5puebru+8iQotICoqMTY5IOmhtSoq77yM57qmIDM4MEtCIOWOn+aWhwoKIyMg5qC45b+D5ZG96aKYCgrlpoLkvZXmiJDkuLrkuIDkuKrmm7Tlpb3nmoTmipXotYTogIXvvJ/nrZTmoYjvvJrkuI3mmK/pnaDmm7TlpJrnmoTph5Hono3lhazlvI/vvIzogIzmmK/pnaDmnoTlu7rkuIDkuKrot6jlrabnp5HnmoTjgIzmgJ3nu7TmoLzmoIXmqKHlnovjgI3vvIhMYXR0aWNld29yayBvZiBNZW50YWwgTW9kZWxz77yJ44CC5oyR6YCJ6IKh56Wo5piv6YCa6K+G5pm65oWn77yIV29ybGRseSBXaXNkb23vvInnmoTkuIDkuKrlupTnlKjliIbmlK/jgIIKCiMjIOeroOiKgue7k+aehAoKfCDnq6DoioIgfCDlrabnp5EgfCDmoLjlv4PkuLvpopggfAp8LS0tfC0tLXwtLS18Cnwg5a+86K+7IHwg4oCUIHwg54uQ54u45LiO5Yi654ys55qE6ZqQ5Za777yI5Lul6LWb5LqawrfkvK/mnpfvvIkgfAp8IOWvvOivuyB8IOKAlCB8IOeLkOeLuOS4juWIuueMrO+8iOS8r+ael+makOWWu++8ieOAgeaAnee7tOagvOagheeahOaehOW7uuOAgeaLpeaKseWkjeadguaAp+S4jumAmuivhuaZuuaFpyB8Cnwg5YmN6KiAIHwg4oCUIHwg5pys5Lmm5LiN5piv5pON5L2c5omL5YaM77yM5piv5oCd57u05qGG5p6277yb5rKh5pyJ5o235b6E77yM5YWo5Lmm6K+75a6M5omN6I635pyA5aSn5ZCv5Y+RIHwKfCDnrKwx56ugIHwg5oCd57u05qC85qCF5qih5Z6LIHwg6IqS5qC8MTk5NOWNl+WKoOWkp+a8lOiusu+8iOmAmuivhuaZuuaFp++8ieOAgeWvjOWFsOWFi+ael+aVmeiCsuS4ieWOn+WImeOAgeiBlOe7k+S4u+S5ie+8iOahkeS7o+WFi++8ieOAgeWIm+aWsOaAnee7tOS4pOatpeazle+8iOmcjeWFsOW+t++8muWfuuehgOahhuaetivnsbvmr5TvvInjgIHlsI/nga/ms6Hmr5TllrvjgIFMb2xsYXBhbG9vemHmlYjlupQgfAp8IOesrDLnq6AgfCDniannkIblraYgfCDlnYfooaHnkIborrrvvJrniZvpob/vvIjlvIDmma7li5Iv5Ly95Yip55WlL+esm+WNoeWwlOKGkuS4ieWkp+WumuW+i+KGkumSn+ihqOWuh+Wume+8ieKGkumprOath+WwlO+8iOWdh+ihoeW8leWFpee7j+a1juWtpu+8jCLmgqznn7Mi5q+U5Za777yJ4oaS6JCo57yq5bCU5qOu77yI5b2x5a2Q5Lu35qC8K+eQhuaAp+mihOacn++8ieKGkuW3tOiIjeWIqeiAtuKGkuazleeOm++8iEVNSO+8ieKGkuWkj+aZru+8iENBUE3vvInvvJvlnKPovr7oj7LotKjnlpHvvJrlpI3mnYLpgILlupTns7vnu5/ihpLlnYfooaHkuI7kuI3lnYfooaHlhbHlrZggfAp8IOesrDPnq6AgfCDnlJ/nianlraYgfCDov5vljJborrrjgIHliJvpgKDmgKfnoLTlnY/jgIHojIPlvI/pnanlkb3jgIHpgILlupTmgKfluILlnLrlgYfor7QgfAp8IOesrDTnq6AgfCDnpL7kvJrlraYgfCDnvqTkvZPmmbrmhacgdnMg576k5LyX5oCn55mr54uC44CB5aSa5qC35oCnPemygeajkuaAp++8iOe6pue/sOmAiuaKl+W5suaJsOWunumqjO+8ieOAgeS/oeaBr+a1geWPr+aRp+avgeWkmuagt+aAp++8iOahkeaWr+WdpumHjee7hOWunumqjO+8ieOAgeiHque7hOe7h+S4tOeVjOaAp++8iOaymeWghuaooeWei+OAgeS4jeWPr+mihOa1i+WFt+S9k+mbquW0qe+8ieOAgeWFseivhuS4juS4jeeos+WumuaAp++8iOeQhuafpeWFue+8muWFseS6q+ino+mHiuiAjOmdnuWFseS6q+mAieaLqeOAgeS/oeS7sOe7k+aehCB2cyDpgInmi6nnibnlvILmgKfjgIHnn6Xor4bkuqTmjaLnk7bpoojvvInjgIHlm5vlsYLmjIfljZfpkojvvIjlpI3mnYLihpLpgILlupTihpLoh6rnu4Tnu4fihpLmtoznjrDihpLkuLTnlYzvvInjgIHnpL7kvJrns7vnu5/lj6/mlLnlj5jkuKrkvZPooYzkuLrpmLvmraLpg6jliIbpm6rltKkgfAp8IOesrDXnq6AgfCDlv4PnkIblraYgfCDmg4Xnu6rvvJrpooTmnJ/nkIborrrvvIjmjZ/lpLHotovpgb8v5qGG5p625pWI5bqU77yJ44CB55+t6KeG5oCn5o2f5aSx6LaL6YG/77yI5pyA5LyYMeW5tO+8ieOAgeS6pOaYk+ihjOS4uu+8iOi2iuS6pOaYk+i2iuS6j++8ieOAgemjjumZqeWuueW/jeW6pu+8iOayg+WwlOeJucK357Gz6JKC5pWI5bqU77yJ77yb6K6k55+l77ya5oCd57u05qih5Z6L57y66Zm377yI6Z2e6LSd5Y+25pavL+aPkOekuuWvueS4jeaPkOekuumUme+8ieOAgeS/oeS7sOS9k+ezu++8iOS/oeS7sOS8mOWFiOS6juaOqOeQhu+8ie+8m+S/ruato+aWueahiO+8muWZquWjsO+8iOW4g+iOseWFi++8ieOAgemmmeWGnOmAmuS/oeaooeWeiyvkv67mraPoo4Xnva7jgIHoipLmoLzor6/liKTlv4PnkIblraYgfAp8IOesrDbnq6AgfCDlk7LlraYgfCDlrp7nlKjkuLvkuYnjgIHnu7TmoLnmlq/lnabor63oqIDlk7LlrabjgIHmj4/ov7DlhrPlrprkvLDlgLwgfAp8IOesrDfnq6AgfCDmloflraYgfCDlm5vnuqfpmIXor7vms5XjgIHmr5TovoPpmIXor7vjgIHkuInlpKfkvqbmjqLmlrnms5XorrogfAp8IOesrDjnq6AgfCDmlbDlraYgfCBEQ0bjgIHotJ3lj7bmlq/jgIHlh6/liKnlh4bliJnjgIHlnYflgLzlm57lvZLjgIHpu5HlpKnpuYUgfAp8IOesrDnnq6AgfCDlhrPnrZbov4fnqIsgfCDns7vnu58xLzLjgIHni5Dni7h2c+WIuueMrOmihOa1i+iAheOAgeW/g+aZuueoi+W6j+OAgeWlkeWQiCB8CgojIyDlhbPplK7kurrnianntKLlvJUKCueJm+mhv+OAgei+vuWwlOaWh+OAgemprOath+WwlOOAgeeGiuW9vOeJueOAgeW6k+aBqeOAgeWNoeWwvOabvCAmIOeJueayg+aWr+WfuuOAgeWogeW7icK36Km55aeG5pav44CB57u05qC55pav5Z2m44CB5pu85b635YuD572X44CB6aaZ5Yac44CB6auY5bCU6aG/44CB5aGU5YuS5biD44CB57Si572X57u05Z+644CB572X6Ze75YWo44CB5biD6LWW5oGpwrfkuprnkZ/jgIHlpJrlm6DCt+azlem7mOOAgUUuTy4g5aiB5bCU6YCK44CB5pys5p2w5piOwrflr4zlhbDlhYvmnpcKCiMjIFZMIOS9k+ezu+WFs+iBlAoKLSDmoLzmoIXnkIborrrmmK8gVkwg5oqV56CU57O757uf55qE5YWD5qGG5p624oCU4oCUYnVpbGQucHkgOCDmraXmtYHmsLTnur8gPSDns7vnu58gMiDlhoXljJbkuLrku6PnoIEKLSDotKLliqHmlbDmja7kuqTlj4nmoKHpqozvvIhBS1NoYXJlIOKGlCBURFgg4oaUIFBERu+8iT0g5LiN5L+h5Lu75Y2V5LiA5o+P6L+w55qE5a6e55So5Li75LmJCi0g5aSa5qCH55qE6KaG55uWICsg6KGM5Lia5YiG5pWjID0g56S+5Lya5a2m5aSa5qC35oCn5Y6f5YiZ5Zyo5oqV6LWE57uE5ZCI5bGC6Z2i55qE5bqU55SoCi0gQ29tbWVudGFyeSDmqKHmnb/lj6/ono3lhaXjgIzni5Dni7jmgJ3nu7TjgI3vvJrkuI3nvZfliJfmlbDmja7vvIzop6Pph4rjgIzkuLrku4DkuYjjgI3lkozjgIzku4DkuYjlnKjlj5jjgI0KCiMjIOS6pOWPieW8leeUqAoKLSBbWy4uL2NvbmNlcHRzL+iKkuagvOagvOagheeQhuiuui3lpJrlrabnp5HmgJ3nu7TmipXotYTmoYbmnrZdXSDigJQg5a6M5pW05qaC5b+16aG1Ci0gW1suLi9jb25jZXB0cy/oipLmoLzmoLzmoIXnkIborrot5aSa5a2m56eR5oCd57u05oqV6LWE5qGG5p62XV0g4oCUIOWTiOagvOaWr+eJueacl+WFqOS5puino+ivu++8jOagvOagheaAnee7tOaehOW7uuaMh+WNlwotIFtbLi4vY29uY2VwdHMv5oqV6LWE5qGG5p62LeWkjeadgue7j+a1juWtpuaMh+WvvOaJi+WGjF1dIOKAlCDlpI3mnYLnu4/mtY7lrabmoYbmnrYKLSBbWy4uL2NvbmNlcHRzL+mYv+eRny3mlLbnm4rpgJLlop7kuI7mtoznjrBdXSDigJQgQXJ0aHVyIOaUtuebiumAkuWinuS4jua2jOeOsAotIFtbLi4vLi4vaW5kZXhdXSDigJQg5oqV56CU57Si5byVCgojIyDlj4Lop4EKCltbcmVzZWFyY2gvaW5kZXgubWRdXQpbW3Jlc2VhcmNoL2FydGljbGVzL2NvbmNlcHRzL+mYv+eRny3mlLbnm4rpgJLlop7kuI7mtoznjrAubWRdXSDCtyBbW3Jlc2VhcmNoL2FydGljbGVzL2NvbmNlcHRzL+iKkuagvOagvOagheeQhuiuui3lpJrlrabnp5HmgJ3nu7TmipXotYTmoYbmnrYubWRdXQpbW3Jlc2VhcmNoL2FydGljbGVzL2NvbmNlcHRzL+aKlei1hOahhuaeti3lpI3mnYLnu4/mtY7lrabmjIflr7zmiYvlhowubWRdXQ==";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">芒格·格栅理论</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">《查理·芒格的智慧：投资的格栅理论》— 论文参考页</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span><span style="margin-left:auto;color:#b0b5bd">research/articles/papers</span></div><div class="md" id="md"><h1>《查理·芒格的智慧：投资的格栅理论》— 论文参考页</h1>
+<blockquote>
+<p>原书名：Investing: The Last Liberal Art, 2nd Edition
+作者：罗伯特·G·哈格斯特朗 (Robert G. Hagstrom)
+译者：郑磊 | 出版社：机械工业出版社
+年份：2023（第2版纪念版）
+原始资料：<a href="../raw/%E5%93%88%E6%A0%BC%E6%96%AF%E7%89%B9%E6%9C%97_2023_%E6%9F%A5%E7%90%86%E8%8A%92%E6%A0%BC%E7%9A%84%E6%99%BA%E6%85%A7-%E6%8A%95%E8%B5%84%E7%9A%84%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA.html">raw/research/articles/</a>
+Wiki 概念页：<a href="../concepts/%E8%8A%92%E6%A0%BC%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA-%E5%A4%9A%E5%AD%A6%E7%A7%91%E6%80%9D%E7%BB%B4%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6.html">芒格格栅理论</a></p>
+</blockquote>
+<hr />
+<h2>书籍信息</h2>
+<ul>
+<li><strong>定位</strong>：百万级畅销书《巴菲特之道》姊妹篇</li>
+<li><strong>推荐人</strong>：霍华德·马克斯、彼得·伯恩斯坦、迈克尔·莫布森、詹姆斯·索罗维基</li>
+<li><strong>结构</strong>：9 章 + 导读 + 前言 + 附录（圣约翰学院推荐阅读书目）</li>
+<li><strong>169 页</strong>，约 380KB 原文</li>
+</ul>
+<h2>核心命题</h2>
+<p>如何成为一个更好的投资者？答案：不是靠更多的金融公式，而是靠构建一个跨学科的「思维格栅模型」（Latticework of Mental Models）。挑选股票是通识智慧（Worldly Wisdom）的一个应用分支。</p>
+<h2>章节结构</h2>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>学科</th>
+<th>核心主题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>导读</td>
+<td>—</td>
+<td>狐狸与刺猬的隐喻（以赛亚·伯林）</td>
+</tr>
+<tr>
+<td>导读</td>
+<td>—</td>
+<td>狐狸与刺猬（伯林隐喻）、思维格栅的构建、拥抱复杂性与通识智慧</td>
+</tr>
+<tr>
+<td>前言</td>
+<td>—</td>
+<td>本书不是操作手册，是思维框架；没有捷径，全书读完才获最大启发</td>
+</tr>
+<tr>
+<td>第1章</td>
+<td>思维格栅模型</td>
+<td>芒格1994南加大演讲（通识智慧）、富兰克林教育三原则、联结主义（桑代克）、创新思维两步法（霍兰德：基础框架+类比）、小灯泡比喻、Lollapalooza效应</td>
+</tr>
+<tr>
+<td>第2章</td>
+<td>物理学</td>
+<td>均衡理论：牛顿（开普勒/伽利略/笛卡尔→三大定律→钟表宇宙）→马歇尔（均衡引入经济学，&quot;悬石&quot;比喻）→萨缪尔森（影子价格+理性预期）→巴舍利耶→法玛（EMH）→夏普（CAPM）；圣达菲质疑：复杂适应系统→均衡与不均衡共存</td>
+</tr>
+<tr>
+<td>第3章</td>
+<td>生物学</td>
+<td>进化论、创造性破坏、范式革命、适应性市场假说</td>
+</tr>
+<tr>
+<td>第4章</td>
+<td>社会学</td>
+<td>群体智慧 vs 群众性癫狂、多样性=鲁棒性（约翰逊抗干扰实验）、信息流可摧毁多样性（桑斯坦重组实验）、自组织临界性（沙堆模型、不可预测具体雪崩）、共识与不稳定性（理查兹：共享解释而非共享选择、信仰结构 vs 选择特异性、知识交换瓶颈）、四层指南针（复杂→适应→自组织→涌现→临界）、社会系统可改变个体行为阻止部分雪崩</td>
+</tr>
+<tr>
+<td>第5章</td>
+<td>心理学</td>
+<td>情绪：预期理论（损失趋避/框架效应）、短视性损失趋避（最优1年）、交易行为（越交易越亏）、风险容忍度（沃尔特·米蒂效应）；认知：思维模型缺陷（非贝叶斯/提示对不提示错）、信仰体系（信仰优先于推理）；修正方案：噪声（布莱克）、香农通信模型+修正装置、芒格误判心理学</td>
+</tr>
+<tr>
+<td>第6章</td>
+<td>哲学</td>
+<td>实用主义、维根斯坦语言哲学、描述决定估值</td>
+</tr>
+<tr>
+<td>第7章</td>
+<td>文学</td>
+<td>四级阅读法、比较阅读、三大侦探方法论</td>
+</tr>
+<tr>
+<td>第8章</td>
+<td>数学</td>
+<td>DCF、贝叶斯、凯利准则、均值回归、黑天鹅</td>
+</tr>
+<tr>
+<td>第9章</td>
+<td>决策过程</td>
+<td>系统1/2、狐狸vs刺猬预测者、心智程序、契合</td>
+</tr>
+</tbody>
+</table>
+<h2>关键人物索引</h2>
+<p>牛顿、达尔文、马歇尔、熊彼特、库恩、卡尼曼 &amp; 特沃斯基、威廉·詹姆斯、维根斯坦、曼德勃罗、香农、高尔顿、塔勒布、索罗维基、罗闻全、布赖恩·亚瑟、多因·法默、E.O. 威尔逊、本杰明·富兰克林</p>
+<h2>VL 体系关联</h2>
+<ul>
+<li>格栅理论是 VL 投研系统的元框架——build.py 8 步流水线 = 系统 2 内化为代码</li>
+<li>财务数据交叉校验（AKShare ↔ TDX ↔ PDF）= 不信任单一描述的实用主义</li>
+<li>多标的覆盖 + 行业分散 = 社会学多样性原则在投资组合层面的应用</li>
+<li>Commentary 模板可融入「狐狸思维」：不罗列数据，解释「为什么」和「什么在变」</li>
+</ul>
+<h2>交叉引用</h2>
+<ul>
+<li><a href="../concepts/%E8%8A%92%E6%A0%BC%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA-%E5%A4%9A%E5%AD%A6%E7%A7%91%E6%80%9D%E7%BB%B4%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6.html">../concepts/芒格格栅理论-多学科思维投资框架</a> — 完整概念页</li>
+<li><a href="../concepts/%E8%8A%92%E6%A0%BC%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA-%E5%A4%9A%E5%AD%A6%E7%A7%91%E6%80%9D%E7%BB%B4%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6.html">../concepts/芒格格栅理论-多学科思维投资框架</a> — 哈格斯特朗全书解读，格栅思维构建指南</li>
+<li><a href="../raw/%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6-%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%8C%87%E5%AF%BC%E6%89%8B%E5%86%8C.html">../concepts/投资框架-复杂经济学指导手册</a> — 复杂经济学框架</li>
+<li><a href="../concepts/%E9%98%BF%E7%91%9F-%E6%94%B6%E7%9B%8A%E9%80%92%E5%A2%9E%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">../concepts/阿瑟-收益递增与涌现</a> — Arthur 收益递增与涌现</li>
+<li><span class="wl-miss" title="未找到同名页面">../../index</span> — 投研索引</li>
+</ul>
+<h2>参见</h2>
+<p><a href="../../../research/index.md">research/index.md</a>
+<a href="../../../research/articles/concepts/%E9%98%BF%E7%91%9F-%E6%94%B6%E7%9B%8A%E9%80%92%E5%A2%9E%E4%B8%8E%E6%B6%8C%E7%8E%B0.md">research/articles/concepts/阿瑟-收益递增与涌现.md</a> · <a href="../../../research/articles/concepts/%E8%8A%92%E6%A0%BC%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA-%E5%A4%9A%E5%AD%A6%E7%A7%91%E6%80%9D%E7%BB%B4%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6.md">research/articles/concepts/芒格格栅理论-多学科思维投资框架.md</a>
+<a href="../../../research/articles/concepts/%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6-%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%8C%87%E5%AF%BC%E6%89%8B%E5%86%8C.md">research/articles/concepts/投资框架-复杂经济学指导手册.md</a></p>
+</div><div class="backrow"><a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">← 返回 芒格·格栅理论</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/papers/哈格斯特朗-格栅理论参考.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

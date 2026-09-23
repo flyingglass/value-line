@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>竞争演化初步框架——五本书的多元思维模型整合</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>竞争演化初步框架——五本书的多元思维模型整合</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,289 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E7%94%9F%E7%89%A9%E5%AD%A6">生物学</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">竞争演化初步框架——五本书的多元思维模型整合</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-12</span><span style="margin-left:auto;color:#b0b5bd">research/articles/synthesis</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E7%94%9F%E7%89%A9%E5%AD%A6">← 返回 生物学</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/synthesis/竞争演化初步框架-五书多元思维模型.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDnq57kuonmvJTljJbliJ3mraXmoYbmnrbigJTigJTkupTmnKzkuabnmoTlpJrlhYPmgJ3nu7TmqKHlnovmlbTlkIgKCj4g5Yib5bu65pel5pyf77yaMjAyNi0wOC0xMiDCtyDmnIDlkI7kv67orqLvvJoyMDI2LTA4LTEyCj4KPiAqKuagh+azqOivtOaYjioq77yaCj4gLSDwn5S1ICoq5Y6f5paHKirvvJrkupTmnKzkuablj4roipLmoLzljp/or53nmoTnm7TmjqXlvJXnlKjmiJblh4bnoa7mpoLmi6wKPiAtIPCfn6EgKirmjqjmvJQqKu+8muWfuuS6juWOn+aWh+eahOmAu+i+keW7tuS8uO+8jOacque7j+mqjOivgQo+IC0g4qycIOaXoOagh+azqO+8muS6i+WunuaAp+mZiOi/sO+8iOWmguebruW9lee7k+aehOOAgeeroOiKguS/oeaBr++8iQoKLS0tCgojIyDliY3nva7vvJroipLmoLzkuLrku4DkuYjmjqjojZDov5nkupvkuaYKCuiKkuagvOWcqOOAiuept+afpeeQhuWuneWFuOOAi+esrOS6jOeroOaOqOiNkOS6huWbm+acrOS5puadpeeQhuinoyLnq57kuonmgKfmr4Hnga0i6Zeu6aKY77yaCgo+IPCflLUgIuOAiuaequeCruOAgeeXheiPjOS4jumSoumTgeOAi+OAiuiHquengeeahOWfuuWboOOAi+OAiuWGsOays+S4lue6quOAi+WSjOOAiui+vuWwlOaWh+eahOebsueCueOAi+mDveacieS4gOS4quWFseWQjOeahOS4u+mimO+8muWFs+azqOWJjemdouaPkOWIsOeahCfnq57kuonmgKfmr4Hnga0n6Zeu6aKY77yM56CU56m25Li65LuA5LmI5pyJ5Lqb5LqL54mp6IO95aSf6YCC5bqU546v5aKD77yM5a2Y5rS75LiL5p2l77yM55Sa6Iez5Zyo57uP6L+H5b6I6ZW/55qE5pe26Ze05LmL5ZCO5Y2g5o2u57uf5rK75Zyw5L2N44CCIgo+IOKAlOKAlOOAiuept+afpeeQhuWuneWFuOOAi+esrOS6jOeroAoK6IqS5qC85ZyoIDIwMDAg5bm0IFdlc2NvIOW5tOS8muS4iuWNleeLrOivhOS7t+mBk+mHkeaWr++8mgoKPiDwn5S1ICJJZiB5b3UgdGFrZSBEYXdraW5zLCAnVGhlIFNlbGZpc2ggR2VuZScgYW5kICdUaGUgQmxpbmQgV2F0Y2htYWtlcicsIEkgbWVhbiwgdGhlc2UgYXJlIG1hcnZlbG91cyBib29rcy4iCj4g4oCU4oCU6IqS5qC877yMMjAwMCDlubQgV2VzY28g5bm05LyaCgroipLmoLzlr7nnq57kuonmgKfmr4Hnga3mnIDnroDmtIHnmoTlrprkuYnvvJoKCj4g8J+UtSAi5oiR5pyJ5LiA5byg5Ymq5oql77yM6YKj5pivIDE5MTEg5bm055qE44CK5biD5rOV572X5pma5oql44CL77yM5LiK6Z2i5YiX5Ye65LqG5b2T5pe257q957qm6K+B5Yi45Lqk5piT5omA5oiQ5Lqk5pyA5rS76LeD55qEIDUwIOWutuWFrOWPuOeahOiCoeelqOOAguWIsOS7iuWkqe+8jOWUr+acieS4gOWutuWFrOWPuOS7jeaYr+Wkp+Wei+eahOeLrOeri+S8geS4mu+8jOmCo+WwseaYr+mAmueUqOeUteawlOWFrOWPuOOAguS7juS4reaIkeS7rOWPr+S7peeci+WHuifnq57kuonmgKfmr4Hnga0n55qE5Yqb6YeP5pyJ5aSa5LmI5by65aSn44CCIgo+IOKAlOKAlOOAiuept+afpeeQhuWuneWFuOOAi+esrOS6jOeroAoK5Lul5Y+K5LuW57uZ5Ye655qE5ZSv5LiA6Kej5rOV77yaCgo+IPCflLUgIuimgeaAjuagt+aJjeiDveWSjOeLgueDreeahOWvueaJi+ernuS6ieWRou+8n+WUr+S4gOeahOWKnuazleaYr+aMluS4gOadoeWwveWPr+iDveWlveeahOaKpOWfjuays++8jOeEtuWQjuS4jeaWreWcsOWKquWKm+WKoOWuveWug+OAgiIKPiDigJTigJTjgIrnqbfmn6XnkIblrp3lhbjjgIvnrKzkuoznq6AKCuW3tOiPsueJueihpeWFhe+8mgoKPiDwn5S1ICLmiJHku6zlkYror4nmiJHku6znmoTnu4/nkIbvvIzmiJHku6zmg7PopoHmiqTln47msrPmr4/lubTlj5jlrr3jgILigKbigKblvZPmiJHku6znnIvliLDnmoTmmK/kuIDmnaHlvojni63nqoTnmoTmiqTln47msrPigJTigJTpgqPlsLHlpKrljbHpmankuobjgILmiJHku6zkuI3nn6XpgZPlpoLkvZXor4TkvLDpgqPnp43mg4XlhrXvvIzlm6DmraTvvIzmiJHku6zlsLHkuI3ogIPomZHlroPkuobjgIIiCj4g4oCU4oCU5be06I+y54m577yMMjAwMCDlubTkvK/lhYvluIzlsJTlubTkvJoKCi0tLQoKIyMg5LiA44CB5LqU5pys5Lmm5ZCE6Ieq55qE5qC45b+D5ZG96aKYCgrku6XkuIvlnYfkuLrlkITkuabljp/mlofmkZjopoHvvIzkuI3ljIXlkKvmipXotYTmmKDlsITjgIIKCiMjIyAxLjEg44CK6Ieq56eB55qE5Z+65Zug44CL4oCU4oCU6YGT6YeR5pav77yIMTk3Nu+8iQoK8J+UtSDoh6rnhLbpgInmi6nnmoTljZXkvY3kuI3mmK/niannp43vvIzkuI3mmK/nvqTkvZPvvIzkuI3mmK/kuKrkvZPvvIzogIzmmK8qKuWfuuWboCoq4oCU4oCU6IO95aSf5Zyo5LiW5Luj6Ze06Ieq5oiR5aSN5Yi255qE5pyA5bCP5Y2V5YWD44CC5Liq5L2T5Y+q5piv5Z+65Zug55qEIueUn+WtmOacuuWZqCLvvIznlKjov4fljbPlvIPjgIIKCumBk+mHkeaWr+WOn+aWh++8mgo+ICLmiJHku6zpg73mmK/nlJ/lrZjmnLrlmajigJTigJTkvZzkuLrov5Dovb3lt6XlhbfnmoTmnLrlmajkurrvvIzlhbbnqIvluo/mmK/nm7Lnm67nvJbliLbnmoTvvIzkuLrnmoTmmK/msLjkuYXkv53lrZjmiYDosJPln7rlm6Dov5nnp43npoDmgKfoh6rnp4HnmoTlm6DlrZDjgIIiCgrmoLjlv4PmpoLlv7XvvIjlnYfmnaXoh6rljp/mlofvvInvvJoKLSAqKuWkjeWItuWboOWtkCoq77yI56ysIDIg56ug77yJ77ya6IO96Ieq5oiR5aSN5Yi255qE5YiG5a2Q44CC5LiJ56eN56iz5a6a5oCn6amx5Yqo6L+b5YyW4oCU4oCU6ZW/5a+/44CB55Sf6IKy5Yqb44CB5aSN5Yi25YeG56Gu5oCnCi0gKirov5vljJbnqLPlrprnrZbnlaUgRVNTKirvvIjnrKwgNSDnq6DvvInvvJrpgZPph5Hmlq/np7DlhbbkuLoi6Ieq6L6+5bCU5paH5Lul5p2l6L+b5YyW55CG6K665LiK5pyA6YeN6KaB55qE5Y+R5bGV5LmL5LiAIuOAguS4gOenjeetlueVpeS4gOaXpuenjee+pOWkp+WkmuaVsOmHh+eUqO+8jOWBj+emu+iAheW/heeEtuWksei0peOAguS9hueOr+Wig+S4gOWPmO+8jOaXpyBFU1Mg55Om6Kej44CCIua4kOi/m+eahOi/m+WMlui/h+eoi+S4juWFtuivtOaYr+S4gOS4queos+atpeWQkeS4iueIrOeahOi/m+eoi++8jOWAkuS4jeWmguivtOaYr+S4gOezu+WIl+S7juS4gOS4queos+WumuWPsOmYtui1sOS4iuWPpuS4gOS4queos+WumuWPsOmYtueahOS4jei/nue7reeahOatpeS8kOOAgiIKLSAqKuWbmuW+kuWbsOWig+S4juS4gOaKpei/mOS4gOaKpSoq77yI56ysIDEyIOeroO+8ie+8muWQiOS9nOWcqOiHquengeWfuuWboOeahOS4lueVjOS4reWPr+S7pei/m+WMlu+8jOadoeS7tuaYr+WPjeWkjeebuOmBhyArIOivhuWIq+WvueaWuSArIOiusOW/hui/h+WOu+ihjOS4ugotICoq5bu25Ly455qE6KGo5Z6LKirvvIjnrKwgMTMg56ug77yJ77ya5Z+65Zug55qE5pWI5bqU5LiN6ZmQ5LqO5omA5Zyo5Liq5L2T44CC55+z6JqV6Ju+55So55+z5aS05bu65oi/4oCU4oCU5o6n5Yi25oi/5a2Q5b2i54q255qE5Z+65Zug5LiO5o6n5Yi26IW/5b2i54q255qE5Z+65Zug5Zyo5Y6f55CG5LiK5a6M5YWo55u45ZCMCi0gKirlroznvo7ljJbnmoTlha3np43liLbnuqYqKu+8iOesrCAxNSDnq6DvvInvvJrml7bmu57jgIHljoblj7Lmg6/mgKfjgIHlj6/nlKjlj5jlvILjgIHmiJDmnKzliLbnuqbjgIHlpJrlsYLmrKHpgInmi6nnn5vnm77jgIHlnY/ov5DmsJQKCiMjIyAxLjIg44CK55uy55y86ZKf6KGo5Yyg44CL4oCU4oCU6YGT6YeR5pav77yIMTk4Nu+8iQoK8J+UtSDoh6rnhLbpgInmi6nmmK/llK/kuIDlnKjljp/liJnkuIrog73op6Pph4rlpI3mnYLpgILlupTnmoTnkIborrrjgILoh6rnhLbnlYzllK/kuIDnmoQi6ZKf6KGo5YygIuaYr+ebsuebrueahOOAgeaXoOaEj+ivhueahOeJqeeQhui/h+eoi+OAggoK6YGT6YeR5pav5Y6f5paH77yI6K+E6L+w5Z+56YeM55qE6K6+6K6h6K666K+B77yJ77yaCj4gIuWfuemHjOeahOiuuuivgeWHuuS6jueDreaDheeahOiZlOaVrO+8jOW5tuS7peW9k+W5tOacgOWlveeahOeUn+eJqeWtpuefpeivhuaUr+aMge+8jOS9huWNtOaYr+mUmeeahOOAguihqOixoeeahOWPjemdouaJjeaYr+ato+ehrueahOKAlOKAlOiHqueEtueVjOWUr+S4gOeahOmSn+ihqOWMoOaYr+eJqeeQhueahOebsuebruWKm+mHj+OAgiIKCuaguOW/g+amguW/te+8iOWdh+adpeiHquWOn+aWh++8ie+8mgotICoq57Sv56ev6YCJ5oupKirvvIjnrKwgMyDnq6DvvInvvJrlsIYi5LiN5Y+v6IO9IuWIhuino+S4uiLkuI3pgqPkuYjkuI3lj6/og70i55qE5b6u5bCP5q2l6aqk44CC6ZqP5py65Y+Y5byCICsg6Z2e6ZqP5py6562b6YCJIMOXIOS4luS7o+e0r+enryA9IOeci+S8vCLorr7orqEi55qE5aSN5p2C5Lqn54mpCi0gKio1JSDnmoTnnLznnZvkuZ/mr5TmsqHmnInlpb0qKu+8iOesrCA0IOeroO+8ie+8muS7u+S9leWkjeadguWZqOWumOmDveWPr+S7pemAmui/h+i/nue7rea4kOWPmOezu+WIl+a8lOWMluWHuuadpe+8jOS4jemcgOimgSLkuIDmraXliLDkvY0iCi0gKirnuqLlkI7mlYjlupQqKu+8iOesrCA3IOeroO+8ie+8mueMjuixuS3nnqrnvprnmoTlhpvlpIfnq57otZvigJTigJTlj4zmlrnoo4XlpIflkIzmraXmj5DljYfvvIzmiJDlip/njofpm7bmiJDplb/jgIIi5L2g5b6X5rKh5ZG95Zyw6LeR77yM5omN6IO95YGc55WZ5Zyo5Y6f5ZywIgotICoq5Z+65Zug56m66Ze05Lit55qE5riQ6L+b6Lev5b6EKirvvIjnrKwgMyDnq6DvvInvvJrmvJTljJbmmK/kuIDmraXkuIDohJrljbDnmoTmuJDov5vov4fnqIvjgILnn63ot53ot7Pot4PmrbvkuqHmpoLnjofkvY7vvIzmlLnlloTmpoLnjofpq5jjgILlpKfnqoHlj5jnmoTmpoLnjofmnoHlsI/igJTigJTlm6DkuLoi5q275o6J55qE5pa55rOV5q+U5rS7552A55qE5pa55rOV5aSa5b6X5aSaIgotICoq5LiN5a6M576O6K6+6K6h5piv5ryU5YyW55qE6K+B5o2uKirvvIjnrKwgNCDnq6DvvInvvJrohIrmpI7liqjnianop4bnvZHohpzmhJ/lhYnnu4bog57og4zlkJHlhYnmupDvvIznq6DpsbzmsqHmnInov5nkuKrpl67popjjgILkuI3lroznvo7kuI3mmK/orr7orqHogIXml6Dog73vvIzmmK/msqHmnInorr7orqHogIUKCiMjIyAxLjMg44CK5p6q54Ku44CB55eF6I+M5LiO6ZKi6ZOB44CL4oCU4oCU5oi06JKZ5b6377yIMTk5N++8iQoK8J+UtSDlkITlpKfmtLLnmoTmnYPlipvkuI3lubPnrYnnlLHlnLDnkIbkuI7nlJ/nianlnLDnkIblm6DntKDvvIjnu4jmnoHlm6DvvInlhrPlrprvvIzogIzpnZ7kurrnp43miJbmlofljJblt67lvILjgIIKCuaItOiSmeW+t+eahOaguOW/g+iuuuivge+8iOW6j+iogO+8ie+8mgo+ICLmiJHku6zlv4XpobvmipvlvIPnp43ml4/kuLvkuYnnmoTop6Pph4rvvIzlm6DkuLrlroPlnKjnp5HlrabkuIrmmK/plJnor6/nmoTvvIzlnKjpgZPlvrfkuIrmmK/lj6/phJnnmoTjgIIiCgrmoLjlv4PmpoLlv7XvvIjlnYfmnaXoh6rljp/mlofvvInvvJoKLSAqKue7iOaegeWboCB2cyDov5Hlm6AqKu+8muaequeCri/nl4Xoj4wv6ZKi6ZOB5piv6L+R5Zug77yM5Y+v6amv5YyW54mp56eNL+Wkp+mZhui9tOe6vy/lnLDnkIblsY/pmpzmmK/nu4jmnoHlm6DjgILnmq7okKjnvZcgMTY4IOS6uuaJk+i0peWFq+S4h+WNsOWKoOWkp+WGm+KAlOKAlOi/keWboOaYr+mSouWJkemqkeWFte+8jOe7iOaegeWboOaYryAxMywwMDAg5bm05YmN5qyn5Lqa5aSn6ZmG57un5om/5LqG5pu05aW955qEIuWcsOeQhuS4jeWKqOS6pyIKLSAqKuWuieWonMK35Y2h5YiX5bC85aic5Y6f5YiZKirvvIjnrKwgNy04IOeroO+8ie+8miLlj6/pqa/ljJbnmoTliqjnianpg73mmK/lj6/pqa/ljJbnmoTvvJvkuI3lj6/pqa/ljJbnmoTliqjnianlkITmnInlkITnmoTkuI3lj6/pqa/ljJbkuYvlpITjgIIiMTQ4IOenjeWAmemAie+8jOS7hSAxNCDnp43ooqvpqa/ljJbjgILlha3pobnmnaHku7bvvIjpo5/mgKfjgIHnlJ/plb/pgJ/luqbjgIHlnIjlhbvnuYHmrpbjgIHmgKfmg4XjgIHmgZDmhYzlgL7lkJHjgIHnpL7kvJrnu5PmnoTvvInnvLrkuIDkuI3lj68KLSAqKuWkp+mZhui9tOe6vyoq77yI56ysIDktMTAg56ug77yJ77ya5qyn5Lqa5Lic6KW/5ZCR77yI5ZCM57qs5bqm5b+r6YCf5Lyg5pKt77yJ77yM576O5rSy5ZKM6Z2e5rSy5Y2X5YyX5ZCR77yI5rCU5YCZ5bim6Zi75pat5Lyg5pKt77yJ44CCIuWkp+mZhui9tOe6v+eahOi1sOWQkeaXqeS4uuS6uuexu+WOhuWPsueahOWRvei/kOWfi+S4i+S6huS8j+eslCIKLSAqKuWNoOWFiOmpr+WMlioq77ya5YWI6KKr6amv5YyW55qE5ZOB56eN6ZSB5a6a55Sf5oCB5L2N77yM6Zi75q2i6YeN5aSN6amv5YyWCi0gKirnl4Xoj4zmr5Tmnqrngq7mm7Toh7Tlkb0qKu+8iOesrCAxMSDnq6DvvInvvJo5NSUg55qE576O5rSy5Zyf6JGX5q275LqO5pen5aSn6ZmG55eF6I+M77yM6ICM6Z2e5p6q54Ku44CCMTQ5MiDlubTkvIrmlq/luJXlsLzlpaXmi4nlspsgODAwIOS4h+WNsOesrOWuieS6uu+8jDE1MzUg5bm05b2S6Zu2CgojIyMgMS40IOOAiuWfuuWboOe7hOOAi+KAlOKAlOmHjOW+t+WIqe+8iDE5OTnvvIkKCvCflLUg5Z+65Zug57uE5LiN5piv5ZKM6LCQ55qE6JOd5Zu+77yM6ICM5piv5Yay56qB55qE5oiY5Zy644CC5Lq657G75Z+65Zug57uE5piv5LiA6YOo55So6YGX5Lyg5a+G56CB5Lmm5YaZ55qE5Lq657G76Ieq5Lyg44CCCgrph4zlvrfliKnljp/mloflvJXov7DmsYnlr4blsJTpob/vvJoKPiAi5Z+65Zug57uE5LiN5piv5bqe5aSn55qE5pWw5o2u5bqT5Yqg5omn6KGM5Zui6Zif77yM6ICM5piv5YWs5Y+45YaF6YOo55qE5Y2a5byI5Zy65omAIgo+ICLmiJHmmK/kuIDkuKrmt7flkIjkvZPvvIznlLfmgKflkozlpbPmgKfjgIHniLbovojkuI7lrZDovojvvIzkuonmlpfkuI3kvJHnmoTmn5PoibLkvZPniYfmrrUiCgrmoLjlv4PmpoLlv7XvvIjlnYfmnaXoh6rljp/mlofvvInvvJoKLSAqKuWeg+WcviBETkEqKu+8iDgg5Y+35p+T6Imy5L2T77yJ77yaOTclIOeahOWfuuWboOe7hOaYr+iHquengeeahOWvhOeUn+W6j+WIl+OAgkxJTkUtMSDljaAgMTQuNiXvvIxBbHUg5Y2gIDEwJeKAlOKAlOe6r+eyueS4uuiHqui6q+WkjeWItuiAjOWtmOWcqO+8jOWvueWuv+S4u+aXoOebigotICoq5YeL5LqhKirvvJrnqIvluo/mgKfnu4bog57mrbvkuqHigJTigJTkuI3lkK/liqjlh4vkuqHnmoTnu4bog57lsLHmmK/nmYznu4bog54KLSAqKuayoeacieWbuuWumueahOWfuuWboOe7hCoq77yI5a+86K6677yJ77yaIuaJgOiwk+S6uuexu+WfuuWboOe7hOW5tuS4jeWtmOWcqO+8jOWboOS4uuaXoOiuuuWcqOepuumXtOi/mOaYr+aXtumXtOS4iumDveaXoOazleWumuS5iSIKLSAqKuS6qOW7t+mhv+iInui5iOeXhyoq77yINCDlj7fmn5PoibLkvZPvvInvvJpDQUcg6YeN5aSN55qE57K+56Gu5YmC6YeP5pWI5bqU4oCU4oCU6YeN5aSNIDM5IOasoeS4reW5tOWPkeeXhe+8jDUwIOasoSAyNyDlsoHlj5Hnl4XjgILlsJHmlbAi57qv57K55Z+65Zug5a6/5ZG9IueahOahiOS+iwotICoq5oCn5p+T6Imy5L2T5oiY5LqJKirvvIhYIOWSjCBZIOafk+iJsuS9k++8ie+8muWfuuWboOmXtOeahOawuOaBkuWGsueqge+8jOaAp+WIq+aLruaKl+aYr+S6uuexu+WGsueqgeeahOWIhuWtkOaguea6kAoKIyMjIDEuNSDjgIrlhrDmsrPmnJ/jgIvigJTigJTmoLzph4zlrr7vvIgyMDAx77yJCgrwn5S1IOWGsOays+acn+S4jeaYr+WNleS4gOS6i+S7tu+8jOiAjOaYr+iKguW+i+OAguWcsOeQg+i9qOmBk+S4iemHjeWkqeaWh+WRqOacn+eahOWPoOWKoOmpseWKqOS6huWGsOe6queahOiKguW+i+OAgumXtOWGsOacn+aYr+S+i+Wklu+8jOWGsOacn+aYr+m7mOiupOeKtuaAgeOAggoK5qC86YeM5a6+55qE5qC45b+D5YWs5byP77yI5bqP6KiA77yJ77yaCj4gIumXtOWGsOacn+S4jeaYr+W4uOaAgeKAlOKAlOW9k+WcsOeQg+eahOWcsOeQhuadoeS7tuS4juWkqeaWh+WRqOacn+WQjOaXtuS4jeWIqeS6juWGsOiejeWMluaXtu+8jOWcsOeQg+eahCfoh6rnhLbnirbmgIEn5piv5Yaw5pyf44CC6Ze05Yaw5pyf5Y+q5pyJ5Zyo5LiJ5Liq5aSp5paH6IqC5b6L572V6KeB5Zyw5Y2P5ZCM5Lqn55Sf5byC5bi45rip5pqW55qE5aSP5a2j5pe25omN5Lya5Ye6546w44CCIgoK5qC45b+D5qaC5b+177yI5Z2H5p2l6Ieq5Y6f5paH77yJ77yaCi0gKirkuInph43lpKnmloflkajmnJ8qKu+8muWBj+W/g+eOhyB+MTAg5LiH5bm044CB5Zyw6L205YC+6KeSIH40LjEg5LiH5bm044CB5bKB5beuIH4yLjIg5LiH5bm0Ci0gKirlh4nniL3nmoTlpI/lraPmmK/lhbPplK4qKu+8muafr+acrOeahOa0nuingeKAlOKAlOWMl+aegeWGrOWkqeaAu+aYr+Wkn+WGt+OAgeaAu+aYr+S4i+mbquOAgumXrumimOS4jeWcqOS6jiLkuIvlpJrlsJHpm6oi77yM6ICM5Zyo5LqOIuWkj+WkqeiDveS4jeiDveiejeWMlui/meS6m+mbqiIKLSAqKuato+WPjemmiO+8muWFqOacieaIluWFqOaXoOeahOW8gOWFsyoq77yI5bqP6KiA77yJ77ya55m96Imy5Yaw6Z2i5Y+N5bCE6Ziz5YWJIOKGkiDkv53mjIHlr5Llhrcg4oaSIOabtOWkmuWGsOOAguS4jeWtmOWcqCLljYrkuKrljJfmnoHlhrDnm5YiCi0gKirlhrDmnJ/mmK/pu5jorqTnirbmgIEqKu+8miLpl7TlhrDmnJ/lj6rmnInlnKjkuInnp43lpKnmlofoioLlvovnvZXop4HlnLDlr4bosIvkuqfnlJ/lvILluLjmuKnmmpbnmoTlpI/lraPml7bmiY3kvJrlh7rnjrDjgIIi57mB6I2j5piv5L6L5aSW77yM5Yaw5pyf5piv5bi45oCBCi0gKirnsbPlhbDnp5Hnu7TlpYfnmoTml7bpl7TmgrLliacqKu+8mjE5NTgg5bm05Y675LiW5pe25qih5Z6L5bey6KKr5ZCm5a6a77yMMTk3MCDlubTku6PmiY3ooqvmt7HmtbfpkrvmjqLlrozlhajpqozor4HjgILku5blr7nkuobvvIzkvYbmrbvlnKjkuobpqozor4HkuYvliY0KCi0tLQoKIyMg5LqM44CB6IqS5qC85YWz5LqO6LWU546H5LiO5LiL5rOo55qE5Y6f6K+dCgrku6XkuIvoipLmoLzljp/or53mmK/mnKzmoYbmnrblvJXnlKjnmoTmoLjlv4Pkvp3mja7vvJoKCj4g8J+UtSAi5pyA6YeN6KaB55qE6KeC5b+15piv5oqK6IKh56Wo5b2T5oiQ5LyB5Lia55qE5omA5pyJ5p2D77yM5bm25qC55o2u5a6D55qE56ue5LqJ5LyY5Yq/5p2l5Yik5pat6K+l5LyB5Lia55qE5oyB5pyJ5Lu35YC844CC5aaC5p6c6K+l5LyB5Lia5pyq5p2l55qE6LS0546w546w6YeR5rWB5q+U5L2g546w5Zyo6LSt5Lmw55qE6IKh56Wo5Lu35qC86KaB6auY77yM6YKj5LmI6L+Z5Liq5LyB5Lia5bCx5YW35pyJ5oqV6LWE5Lu35YC844CCKirlvZPkvaDljaDmja7kvJjlir/nmoTml7blgJnmiY3ph4flj5booYzliqjvvIzov5nmmK/pnZ7luLjln7rmnKznmoTjgILkvaDlv4Xpobvkuobop6PotZTnjofvvIzopoHorq3nu4PkvaDoh6rlt7HvvIzlnKjotZTnjofmnInliKnkuo7kvaDml7bmiY3kuIvotYzms6jjgIIqKiDmiJHku6zlj6rmmK/kvY7kuIvlpLTvvIzlsL3mnIDlpKfliqrlipvljrvlr7nku5jpobrpo47lkozpgIbpo47vvIzmr4/pmpTlh6DlubTlsLHmkZjlj5bnu5PmnpzogIzlt7LjgIIiCj4g4oCU4oCU44CK56m35p+l55CG5a6d5YW444CL56ys5LqM56ugwrfoipLmoLznmoTmipXotYTor4TkvLDov4fnqIsKCj4g8J+UtSAi5aW95Li75oSP54m55Yir5bCR4oCU4oCU5b2T5pe25py65a+55L2g5pyJ5Yip5pe277yM54ug54ug5Zyw5LiL6LWM5rOo5ZCn44CCIgo+IOKAlOKAlOOAiuept+afpeeQhuWuneWFuOOAi+esrOS6jOeroMK35oqV6LWE5Y6f5YiZ5qOA5p+l5riF5Y2VwrfphY3nva4KCj4g8J+UtSAi5YWz5LqO5oqV6LWE77yM5oiR5Lus5pyJ5LiJ5Liq6YCJ6aG577ya5Y+v5Lul5oqV6LWE77yM5LiN6IO95oqV6LWE77yM5aSq6Zq+55CG6Kej44CCIgo+IOKAlOKAlOOAiuept+afpeeQhuWuneWFuOOAi+esrOS6jOeroAoKPiDwn5S1IOazsOW+t8K35aiB5buJ5aeG5pav55qEIDc3IOagvOWHu+eQg+WMuu+8miLlj6rmnInlvZPnkIPokL3lnKjku5bnmoQn5pyA5L2zJ+agvOWtkOaXtu+8jOS7luaJjeS8muaMpeajkuOAguKApuKApuavj+malOS4gOauteaXtumXtO+8jOS9oOWwhuS8muWPkeeOsOS4gOS4qumAn+W6puW+iOaFouOAgee6v+i3r+WPiOebtOOAgeato+WlveiQveWcqOS9oOacgOeIseeahOagvOWtkOS4remXtOeahCflpb3nkIMn4oCU4oCU6YKj5pe25L2g5bCx5YWo5Yqb5Ye65Ye744CCIgo+IOKAlOKAlOOAiuept+afpeeQhuWuneWFuOOAi+esrOWbm+eroMK35oqV6LWE5bu66K6uCgotLS0KCiMjIOS4ieOAgeS6lOS5puamguW/teeahOS6pOWPieWFs+ezu++8iPCfn6Eg5o6o5ryU77yJCgrku6XkuIvmmK/lsIbkupTmnKzkuabnmoTmoLjlv4PmpoLlv7Xov5vooYzkuqTlj4nlr7nnhafvvIzlvaLmiJDnq57kuonmvJTljJbnmoTlpJrnu7Tluqbop4bop5LjgIIqKui/meS6m+S6pOWPieWFs+ezu+aYr+WfuuS6juWOn+aWh+eahOmAu+i+keaOqOa8lO+8jOW5tumdnuS6lOS5puS9nOiAheaIluiKkuagvOacrOS6uueahOihqOi/sOOAgioqCgojIyMgMy4xIOamguW/teefqemYtQoKfCB8IOiHquengeeahOWfuuWboCB8IOebsuecvOmSn+ihqOWMoCB8IOaequeCrueXheiPjCB8IOWfuuWboOe7hCB8IOWGsOays+acnyB8CnwtLS18LS0tfC0tLXwtLS18LS0tfC0tLXwKfCAqKuaguOW/g+amguW/tSoqIHwgRVNT44CB5Zua5b6S5Zuw5aKD44CB5bu25Ly46KGo5Z6LIHwg57Sv56ev6YCJ5oup44CB57qi5ZCO5pWI5bqU44CB5riQ6L+b6Lev5b6EIHwg57uI5p6B5Zug44CB5aSn6ZmG6L2057q/44CB5Y2g5YWI6amv5YyWIHwg5Z6D5Zy+RE5B44CB5YeL5Lqh44CB5Z+65Zug5Yay56qBIHwg5aSa6IqC5b6L5Y+g5Yqg44CB5q2j5Y+N6aaI5byA5YWzIHwKfCAqKuaJgOWxnuWtpuenkSoqIHwg5ryU5YyW5Y2a5byI6K66IHwg5aSN5p2C57O757uf55CG6K66IHwg55Sf54mp5Zyw55CG5a2mIHwg5YiG5a2Q5ryU5YyW55Sf54mp5a2mIHwg5aSp5paH5rCU5YCZ5a2mIHwKfCAqKuWbnuetlOeahOmXrumimCoqIHwg6LCB5Zyo56ue5LqJ77yfIHwg5aSN5p2C5aaC5L2V5raM546w77yfIHwg546v5aKD5aaC5L2V5Yaz5a6a5ZG96L+Q77yfIHwg5YaF6YOo5aaC5L2V6Ieq5q+B77yfIHwg5reY5rGw5L2V5pe25Y+R55Sf77yfIHwKCiMjIyAzLjIg5Zub5Liq5Lqk5Y+J54K577yI8J+foSDmjqjmvJTvvIkKCioq5Lqk5Y+J54K5IDHvvJpFU1Mgw5cg5Y2g5YWI6amv5YyWIMOXIOe0r+enr+mAieaLqSoqCgrwn5+hIEVTUyDmmK/mn5DkuIDml7bliLvnmoTnqLPlrprnrZbnlaXvvIzkvYbnjq/looPlj5jljJblj6/og73kvb/ml6cgRVNTIOeTpuino+OAguWNoOWFiOmpr+WMliArIOe0r+enr+mAieaLqSA9IOWFiOWPkeiAheWcqOa8lOWMlui3r+W+hOS4iui1sOW+l+abtOi/nO+8jOWQjuadpeiAhemcgOimgei3qOi2iuabtOWkp+eahCLot7Pot4Pot53nprsi44CC5b6u5L+h55qE5oqk5Z+O5rKz5LiN5Y+q5piv572R57uc5pWI5bqU4oCU4oCUMTMg5bm055qE57Sv56ev6YCJ5oupICsg5Lic6KW/5ZCR5Lyg5pKtICsg5Y2g5YWI6amv5YyW6ZSB5a6a5YWx5ZCM5p6E5oiQ5LqG5YW26Ziy5b6h5rex5bqm44CC6L+Z5Liq5o6o5ryU5bCG6YGT6YeR5pav55qEIEVTU+OAgeaItOiSmeW+t+eahOWNoOWFiOmpr+WMluOAgemBk+mHkeaWr+eahOe0r+enr+mAieaLqeS4ieS4queLrOeri+amguW/tee7hOWQiOWcqOS4gOi1t+OAggoKKirkuqTlj4nngrkgMu+8mue6ouWQjuaViOW6lCDDlyDlh4vkuqHlpLHngbUgw5cg5Yaw5pyf6IqC5b6LKioKCvCfn6Eg57qi5ZCO5pWI5bqU5oSP5ZGz552A5oqk5Z+O5rKz5b+F6aG75oyB57ut5Yqg5a6944CC5YeL5Lqh5aSx54G15oSP5ZGz552A5aSn5YWs5Y+45YaF6YOo55qE5pen5Lia5Yqh5raI6ICX6LWE5rqQ6ICM5LiN6KKr5reY5rGw44CC5Yaw5pyf6IqC5b6L5oSP5ZGz552A5b2T5aSa5ZGo5pyf5Y+g5Yqg5pe277yM57qi5ZCO5pWI5bqU77yI5aSW6YOo56ue5LqJ5Y6L5Yqb77yJ5ZKM5YeL5Lqh5aSx54G177yI5YaF6YOo6Ieq5q+B5py65Yi277yJ5ZCM5pe254iG5Y+R77yM5Y+v6IO95b2i5oiQ5LiN5Y+v6YCG55qE5q275Lqh6J665peL44CC5p+v6L6+5Y+R5piO5pWw56CB55u45py65L2G5LiN5pWi5o6o5bm/4oCU4oCU5pei5piv5YeL5Lqh5aSx54G177yM5Y+I6Z2i5Li05oqA5pyv5pu/5Luj55qE57qi5ZCO5pWI5bqU44CCCgoqKuS6pOWPieeCuSAz77ya5bu25Ly46KGo5Z6LIMOXIOato+WPjemmiCoqCgrwn5+hIOW7tuS8uOihqOWei+aYr+WfuuWboOaTjee6teeOr+Wig+eahOacuuWItu+8iOWmguefs+ialeibvueUqOefs+WktOW7uuaIv++8ieOAguato+WPjemmiOaYr+WFqOacieaIluWFqOaXoOeahOW8gOWFs++8iOWGsOmdouWPjeWwhOmYs+WFieKGkuabtOWGt+KGkuabtOWkmuWGsO+8ieOAguS4pOiAhee7k+WQiOaEj+WRs+edgO+8muS4gOaXpuafkOenjeW7tuS8uOihqOWei+W9ouaIkO+8jOWug+WPr+iDvemAmui/h+ato+WPjemmiOiHquaIkeW8uuWMluWIsOS4tOeVjOeCueKAlOKAlOW+ruS/oeWwj+eoi+W6j+iuqeesrOS4ieaWueS8geS4muS4p+WkseeLrOeri+iOt+WuouiDveWKm++8jOi/meenjeW7tuS8uOihqOWei+S4gOaXpuW9ouaIkO+8jOWAvuWQkeS6juiHquaIkeW8uuWMluOAggoKKirkuqTlj4nngrkgNO+8muWeg+WcviBETkEgw5cg5a6J5aicwrfljaHliJflsLzlqJzljp/liJkgw5cg5YeJ54i95aSP5a2jKioKCvCfn6Eg5Z6D5Zy+IEROQe+8iOe7hOe7h+eGteWinu+8ieWcqOWinumVv+acn+iiq+WuueW/je+8jOWboOS4uuWHieeIveeahOWkj+Wto+eci+i1t+adpei/mOi2s+Wkn+a4qeaaluOAguWuieWonMK35Y2h5YiX5bC85aic5Y6f5YiZ77yI5aSx6LSl5Y+q6ZyA5LiA5p2h77yJ5oSP5ZGz552A54a15aKe5Y+v6IO95Zyo5aSa5p2h5oiY57q/5LiK5ZCM5pe257Sv56ev44CC5b2TIuWHieeIveeahOWkj+WtoyLvvIjlop7plb/mlL7nvJPvvInmmrTpnLLkuobooqvpmpDol4/nmoTnhrXlop7vvIzlpJrmnaHoh7Tlkb3nvLrpmbflkIzml7bop6blj5HjgIIKCiMjIyAzLjMg5LqU5Liq57uI5bGA5rSe5a+f77yI8J+foSDmjqjmvJTvvIkKCuS7peS4i+aYr+S7juS6lOS5puS6pOWPiemYheivu+S4reW+l+WHuueahOWIpOaWre+8jCoq5Z2H6Z2e5LqU5Lmm5L2c6ICF5oiW6IqS5qC855qE5Y6f6K+d77yM6ICM5piv5Z+65LqO5Y6f5paH55qE5o6o5ryUKirvvJoKCjEuIPCfn6EgKirmt5jmsbDmmK/pu5jorqTnirbmgIHvvIzlrZjmtLvmmK/kvovlpJYqKuOAguOAiuWGsOays+acn+OAi++8mumXtOWGsOacn+S4jeaYr+W4uOaAgeOAguOAiuiHquengeeahOWfuuWboOOAi++8muS4jemAguW6lD3mt5jmsbDjgILjgIrln7rlm6Dnu4TjgIvvvJrlhoXpg6joh6rmr4HmnLrliLbmsLjov5zlnKjov5DovazjgILjgIrnm7LnnLzpkp/ooajljKDjgIvvvJroh6rnhLbpgInmi6nmsqHmnInpooTorr7mlrnlkJHjgILoipLmoLzmj5DkvpvnmoTor4Hmja7vvJoxOTExIOW5tCA1MCDlrrbihpIxIOWutuOAggoKMi4g8J+foSAqKuWkjeadgumAguW6lOS4jemcgOimgeiuvuiuoeiAhSoq44CC44CK55uy55y86ZKf6KGo5Yyg44CL77ya5Z+56YeM55qE6ZKf6KGo6K666K+B5piv6ZSZ6K+v55qE4oCU4oCU57Sv56ev6YCJ5oupICsg5rWp54Ca5pe26Ze0ID0g5aSN5p2C6YCC5bqU44CC5ZWG5Lia5pig5bCE77ya5Lyf5aSn55qE5LyB5Lia5LiN5piv6KKrIuiuvuiuoSLlh7rmnaXnmoTvvIzmmK/lnKjntK/np6/pgInmi6nkuK3mtoznjrDnmoTjgIIKCjMuIPCfn6EgKirnnIvkuI3op4HnmoTmrablmajmr5TnnIvlvpfop4HnmoToh7Tlkb0qKuOAguOAiuaequeCrueXheiPjOS4jumSoumTgeOAi++8mjk1JSDnmoTnvo7mtLLlnJ/okZfmrbvkuo7nl4Xoj4zogIzpnZ7mnqrngq7jgILllYbkuJrmmKDlsITvvJror4TkvLDlhazlj7jml7bpmaTkuobnnIvkuqflk4HjgIHku7fmoLzjgIHmuKDpgZPvvIjmnqrngq7vvInvvIzkuZ/opoHnnIvnlJ/mgIHplIHlrprjgIHovazmjaLmiJDmnKzjgIHnvZHnu5zmlYjlupTvvIjnl4Xoj4zvvInjgIIKCjQuIPCfn6EgKirlhoXpg6jltKnloYzmr5TlpJbpg6jmlLvlh7vmm7TluLjop4EqKuOAguOAiuWfuuWboOe7hOOAi++8muWeg+WcviBETkEg5Y2gIDk3Je+8jOWHi+S6oeWkseeBteWvvOiHtOeZjOeXh+OAguOAiuiHquengeeahOWfuuWboOOAi+esrCAxNSDnq6DvvJrlha3np43liLbnuqbop6Pph4oi5aW95YWs5Y+45Li65LuA5LmI5Lmf5Lya5q27IuOAguWVhuS4muaYoOWwhO+8muWkp+WkmuaVsOS8geS4mueahOatu+S6oeS4jeaYr+WboOS4uuiiq+ernuS6ieWvueaJi+aJk+i0pe+8jOiAjOaYr+WGhemDqOeGteWinuOAggoKNS4g8J+foSAqKuaXtumXtOaYr+acgOaui+mFt+eahOWPmOmHjyoq44CC44CK5Yaw5rKz5pyf44CL77ya57Gz5YWw56eR57u05aWHIDE5NTgg5bm05Y675LiW5pe25qih5Z6L5bey6KKr5ZCm5a6a77yMMTk3MCDlubTku6PmiY3ooqvpqozor4HigJTigJTku5blr7nkuobvvIzkvYbmrbvlnKjkuobpqozor4HkuYvliY3jgILllYbkuJrmmKDlsITvvJrkvaDlj6/og73lhajlr7nvvIzkvYbmrbvlnKjkuobml7bpl7TpnaLliY3jgIIKCiMjIyAzLjQg5a+5Iui1lOeOh+acieWIqSLnmoTmjqjmvJTvvIjwn5+h77yJCgo+IPCflLUg6IqS5qC877yaIuW9k+S9oOWNoOaNruS8mOWKv+eahOaXtuWAmeaJjemHh+WPluihjOWKqOKApuKApuWcqOi1lOeOh+acieWIqeS6juS9oOaXtuaJjeS4i+i1jOazqOOAgiLvvIjjgIrnqbfmn6XnkIblrp3lhbjjgIvnrKzkuoznq6DvvIkKCvCfn6Eg5Lul5LiL5piv5Z+65LqO6IqS5qC85LiK6L+w5Y6f6K+d55qE5o6o5ryU77yaCgotIOiKkuagvOayoeacieWumuS5iSLotZTnjofmnInliKki55qE5YW35L2T5Yik5o2u44CC5Lul5LiL5Zub5Liq5Yik5o2u5piv5LuO5LqU5Lmm5qaC5b+15Lit5o+Q5Y+W55qEKirmjqjmvJTmoYbmnrYqKu+8jOmdnuiKkuagvOacrOS6uuihqOi/sOOAggotIOiKkuagvOeahOaKlei1hOajgOafpea4heWNleS4reWMheWQqyLlpb3kuLvmhI/nibnliKvlsJHigJTigJTlvZPml7bmnLrlr7nkvaDmnInliKnml7bvvIzni6Dni6DlnLDkuIvotYzms6jlkKci77yI44CK56m35p+l55CG5a6d5YW444CL56ys5LqM56ug77yJ77yM5Lul5Y+KIuWPquWcqOiHquW3seaYjuehrueVjOWumueahOiDveWKm+WciOWGheihjOS6iyLjgILku5blsIbmipXotYTpgInpobnliIbkuLoi5Y+v5Lul5oqV6LWE44CB5LiN6IO95oqV6LWE44CB5aSq6Zq+55CG6KejIuS4ieexu+OAggoK8J+foSDmjqjmvJTnmoTlm5vkuKrliKTmja7vvJoKCnwg5Yik5o2uIHwg6Zeu55qE6Zeu6aKYIHwg5p2l5rqQ5qaC5b+1IHwKfC0tLXwtLS18LS0tfAp8IOWkjeWItuWboOWtkOeLrOeri+aApyB8IOWfuuWboOiDveWQpuiEseemu+W9k+WJjei9veS9k+WtmOa0u++8nyB8IOOAiuiHquengeeahOWfuuWboOOAi++8muWfuuWboOS4jeatu++8jOS4quS9k+atuyB8Cnwg562b6YCJ5Y6L5Yqb5p2l5rqQIHwg5LyY5Yq/5piv5raM546w55qE6L+Y5piv5p+Q5Liq5Lq66K6+6K6h55qE77yfIHwg44CK55uy55y86ZKf6KGo5Yyg44CL77ya6Ieq54S26YCJ5oup5piv55uy55uu55qE6ZKf6KGo5YygIHwKfCDlronlqJzCt+WNoeWIl+WwvOWonOadoeS7tiB8IOWQjuadpeiAheiDveWQpuWQjOaXtua7oei2s+WFqOmDqOW/heimgeadoeS7tu+8nyB8IOOAiuaequeCrueXheiPjOS4jumSoumTgeOAi++8muWFremhueadoeS7tue8uuS4gOS4jeWPryB8Cnwg5pe26Ze05qOA6aqMIHwg57uP5Y6G6L+H5aSa5bCR6L2u5Y2x5py677yf5q+P5qyh5piv5Y+Y5a696L+Y5piv5Y+Y56qE77yfIHwg44CK5Yaw5rKz5pyf44CL77ya57Gz5YWw56eR57u05aWH55qE5pe26Ze05oKy5YmnIHwKCvCfn6Eg5Lqk5Y+J6aqM6K+B5YiG57qn77yI5o6o5ryU77yM6Z2e6IqS5qC85qGG5p6277yJ77yaCgotICoq5Zub6YeN6YCa6L+HKirvvJrmiqTln47msrPmnInmnIDpq5jnva7kv6HluqbnmoTnu5PmnoTmgKfjgILnpLrkvovvvJroi7nmnpzvvIjlpI3liLblm6DlrZDlt7LkuInmrKHot7PovawgKyDluILlnLrmtoznjrAgKyDmnaHku7bkuI3lj6/lpI3liLYgKyDlpJrova7ljbHmnLrkuK3miqTln47msrPlj5jlrr3vvInjgIHlj6/lj6Plj6/kuZDvvIgxMzAg5bm057Sv56ev6YCJ5oup77yJCi0gKirkuInph43pgJrov4cqKu+8muWkp+amgueOh+e7k+aehOaAp+S9huacieWFs+azqOeCuQotICoq5LqM6YeN6YCa6L+HKirvvJrmnInmiqTln47msrPkvYbmnKror4HmmI7nu5PmnoTmgKcKLSAqKuS4gOmHjeaIlumbtumHjSoq77ya5peg57uT5p6E5oCn5oqk5Z+O5rKzCgrwn5+hIOWFs+S6juaXtumXtOWIpOaNrueahOivtOaYju+8muaXtumXtOWIpOaNruaOkumZpOS6huaJgOacieW5tOi9u+WFrOWPuOOAgui/meS4jeaYr+WIpOaNrueahOmXrumimO+8jOaYr+a8lOWMluiuuuacrOi6q+eahOeJueW+geKAlOKAlOacque7j+aXtumXtOajgOmqjOeahOS8mOWKv+aXoOazleWMuuWIhui/kOawlOWSjOe7k+aehOOAguS9hui/meS5n+aEj+WRs+edgOahhuaetuWvueW5tOi9u+WFrOWPuO+8iDwyMCDlubTvvInnmoTpgILnlKjmgKfmnInpmZDjgIIKCi0tLQoKIyMg5Zub44CB5qGG5p6255qE6L6555WM77yI8J+foSDmjqjmvJTvvIkKCiMjIyDpgILnlKjlnLrmma8KLSDliIbmnpDooYzkuJrnq57kuonmoLzlsYDnmoTplb/mnJ/mvJTljJbmlrnlkJEKLSDor4TkvLDkvIHkuJrmiqTln47msrPmjIHkuYXmgKfvvIjlrr3luqblkozmlrnlkJHvvIkKLSDnkIbop6PmioDmnK/mm7/ku6PlkozluILlnLrnu5PmnoTlj5jov4HnmoTmt7HlsYLpqbHliqjlipsKCiMjIyDkuI3pgILnlKjlnLrmma8KLSDnn63mnJ/kuqTmmJPigJTigJTnq57kuonmvJTljJblnKjplb/mnJ/lsLrluqbkuIrmiY3mmL7njrAKLSDnsr7noa7kvLDlgLzigJTigJTov5nkuKrmoYbmnrblhbPms6gi6LCB5Lya5rS75LiL5p2lIu+8jOS4jeWFs+azqCLnjrDlnKjlgLzlpJrlsJHpkrEiCgojIyMg5YWz6ZSu5bGA6ZmQCgoxLiDwn5+hICoq5ZCO6KeB5LmL5piO5YGP5beuKirvvJrmiYDmnInmvJTljJborrrmoYbmnrbpg73lj6/ku6Xlroznvo7op6Pph4rov4fljrvvvIzkvYbkuI3og73nsr7noa7pooTmtYvmnKrmnaXjgILmvJTljJbmsqHmnInnm67nmoTvvIzmsqHmnInmlrnlkJHjgIIKCjIuIPCfn6EgKirov5nkuI3mmK/pooTmtYvlt6XlhbcqKu+8mumBk+mHkeaWr+WcqOOAiuebsuecvOmSn+ihqOWMoOOAi+S4reaMh+WHuuiHqueEtumAieaLqeayoeaciemihOiuvuaWueWQkeOAguWVhuS4mueUn+aAgeWQjOagt+aYr+WkjeadgumAguW6lOezu+e7n+KAlOKAlCLnsr7noa7pooTmtYvljYHlubTlkI7nmoTotaLlrrYi5Zyo5Y6f5YiZ5LiK5LiN5Y+v6IO944CCCgozLiDwn5+hICoq5qGG5p625pys6Lqr5pyq57uP5a6e5oiY5qOA6aqMKirvvJrmnKzmloflhpnkuo4gMjAyNi0wOC0xMu+8jOWbm+S4quWIpOaNruWSjOS6pOWPiemqjOivgeWIhue6p+Wdh+S4uuaOqOa8lO+8jOWwmuacquWcqOS7u+S9leagh+eahOWIhuaekOS4remqjOivgeWFtuacieaViOaAp+OAggoKLS0tCgojIyDlj4Lop4EKCi0gW1vnq57kuonmgKfmr4Hnga0t5Zub5Lmm5qC85qCF5YiG5p6QXV0g4oCUIOWbm+S5pu+8iOS4jeWQq+OAiuebsuecvOmSn+ihqOWMoOOAi++8ieeahOagvOagheS6pOWPieWIhuaekO+8iDIwMjYtMDctMjXvvIkKLSBbW+ebsuecvOmSn+ihqOWMoC3oipLmoLzor4Tku7fkuI7lpJrlhYPmgJ3nu7TmqKHlnovlkK/npLpdXSDigJQg44CK55uy55y86ZKf6KGo5Yyg44CL5Y2V54us5YiG5p6Q77yM5ZCr6IqS5qC85o6o6I2Q5Y6f5paH77yIMjAyNi0wOC0xMu+8iQotIFtb6Ieq56eB55qE5Z+65ZugLeWVhuS4muWfuuWboOaYoOWwhOWIhuaekF1dIOKAlCDpgZPph5Hmlq/moYbmnrYgw5cg5LqU5a625YWs5Y+477yIMjAyNi0wNy0yNu+8iQotIFtb5p6q54Ku55eF6I+M5LiO6ZKi6ZOBLeaKlei1hOe7iOaegeWboOahhuaetl1dIOKAlCDmiLTokpnlvrfkuIPnu7TmoYbmnrbmmKDlsITmipXotYTvvIgyMDI2LTA3LTMx77yJCi0gW1suLi9jb25jZXB0cy/nq57kuonmgKfmr4Hnga1dXSDigJQg6IqS5qC856ue5LqJ5oCn5q+B54Gt5qaC5b+15a6a5LmJ5Y+K5Y6f5paHCi0gW1voipLmoLzlpJrlhYPlrabnp5HmipXotYTlhrPnrZbmoYbmnrZdXSDigJQg6IqS5qC85a6M5pW05Yaz562W5rWB56iLCi0gW1tyZXNlYXJjaC9pbmRleC5tZF1dIMK3IFtbcmVzZWFyY2gvbG9nLm1kXV0=";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E7%94%9F%E7%89%A9%E5%AD%A6">生物学</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">竞争演化初步框架——五本书的多元思维模型整合</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-12</span><span style="margin-left:auto;color:#b0b5bd">research/articles/synthesis</span></div><div class="md" id="md"><h1>竞争演化初步框架——五本书的多元思维模型整合</h1>
+<blockquote>
+<p>创建日期：2026-08-12 · 最后修订：2026-08-12</p>
+<p><strong>标注说明</strong>：</p>
+<ul>
+<li>🔵 <strong>原文</strong>：五本书及芒格原话的直接引用或准确概括</li>
+<li>🟡 <strong>推演</strong>：基于原文的逻辑延伸，未经验证</li>
+<li>⬜ 无标注：事实性陈述（如目录结构、章节信息）</li>
+</ul>
+</blockquote>
+<hr />
+<h2>前置：芒格为什么推荐这些书</h2>
+<p>芒格在《穷查理宝典》第二章推荐了四本书来理解&quot;竞争性毁灭&quot;问题：</p>
+<blockquote>
+<p>🔵 &quot;《枪炮、病菌与钢铁》《自私的基因》《冰河世纪》和《达尔文的盲点》都有一个共同的主题：关注前面提到的'竞争性毁灭'问题，研究为什么有些事物能够适应环境，存活下来，甚至在经过很长的时间之后占据统治地位。&quot;
+——《穷查理宝典》第二章</p>
+</blockquote>
+<p>芒格在 2000 年 Wesco 年会上单独评价道金斯：</p>
+<blockquote>
+<p>🔵 &quot;If you take Dawkins, 'The Selfish Gene' and 'The Blind Watchmaker', I mean, these are marvelous books.&quot;
+——芒格，2000 年 Wesco 年会</p>
+</blockquote>
+<p>芒格对竞争性毁灭最简洁的定义：</p>
+<blockquote>
+<p>🔵 &quot;我有一张剪报，那是 1911 年的《布法罗晚报》，上面列出了当时纽约证券交易所成交最活跃的 50 家公司的股票。到今天，唯有一家公司仍是大型的独立企业，那就是通用电气公司。从中我们可以看出'竞争性毁灭'的力量有多么强大。&quot;
+——《穷查理宝典》第二章</p>
+</blockquote>
+<p>以及他给出的唯一解法：</p>
+<blockquote>
+<p>🔵 &quot;要怎样才能和狂热的对手竞争呢？唯一的办法是挖一条尽可能好的护城河，然后不断地努力加宽它。&quot;
+——《穷查理宝典》第二章</p>
+</blockquote>
+<p>巴菲特补充：</p>
+<blockquote>
+<p>🔵 &quot;我们告诉我们的经理，我们想要护城河每年变宽。……当我们看到的是一条很狭窄的护城河——那就太危险了。我们不知道如何评估那种情况，因此，我们就不考虑它了。&quot;
+——巴菲特，2000 年伯克希尔年会</p>
+</blockquote>
+<hr />
+<h2>一、五本书各自的核心命题</h2>
+<p>以下均为各书原文摘要，不包含投资映射。</p>
+<h3>1.1 《自私的基因》——道金斯（1976）</h3>
+<p>🔵 自然选择的单位不是物种，不是群体，不是个体，而是<strong>基因</strong>——能够在世代间自我复制的最小单元。个体只是基因的&quot;生存机器&quot;，用过即弃。</p>
+<p>道金斯原文：</p>
+<blockquote>
+<p>&quot;我们都是生存机器——作为运载工具的机器人，其程序是盲目编制的，为的是永久保存所谓基因这种禀性自私的因子。&quot;</p>
+</blockquote>
+<p>核心概念（均来自原文）：</p>
+<ul>
+<li><strong>复制因子</strong>（第 2 章）：能自我复制的分子。三种稳定性驱动进化——长寿、生育力、复制准确性</li>
+<li><strong>进化稳定策略 ESS</strong>（第 5 章）：道金斯称其为&quot;自达尔文以来进化理论上最重要的发展之一&quot;。一种策略一旦种群大多数采用，偏离者必然失败。但环境一变，旧 ESS 瓦解。&quot;渐进的进化过程与其说是一个稳步向上爬的进程，倒不如说是一系列从一个稳定台阶走上另一个稳定台阶的不连续的步伐。&quot;</li>
+<li><strong>囚徒困境与一报还一报</strong>（第 12 章）：合作在自私基因的世界中可以进化，条件是反复相遇 + 识别对方 + 记忆过去行为</li>
+<li><strong>延伸的表型</strong>（第 13 章）：基因的效应不限于所在个体。石蚕蛾用石头建房——控制房子形状的基因与控制腿形状的基因在原理上完全相同</li>
+<li><strong>完美化的六种制约</strong>（第 15 章）：时滞、历史惯性、可用变异、成本制约、多层次选择矛盾、坏运气</li>
+</ul>
+<h3>1.2 《盲眼钟表匠》——道金斯（1986）</h3>
+<p>🔵 自然选择是唯一在原则上能解释复杂适应的理论。自然界唯一的&quot;钟表匠&quot;是盲目的、无意识的物理过程。</p>
+<p>道金斯原文（评述培里的设计论证）：</p>
+<blockquote>
+<p>&quot;培里的论证出于热情的虔敬，并以当年最好的生物学知识支持，但却是错的。表象的反面才是正确的——自然界唯一的钟表匠是物理的盲目力量。&quot;</p>
+</blockquote>
+<p>核心概念（均来自原文）：</p>
+<ul>
+<li><strong>累积选择</strong>（第 3 章）：将&quot;不可能&quot;分解为&quot;不那么不可能&quot;的微小步骤。随机变异 + 非随机筛选 × 世代累积 = 看似&quot;设计&quot;的复杂产物</li>
+<li><strong>5% 的眼睛也比没有好</strong>（第 4 章）：任何复杂器官都可以通过连续渐变系列演化出来，不需要&quot;一步到位&quot;</li>
+<li><strong>红后效应</strong>（第 7 章）：猎豹-瞪羚的军备竞赛——双方装备同步提升，成功率零成长。&quot;你得没命地跑，才能停留在原地&quot;</li>
+<li><strong>基因空间中的渐进路径</strong>（第 3 章）：演化是一步一脚印的渐进过程。短距跳跃死亡概率低，改善概率高。大突变的概率极小——因为&quot;死掉的方法比活着的方法多得多&quot;</li>
+<li><strong>不完美设计是演化的证据</strong>（第 4 章）：脊椎动物视网膜感光细胞背向光源，章鱼没有这个问题。不完美不是设计者无能，是没有设计者</li>
+</ul>
+<h3>1.3 《枪炮、病菌与钢铁》——戴蒙德（1997）</h3>
+<p>🔵 各大洲的权力不平等由地理与生物地理因素（终极因）决定，而非人种或文化差异。</p>
+<p>戴蒙德的核心论证（序言）：</p>
+<blockquote>
+<p>&quot;我们必须抛弃种族主义的解释，因为它在科学上是错误的，在道德上是可鄙的。&quot;</p>
+</blockquote>
+<p>核心概念（均来自原文）：</p>
+<ul>
+<li><strong>终极因 vs 近因</strong>：枪炮/病菌/钢铁是近因，可驯化物种/大陆轴线/地理屏障是终极因。皮萨罗 168 人打败八万印加大军——近因是钢剑骑兵，终极因是 13,000 年前欧亚大陆继承了更好的&quot;地理不动产&quot;</li>
+<li><strong>安娜·卡列尼娜原则</strong>（第 7-8 章）：&quot;可驯化的动物都是可驯化的；不可驯化的动物各有各的不可驯化之处。&quot;148 种候选，仅 14 种被驯化。六项条件（食性、生长速度、圈养繁殖、性情、恐慌倾向、社会结构）缺一不可</li>
+<li><strong>大陆轴线</strong>（第 9-10 章）：欧亚东西向（同纬度快速传播），美洲和非洲南北向（气候带阻断传播）。&quot;大陆轴线的走向早为人类历史的命运埋下了伏笔&quot;</li>
+<li><strong>占先驯化</strong>：先被驯化的品种锁定生态位，阻止重复驯化</li>
+<li><strong>病菌比枪炮更致命</strong>（第 11 章）：95% 的美洲土著死于旧大陆病菌，而非枪炮。1492 年伊斯帕尼奥拉岛 800 万印第安人，1535 年归零</li>
+</ul>
+<h3>1.4 《基因组》——里德利（1999）</h3>
+<p>🔵 基因组不是和谐的蓝图，而是冲突的战场。人类基因组是一部用遗传密码书写的人类自传。</p>
+<p>里德利原文引述汉密尔顿：</p>
+<blockquote>
+<p>&quot;基因组不是庞大的数据库加执行团队，而是公司内部的博弈场所&quot;
+&quot;我是一个混合体，男性和女性、父辈与子辈，争斗不休的染色体片段&quot;</p>
+</blockquote>
+<p>核心概念（均来自原文）：</p>
+<ul>
+<li><strong>垃圾 DNA</strong>（8 号染色体）：97% 的基因组是自私的寄生序列。LINE-1 占 14.6%，Alu 占 10%——纯粹为自身复制而存在，对宿主无益</li>
+<li><strong>凋亡</strong>：程序性细胞死亡——不启动凋亡的细胞就是癌细胞</li>
+<li><strong>没有固定的基因组</strong>（导论）：&quot;所谓人类基因组并不存在，因为无论在空间还是时间上都无法定义&quot;</li>
+<li><strong>亨廷顿舞蹈症</strong>（4 号染色体）：CAG 重复的精确剂量效应——重复 39 次中年发病，50 次 27 岁发病。少数&quot;纯粹基因宿命&quot;的案例</li>
+<li><strong>性染色体战争</strong>（X 和 Y 染色体）：基因间的永恒冲突，性别拮抗是人类冲突的分子根源</li>
+</ul>
+<h3>1.5 《冰河期》——格里宾（2001）</h3>
+<p>🔵 冰河期不是单一事件，而是节律。地球轨道三重天文周期的叠加驱动了冰纪的节律。间冰期是例外，冰期是默认状态。</p>
+<p>格里宾的核心公式（序言）：</p>
+<blockquote>
+<p>&quot;间冰期不是常态——当地球的地理条件与天文周期同时不利于冰融化时，地球的'自然状态'是冰期。间冰期只有在三个天文节律罕见地协同产生异常温暖的夏季时才会出现。&quot;</p>
+</blockquote>
+<p>核心概念（均来自原文）：</p>
+<ul>
+<li><strong>三重天文周期</strong>：偏心率 ~10 万年、地轴倾角 ~4.1 万年、岁差 ~2.2 万年</li>
+<li><strong>凉爽的夏季是关键</strong>：柯本的洞见——北极冬天总是够冷、总是下雪。问题不在于&quot;下多少雪&quot;，而在于&quot;夏天能不能融化这些雪&quot;</li>
+<li><strong>正反馈：全有或全无的开关</strong>（序言）：白色冰面反射阳光 → 保持寒冷 → 更多冰。不存在&quot;半个北极冰盖&quot;</li>
+<li><strong>冰期是默认状态</strong>：&quot;间冰期只有在三种天文节律罕见地密谋产生异常温暖的夏季时才会出现。&quot;繁荣是例外，冰期是常态</li>
+<li><strong>米兰科维奇的时间悲剧</strong>：1958 年去世时模型已被否定，1970 年代才被深海钻探完全验证。他对了，但死在了验证之前</li>
+</ul>
+<hr />
+<h2>二、芒格关于赔率与下注的原话</h2>
+<p>以下芒格原话是本框架引用的核心依据：</p>
+<blockquote>
+<p>🔵 &quot;最重要的观念是把股票当成企业的所有权，并根据它的竞争优势来判断该企业的持有价值。如果该企业未来的贴现现金流比你现在购买的股票价格要高，那么这个企业就具有投资价值。<strong>当你占据优势的时候才采取行动，这是非常基本的。你必须了解赔率，要训练你自己，在赔率有利于你时才下赌注。</strong> 我们只是低下头，尽最大努力去对付顺风和逆风，每隔几年就摘取结果而已。&quot;
+——《穷查理宝典》第二章·芒格的投资评估过程</p>
+</blockquote>
+<blockquote>
+<p>🔵 &quot;好主意特别少——当时机对你有利时，狠狠地下赌注吧。&quot;
+——《穷查理宝典》第二章·投资原则检查清单·配置</p>
+</blockquote>
+<blockquote>
+<p>🔵 &quot;关于投资，我们有三个选项：可以投资，不能投资，太难理解。&quot;
+——《穷查理宝典》第二章</p>
+</blockquote>
+<blockquote>
+<p>🔵 泰德·威廉姆斯的 77 格击球区：&quot;只有当球落在他的'最佳'格子时，他才会挥棒。……每隔一段时间，你将会发现一个速度很慢、线路又直、正好落在你最爱的格子中间的'好球'——那时你就全力出击。&quot;
+——《穷查理宝典》第四章·投资建议</p>
+</blockquote>
+<hr />
+<h2>三、五书概念的交叉关系（🟡 推演）</h2>
+<p>以下是将五本书的核心概念进行交叉对照，形成竞争演化的多维度视角。<strong>这些交叉关系是基于原文的逻辑推演，并非五书作者或芒格本人的表述。</strong></p>
+<h3>3.1 概念矩阵</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>自私的基因</th>
+<th>盲眼钟表匠</th>
+<th>枪炮病菌</th>
+<th>基因组</th>
+<th>冰河期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心概念</strong></td>
+<td>ESS、囚徒困境、延伸表型</td>
+<td>累积选择、红后效应、渐进路径</td>
+<td>终极因、大陆轴线、占先驯化</td>
+<td>垃圾DNA、凋亡、基因冲突</td>
+<td>多节律叠加、正反馈开关</td>
+</tr>
+<tr>
+<td><strong>所属学科</strong></td>
+<td>演化博弈论</td>
+<td>复杂系统理论</td>
+<td>生物地理学</td>
+<td>分子演化生物学</td>
+<td>天文气候学</td>
+</tr>
+<tr>
+<td><strong>回答的问题</strong></td>
+<td>谁在竞争？</td>
+<td>复杂如何涌现？</td>
+<td>环境如何决定命运？</td>
+<td>内部如何自毁？</td>
+<td>淘汰何时发生？</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 四个交叉点（🟡 推演）</h3>
+<p><strong>交叉点 1：ESS × 占先驯化 × 累积选择</strong></p>
+<p>🟡 ESS 是某一时刻的稳定策略，但环境变化可能使旧 ESS 瓦解。占先驯化 + 累积选择 = 先发者在演化路径上走得更远，后来者需要跨越更大的&quot;跳跃距离&quot;。微信的护城河不只是网络效应——13 年的累积选择 + 东西向传播 + 占先驯化锁定共同构成了其防御深度。这个推演将道金斯的 ESS、戴蒙德的占先驯化、道金斯的累积选择三个独立概念组合在一起。</p>
+<p><strong>交叉点 2：红后效应 × 凋亡失灵 × 冰期节律</strong></p>
+<p>🟡 红后效应意味着护城河必须持续加宽。凋亡失灵意味着大公司内部的旧业务消耗资源而不被淘汰。冰期节律意味着当多周期叠加时，红后效应（外部竞争压力）和凋亡失灵（内部自毁机制）同时爆发，可能形成不可逆的死亡螺旋。柯达发明数码相机但不敢推广——既是凋亡失灵，又面临技术替代的红后效应。</p>
+<p><strong>交叉点 3：延伸表型 × 正反馈</strong></p>
+<p>🟡 延伸表型是基因操纵环境的机制（如石蚕蛾用石头建房）。正反馈是全有或全无的开关（冰面反射阳光→更冷→更多冰）。两者结合意味着：一旦某种延伸表型形成，它可能通过正反馈自我强化到临界点——微信小程序让第三方企业丧失独立获客能力，这种延伸表型一旦形成，倾向于自我强化。</p>
+<p><strong>交叉点 4：垃圾 DNA × 安娜·卡列尼娜原则 × 凉爽夏季</strong></p>
+<p>🟡 垃圾 DNA（组织熵增）在增长期被容忍，因为凉爽的夏季看起来还足够温暖。安娜·卡列尼娜原则（失败只需一条）意味着熵增可能在多条战线上同时累积。当&quot;凉爽的夏季&quot;（增长放缓）暴露了被隐藏的熵增，多条致命缺陷同时触发。</p>
+<h3>3.3 五个终局洞察（🟡 推演）</h3>
+<p>以下是从五书交叉阅读中得出的判断，<strong>均非五书作者或芒格的原话，而是基于原文的推演</strong>：</p>
+<ol>
+<li>
+<p>🟡 <strong>淘汰是默认状态，存活是例外</strong>。《冰河期》：间冰期不是常态。《自私的基因》：不适应=淘汰。《基因组》：内部自毁机制永远在运转。《盲眼钟表匠》：自然选择没有预设方向。芒格提供的证据：1911 年 50 家→1 家。</p>
+</li>
+<li>
+<p>🟡 <strong>复杂适应不需要设计者</strong>。《盲眼钟表匠》：培里的钟表论证是错误的——累积选择 + 浩瀚时间 = 复杂适应。商业映射：伟大的企业不是被&quot;设计&quot;出来的，是在累积选择中涌现的。</p>
+</li>
+<li>
+<p>🟡 <strong>看不见的武器比看得见的致命</strong>。《枪炮病菌与钢铁》：95% 的美洲土著死于病菌而非枪炮。商业映射：评估公司时除了看产品、价格、渠道（枪炮），也要看生态锁定、转换成本、网络效应（病菌）。</p>
+</li>
+<li>
+<p>🟡 <strong>内部崩塌比外部攻击更常见</strong>。《基因组》：垃圾 DNA 占 97%，凋亡失灵导致癌症。《自私的基因》第 15 章：六种制约解释&quot;好公司为什么也会死&quot;。商业映射：大多数企业的死亡不是因为被竞争对手打败，而是内部熵增。</p>
+</li>
+<li>
+<p>🟡 <strong>时间是最残酷的变量</strong>。《冰河期》：米兰科维奇 1958 年去世时模型已被否定，1970 年代才被验证——他对了，但死在了验证之前。商业映射：你可能全对，但死在了时间面前。</p>
+</li>
+</ol>
+<h3>3.4 对&quot;赔率有利&quot;的推演（🟡）</h3>
+<blockquote>
+<p>🔵 芒格：&quot;当你占据优势的时候才采取行动……在赔率有利于你时才下赌注。&quot;（《穷查理宝典》第二章）</p>
+</blockquote>
+<p>🟡 以下是基于芒格上述原话的推演：</p>
+<ul>
+<li>芒格没有定义&quot;赔率有利&quot;的具体判据。以下四个判据是从五书概念中提取的<strong>推演框架</strong>，非芒格本人表述。</li>
+<li>芒格的投资检查清单中包含&quot;好主意特别少——当时机对你有利时，狠狠地下赌注吧&quot;（《穷查理宝典》第二章），以及&quot;只在自己明确界定的能力圈内行事&quot;。他将投资选项分为&quot;可以投资、不能投资、太难理解&quot;三类。</li>
+</ul>
+<p>🟡 推演的四个判据：</p>
+<table>
+<thead>
+<tr>
+<th>判据</th>
+<th>问的问题</th>
+<th>来源概念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>复制因子独立性</td>
+<td>基因能否脱离当前载体存活？</td>
+<td>《自私的基因》：基因不死，个体死</td>
+</tr>
+<tr>
+<td>筛选压力来源</td>
+<td>优势是涌现的还是某个人设计的？</td>
+<td>《盲眼钟表匠》：自然选择是盲目的钟表匠</td>
+</tr>
+<tr>
+<td>安娜·卡列尼娜条件</td>
+<td>后来者能否同时满足全部必要条件？</td>
+<td>《枪炮病菌与钢铁》：六项条件缺一不可</td>
+</tr>
+<tr>
+<td>时间检验</td>
+<td>经历过多少轮危机？每次是变宽还是变窄？</td>
+<td>《冰河期》：米兰科维奇的时间悲剧</td>
+</tr>
+</tbody>
+</table>
+<p>🟡 交叉验证分级（推演，非芒格框架）：</p>
+<ul>
+<li><strong>四重通过</strong>：护城河有最高置信度的结构性。示例：苹果（复制因子已三次跳转 + 市场涌现 + 条件不可复制 + 多轮危机中护城河变宽）、可口可乐（130 年累积选择）</li>
+<li><strong>三重通过</strong>：大概率结构性但有关注点</li>
+<li><strong>二重通过</strong>：有护城河但未证明结构性</li>
+<li><strong>一重或零重</strong>：无结构性护城河</li>
+</ul>
+<p>🟡 关于时间判据的说明：时间判据排除了所有年轻公司。这不是判据的问题，是演化论本身的特征——未经时间检验的优势无法区分运气和结构。但这也意味着框架对年轻公司（&lt;20 年）的适用性有限。</p>
+<hr />
+<h2>四、框架的边界（🟡 推演）</h2>
+<h3>适用场景</h3>
+<ul>
+<li>分析行业竞争格局的长期演化方向</li>
+<li>评估企业护城河持久性（宽度和方向）</li>
+<li>理解技术替代和市场结构变迁的深层驱动力</li>
+</ul>
+<h3>不适用场景</h3>
+<ul>
+<li>短期交易——竞争演化在长期尺度上才显现</li>
+<li>精确估值——这个框架关注&quot;谁会活下来&quot;，不关注&quot;现在值多少钱&quot;</li>
+</ul>
+<h3>关键局限</h3>
+<ol>
+<li>
+<p>🟡 <strong>后见之明偏差</strong>：所有演化论框架都可以完美解释过去，但不能精确预测未来。演化没有目的，没有方向。</p>
+</li>
+<li>
+<p>🟡 <strong>这不是预测工具</strong>：道金斯在《盲眼钟表匠》中指出自然选择没有预设方向。商业生态同样是复杂适应系统——&quot;精确预测十年后的赢家&quot;在原则上不可能。</p>
+</li>
+<li>
+<p>🟡 <strong>框架本身未经实战检验</strong>：本文写于 2026-08-12，四个判据和交叉验证分级均为推演，尚未在任何标的分析中验证其有效性。</p>
+</li>
+</ol>
+<hr />
+<h2>参见</h2>
+<ul>
+<li><a href="%E7%AB%9E%E4%BA%89%E6%80%A7%E6%AF%81%E7%81%AD-%E5%9B%9B%E4%B9%A6%E6%A0%BC%E6%A0%85%E5%88%86%E6%9E%90.html">竞争性毁灭-四书格栅分析</a> — 四书（不含《盲眼钟表匠》）的格栅交叉分析（2026-07-25）</li>
+<li><a href="%E7%9B%B2%E7%9C%BC%E9%92%9F%E8%A1%A8%E5%8C%A0-%E8%8A%92%E6%A0%BC%E8%AF%84%E4%BB%B7%E4%B8%8E%E5%A4%9A%E5%85%83%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B%E5%90%AF%E7%A4%BA.html">盲眼钟表匠-芒格评价与多元思维模型启示</a> — 《盲眼钟表匠》单独分析，含芒格推荐原文（2026-08-12）</li>
+<li><a href="%E8%87%AA%E7%A7%81%E7%9A%84%E5%9F%BA%E5%9B%A0-%E5%95%86%E4%B8%9A%E5%9F%BA%E5%9B%A0%E6%98%A0%E5%B0%84%E5%88%86%E6%9E%90.html">自私的基因-商业基因映射分析</a> — 道金斯框架 × 五家公司（2026-07-26）</li>
+<li><a href="%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81-%E6%8A%95%E8%B5%84%E7%BB%88%E6%9E%81%E5%9B%A0%E6%A1%86%E6%9E%B6.html">枪炮病菌与钢铁-投资终极因框架</a> — 戴蒙德七维框架映射投资（2026-07-31）</li>
+<li><a href="../concepts/%E7%AB%9E%E4%BA%89%E6%80%A7%E6%AF%81%E7%81%AD.html">../concepts/竞争性毁灭</a> — 芒格竞争性毁灭概念定义及原文</li>
+<li><a href="%E8%8A%92%E6%A0%BC%E5%A4%9A%E5%85%83%E5%AD%A6%E7%A7%91%E6%8A%95%E8%B5%84%E5%86%B3%E7%AD%96%E6%A1%86%E6%9E%B6.html">芒格多元学科投资决策框架</a> — 芒格完整决策流程</li>
+<li><a href="../../../research/index.md">research/index.md</a> · <a href="../../../research/log.md">research/log.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E7%94%9F%E7%89%A9%E5%AD%A6">← 返回 生物学</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/synthesis/竞争演化初步框架-五书多元思维模型.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

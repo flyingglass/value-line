@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海案例·花园生物</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海案例·花园生物</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,122 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海案例-花园生物.html">里海案例·花园生物</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海案例·花园生物</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-06</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/案例</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E6%A1%88%E4%BE%8B">← 返回 案例</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/案例/里海案例-花园生物.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDph4zmtbfmoYjkvosgwrcg6Iqx5Zut55Sf54mpCgo+ICoq5LiA5Y+l6K+d5a6a5L2NKirvvJoqKjIwMjQuNiIzNSDlhYPmuIXku5PlpKrmnoHmjaLlhaUi55qE5oiY5pyv6YG/5p2A6LeM5qCH55qE77yI56S66IyD6LSm5oi36Lqy5byA5aSq5p6BIDM14oaSMjAg5pyA5oOo54OI5p2A6LeM44CB6Ieq6L+w5bCR5LqP5Y2B5Yeg5LiH77yJ4oCU4oCUIuWCrOWMluWJgueCueeBqyArIOWOn+aciemAu+i+keWkseaViOWNs+WNlueCuSLljZbngrnmlrnms5XorrrnmoTmoIflh4bovb3kvZMqKu+8m+WQjOaXtuaYryLplJnov4fmnIDkvbPljZbngrnvvIjluKblqIPlh7rlm73vvInlkI7pmr7ku6Xlho3kuIvmiYsi55qE5oqJ5oup5pWZ6K6t5qC35pys44CCCj4KPiDmnKzpobXkuLogW1vph4zmtbfkvZPns7st5oC76KeIXV0g55qE5qGI5L6L6K+B5o2u5bGC77yIKirmnK/Ct+WPmOWMlj3lgqzljJbliYIgKyDljZbngrnliKTmlq096YC76L6R5aSx5pWIICsg6IO95Yqbwrfmionmi6nmnpzmlq0qKu+8ieOAgui0puaIt+WPo+W+hD0zMCDkuIfnpLrojIPotKbmiLfvvIgyMDI0PSs0LjU3Je+8ie+8myoq5Lia57up5Li65L2c6ICF6Ieq6L+w5Y+j5b6EKirvvIzmnKrni6znq4vmoLjlrp7vvJvntKDmnZDku6Ugd2lraSDml7bpl7Tnur/moaPmoYjovazov7DkuLrkuLvjgIIKCi0tLQoKIyMg5LiA44CB5L2T57O7IMOXIOivgeaNriDmmKDlsITvvIjmoLjlv4PooajvvIkKCiMjIyAxLiDmnK/igJTigJTnroDljZUgwrcg5bqV6YOoIMK3IOWPmOWMliDCtyDliIbku5MKCi0gKirmnK/Ct+WPmOWMlu+8iOWCrOWMluWJgu+8jOacrOeslOaguOW/g+S5sOWFpemAu+i+ke+8iSoq77ya5YWs5Y+4PeWFqOeQg+e7tOeUn+e0oCBEMyDpvpnlpLQv6ZqQ5b2i5Yag5Yab77yI6KGM5Lia5LiL6KGM5ZGo5pyf6YeM5Y+q5pyJ5a6D55uI5YipPSoq5a6M5pW05Lqn5Lia6ZO+5oqK5oiQ5pys5YGa5Yiw5p6B6Ie0KirvvInvvJsqKjIwMjQuNiDliJ3op4EgRDMg5rao5Lu35paw6Ze7ICsg5Yi45ZWG5oql5ZGKID0g5YKs5YyW5YmCKirigJTigJTkvZzogIXkubDlhaXngrk95Y+Y5YyW5Yia54K554Gr5aSE77yI5LiN5piv562J5Lia57up5oql6KGo77yJ44CCCi0gKirmnK/Ct+W6lemDqO+8iOebuOWvue+8iSoq77yaRDMg6KGM5Lia5aSE5LqO5aSa5bm05LiL6KGM5ZCO55qE5Lu35qC85bqV6YOo5Yy677yM5YWs5Y+46IKh5Lu35pyq5aSn5rao6L+H4oCU4oCU5Lmw5ZyoIuihjOS4muW6lemDqOeahOWPmOWMlui1t+eIhueCuSLvvJvkuI7noYXlrp0i5aSn5raoIDYg5YCN5ZCO6auY5L2N5LmwIuaIkOWvueeFp+OAggotICoq5pyvwrfliIbku5PvvIjljZblh7rlpKrmnoHohb7ku5PvvIkqKu+8muacrOeslOacrOi0qOaYryoq5oiY55Wl6IKh6auY5L2N5YeP5LuTK+i1hOmHkeWIh+aImOacr+W8ueaAp+agh+eahCoq55qE57uE5ZCI5Yqo5L2c77yaMzUg5YWD5riF5LuT5aSq5p6B77yI5b2T5pe25aSq5p6B6KeB6aG25Zue6JC977yJ44CB5ZCM5pel5YiH6Iqx5Zut55Sf54mp44CCCgojIyMgMi4g6YGT4oCU4oCU5bi46K+GIMK3IOamgueOhyDCtyDotZTnjocgwrcg6aKR546HCgotICoq6YGTwrfpopHnjofvvIjplJnov4flhZHnjrDnqpflj6M95qC45b+D5pWZ6K6t77yJKirvvJrkubDlhaXlkI7kuIDkuKrmnIjlhoUqKui1mue6piA1MCUqKu+8iOaImOacr+S4gOazoua1geWFkeeOsOeql+WPo++8ie+8jOaBsOmAouS9nOiAhSAyMDI0Ljcg5bim5aiD5Ye65Zu94oCU4oCUKirplJnov4fmnIDkvbPljZbngrnvvIzmiJjmnK/mnLrkvJrms6HmsaQqKu+8iDIwMjUuMS4xMCDlpI3nm5jljp/mlofmhI/vvJoi5bim5aiD5Ye65Zu96ZSZ6L+H5pyA5L2z5Y2W54K577yM5LiA5Liq5pyI6LWaIDUwJSDnmoTmiJjmnK/mnLrkvJrms6HmsaQi77yJ44CCCi0gKirpgZPCt+i1lOeOhy/ljZbngrnvvIjmnKzpobXmnIDmnInku7flgLzpg6jliIbvvIkqKu+8muS9nOiAheaAu+e7kyoq6Zi25q616aG26YOo5Yik5o2uPSAi5pSv5pKR5LiK5rao55qE5Y6f5pyJ6YC76L6R5aSx5pWI77yM5Y+I5om+5LiN5Yiw5paw55qE6YC76L6RIioq4oCU4oCU5qGI5L6L77yaRDMg5Lu35qC85LuO5LqU5YWt5Y2B5rao5Yiw5Lik55m+5LiD5YWr77yM5L2GKirogqHku7fkuI3lho3nqoHnoLTliY3pq5gqKu+8iOS4mue7qS/ku7fmoLzlpKfluYXlkJHlpb3jgIHogqHku7flgZzmu5496IGq5piO6ZKx5bey5Zyo6aG26YOo5rS+5Y+R77yJ44CCCgojIyMgMy4g6IO95Yqb4oCU4oCU5Lu35YC85Yik5patIMK3IOW4guWcuuWFiOeUnyDCtyDlv4PmgKcgwrcg5a6P6KeCCgotICoq6IO95Yqbwrfku7flgLzliKTmlq3vvIjlr7nvvIkqKu+8miLooYzkuJrkuIvooYzlj6rmnInlroPnm4jliKkiPeWvuem+meWktOaIkOacrOaKpOWfjuays+eahOivhuWIq++8m0QzIOa2qOS7tz3ooYzkuJrmma/msJTmi5Dngrnkv6Hlj7fjgIIKLSAqKuiDveWKm8K35biC5Zy65YWI55Sf77yI5a+577yJKirvvJrnkIbop6Mi5rao5Lu3ICsg5Yi45ZWG5oql5ZGKIumpseWKqOeahOaDhee7qi/otYTph5HlkIjlipvvvIzlgqzljJbliYLkvJrngrnngavogqHku7fjgIIKLSAqKuiDveWKm8K35b+D5oCnL+aKieaLqe+8iOaVmeiure+8iSoq77ya5aSN55uY57uZ5Ye65LiJ5p2h5ZCv56S677yaKirikaDogqHku7flkK/liqjpnIDopoHlgqzljJbliYLvvIjkubDngrnopoHnrYnngrnngavvvInikaHkuJrnu6nlpb3kvYbogqHku7flgZzmu5495p+Q6Zi25q616aG26YOo5bey6Iez77yI5Y2W54K577yJ4pGi5oqJ5oup6KaB5p6c5pat4oCU4oCU6ZSZ6L+H5pyA5L2z5Lmw54K5L+WNlueCueWQjumDveW+iOmavuWGjeS4i+aJiyoq44CCCgojIyMgNC4g5byx6ICF5oCd57u0CgotICoq6YOo5YiG56ym5ZCIKirvvJrlnKgi6KGM5Lia5bqV6YOoK+makOW9ouWGoOWGmyvlgqzljJbliYIi5aSE5LuL5YWl56ym5ZCI5byx6ICFIuaegeerr+S9jee9ruetieWPmOWMliLvvJvkvYYi5YKs5YyW5YmC54K554Gr5ZCO6L+96L+bIumakOWQq+WPs+S+p+i/vemrmO+8iOa2qOi1t+adpeaJjeehruiupO+8ie+8jOS4lOmUmei/h+WNlueCueWQjueKueixqz3mnKrog73kuKXlrogi6YC76L6R5aSx5pWI5Y2z6LWwIueahOW8seiAhee6quW+i+OAggoKIyMjIDUuIOaImOeVpSB2cyDmiJjmnK/ogqEKCi0gKirmiJjmnK/ogqHvvIjmmI7noa7vvIkqKu+8muS7pSA1MCUg57qn5Yir5LiA5rOi5rWB5Li655uu5qCH55qE5by55oCn5LuT5L2N77yb5Lmw5a6D55qE5ZCM5pe2PeWkquaege+8iOaImOeVpeiCoe+8ieS7k+S9jeS4u+WKqOiwg+mZjeKAlOKAlDIwMjQg5bm05aSq5p6B6KeB6aG25Zue6JC95pyfIuWNluaImOeVpemrmOS9jeOAgeWIh+aImOacr+W8ueaApyLnmoTnpLrojIPvvIjlkIwi5bCR5LqP5Y2B5Yeg5LiHIueahOmBv+aNn+S9nOeUqO+8ieOAggoKLS0tCgojIyDkuozjgIHkuovku7bml7bpl7Tnur/vvIjlkKvlh7rlpITvvIkKCnwg5pe26Ze0IHwg5LqL5Lu2IHwg5Lia57up77yI6Ze06ZqUIC8g5YWs5ZGK77yJIHwg5Ye65aSEIHwKfC0tLXwtLS18LS0tfC0tLXwKfCAyMDI0LjYg5YidIHwg6KeBICoqRDMg5rao5Lu35paw6Ze7ICsg5Yi45ZWG5oql5ZGKKirvvIjlgqzljJbliYLvvIkgfCDigJQgfCBbMjAyNS4xLjEw44CK6Iqx5Zut55Sf54mp6L+Z5a625YWs5Y+444CLXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy9jUkhzMjZBVFc4bU1tTDhCMXU0dVB3Ke+8iOWbnua6r++8iSB8CnwgKioyMDI0LjYqKiB8ICoqMzUg5YWD5riF5LuT5aSq5p6B6ZuG5Zui44CB5ZCM5pel5Lmw5YWl6Iqx5Zut55Sf54mpKirigJTigJTnpLrojIPotKbmiLfourLlvIDlpKrmnoHpmo/lkI4gMzXihpIyMCDnmoTmnIDmg6jng4jmnYDot4zvvIzoh6rov7Ai5bCR5LqP5Y2B5Yeg5LiHIu+8iDIwMjQg5bm05bqm5Y+j5b6E77yJIHwg4oCUIHwgWzIwMjQuMTIuMzHjgIoyMDI05bm05oqV6LWE5oC757uT77yM5rW054Gr6YeN55Sf55qE5LiA5bm044CLXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy9MR19fWlhYLTAzVWd1bHZkR3Z0X3h3Ke+8m1syMDI1LjEuMTDjgIroirHlm63nlJ/nianov5nlrrblhazlj7jjgItdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL2NSSHMyNkFUVzhtTW1MOEIxdTR1UHcpIHwKfCAqKjIwMjQuNyoqIHwg5Lmw5YWl57qm5LiA5Liq5pyI77yMKirmta7nm4jnuqYgNTAl77yI5oiY5pyv5LiA5rOi5rWB5YWR546w56qX5Y+j77yJKirvvIzmgbDpgKLkvZzogIXluKblqIPlh7rlm73igJTigJQqKumUmei/h+acgOS9s+WNlueCue+8jOaImOacr+acuuS8muazoeaxpCoq77yb5b2S5p2l5ZCOIumUmei/h+acgOS9s+WNlueCueWQjuW+iOmavuWGjeS4i+aJiyIgfCDigJQgfCBbMjAyNS4xLjEw44CK6Iqx5Zut55Sf54mp6L+Z5a625YWs5Y+444CLXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy9jUkhzMjZBVFc4bU1tTDhCMXU0dVB3Ke+8iOWbnua6r++8iSB8CnwgMjAyNCDlubTlhoXvvIjkuIvljYrlubTvvIkgfCDljZblh7rvvIjnsr7noa7ml7bngrkv5Lu35qC85pyq5oqr6Zyy77ybMjAyNC4xMi4zMSDnpLrojIPotKbmiLflubTmnKvmjIHku5M956GF5a6dL+e0oumAmi/ljY7lurfvvIzoirHlm63nlJ/nianlt7LkuI3lnKjliJfvvIkgfCDigJQgfCBbMjAyNC4xMi4zMeOAijIwMjTlubTmipXotYTmgLvnu5PvvIzmtbTngavph43nlJ/nmoTkuIDlubTjgItdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL0xHX19aWFgtMDNVZ3VsdmRHdnRfeHcpIHwKfCAyMDI0IOW5tCB8ICoq5aSr5Lq677yI6aKG5a+877yJ6LSm5oi3KirkuqbkubDov4foirHlm63nlJ/nianigJTigJQyMDI0LjEyLjMwIOmihuWvvOi0puaIt+WkjeebmCLoirHlm63nlJ/niankuZ/lpoLmraQi77yI5pys5Zyw6LSm5oi35ZCD5Yiw5oiY5pyv5rOi5q6155qE5L6L77yJIHwg4oCUIHwgWzIwMjQuMTIuMzDjgIoyMDI05bm05Y2z5bCG5pS25a6Y77yM5Li65ZWl5oiR5a626aKG5a+855qE5pS255uK5q+U5oiR56S66IyD6LSm5oi36auY77yf44CLXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy96T1FuMk5FRDVPRWZ4c0VUaGFCNjF3KSB8CnwgKioyMDI1LjEuMTAqKiB8ICoq5aSN55uY5LiT5paH44CK6Iqx5Zut55Sf54mp44CLKirvvJpEMyDlhajnkIPpvpnlpLTpmpDlvaLlhqDlhpvvvIjooYzkuJrkuIvooYzlj6rmnInlroPnm4jliKk95a6M5pW05Lqn5Lia6ZO+5oiQ5pys5p6B6Ie077yJ77ybNiDmnIjliJ3op4Hmtqjku7cv5Yi45ZWG5oql5ZGKPeWCrOWMluWJguS5sOWFpe+8mzcg5pyI5bim5aiD6ZSZ6L+HIDUwJSDljZbngrnvvJvljZblh7rlhbPplK49KirmlK/mkpHkuIrmtqjnmoTljp/mnInpgLvovpHlpLHmlYjlj4jmib7kuI3liLDmlrDpgLvovpE96Zi25q616aG26YOoKirvvIhEMyDkupTlha3ljYHihpLkuKTnmb7kuIPlhavjgIHogqHku7fljbTkuI3nqoHnoLTliY3pq5jvvInvvJvkuInlkK/npLo95YKs5YyW5YmCL+mAu+i+keWkseaViOWNlueCuS/mionmi6nmnpzmlq0gfCDlhazlkYrvvJoyMDI0IOS4ieWto+aKpTxicj7pl7TpmpTvvJrmmZogODQg5aSpPGJyPuWPkeW4g++8mjIwMjQtMTAtMTggfCBbMjAyNS4xLjEw44CK6Iqx5Zut55Sf54mp6L+Z5a625YWs5Y+444CLXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy9jUkhzMjZBVFc4bU1tTDhCMXU0dVB3KSB8CgotLS0KCiMjIOS4ieOAgeefm+ebviAvIOWtmOeWke+8iOeFp+W9le+8iQoKMS4gKioiMzUg5YWD5riF5LuT5aSq5p6BIuS7t+agvOWPo+W+hCoq77yaMjAyNS4xLjEwIOWkjeebmOaPkOWPiiAzNSDlhYPvvIzkvYYgMjAyNCDmoaPmoYjlr7nlpKrmnoHmuIXku5PnmoTmj4/ov7DkuLoi6auY5L2N57qmIDM1IOWFgyLkuIDluKbvvJvlpKrmnoHlrp7pmYXotbDlir8gMzXihpIyMO+8jOWFt+S9k+avj+iCoeWNluWHuuS7t+S7peWOn+aWh+S4uuWHhu+8iOWkmuWkhOWPo+W+hOeVpeW8gu+8jOacqumAkOeslOaguO+8ieOAggoyLiAqKuS5sOWFpeS7ty/ljZblh7rku7cv6IKh5pWw5pyq5oqr6ZyyKirvvJoi6LWa57qmIDUwJSDplJnov4ci5LiO5pyA57uI5Y2W5Ye657uT5p6c5LmL6Ze055qE5a6M5pW055uI5LqP6Lev5b6E5pyq5oqr6Zyy4oCU4oCU5LuO5bm05pyr5oyB5LuT5bey5peg6Iqx5Zut55Sf54mp55yL5bqU5bey6I635Yip5LqG57uT77yM6YeR6aKd5pyq5qC444CCCjMuICoqIuS4gOS4quaciOi1miA1MCUi55qE6LW354K5L+e7iOeCueaXpeacn+S4jeeyvuehrioq77ya5LulIDIwMjQuNiDkubDlhaXjgIEyMDI0LjfvvIjlh7rlm73mnJ/pl7TvvInkuLrnqpflj6PvvIznsr7noa7mtqjot4zljLrpl7TmnKrmiqvpnLLjgIIKNC4gKirljZbngrnlkI7liankvZnpl67popgqKu+8muWkjeebmOaWh+acquivtOaYjuiLpeW9k+aXtiLpgLvovpHlpLHmlYjljbPljZYi5LmL5ZCO6IKh5Lu35aaC5L2V6LWw77yM5peg5rOV6aqM6K+B5Y2W54K55Yik5o2u55qE5ZCO57ut5q2j56Gu5oCn77yI5Y+q57uZ5pa55rOV6K6677yM5LiN57uZ5LqL5ZCO6LWw5Yq/77yJ44CCCgo1LiAqKuWHuuWkhOmTvuaOpeihpeWFqO+8iDIwMjYtMDktMTHvvIkqKu+8muacrOmhteWFqOmDqCBgWVlZWS5NLkTjgIrmoIfpopjjgItgIOW8j+WHuuWkhOW3suWbnuafpSByYXcg5ZCI6ZuG77yIYHJhdy9yZXNlYXJjaC/nlq/ni4LnmoTph4zmtbcvYO+8ieihpSBtcC53ZWl4aW4ucXEuY29tIOWOn+aWh+mTvuaOpe+8iOacrOi9ruaWsOWini/ooaXpvZAgNyDlpITvvInjgIIKCiMjIOWPguingQoKLSBbW+mHjOa1t+S9k+ezuy3mgLvop4hdXSDigJQg5L2T57O76aqo5p6277yI5pys6aG15Li6IuWCrOWMluWJguS5sOeCuSAvIOmAu+i+keWkseaViOWNlueCuSAvIOaKieaLqeaenOaWrSLmnaHnm67nmoTor4Hmja7lsYLvvIkKLSBbW+mHjOa1t+ahiOS+iy3lpKrmnoHpm4blm6JdXSDigJQg5ZCM56yU5o2i5LuT55qE5Y+m5LiA5Y2K77yIMjAyNC42IOWNluWkquaegeiFvuS7k++8muaImOeVpemrmOS9jeiCoeWIh+aImOacr+W8ueaAp++8iQotIFtb6YeM5rW35qGI5L6LLeehheWuneenkeaKgF1dIOKAlCDlr7nlgbbvvJrnoYXlrp0i5aSn5raoIDYg5YCN5ZCO5LmwIiB2cyDoirHlm63nlJ/niaki6KGM5Lia5bqV6YOoK+WCrOWMluWJguS5sCIKLSBbW+mHjOa1ty3kuJrnu6nlvZLlm6BdXSDigJQgMjAyNCDmiJjmnK/ova7liqjml7bku6Pog4zmma/vvIgrNC41NyXjgIHpgb/lpKrmnoHmnYDot4zvvIkKW1tyZXNlYXJjaC9pbmRleC5tZF1dCgotLS0KCiMjIOmZhO+8muWRqEsg5aSN55uY5Zu+77yIMjAyMy0yMDI277yJCgohW+iKseWbreeUn+eJqe+8iDMwMDQwMe+8iemHjOa1t+ahiOS+i+WkjeebmCDCtyDlkahL77yI5YmN5aSN5p2D77yJwrcgMjAyMy0yMDI2XSguLi8uLi8uLi8uLi9yZXNlYXJjaC/nlq/ni4LnmoTph4zmtbcvYXNzZXRzL2tsaW5lLTMwMDQwMS1yZXZpZXcucG5nKQoKPiAqKuivu+Wbvioq77ya5Li75Zu+ID0g5ZGoS++8iOWJjeWkjeadg++8iSsg6Zi25q615qGG77yI6JOd57q/5Li66Zi25q615YiH5o2i5bm077yJKyDlhbPplK7pobblupUgKyDph4zmtbfkubDljZbngrnvvIjmloflrZfkuLrmoYjkvovpobXljp/mlofjgIzlvZPml7bmiJDkuqTlkI3kuYnku7fjgI3vvIzkuI7liY3lpI3mnYPku7flj6PlvoTkuI3lkIzvvIkrIOWFs+mUruawtOW5s+S9jeOAggo+IOS4u+WbvuS4i+aWueOAjOaKq+mcsuW4puOAjT0g5a6a5pyf5oql5ZGKIC8g5Lia57up6aKE5ZGK5oqr6Zyy5pel77yI5qmZID0g5Lia57up6aKE5ZGKIMK3IOW/q+aKpe+8jOeBsCA9IOW5tOaKpSAvIOS4reaKpSAvIOS4gOWto+aKpSAvIOS4ieWto+aKpe+8jOagh+etviA9IOS4pOS9jeW5tOS7vSArIOaKpeWRiuacn++8jOWmgiAyMUEgLyAyMUgxIC8gMjFRM++8ie+8m+W6lemDqCA9IOWRqOaIkOS6pOmHj+OAguS4ieWdl+mdouadv+WFseeUqOWQjOS4gOaXtumXtOi9tOOAggo+IOeUn+aIkOiEmuacrCBgc2NyaXB0cy9saW5oYWlfY2hhcnQucHlg77yIYFNQRUNTWyIzMDA0MDEiXWDvvInvvIzmlbDmja7mupAgYGRhdGEvMzAwNDAxLmRiYO+8iGtsaW5lIOWJjeWkjeadgyBxZnHvvIkrIGBkYXRhL2Rpc2Nsb3N1cmUvMzAwNDAxX2Rpc2Nsb3N1cmUuanNvbmDvvIjlt6jmva4gY25pbmZvIOW9kuaho+aXpe+8ieOAggo+IOmhtuW6leeUseiEmuacrOaMieOAjOivpeW5tOacgOmrmCAvIOacgOS9juWRqOOAjeiHquWKqOWumuS9je+8jOacquaJi+Whq+aXpeacn++8m+S5sOWNlueCueS7t+S9jeacquaKq+mcsuiAheWPquagh+aXpeacn+OAgeS4jeagh+S7t+OAgg==";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海案例-花园生物.html">里海案例·花园生物</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海案例·花园生物</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-06</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/案例</span></div><div class="md" id="md"><h1>里海案例 · 花园生物</h1>
+<blockquote>
+<p><strong>一句话定位</strong>：<strong>2024.6&quot;35 元清仓太极换入&quot;的战术避杀跌标的（示范账户躲开太极 35→20 最惨烈杀跌、自述少亏十几万）——&quot;催化剂点火 + 原有逻辑失效即卖点&quot;卖点方法论的标准载体</strong>；同时是&quot;错过最佳卖点（带娃出国）后难以再下手&quot;的抉择教训样本。</p>
+<p>本页为 <a href="../%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">里海体系-总览</a> 的案例证据层（<strong>术·变化=催化剂 + 卖点判断=逻辑失效 + 能力·抉择果断</strong>）。账户口径=30 万示范账户（2024=+4.57%）；<strong>业绩为作者自述口径</strong>，未独立核实；素材以 wiki 时间线档案转述为主。</p>
+</blockquote>
+<hr />
+<h2>一、体系 × 证据 映射（核心表）</h2>
+<h3>1. 术——简单 · 底部 · 变化 · 分仓</h3>
+<ul>
+<li><strong>术·变化（催化剂，本笔核心买入逻辑）</strong>：公司=全球维生素 D3 龙头/隐形冠军（行业下行周期里只有它盈利=<strong>完整产业链把成本做到极致</strong>）；<strong>2024.6 初见 D3 涨价新闻 + 券商报告 = 催化剂</strong>——作者买入点=变化刚点火处（不是等业绩报表）。</li>
+<li><strong>术·底部（相对）</strong>：D3 行业处于多年下行后的价格底部区，公司股价未大涨过——买在&quot;行业底部的变化起爆点&quot;；与硅宝&quot;大涨 6 倍后高位买&quot;成对照。</li>
+<li><strong>术·分仓（卖出太极腾仓）</strong>：本笔本质是<strong>战略股高位减仓+资金切战术弹性标的</strong>的组合动作：35 元清仓太极（当时太极见顶回落）、同日切花园生物。</li>
+</ul>
+<h3>2. 道——常识 · 概率 · 赔率 · 频率</h3>
+<ul>
+<li><strong>道·频率（错过兑现窗口=核心教训）</strong>：买入后一个月内<strong>赚约 50%</strong>（战术一波流兑现窗口），恰逢作者 2024.7 带娃出国——<strong>错过最佳卖点，战术机会泡汤</strong>（2025.1.10 复盘原文意：&quot;带娃出国错过最佳卖点，一个月赚 50% 的战术机会泡汤&quot;）。</li>
+<li><strong>道·赔率/卖点（本页最有价值部分）</strong>：作者总结<strong>阶段顶部判据= &quot;支撑上涨的原有逻辑失效，又找不到新的逻辑&quot;</strong>——案例：D3 价格从五六十涨到两百七八，但<strong>股价不再突破前高</strong>（业绩/价格大幅向好、股价停滞=聪明钱已在顶部派发）。</li>
+</ul>
+<h3>3. 能力——价值判断 · 市场先生 · 心性 · 宏观</h3>
+<ul>
+<li><strong>能力·价值判断（对）</strong>：&quot;行业下行只有它盈利&quot;=对龙头成本护城河的识别；D3 涨价=行业景气拐点信号。</li>
+<li><strong>能力·市场先生（对）</strong>：理解&quot;涨价 + 券商报告&quot;驱动的情绪/资金合力，催化剂会点火股价。</li>
+<li><strong>能力·心性/抉择（教训）</strong>：复盘给出三条启示：<strong>①股价启动需要催化剂（买点要等点火）②业绩好但股价停滞=某阶段顶部已至（卖点）③抉择要果断——错过最佳买点/卖点后都很难再下手</strong>。</li>
+</ul>
+<h3>4. 弱者思维</h3>
+<ul>
+<li><strong>部分符合</strong>：在&quot;行业底部+隐形冠军+催化剂&quot;处介入符合弱者&quot;极端位置等变化&quot;；但&quot;催化剂点火后追进&quot;隐含右侧追高（涨起来才确认），且错过卖点后犹豫=未能严守&quot;逻辑失效即走&quot;的弱者纪律。</li>
+</ul>
+<h3>5. 战略 vs 战术股</h3>
+<ul>
+<li><strong>战术股（明确）</strong>：以 50% 级别一波流为目标的弹性仓位；买它的同时=太极（战略股）仓位主动调降——2024 年太极见顶回落期&quot;卖战略高位、切战术弹性&quot;的示范（同&quot;少亏十几万&quot;的避损作用）。</li>
+</ul>
+<hr />
+<h2>二、事件时间线（含出处）</h2>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>业绩（间隔 / 公告）</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024.6 初</td>
+<td>见 <strong>D3 涨价新闻 + 券商报告</strong>（催化剂）</td>
+<td>—</td>
+<td><a href="https://mp.weixin.qq.com/s/cRHs26ATW8mMmL8B1u4uPw">2025.1.10《花园生物这家公司》</a>（回溯）</td>
+</tr>
+<tr>
+<td><strong>2024.6</strong></td>
+<td><strong>35 元清仓太极集团、同日买入花园生物</strong>——示范账户躲开太极随后 35→20 的最惨烈杀跌，自述&quot;少亏十几万&quot;（2024 年度口径）</td>
+<td>—</td>
+<td><a href="https://mp.weixin.qq.com/s/LG__ZXX-03UgulvdGvt_xw">2024.12.31《2024年投资总结，浴火重生的一年》</a>；<a href="https://mp.weixin.qq.com/s/cRHs26ATW8mMmL8B1u4uPw">2025.1.10《花园生物这家公司》</a></td>
+</tr>
+<tr>
+<td><strong>2024.7</strong></td>
+<td>买入约一个月，<strong>浮盈约 50%（战术一波流兑现窗口）</strong>，恰逢作者带娃出国——<strong>错过最佳卖点，战术机会泡汤</strong>；归来后&quot;错过最佳卖点后很难再下手&quot;</td>
+<td>—</td>
+<td><a href="https://mp.weixin.qq.com/s/cRHs26ATW8mMmL8B1u4uPw">2025.1.10《花园生物这家公司》</a>（回溯）</td>
+</tr>
+<tr>
+<td>2024 年内（下半年）</td>
+<td>卖出（精确时点/价格未披露；2024.12.31 示范账户年末持仓=硅宝/索通/华康，花园生物已不在列）</td>
+<td>—</td>
+<td><a href="https://mp.weixin.qq.com/s/LG__ZXX-03UgulvdGvt_xw">2024.12.31《2024年投资总结，浴火重生的一年》</a></td>
+</tr>
+<tr>
+<td>2024 年</td>
+<td><strong>夫人（领导）账户</strong>亦买过花园生物——2024.12.30 领导账户复盘&quot;花园生物也如此&quot;（本地账户吃到战术波段的例）</td>
+<td>—</td>
+<td><a href="https://mp.weixin.qq.com/s/zOQn2NED5OEfxsEThaB61w">2024.12.30《2024年即将收官，为啥我家领导的收益比我示范账户高？》</a></td>
+</tr>
+<tr>
+<td><strong>2025.1.10</strong></td>
+<td><strong>复盘专文《花园生物》</strong>：D3 全球龙头隐形冠军（行业下行只有它盈利=完整产业链成本极致）；6 月初见涨价/券商报告=催化剂买入；7 月带娃错过 50% 卖点；卖出关键=<strong>支撑上涨的原有逻辑失效又找不到新逻辑=阶段顶部</strong>（D3 五六十→两百七八、股价却不突破前高）；三启示=催化剂/逻辑失效卖点/抉择果断</td>
+<td>公告：2024 三季报<br>间隔：晚 84 天<br>发布：2024-10-18</td>
+<td><a href="https://mp.weixin.qq.com/s/cRHs26ATW8mMmL8B1u4uPw">2025.1.10《花园生物这家公司》</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>三、矛盾 / 存疑（照录）</h2>
+<ol>
+<li>
+<p><strong>&quot;35 元清仓太极&quot;价格口径</strong>：2025.1.10 复盘提及 35 元，但 2024 档案对太极清仓的描述为&quot;高位约 35 元&quot;一带；太极实际走势 35→20，具体每股卖出价以原文为准（多处口径略异，未逐笔核）。</p>
+</li>
+<li>
+<p><strong>买入价/卖出价/股数未披露</strong>：&quot;赚约 50% 错过&quot;与最终卖出结果之间的完整盈亏路径未披露——从年末持仓已无花园生物看应已获利了结，金额未核。</p>
+</li>
+<li>
+<p><strong>&quot;一个月赚 50%&quot;的起点/终点日期不精确</strong>：以 2024.6 买入、2024.7（出国期间）为窗口，精确涨跌区间未披露。</p>
+</li>
+<li>
+<p><strong>卖点后剩余问题</strong>：复盘文未说明若当时&quot;逻辑失效即卖&quot;之后股价如何走，无法验证卖点判据的后续正确性（只给方法论，不给事后走势）。</p>
+</li>
+<li>
+<p><strong>出处链接补全（2026-09-11）</strong>：本页全部 <code>YYYY.M.D《标题》</code> 式出处已回查 raw 合集（<code>raw/research/疯狂的里海/</code>）补 mp.weixin.qq.com 原文链接（本轮新增/补齐 7 处）。</p>
+</li>
+</ol>
+<h2>参见</h2>
+<ul>
+<li><a href="../%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">里海体系-总览</a> — 体系骨架（本页为&quot;催化剂买点 / 逻辑失效卖点 / 抉择果断&quot;条目的证据层）</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%A4%AA%E6%9E%81%E9%9B%86%E5%9B%A2.html">里海案例-太极集团</a> — 同笔换仓的另一半（2024.6 卖太极腾仓：战略高位股切战术弹性）</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E7%A1%85%E5%AE%9D%E7%A7%91%E6%8A%80.html">里海案例-硅宝科技</a> — 对偶：硅宝&quot;大涨 6 倍后买&quot; vs 花园生物&quot;行业底部+催化剂买&quot;</li>
+<li><a href="../%E9%87%8C%E6%B5%B7-%E4%B8%9A%E7%BB%A9%E5%BD%92%E5%9B%A0.html">里海-业绩归因</a> — 2024 战术轮动时代背景（+4.57%、避太极杀跌）
+<a href="../../../../research/index.md">research/index.md</a></li>
+</ul>
+<hr />
+<h2>附：周K 复盘图（2023-2026）</h2>
+<p><img src="../../../../research/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/assets/kline-300401-review.png" alt="花园生物（300401）里海案例复盘 · 周K（前复权）· 2023-2026" /></p>
+<blockquote>
+<p><strong>读图</strong>：主图 = 周K（前复权）+ 阶段框（蓝线为阶段切换年）+ 关键顶底 + 里海买卖点（文字为案例页原文「当时成交名义价」，与前复权价口径不同）+ 关键水平位。
+主图下方「披露带」= 定期报告 / 业绩预告披露日（橙 = 业绩预告 · 快报，灰 = 年报 / 中报 / 一季报 / 三季报，标签 = 两位年份 + 报告期，如 21A / 21H1 / 21Q3）；底部 = 周成交量。三块面板共用同一时间轴。
+生成脚本 <code>scripts/linhai_chart.py</code>（<code>SPECS[&quot;300401&quot;]</code>），数据源 <code>data/300401.db</code>（kline 前复权 qfq）+ <code>data/disclosure/300401_disclosure.json</code>（巨潮 cninfo 归档日）。
+顶底由脚本按「该年最高 / 最低周」自动定位，未手填日期；买卖点价位未披露者只标日期、不标价。</p>
+</blockquote>
+</div><div class="backrow"><a href="../index.html#dir=%E6%A1%88%E4%BE%8B">← 返回 案例</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/案例/里海案例-花园生物.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

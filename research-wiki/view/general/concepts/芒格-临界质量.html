@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>芒格思维模型：临界质量（Critical Mass）</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>芒格思维模型：临界质量（Critical Mass）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,78 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">芒格·格栅理论</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">芒格思维模型：临界质量（Critical Mass）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">← 返回 芒格·格栅理论</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/芒格-临界质量.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDoipLmoLzmgJ3nu7TmqKHlnovvvJrkuLTnlYzotKjph4/vvIhDcml0aWNhbCBNYXNz77yJCgo+IOaUtuW9leaXpeacn++8mjIwMjYtMDctMjQKPiDmnaXmupDvvJrjgIrnqbfmn6XnkIblrp3lhbjjgIvvvIjnrKzkuInniYjCt+WFqOaWsOWinuiuouacrO+8ie+8jOW9vOW+l8K36ICD5aSr5pu857yW77yM5Lit5L+h5Ye654mI6ZuG5ZuiCgotLS0KCiMjIOaooeWei+adpea6kAoK5Zyo56ys5LqM56ugIuiKkuagvOeahOeUn+a0u+OAgeWtpuS5oOWSjOWGs+etluaWueazlSLkuK3vvIznvJbogIXogIPlpKvmm7zlsIYi5Li055WM54K5IuWIl+S4uuiKkuagvOacgOmHjeimgeeahOaAnee7tOaooeWei+S5i+S4gO+8mgoKPiAi6L+Z5Lqb5qih5Z6L5Lit5pyA6YeN6KaB55qE5L6L5a2Q5YyF5ous5bel56iL5a2m55qE5YaX5L2Z5aSH5Lu95qih5Z6L77yM5pWw5a2m55qE5aSN5Yip5qih5Z6L77yM54mp55CG5a2m5ZKM5YyW5a2m55qEKirkuLTnlYzngrnjgIHlgL7opoblipvnn6njgIHoh6rmiJHlgqzljJbmqKHlnosqKu+8jOeUn+eJqeWtpueahOeOsOS7o+i+vuWwlOaWh+e7vOWQiOaooeWei++8jOS7peWPiuW/g+eQhuWtpueahOiupOefpeivr+WIpOaooeWei+OAgiIKPiDigJTigJTnrKzkuoznq6DCt+WkmuWFg+aAnee7tOaooeWeiwoK5Zyo56ys5LqM6K6y5Lit77yM6IqS5qC85Lqy6Ieq5by66LCD5LqG6L+Z5Liq5qih5Z6L55qE6YeN6KaB5oCn77yaCgo+ICLniannkIblrabph4zpnaLnmoQqKuS4tOeVjOi0qOmHjyoq5qaC5b+15piv5LiA56eN6Z2e5bi45by65aSn55qE5oCd57u05qih5Z6L44CCIgo+IOKAlOKAlOesrOS6jOiussK36K665Z+65pys55qE44CB5pmu5LiW55qE5pm65oWnCgotLS0KCiMjIOaguOW/g+acuuWItgoK6IqS5qC85Zyo6Kej6YeKIExvbGxhcGFsb296YSDmlYjlupTml7bvvIznu5nlh7rkuobkuLTnlYzotKjph4/mnIDmuIXmmbDnmoTmr5TllrvvvJoKCj4gIuW9k+WHoOS4quaooeWei+iBlOWQiOi1t+adpe+8jOS9oOWwseiDveW+l+WIsCBsb2xsYXBhbG9vemEg5pWI5bqU77yb6L+Z5piv5Lik56eN44CB5LiJ56eN5oiW5Zub56eN5Yqb6YeP5YWx5ZCM5L2c55So5LqO5ZCM5LiA5Liq5pa55ZCR77yM6ICM5LiU5L2g5b6X5Yiw55qE6YCa5bi45LiN5LuF5LuF5piv5Yeg56eN5Yqb6YeP5LmL5ZKM44CC6YKj5bCx5YOP54mp55CG5a2m6YeM6Z2i55qEKirkuLTnlYzotKjph48qKu+8jOW9k+S9oOi+vuWIsOS4gOWumueoi+W6pueahOi0qOmHj++8jOS9oOWwseiDveW8leWPkSoq5qC454iG54K4KirigJTigJTogIzlpoLmnpzkvaDmsqHmnInovr7liLDpgqPnp43otKjph4/vvIzkvaDlsIbku4DkuYjkuZ/lvpfkuI3liLDjgILmnInml7blgJnlkITnp43lipvph4/lj6rmmK/nroDljZXlnLDnm7jliqDvvIzmnInml7blgJnlroPku6zkvJrlnKjkuLTnlYzngrnmiJbogIXkuLTnlYzotKjph4/nmoTln7rnoYDkuIrogZTlkIjotbfmnaXjgIIiCj4g4oCU4oCU56ys5LqM56ugwrdMwrdPwrdMwrdMwrdBwrdQwrdBwrdMwrdPwrdPwrdawrdBIOaViOW6lAoKLS0tCgojIyDlnKjoipLmoLzkvZPns7vkuK3nmoTlupTnlKgKCiMjIyAxLiDkuKrkurrlk4HotKjnmoTkuLTnlYznianotKgKCj4gIuWHhuWkh+OAgee6quW+i+OAgeiAkOW/g+OAgeWGs+W/g+OAguavj+S4quWboOe0oOmDveaYr+S6kuS4jeebuOW5sueahO+8jOS9hioq5a6D5Lus5Yqg6LW35p2l5bCx5Y+Y5oiQ5LqG5aiB5Yqb5by65aSn55qE5Li055WM54mp6LSoKirvvIzog73lpJ/lgqzljJbpgqPnp43lm6DoipLmoLzogIzpl7vlkI3nmoQgbG9sbGFwYWxvb3phIOaViOW6lOOAgiIKPiDigJTigJTnrKzkuoznq6DCt+aKlei1hOWOn+WImeajgOafpea4heWNlee7k+WwvgoKIyMjIDIuIOWVhuS4muaIkOWKn+eahOmdnue6v+aAp+WinumVvwoKPiAi5aKe5Yqg5LiA5Lqb5oiQ5Yqf55qE5Zug57Sg77yM5Lul5L6/5Y+W5b6X5pu05aSn55qE5oiQ5pWI77yM6L+Z56eN5oiQ5pWI55qE5o+Q6auY6YCa5bi45pivKirpnZ7nur/mgKfnmoQqKu+8jOiuqeS6uuaDs+i1t+acieWFs+S4tOeVjOeCueaIluiAheeJqeeQhuWtpuS4reeahOS4tOeVjOeJqei0qOeahOeQhuiuuuOAgue7k+aenOmAmuW4uOaYr+mdnue6v+aAp+eahOOAguS9oOS7rOWPquimgeWGjeWinuWKoOS4gOeCueeCueeJqei0qO+8jOWwseiDveW+l+WIsOS4gOenjSBsb2xsYXBhbG9vemEg5pWI5bqU44CCIgo+IOKAlOKAlOesrOS5neiussK36K665a2m6Zmi5rS+57uP5rWO5a2mCgojIyMgMy4g5bCG5Y2V5Zug57Sg5o6o5ZCR5p6B6Ie055qE5Li055WM562W55WlCgo+ICLmnoHluqbnmoTmiJDlip/lvojlj6/og73mmK/nlLHkuIvpnaLov5nkupvlm6DntKDlhbHlkIzpgKDmiJDnmoTvvJoxLiDlsIbkuIDliLDkuKTkuKrlm6DntKAqKuacgOWkp+WMluaIluiAheacgOWwj+WMlioq44CC5L6L5aaC77yM5aW95biC5aSa5oiW6ICF5oiR5Lus55qE5a625YW355S15Zmo5ZWG5bqX44CCIgo+IOKAlOKAlOesrOS5neiusgoKIyMjIDQuIOiHquaIkeWCrOWMluKAlOKAlOi/quWjq+WwvOeahOW9leWDj+W4pgoKPiAi6L+q5aOr5bC85pivKiroh6rmiJHlgqzljJbnmoTlroznvo7lhbjojIMqKuKApuKApuW9k+W9leWDj+W4puiiq+WPkeaYjuWHuuadpeS5i+WQju+8jOi/quWjq+WwvOS4jemcgOimgeWPkeaYjuS7u+S9leaWsOS4nOilv++8jOWug+WPquimgeaKiuaRhOWItuWlveeahOeUteW9seeBjOW9leaIkOW9leWDj+W4puWwseWkn+S6huOAguavj+S4queItuavjeWSjOellueItuavjemDveW4jOacm+iHquW3seeahOWQjuS7o+WdkOWcqOWutumHjOeci+i/meS6m+W9leWDj+W4puOAgiIKPiDigJTigJTnrKzlm5vorrLCt+WFs+S6jueOsOWunuaAnee7tOeahOeOsOWunuaAneiAg++8nwoKIyMjIDUuIOi1ouWutumAmuWQg+eahOaXpeaKpQoKPiAi5aaC5p6c5oiR55qE5Y+R6KGM6YeP5Y2g5Yiw57ud5aSn5aSa5pWw55qE5Lu96aKd77yM5oiR5bCx6IO95ou/5Yiw57ud5aSn5aSa5pWw55qE5bm/5ZGK44CC5aaC5p6c5oiR5oul5pyJ5LqG5aSn6YeP55qE5bm/5ZGK5ZKM5Y+R6KGM6YeP77yM6L+Y5pyJ6LCB5oOz55yL6YKj5Lu95pu06JaE44CB5L+h5oGv6YeP5pu05bCR55qE5oql57q45ZGi77yf5omA5Lul5Lya5oWi5oWi5Ye6546wKirotaLlrrbpgJrlkIMqKueahOWxgOmdouOAgiIKPiDigJTigJTnrKzkuozorrLCt+inhOaooeS8mOWKvwoKIyMjIDYuIOWkmuWFg+aAnee7tOaooeWei+eahOS4tOeVjOaxh+iBmgoKPiAi5pyA6YeN6KaB55qE5LqL5oOF5piv6KaB54mi54mi6K6w5L2P77yM6L+ZIDEwMCDnp43mqKHlnovlvoDlvoDog73lpJ/luKbmnaXnibnliKvlpKfnmoTlipvph4/jgILlvZPlh6DkuKrmqKHlnovogZTlkIjotbfmnaXvvIzkvaDlsLHog73lvpfliLAgbG9sbGFwYWxvb3phIOaViOW6lOOAgiIKPiDigJTigJTnrKzkuoznq6AKCi0tLQoKIyMg5oCd57u05qih5Z6L55qE6YCa55So5qih5byPCgrkuLTnlYzotKjph4/nmoTmoLjlv4PmtJ7lr5/mmK/vvJoqKuWkmuenjeWKm+mHj+e0r+enr+WIsOS4gOS4qumYiOWAvOS5i+WJje+8jOS7gOS5iOmDveS4jeS8muWPkeeUn++8m+i3qOi2iumYiOWAvOS5i+WQju+8jOS6p+eUn+mdnue6v+aAp+eIhueCuOaViOaenOOAgioqIOaXoOiuuui/meS6m+WKm+mHj+aYr+W/g+eQhuWAvuWQkeOAgeWVhuS4muWboOe0oOOAgeefpeivhuaooeWei+i/mOaYr+S4quS6uuWTgei0qOOAggoK6IqS5qC85LiA6L6I5a2Q6YO95Zyo5a+75om+6L+Z56eN546w6LGh77yaCgo+ICLlvZPnhLbvvIzmiJHov5novojlrZDpg73lnKjlr7vmib4gbG9sbGFwYWxvb3phIOaViOW6lO+8jOaJgOS7peaIkeWvuemCo+S6m+iDveWkn+ino+mHiui/meenjeaViOW6lOWmguS9leWPkeeUn+eahOaooeWei+eJueWIq+aEn+WFtOi2o+OAgiIKPiDigJTigJTnrKzkuZ3orrIKCi0tLQoKIyMg55u45YWz6ZO+5o6lCgotIFtbLi4vLi4vcmF3L3Jlc2VhcmNoL2FydGljbGVzL+iAg+Wkq+abvF8yMDA1X+ept+afpeeQhuWuneWFuF1dIOKAlCDjgIrnqbfmn6XnkIblrp3lhbjjgIvlrozmlbTpmIXor7vmkZjopoEKLSBbW+iKkuagvOagvOagheeQhuiuui3lpJrlrabnp5HmgJ3nu7TmipXotYTmoYbmnrZdXSDigJQg5ZOI5qC85pav54m55pyX5a+56IqS5qC85L2T57O755qE57O757uf6ZiQ6L+wCi0gTG9sbGFwYWxvb3ph5pWI5bqUIOKAlCDkuLTnlYzotKjph4/lnKjlv4PnkIblrabkuK3nmoTmoLjlv4PlupTnlKjvvIjmpoLlv7XpobXlvoXliJvlu7rvvIkKW1tyZXNlYXJjaC9pbmRleC5tZF1dIMK3IFtbcmVzZWFyY2gvYXJ0aWNsZXMvc3ludGhlc2lzL+ernuS6ieaAp+avgeeBrS3lm5vkuabmoLzmoIXliIbmnpAubWRdXQpbW3Jlc2VhcmNoL2FydGljbGVzL2VudGl0aWVzL+afpeeQhsK36IqS5qC8Lm1kXV0gwrcgW1tyZXNlYXJjaC9hcnRpY2xlcy9jb25jZXB0cy/lgL7opoblipvnn6kubWRdXQpbW3Jlc2VhcmNoL2FydGljbGVzL3N5bnRoZXNpcy/nq57kuonmvJTljJbliJ3mraXmoYbmnrYt5LqU5Lmm5aSa5YWD5oCd57u05qih5Z6LLm1kXV0gwrcgW1tyZXNlYXJjaC9hcnRpY2xlcy9jb25jZXB0cy/nq57kuonmgKfmr4Hnga0ubWRdXQ==";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">芒格·格栅理论</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">芒格思维模型：临界质量（Critical Mass）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"><h1>芒格思维模型：临界质量（Critical Mass）</h1>
+<blockquote>
+<p>收录日期：2026-07-24
+来源：《穷查理宝典》（第三版·全新增订本），彼得·考夫曼编，中信出版集团</p>
+</blockquote>
+<hr />
+<h2>模型来源</h2>
+<p>在第二章&quot;芒格的生活、学习和决策方法&quot;中，编者考夫曼将&quot;临界点&quot;列为芒格最重要的思维模型之一：</p>
+<blockquote>
+<p>&quot;这些模型中最重要的例子包括工程学的冗余备份模型，数学的复利模型，物理学和化学的<strong>临界点、倾覆力矩、自我催化模型</strong>，生物学的现代达尔文综合模型，以及心理学的认知误判模型。&quot;
+——第二章·多元思维模型</p>
+</blockquote>
+<p>在第二讲中，芒格亲自强调了这个模型的重要性：</p>
+<blockquote>
+<p>&quot;物理学里面的<strong>临界质量</strong>概念是一种非常强大的思维模型。&quot;
+——第二讲·论基本的、普世的智慧</p>
+</blockquote>
+<hr />
+<h2>核心机制</h2>
+<p>芒格在解释 Lollapalooza 效应时，给出了临界质量最清晰的比喻：</p>
+<blockquote>
+<p>&quot;当几个模型联合起来，你就能得到 lollapalooza 效应；这是两种、三种或四种力量共同作用于同一个方向，而且你得到的通常不仅仅是几种力量之和。那就像物理学里面的<strong>临界质量</strong>，当你达到一定程度的质量，你就能引发<strong>核爆炸</strong>——而如果你没有达到那种质量，你将什么也得不到。有时候各种力量只是简单地相加，有时候它们会在临界点或者临界质量的基础上联合起来。&quot;
+——第二章·L·O·L·L·A·P·A·L·O·O·Z·A 效应</p>
+</blockquote>
+<hr />
+<h2>在芒格体系中的应用</h2>
+<h3>1. 个人品质的临界物质</h3>
+<blockquote>
+<p>&quot;准备、纪律、耐心、决心。每个因素都是互不相干的，但<strong>它们加起来就变成了威力强大的临界物质</strong>，能够催化那种因芒格而闻名的 lollapalooza 效应。&quot;
+——第二章·投资原则检查清单结尾</p>
+</blockquote>
+<h3>2. 商业成功的非线性增长</h3>
+<blockquote>
+<p>&quot;增加一些成功的因素，以便取得更大的成效，这种成效的提高通常是<strong>非线性的</strong>，让人想起有关临界点或者物理学中的临界物质的理论。结果通常是非线性的。你们只要再增加一点点物质，就能得到一种 lollapalooza 效应。&quot;
+——第九讲·论学院派经济学</p>
+</blockquote>
+<h3>3. 将单因素推向极致的临界策略</h3>
+<blockquote>
+<p>&quot;极度的成功很可能是由下面这些因素共同造成的：1. 将一到两个因素<strong>最大化或者最小化</strong>。例如，好市多或者我们的家具电器商店。&quot;
+——第九讲</p>
+</blockquote>
+<h3>4. 自我催化——迪士尼的录像带</h3>
+<blockquote>
+<p>&quot;迪士尼是<strong>自我催化的完美典范</strong>……当录像带被发明出来之后，迪士尼不需要发明任何新东西，它只要把摄制好的电影灌录成录像带就够了。每个父母和祖父母都希望自己的后代坐在家里看这些录像带。&quot;
+——第四讲·关于现实思维的现实思考？</p>
+</blockquote>
+<h3>5. 赢家通吃的日报</h3>
+<blockquote>
+<p>&quot;如果我的发行量占到绝大多数的份额，我就能拿到绝大多数的广告。如果我拥有了大量的广告和发行量，还有谁想看那份更薄、信息量更少的报纸呢？所以会慢慢出现<strong>赢家通吃</strong>的局面。&quot;
+——第二讲·规模优势</p>
+</blockquote>
+<h3>6. 多元思维模型的临界汇聚</h3>
+<blockquote>
+<p>&quot;最重要的事情是要牢牢记住，这 100 种模型往往能够带来特别大的力量。当几个模型联合起来，你就能得到 lollapalooza 效应。&quot;
+——第二章</p>
+</blockquote>
+<hr />
+<h2>思维模型的通用模式</h2>
+<p>临界质量的核心洞察是：<strong>多种力量累积到一个阈值之前，什么都不会发生；跨越阈值之后，产生非线性爆炸效果。</strong> 无论这些力量是心理倾向、商业因素、知识模型还是个人品质。</p>
+<p>芒格一辈子都在寻找这种现象：</p>
+<blockquote>
+<p>&quot;当然，我这辈子都在寻找 lollapalooza 效应，所以我对那些能够解释这种效应如何发生的模型特别感兴趣。&quot;
+——第九讲</p>
+</blockquote>
+<hr />
+<h2>相关链接</h2>
+<ul>
+<li><a href="../raw/%E8%80%83%E5%A4%AB%E6%9B%BC_2005_%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8.html">../../raw/research/articles/考夫曼_2005_穷查理宝典</a> — 《穷查理宝典》完整阅读摘要</li>
+<li><a href="%E8%8A%92%E6%A0%BC%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA-%E5%A4%9A%E5%AD%A6%E7%A7%91%E6%80%9D%E7%BB%B4%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6.html">芒格格栅理论-多学科思维投资框架</a> — 哈格斯特朗对芒格体系的系统阐述</li>
+<li>Lollapalooza效应 — 临界质量在心理学中的核心应用（概念页待创建）
+<a href="../../../research/index.md">research/index.md</a> · <a href="../../../research/articles/synthesis/%E7%AB%9E%E4%BA%89%E6%80%A7%E6%AF%81%E7%81%AD-%E5%9B%9B%E4%B9%A6%E6%A0%BC%E6%A0%85%E5%88%86%E6%9E%90.md">research/articles/synthesis/竞争性毁灭-四书格栅分析.md</a>
+<a href="../../../research/articles/entities/%E6%9F%A5%E7%90%86%C2%B7%E8%8A%92%E6%A0%BC.md">research/articles/entities/查理·芒格.md</a> · <a href="../../../research/articles/concepts/%E5%80%BE%E8%A6%86%E5%8A%9B%E7%9F%A9.md">research/articles/concepts/倾覆力矩.md</a>
+<a href="../../../research/articles/synthesis/%E7%AB%9E%E4%BA%89%E6%BC%94%E5%8C%96%E5%88%9D%E6%AD%A5%E6%A1%86%E6%9E%B6-%E4%BA%94%E4%B9%A6%E5%A4%9A%E5%85%83%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B.md">research/articles/synthesis/竞争演化初步框架-五书多元思维模型.md</a> · <a href="../../../research/articles/concepts/%E7%AB%9E%E4%BA%89%E6%80%A7%E6%AF%81%E7%81%AD.md">research/articles/concepts/竞争性毁灭.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">← 返回 芒格·格栅理论</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/concepts/芒格-临界质量.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

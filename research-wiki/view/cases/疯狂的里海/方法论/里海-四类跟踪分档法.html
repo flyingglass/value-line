@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海四类跟踪分档法</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海四类跟踪分档法</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,468 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海-四类跟踪分档法.html">里海四类跟踪分档法</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海四类跟踪分档法</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-19</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E6%96%B9%E6%B3%95%E8%AE%BA">← 返回 方法论</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/方法论/里海-四类跟踪分档法.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDph4zmtbflm5vnsbvot5/ouKrliIbmoaPms5XvvJrkuIDlvKDlj6/miafooYznmoTooYzliqjlm74KCj4gKirkuIDlj6Xor53nu5PorroqKu+8mumHjOa1tyoq5rKh5pyJ5omT5YiG6KGo77yM5Lmf5rKh5pyJ6ZiI5YC8KirigJTigJTku5bnu5nnmoTmmK/kuIDmnaEqKuS4ieatpeWKqOS9nOmTvioq77yI56m35Li+5ZyI5bGCIOKGkiAzMCDliIbpkp/kuInmnb/mlqcg4oaSIOS4pOaKiuWwuuWtkOiQveaho++8ieWKoCoq5LiA5p2h57K+5Yqb57qq5b6LKirvvIg2MCAvIDI1IC8gMTXvvInjgILliIbmoaPnmoTkuqflh7oqKuS4jeaYr+S5sOWFpea4heWNle+8jOiAjOaYr+i3n+i4quWKm+W6pueahOWIhumFjeihqCoq77yb5a6D55qE5a2Y5Zyo5oSP5LmJ5piv6K6pIumikeeOhyLov5nkuKrlm6DlrZDmnInmoIfnmoTmsaDlj6/nlKjjgILljp/mlofoh6rlt7HlsLHmib/orqTov5nmmK/kuLvop4LliKTmlq3vvJoqKiLkuIDlrrblhazlj7jliLDlupXliIbkuLrkuIDnsbvov5jmmK/kuoznsbvvvIzov5nlrozlhajlsLHmmK/miJHpgJrov4fpmIXor7vliIbmnpDlrqLop4LnmoTmnZDmlpnvvIzkvovlpoLnoJTmiqXjgIHlubTmiqXnrYnvvIzmiJHoh6rlt7HlgZrnmoTkuLvop4LliKTmlq3ogIzlt7LjgIIiKirvvIhb44CK57uI5LqO5pCe5a6M5LiA5Lu25aSn5LqL55qE5Z+656GA5oCn5bel5L2c77yB44CLMjAyMS44LjEyXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy91bmZUemY1djNRMUhkaFFQR3JiSy1nKe+8jHJhdyAyMDIxIOW5tOWQiOmbhiBsaW5lIDQwOTDvvIkKPgo+ICoq5pys6aG15Li65YiG5p6Q5pW055CG5bGC77yI6Z2e6YeM5rW35Y6f5paH77yJ44CCKiog5Zub57G75a6a5LmJ44CB5LiJ5p2/5pan44CB5bC65a2Q5a6a5LmJ5Z2H5Li6KirpgJDlrZflvJXmloflubbmoIfms6jlh7rlpIQqKu+8myLkuInmraXliqjkvZzpk74iIuWIpOWumuivrSLnrYnlvZLmlbTns7vmnKzmlofliIbmnpDvvIzkuI3mmK/kvZzogIXljp/or53nmoTliIbms5XjgIIKCi0tLQoKIyMg44CH44CB5Li65LuA5LmI6ZyA6KaB6L+Z5byg5Zu+77ya5a6D5pivIumikeeOh+WboOWtkCLnmoTliY3nva7mnaHku7YKCuWIhuaho+S4jeaYr+ebrueahO+8jOaYryoq5YmN572u5Yqo5L2cKirjgILpk77mnaHlpoLkuIvvvJoKCmBgYArmg7PnlKgi6aKR546HIuWboOWtkO+8iOmrmOaKm+S9juWQuOW8j+i9ruWKqO+8iQogIOKGkiDlv4XpobvlnKjmiYvph4zpmo/ml7bmnInkuIDlj6oi5pWi6YeN6ZSkIueahOabv+ihpeagh+eahAogIOKGkiDkvYbkuIDlrrblhazlj7jlpJ/kuI3lpJ/moLzph43plKTvvIzpnIDopoHplb/mnJ/ot5/ouKrmiY3og73lvaLmiJDliKTmlq0KICDihpIgMTAwLTIwMCDlrrblhazlj7jkuI3lj6/og73lubPlnYfnlKjlipvvvIgi5oiR5LiN5Y+v6IO96IO96Lef6Liq6L+Z5LmI5aSaIu+8iQogIOKGkiDmiYDku6XvvJrlhYjliIbmoaPvvIzlho3mjInmoaPliIbphY3nsr7lipsKICDihpIg5YiG5qGj5a6M5oiQ55qE6YKj5Liq556s6Ze077yM6aKR546H5Zug5a2Q5omN56ys5LiA5qyhIuWPr+eUqCIKYGBgCgrkvZzogIXlr7nov5nkuIDngrnnmoTooajov7Dlvojnm7TmjqXvvJoqKiLlrozmiJDov5nkuKrlt6XkvZzmnIDlpKfnmoTmhI/kuYnlnKjkuo7vvIzmnInlj6/og73kvJrorqnmiJHmiormipXotYTkuK3nmoQn6aKR546HJ+i/meS4quWboOWtkOeUqOi1t+adpeOAgiIqKu+8iDIwMjEuOC4xMu+8ieS7peWPiiIqKuiDveWQpuaKiumikeeOh+i/meS4quWboOWtkOeUqOWlve+8jOaIkeS4quS6uuiupOS4uu+8jOWMuuWIhuS6huaKlei1hOS4rSfkvJjnp4An5ZKMJ+WNk+i2iicqKiLvvIjlkIzkuIrvvInjgIIKCioq5YWz6ZSu57qq5b6L4oCU4oCU6aG65bqP5LiN5Y+v6aKg5YCSKirvvIgyMDIxIOW5tOWQiOmbhiBsaW5lIDQxMDPvvInvvJoKCj4gKioiJ+amgueOh+OAgei1lOeOh+WSjOmikeeOhyfov5nkuInlm6DlrZDvvIzljYPkuIfkuI3og73mkJ7plJnpobrluo/vvIzlpoLmnpzmipvlvIMn5qaC546H5ZKM6LWU546HJ++8jOebsuebruadpeaQnumikeeOh++8jOWwseaIkOS6huaZrumAmuaVo+aIt+eahOi/vea2qOadgOi3jO+8jOW/q+mAn+S6j+mSseOAguiAjOWPquacieaKiifmpoLnjoflkozotZTnjocn5Lik6ICF5pCe5piO55m95LqG77yM5omN5pyJ6LWE5qC85Y675o6i57SiJ+mikeeOhyfjgIIiKioKCuKaoO+4jyDlm6DmraQqKuivr+eUqOitpuWRiioq77ya5YiG5qGj5rOV5LiN5pivIumAieiCoeazlSLjgILot7Pov4fmpoLnjofkuI7otZTnjofnmoTliKTmlq3nm7TmjqXnhafmkKwgMS00IOexu+e8luWPt++8jOetieS6juaKiuS4gOW8oCoq57K+5Yqb5YiG6YWN6KGoKirlvZPmiJAqKuS5sOWFpeS/oeWPt+ihqCoq77yM5pa55ZCR5oGw5aW955u45Y+N44CCCgotLS0KCiMjIOS4gOOAgeWbm+exu+eahOWumuS5ie+8iOWOn+aWh+mAkOadoe+8iQoKfCDnsbsgfCDljp/mloflrprkuYnvvIjlvJXlj7flhoXkuLrpgJDlrZfljp/or53vvIwyMDIxLjguMTLvvIkgfCDliKTlrpror63vvIjmnKzmloflvZLnurPvvIkgfCDlr7nlupTot5/ouKrliqjkvZzvvIjljp/mlofvvIkgfCDnsr7lipsgfAp8LS0tfC0tLXwtLS18LS0tfC0tLXwKfCAqKjEg57G7KiogfCAiMSDnsbvnmoTlhazlj7jlvojmnInlj6/og73ov5HmnJ/kvJrlh7rnjrDkubDngrnvvIzlj6/og73kvJrlh7rnjrDpq5jmpoLnjoflkozpq5jotZTnjofnmoTmnLrkvJrvvIzmiYDku6XpnIDopoHmnIDntKflr4bnmoTot5/ouKrvvIzmipXlhaXlpKfph4/nmoTnsr7lipsiIHwg5qaC546HIOKckyDvvIsg6LWU546HIOKckyDvvIsgKirkubDngrnov5EqKiB8ICLnqbflsL3kuIDliIfmiYvmrrUi4oCU4oCU5YWs5ZGK44CB5LqS5Yqo5piT44CB5YWs5Y+45paw6Ze7572R56uZ44CB5Yi45ZWG56CU5oql44CB5Li76KaB5Lqn5ZOB5Lu35qC877yIMjAyMC4xMS4zMCDljp/mloflj6PlvoTvvIkgfCAqKjYwJSoqIHwKfCAqKjIg57G7KiogfCAi5YWs5Y+46L+Y5LiN6ZSZ77yM5L2G6LWU546H5ZKM5qaC546H5Lik5Liq5Zug5a2Q5Lit77yM5YW25Lit5pyJ5LiA5Liq5Y+v6IO95LiN5piv6YKj5LmI5aW977yM55+t5pyf5YaF5LiN5Lya5Ye6546w5b6I6IiS5pyN55qE5Lmw54K577yM5omA5Lul6Lef6Liq5Yqb5bqm56iN5byx5LiA54K5IiB8IOS4pOeOhyoq57y65LiAKirvvJrpgLvovpHlnKjvvIzkvYbkvY3nva7miJbnoa7lrprmgKfkuI3liLDkvY0gfCAi5Y+v5Lul5YiX5Li65q+U6L6D6YeN6KaB55qE6Lef6Liq6IKh77yMKirmr4/kuKrlhazlkYrpg73orqTnnJ/nnIsqKiLvvIgyMDIxLjYuMjUg5Y2D56a+6JC95qGj6K+t77yJIHwgKioyNSUqKiB8CnwgKiozIOexuyoqIHwgIuWFrOWPuOW5tuS4jeW3ru+8jOS9huS5n+S4jeiDveiwiOS4iuWlve+8jOi1lOeOh+WSjOamgueOh+aaguaXtumDveS4jeWFt+Wkh++8jOi/meexu+WFrOWPuOWwsemcgOimgeetieW+heS4gOS4quWkp+eahOWPmOWMlu+8jOWCrOWMluS4pOeOh+eahOWPmOWMliIgfCDkuKTnjocqKueahuaXoCoq77yM5Y+q6IO9562J5Y+Y6YePIHwgIui3n+i4quS4i+Wumuacn+WFrOWRiuWSjOmHjeWkp+WFrOWRiu+8jOaOjOaPoeWFrOWPuOeahOmHjeWkp+WKqOaAgeWwseihjCLvvJvokL3liLDlhazlj7jlsYLpnaLljbMqKiLlsLHnnIvnnIvlubTmiqXlkozljYrlubTmiqXlsLHlj6/ku6XkuoYiKirvvIgyMDIxLjYuMjUg5a+M5qOu576O6JC95qGj6K+t77yJIHwgKioxNSUqKu+8iDMrNCDlkIjorqHvvIkgfAp8ICoqNCDnsbsqKiB8ICLnjrDlnKjnnIvotbfmnaXpnZ7luLjlt67vvIzlvojlpJrpg73mmK/muKPmuKPlhazlj7jvvIznnIvllaXllaXkuI3ooYzpgqPnsbvvvIzkuI3ov4fov5nkupvlhazlj7jlrozlhajmlL7kuZ/kuI3ooYzvvIzkuIfkuIDlk6rlpKnmnaXkuKrph43lpKfph43nu4TlkaIiIHwg5Z+65pys6Z2i5beuIO+8iyDml6Dlj5jljJYg77yLIOmHjee7hOW9qeelqCB8ICLkuIDlubTnnp/ov4fkuKTkuInnnLzlsLHooYwiIHwg5ZCM5LiKIHwKCioq6YeP57qn57qm5p2f77yI5Y6f5paH56Gs5oCn5p2h5Lu277yJKirvvJoqKiIxIOexu+i3n+i4quWPr+iDveWwseWHoOWutu+8jOS9huimgeaKleWFpSA2MCUg55qE57K+5Yqb6Lef6Liq77yMMiDnsbvot5/ouKrmlbDph4/kuZ/kuI3kvJrlpKrlpJrvvIzmipXlhaUgMjUlIOeahOeyvuWKm++8jDMg57G7IDQg57G75pWw6YeP5pyA5aSa77yM5Y205Y+q6ZyA6KaB5oqV5YWlIDE1JSDnmoTnsr7lipvjgIIiKiog5pep5pyf5LiJ5YiG57G754mI57uZ5Ye65LqG5LiK6ZmQ5Y+j5b6E77yaKioi6L+Z57G75YWs5Y+45bqU6K+l5LiN5Lya6LaF6L+HIDEwIOS4qu+8jOWQpuWImeeahOivneWwseeyvuWKm+aYr+S4jeWkn+eahCIqKu+8iDIwMjAuMTEuMzDvvIzmjIci6YeN54K56Lef6Liq5Z6LIu+8ieOAgioq5aaC5p6cIDEg57G75ZCN5Y2V6LaF6L+HIDEwIOWutu+8jOivtOaYjuWwuuWtkOaUvuawtOS6hu+8jOS4jeaYr+WlveS6i+OAgioqCgotLS0KCiMjIOS6jOOAgeihjOWKqOWbvu+8muS7juWQjeWNleWIsOiQveaho+eahOS4ieatpea1geawtOe6vwoKIyMjIDIuMSDlhajmma8KCmBgYArjgJDnrKwgMCDmraUgwrcg5ZyI5bGC44CR5ZCN5Y2V5LuO5ZOq5p2l77yI56m35Li+5rOV77yM6Z2eIuaJvuWlveWFrOWPuCLvvIkKICAgICDog73lipvlnIjlm5vnsbvmnaXmupDvvJoKICAgICAgIOKRoCDmnKzlnLDogqHvvIjnlJ/mtLvlnLDvvIzog73lrp7lnLDnnIvvvIkKICAgICAgIOKRoSDmraTliY3nmoTlrqLmiLcgLyDogIHkuJzlrrYKICAgICAgIOKRoiDmtojotLnogqHvvIgi5aW95oeC44CB5Ye65aSn54mb6IKh44CB5LiN6ZyA546w5Zy66LCD56CU5Lmf6IO95Yik5patIu+8iQogICAgICAg4pGjIOacrOiBjOihjOS4mgogICAgIO+8iyDor7vogIUv5pyL5Y+L5oyJ5qih5p2/5oqV5p2l55qE5Yid562b5oql5ZGKCiAgICAgICAgICAgICAgICDihpMg77yI5LiA5om5IDEwMC0yMDAg5a6277yM57KX57OZ5L2G5YWo77yJCuOAkOesrCAxIOatpSDCtyDnlLvlg4/jgJEzMCDliIbpkp/kuInmnb/mlqcg4oaSIOWfuuacrOi9ruW7kwogICAgIOadvyAx77ya55yL5YWs5Y+45piv5bmy5Zib55qEIOKGkiDkuJrliqHmmK/lkKbkuJPkuJrjgIHkuJPms6jjgIHnroDljZUKICAgICDmnb8gMu+8mueci+aYr+WQpuacieWvvOiHtOWfuuacrOmdouWkp+W5hSLlj5jljJYi55qE5Y+Y6YePCiAgICAg5p2/IDPvvJrnnIvotKLmiqUg4oaSIOWVhuS4muaooeW8j+S4jua9nOWcqOa8j+a0ngogICAgICAgICAgICAgICAg4oaTIO+8iOi+k+WHuu+8muS4muWKoeeUu+WDjyArIOWPmOWMluacieaXoCArIOi0ouWKoei0qOWcsO+8iQrjgJDnrKwgMiDmraUgwrcg6JC95qGj44CR5Lik5oqK5bC65a2QCiAgICAg5qaC546HID0g5Y+Y5YyW5piv5ZCm55yf5a6e44CB5aSf5LiN5aSf5aSn77yI5Z+65pys6Z2i5o6M5o+h6IO95Yqb77yJCiAgICAg6LWU546HID0g4pGg5bqV6YOo77yI56m65aS05piv5ZCm6KGw56ut77yJ4pGh5ZCR5LiK56m66Ze0IOKRouWkmuWktOi1hOmHkeWKm+W6pgogICAgICAgICAgICAgICAg4oaTCiAgICAgICAgMSDnsbsg4pSDIDIg57G7IOKUgyAzIOexuyDilIMgNCDnsbsKICAgICAgICAgICAgICAgIOKGkwrjgJDnrKwgMyDmraUgwrcg5YiG6YWN44CR5oyJ5qGj5oqV5YWlIDYwJSAvIDI1JSAvIDE1JSDnmoTot5/ouKrnsr7lipsKICAgICAgICAgICAgICAgIOKGkwogICAgICAgIO+8iOW+queOr++8ieS6jOasoeais+eQhiDihpIg5Y+q552A5YqbIDEtMiDnsbsg4oaSIOS5sOeCueWIsOadpeaXtiLmlaLph43plKQiCmBgYAoKIyMjIDIuMiDnrKwgMCDmraUgwrcg5ZCN5Y2V5p2l5rqQ77ya56m35Li+5rOVCgoqKuS4jeaYryLmib7lpb3lhazlj7gi77yM5pivIuaKiuiDveWKm+WciOWGheeahOiCoeelqOWFqOmDqOi/h+S4gOmBjSLjgIIqKiDljp/mlofvvJoKCj4gKioi5oiR55qE5YW35L2T5pON5L2c5piv56m35Li+5rOV77yM5oqK6Ieq5bex6IO95Yqb5ZyI5YaF55qE6IKh56Wo5YWo6YOo6L+H5LiA6YGN77yM6YCQ5bGC562b6YCJ77yM5L6L5aaC6YeN5bqGIDQ4IOWutuS4iuW4guWFrOWPuO+8jOaIkee7j+i/h+etm+mAie+8jOWIhuWxguWmguS4i++8muaciSAxMCDlh6DlrrbmmK/lnoPlnL7lhazlj7jvvIzmoLnmnKznlaXnnIvkuIDkuIvlkI7lsLHlho3kuZ/kuI3nnIvkuobvvIzmnIkgMjAg5aSa5a625oiR5Lyw6K6h5bCx5q+P5bm055yL5LiA5LiL5bm05oql55qE5oyH5qCH77yM55yL55yL5pyJ5rKh5pyJ5Lia57up5Y+N6L2s55qE6L+56LGh77yM5pyJIDEwIOWkmuWutuaIkeS8sOiuoeimgeWFs+azqOWto+aKpe+8jOiAjOecn+ato+maj+aXtuWFs+azqOeahO+8jOS5n+WwseWHoOWutuOAguWFtuWunuS5n+S4jei0ueS7gOS5iOeyvuWKm+OAguWwseaYr+WcqOWIneetm+eahOaXtuWAmeW3peS9nOmHj+avlOi+g+Wkp+OAgiIqKu+8iFvjgIrkuI7oh6rlt7HlhoXlv4Plr7nor53jgIsyMDE4LjkuMjZdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL1N1UFNqSmYwOFV0Q0pxNkJEdTZnVFEp77yMbGluZSAzMzUy77yJCgrov5nmrrUgMjAxOCDlubTnmoTlm5vlsYLliIblsYLvvIwqKuWwseaYryAxLTQg57G75YiG5qGj55qE5Y6f5aeL54mIKirvvJrlnoPlnL7vvIg0IOexu++8ieKGkiDlj6rnnIvlubTmiqXvvIgzIOexu++8ieKGkiDnnIvlraPmiqXvvIgyIOexu++8ieKGkiDpmo/ml7blhbPms6jvvIgxIOexu++8ieOAguWIpOWumuagh+WHhuW3sue7j+WujOaVtO+8jOWPquaYr+W9k+aXtui/mOayoeWRveWQjeS4uiLnsbsi44CCCgojIyMgMi4zIOesrCAxIOatpSDCtyAzMCDliIbpkp/kuInmnb/mlqcKCj4gKioi56ys5LiA5piv55yL5YWs5Y+45piv5bmy5Zib55qE77yM5pyA5aW95piv5LiT5Lia44CB5LiT5rOo44CB566A5Y2V55qE77yM5aSN5p2C5LqG55qE5YWs5Y+45Y+Y6YeP5aSq5aSa77yM5b6I6Zq+5oqK5o+h44CC56ys5LqM5piv55yL5YWs5Y+45pyA6L+R5piv5ZCm5pyJ5a+86Ie05Z+65pys6Z2i5aSn5bmF5bqmJ+WPmOWMlifnmoTlj5jph4/jgILnrKzkuInlsLHmmK/nnIvlhazlj7jnmoTotKLliqHmiqXooajvvIzkuobop6Plhazlj7jnmoTllYbkuJrmqKHlvI/lkozlj6/og73mvZzlnKjnmoTmvI/mtJ7jgILov5nmoLfkuInmnb/mlqfkuIvmnaXvvIzlhazlj7jnmoTln7rmnKzova7lu5PnlLvlg4/lsLHlh7rmnaXkuobvvIwzMCDliIbpkp/otrPnn6PjgIIiKirvvIhb44CKMzDliIbpkp/liJ3nrZvkuIDlrrblhazlj7jjgIsyMDIxLjYuMjVdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL2tEREptT212QjE4YkxnV0FEVUgxMkEp77yMbGluZSAzNDQ1LTM0NDjvvIkKCnwg5p2/IHwg6Zeu5LuA5LmIIHwg5YW35L2T55yL5rOVIHwg5Y+C54Wn6aG1IHwKfC0tLXwtLS18LS0tfC0tLXwKfCAqKuesrOS4gOadvyDCtyDnroDljZUqKiB8IOS4muWKoeaYr+WQpiLkuJPkuJrjgIHkuJPms6jjgIHnroDljZUi77yfIHwg6IO95ZCm55So5LiA5Y+l6K+d6K+05riF77yb5Y+Y6YeP5piv5ZCm5Y+v56m35bC9IHwgW1vph4zmtbct566A5Y2V6K66XV0gfAp8ICoq56ys5LqM5p2/IMK3IOWPmOWMlioqIHwg5piv5ZCm5pyJKirlpKfnmoQqKuWPmOWMlu+8nyB8IOWOn+aWh+WIl+eahOWboOWtkO+8mioq5Lqn5ZOB5oyB57ut5rao5Lu344CB5oyB57ut5Lqn6IO95oqV5pS+44CB5LiL5ri46ZyA5rGC5aSn54iG5Y+R44CB5bm26LSt6YeN57uE44CB6YeN56OF5paw5Lqn5ZOB5oqV5pS+5biC5Zy644CB5pu05o2i5aSn6IKh5LicKiogfCBbW+mHjOa1ty3lj5jljJborrpdXSB8CnwgKirnrKzkuInmnb8gwrcg6LSi5oqlKiogfCDllYbkuJrmqKHlvI/mmK/ku4DkuYjjgIHmvI/mtJ7lnKjlk6rvvJ8gfCDkuI3nnIvmr5Tnjoflpb3lnY/vvIznnIsqKumSseWcqOWTquOAgea8j+a0nuWcqOWTqioq77yI5bqU5pS2L+WtmOi0py/mnInmga/otJ/lgLov5Zyo5bu65bel56iL77yJIHwg4oCUIHwKCioq56ys5LqM5p2/5piv5qC45b+D6Ze46ZeoKirvvIzljp/mloflrprmgKfmnoHph43vvJoKCj4gKioi5Y+q5pyJJ+WPmOWMlifkuK3nmoTlhazlj7jmiY3mnInlj6/og73ojrflvpfotoXpop3mlLbnm4rnmoTlj6/og73vvIzlkKbliJnnmoTor53vvIzkubDlhaXkuI0n5Y+Y5YyWJ+eahOWFrOWPuO+8jOWPr+iDveWwseS8mumavuWPl+W+iOmVv+eahOaXtumXtOOAgiIqKgo+Cj4gKioi5rKh5pyJ5Y+Y5YyW55qE5LyB5Lia77yM5piv5b6I6Zq+6I635b6X6LaF6aKd5pS255uK55qE44CCIioq77yI5ZCM56+H77yMbGluZSAzMzQ4LTM0NDHvvIkKCuKaoO+4jyDms6jmhI/ov5nph4zor7TnmoTmmK8qKiLmr5TovoPlpKfnmoTlj5jljJbvvIzog73lpJ/mr5TovoPmmL7okZfnmoTmlLnlj5jlhazlj7jnmoTln7rmnKzpnaIiKirvvIzkuI3mmK/ku7vkvZXpo47lkLnojYnliqjjgILljp/mlofvvJoqKiLmr4/kuIDlrrblhazlj7jpg73mmK/lnKjlj5jljJbkuK3nmoTvvIzmiJHor7TnmoTov5nnp43lj5jljJbvvIzmmK/mr5TovoPlpKfnmoTlj5jljJbigKbigKblkKbliJnnmoTor53vvIzluILlnLrmmK/kuI3lpKrlj6/og73orqTlkIznmoTvvIzpgqPkuYjlhazlj7jnmoTogqHku7flsLHmsqHmnInkuK3plb/mnJ/kuIrmtqjnmoTliqjlipvjgIIiKioKCiMjIyAyLjQg56ysIDIg5q2lIMK3IOS4pOaKiuWwuuWtkOeahOaTjeS9nOWumuS5iQoK5bC65a2Q5a6a5LmJ5Ye66IeqIFvjgIrmiJHlj6rmmK/mkKzov5Dlt6XvvIHjgIsyMDIxLjIuMjNdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL2d0VmdfRFo4U3RydUFaZWtYYzBmcWcp77yIbGluZSAxMTM477yM6YCQ5a2X77yJ77yaCgp8IOWwuuWtkCB8IOWOn+aWh+WumuS5iSB8IOiQveaho+aXtueahOaTjeS9nOmXrumimCB8CnwtLS18LS0tfC0tLXwKfCAqKuamgueOhyoqIHwgIuamgueOh+WwseaYr+WvueWfuuacrOmdoueahOaOjOaPoeeahOiDveWKm++8jOS5n+WwseaYr+ivtOimgeWvueS4gOWutuWFrOWPuOeahOS4u+mAu+i+keaciemdnuW4uOa3seW6pueQhuino+aJjeihjO+8jOivtOeZveS6huWwseaYr+imgeWFt+Wkh+WfuuacrOmdoueahOWIhuaekOiDveWKmyIgfCDov5nkuKrlj5jljJYqKuaYr+ecn+eahOWQl++8n+Wkn+Wkp+WQl++8nyoqIOS4u+mAu+i+keiDveWQpuS4gOWPpeivneivtOa4hSB8CnwgKirotZTnjocqKiB8ICLotZTnjoflsLHmmK/lpoLmnpzov5nkuKrkuovmg4Xlj5HnlJ/kuobvvIznqbrpl7TmnInlpJrlpKfvvIzor7Tnmb3kuoblsLHmmK/opoHmnInnkIbop6PluILlnLrov5DooYzop4TlvovnmoTog73lipsi77yM5ouG5LiJ57uG6aG577yaKirikaAg5Yik5pat5bqV6YOo55qE6IO95Yqb77yM6IO95aSf5oSf55+l56m65aS055qE5Yqb6YeP5bey57uP6KGw56ut77yb4pGhIOiDveWkn+WIpOaWreWQkeS4iuepuumXtOeahOWkp+Wwj++8m+KRoiDog73lpJ/mhJ/nn6XlpJrlpLTotYTph5HnmoTlipvluqYqKu+8iOefrS/kuK0v6ZW/5pyf6LWE6YeR5Yqo5ZCR77yJIHwgKirnjrDlnKjov5nkuKrkvY3nva7vvIzmnIDlnY/ov5jog73ot4zlpJrlsJHjgIHmnIDlpb3og73mtqjlpJrlsJHvvJ8qKiDnqbrlpLTlipvph4/mmK/lkKblt7LoobDnq60gfAp8ICoq6aKR546HKiogfCAi6aKR546H5bCx5piv6KaB5o6M5o+h5aW95o2i6IKh55qE5pe25py677yM5YGa5Yiw6IKh56Wo55qE5Y+K5pe25YiH5o2iIiB8IOaJi+mHjOacieayoeaciSoq5ZCM5qC35aSf5qC8KirnmoTmm7/ooaXmoIfnmoTvvIjihpAg6L+Z5bCx5piv5YiG5qGj6KaB6Kej5Yaz55qE6Zeu6aKY77yJIHwKCuS4ieiAheeahOWFs+ezu+WOn+aWh+aAu+e7k+S4uu+8mioqIuW9k+amgueOh+WSjOi1lOeOh+WFseaMr+eahOaXtuWAme+8jOS4i+mHjeazqO+8jOeEtuWQjuWGjeS7peWQiOmAgumikeeOh+WBmui9ruWKqCIqKu+8myoqIuS4gOWIh+eahOaTjeS9nO+8jOmDveaYr+S7peWfuuacrOmdouS4uuaguOW/g++8jOWfuuacrOmdouWwseaYr+WuiOato++8jOiAjOi1lOeOh+WwseaYr+WHuuWlh++8jOi1muW4guWcuuaDhee7queahOmSsSIqKu+8iGxpbmUgMTE3M++8ieOAggoKIyMjIDIuNSDnrKwgMyDmraUgwrcg5LqM5qyh5qKz55CG5LiO6YeN6ZSkCgrliIbmoaPlrozmiJAqKuS4jeetieS6jioq5Y+v5Lul5oqJ5oup77yM5L2c6ICF5piO56Gu6K+06L+Z5Y+q5pivIuWfuuehgOaAp+W3peS9nCLvvJoKCj4gKioi6L+Z5LuF5LuF5Y+q5piv5Z+656GA5oCn55qE5bel5L2c77yM5a+56L+Z5Lqb5YWs5Y+45pyJ5Y2w6LGh6ICM5bey77yM5a6M5YWo6L+Y5rKh5pyJ6L6+5Yiw5Y+v5Lul5oqJ5oup55qE6YKj5Liq6Zi25q6177yM5Zug5q2k77yM5ZCO5pyf5oiR5bCx5Lya5qC55o2u5oiR5YiG57G755qE57uT5p6c77yM5a+55YWs5Y+46L+b6KGM56ys5LqM5qyh55qE5qKz55CG77yM5b2T54S277yM6aaW5YWI552A5Yqb55qE77yM5bCx5piv56ys5LiA5ZKM56ys5LqM57G755qE44CCIioq77yIMjAyMS44LjEy77yMbGluZSA0MTA177yJCgrogIzliIbmoaPnmoTmnIDnu4jmlLbnm4rvvIzmmK8qKuaKiiLnm7Top4ki5Y+Y5oiQ5Y+v5L+h55qEKirvvJoKCj4gKioi5oyJ54Wn5YiG57G76L+b6KGM5LiN5ZCM5Yqb5bqm55qE6Lef6Liq77yM5oWi5oWi55qE77yM5q+P5a625YWs5Y+45bCx6LaK5p2l6LaK54af5oKJ77yM5b2T5LiA5a625YWs5Y+455qE5Lmw54K55Yiw5p2l55qE5pe25YCZ77yM5bCx5Lya5Lqn55Sf5LiA56eN5b6I6YeN6KaB55qE55u06KeJ77yM5Y+v5Lul6YeN6ZSk5LqG77yM6ZW/5pe26Ze055qE6Lef6Liq5ZKM562J5b6F77yM5bCx5piv5Li65LqG6L+Z5Liq5pe25YCZ6ZSk5LiL5Y6744CC5Y+q5pyJ5L+d5oyB6Laz5aSf55qE6Lef6Liq5Yqb5bqm77yM5omN6IO95Zyo5YWs5Y+455qE5Y+Y5YyW6KKr5biC5Zy65Y+R546w55qE5pe25YCZ77yM5Zyo6KGM5Lia55qE6aOO5p2l55qE5pe25YCZ77yM5b+D6YeM5pyJ5bqV5pWi5LqO6YeN6ZSk5LiL5Y6777yM5ZCm5YiZ5b+D6YeM5piv5a6M5YWo5rKh5bqV55qE44CCIioq77yI5ZCM5LiK77yMbGluZSA0MTA277yJCgotLS0KCiMjIOS4ieOAgeS4pOS4quiQveaho+ekuuiMg++8iOWPr+W9k+agoeWHhuagh+Wwuu+8iQoK5Ye66IeqIFvjgIozMOWIhumSn+WIneetm+S4gOWutuWFrOWPuOOAizIwMjEuNi4yNV0oaHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3Mva0RESm1PbXZCMThiTGdXQURVSDEyQSnvvIhsaW5lIDM0NTAtMzQ2NO+8ieOAgui/meaYryoq5ZSv5LiA5LiA56+H5oqK5ZCM5LiA5Liq5pa55rOV5Zyo5Lik5a625YWs5Y+45LiK5a6M5pW06LeR5a6M55qE5paH56ugKirvvIzlm6DmraTmmK/mnIDlpb3nmoTmoKHlh4bmoLfmnKzjgIIKCnwg5q2l6aqkIHwgKirlr4zmo67nvo4qKiDihpIgKiozIOexuyoqIHwgKirljYPnpr7lkbPkuJoqKiDihpIgKioyIOexuyoqIHwKfC0tLXwtLS18LS0tfAp8ICoq5p2/IDEg566A5Y2VKiogfCDlrrblsYXljZblnLrvvIwi5L6d5omY5oiQ6YO95qC45b+D5ZWG5ZyI55qEIDExMCDkuIflubPnsbPoh6rmnInniankuJrmiZPpgKDoh6rokKXljZblnLrigKbigKblhaXpqbvllYbmiLcgMywwMDAg5L2Z5oi3Iu+8jCoqIuacrOi0qOS4iuWwseaYr+aUtuenn+eahO+8jOWBmuW5s+WPsOacjeWKoeeahOWFrOWPuOOAguWVhuS4muaooeW8j+mdnuW4uOWlve+8jOi9u+i1hOS6p+OAgiIqKiDinJMgfCAi5YGa5Lit6auY56uv55qE6YWx5rK544CB6YaL5ZKM5paZ6YWS55qEIiDinJMgfAp8ICoq5p2/IDIg5Y+Y5YyWKiogfCDinJcgKioi6K6k55yf55yL5bm05oql5Lit5YWz5LqO6L+Z5Z2X55qE5YaF5a6577yM5Y+R546w5YWs5Y+45Lya5pyJ5Lqb6K645Y+Y5YyW77yM54S26ICM5Zyo5pyq5p2l5LiA5bm05YaF77yM5bm25rKh5pyJ5aSn55qE5Y+Y5YyW55qE5Y+v6IO944CC5YWs5Y+45oiY55Wl5Lit4oCm4oCm6Jma55qE5Lic6KW/5LiA5aSn5aCG77yM5a6e6ZmF55qE5YW25a6e5bCx5Lik5Liq4oCm4oCm54S26ICM5bm25LiN6IO95aSn5bmF5pS55Y+Y5YWs5Y+455qE5Z+65pys6Z2i44CCIioqIHwg4pyTICoqIuW/q+mAn+aOqOWKqCflubTkuqcgMjUg5LiH5ZCo6YW/6YCg6YWx5rK544CB6aOf6YaL55Sf5Lqn57q/5omp5bu66aG555uu5LqM5pyfJ+ero+W3peaKleS6p+OAgeaOqOi/myflubTkuqcgNjAg5LiH5ZCo6LCD5ZGz5ZOB55Sf5Lqn57q/5omp5bu66aG555uuJ+OAguiAjOWFrOWPuCAyMDIwIOW5tOeahOS6p+mHj+aYr+WkmuWwkeWRou+8nzI4IOS4h+WQqOOAguS5n+WwseaYr+ivtO+8jOi/memhueebruimgeaYr+iQveWcsOeahOivne+8jOebuOW9k+S6juWGjemAoOWHoOS4quWNg+emvuWViuOAgiIqKiB8CnwgKirmnb8gMyDotKLmiqUqKiB8IOaegeWlve+8mui0p+W4gei1hOmHkSA1IOS6v+WkmiArIOeQhui0oiAxMiDkur/lpJrjgIHlupTmlLblj6/lv73nlaXjgIHotYTkuqfotJ/lgLrnjocgMTAlIOWkmuOAgSoq5YeA5Yip546H6LaFIDUwJSoq77yI6JCl5pS2IDEzIOS6v+OAgeWHgOWIqSA3LjczIOS6v++8iSB8IOS5n+S4jemUmeS9hiLkuI3lpoLlr4zmo67nvo7ov5nmoLfmnInpkrEi77ya6LSn5biB6LWE6YeRIDEuMTcg5Lq/ICsg55CG6LSiIDMuOSDkur/jgIHlupTmlLYgMSDkur/lpJrjgIHlrZjotKfov5EgNCDkur/jgIHlm7rlrprotYTkuqcgOCDkur/lpJrvvIjph43otYTkuqfmjqjliqjlnovvvInjgIHlnKjlu7rlt6XnqIsgMS40IOS6vyB8CnwgKirkvLDlgLzkvY3nva4qKiB8IFBFIDEyIOWAjeOAgVBCIDEuOCDlgI3vvIwiKirogqHku7fkuIDnm7TourrlnLDkuIoqKiLjgIEi5biC5Zy65a+55YW25rKh5pyJ6aKE5pyfIiB8ICLljrvlubTov5nlhazlj7jni6Dni6DlnLDmtqjkuobkuIDms6LvvIzku4rlubTlm57osIPmnYDkvLDlgLzkuK0iIHwKfCAqKuiQveaho+e7k+iuuioqIHwgKiozIOexuyoqIOKAlCLmiYDku6XvvIzlsLHlj6/ku6XlrprkuLon5bCx55yL55yL5bm05oql5ZKM5Y2K5bm05oql5bCx5Y+v5Lul5LqGJ++8jOWboOS4uuWPmOWMlueahOWIsOadpe+8jOS4jeaYr+W+iOW/q+eahO+8jOS8muaPkOWJjeS9k+eOsOWcqOWFrOWPuOeahOWFrOWRiuS4reOAgiIgfCAqKjIg57G7Kiog4oCUIuWPr+S7peWIl+S4uuavlOi+g+mHjeimgeeahOi3n+i4quiCoe+8jOavj+S4quWFrOWRiumDveiupOecn+eci++8jOivtOS4jeWumuWwsei3n+i4quWIsOWlveeahOS5sOeCueS6huOAgiIgfAp8ICoq5YWz6ZSu5Y+N5beuKiogfCDotKLliqHotKjlnLAqKuacgOWlvSoq77yM5L2G5Zug5Li65pivIDMg57G777yM6Lef6Liq5Yqb5bqmKirmnIDlsI8qKiB8IOi0ouWKoei0qOWcsCoq5LiN5aaCKirlr4zmo67nvo7vvIzkvYblm6DkuLrlj5jljJblpKfvvIzmoaPkvY0qKuabtOmrmCoqIHwKCvCflJEgKirov5nlvKDooajnmoTlhajpg6jmlZnlrabmhI/kuYnlnKjmnIDlkI7kuIDooYzlj43lt64qKu+8mioq5YiG5qGj6ZSa5pivIumihOacnyArIOWPmOWMliArIOS9jee9riLvvIzkuI3mmK/otKLliqHmr5TnjofjgIIqKiDotKLliqHmnIDlpb3nmoTpgqPlrrbooqvmlL7ov5sgMyDnsbvvvIjlj6rnrYnlj5jljJbvvInvvIzlj5jljJbmnIDlpKfnmoTpgqPlrrbooqvmlL7ov5sgMiDnsbvvvIjmr4/ku73lhazlkYrpg73nnIvvvInjgILov5nkuI7nrKwgMiDmraUi5LiN55yL6Z2Z5oCB5oyH5qCHIuaYr+WQjOS4gOS7tuS6i+eahOS4pOmdouOAggoKLS0tCgojIyDlm5vjgIHovrnnlYzkuI7mmJPplJnngrkKCiMjIyA0LjEg5rKh5pyJ5omT5YiG6KGo77yM5Yik5pat5LiN5Y+v5aSW5YyFCgoqKiLln7rnoYDmgKflt6XkvZzkuK3vvIzmiYDmnInnmoTkuovmg4Xpg73og73lpJbljIXvvIzkvYYn5Yik5patJ+i/meS4quW3peS9nOaXoOazleWkluWMheOAgiIqKu+8iDIwMjEuOC4xMu+8jGxpbmUgNDA4OC00MDkw77yJ55CG55Sx5Y6f5paH77yaKioi5pyA57uI55qE5Yik5pat5Y205piv6Im65pyv5oCn5b6I5aSn77yM5LiN5ZCM55qE5Lq65a+55ZCM5LiA5Liq5Lic6KW/77yM5Lya5b6X5Ye65oiq54S25LiN5ZCM55qE57uT6K665Ye65p2l4oCm4oCm5LiA5a625YWs5Y+45Yiw5bqV5YiG5Li65LiA57G76L+Y5piv5LqM57G777yM6L+Z5a6M5YWo5bCx5piv5oiR6YCa6L+H6ZiF6K+75YiG5p6Q5a6i6KeC55qE5p2Q5paZ4oCm4oCm5oiR6Ieq5bex5YGa55qE5Li76KeC5Yik5pat6ICM5bey44CC6ICM5aaC5p6c5o2i5oiQ5Y+m5aSW5LiA5Liq5Lq677yM5Y+v6IO95bCx5Lya5pyJ5Y+m5aSW55qE57uT6K6644CCIioqCgrimqDvuI8g5Zug5q2k5pys6aG1KirkuI3mj5DkvpsqKuaJk+WIhuWFrOW8j+aIlumYiOWAvOOAguS7u+S9lSLnu5nmn5Dlrrblhazlj7jmiZMgNzgg5YiG5Y2z5YWlIDEg57G7IueahOWBmuazle+8jOmDveaYr+WvueacrOaWueazleeahOivr+eUqOOAggoKIyMjIDQuMiDmmI7noa7lkKblrprpnZnmgIHmjIfmoIfpl6jmp5sKCj4gKioi5pyJ5Lq66Zeu5oiR77yM5Yid562b5qCH55qE5piv5LiN5piv5a+5IFJPRe+8jOWvuSBQReOAgVBC44CB6LWE5Lqn6LSf5YC6546H562J5pyJ5LuA5LmI6KaB5rGC77yf5YW25a6e5bm25LiN5piv77yM5aaC5p6c5Y+q5piv55yL6L+Z5Lqb6Z2Z5oCB5oyH5qCH55qE6K+d77yM5qC55pys55yL5LiN5Yiw5aSq5p6B6ZuG5Zui5p2l77yM5L2G5LqL5a6e5LiK77yM5LuOIDIwMTkg5bm05Lul5p2l77yM5aSq5p6B6ZuG5Zui5bey57uP6L+e57ut5rao5LqGIDQg5bm05LqG77yM5L2G6L+Z5Lqb6Z2Z5oCB5oyH5qCH5L6d54S25b6I6Zq+55yL44CCIioq77yIW+OAiuayoeaDs+WIsOi1ouS6huS4gOeTtueyvuWTgeiMheWPsO+8geOAizIwMjMuMS40XShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy84am5QejJzRmJDc0p1bkQ3SndzV0J3Ke+8jGxpbmUgMjUtMjbvvIkKCuS9nOiAheeahOato+mdouabv+S7o+aYryoq6aKE5pyfKirvvJoqKiLpooTmnJ/mmK/mnIDlpb3nmoTmtqjku7fpqbHliqjlipvigKbigKblpoLmnpznrYnln7rmnKzpnaLlt7Lnu4/lvojlpb3kuobmiY3op4nlvpfmmK/kuKrlpb3lhazlj7jvvIzln7rmnKzkuIrogqHku7flt7Lnu4/liLDlpLTkuoYiKirvvIjlkIznr4cgbGluZSAyN++8ieOAggoKIyMjIDQuMyDlkb3lkI3mkp7ovaborablkYrvvIjmnKwgd2lraSDlhoXpg6jkuIDoh7TmgKfvvIkKCuacrCB3aWtpIOmHjOWtmOWcqCoq5Lik5aWXIuesrCBYIOexuyLnvJblj7cqKu+8jOWQq+S5ieWujOWFqOS4jeWQjO+8jOW8leeUqOaXtuW/hemhu+WGmeaYjuWHuuWkhO+8mgoKfCDnvJblj7cgfCDlkKvkuYkgfCDlh7rlpIQgfCDmgKfotKggfAp8LS0tfC0tLXwtLS18LS0tfAp8ICoq56ysIDEtNCDnsbsqKiB8ICoq6Lef6Liq5qGj5L2NKirvvIjmnKzmlofkuLvpopjvvInvvJoxIOexu+i/keacn+acieS5sOeCuSDihpIgNCDnsbvmuKPmuKPlhazlj7ggfCDph4zmtbfljp/mlocgMjAyMS44LjEyIHwg5L2c6ICF5Y6f6K+dIHwKfCAqKuesrCBOIOexu+WPmOWMlioq77yI5YWt57G777ya5rK755CG6IKh5p2DIC8g5Lia57up5ouQ54K5IC8g6KGM5Lia5pmv5rCUwrfnrKzkuozmm7Lnur8gLyDpooTmnJ/kvLDlgLwgLyDnrbnnoIEgLyDml6Dlj5jljJblj43kvovvvIkgfCAqKuWPmOWMlueahOexu+WeiyoqIHwgW1vph4zmtbct5Y+Y5YyW6K66XV0g56ys5LiA6IqCIHwg4pqg77iPICoqQUkg5YiG5p6Q5pW055CG77yM6Z2e5L2c6ICF5Y6f6K+d55qE5YiG5rOVKirvvIjor6XpobUi6L6555WM5LiO6K+a5a6e5qCH5rOoIuW3suiHqumZiO+8iSB8CgrkuKTogIXkvJrnm7TmjqXlhrLnqoHvvJrph4zmtbfljp/mlofnmoQiKiozIOexu+i3n+i4qioqIu+8neWPqueci+Wumuacn+WFrOWRiueahOW5s+W6uOWFrOWPuO+8m+iAjOOAiumHjOa1ty3lj5jljJborrrjgIvnmoQiKirnrKwgMyDnsbvlj5jljJYqKiLvvJ3ooYzkuJrmma/msJTCt+esrOS6jOabsue6v++8jOaYr+WlveS6i+OAgioq5ZCM5LiA5a625YWs5Y+45Y+v6IO9IjMg57G76Lef6LiqIuS9hiLnrKwgMyDnsbvlj5jljJYi77yM6K+76LW35p2l5q2j5aW955u45Y+N44CCKioKCvCfkYkg5byV55So5bu66K6u77yaKirot5/ouKrmoaPkvY3lhpkiMS00IOexu+i3n+i4qiLlubbpk77lm57mnKzpobXvvJvlj5jljJbnsbvlnovlhpki5Y+Y5YyW6K6656ysIE4g57G777yIQUkg5b2S57qz77yJIuW5tumTvuWbnuWPmOWMluiuuumhtSoq77yM6aaW5qyh5Ye6546w5aSE5Yqg6ISa5rOo44CCCgojIyMgNC40IOaWueazlea8lOi/m+WPsu+8iOS4ieS4queJiOacrO+8jOWPo+W+hOWcqOWPmOWuve+8iQoKfCDml7bpl7QgfCDniYjmnKwgfCDliIbms5UgfCDlh7rlpIQgfAp8LS0tfC0tLXwtLS18LS0tfAp8ICoqMjAxOC45LjI2KiogfCDpm4/lvaIgfCDlm5vlsYLvvJrlnoPlnL7vvIjnlaXnnIvvvInvvI/lj6rnnIvlubTmiqXmjIfmoIfvvI/nnIvlraPmiqXvvI/pmo/ml7blhbPms6ggfCDjgIrkuI7oh6rlt7HlhoXlv4Plr7nor53jgIsgfAp8ICoqMjAyMC4xMS4zMCoqIHwg5LiJ5YiG57G7IHwg6YeN54K56Lef6Liq5Z6L77yIKirkuIrpmZDnuqYgMTAg5LiqKirvvInvvI/mma7pgJrot5/ouKrlnovvvI/kuIDoiKzkuKrogqEgfCDjgIrosIPoioLlpY/vvIzov5vlhaXmlrDnlJ/mtLvvvIzlk4jlk4jvvIHjgIsgfAp8ICoqMjAyMS44LjEyKiogfCAqKuWbm+exuyoq77yI5a6a56i/77yJIHwgMS00IOexu+i3n+i4qu+8jDE2MCDlrrblrozmiJDvvIznsr7lipsgNjAvMjUvMTUgfCDjgIrnu4jkuo7mkJ7lrozkuIDku7blpKfkuovnmoTln7rnoYDmgKflt6XkvZzvvIHjgIsgfAp8ICoqMjAyMi43LjEqKiB8IOmHj+e6p+aJqeW8oCB8IOe0r+iuoeWGjeeciyAqKjg3IOWutioq44CB5q+P5a6257qmICoqMTUwMCDlrZcqKuWwj+e7k++8iOe6puWNgeWHoOS4h+Wtl++8ie+8jCoq5YKo5aSH56C0IDIwMCDlrrYqKu+8m+WFtuS4rSAqKjIwLTMwIOWutioq5Li657uP5Yid562b55qE5rex5bqm6Lef6Liq5qCH55qEIHwg44CK5ZCE5L2N5YWE5byf5aeQ5aa55Lus77yM5oiR5Zue5p2l5ZWm77yB44CLIHwKCjIwMjIg5bm06YKj5qyh5piv5YWo6IGM5YGc5pu0IDIwIOWkmuWkqeWujOaIkOeahO+8mioqIuS7jiA2IOaciCA3IOaXpeWQjuW8gOWni+WBnOaOieWFtuS7luS6i+aDheS4k+mXqOWBmui/meS7tuS6iyIqKu+8iOOAiuWQhOS9je+8jOWBnOabtO+8geOAizIwMjIuNi4377yJ44CC5Y+j5b6E77yaKioi5ZCO57ut55qE5oqV6LWE5bCx5Lya6Z2e5bi46L275p2+5LqG77yM5Y+v6IO9IDIwJSDnmoTnsr7lipvpg73kuI3kvJrnlKjliLAiKirvvIgyMDIyIOW5tOWQiOmbhiBsaW5lIDMwNTPvvInjgIIKCi0tLQoKIyMg5LqU44CB6L+B56e75Yiw5pys6aG555uu77ya5bm/5bee5b6F6YCJ5rGg5oCO5LmI5o6lCgojIyMgNS4xIOeOsOaciee7k+aehOS4juacrOaWueazleeahOWvueW6lOWFs+ezuwoKYOWtpuiCoS/lub/lt54v5bm/5bee5ZCN5Y2VLeW+hemAieaxoOi3n+i4quihqC5tZGDvvIgyMDI2LTA5LTE5IOWPo+W+hO+8mioq5YCZ6YCJL+i3n+i4qiAzNSDlrrYgKyBwYXNzIDEzNCDlrrYgPSDlt7Lmiavmj48gMTY5IOWutioq77yJ55qE5YiG5qCP5piv44CM5Luj56CBIC8g5ZCN56ewIC8g6YeM5rW35a6a5oCnIC8g57uT6K66IC8g6Kem5Y+R5p2h5Lu2wrflvoXmoLjjgI3vvIzmiZPliIblj6PlvoTmmK/jgIznroDljZUgLyDlupXpg6ggLyDlj5jljJYgLyDliIbku5PjgI3lm5vmoI/jgIIKCioq5Y+j5b6E5aSp54S26IO95a+55LiK77yM5Y+q5beu5LiA5YiX5pi+5byP5qCH5rOo77yaKioKCnwg6YeM5rW35Y6f55SfIHwg5b6F6YCJ6KGo546w54q2IHwg5a+55bqU5YWz57O7IHwKfC0tLXwtLS18LS0tfAp8ICoqMSDnsbsqKu+8iOS4pOeOh+m9kCArIOS5sOeCuei/ke+8iSB8IDIuMSDlgJnpgIkgMzUg5a625LitIuinpuWPkeadoeS7tiLlt7LlhpnmmI7ov5HmnJ/kubDngrnogIUgfCAzNSDlrrYqKuaVtOS9kyoq4omIIOmHjOa1t+eahCAxIOexuyArIDIg57G7IHwKfCAqKjIg57G7KirvvIjkuKTnjofnvLrkuIDvvIkgfCDlkIzkuIrvvIzlpJrkuLoi5b6F5omrIC8g5b6F5qC4IuiAhSB8IOKGkSB8CnwgKiozIOexuyoq77yI562J5aSn5Y+Y5YyW77yJIHwgMi4yIHBhc3MgMTM0IOWutuS4rSLkvp3mja7lvoXooaUgLyDml6Dov5HmnJ/lj5jljJYi6ICFIHwgMTM0IOWutioq5pW05L2TKiriiYggMyDnsbsgKyA0IOexuyB8CnwgKio0IOexuyoq77yI5rij5rijICsg6YeN57uE5b2p56Wo77yJIHwgMi4yIOS4rSLnrKzkuIDova7mibnph4/miavmj48gcGFzc++8iOacqumAkOWPqua3seaJq++8iSLogIUgfCDihpEgfAp8ICoq6LWU546H55qEIuS9jee9riLph4/ljJYqKiB8IOW3suacie+8iOeOsOS7tyAvIOW5tOWGheWMuumXtCAvIFBFIOWIhuS9jeaVo+ingSLop6blj5HmnaHku7Yi5YiX77yJIHwgKirnvLrnu5/kuIDliJcqKiB8CnwgKirlj5jljJbnmoQi5a2Y5Zyo5oCnIioqIHwg5bey5pyJ77yIIuWPmOWMluecn+WuniAvIOS4jeWcqOW6lemDqCLnrYnmlaPop4Ei6YeM5rW35a6a5oCnIuWIl++8iSB8ICoq57y657uf5LiA5YiXKiogfAoKIyMjIDUuMiDkuKTkuKrnvLrlj6MKCjEuICoq6LWU546H55qEIuS9jee9riLmsqHmnInnu5/kuIDph4/ljJbliJcqKuOAgumHjOa1t+eahOWOn+eUn+WIpOaNruaYryoqIuaEn+efpeepuuWktOeahOWKm+mHj+W3sue7j+ihsOerrSIqKu+8iOWumuaAp++8ie+8jOS9huacrOihqOaVsOaNruWxgu+8iGBkYXRhLzxjb2RlPi5kYmAg5pel57q/ICsgQUtTaGFyZSDkvLDlgLzvvIkqKui2s+S7peWBmui/keS8vOmHj+WMlioq4oCU4oCU5L6L5aaC5bm05YaF5Yy66Ze05YiG5L2N44CB6LedIDI1MCDml6Xpq5jngrnlm57mkqTjgIFQRS9QQiDljoblj7LliIbkvY3jgILimqDvuI8g6L+Z5piv5pys5paH5o+Q5Ye655qEKirov5HkvLwqKu+8jOmdnuS9nOiAheWOn+aWueazle+8jOmhu+agh+azqOOAggoyLiAqKiLlj5jljJYi55qE5a2Y5Zyo5oCn5rKh5pyJ57uf5LiA5Yik5patKirvvIzkuJTnjrDmnIki6YeM5rW35a6a5oCnIuWIlyoq5Y+j5b6E5re35ZCIKirvvIjkuInnp43lhpnms5XlubblrZjvvInvvJoKICAgLSDmqKHlnovlvZLlsZ7lnovvvIjlpoIgMzAxMjgzIOiBmuiDtiLpmpDlvaLlhqDlhpsi44CBMzAxMzczIOWHjOeOriLph4zmtbfkurLoh6rlgZrov4fnmoTmoIfnmoQi77yJCiAgIC0g5Lia5Yqh5o+P6L+w5Z6L77yI5aaCIDAwMDg5MyDkuprpkr4i5ZGo5pyf5pmv5rCU6IKhIC8g6YeN6LWE5Lqn6LWE5rqQ5YWR546w6IKhIu+8iQogICAtIOS9jee9ruWIpOaWreWei++8iOWmgiIqKuS4jeWcqOW6lemDqCoqIu+8iQoKIyMjIDUuMyDlu7rorq7vvIjmj5DmoYjvvIzlvoXnlKjmiLfnoa7orqTlkI7miafooYzvvIkKCnwgIyB8IOWKqOS9nCB8IOivtOaYjiB8CnwtLS18LS0tfC0tLXwKfCAxIHwg44CM6YeM5rW35a6a5oCn44CN5YiXKirmlLbmlZvkuLrljZXkuIDlj6PlvoQqKu+8muWPquWhqyoq5qih5Z6L5b2S5bGeKirvvIjmnYDkuJrnu6nkv67lpI0gLyDpmpDlvaLlhqDlhpvkuI3mtqggLyDlm7DlooPlj43ovawgLyDpg73kuI3nrKbvvInvvIzkuJrliqHmj4/ov7DmjKrliLDmi6zlj7flhoUgfCDpgb/lhY3kuInnp43lj6PlvoTmt7fnlKggfAp8IDIgfCDmlrDlop4gKirjgIzlj5jljJbnsbvlnovjgI3mloflrZfliJcqKu+8jOS4jeeUqCLnrKwgWCDnsbsi57yW5Y+377yI5oiW5YaZIuWPmOWMluiuuuesrCBOIOexu++8iEFJIOW9kue6s++8iSIrIOiEmuazqO+8iSB8IOinhOmBvyA0LjMg55qE5ZG95ZCN5pKe6L2mIHwKfCAzIHwg5paw5aKeICoq44CM6Lef6Liq5qGj5L2NIDEtNCDnsbvjgI3liJcqKiDihpAgKirov5nmiY3mmK/ph4zmtbfnnJ/mraPnmoTliIbnsbsqKu+8jOS4lOebtOaOpeWvueW6lOeyvuWKm+WIhumFje+8jOWvuSAzNSDlrrbnmoTml6XluLjot5/ouKrmnInlrp7mk43ku7flgLwgfCDpnIDopoHkuIDmrKHmgKfokL3moaMgfAp8IDQgfCDoi6XlgZrnrKwgMyDpobnvvIzokL3moaPliY3lkI4qKuWbnueciyAyLjUg55qE6YeP57qn57qm5p2fKirvvJoqKjEg57G75LiN5bqU6LaF6L+HIH4xMCDlrrYqKu+8jOWQpuWImeivtOaYjuWwuuWtkOaUvuawtCB8IOiHquaIkeagoemqjCB8CgotLS0KCiMjIOmZhO+8muWOn+aWh+e0ouW8le+8iOWPr+Wbnuafpe+8iQoKfCDmlofnq6AgfCDml6XmnJ8gfCDpk77mjqUgfCDmnKzpobXnlKjpgJQgfAp8LS0tfC0tLXwtLS18LS0tfAp8IOOAiue7iOS6juaQnuWujOS4gOS7tuWkp+S6i+eahOWfuuehgOaAp+W3peS9nO+8geOAiyB8IDIwMjEuOC4xMiB8IFttcF0oaHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvdW5mVHpmNXYzUTFIZGhRUEdyYkstZykgfCDlm5vnsbvlrprkuYkgLyDnsr7lipvliIbphY0gLyDliKTmlq3kuI3lj6/lpJbljIUgLyDkuozmrKHmorPnkIYgfAp8IOOAijMw5YiG6ZKf5Yid562b5LiA5a625YWs5Y+444CLIHwgMjAyMS42LjI1IHwgW21wXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy9rRERKbU9tdkIxOGJMZ1dBRFVIMTJBKSB8IOS4ieadv+aWpyAvIOWvjOajrue+juS4juWNg+emvuiQveaho+ekuuiMgyAvIOWPmOWMluWboOWtkOa4heWNlSB8Cnwg44CK5oiR5Y+q5piv5pCs6L+Q5bel77yB44CLIHwgMjAyMS4yLjIzIHwgW21wXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy9ndFZnX0RaOFN0cnVBWmVrWGMwZnFnKSB8IOamgueOh8K36LWU546HwrfpopHnjoflrprkuYnkuI7pobrluo8gfAp8IOOAiuiwg+iKguWlj++8jOi/m+WFpeaWsOeUn+a0u++8jOWTiOWTiO+8geOAiyB8IDIwMjAuMTEuMzAgfCBbbXBdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL3hYeklnYnVxZnNwMGc3YXRfRVRzOVEpIHwg5pep5pyf5LiJ5YiG57G754mIIC8g6YeN54K56Lef6Liq5Z6L5LiK6ZmQIDEwIOS4qiB8Cnwg44CK5LiO6Ieq5bex5YaF5b+D5a+56K+d4oCU4oCU5oiR5b+F6aG76L+I6L+H5YaN5Y2H6L+Z5Liq5Z2O44CLIHwgMjAxOC45LjI2IHwgW21wXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy9TdVBTakpmMDhVdENKcTZCRHU2Z1RRKSB8IOept+S4vuazlSAvIOmHjeW6hiA0OCDlrrblm5vlsYLliIblsYLpm4/lvaIgfAp8IOOAiuayoeaDs+WIsOi1ouS6huS4gOeTtueyvuWTgeiMheWPsO+8geOAiyB8IDIwMjMuMS40IHwgW21wXShodHRwczovL21wLndlaXhpbi5xcS5jb20vcy84am5QejJzRmJDc0p1bkQ3SndzV0J3KSB8IOaYjuehruWQpuWumumdmeaAgeaMh+agh+mXqOanm++8iOWkquaegembhuWbouWPjeS+i++8iSB8Cnwg44CK5ZCE5L2N77yM5YGc5pu077yB44CLIHwgMjAyMi42LjcgfCBbbXBdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL0tDcXFwOGJRN1l1Z1J3REdDUkMxMUEpIHwg5YGc5pu05raI5YyW56ev5Y6LIC8gMjAwIOWkmuWutui3n+i4quaxoCB8Cnwg44CK5ZCE5L2N5YWE5byf5aeQ5aa55Lus77yM5oiR5Zue5p2l5ZWm77yB44CLIHwgMjAyMi43LjEgfCBbbXBdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL2FrWFpEQ1lwbmtsT1hPY2dXVXF1TkEpIHwg6YeP57qn77yaODcg5a62IC8g5q+P5a62IDE1MDAg5a2XIC8g56C0IDIwMCDlrrYgfAp8IOOAiumAieiCoeaooeWei++8geOAiyB8IDIwMjEuMy4yNiB8IFttcF0oaHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvYktfZ0FoZDROem5ueTAwTEp1TUJVUSkgfCDkuInlpKfpgInogqHmqKHlnovvvIjkuI7moaPkvY3mraPkuqTnmoTlj6bkuIDnu7TluqbvvIkgfAoKIyMg5Y+C6KeBCgotIFtb6YeM5rW3LeWPmOWMluiuul1dIOKAlCDnrKzkuozmnb8i5Y+Y5YyWIueahOmXqOelqOWIpOaNru+8iOS9juS8sOS4jeaYr+W6le+8jOWPmOWMluaJjeaYr+W6le+8ie+8m+KaoO+4jyDor6XpobUi56ysIE4g57G75Y+Y5YyWIue8luWPt+S4juacrOaWhyIxLTQg57G76Lef6LiqIioq5ZCr5LmJ5LiN5ZCMKirvvIzop4Egwqc0LjMKLSBbW+mHjOa1ty3nroDljZXorrpdXSDigJQg56ys5LiA5p2/IueugOWNlSLnmoTpl7jpl6jlip/og73vvIjlpI3mnYLlhazlj7jkuI3ov5vmsaDvvIkKLSBbW+mHjOa1ty0yNDQ05oqV6LWE5L2T57O7XV0g4oCUIDI0NDQg5oC757qy77ybIumikeeOhyLlnKjlm5vlrZfkuK3nmoTkvY3nva4KLSBbW+mHjOa1ty3lj4zlt6bkvqddXSDigJQgNCDnsbsi5rij5rij5YWs5Y+4IuS4juWPjOW3puS+p+WbnumBv+eahOS6pOWPie+8iOWfuuacrOmdoumihOacnyArIOiCoeS7t+i2i+WKv+S/seS4i++8iQotIFtb6YeM5rW35L2T57O7LeaAu+iniF1dIOKAlCDljYHlubTor63mlpnmlLbmlZvlkI7nmoTkvZPns7vpgJ/op4jlhaXlj6MKLSBbW+mHjOa1ty3kuJrnu6nlvZLlm6BdXSDigJQg5YiG5qGj5rOV5pyN5Yqh5LqO6aKR546H6L2u5Yqo77yM6L2u5Yqo5pS255uK55qE5Y2B5bm05b2S5ZugCi0gW1vlrabogqEv5bm/5beeL+W5v+W3nuWQjeWNlS3lvoXpgInmsaDot5/ouKrooahdXSDigJQg5pys5pa55rOV55qE6JC95Zyw6L295L2T77yI5YCZ6YCJIDM1IOWutiAvIHBhc3MgMTM0IOWutu+8iQotIFtb5a2m6IKhL+W5v+W3ni/lub/lt57lvoXpgInmsaAt5L6d5o2u5a2Y5qGjXV0g4oCUIOmAkOWPqiBwYXNzIOS+neaNrg==";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海-四类跟踪分档法.html">里海四类跟踪分档法</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海四类跟踪分档法</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-19</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论</span></div><div class="md" id="md"><h1>里海四类跟踪分档法：一张可执行的行动图</h1>
+<blockquote>
+<p><strong>一句话结论</strong>：里海<strong>没有打分表，也没有阈值</strong>——他给的是一条<strong>三步动作链</strong>（穷举圈层 → 30 分钟三板斧 → 两把尺子落档）加<strong>一条精力纪律</strong>（60 / 25 / 15）。分档的产出<strong>不是买入清单，而是跟踪力度的分配表</strong>；它的存在意义是让&quot;频率&quot;这个因子有标的池可用。原文自己就承认这是主观判断：<strong>&quot;一家公司到底分为一类还是二类，这完全就是我通过阅读分析客观的材料，例如研报、年报等，我自己做的主观判断而已。&quot;</strong>（<a href="https://mp.weixin.qq.com/s/unfTzf5v3Q1HdhQPGrbK-g">《终于搞完一件大事的基础性工作！》2021.8.12</a>，raw 2021 年合集 line 4090）</p>
+<p><strong>本页为分析整理层（非里海原文）。</strong> 四类定义、三板斧、尺子定义均为<strong>逐字引文并标注出处</strong>；&quot;三步动作链&quot;&quot;判定语&quot;等归整系本文分析，不是作者原话的分法。</p>
+</blockquote>
+<hr />
+<h2>〇、为什么需要这张图：它是&quot;频率因子&quot;的前置条件</h2>
+<p>分档不是目的，是<strong>前置动作</strong>。链条如下：</p>
+<pre><code>想用&quot;频率&quot;因子（高抛低吸式轮动）
+  → 必须在手里随时有一只&quot;敢重锤&quot;的替补标的
+  → 但一家公司够不够格重锤，需要长期跟踪才能形成判断
+  → 100-200 家公司不可能平均用力（&quot;我不可能能跟踪这么多&quot;）
+  → 所以：先分档，再按档分配精力
+  → 分档完成的那个瞬间，频率因子才第一次&quot;可用&quot;
+</code></pre>
+<p>作者对这一点的表述很直接：<strong>&quot;完成这个工作最大的意义在于，有可能会让我把投资中的'频率'这个因子用起来。&quot;</strong>（2021.8.12）以及&quot;<strong>能否把频率这个因子用好，我个人认为，区分了投资中'优秀'和'卓越'</strong>&quot;（同上）。</p>
+<p><strong>关键纪律——顺序不可颠倒</strong>（2021 年合集 line 4103）：</p>
+<blockquote>
+<p><strong>&quot;'概率、赔率和频率'这三因子，千万不能搞错顺序，如果抛弃'概率和赔率'，盲目来搞频率，就成了普通散户的追涨杀跌，快速亏钱。而只有把'概率和赔率'两者搞明白了，才有资格去探索'频率'。&quot;</strong></p>
+</blockquote>
+<p>⚠️ 因此<strong>误用警告</strong>：分档法不是&quot;选股法&quot;。跳过概率与赔率的判断直接照搬 1-4 类编号，等于把一张<strong>精力分配表</strong>当成<strong>买入信号表</strong>，方向恰好相反。</p>
+<hr />
+<h2>一、四类的定义（原文逐条）</h2>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>原文定义（引号内为逐字原话，2021.8.12）</th>
+<th>判定语（本文归纳）</th>
+<th>对应跟踪动作（原文）</th>
+<th>精力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 类</strong></td>
+<td>&quot;1 类的公司很有可能近期会出现买点，可能会出现高概率和高赔率的机会，所以需要最紧密的跟踪，投入大量的精力&quot;</td>
+<td>概率 ✓ ＋ 赔率 ✓ ＋ <strong>买点近</strong></td>
+<td>&quot;穷尽一切手段&quot;——公告、互动易、公司新闻网站、券商研报、主要产品价格（2020.11.30 原文口径）</td>
+<td><strong>60%</strong></td>
+</tr>
+<tr>
+<td><strong>2 类</strong></td>
+<td>&quot;公司还不错，但赔率和概率两个因子中，其中有一个可能不是那么好，短期内不会出现很舒服的买点，所以跟踪力度稍弱一点&quot;</td>
+<td>两率<strong>缺一</strong>：逻辑在，但位置或确定性不到位</td>
+<td>&quot;可以列为比较重要的跟踪股，<strong>每个公告都认真看</strong>&quot;（2021.6.25 千禾落档语）</td>
+<td><strong>25%</strong></td>
+</tr>
+<tr>
+<td><strong>3 类</strong></td>
+<td>&quot;公司并不差，但也不能谈上好，赔率和概率暂时都不具备，这类公司就需要等待一个大的变化，催化两率的变化&quot;</td>
+<td>两率<strong>皆无</strong>，只能等变量</td>
+<td>&quot;跟踪下定期公告和重大公告，掌握公司的重大动态就行&quot;；落到公司层面即**&quot;就看看年报和半年报就可以了&quot;**（2021.6.25 富森美落档语）</td>
+<td><strong>15%</strong>（3+4 合计）</td>
+</tr>
+<tr>
+<td><strong>4 类</strong></td>
+<td>&quot;现在看起来非常差，很多都是渣渣公司，看啥啥不行那类，不过这些公司完全放也不行，万一哪天来个重大重组呢&quot;</td>
+<td>基本面差 ＋ 无变化 ＋ 重组彩票</td>
+<td>&quot;一年瞟过两三眼就行&quot;</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<p><strong>量级约束（原文硬性条件）</strong>：<strong>&quot;1 类跟踪可能就几家，但要投入 60% 的精力跟踪，2 类跟踪数量也不会太多，投入 25% 的精力，3 类 4 类数量最多，却只需要投入 15% 的精力。&quot;</strong> 早期三分类版给出了上限口径：<strong>&quot;这类公司应该不会超过 10 个，否则的话就精力是不够的&quot;</strong>（2020.11.30，指&quot;重点跟踪型&quot;）。<strong>如果 1 类名单超过 10 家，说明尺子放水了，不是好事。</strong></p>
+<hr />
+<h2>二、行动图：从名单到落档的三步流水线</h2>
+<h3>2.1 全景</h3>
+<pre><code>【第 0 步 · 圈层】名单从哪来（穷举法，非&quot;找好公司&quot;）
+     能力圈四类来源：
+       ① 本地股（生活地，能实地看）
+       ② 此前的客户 / 老东家
+       ③ 消费股（&quot;好懂、出大牛股、不需现场调研也能判断&quot;）
+       ④ 本职行业
+     ＋ 读者/朋友按模板投来的初筛报告
+                ↓ （一批 100-200 家，粗糙但全）
+【第 1 步 · 画像】30 分钟三板斧 → 基本轮廓
+     板 1：看公司是干嘛的 → 业务是否专业、专注、简单
+     板 2：看是否有导致基本面大幅&quot;变化&quot;的变量
+     板 3：看财报 → 商业模式与潜在漏洞
+                ↓ （输出：业务画像 + 变化有无 + 财务质地）
+【第 2 步 · 落档】两把尺子
+     概率 = 变化是否真实、够不够大（基本面掌握能力）
+     赔率 = ①底部（空头是否衰竭）②向上空间 ③多头资金力度
+                ↓
+        1 类 ┃ 2 类 ┃ 3 类 ┃ 4 类
+                ↓
+【第 3 步 · 分配】按档投入 60% / 25% / 15% 的跟踪精力
+                ↓
+        （循环）二次梳理 → 只着力 1-2 类 → 买点到来时&quot;敢重锤&quot;
+</code></pre>
+<h3>2.2 第 0 步 · 名单来源：穷举法</h3>
+<p><strong>不是&quot;找好公司&quot;，是&quot;把能力圈内的股票全部过一遍&quot;。</strong> 原文：</p>
+<blockquote>
+<p><strong>&quot;我的具体操作是穷举法，把自己能力圈内的股票全部过一遍，逐层筛选，例如重庆 48 家上市公司，我经过筛选，分层如下：有 10 几家是垃圾公司，根本略看一下后就再也不看了，有 20 多家我估计就每年看一下年报的指标，看看有没有业绩反转的迹象，有 10 多家我估计要关注季报，而真正随时关注的，也就几家。其实也不费什么精力。就是在初筛的时候工作量比较大。&quot;</strong>（<a href="https://mp.weixin.qq.com/s/SuPSjJf08UtCJq6BDu6gTQ">《与自己内心对话》2018.9.26</a>，line 3352）</p>
+</blockquote>
+<p>这段 2018 年的四层分层，<strong>就是 1-4 类分档的原始版</strong>：垃圾（4 类）→ 只看年报（3 类）→ 看季报（2 类）→ 随时关注（1 类）。判定标准已经完整，只是当时还没命名为&quot;类&quot;。</p>
+<h3>2.3 第 1 步 · 30 分钟三板斧</h3>
+<blockquote>
+<p><strong>&quot;第一是看公司是干嘛的，最好是专业、专注、简单的，复杂了的公司变量太多，很难把握。第二是看公司最近是否有导致基本面大幅度'变化'的变量。第三就是看公司的财务报表，了解公司的商业模式和可能潜在的漏洞。这样三板斧下来，公司的基本轮廓画像就出来了，30 分钟足矣。&quot;</strong>（<a href="https://mp.weixin.qq.com/s/kDDJmOmvB18bLgWADUH12A">《30分钟初筛一家公司》2021.6.25</a>，line 3445-3448）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>板</th>
+<th>问什么</th>
+<th>具体看法</th>
+<th>参照页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>第一板 · 简单</strong></td>
+<td>业务是否&quot;专业、专注、简单&quot;？</td>
+<td>能否用一句话说清；变量是否可穷尽</td>
+<td><a href="%E9%87%8C%E6%B5%B7-%E7%AE%80%E5%8D%95%E8%AE%BA.html">里海-简单论</a></td>
+</tr>
+<tr>
+<td><strong>第二板 · 变化</strong></td>
+<td>是否有<strong>大的</strong>变化？</td>
+<td>原文列的因子：<strong>产品持续涨价、持续产能投放、下游需求大爆发、并购重组、重磅新产品投放市场、更换大股东</strong></td>
+<td><a href="%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">里海-变化论</a></td>
+</tr>
+<tr>
+<td><strong>第三板 · 财报</strong></td>
+<td>商业模式是什么、漏洞在哪？</td>
+<td>不看比率好坏，看<strong>钱在哪、漏洞在哪</strong>（应收/存货/有息负债/在建工程）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>第二板是核心闸门</strong>，原文定性极重：</p>
+<blockquote>
+<p><strong>&quot;只有'变化'中的公司才有可能获得超额收益的可能，否则的话，买入不'变化'的公司，可能就会难受很长的时间。&quot;</strong></p>
+<p><strong>&quot;没有变化的企业，是很难获得超额收益的。&quot;</strong>（同篇，line 3348-3441）</p>
+</blockquote>
+<p>⚠️ 注意这里说的是**&quot;比较大的变化，能够比较显著的改变公司的基本面&quot;<strong>，不是任何风吹草动。原文：</strong>&quot;每一家公司都是在变化中的，我说的这种变化，是比较大的变化……否则的话，市场是不太可能认同的，那么公司的股价就没有中长期上涨的动力。&quot;**</p>
+<h3>2.4 第 2 步 · 两把尺子的操作定义</h3>
+<p>尺子定义出自 <a href="https://mp.weixin.qq.com/s/gtVg_DZ8StruAZekXc0fqg">《我只是搬运工！》2021.2.23</a>（line 1138，逐字）：</p>
+<table>
+<thead>
+<tr>
+<th>尺子</th>
+<th>原文定义</th>
+<th>落档时的操作问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>概率</strong></td>
+<td>&quot;概率就是对基本面的掌握的能力，也就是说要对一家公司的主逻辑有非常深度理解才行，说白了就是要具备基本面的分析能力&quot;</td>
+<td>这个变化<strong>是真的吗？够大吗？</strong> 主逻辑能否一句话说清</td>
+</tr>
+<tr>
+<td><strong>赔率</strong></td>
+<td>&quot;赔率就是如果这个事情发生了，空间有多大，说白了就是要有理解市场运行规律的能力&quot;，拆三细项：<strong>① 判断底部的能力，能够感知空头的力量已经衰竭；② 能够判断向上空间的大小；③ 能够感知多头资金的力度</strong>（短/中/长期资金动向）</td>
+<td><strong>现在这个位置，最坏还能跌多少、最好能涨多少？</strong> 空头力量是否已衰竭</td>
+</tr>
+<tr>
+<td><strong>频率</strong></td>
+<td>&quot;频率就是要掌握好换股的时机，做到股票的及时切换&quot;</td>
+<td>手里有没有<strong>同样够格</strong>的替补标的（← 这就是分档要解决的问题）</td>
+</tr>
+</tbody>
+</table>
+<p>三者的关系原文总结为：<strong>&quot;当概率和赔率共振的时候，下重注，然后再以合适频率做轮动&quot;</strong>；<strong>&quot;一切的操作，都是以基本面为核心，基本面就是守正，而赔率就是出奇，赚市场情绪的钱&quot;</strong>（line 1173）。</p>
+<h3>2.5 第 3 步 · 二次梳理与重锤</h3>
+<p>分档完成<strong>不等于</strong>可以抉择，作者明确说这只是&quot;基础性工作&quot;：</p>
+<blockquote>
+<p><strong>&quot;这仅仅只是基础性的工作，对这些公司有印象而已，完全还没有达到可以抉择的那个阶段，因此，后期我就会根据我分类的结果，对公司进行第二次的梳理，当然，首先着力的，就是第一和第二类的。&quot;</strong>（2021.8.12，line 4105）</p>
+</blockquote>
+<p>而分档的最终收益，是<strong>把&quot;直觉&quot;变成可信的</strong>：</p>
+<blockquote>
+<p><strong>&quot;按照分类进行不同力度的跟踪，慢慢的，每家公司就越来越熟悉，当一家公司的买点到来的时候，就会产生一种很重要的直觉，可以重锤了，长时间的跟踪和等待，就是为了这个时候锤下去。只有保持足够的跟踪力度，才能在公司的变化被市场发现的时候，在行业的风来的时候，心里有底敢于重锤下去，否则心里是完全没底的。&quot;</strong>（同上，line 4106）</p>
+</blockquote>
+<hr />
+<h2>三、两个落档示范（可当校准标尺）</h2>
+<p>出自 <a href="https://mp.weixin.qq.com/s/kDDJmOmvB18bLgWADUH12A">《30分钟初筛一家公司》2021.6.25</a>（line 3450-3464）。这是<strong>唯一一篇把同一个方法在两家公司上完整跑完的文章</strong>，因此是最好的校准样本。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th><strong>富森美</strong> → <strong>3 类</strong></th>
+<th><strong>千禾味业</strong> → <strong>2 类</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>板 1 简单</strong></td>
+<td>家居卖场，&quot;依托成都核心商圈的 110 万平米自有物业打造自营卖场……入驻商户 3,000 余户&quot;，<strong>&quot;本质上就是收租的，做平台服务的公司。商业模式非常好，轻资产。&quot;</strong> ✓</td>
+<td>&quot;做中高端的酱油、醋和料酒的&quot; ✓</td>
+</tr>
+<tr>
+<td><strong>板 2 变化</strong></td>
+<td>✗ <strong>&quot;认真看年报中关于这块的内容，发现公司会有些许变化，然而在未来一年内，并没有大的变化的可能。公司战略中……虚的东西一大堆，实际的其实就两个……然而并不能大幅改变公司的基本面。&quot;</strong></td>
+<td>✓ <strong>&quot;快速推动'年产 25 万吨酿造酱油、食醋生产线扩建项目二期'竣工投产、推进'年产 60 万吨调味品生产线扩建项目'。而公司 2020 年的产量是多少呢？28 万吨。也就是说，这项目要是落地的话，相当于再造几个千禾啊。&quot;</strong></td>
+</tr>
+<tr>
+<td><strong>板 3 财报</strong></td>
+<td>极好：货币资金 5 亿多 + 理财 12 亿多、应收可忽略、资产负债率 10% 多、<strong>净利率超 50%</strong>（营收 13 亿、净利 7.73 亿）</td>
+<td>也不错但&quot;不如富森美这样有钱&quot;：货币资金 1.17 亿 + 理财 3.9 亿、应收 1 亿多、存货近 4 亿、固定资产 8 亿多（重资产推动型）、在建工程 1.4 亿</td>
+</tr>
+<tr>
+<td><strong>估值位置</strong></td>
+<td>PE 12 倍、PB 1.8 倍，&quot;<strong>股价一直躺地上</strong>&quot;、&quot;市场对其没有预期&quot;</td>
+<td>&quot;去年这公司狠狠地涨了一波，今年回调杀估值中&quot;</td>
+</tr>
+<tr>
+<td><strong>落档结论</strong></td>
+<td><strong>3 类</strong> —&quot;所以，就可以定为'就看看年报和半年报就可以了'，因为变化的到来，不是很快的，会提前体现在公司的公告中。&quot;</td>
+<td><strong>2 类</strong> —&quot;可以列为比较重要的跟踪股，每个公告都认真看，说不定就跟踪到好的买点了。&quot;</td>
+</tr>
+<tr>
+<td><strong>关键反差</strong></td>
+<td>财务质地<strong>最好</strong>，但因为是 3 类，跟踪力度<strong>最小</strong></td>
+<td>财务质地<strong>不如</strong>富森美，但因为变化大，档位<strong>更高</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔑 <strong>这张表的全部教学意义在最后一行反差</strong>：<strong>分档锚是&quot;预期 + 变化 + 位置&quot;，不是财务比率。</strong> 财务最好的那家被放进 3 类（只等变化），变化最大的那家被放进 2 类（每份公告都看）。这与第 2 步&quot;不看静态指标&quot;是同一件事的两面。</p>
+<hr />
+<h2>四、边界与易错点</h2>
+<h3>4.1 没有打分表，判断不可外包</h3>
+<p><strong>&quot;基础性工作中，所有的事情都能外包，但'判断'这个工作无法外包。&quot;</strong>（2021.8.12，line 4088-4090）理由原文：<strong>&quot;最终的判断却是艺术性很大，不同的人对同一个东西，会得出截然不同的结论出来……一家公司到底分为一类还是二类，这完全就是我通过阅读分析客观的材料……我自己做的主观判断而已。而如果换成另外一个人，可能就会有另外的结论。&quot;</strong></p>
+<p>⚠️ 因此本页<strong>不提供</strong>打分公式或阈值。任何&quot;给某家公司打 78 分即入 1 类&quot;的做法，都是对本方法的误用。</p>
+<h3>4.2 明确否定静态指标门槛</h3>
+<blockquote>
+<p><strong>&quot;有人问我，初筛标的是不是对 ROE，对 PE、PB、资产负债率等有什么要求？其实并不是，如果只是看这些静态指标的话，根本看不到太极集团来，但事实上，从 2019 年以来，太极集团已经连续涨了 4 年了，但这些静态指标依然很难看。&quot;</strong>（<a href="https://mp.weixin.qq.com/s/8jnPz2sFbCsJunD7JwsWBw">《没想到赢了一瓶精品茅台！》2023.1.4</a>，line 25-26）</p>
+</blockquote>
+<p>作者的正面替代是<strong>预期</strong>：<strong>&quot;预期是最好的涨价驱动力……如果等基本面已经很好了才觉得是个好公司，基本上股价已经到头了&quot;</strong>（同篇 line 27）。</p>
+<h3>4.3 命名撞车警告（本 wiki 内部一致性）</h3>
+<p>本 wiki 里存在<strong>两套&quot;第 X 类&quot;编号</strong>，含义完全不同，引用时必须写明出处：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>含义</th>
+<th>出处</th>
+<th>性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>第 1-4 类</strong></td>
+<td><strong>跟踪档位</strong>（本文主题）：1 类近期有买点 → 4 类渣渣公司</td>
+<td>里海原文 2021.8.12</td>
+<td>作者原话</td>
+</tr>
+<tr>
+<td><strong>第 N 类变化</strong>（六类：治理股权 / 业绩拐点 / 行业景气·第二曲线 / 预期估值 / 筹码 / 无变化反例）</td>
+<td><strong>变化的类型</strong></td>
+<td><a href="%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">里海-变化论</a> 第一节</td>
+<td>⚠️ <strong>AI 分析整理，非作者原话的分法</strong>（该页&quot;边界与诚实标注&quot;已自陈）</td>
+</tr>
+</tbody>
+</table>
+<p>两者会直接冲突：里海原文的&quot;<strong>3 类跟踪</strong>&quot;＝只看定期公告的平庸公司；而《里海-变化论》的&quot;<strong>第 3 类变化</strong>&quot;＝行业景气·第二曲线，是好事。<strong>同一家公司可能&quot;3 类跟踪&quot;但&quot;第 3 类变化&quot;，读起来正好相反。</strong></p>
+<p>👉 引用建议：<strong>跟踪档位写&quot;1-4 类跟踪&quot;并链回本页；变化类型写&quot;变化论第 N 类（AI 归纳）&quot;并链回变化论页</strong>，首次出现处加脚注。</p>
+<h3>4.4 方法演进史（三个版本，口径在变宽）</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>版本</th>
+<th>分法</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2018.9.26</strong></td>
+<td>雏形</td>
+<td>四层：垃圾（略看）／只看年报指标／看季报／随时关注</td>
+<td>《与自己内心对话》</td>
+</tr>
+<tr>
+<td><strong>2020.11.30</strong></td>
+<td>三分类</td>
+<td>重点跟踪型（<strong>上限约 10 个</strong>）／普通跟踪型／一般个股</td>
+<td>《调节奏，进入新生活，哈哈！》</td>
+</tr>
+<tr>
+<td><strong>2021.8.12</strong></td>
+<td><strong>四类</strong>（定稿）</td>
+<td>1-4 类跟踪，160 家完成，精力 60/25/15</td>
+<td>《终于搞完一件大事的基础性工作！》</td>
+</tr>
+<tr>
+<td><strong>2022.7.1</strong></td>
+<td>量级扩张</td>
+<td>累计再看 <strong>87 家</strong>、每家约 <strong>1500 字</strong>小结（约十几万字），<strong>储备破 200 家</strong>；其中 <strong>20-30 家</strong>为经初筛的深度跟踪标的</td>
+<td>《各位兄弟姐妹们，我回来啦！》</td>
+</tr>
+</tbody>
+</table>
+<p>2022 年那次是全职停更 20 多天完成的：<strong>&quot;从 6 月 7 日后开始停掉其他事情专门做这件事&quot;</strong>（《各位，停更！》2022.6.7）。口径：<strong>&quot;后续的投资就会非常轻松了，可能 20% 的精力都不会用到&quot;</strong>（2022 年合集 line 3053）。</p>
+<hr />
+<h2>五、迁移到本项目：广州待选池怎么接</h2>
+<h3>5.1 现有结构与本方法的对应关系</h3>
+<p><code>学股/广州/广州名单-待选池跟踪表.md</code>（2026-09-19 口径：<strong>候选/跟踪 35 家 + pass 134 家 = 已扫描 169 家</strong>）的分栏是「代码 / 名称 / 里海定性 / 结论 / 触发条件·待核」，打分口径是「简单 / 底部 / 变化 / 分仓」四栏。</p>
+<p><strong>口径天然能对上，只差一列显式标注：</strong></p>
+<table>
+<thead>
+<tr>
+<th>里海原生</th>
+<th>待选表现状</th>
+<th>对应关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 类</strong>（两率齐 + 买点近）</td>
+<td>2.1 候选 35 家中&quot;触发条件&quot;已写明近期买点者</td>
+<td>35 家<strong>整体</strong>≈ 里海的 1 类 + 2 类</td>
+</tr>
+<tr>
+<td><strong>2 类</strong>（两率缺一）</td>
+<td>同上，多为&quot;待扫 / 待核&quot;者</td>
+<td>↑</td>
+</tr>
+<tr>
+<td><strong>3 类</strong>（等大变化）</td>
+<td>2.2 pass 134 家中&quot;依据待补 / 无近期变化&quot;者</td>
+<td>134 家<strong>整体</strong>≈ 3 类 + 4 类</td>
+</tr>
+<tr>
+<td><strong>4 类</strong>（渣渣 + 重组彩票）</td>
+<td>2.2 中&quot;第一轮批量扫描 pass（未逐只深扫）&quot;者</td>
+<td>↑</td>
+</tr>
+<tr>
+<td><strong>赔率的&quot;位置&quot;量化</strong></td>
+<td>已有（现价 / 年内区间 / PE 分位散见&quot;触发条件&quot;列）</td>
+<td><strong>缺统一列</strong></td>
+</tr>
+<tr>
+<td><strong>变化的&quot;存在性&quot;</strong></td>
+<td>已有（&quot;变化真实 / 不在底部&quot;等散见&quot;里海定性&quot;列）</td>
+<td><strong>缺统一列</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>5.2 两个缺口</h3>
+<ol>
+<li><strong>赔率的&quot;位置&quot;没有统一量化列</strong>。里海的原生判据是**&quot;感知空头的力量已经衰竭&quot;<strong>（定性），但本表数据层（<code>data/&lt;code&gt;.db</code> 日线 + AKShare 估值）<strong>足以做近似量化</strong>——例如年内区间分位、距 250 日高点回撤、PE/PB 历史分位。⚠️ 这是本文提出的</strong>近似**，非作者原方法，须标注。</li>
+<li><strong>&quot;变化&quot;的存在性没有统一判断</strong>，且现有&quot;里海定性&quot;列<strong>口径混合</strong>（三种写法并存）：
+<ul>
+<li>模型归属型（如 301283 聚胶&quot;隐形冠军&quot;、301373 凌玮&quot;里海亲自做过的标的&quot;）</li>
+<li>业务描述型（如 000893 亚钾&quot;周期景气股 / 重资产资源兑现股&quot;）</li>
+<li>位置判断型（如&quot;<strong>不在底部</strong>&quot;）</li>
+</ul>
+</li>
+</ol>
+<h3>5.3 建议（提案，待用户确认后执行）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>动作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「里海定性」列<strong>收敛为单一口径</strong>：只填<strong>模型归属</strong>（杀业绩修复 / 隐形冠军不涨 / 困境反转 / 都不符），业务描述挪到括号内</td>
+<td>避免三种口径混用</td>
+</tr>
+<tr>
+<td>2</td>
+<td>新增 <strong>「变化类型」文字列</strong>，不用&quot;第 X 类&quot;编号（或写&quot;变化论第 N 类（AI 归纳）&quot;+ 脚注）</td>
+<td>规避 4.3 的命名撞车</td>
+</tr>
+<tr>
+<td>3</td>
+<td>新增 <strong>「跟踪档位 1-4 类」列</strong> ← <strong>这才是里海真正的分类</strong>，且直接对应精力分配，对 35 家的日常跟踪有实操价值</td>
+<td>需要一次性落档</td>
+</tr>
+<tr>
+<td>4</td>
+<td>若做第 3 项，落档前后<strong>回看 2.5 的量级约束</strong>：<strong>1 类不应超过 ~10 家</strong>，否则说明尺子放水</td>
+<td>自我校验</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>附：原文索引（可回查）</h2>
+<table>
+<thead>
+<tr>
+<th>文章</th>
+<th>日期</th>
+<th>链接</th>
+<th>本页用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>《终于搞完一件大事的基础性工作！》</td>
+<td>2021.8.12</td>
+<td><a href="https://mp.weixin.qq.com/s/unfTzf5v3Q1HdhQPGrbK-g">mp</a></td>
+<td>四类定义 / 精力分配 / 判断不可外包 / 二次梳理</td>
+</tr>
+<tr>
+<td>《30分钟初筛一家公司》</td>
+<td>2021.6.25</td>
+<td><a href="https://mp.weixin.qq.com/s/kDDJmOmvB18bLgWADUH12A">mp</a></td>
+<td>三板斧 / 富森美与千禾落档示范 / 变化因子清单</td>
+</tr>
+<tr>
+<td>《我只是搬运工！》</td>
+<td>2021.2.23</td>
+<td><a href="https://mp.weixin.qq.com/s/gtVg_DZ8StruAZekXc0fqg">mp</a></td>
+<td>概率·赔率·频率定义与顺序</td>
+</tr>
+<tr>
+<td>《调节奏，进入新生活，哈哈！》</td>
+<td>2020.11.30</td>
+<td><a href="https://mp.weixin.qq.com/s/xXzIgbuqfsp0g7at_ETs9Q">mp</a></td>
+<td>早期三分类版 / 重点跟踪型上限 10 个</td>
+</tr>
+<tr>
+<td>《与自己内心对话——我必须迈过再升这个坎》</td>
+<td>2018.9.26</td>
+<td><a href="https://mp.weixin.qq.com/s/SuPSjJf08UtCJq6BDu6gTQ">mp</a></td>
+<td>穷举法 / 重庆 48 家四层分层雏形</td>
+</tr>
+<tr>
+<td>《没想到赢了一瓶精品茅台！》</td>
+<td>2023.1.4</td>
+<td><a href="https://mp.weixin.qq.com/s/8jnPz2sFbCsJunD7JwsWBw">mp</a></td>
+<td>明确否定静态指标门槛（太极集团反例）</td>
+</tr>
+<tr>
+<td>《各位，停更！》</td>
+<td>2022.6.7</td>
+<td><a href="https://mp.weixin.qq.com/s/KCqqp8bQ7YugRwDGCRC11A">mp</a></td>
+<td>停更消化积压 / 200 多家跟踪池</td>
+</tr>
+<tr>
+<td>《各位兄弟姐妹们，我回来啦！》</td>
+<td>2022.7.1</td>
+<td><a href="https://mp.weixin.qq.com/s/akXZDCYpnklOXOcgWUquNA">mp</a></td>
+<td>量级：87 家 / 每家 1500 字 / 破 200 家</td>
+</tr>
+<tr>
+<td>《选股模型！》</td>
+<td>2021.3.26</td>
+<td><a href="https://mp.weixin.qq.com/s/bK_gAhd4Nznny00LJuMBUQ">mp</a></td>
+<td>三大选股模型（与档位正交的另一维度）</td>
+</tr>
+</tbody>
+</table>
+<h2>参见</h2>
+<ul>
+<li><a href="%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">里海-变化论</a> — 第二板&quot;变化&quot;的门票判据（低估不是底，变化才是底）；⚠️ 该页&quot;第 N 类变化&quot;编号与本文&quot;1-4 类跟踪&quot;<strong>含义不同</strong>，见 §4.3</li>
+<li><a href="%E9%87%8C%E6%B5%B7-%E7%AE%80%E5%8D%95%E8%AE%BA.html">里海-简单论</a> — 第一板&quot;简单&quot;的闸门功能（复杂公司不进池）</li>
+<li><a href="../%E9%87%8C%E6%B5%B7-2444%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB.html">里海-2444投资体系</a> — 2444 总纲；&quot;频率&quot;在四字中的位置</li>
+<li><a href="%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">里海-双左侧</a> — 4 类&quot;渣渣公司&quot;与双左侧回避的交叉（基本面预期 + 股价趋势俱下）</li>
+<li><a href="../%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">里海体系-总览</a> — 十年语料收敛后的体系速览入口</li>
+<li><a href="../%E9%87%8C%E6%B5%B7-%E4%B8%9A%E7%BB%A9%E5%BD%92%E5%9B%A0.html">里海-业绩归因</a> — 分档法服务于频率轮动，轮动收益的十年归因</li>
+<li><a href="../../%E5%AD%A6%E8%82%A1/%E5%B9%BF%E5%B7%9E/%E5%B9%BF%E5%B7%9E%E5%90%8D%E5%8D%95-%E5%BE%85%E9%80%89%E6%B1%A0%E8%B7%9F%E8%B8%AA%E8%A1%A8.html">学股/广州/广州名单-待选池跟踪表</a> — 本方法的落地载体（候选 35 家 / pass 134 家）</li>
+<li><a href="../../%E5%AD%A6%E8%82%A1/%E5%B9%BF%E5%B7%9E/%E5%B9%BF%E5%B7%9E%E5%BE%85%E9%80%89%E6%B1%A0-%E4%BE%9D%E6%8D%AE%E5%AD%98%E6%A1%A3.html">学股/广州/广州待选池-依据存档</a> — 逐只 pass 依据</li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E6%96%B9%E6%B3%95%E8%AE%BA">← 返回 方法论</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/方法论/里海-四类跟踪分档法.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

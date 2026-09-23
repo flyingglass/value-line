@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海案例·博隆技术</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海案例·博隆技术</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,167 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海案例-博隆技术.html">里海案例·博隆技术</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海案例·博隆技术</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-11</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/案例</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E6%A1%88%E4%BE%8B">← 返回 案例</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/案例/里海案例-博隆技术.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDph4zmtbfmoYjkvosgwrcg5Y2a6ZqG5oqA5pyv77yINjAzMzI177yJCgo+ICoq5LiA5Y+l6K+d5a6a5L2NKirvvJoqKjIwMjUuMi0zIOa4heS7k+ehheWuneWQjueahOi1hOmHkeWOu+WQkeS5i+S4gOOAgTIwMjUuOSDkuI7lh4znjq7kuIDlkIzljZblh7rvvIjliIfkuK3ms7DvvInigJTigJTkvYbor63mlpnlr7nlhbYi5Lmw5YWl55CG55SxIumbtuaKq+mcsioq77yM5bGe5YWo5qGI5L6L5bqT5LitKirntKDmnZDmnIDoloTnmoTkuIDpobUqKu+8iOavlCBbW+mHjOa1t+ahiOS+iy3kuK3ms7DogqHku71dXSDov5joloTvvJrkuK3ms7Doh7PlsJHmnIki56Gu5a6a5oCn5LyY5YWIIueahOWIh+aNoumHiuS5ie+8jOWNmumahui/niLlvZPliJ3kuLrku4DkuYjkubAi6YO95rKh5pyJ77yJ44CC5ZSv5LiA5Y+v55So5L2T57O754K55pivKirpgZPCt+mikeeOh++8iOaciea1ruebiOaXtuS4u+WKqOWIh+aNou+8iSoq44CCCj4KPiDmnKzpobXkuLogW1vph4zmtbfkvZPns7st5oC76KeIXV0g55qE5qGI5L6L6K+B5o2u5bGC44CC6LSm5oi35Y+j5b6EPTMwIOS4h+ekuuiMg+i0puaIt++8iOi1hOmHkeadpeiHqiAyMDI1LjItMyDmuIXku5PnoYXlrp3vvInvvJsqKuS4mue7qeS4uuS9nOiAheiHqui/sOWPo+W+hCoq77yM5pyq54us56uL5qC45a6e77yb5YWo5paH5byV6K+t5LuFIDIg5aSE77yM5YW25L2Z5Z2H5Li65pON5L2c5bGC5LqL5a6e44CCCj4KPiDimqDvuI8g5LiOIFtb6YeM5rW35qGI5L6LLeWHjOeOruenkeaKgF1dIOaYryoq5ZCM5LiA56yU5YiH5o2i55qE5Lik5p2h6IW/KirvvJrljZrpmoYv5YeM546u5ZyoIDIwMjUg5bm05ZCM5LiA5Y+l6K+d6YeM5oiQ5a+55Ye6546w77yI5Lmw77yJ5LiO5oiQ5a+55Ye6546w77yI5Y2W77yJ77yM5L2G5L2c6ICFIDIwMjYuMy4xMiDnmoTlh4znjq7kuJPmlocqKuWPquWkjeebmOS6huWHjOeOru+8jOacquaPkOWNmumahioqIOKGkiDljZrpmobnmoQi5LqL5ZCO5b2S5ZugIuawuOS5hee8uuWkseOAggoKLS0tCgojIyDkuIDjgIHkvZPns7sgw5cg6K+B5o2uIOaYoOWwhO+8iOaguOW/g+ihqO+8iQoKIyMjIDEuIOacr+KAlOKAlOeugOWNlSDCtyDlupXpg6ggwrcg5Y+Y5YyWIMK3IOWIhuS7kwoKLSAqKuacr8K35YiG5LuTL+mikeeOh++8iOWFqOmDqOe0oOadkO+8jOS9nOiAheWOn+ivne+8iSoq77yacmF3LTIwMjUtMTItMzHvvJoi5L2G5oiR6L+Y5piv5Y2W5LqG77yM5Li76KaB5piv5b+D6YeM55qE6L+Z5Z2X55+z5aS05aSq6YeN5LqG77yM5omA5Lul5oOz5YiH5o2i5Yiw5YW25LuW5qCH55qE5LiK5p2l77yM5Zug5q2k5Zyo5pyJ5rWu55uI55qE5oOF5Ya15LiL5YiH5o2i5LqG77yMKirlsLHliIfmjaLliLDkuobljZrpmoblkozlh4znjq7kuIrpnaLmnaUqKuOAgiLvvIjmuIXku5PnoYXlrp3nmoTml7bngrnkuLogMjAyNSDlubQgMiDmnIjlkowgMyDmnIjvvIkKLSAqKuacr8K3566A5Y2VL+W6lemDqC/lj5jljJYqKu+8mioq5peg5Lu75L2V5Y6f5paH6K666K+BKirjgILljZrpmobmmK8i5rCU5Yqb6L6T6YCB57KJ5L2T5aSE55CG57O757ufIuijheWkh+WFrOWPuO+8iOacrOWcsOWFg+aVsOaNru+8jOingeaWh+acq+mZhOazqO+8ie+8jOespuWQiCLmnLrnlLXliLbpgKAi6L+Z5LiA57G777yM5L2G5L2c6ICF5piv5ZCm5oyJIueugOWNlS/lupXpg6gv5Y+Y5YyWIuetm+WHuuWug++8jOaho+ahiOmHjOaJvuS4jeWIsOivgeaNruKAlOKAlCoq5LiN5Y+v5Luj5Li66KGl5YaZKirjgIIKCiMjIyAyLiDpgZPigJTigJTluLjor4Ygwrcg5qaC546HIMK3IOi1lOeOhyDCtyDpopHnjocKCi0gKirpgZPCt+mikeeOh++8iOacrOmhteWUr+S4gOS9k+ezu+eCue+8jOS9nOiAheWOn+ivne+8iSoq77yacmF3LTIwMjUtMTItMzHvvJoi5pyJ5LqG5pe26Ze05ZCO77yM5oiR6K6k55yf55Ci56Oo5LqG5LiL5oyB5LuT55qE5Yeg5Liq5qCH55qE77yMKirorqTkuLrljZrpmoblkozlh4znjq7nn63mnJ/nmoTnoa7lrprmgKfkuI3lpKrlpJ/vvIzkuo7mmK/lnKjmnInmta7nm4jnmoTmg4XlhrXkuIvvvIzliIfmjaLliLDkuobkuK3ms7DogqHku70qKuOAgiLigJTigJTkubDvvIjnoYXlrp0g4oaSIOWNmumahu+8ieS4juWNlu+8iOWNmumahiDihpIg5Lit5rOw77yJKirkuKTmrKHpg73mmK8i5pyJ5rWu55uI5pe25Li75Yqo5o2i5LuTIioq77yM5pivIDIwMjUg5bm0IumikeeOhyLmiZPms5XmnIDnuq/nsrnnmoTliqjkvZzmoLfmnKzvvJrkuI3lm6Dkuo/mjZ/ogIznoI3vvIzogIzmmK/miorotYTph5HlvoAi56Gu5a6a5oCn5pu06auYIueahOS9jee9ruaMquOAggotICoq6YGTwrfluLjor4Yv5qaC546HL+i1lOeOhyoq77ya5peg5Y6f5paH44CCCgojIyMgMy4g6IO95Yqb4oCU4oCU5Lu35YC85Yik5patIMK3IOW4guWcuuWFiOeUnyDCtyDlv4PmgKcgwrcg5a6P6KeCCgotICoq6IO95YqbwrfnoJTnqbbmgaLlpI3vvIjog4zmma/vvIkqKu+8mjUtNyDmnIjluKblqIPlpIfogIPvvIjlsI/ljYfliJ3vvInjgIE3IOaciOW6leWHuuWbveOAgTgg5pyI6Zmq6K+74oCU4oCUOSDmnIgi5oiR57uI5LqO5pyJ5pe26Ze05p2l6L+b6KGM6KeE5b6L5oCn55qE5bel5L2c5ZKM5a2m5Lmg5LqGIuS5i+WQju+8jOaJjeWvueaMgeS7k++8iOWQq+WNmumahu+8ieWBmuWHuuWIpOaWre+8iHJhdy0yMDI1LTEyLTMxIOiHqui/sO+8ieOAgioq5Y2z77ya5Lmw5YWl5pe277yIMi0zIOaciO+8ieS4juWNluWHuuaXtu+8iDkg5pyI77yJ55qE5L+h5oGv5p2h5Lu25a6M5YWo5LiN5ZCM77yM5YmN6ICF5o6l6L+RIumhuuaJi+S5sCLvvIzlkI7ogIXmiY3mmK8i55Ci56Oo5ZCO5Y2WIuOAgioqCi0gKirog73lipvCt+S7t+WAvOWIpOaWrS/luILlnLrlhYjnlJ8v5b+D5oCnL+Wuj+ingioq77ya5peg5Y6f5paH44CCCgojIyMgNC4g5byx6ICF5oCd57u0CgotICoq5peg5LuO5Yik5pat77yI6LWE5paZ5LiN6Laz77yJKirvvJrkubDljZbkuKTkvqfpg73msqHmnIki55yL6ZSZ5LqG6IO95LqP5aSa5bCRIueahOi1lOeOh+ihqOi/sO+8jOaXoOazleaYoOWwhOWIsOW8seiAheS9k+ezu+eahOS7u+S9leS4gOadoeOAggoKIyMjIDUuIOaImOeVpSB2cyDmiJjmnK/ogqEKCi0gKirmiJjmnK/ogqHvvIjmjqjlrprvvIkqKu+8muS4juWHjOeOruWQjOaJueS5sOWFpeOAgeWQjOaJueWNluWHuuOAgeWQjOagtyLnoa7lrprmgKfkuI3lpJ/lsLHotbAi77yM6IqC5aWP5Li65Yeg5Liq5pyI6YeP57qn77yb5L2GKirkvZzogIXmnKrmmI7noa7lrprmgKcqKu+8jOatpOWkhOS7heS4uuS4juWHjOeOrueahOWvueeFp+aOqOWumu+8jOagh+azqOWtmOeWkeOAggoKLS0tCgojIyDkuozjgIHkuovku7bml7bpl7Tnur/vvIjlkKvlh7rlpITvvIkKCnwg5pe26Ze0IHwg5LqL5Lu2IHwg5Lia57up77yI6Ze06ZqUIC8g5YWs5ZGK77yJIHwg5Ye65aSEIHwKfC0tLXwtLS18LS0tfC0tLXwKfCAqKjIwMjUuMi0zKiogfCAqKua4heS7k+ehheWuneenkeaKgO+8iOaciea1ruebiO+8ie+8jOmDqOWIhui1hOmHkSLliIfmjaLliLDljZrpmoblkozlh4znjq7kuIrpnaLmnaUiKirigJTigJTkubDlhaXml7bngrnjgIHku7fkvY3jgIHku5PkvY3phY3mr5TlnYfmnKrmiqvpnLIgfCDlhazlkYrvvJoyMDI0IOS4ieWto+aKpTxicj7pl7TpmpTvvJrmmZogOTcg5aSpPGJyPuWPkeW4g++8mjIwMjQtMTAtMjkgfCBbMjAyNS4xMi4zMeOAijIwMjXlubTmipXotYTmgLvnu5PvvIzmuJDlm57oh6rlt7HnmoToioLlpY/vvIHjgItdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zLzZ0VkdHYjBOSVhDbGxUeWstNzR4UEEp77ybW1vph4zmtbfmoYjkvost56GF5a6d56eR5oqAXV0g5LqL5Lu26KGoIHwKfCAqKjIwMjUuOSoqIHwgKirljZblh7rljZrpmoYv5YeM546u77yI5pyJ5rWu55uI77yJ44CB5YiH5o2i5Lmw5YWl5Lit5rOw6IKh5Lu9KirvvJrnkIbnlLE9IuWNmumahuWSjOWHjOeOruefreacn+eahOehruWumuaAp+S4jeWkquWknyIgfCDigJQgfCBbMjAyNS4xMi4zMeOAijIwMjXlubTmipXotYTmgLvnu5PvvIzmuJDlm57oh6rlt7HnmoToioLlpY/vvIHjgItdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zLzZ0VkdHYjBOSVhDbGxUeWstNzR4UEEp77ybW1vph4zmtbfmoYjkvost5Lit5rOw6IKh5Lu9XV0gfAp8IDIwMjUuMTIuMzEgfCDlubTluqbmgLvnu5Plm57muq/vvJrljZrpmoYqKuacquWHuueOsOWcqOW5tOacq+aMgeS7kyoq77yI5bm05pyrPeS6keWbviAyODcwMC/kuK3ms7AgMjM5MDAv5Yip5a6J6ZqGIDEwMTAwL+e0oumAmiAxNTgwMO+8iSB8IOWFrOWRiu+8mjIwMjUg5LiJ5a2j5oqlPGJyPumXtOmalO+8muaZmiA2NCDlpKk8YnI+5Y+R5biD77yaMjAyNS0xMC0yOCB85ZCM5LiKIHwKfCAyMDI2LjMuMTIgfCDkvZzogIXkuJPmloflpI3nm5jlh4znjq7vvIjjgIrplJnlpLHlh4znjq7np5HmioDov5nlj6rniZvogqHvvIzllInvvIHjgIvvvInigJTigJQqKuWFqOaWh+acquaPkOWNmumahioqIHwg5YWs5ZGK77yaMjAyNSDkuInlraPmiqU8YnI+6Ze06ZqU77ya5pmaIDEzNSDlpKk8YnI+5Y+R5biD77yaMjAyNS0xMC0yOCB8IFsyMDI2LjMuMTLjgIrplJnlpLHlh4znjq7np5HmioDov5nlj6rniZvogqHvvIzllInvvIHjgItdKGh0dHBzOi8vbXAud2VpeGluLnFxLmNvbS9zL2FvdmdqdHNKUjZYTEw1SjQ2eFNDcncp77ybW1vph4zmtbfmoYjkvost5YeM546u56eR5oqAXV0gfAp8IDIwMjYg6IezIDYuOSB8IOaho+ahiOaXoOWNmumahuWQjue7rei3n+i4qu+8iDIwMjYuMi4xMSDotbci5LiN5YaZ5oyB5LuT5qCH55qEIuWOn+WIme+8iSB8IOKAlCB85peg5a+55bqU5paH56ug77yI5qGj5qGI6IezIDIwMjYuNi45IOaXoOWNmumahuebuOWFs+aWh++8iSB8Cgo+IOWujOaVtOi1hOmHkemTvuadoe+8mltb6YeM5rW35qGI5L6LLeehheWuneenkeaKgF1d77yIMjAyNS4yLTMg5riF5LuT77yJ4oaSICoq5Y2a6ZqGICsg5YeM546uKirvvIgyMDI1IOS4iuWNiuW5tO+8ieKGkiBbW+mHjOa1t+ahiOS+iy3kuK3ms7DogqHku71dXe+8iDIwMjUuOSDmib/mjqXvvInihpIg5bm05pyr5oyB5LuT44CCCgotLS0KCiMjIOS4ieOAgeefm+ebviAvIOWtmOeWke+8iOeFp+W9le+8iQoKMS4gKirkubDlhaXpgLvovpHlrozlhajnvLrlpLHvvIjmnKzpobXmoLnmnKzlsYDpmZDvvIkqKu+8mnJhdy0yMDI1IOWFqOWGjOS4rSLljZrpmoYi5LuF5Ye6546wICoqMiDmrKEqKu+8jOWdh+S4uiLliIfmjaLliqjkvZwi55qE5a6+6K+t77yIMjQwMiDooYzkubDlhaXjgIEyNDA2IOihjOWNluWHuu+8ie+8jCoq5peg5LiA5Y+l5YWs5Y+45Li75Lia44CB6LSi5Yqh44CB5Lyw5YC844CB5Lmw54K56K+E6L+wKirjgILmnKzpobXliLvmhI/kuI3loavigJTigJTku7vkvZUi5a6D5Li65LuA5LmI56ym5ZCI566A5Y2VL+W6lemDqC/lj5jljJYi55qE6K666L+w6YO95piv5ZCO5Lq66KGl5YaZ77yM6Z2e5L2c6ICF5Y6f5oSP44CCCjIuICoq5Lmw5YWlL+WNluWHuueahOS7t+S9jeS4jua1ruebiOW5heW6puacquaKq+mcsioq77ya5Lik5aSE5Z2H5Y+q5pyJIuaciea1ruebiOeahOaDheWGteS4iyLjgIIKMy4gKioi55+t5pyf56Gu5a6a5oCn5LiN5aSq5aSfIueahOWIpOaWreS+neaNruacquWxleW8gCoq77ya5piv6aG555uu5Yi26K6i5Y2V6IqC5aWP77yf5Lqn6IO95oqV5pS+77yf5Lyw5YC877yf4oCU4oCU5peg5Y6f5paH44CCCjQuICoq5Li65L2V5YeM546u6KKr5Y2V54us5aSN55uY44CB5Y2a6ZqG6KKr55Wl6L+HKirvvJrkuKTogIXlkIzov5vlkIzlh7rvvIzkvYYgMjAyNi4zLjEyIOS4k+aWh+WPquWGmeWHjOeOru+8iOWboOWHjOeOruWQjuadpee/u+WAjeWkmisi6ZSZ5aSxIuWPmeS6i+aIkOeri++8ie+8jCoq5Y2a6ZqG5LqL5ZCO6KGo546w5piv5ZCmIuS4jeWAvOW+l+WGmSLml6Dku47lvpfnn6UqKuKAlOKAlOacrOmhteS4jeaOqOa1i+OAggo1LiAqKuWumuaAp+S4uiLmiJjmnK/ogqEi57O75o6o5a6aKirvvJrkvZzogIXmnKrmmI7noa7ooajov7DvvIzop4HnrKzkuIDoioIgNeOAggo2LiAqKuacrOWcsOaVsOaNruWxguS4juWOn+aWh+S4jeW+l+a3t+eUqCoq77ya5paH5pyr6ZmE5rOo55qE5YWs5Y+45o+P6L+w5p2l6Ieq5pys6aG555uuIGBzY3JpcHRzL2NvbmZpZy5weWDvvIjmlbDmja7lsYLlhYPmlbDmja7vvIzpnZ7kvZzogIXljp/mlofvvInvvIzku4XkvZzmn6XpmIXntKLlvJXkuYvnlKjjgIIKCi0tLQoKIyMg5Zub44CB5YWt6KaB57Sg6aqM6K+B77yI5pys6aG555uu5YiG5p6Q77yM6Z2e5L2c6ICF5Y6f5paH77yJCgo+ICoq5pys6IqC5oCn6LSoKirvvJrmi78gMjAyNi0wOS0xMOOAiuWvueacquadpeaXtuS7o+WPkeWxleeahOiEiee7nOWSjOaKlei1hOacuuS8mueahOaAneiAg+OAi+aPkOWHuueahCoq5YWt6KaB57SgKirvvIjkvJjnp4DkvIHkuJrlrrYgKyDotYTmnKzliqnlipsgKyDkurrmiY3lgqjlpIcgKyDkuqflk4HmoLjlv4Pnq57kuonlipsgKyDpgJDmraXmj5DljYfluILljaDnjocgKyDlh7rmtbfmiZPlvIDmm7TlpKfnmoTluILlnLrvvInljrvmr5Tlr7kgYGRhdGEvcGRmcy82MDMzMjUvNjAzMzI1XzIwMjVf5bm05oqlLnBkZmAg55qEKirljp/mlocqKu+8iOmhteeggeW3suagh++8ieOAggo+IOKaoO+4jyAqKuS9nOiAheS7juacquWvueWNmumahuWBmui/h+S7u+S9leWfuuacrOmdouWIhuaekCoq77yI6KeBIuefm+ebviAxIu+8ie+8jOWboOatpOacrOiKguaYryoq5LqL5ZCO5qGG5p625q+U5a+5KirvvIwqKuS4jeiDveWPjeaOqOaIkCLph4zmtbflvZPlubTlsLHmmK/ov5nkuYjliKTmlq3nmoQiKirjgILlh6HmnKzpobnnm67mjqjmlq3vvIzlnYfmoIfjgIzmnKzpobnnm67liKTmlq3jgI3jgIIKCnwg5YWt6KaB57SgIHwgMjAyNSDlubTmiqXljp/mlofkvp3mja7vvIjpobXnoIHvvIkgfCDliKTlrpogfAp8LS0tfC0tLXwtLS18CnwgKirkvJjnp4DkvIHkuJrlrrYqKiB8ICoq5byg546y54+RKirvvIjnlLcgNjDvvInokaPkuovplb/lhbzmgLvnu4/nkIbvvIgyMDIwLTEwIOi1t++8ie+8myoq5YWs5Y+45peg5o6n6IKh6IKh5LicKirvvIzlrp7pmYXmjqfliLbkurrkuLrkuIDnu4Toh6rnhLbkurrvvIjlvKDnjrLnj5EgLyDlva3kupHljY4gLyDmnpflh68gLyDmnpfmhacgLyDliJjmmLbmnpcgLyDpmYjkv4ogLyDmooHluobvvInvvJvlubTmnKvmjIHogqEgODM1LjIg5LiH6IKh44CB5bm06JaqIDEwOC42MiDkuIfvvJvlhbzku7vmsZ/oi4/ljZrpmobmnLrmorDokaPkuovplb/jgIHljZrpmobvvIjpppnmuK/vvInmioDmnK/okaPkuovjgIEqKuaEj+Wkp+WIqSBHT1ZPTklTSU0gT0JJQU5DQSBJTVBJQU5USSBTLlIuTC4g6JGj5LqLKirvvJvmoLjlv4PmkK3moaPlva3kupHljY7vvIjokaPkuosv5Ymv5oC757uP55CGIDYzIOWyge+8ieOAgeWImOaYtuael++8iOiRo+S6iy/mgLvlt6XnqIvluIjvvInvvIhwMzMgLyAzNSAvIDM4IC8gNzMtNzTvvIkgfCDinIUg5pyJ5o2uIHwKfCAqKui1hOacrOWKqeWKmyoqIHwgMjAyNC0wMS0xMCDkuIrluILvvJvli5/mipXjgIzogZrng6/ng4PmsJTlipvovpPpgIHmiJDlpZfoo4XlpIfpobnnm67jgI3jgIznoJTlj5Hlj4rmgLvpg6jlpKfmpbzlu7rorr7pobnnm67jgI3vvIhwMTXvvInvvJvov57nu63liIbnuqLvvJoyMDIzIOW5tOW6piA4LDY2Ny4xIOS4h+OAgTIwMjQg5bm05bqmIDksMDAwLjQ1IOS4hyArIOi1hOacrOWFrOenr+i9rOWiniAyIOiCoS8xMCDogqHvvIhwNDbvvInvvJsyMDI1IOW5tOW6puWIhue6oiAxLjI4IOS6v+OAgeaUr+S7mOeOhyAzMS4yJe+8iCoq5pys6aG555uu5pWw5o2u5bGC5Y+j5b6E77yM5pyq5qC46aqMKirvvIkgfCDinIUg5pyJ5o2uIHwKfCAqKuS6uuaJjeWCqOWkhyoqIHwg56CU5Y+R5Lq65ZGYICoqNTUg5Lq677yM5Y2g5oC75Lq65pWwIDExLjYwJSoq77ya56GV5aOrIDYgLyDmnKznp5EgNDMgLyDkuJPnp5EgNSAvIOmrmOS4reWPiuS7peS4iyAx77ybNDAtNTAg5bKBIDIyIOS6uuS4uuacgOWkp+e7hO+8myoq5peg5Y2a5aOrKirvvIhwMjItMjPvvInjgIIyMDI1IOS4iuWNiuW5tCoq5oiQ56uL56CU56m26ZmiKirvvIzkuI7pq5jmoKHlkIjkvZzvvIhwMTXvvInjgILnoJTlj5HmipXlhaUgKio0LDQ2Ny4xMyDkuIflhYPjgIHljaDokKXmlLYgMy4zMCUqKu+8iOWFqOmDqOi0ueeUqOWMlu+8ie+8iHAyMu+8iSB8IOKaoO+4jyDkuK3nrYkgfAp8ICoq5Lqn5ZOB5qC45b+D56ue5LqJ5YqbKiogfCAi5YWo6Z2i5o6M5o+h5rCU5Yqb6L6T6YCB44CB54mp5paZ5aSE55CG44CB5bel5Lia5o6n5Yi2562J5Lia5Yqh6aKG5Z+f5YaF55qE5qC45b+D5oqA5pyvIu+8myoq5Zu95YaF5ZCI5oiQ5qCR6ISC6aKG5Z+f5ZCI6K6h5biC5Y2g546HIDMwJSDku6XkuIrvvIznhaTliLbogZrng6/ng4Pnu4bliIbluILljaDnjofov5EgODAlKirvvJsi5Zu96ZmF5biC5Zy65LiKKirlsJHmlbAqKuaIkOWKn+WunueOsOWkp+Wei+iBmueDr+eDg+ijhee9rueJqeaWmeWkhOeQhuezu+e7nyoq5pW05L2T6Kej5Yaz5pa55qGIKirnmoTkvIHkuJoi77yIcDEx77yJ77yb5Zu95a6257qn5LiT57K+54m55paw44CM5bCP5beo5Lq644CN44CB5LiK5rW35biC44CM5LiT57K+54m55paw44CN44CBKirliLbpgKDkuJrljZXpobnlhqDlhpvkvIHkuJrliJvmlrDkvJjnp4DmoYjkvosqKuOAgee7v+iJsuW3peWOgu+8iHAxMe+8ie+8m+iOt+S4reWbveefs+ayueWvsOeQg+W3peeoi+OAjOWNgeWkp+S8mOengOS+m+W6lOWVhuOAje+8iHAxNe+8iSB8IOKchSDlvLogfAp8ICoq6YCQ5q2l5o+Q5Y2H5biC5Y2g546HKiogfCDimqDvuI8gKirlubTmiqXlj6rnu5npnZnmgIHlgLwqKu+8iDMwJSsgLyDov5EgODAl77yJ77yM5pyq6KeB5Y6G5bm05biC5Y2g546H5bqP5YiXIOKGkiDpnIDmr5Tlr7kgMjAyMyAvIDIwMjQg5bm05oql55qE5ZCM5q616KGo6L+w77yIKirlvoXpqozor4EqKu+8iSB8IOKdkyDlvoXpqozor4EgfAp8ICoq5Ye65rW35omT5byA5pu05aSn5biC5Zy6KiogfCAqKuWig+WkluaUtuWFpe+8mjIwMjQg5bm0IDYsNDIyIOS4h++8iOWNoCA1LjU1Je+8ieKGkiAyMDI1IOW5tCAyMCw1ODQg5LiH77yI5Y2gIDE1LjIxJe+8iSoq77yM5Y2g5q+U5o+Q5Y2H6L+RIDEwcGN077yIYGRhdGEvNjAzMzI1LmRiYCByZXZlbnVlX3N0cnVjdHVyZe+8jOS4juW5tOaKpeWIhuWcsOWMuuaKq+mcsuS4gOiHtO+8ie+8myoq5Y+M5ZOB54mM44CMQkxPT03jgI3jgIxHU0JJ44CN77yM55SxIuS6p+WTgeWHuua1tyLlkJEi5ZOB54mM5Ye65rW3IuWNh+e6pyoq77yIcDEx77yJ77yb5aKD5aSW57uP6JCl5a6e5L2T5oSP5aSn5Yip5qC855Om5bC877yI5qyn5YWD6K6w6LSm77yMcDE5Me+8ie+8m+asp+WFg+i0p+W4gei1hOmHkSAxLjQyIOS6vyArIOasp+WFg+W6lOaUtui0puasviA0LDgyMy41NSDkuIfvvIhwMTkx77yJIHwg4pyFICoq5pyA5Lqu55qE5LiA5p2hKiogfAoKKirlkIzmnJ/miqvpnLLnmoTpo47pmanvvIjlubTmiqXljp/or53vvIxwMzAtMzLvvIkqKu+8muKRoCoq5pS25YWl6ZuG5Lit5LqO5aSn5Z6L5ZCI5oiQ5qCR6ISC5bu66K6+6aG555uuKirigJTigJTotoUgNCwwMDAg5LiH5Y2V6aG555uu5pS25YWl5Y2g5q+UICoqMjAyMyAvIDIwMjQgLyAyMDI1ID0gNzIuMzYlIC8gNjkuODQlIC8gODMuODklKirvvIjpm4bkuK3luqbov5jlnKjkuIrljYfvvInvvJvikaHlrZjotKcgKioxNS43NSDkur/lhYPjgIHljaDotYTkuqfmgLvpop0gMjcuODQlKirvvJvikaLpobnnm67miafooYzpo47pmanvvJvikaPmtbflpJbnu4/okKXpo47pmanvvJvikaTluILlnLrnq57kuonliqDliafvvIgi6IulKirnq57kuonlr7nmiYvph4flj5bkvY7ku7fnrZbnlaUqKiLvvInvvJvikaXlnLDnvJjmlL/msrvkuI7lm73pmYXotLjmmJPpo47pmanjgIIKCioq6YCP5piO5bqm5o+Q56S677yI5a+5IuiDveWKm+WciCLnm7TmjqXnm7jlhbPvvIkqKu+8muW5tOaKpeaYjuehriLmnKzmiqXlkYrkuK3pg6jliIbkv6Hmga/lm6Dmtonlj4rllYbkuJrnp5jlr4bosYHlhY3miqvpnLLvvIwqKuWvuemDqOWIhuWuouaIt+OAgeS+m+W6lOWVhuOAgemhueebruWQjeensOS7peS7o+ensOihqOekuioqIu+8iHAzMu+8ieKAlOKAlOi/meato+WvueW6lOS9nOiAhSLlhazlj7jnprvmiJHov5zkuobvvIzmiJHml6Dms5XntKflr4blnLDot5/ouKoi77yIW1vph4zmtbfmoYjkvost5Zu95p6X56eR5oqAXV3vvInnmoTlm7DlooPvvJoqKuijheWkh+exu+WFrOWPuOeahOiuouWNleWPr+ingeW6puWkqeeUn+WwseS9jioq44CCCgoqKuWwj+e7k++8iOacrOmhueebruWIpOaWre+8iSoq77ya5YWt6KaB57Sg5LitKirkupTmnaHmnInnoazor4Hmja7jgIHkuIDmnaHlvoXpqozor4EqKu+8myLlh7rmtbci77yINS41NSXihpIxNS4yMSXvvInmmK/mnIDkuq7nmoTkuIDmnaHjgILkvYYqKuaUtuWFpembhuS4reW6piA4My44OSUgKyDlrZjotKfljaDotYTkuqcgMjcuODQlKiog5oSP5ZGz552AIuWNleS4quWkp+mhueebrueahOiKguWljyLlh6DkuY7lsLHmmK/kuJrnu6nnmoTlhajpg6jigJTigJTkuI7kvZzogIUi55+t5pyf56Gu5a6a5oCn5LiN5aSq5aSfIueahOWNluWHuueQhueUsSoq5pa55ZCR5LiA6Ie0KirvvIgqKue7k+iuuuS4gOiHtOS4jeS7o+ihqOS+neaNruebuOWQjO+8jOWOn+aWh+acquaKq+mcsuS+neaNru+8jOWLv+WAkuaOqCoq77yJ44CC5Y+m5o2u6KGM5oOF5aSN5qC477yM5LuWIDIwMjUuOSDljZblh7rlkI7or6XogqEgMjAyNiDlubTmnIDkvY7ot4zliLAgNDguMDIg5YWD44CCCgotLS0KCiMjIOmZhO+8muacrOWcsOaVsOaNruWxgu+8iOmdnuS9nOiAheWOn+aWh++8jOWLv+S4juWOn+aWh+a3t+a3hu+8iQoKLSBgc2NyaXB0cy9jb25maWcucHlgIGBTVE9DS1NbIjYwMzMyNSJdYO+8muWNmumahuaKgOacr++8iOS4iua1t+WNmumahuijheWkh++8jDIwMjQg5bm05LiK5Lqk5omA5Li75p2/5LiK5biC77yJ77yM5Zu95Lqn5rCU5Yqb6L6T6YCB57KJ57KS5L2T54mp5paZ5aSE55CG57O757uf6Kej5Yaz5pa55qGI6b6Z5aS077yM5bqU55So5LqO5ZCI5oiQ5qCR6ISC77yI6IGa54Ov54OD77yJ44CB54Wk5YyW5bel44CB57K+57uG5YyW5bel44CB5pS55oCn5aGR5paZ562J77ybKirlm73lhoXlkIjmiJDmoJHohILpoobln5/lkIjorqHluILljaDnjocgMzAlK+OAgeeFpOWItuiBmueDr+eDg+e7huWIhuW4guWNoOeOh+i/kSA4MCUqKu+8mzIwMjUg5bm06JCl5pS2IDEzLjU0IOS6v+WFg++8iCsxNy4xJe+8ieOAgeW9kuavjeWHgOWIqSA0LjEwIOS6v+WFg++8iCszOC4xJe+8ieOAgeWHgOWIqeeOh+e6piAzMCXvvIgqKuacrOmhueebruaVsOaNruWxguWPo+W+hO+8jOacque7j+W5tOaKpeaguOmqjCoq77yJ44CCCi0g5pys5Zyw5pWw5o2u5bqT77yaYGRhdGEvNjAzMzI1LmRiYO+8iOWtmOWcqO+8jOWPr+eUqCBgZmV0Y2hlci5weWAg5pu05paw77yJ44CCCi0gKirlt7LlrozmiJDnmoTmnKzlnLDlpI3moLjvvIgyMDI2LTA5LTEx77yM5pys6aG555uu6Ieq56CU77yM6Z2e5L2c6ICF5Y6f5paH77yJKirvvJrikaAqKuihjOaDhSoq77yIYGRhdGEvNjAzMzI1LmRiYO+8jGtsaW5lIHFmce+8jDY0MSDmoLnvvIwyMDI0LTAxLTEwIOS4iuW4giB+IDIwMjYtMDktMDLvvInvvJoyMDI1LjItMyDmlLbnm5ggKio2MS42M343Ni45MiDlhYMqKu+8mzIwMjUuOSDmlLbnm5ggKio4Mi44Nn45NS45MSDlhYMqKu+8m+WFqOWMuumXtOacgOmrmCAqKjk4LjQ177yIMjAyNS0wOC0yOe+8iSoq77yMMjAyNiDmnIDkvY4gKio0OC4wMioqIOKGkiAqKjkg5pyI5Y2W5Ye654K55bCx6JC95Zyo5Y6G5Y+y5pyA6auY5Yy6KirvvIzkuJQgMjAyNiDmmI7mmL7lm57okL0g4oeSICLmnInmta7nm4jnmoTliY3mj5DkuIvliIfmjaIi5oiQ56uL77yM5LqL5ZCO55yL6L+Z5LiA6IW/KirljZblr7nkuoYqKuOAguKRoSoqUERGIOW3suS4i+i9vSoq77yaYGRhdGEvcGRmcy82MDMzMjUvYO+8iDIwMjMtMjAyNSDlubTmiqXjgIEyMDI0LTIwMjYg5Lit5oql44CBMjAyNC0yMDI2IOS4gOWto+aKpeOAgTIwMjQtMjAyNSDkuInlraPmiqXvvIzlhbEgKioxMSDku70qKu+8jOagoemqjOWFqOmDqCBPS++8ieOAguKRoioq5LuN5b6F5YGaKirvvJrnlKjlubTmiqUv5oub6IKh5Lmm55qEIuernuS6ieWvueaJi+WIhuaekCLmjIkgMjAyNi0wOS0xMCDlha3opoHntKDvvIjkvIHkuJrlrrYgLyDotYTmnKwgLyDkurrmiY0gLyDkuqflk4Hnq57kuonlipsgLyDluILljaDnjocgLyDlh7rmtbfvvInpgJDmnaHpqozor4HigJTigJTov5nmiY3mmK/mnKzpobXku44i5b6F6KGl6LWE5paZ5Z6LIuWNh+e6p+eahOS4i+S4gOatpeOAggoKIyMg5Y+C6KeBCgotIFtb6YeM5rW35L2T57O7LeaAu+iniF1dIOKAlCDkvZPns7vpqqjmnrbvvIjmnKzpobXkuLoi6aKR546HIC8g5pyJ5rWu55uI5pe25Li75Yqo5YiH5o2iIuadoeebrueahOivgeaNruWxgu+8iQotIFtb6YeM5rW35qGI5L6LLeWHjOeOruenkeaKgF1dIOKAlCDlkIzmibnkubDljZbnmoTlj6bkuIDmnaHohb/vvIjlh4znjq7mnInkuovlkI7kuJPmlofvvIzljZrpmobmsqHmnInvvIkKLSBbW+mHjOa1t+ahiOS+iy3noYXlrp3np5HmioBdXSDigJQg6LWE6YeR5rqQ5aS077yIMjAyNS4yLTMg5riF5LuT56GF5a6d77yJCi0gW1vph4zmtbfmoYjkvost5Lit5rOw6IKh5Lu9XV0g4oCUIOaJv+aOpeaWue+8iDIwMjUuOSDku47ljZrpmoYv5YeM546u5YiH5Ye677yJCi0gW1vph4zmtbct5Lia57up5b2S5ZugXV0g4oCUIDIwMjUg5oiY5pyv6L2u5Yqo5pe25Luj6IOM5pmv77yIKzU4LjA1Je+8iQpbW3Jlc2VhcmNoL2luZGV4Lm1kXV0KCi0tLQoKIyMg6ZmE77ya5ZGoSyDlpI3nm5jlm77vvIgyMDI0LTIwMjbvvIkKCiFb5Y2a6ZqG5oqA5pyv77yINjAzMzI177yJ6YeM5rW35qGI5L6L5aSN55uYIMK3IOWRqEvvvIjliY3lpI3mnYPvvInCtyAyMDI0LTIwMjZdKC4uLy4uLy4uLy4uL3Jlc2VhcmNoL+eWr+eLgueahOmHjOa1ty9hc3NldHMva2xpbmUtNjAzMzI1LXJldmlldy5wbmcpCgo+ICoq6K+75Zu+KirvvJrkuLvlm74gPSDlkahL77yI5YmN5aSN5p2D77yJKyDkuInkuKrpmLbmrrXmoYbvvIjok53nur/kuLrpmLbmrrXliIfmjaLlubTvvIkrIOWFs+mUrumhtuW6le+8iOaMieOAjOivpeW5tOacgOmrmCAvIOacgOS9juWRqOOAjeiHquWKqOWumuS9jeWPluS7t++8jOmdnuaJi+Whq++8iSsg6YeM5rW35pON5L2c54K577yIKirlj6rmoIfml6XmnJ/ljLrpl7TjgIHkuI3lkKvku7fkvY0qKu+8ie+8m+S4i+aWueS4uuWRqOaIkOS6pOmHj+OAguaoqui9tOavj+W5tOS4gOagvO+8jOa1heeBsOWunue6vyA9IOW5tOW6puWIhuWJsue6v+OAgea1heeBsOiZmue6vyA9IOW5tOS4reWIhuWJsue6v+OAggo+IOOAkOazqOOAkSoq5pys6aG15Lmw5Y2W5Lu35L2N5Y6f5paH5pyq5oqr6ZyyKirigJTigJTlm77kuIrkubDljZbngrnmjInml6XmnJ/lrprkvY3vvJvku7fkvY3ljLrpl7Tnu5/kuIDmnaXoh6rmnKzpobnnm64gREIg5aSN5qC477yIKirpnZ7kvZzogIXljp/mlocqKu+8ie+8mjIwMjUuMi0zIOaUtuebmCA2MS42M343Ni45MiDlhYPjgIEyMDI1Ljkg5pS255uYIDgyLjg2fjk1LjkxIOWFg+OAgeWFqOWMuumXtOacgOmrmCAqKjk4LjQ177yIMjAyNS0wOC0yOe+8iSoq44CBMjAyNiDmnIDkvY4gNDguMDLjgIIKPiAqKui/meW8oOWbvueahOaVmeWtpuS7t+WAvCoq77ya5LiO5YaN5Y2H56eR5oqA5ZCM5bGeIumakOW9ouWGoOWGmyAvIOmrmOerr+WItumAoCLvvIzkvYbnu5PlsYDnm7jlj43igJTigJTlho3ljYfmmK/pq5jkvY3kubDlhaXplb/mnJ/lpZfniaLvvIzljZrpmobmmK8qKuS5sOWcqOS7gOS5iOS9jee9ruWOn+aWh+acquaKq+mcsuOAgeWNtOWNluWcqOWOhuWPsuacgOmrmOWMuioq77yb5ZCM5LiA5Y+lIuefreacn+ehruWumuaAp+S4jeWknyLvvIzljZrpmobov5nkuIDohb/ljZblr7nkuobvvIjlh4znjq7lkIzkuIDlpKnljZblh7rliJnljZbplJnkuobvvInjgIIKPiDnlJ/miJDohJrmnKwgYHNjcmlwdHMvbGluaGFpX2NoYXJ0LnB5YO+8jOaVsOaNrua6kCBgZGF0YS82MDMzMjUuZGJg77yIa2xpbmUg5YmN5aSN5p2DIHFmce+8ieOAgg==";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海案例-博隆技术.html">里海案例·博隆技术</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海案例·博隆技术</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-11</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/案例</span></div><div class="md" id="md"><h1>里海案例 · 博隆技术（603325）</h1>
+<blockquote>
+<p><strong>一句话定位</strong>：<strong>2025.2-3 清仓硅宝后的资金去向之一、2025.9 与凌玮一同卖出（切中泰）——但语料对其&quot;买入理由&quot;零披露</strong>，属全案例库中<strong>素材最薄的一页</strong>（比 <a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E4%B8%AD%E6%B3%B0%E8%82%A1%E4%BB%BD.html">里海案例-中泰股份</a> 还薄：中泰至少有&quot;确定性优先&quot;的切换释义，博隆连&quot;当初为什么买&quot;都没有）。唯一可用体系点是<strong>道·频率（有浮盈时主动切换）</strong>。</p>
+<p>本页为 <a href="../%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">里海体系-总览</a> 的案例证据层。账户口径=30 万示范账户（资金来自 2025.2-3 清仓硅宝）；<strong>业绩为作者自述口径</strong>，未独立核实；全文引语仅 2 处，其余均为操作层事实。</p>
+<p>⚠️ 与 <a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%87%8C%E7%8E%AE%E7%A7%91%E6%8A%80.html">里海案例-凌玮科技</a> 是<strong>同一笔切换的两条腿</strong>：博隆/凌玮在 2025 年同一句话里成对出现（买）与成对出现（卖），但作者 2026.3.12 的凌玮专文<strong>只复盘了凌玮，未提博隆</strong> → 博隆的&quot;事后归因&quot;永久缺失。</p>
+</blockquote>
+<hr />
+<h2>一、体系 × 证据 映射（核心表）</h2>
+<h3>1. 术——简单 · 底部 · 变化 · 分仓</h3>
+<ul>
+<li><strong>术·分仓/频率（全部素材，作者原话）</strong>：raw-2025-12-31：&quot;但我还是卖了，主要是心里的这块石头太重了，所以想切换到其他标的上来，因此在有浮盈的情况下切换了，<strong>就切换到了博隆和凌玮上面来</strong>。&quot;（清仓硅宝的时点为 2025 年 2 月和 3 月）</li>
+<li><strong>术·简单/底部/变化</strong>：<strong>无任何原文论证</strong>。博隆是&quot;气力输送粉体处理系统&quot;装备公司（本地元数据，见文末附注），符合&quot;机电制造&quot;这一类，但作者是否按&quot;简单/底部/变化&quot;筛出它，档案里找不到证据——<strong>不可代为补写</strong>。</li>
+</ul>
+<h3>2. 道——常识 · 概率 · 赔率 · 频率</h3>
+<ul>
+<li><strong>道·频率（本页唯一体系点，作者原话）</strong>：raw-2025-12-31：&quot;有了时间后，我认真琢磨了下持仓的几个标的，<strong>认为博隆和凌玮短期的确定性不太够，于是在有浮盈的情况下，切换到了中泰股份</strong>。&quot;——买（硅宝 → 博隆）与卖（博隆 → 中泰）<strong>两次都是&quot;有浮盈时主动换仓&quot;</strong>，是 2025 年&quot;频率&quot;打法最纯粹的动作样本：不因亏损而砍，而是把资金往&quot;确定性更高&quot;的位置挪。</li>
+<li><strong>道·常识/概率/赔率</strong>：无原文。</li>
+</ul>
+<h3>3. 能力——价值判断 · 市场先生 · 心性 · 宏观</h3>
+<ul>
+<li><strong>能力·研究恢复（背景）</strong>：5-7 月带娃备考（小升初）、7 月底出国、8 月陪读——9 月&quot;我终于有时间来进行规律性的工作和学习了&quot;之后，才对持仓（含博隆）做出判断（raw-2025-12-31 自述）。<strong>即：买入时（2-3 月）与卖出时（9 月）的信息条件完全不同，前者接近&quot;顺手买&quot;，后者才是&quot;琢磨后卖&quot;。</strong></li>
+<li><strong>能力·价值判断/市场先生/心性/宏观</strong>：无原文。</li>
+</ul>
+<h3>4. 弱者思维</h3>
+<ul>
+<li><strong>无从判断（资料不足）</strong>：买卖两侧都没有&quot;看错了能亏多少&quot;的赔率表述，无法映射到弱者体系的任何一条。</li>
+</ul>
+<h3>5. 战略 vs 战术股</h3>
+<ul>
+<li><strong>战术股（推定）</strong>：与凌玮同批买入、同批卖出、同样&quot;确定性不够就走&quot;，节奏为几个月量级；但<strong>作者未明确定性</strong>，此处仅为与凌玮的对照推定，标注存疑。</li>
+</ul>
+<hr />
+<h2>二、事件时间线（含出处）</h2>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>业绩（间隔 / 公告）</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2025.2-3</strong></td>
+<td><strong>清仓硅宝科技（有浮盈），部分资金&quot;切换到博隆和凌玮上面来&quot;</strong>——买入时点、价位、仓位配比均未披露</td>
+<td>公告：2024 三季报<br>间隔：晚 97 天<br>发布：2024-10-29</td>
+<td><a href="https://mp.weixin.qq.com/s/6tVGGb0NIXCllTyk-74xPA">2025.12.31《2025年投资总结，渐回自己的节奏！》</a>；<a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E7%A1%85%E5%AE%9D%E7%A7%91%E6%8A%80.html">里海案例-硅宝科技</a> 事件表</td>
+</tr>
+<tr>
+<td><strong>2025.9</strong></td>
+<td><strong>卖出博隆/凌玮（有浮盈）、切换买入中泰股份</strong>：理由=&quot;博隆和凌玮短期的确定性不太够&quot;</td>
+<td>—</td>
+<td><a href="https://mp.weixin.qq.com/s/6tVGGb0NIXCllTyk-74xPA">2025.12.31《2025年投资总结，渐回自己的节奏！》</a>；<a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E4%B8%AD%E6%B3%B0%E8%82%A1%E4%BB%BD.html">里海案例-中泰股份</a></td>
+</tr>
+<tr>
+<td>2025.12.31</td>
+<td>年度总结回溯：博隆<strong>未出现在年末持仓</strong>（年末=云图 28700/中泰 23900/利安隆 10100/索通 15800）</td>
+<td>公告：2025 三季报<br>间隔：晚 64 天<br>发布：2025-10-28</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2026.3.12</td>
+<td>作者专文复盘凌玮（《错失凌玮科技这只牛股，唉！》）——<strong>全文未提博隆</strong></td>
+<td>公告：2025 三季报<br>间隔：晚 135 天<br>发布：2025-10-28</td>
+<td><a href="https://mp.weixin.qq.com/s/aovgjtsJR6XLL5J46xSCrw">2026.3.12《错失凌玮科技这只牛股，唉！》</a>；<a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%87%8C%E7%8E%AE%E7%A7%91%E6%8A%80.html">里海案例-凌玮科技</a></td>
+</tr>
+<tr>
+<td>2026 至 6.9</td>
+<td>档案无博隆后续跟踪（2026.2.11 起&quot;不写持仓标的&quot;原则）</td>
+<td>—</td>
+<td>无对应文章（档案至 2026.6.9 无博隆相关文）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>完整资金链条：<a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E7%A1%85%E5%AE%9D%E7%A7%91%E6%8A%80.html">里海案例-硅宝科技</a>（2025.2-3 清仓）→ <strong>博隆 + 凌玮</strong>（2025 上半年）→ <a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E4%B8%AD%E6%B3%B0%E8%82%A1%E4%BB%BD.html">里海案例-中泰股份</a>（2025.9 承接）→ 年末持仓。</p>
+</blockquote>
+<hr />
+<h2>三、矛盾 / 存疑（照录）</h2>
+<ol>
+<li><strong>买入逻辑完全缺失（本页根本局限）</strong>：raw-2025 全册中&quot;博隆&quot;仅出现 <strong>2 次</strong>，均为&quot;切换动作&quot;的宾语（2402 行买入、2406 行卖出），<strong>无一句公司主业、财务、估值、买点评述</strong>。本页刻意不填——任何&quot;它为什么符合简单/底部/变化&quot;的论述都是后人补写，非作者原意。</li>
+<li><strong>买入/卖出的价位与浮盈幅度未披露</strong>：两处均只有&quot;有浮盈的情况下&quot;。</li>
+<li><strong>&quot;短期确定性不太够&quot;的判断依据未展开</strong>：是项目制订单节奏？产能投放？估值？——无原文。</li>
+<li><strong>为何凌玮被单独复盘、博隆被略过</strong>：两者同进同出，但 2026.3.12 专文只写凌玮（因凌玮后来翻倍多+&quot;错失&quot;叙事成立），<strong>博隆事后表现是否&quot;不值得写&quot;无从得知</strong>——本页不推测。</li>
+<li><strong>定性为&quot;战术股&quot;系推定</strong>：作者未明确表述，见第一节 5。</li>
+<li><strong>本地数据层与原文不得混用</strong>：文末附注的公司描述来自本项目 <code>scripts/config.py</code>（数据层元数据，非作者原文），仅作查阅索引之用。</li>
+</ol>
+<hr />
+<h2>四、六要素验证（本项目分析，非作者原文）</h2>
+<blockquote>
+<p><strong>本节性质</strong>：拿 2026-09-10《对未来时代发展的脉络和投资机会的思考》提出的<strong>六要素</strong>（优秀企业家 + 资本助力 + 人才储备 + 产品核心竞争力 + 逐步提升市占率 + 出海打开更大的市场）去比对 <code>data/pdfs/603325/603325_2025_年报.pdf</code> 的<strong>原文</strong>（页码已标）。
+⚠️ <strong>作者从未对博隆做过任何基本面分析</strong>（见&quot;矛盾 1&quot;），因此本节是<strong>事后框架比对</strong>，<strong>不能反推成&quot;里海当年就是这么判断的&quot;</strong>。凡本项目推断，均标「本项目判断」。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>六要素</th>
+<th>2025 年报原文依据（页码）</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>优秀企业家</strong></td>
+<td><strong>张玲珑</strong>（男 60）董事长兼总经理（2020-10 起）；<strong>公司无控股股东</strong>，实际控制人为一组自然人（张玲珑 / 彭云华 / 林凯 / 林慧 / 刘昶林 / 陈俊 / 梁庆）；年末持股 835.2 万股、年薪 108.62 万；兼任江苏博隆机械董事长、博隆（香港）技术董事、<strong>意大利 GOVONISIM OBIANCA IMPIANTI S.R.L. 董事</strong>；核心搭档彭云华（董事/副总经理 63 岁）、刘昶林（董事/总工程师）（p33 / 35 / 38 / 73-74）</td>
+<td>✅ 有据</td>
+</tr>
+<tr>
+<td><strong>资本助力</strong></td>
+<td>2024-01-10 上市；募投「聚烯烃气力输送成套装备项目」「研发及总部大楼建设项目」（p15）；连续分红：2023 年度 8,667.1 万、2024 年度 9,000.45 万 + 资本公积转增 2 股/10 股（p46）；2025 年度分红 1.28 亿、支付率 31.2%（<strong>本项目数据层口径，未核验</strong>）</td>
+<td>✅ 有据</td>
+</tr>
+<tr>
+<td><strong>人才储备</strong></td>
+<td>研发人员 <strong>55 人，占总人数 11.60%</strong>：硕士 6 / 本科 43 / 专科 5 / 高中及以下 1；40-50 岁 22 人为最大组；<strong>无博士</strong>（p22-23）。2025 上半年<strong>成立研究院</strong>，与高校合作（p15）。研发投入 <strong>4,467.13 万元、占营收 3.30%</strong>（全部费用化）（p22）</td>
+<td>⚠️ 中等</td>
+</tr>
+<tr>
+<td><strong>产品核心竞争力</strong></td>
+<td>&quot;全面掌握气力输送、物料处理、工业控制等业务领域内的核心技术&quot;；<strong>国内合成树脂领域合计市占率 30% 以上，煤制聚烯烃细分市占率近 80%</strong>；&quot;国际市场上<strong>少数</strong>成功实现大型聚烯烃装置物料处理系统<strong>整体解决方案</strong>的企业&quot;（p11）；国家级专精特新「小巨人」、上海市「专精特新」、<strong>制造业单项冠军企业创新优秀案例</strong>、绿色工厂（p11）；获中国石油寰球工程「十大优秀供应商」（p15）</td>
+<td>✅ 强</td>
+</tr>
+<tr>
+<td><strong>逐步提升市占率</strong></td>
+<td>⚠️ <strong>年报只给静态值</strong>（30%+ / 近 80%），未见历年市占率序列 → 需比对 2023 / 2024 年报的同段表述（<strong>待验证</strong>）</td>
+<td>❓ 待验证</td>
+</tr>
+<tr>
+<td><strong>出海打开更大市场</strong></td>
+<td><strong>境外收入：2024 年 6,422 万（占 5.55%）→ 2025 年 20,584 万（占 15.21%）</strong>，占比提升近 10pct（<code>data/603325.db</code> revenue_structure，与年报分地区披露一致）；<strong>双品牌「BLOOM」「GSBI」，由&quot;产品出海&quot;向&quot;品牌出海&quot;升级</strong>（p11）；境外经营实体意大利格瓦尼（欧元记账，p191）；欧元货币资金 1.42 亿 + 欧元应收账款 4,823.55 万（p191）</td>
+<td>✅ <strong>最亮的一条</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>同期披露的风险（年报原话，p30-32）</strong>：①<strong>收入集中于大型合成树脂建设项目</strong>——超 4,000 万单项目收入占比 <strong>2023 / 2024 / 2025 = 72.36% / 69.84% / 83.89%</strong>（集中度还在上升）；②存货 <strong>15.75 亿元、占资产总额 27.84%</strong>；③项目执行风险；④海外经营风险；⑤市场竞争加剧（&quot;若<strong>竞争对手采取低价策略</strong>&quot;）；⑥地缘政治与国际贸易风险。</p>
+<p><strong>透明度提示（对&quot;能力圈&quot;直接相关）</strong>：年报明确&quot;本报告中部分信息因涉及商业秘密豁免披露，<strong>对部分客户、供应商、项目名称以代称表示</strong>&quot;（p32）——这正对应作者&quot;公司离我远了，我无法紧密地跟踪&quot;（<a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%9B%BD%E6%9E%97%E7%A7%91%E6%8A%80.html">里海案例-国林科技</a>）的困境：<strong>装备类公司的订单可见度天生就低</strong>。</p>
+<p><strong>小结（本项目判断）</strong>：六要素中<strong>五条有硬证据、一条待验证</strong>；&quot;出海&quot;（5.55%→15.21%）是最亮的一条。但<strong>收入集中度 83.89% + 存货占资产 27.84%</strong> 意味着&quot;单个大项目的节奏&quot;几乎就是业绩的全部——与作者&quot;短期确定性不太够&quot;的卖出理由<strong>方向一致</strong>（<strong>结论一致不代表依据相同，原文未披露依据，勿倒推</strong>）。另据行情复核，他 2025.9 卖出后该股 2026 年最低跌到 48.02 元。</p>
+<hr />
+<h2>附：本地数据层（非作者原文，勿与原文混淆）</h2>
+<ul>
+<li><code>scripts/config.py</code> <code>STOCKS[&quot;603325&quot;]</code>：博隆技术（上海博隆装备，2024 年上交所主板上市），国产气力输送粉粒体物料处理系统解决方案龙头，应用于合成树脂（聚烯烃）、煤化工、精细化工、改性塑料等；<strong>国内合成树脂领域合计市占率 30%+、煤制聚烯烃细分市占率近 80%</strong>；2025 年营收 13.54 亿元（+17.1%）、归母净利 4.10 亿元（+38.1%）、净利率约 30%（<strong>本项目数据层口径，未经年报核验</strong>）。</li>
+<li>本地数据库：<code>data/603325.db</code>（存在，可用 <code>fetcher.py</code> 更新）。</li>
+<li><strong>已完成的本地复核（2026-09-11，本项目自研，非作者原文）</strong>：①<strong>行情</strong>（<code>data/603325.db</code>，kline qfq，641 根，2024-01-10 上市 ~ 2026-09-02）：2025.2-3 收盘 <strong>61.63~76.92 元</strong>；2025.9 收盘 <strong>82.86~95.91 元</strong>；全区间最高 <strong>98.45（2025-08-29）</strong>，2026 最低 <strong>48.02</strong> → <strong>9 月卖出点就落在历史最高区</strong>，且 2026 明显回落 ⇒ &quot;有浮盈的前提下切换&quot;成立，事后看这一腿<strong>卖对了</strong>。②<strong>PDF 已下载</strong>：<code>data/pdfs/603325/</code>（2023-2025 年报、2024-2026 中报、2024-2026 一季报、2024-2025 三季报，共 <strong>11 份</strong>，校验全部 OK）。③<strong>仍待做</strong>：用年报/招股书的&quot;竞争对手分析&quot;按 2026-09-10 六要素（企业家 / 资本 / 人才 / 产品竞争力 / 市占率 / 出海）逐条验证——这才是本页从&quot;待补资料型&quot;升级的下一步。</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">里海体系-总览</a> — 体系骨架（本页为&quot;频率 / 有浮盈时主动切换&quot;条目的证据层）</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%87%8C%E7%8E%AE%E7%A7%91%E6%8A%80.html">里海案例-凌玮科技</a> — 同批买卖的另一条腿（凌玮有事后专文，博隆没有）</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E7%A1%85%E5%AE%9D%E7%A7%91%E6%8A%80.html">里海案例-硅宝科技</a> — 资金源头（2025.2-3 清仓硅宝）</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E4%B8%AD%E6%B3%B0%E8%82%A1%E4%BB%BD.html">里海案例-中泰股份</a> — 承接方（2025.9 从博隆/凌玮切出）</li>
+<li><a href="../%E9%87%8C%E6%B5%B7-%E4%B8%9A%E7%BB%A9%E5%BD%92%E5%9B%A0.html">里海-业绩归因</a> — 2025 战术轮动时代背景（+58.05%）
+<a href="../../../../research/index.md">research/index.md</a></li>
+</ul>
+<hr />
+<h2>附：周K 复盘图（2024-2026）</h2>
+<p><img src="../../../../research/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/assets/kline-603325-review.png" alt="博隆技术（603325）里海案例复盘 · 周K（前复权）· 2024-2026" /></p>
+<blockquote>
+<p><strong>读图</strong>：主图 = 周K（前复权）+ 三个阶段框（蓝线为阶段切换年）+ 关键顶底（按「该年最高 / 最低周」自动定位取价，非手填）+ 里海操作点（<strong>只标日期区间、不含价位</strong>）；下方为周成交量。横轴每年一格，浅灰实线 = 年度分割线、浅灰虚线 = 年中分割线。
+【注】<strong>本页买卖价位原文未披露</strong>——图上买卖点按日期定位；价位区间统一来自本项目 DB 复核（<strong>非作者原文</strong>）：2025.2-3 收盘 61.63~76.92 元、2025.9 收盘 82.86~95.91 元、全区间最高 <strong>98.45（2025-08-29）</strong>、2026 最低 48.02。
+<strong>这张图的教学价值</strong>：与再升科技同属&quot;隐形冠军 / 高端制造&quot;，但结局相反——再升是高位买入长期套牢，博隆是<strong>买在什么位置原文未披露、却卖在历史最高区</strong>；同一句&quot;短期确定性不够&quot;，博隆这一腿卖对了（凌玮同一天卖出则卖错了）。
+生成脚本 <code>scripts/linhai_chart.py</code>，数据源 <code>data/603325.db</code>（kline 前复权 qfq）。</p>
+</blockquote>
+</div><div class="backrow"><a href="../index.html#dir=%E6%A1%88%E4%BE%8B">← 返回 案例</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/案例/里海案例-博隆技术.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

@@ -1153,6 +1153,25 @@ STOCKS = {
         "industry": "互联网",
         "business_desc": "海康威视是全球最大的安防产品及解决方案提供商，主营视频监控（摄像机/NVR/DVR）、AIoT、机器人及汽车电子。全球市占率约30%，以视觉AI技术为核心，向工业自动化、智能家居等场景延伸。",
     },
+    "002209": {
+        "name": "达意隆",
+        "name_en": "Guangzhou Tech-Long Packaging Machinery",
+        "market": "cn",
+        "exchange": "SZSE",
+        "currency": "CNY",
+        "ceo": "张颂明",
+        "inc": "中国广州",
+        "website": "www.tech-long.cn",
+        "pfx": "sz",
+        # 总股本取自 DB（AKShare 2026 口径 204,530,050 股）；
+        # 早前按张颂明持股 25.71% 反推的 199,048,810 已被股本变动推翻，勿再用
+        "shares": 204530050,
+        "shares_str": "204,530,050",
+        "industry": "机械设备",
+        "fiscal_yr_end": "12-31",
+        "valuation_method": "pb",
+        "business_desc": "达意隆创立于 1998 年，位于广州经济技术开发区，是国内液态产品包装整线解决方案供应商，主营 PET 吹瓶设备、灌装生产线、吹灌旋／吹贴灌旋一体机、贴标、输送与二次包装设备，下游覆盖饮料、饮用水、乳品、调味品等行业。",
+    },
     "002507": {
         "name": "涪陵榨菜",
         "name_en": "Chongqing Fuling Zhacai",

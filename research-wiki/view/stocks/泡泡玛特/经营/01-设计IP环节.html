@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 供应链环节分析 · 设计 / IP</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 供应链环节分析 · 设计 / IP</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,553 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="01-设计IP环节.html">泡泡玛特 (09992) — 供应链环节分析 · 设计 / IP</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 供应链环节分析 · 设计 / IP</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-21</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/经营</span></div><div class="md" id="md"></div><div class="backrow"><a href="../index.html#dir=%E7%BB%8F%E8%90%A5">← 返回 经营</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/泡泡玛特/经营/01-设计IP环节.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDms6Hms6HnjpvnibkgKDA5OTkyKSDigJQg5L6b5bqU6ZO+546v6IqC77ya6K6+6K6hIC8gSVAKCj4g5L6b5bqU6ZO+5LqU546v6IqC5LmL5LiA55qE546v6IqC57qn54us56uL5YiG5p6Q77yM5om/5o6lIFtbMDAt5L6b5bqU6ZO+5LiO5Yi26YCgXV3jgILnu5PmnoTmgKfpmZDliLbpgJDpobnpqozor4EgKyDmnYPph43or4TkvLDvvJsqKuacque7j+aVsOaNrumqjOivgeeahOmZkOWItuS4jeWIlyoq44CCCgojIyDnjq/oioLov5DooYzmnLrliLYKCi0gKioxMTEg5ZCN5YaF6YOo6K6+6K6h5biIKirnu4TmiJAi5YaF6YOo5Yib5oSP6K6+6K6h5Y+K5bel5Lia5byA5Y+R5Zui6ZifIu+8jOa3seWFpeWPguS4juS6p+WTgeW8gOWPke+8iOaLm+iCoeS5piBwLjI0Ne+8jDIwMjAtMDYtMzAg5Y+j5b6E77yJCi0g5oiq6IezIDIwMjAtMDYtMzAg5bey5Yib5L2cICoqOSDkuKroh6rmnIkgSVAqKu+8iEJPQk8mQ09DT+OAgVl1a2njgIFCVU5OWSDnrYnvvInvvJvmjojmnYMgSVAg5pSv5LuY54m56K645p2D5L2/55So6LS5Ci0gKirkuqflk4Hljp/lnovlkozmqKHlhbforr7orqHnlLHlhazlj7jotJ/otKMqKu+8iOagh+WHhuiQpei/kOeoi+W6jyArIOWOn+WeiyArIOaooeWFt++8ie+8jOaooeWFt+W9kuWFrOWPuOaJgOacieOAgeWPr+i9rOiuqQotIOS4ieenjeaooeW8j++8mioq562+57qm5YiG5oiQKirvvIjlpJbpg6joibrmnK/lrrbvvIzni6zlrrbvvIkrICoq5YaF6YOo5a215YyWKirvvIhQb3AgRGVzaWduIENlbnRlcu+8iSsgKirogZTlkI0qKu+8iOi/quWjq+WwvC/kuInkuL3puKXnrYnvvIzlvJXmtYHkuLrkuLvvvIkKLSDotKLliqHokL3ngrnvvIgyMDI1IOW5tOaKpe+8ie+8muaMiemUgOmHj+aPkOaIkOeahOaOiOadg+i0uSAqKjgzMyw0ODEqKu+8iOi0ueeUqOWMlu+8iSsg6K6+6K6h5pyN5Yqh6LS5ICoqODYsNDQ2KirvvIjotLnnlKjljJbvvInvvJvkubDmlq3mjojmnYPph5HotYTmnKzljJbkuLrml6DlvaLotYTkuqfvvIgyMDI1IOa3u+e9riAqKjExNyw2MjMqKu+8ieWQjuaMieaRiumUgOi/m+aNn+ebiu+8iDEyNywwNTDvvIkKCiMjIOe7k+aehOaAp+mZkOWItuS4juadg+mHjQoKfCDpmZDliLYgfCDmnYPph40gfCDph4/nuqfor4Hmja4gfCDliKTlrpogfAp8LS0tLS0tfDotLS06fC0tLS0tLS0tLXwtLS0tLS18CnwgKirliIbmiJDliLbvvIjmjojmnYPotLnmjInplIDph4/mj5DmiJDvvIkqKiB8ICoq5L2OKiogfCDmjojmnYPotLnljaDokKXmlLYgNyDlubTnqLPlrprlnKggKioxLjgl4oCTMy4wJSoq77yIMjAxOSAyLjklIOKGkiAyMDIyIDEuOCUg6LC3IOKGkiAyMDI0IDMuMCUg5bOwIOKGkiAyMDI1IDIuMjUl77yJ77ybMjAyNSDmjojmnYPotLkgODMzLDQ4MSA9IOiQpeaUtiAyLjI1JSAvIOavm+WIqSAzLjElIC8gKirooYzmlL/lvIDmlK8gNDclKiogfCDph4/nuqflsI/jgIHljaDmr5Tml6DmgbbljJbotovlir/vvJsyMDI1IOWNleW5tOaYvuiRl+aRiuiWhO+8iDMuMCXihpIyLjI1Je+8jOiQpeaUtiArMTg1JSDlv6vkuo7mjojmnYPotLkgKzExMiXvvInjgILkuI3mnoTmiJDljovmr5vliKnnmoTnu5PmnoTmgKflipvph48gfAp8ICoqSVAg55Sf5ZG95ZGo5pyf77yI5Y2V5LiAIElQIDMtNSDlubTkuIDova7vvIkqKiB8ICoq6auYKiogfCDop4EgW1suLi/kuqfkuJrpk75dXSDnrKzlha3nq6DvvJvliY3kuInlpKcgSVAg5Y2g5q+U55uu5qCHIDw1MCUg5oSP5ZGz552A546w54q2ID41MCUgfCDlvbHlk43okKXmlLbop4TmqKHmnKzouqvogIzpnZ7miJDmnKzvvIzmmK/moLjlv4Ppo47pmakgfAp8ICoq6K6+6K6h5biI5Lqn6IO95LiK6ZmQKiogfCAqKuS9jioqIHwg6K6+6K6hL+W8gOWPkeS6uuWRmO+8mjIwMjAgNzkzIOKGkiAyMDIxIDEsNjE3IOKGkiAyMDIyIDEsNTg0IOKGkiAyMDIzIDEsMTEwKiDihpIgMjAyNCAxLDQzNSDihpIgMjAyNSAyLDE5NCDihpIgMjAyNkgxIDIsMzIy77yIKjIwMjMg6ZSA5ZSu5Y+j5b6E6YeN5YiS5YiG77yJ77yb57qv6K6+6K6h5bKXIDExMSDkurrvvIgyMDIwIOaLm+iCoeS5pu+8iSB8IOS6p+iDveeTtumiiOiiq+etvue6puiJuuacr+Wutue9kee7nO+8iDIwMCvvvIzkuozmiYvlj6PlvoTvvInnvJPop6PvvJvlhoXpg6jlm6LpmJ/kuLvotKPkuqflk4HljJbogIzpnZ7niIbmrL7ljp/liJvvvJsyMDI1IOi1t+enkeebruaUuSLooYzmlL/lj4rorr7orqHlvIDlj5Ei77yM5omp5byg5pi+6JGX5L2G5LuN5bGe6KeE5qih5YaF55Sf5Y+Y6YeP77yM6Z2e57uT5p6E5oCn6ZmQ5Yi2IHwKCiMjIOaOiOadg+i0ueWOhuWPsuaYjue7hgoK5Lq65rCR5biB5Y2D5YWD77ybMjAyMOKAkzIwMjQg5bm05oql5Li65ZCI5bm256eR55uuIuioreioiOWPiuaOiOasiuiyu++8iERlc2lnbiBhbmQgbGljZW5zZSBmZWVz77yJIu+8jDIwMjUg5bm05oql5ouG5YiG5Li6IuaOiOasiuiyuyA4MzMsNDgxIuS4jiLoqK3oqIjmnI3li5nosrsgODYsNDQ2Iu+8iOadpea6kO+8muWQhOW5tOW5tOaKpemZhOazqCLooYzmlL/lvIDmlK8i56eR55uuICsgYGRhdGEvMDk5OTIuZGJgIGluY29tZSDooajvvInvvJoKCnwg5bm05Lu9IHwg6JCl5pS2IHwg6K6+6K6h5Y+K5o6I5p2D6LS5IHwg5Y2g6JCl5pS2IHwg5aSH5rOoIHwKfC0tLS0tLXwtLS0tLS18LS0tLS0tfC0tLS0tLXwtLS0tLS18CnwgMjAxOSB8IDEsNjgzLDQzNCB8IDQ4LDQwNiB8IDIuODglIHwgfAp8IDIwMjAgfCAyLDUxMyw0NzEgfCA2Miw3MjEgfCAyLjUwJSB8IHwKfCAyMDIxIHwgNCw0OTAsNjUxIHwgMTA0LDY3NCB8IDIuMzMlIHwgfAp8IDIwMjIgfCA0LDYxNywzMjQgfCA4NCwwMjYgfCAxLjgyJSB8IOiwt+W6le+8muiQpeaUtuW+ruWinuiAjOaOiOadg+i0uSAtMjAlIHwKfCAyMDIzIHwgNiwzMDEsMDAyIHwgMTU2LDkyMSB8IDIuNDklIHwgfAp8IDIwMjQgfCAxMywwMzcsNzQ5IHwgMzkzLDQ5OSB8IDMuMDIlIHwg5bOw5YC877ya5rW35aSW5omp5byg5pyf5aSW6YOo5o6I5p2D5aKe5YqgIHwKfCAyMDI1IHwgMzcsMTIwLDA1MiB8IDgzMyw0ODHvvIjljZXmjojmnYPotLnvvIkgfCAyLjI1JSB8IOaLhuWIhuWPo+W+hO+8m+WPpuiuvuiuoeacjeWKoei0uSA4Niw0NDbvvIgwLjIzJe+8iSB8Cgo+IOaVsOaNruWPr+W+l+aAp++8muaOiOadg+i0ueaYr+mZhOazqOe6p+enkeebru+8jEFLU2hhcmUg5riv6IKh5Yip5ram6KGo5o6l5Y+j5LiOIGBkYXRhLzA5OTkyLmRiYCBpbmNvbWUg6KGo5Z2H5peg77yI5pyA57uG5YiwIuihjOaUv+W8gOaUryLvvInvvIzlj6rog73ku47lubTmiqXpmYTms6jmj5Dlj5bjgIIKCiMjIOiuvuiuoeWboumYn+eOsOeKtuS4juS6uuaJjeacuuWItu+8iDIwMjDigJMyMDI277yJCgojIyMg6K6+6K6hL+W8gOWPkeS6uuWRmOinhOaooe+8iOWumOaWueWPo+W+hO+8iQoK5bm05oqlIuS6uuWKm+i1hOa6kCLnq6DoioLljp/mlofmj5Dlj5bvvJsi6KGM5pS/5Y+K5byA5Y+R5Lq65ZGYIuWQq+ihjOaUv+OAgeS6p+WTgeW8gOWPkeOAgeiuvuiuoeetieWFqOmDqOmdnumUgOWUruWyl++8jCoq4omgIOe6r+iuvuiuoeW4iCoq77yI57qv6K6+6K6h5bKX5LuF5oub6IKh5LmmIDExMSDkurrvvIwyMDIwLTA2LTMw77yJ77yaCgp8IOW5tOS7vSB8IOWRmOW3peaAu+aVsCB8IOmUgOWUruWRmOW3pSB8IOihjOaUv+WPiuW8gOWPkS/orr7orqEgfCDlkZjlt6XmiJDmnKwgfCDlpIfms6ggfAp8LS0tLS0tfDotLS06fDotLS06fDotLS06fDotLS06fC0tLS0tLXwKfCAyMDIwIHwgMiwzMjAgfCAxLDUyNyB8IDc5MyB8IDIuNDMg5Lq/IHwgfAp8IDIwMjEgfCA0LDA1MyB8IDIsNDM2IHwgMSw2MTcgfCA2LjcwIOS6vyB8IOWQq+iCoeadg+a/gOWKseiCoeS7veaUr+S7mCAwLjM5IOS6vyB8CnwgMjAyMiB8IDQsMTc4IHwgMiw1OTQgfCAxLDU4NCB8IDguNTQg5Lq/IHwgfAp8IDIwMjMgfCA0LDg0NSB8IDMsNzM1IHwgMSwxMTAqIHwg4oCUIHwgKumUgOWUruWPo+W+hOmHjeWIkuWIhu+8iDIwMjIg6ZSA5ZSuIDIsNTk04oaS6YeN566XIDMsMTcx77yJ77yM6Z2e6KOB5ZGYIHwKfCAyMDI0IHwgNiw3MDIgfCA1LDI2NyB8IDEsNDM1IHwg4oCUIHwgRVNHIOWPo+W+hCA2LDI3M++8iOS4jeWQq+WkluWMhS/lrp7kuaDnlJ/vvIkgfAp8IDIwMjUgfCAxMCw4NzkgfCA4LDY4NSB8IDIsMTk0IHwgMjIuNTIg5Lq/IHwg56eR55uu5pS5IuihjOaUv+WPiioq6K6+6K6hKirlvIDlj5Ei77ybRVNHIOWPo+W+hCAxMCw0MzQgfAp8IDIwMjZIMSB8IOKAlCB8IOKAlCB8IDIsMzIyIHwg4oCUIHwgMjAyNiDkuK3miqUgfAoKIyMjIOWboumYn+e7k+aehOS4juiBjOiDvQoKLSAqKlBEQ++8iOazoeazoeiuvuiuoeS4reW/g++8iSoq77ya5oqK6Im65pyv5a625Y6f55S76L2s5YyW5Li65Y+v6YeP5Lqn44CB5Y+v57O75YiX5YyW55qE5Lqn5ZOB77yM5LukIElQIOWtteWMluS7juWBtueEtueIhuasvui9rOWQkeacieiKguWlj+eahOaMgee7rei+k+WHuu+8iOeIseW7uuivgeWIuCAyMDI2LTA4LTEyIOa3seW6puaKpeWRiu+8ie+8m+S5n+aJv+aLheWGhemDqOWOn+WImyBJUCDlrbXljJYKLSDlhajnkIMgMjArIOWbveWuti/lnLDljLrmnKzlnLDlip7lhazlrqTvvIzorr7orqHlipvph4/mnKzlnLDljJbvvIgyMDI2IOS4reaKpemAkOWtl+eov++8iQotICoqUERDIOWumOaWueeCueWQjSBJUCoq77yI5bm05oqlIE1EJkEg6YCQ5bm05Y6f5paH77yMMjAyNi0wOC0yMyDmoLjlr7nvvInvvJoKCnwg5bm05Lu9IHwg5bm05oql5Y6f5paH54K55ZCNIHwg6K6+6K6h5biIIHwg5Ye65aSEIHwKfC0tLS0tLXwtLS0tLS0tLS0tLS18LS0tLS0tLS18LS0tLS0tfAp8IDIwMjAgfCBQREMgKGluLWhvdXNlIGRlc2lnbiB0ZWFtKSDmjqjlh7rlsI/nlJzosYYoU3dlZXQgQmVhbinns7vliJfnrYnvvIxQREMg5Y6f5YibIElQIOaUtuWFpei2hSAxIOS6v+WFgyB8IOmbquWuuCB8IDA5OTkyXzIwMjBf5bm05oqlIHAxMSB8CnwgMjAyMiB8IOWwj+eUnOixhuOAgeWwj+mHjihIaXJvbm8p5YiG5Yir5pS25YWlIDE0Ny45LzE0MC44IOeZvuS4hygrMTY5LjQlKe+8m1BJTk8gSkVMTFnjgIFac2lnYSDnrYnvvJvmlrDmjqggSEFDSVBVUFXjgIFOT1JJIHwg4oCUIHwgMDk5OTJfMjAyMl/lubTmiqUgcDExIHwKfCAyMDIzIHwg5bCP6YeO5pS25YWl5ZCM5q+UICsxNDkuNSXvvJvlsI/nlJzosYbjgIFQSU5PIEpFTExZIOWPiiBac2lnYSDlj5fluILlnLrmrKLov44gfCDigJQgfCAwOTk5Ml8yMDIzX+W5tOaKpSBwMTIgfAp8IDIwMjQgfCBQREMg5peX5LiLIEhJUk9OT+OAgVpzaWdh44CBTnlvdGHjgIFpbm9zb3VsIOaIkOe7qeWHuuiJsiB8IFpzaWdhPeWQvuS4ueS4uShQREMg5ZGY5belKSB8IDA5OTkyXzIwMjRf5bm05oqlIHAxMyB8CgotIOWPpu+8mioqQk9CTyZDT0NPKirvvIgyMDE5IOaOqOWHuu+8jFBEQyDlhoXpg6jlvIDlj5HvvIzorr7orqHluIjljaHljaHvvIznmb7luqbnmb7np5Ev54ix5LyB5p+l77yJCi0gKirmnYPlsZ7kuInliIbnsbvvvIjmvoTmuIXlj6PlvoTmt7fkubHvvIkqKu+8mlBEQyDlhoXpg6jlrbXljJbvvIjniYjmnYPoh6rmjIEr5YaF6YOo6K6+6K6h5biI77yJ4omgICoq5Lmw5patIElQKirvvIjlpJbpg6joibrmnK/lrrbliJvkvZzjgIHniYjmnYPlvZLlhazlj7jvvJpNb2xseeOAgVNLVUxMUEFOREHjgIFESU1PT++8ieKJoCDni6zlrrbmjojmnYMgSVDvvIjniYjmnYPlnKjoibrmnK/lrrbjgIHmnInliLDmnJ/ml6XvvJpUSEUgTU9OU1RFUlMvTGFidWJ1IDIwMzDvvInjgILoh6rlqpLkvZPlsIYgU0tVTExQQU5EQSDnrYnor6/lvZIgUERD77yM5a6e5Li65Lmw5patIElQCgojIyMg5Lq65omN5ZC45pS277yIIuWPkeeOsCLkuI4i5oub6IGYIu+8iQoKKirlrpjmlrnkuIDmiYsqKu+8iOW5tOaKpSLkuI7mjIHku73ogIXlhbPns7si56ug6IqC77yM5Y6G5bm05ZCM5Y+l77yJ77ya5Li76KaB6YCa6L+HICoq5qCh5Zut5oub6IGY5Lya44CB5oub6IGY5Luj55CG44CB5YWs5Y+4572R56uZ5Y+K56S+5Lqk572R57uc5bmz5Y+wKiog5oub6IGY6ZuH5ZGY77yb5pyJ5YGl5YWo55qE5YaF6YOo5Z+56K6t5pS/562W44CCCgoqKuS6jOaJi+aKpemBkyoq77yI5pyq57uP5a6Y5pa56K+B5a6e77yJ77yaCi0g6LaFIDIwIOS6uioq6Im65pyv5a625Y+R5o6Y5Zui6ZifKirvvIjpm6rnkIMgMjAyNS0wOS0yNO+8iQotIOiHquWKniAqKlBUUyDmva7mtYHnjqnlhbflsZUqKu+8iDIwMjQg5LiK5rW3LzIwMjUg5YyX5LqsIuWFqOeQg+aVsOeZvuS9jeiJuuacr+WutiLvvInjgIHlm73pmYXoibrmnK/lsZXjgIHpobbnuqfpmaLmoKHlkIjkvZzjgIHorr7orqHmr5TotZvvvIjnlYzpnaIv5Lit5Zu95pel5oql77yJCi0gKirlpKfmlbDmja7nrZvpgIkqKuiJuuacr+Wutu+8jOeOi+WugeiHquavlCLotZvpqazmnLrliLYi77yI5pCc54uQ5Y+3IDIwMjUtMDYtMjHvvIkKLSDlhajlkZjlhbHliJsiKirngbXmhJ/nm7Lnm5LmsaAqKiLvvIjkuJzotKLotKLlr4zlj7cgMjAyNi0wNi0wMe+8jOmUpumypOWwj+emj+ahiOS+i++8iQotIOetvue6puinhOaooe+8iOWdh+S6jOaJi+WPo+W+hO+8jOWumOaWueS4jeaKq+mcsu+8ie+8miLlhajnkIMgMzAwKyDoibrmnK/lrrblkIjkvZzjgIHov5DokKXoh6rmnIkv54us5a62IElQIOe6piA1MCDkuKoi77yI6Zuq55CDIDIwMjYtMDYtMDbvvInvvJsi562+57qmIDIwMCsg6aG257qn6Im65pyv5a62IElQIu+8iOaQnOeLkOWPtyAyMDI1LTA2LTIx77yJ77ybIua3seW6puWQiOS9nC/nrb7nuqboibrmnK/lrrbotoUgMjAwIOS9jSLvvIjpm6rnkIMgMjAyNi0wOC0wNe+8iQoKIyMjIOa/gOWKseacuuWItgoKKirlr7nlhoXpg6jorr7orqHluIgqKu+8iOS4nOi0oui0ouWvjOWPtyAyMDI2LTA2LTAx77yM6Ieq5aqS5L2T44CB5pyq57uP5a6Y5pa56K+B5a6e77yJ77yaCi0g5LiN6ICD5qC46ZSA6YeP77yM6ICD5qC45biC5Zy65Y+N6aaI44CB6K6+6K6h5Yib5paw5oCn44CB5bel6Im66Zq+5bqm77yb5ZOB5o6n5p2D77yI5pS55Yqo6aG76Im65pyv5a62K+WFrOWPuOWPjOmHjeWQjOaEj++8jOS6pOS7mOS4jei+vuagh+WPr+WPq+WBnO+8iQotICJJUCDlkIjkvJnkurrorqHliJIi77ya54iG5qy+IElQIOihjeeUn+WTgeaMgee7reWIhuaIkOS4ieW5tO+8myLlubTluqbmva7njqnpgKDniankuLsi56ew5Y+377yb54G15oSf55uy55uS5rGg5YWo5ZGY5YWx5YibCgoqKuWvueWGhemDqOiuvuiuoeW4iO+8iOWQqyBQREPvvInigJTigJTogqHmnYPmv4DlirHvvJrlrpjmlrnnoa7orqTlrZjlnKjliLbluqbvvIgyMDI2LTA4LTIzIOi0ouaKpeaguOWvue+8iSoq77yaCgp8IOe7k+iuuiB8IOWumOaWueS+neaNriB8IOWHuuWkhCB8CnwtLS0tLS18LS0tLS0tLS0tfC0tLS0tLXwKfCDikaAgKirlhazlj7jmjIHnu63mjqjov5vopobnm5bkuI3lkIzlsYLnuqflkZjlt6XnmoTogqHmnYPmv4DlirHorqHliJIqKiB8IEVTRyDljp/mlofvvJoi5YWs5Y+45oyB57qM5o6o6YCy6KaG6JOL5LiN5ZCM5bGk57Sa5ZOh5bel55qE6IKh5qyK5r+A5Yu16KiI5YqD77yM5L2/5ZOh5bel6IO95aSg5YiG5Lqr5YWs5Y+45oiQ6ZW35bi25L6G55qE57SF5YipIu+8iFRoZSBDb21wYW55IGNvbnRpbnVlcyB0byBwcm9tb3RlICoqZXF1aXR5IGluY2VudGl2ZSBwbGFucyB0aGF0IGVuY29tcGFzcyBlbXBsb3llZXMgYXQgdmFyaW91cyBsZXZlbHMqKu+8ieKGkiBQREMg6K6+6K6h5biI5bGe6ZuH5ZGY5bGC57qn77yM6YC76L6R5LiK5Zyo6KaG55uW6IyD5Zu0IHwgMDk5OTJfMjAyNV/lubTmiqUgcDE1Me+8iEVTRyDmiqXlkYrvvIkgfAp8IOKRoSDogqHku73lpZblirHorqHliJLvvIhTaGFyZSBBd2FyZCBTY2hlbWXvvIkyMDIwLTA3LTI0IOmHh+e6s++8jOS4uuacnyAxMCDlubQgfCDnm67nmoTvvJrkvb/pgInlrprlj4LkuI7ogIXliKnnm4rkuI7pm4blm6LkuIDoh7TjgIHpvJPlirHlj4rmjL3nlZkgfCAwOTk5Ml8yMDI1X+W5tOaKpSBwMzM0IE5vdGUgMjggfAp8IOKRoiAqKuWlluWKseS/oeaJmOWQjeS4uiBQb3AgTWFydCBQYXJ0bmVyIExpbWl0ZWQqKu+8iDIwMjAtMDUtMDcg5ZyoIEJWSSDmiJDnq4vvvIzkvZzkuLrnibnmrornm67nmoTlrp7kvZPlubblhaXmiqXooajvvIkgfCDms6jmhI/kv6HmiZjlkI3np7DlkKsgIlBhcnRuZXIiIOWtl+agt+KAlOKAlOS7heatpOWPr+afpe+8jCoq5LiN6IO95o2u5q2k5o6o5a6a5a2Y5ZyoIuWQiOS8meS6uuiuoeWIkiIqKiB8IDA5OTkyXzIwMjVf5bm05oqlIHAzMzQgTm90ZSAyOCB8Cnwg4pGjIFJTVSDmjojlh7rlr7nosaEgPSAqKuacrOmbhuWboumbh+WRmCArIOesrOS4ieaWueS+m+W6lOWVhioqIHwgTm90ZSAyOCDljp/mlofvvJoi5pys6ZuG5ZyY5ZCR6YG45a6a5Y+D6IiH6ICF77yIKirljIXmi6zmnKzpm4blnJjlg7Hlk6Hlj4rnrKzkuInmlrnkvpvmh4nllYYqKu+8ieaOiOWHuuWPl+mZkOWItuiCoeS7veWWruS9jSIgfCAwOTk5Ml8yMDI1X+W5tOaKpSBwMzM1IE5vdGUgMjggfAp8IOKRpCAyMDI1IOW5tCBSU1Ug5o6I5Ye6IDg1OCDljYPogqHjgIHlvZLlsZ4gMyw4MDIg5Y2D6IKh44CB5bm05pyr5L2Z6aKdIDMsNTY0IOWNg+iCoe+8myoqMjAyNSDlubTogqHku73mlK/ku5jotLnnlKjvvJrpm4flkZggNzEsNjA0IOWNg+WFgyArIOesrOS4ieaWueS+m+W6lOWVhiA1LDAyNSDljYPlhYMqKu+8iDIwMjTvvJrpm4flkZggOTQsODE377yM5L6b5bqU5ZWGIDDvvIkgfCBSU1Ug6LS555So5oC76aKdID0g6Z2i5ZCR5YWo5L2T6ZuH5ZGY55qE6IKh5Lu95pSv5LuY77yMKirmnKrmi4bliIbliLDpg6jpl6gv5Liq5Lq6KirvvIjlkKvkuI3lkKsgUERDIOaXoOazleS7jui0ouaKpeehruiupO+8iSB8IDA5OTkyXzIwMjVf5bm05oqlIHAzMzYtMzM3IE5vdGUgMjggfAp8IOKRpSDlvZLlsZ7ml7bpl7TooajlpJrmoLfvvJrljbPml7blhajlvZIgLyA3OC05MCDml6XljZXmibkgLyAzMDAg5pelKDkwIOaXpeW9kiA1MCUr5Yiw5pyfIDUwJSkgLyAzIOW5tCgyNSUrMyDnrYnku70pIC8gMy00IOW5tOWIhiAzLTQg5om5IHwg5b2S5bGe6ZmE57up5pWI6K+E5Lyw5p2h5Lu2IHwgMDk5OTJfMjAyNV/lubTmiqUgcDMzNSBOb3RlIDI4IHwKfCDikaYg6K6h5YiS6ZmQ6aKd77ya5pyq6I636IKh5Lic5om55YeG5LiLIFJTVSDlkIjorqEg4omkMTAlIOiCoeS7ve+8jOW5tOW6pumZkOminSA1JSB8IHwgMDk5OTJfMjAyNV/lubTmiqUgcDMzNCBOb3RlIDI4IHwKCioqUlNVIOWunumZheaOiOWHuuWFrOWRiu+8iOWumOaWue+8jOa4r+S6pOaJgOWFrOWRiu+8jDIwMjYtMDgtMjMg5pCc57Si77yJKirvvJoKCnwg5YWs5ZGK5pelIHwg5o6I5Ye65Lu95pWwIHwg5a+56LGhIHwg5aSH5rOoIHwKfC0tLS0tLS0tfC0tLS0tLS0tLXwtLS0tLS18LS0tLS0tfAp8IDIwMjUtMDEtMTMgfCA2Myw4MDAgfCDpm4flkZggfCDlpZblirHov4flvoDooajnjrAgfAp8IDIwMjUtMDQtMTEgfCA0OTcsOTExIHwg6ZuH5ZGYIHwg5YiG5om55b2S5bGeIHwKfCAyMDI1LTA4LTI5IHwgNTgsMzYyIHwg6ZuH5ZGYIHwgfAp8IDIwMjUtMTAtMTUgfCAzOCwyODkgfCDmnKzpm4blm6Lpm4flkZggfCDnrKwgMi00IOWRqOW5tOWIhuaJueW9kuWxnu+8jOmZhOe7qeaViCB8CnwgMjAyNi0wMS0wOSB8IDUyLDA4MiB8IOmdnuaJp+ihjOiRo+S6i+WQtOi2iiA4LDYwOSArIOmbhuWboumbh+WRmCA0Myw0NzMgfCBMVk1IIOWQtOi2iiAyMDI1LTEyIOWnlOS7uyB8CnwgMjAyNi0wMS0xNCB8IDI0LDk3MiB8IOmbh+WRmCB8IHwKfCAqKjIwMjYtMDctMDgqKiB8ICoqMTAxLDkzNSoqIHwgKirpm4flkZjmib/mjojkurogMzksOTU3ICsg5pyN5Yqh5o+Q5L6b6ICF5om/5o6I5Lq6IDYxLDk3OCoqIHwgKirmnI3liqHmj5DkvpvogIXvvIg+6ZuH5ZGY77yB77yJKirvvJvotK3kubDku7flnYfkuLrpm7bvvJvlvZLlsZ7lj5blhrPnu6nmlYjor4TkvLAgfAoKPiDop6Por7vvvJpSU1Ug6KaG55uWKirpm4flkZggKyDnrKzkuInmlrnkvpvlupTllYYv5pyN5Yqh5o+Q5L6b6ICFKirkuKTnsbvvvJsyMDI2LTA3LTA4IOaOiOWHuuS4rSLmnI3liqHmj5DkvpvogIUi5Lu96aKd77yINjEsOTc477yJ6LaF6L+H6ZuH5ZGY77yIMzksOTU377yJ77yM6K+05piO6IKh5p2D5r+A5Yqx6IyD5Zu0KirkuI3mraLlkZjlt6UqKu+8jOi/mOW7tuS8uOWIsOaMgee7reaPkOS+m+acjeWKoeeahOWQiOS9nOaWueKAlOKAlOS9huWFrOWRiioq5LiN5oqr6Zyy5YW35L2T5ZCN5Y2VKirvvIzml6Dms5Xnoa7orqTmmK/lkKblkKsgUERDIOiuvuiuoeW4iOaIluetvue6puiJuuacr+WutuOAggoKKiror4Hmja7pk77vvJrlhoXpg6jorr7orqHluIjolqrphawg4oqCIOmbh+WRmOemj+WIqeW8gOaUr+OAgeS4jeS6p+eUn+aOiOadg+i0ue+8iDIwMjYtMDgtMjMg6LSi5oql5qC45a+577yJKirvvJoKCnwg57uT6K66IHwg6LSi5oql5L6d5o2uIHwg5Ye65aSEIHwKfC0tLS0tLXwtLS0tLS0tLS18LS0tLS0tfAp8IOKRoCDlhoXpg6jorr7orqHluIjolqrphazotbAi6ZuH5ZGY56aP5Yip5byA5pSvIu+8jCoq5LiN6LWw5o6I5p2D6LS5KiogfCBOb3RlIDcg5oyJ5oCn6LSo5YiS5YiG5byA5pSv5Lit77yMKirpm4flkZjnpo/liKnlvIDmlK8gMiwyNTIsMzQwKiog5LiOICoq5o6I5p2D6LS5IDgzMyw0ODEqKiDmmK/kuKTkuKrlubbliJfnmoTni6znq4vnp5Hnm67vvJvlj6Yi6K6+6K6h5pyN5Yqh6LS5IDg2LDQ0NiLmmK/nrKzkuInmlrnorr7orqHph4fotK3vvIzkuZ/kuI3mmK/lkZjlt6XolqrphawgfCAwOTk5Ml8yMDI1X+W5tOaKpSBwMjg1IE5vdGUgNyB8Cnwg4pGhIOWRmOW3peiWqumFrCoq5b2T5pyf6K6h5o+Q44CBMTIg5Liq5pyI5YaF57uT5riFKirvvIzkuI3lvaLmiJDplb/mnJ/otJ/lgLogfCBOb3RlIDQwKGkp77ya6aKE5pyfIDEyIOS4quaciOWGhea4heeul+eahOW3pei1hOiWqumHkei0n+WAuuS6juacn+acq+ehruiupO+8jOaMiemihOacn+aUr+S7mOmHkemineiuoemHj++8jCoq5YiX56S65Li65Y2z5pyf6ZuH5ZGY56aP5Yip6LSj5Lu777yIY3VycmVudCBlbXBsb3llZSBiZW5lZml0IG9ibGlnYXRpb25z77yJKirigJTigJTkuI7lupTku5jmjojmnYPotLki5oyJ5Zu65a6a5pyA5L2O5LuY5qy+546w5YC85YWl6LSmICsg6Leo5pyf5YiG5pyf77yI6Z2e5Y2z5pyfIDUsMjc177yJIuW9ouaIkOWvueeFpyB8IDA5OTkyXzIwMjVf5bm05oqlIHAzNjEgTm90ZSA0MChpKSB2cyAoaCkgfAp8IOKRoiDmjojmnYMgSVAg5omN5b2i5oiQ5peg5b2i6LWE5Lqn5LiO5bqU5LuY5o6I5p2D6LS56LSf5YC6IHwgTm90ZSAxNe+8mioqTGljZW5zZWQgSVBz77yI5o6I5p2DIElQ77yJKiog5L2c5Li65peg5b2i6LWE5Lqn5Y2V54us5YiX56S677yIMjAyNSDmt7vnva4gMTE3LDYyMyAvIOaRiumUgCAxMTIsMjU4IC8g5bm05pyr6LSm6Z2iIDEyMiwyODTvvInvvJvlhoXpg6joh6rmnIkgSVAg5peg5q2k56eR55uuIHwgMDk5OTJfMjAyNV/lubTmiqUgcDI5NiBOb3RlIDE1IHwKfCDikaMg5bqU5LuY5o6I5p2D6LS5PeWvueiJuuacr+WutueahOWQiOWQjOS5ieWKoSB8IE5vdGUgNDAoaCkg5Y6f5paH77ya5bqU5LuY5o6I5p2D6LS55Yid5aeL5oyJIuS7peWQjuWQhOW5tOWbuuWumuacgOS9juWumuacn+S7mOasvuS5i+eOsOWAvCLlhaXotKYg4oaSIOWPquacieS4juiJuuacr+Wutuiuoueri+aOiOadg+WNj+iuruaJjeS6p+eUn+atpOi0n+WAuiB8IDA5OTkyXzIwMjVf5bm05oqlIHAzNjEgTm90ZSA0MChoKSB8CgoqKue7k+iuuioq77ya6LSi5oql5Y+v6K+B5a6eIuWGhemDqOiuvuiuoeW4iOiWqumFrOKJoOaOiOadg+i0ueOAgeW9k+acn+iuoeaPkOWNs+acn+e7k+a4hSLvvJvkvYbotKLmiqUqKuacquaKq+mcsuS7u+S9leiuvuiuoeW4iOWIhuaIkOWItuW6pioq77yIIklQIOWQiOS8meS6uuiuoeWIkiLnrYnku4Xoh6rlqpLkvZPmnaXmupDvvIzlrpjmlrnpm7bmiqvpnLLvvInjgILmiYDku6Ui5YaF6YOo6K6+6K6h5biI5Lmf5pyJ5YiG5oiQIuaXoOazleeUqOi0ouaKpeivgeWunu+8jOWPquiDveS9nOS4uuS6jOaJi+S8oOmXu+agh+azqOOAggoKKipQREMg5YW35L2TIElQIMOXIOWIhuaIkC/mv4DlirHov73ouKrvvIgyMDI2LTA4LTIzIOaQnOe0ou+8iSoq77yaCgp8IFBEQyBJUCB8IOiuvuiuoeW4iCB8IOi6q+S7vSB8IOWIhuaIkC/mv4DlirHor4Hmja4gfCDmnaXmupDnrYnnuqcgfAp8LS0tLS0tLS18LS0tLS0tLS18LS0tLS0tfC0tLS0tLS0tLS0tLS0tfC0tLS0tLS0tLXwKfCDlsI/nlJzosYYgU3dlZXQgQmVhbiB8IOmbquWuuCB8IFBEQyDlhoXpg6jorr7orqHluIggfCDlrpjmlrnpm7bmiqvpnLLvvJvoh6rlqpLkvZPnp7AiSVAg5ZCI5LyZ5Lq66K6h5YiSIueIhuasvuWIhuaIkOS4ieW5tCB8IOS7heiHquWqkuS9k++8iOS4nOi0oui0ouWvjOWPtyAyMDI2LTA2LTAx77yJIHwKfCBac2lnYSB8IOWQvuS4ueS4ue+8iERhbu+8iSB8IFBEQyDlkZjlt6Xorr7orqHluIjvvIgyMDIyIOW5tCBac2lnYSDkuq7nm7jvvIwyMDI2LTAxIFBPUCBNQVJUIEdhbGxlcnkg6aaW5bGV77yJIHwg5ZCM5LiK77yM5a6Y5pa56Zu25oqr6ZyyIHwg5LuF6Ieq5aqS5L2TIHwKfCDlsI/ph44gSGlyb25vIHwgTGFuZyB8ICoq5Yib5aeL5Zui6Zif5oiQ5ZGYKirjgIHoibrmnK/mgLvnm5HvvIgyMDExIOW5tOWKoOWFpe+8ie+8jOeOi+WugeWkp+WtpuWQjOWtpiB8IOWGhemDqOmrmOeuoei6q+S7veKGkui1sOiWqumFrCvogqHmnYPmv4DlirHvvIjpm4flkZjnpo/liKnlvIDmlK8v6IKh5Lu95pSv5LuY77yJ77yM6Z2e5o6I5p2D6LS577ybKirml6DliIbmiJDmiqvpnLIqKiB8IOWumOaWue+8iOWIm+Wni+WboumYn++8iSsg6Ieq5aqS5L2T77yI5r6O5rmDIDIwMjUtMDMtMjLvvJpMYW5nIOS7peiHquW3seWEv+WtkOS4uuWOn+Wei+iuvuiuoe+8iSB8CnwgQk9CTyZDT0NPIHwg5Y2h5Y2hIHwgUERDIOWGhemDqOiuvuiuoeW4iO+8iDIwMTkg5o6o5Ye677yJIHwg5a6Y5pa56Zu25oqr6ZyyIHwg5LuF6Ieq5aqS5L2T77yI55m+5bqm55m+56eRL+eIseS8geafpe+8iSB8CgoqKuimgeeCuSoq77yaCjEuICoqUERDIOWGhemDqOiuvuiuoeW4iOWIhuaIkD3lrpjmlrnpm7bmiqvpnLIqKu+8jOeOsOacieWUr+S4gOe7huiKguadpeiHquS4nOi0oui0ouWvjOWPtyAyMDI2LTA2LTAx77yIIklQIOWQiOS8meS6uuiuoeWIkiLvvJrniIbmrL4gSVAg6KGN55Sf5ZOB5oyB57ut5YiG5oiQ5LiJ5bm077ybIuW5tOW6pua9rueOqemAoOeJqeS4uyLnp7Dlj7fvvJvngbXmhJ/nm7Lnm5LmsaDlhajlkZjlhbHliJvvvInigJTigJQqKuacque7j+WumOaWueivgeWunioqCjIuICoq6LSi5oql6IO956Gu6K6k55qE5Y+q5pyJ5Lik5p2hKirvvJrikaAg5YaF6YOo6K6+6K6h5biI6Jaq6YWs4oqC6ZuH5ZGY56aP5Yip5byA5pSv77yITm90ZSA377yM5b2T5pyf6K6h5o+Q44CB5Y2z5pyf57uT5riFIE5vdGUgNDAoaSnvvInvvIzkuI3kuqfnlJ/lupTku5jmjojmnYPotLnvvJvikaEgKirogqHmnYPmv4DlirHliLbluqblrpjmlrnnoa7orqTlrZjlnKgqKu+8iEVTRyBwMTUxIuimhuebluS4jeWQjOWxgue6p+WRmOW3pSIrIE5vdGUgMjggU2hhcmUgQXdhcmQgU2NoZW1lL1JTVe+8jDIwMjUg6ZuH5ZGY6IKh5Lu95pSv5LuYIDcxLjYg55m+5LiH77yJ4oCU4oCU5L2GKirmnKrmi4bliIbliLAgUERDIOmDqOmXqC/kuKrkuroqKgozLiAqKkhpcm9ubyDnmoQgTGFuZyDmmK/kvovlpJYqKu+8mumdnuaZrumAmuWRmOW3pe+8jOaYr+WIm+Wni+WboumYn+aIkOWRmC/oibrmnK/mgLvnm5HvvIjnjovlroHlkIzlrabvvInvvIzlhbbmv4DlirHmm7Tlj6/og73okL3lnKgqKuiCoeadgy/ogqHku73mlK/ku5gqKu+8iHdhbGsg6auY566h6Jaq6YWs77yJ77yM5L2G5LmfKirmnKrmiqvpnLIgSVAg5YiG5oiQKioKNC4g5a+55q+U562+57qm6Im65pyv5a6277yI5pyJ5YiG5oiQ5q+U5L6L6K+B5o2u77yM5L2G5ZCM5qC35peg5a6Y5pa55oqr6Zyy77yJ77yaTGFidWJ1IOm+meWutuWNhyA4Je+8iOWIqea2pu+8ieOAgVNLVUxMUEFOREEg54aK5Za1IDcuNeKAkzkl44CB5aS06YOoIDEw4oCTMTUl77yI5Z2H6Ieq5aqS5L2T77yJCjUuICoqIuWQiOS8meS6uuiuoeWIkiLlrpjmlrnpm7bmiqvpnLIqKu+8mui0ouaKpS9FU0cv5YWs5ZGK5Z2H5pegIuWQiOS8meS6uuiuoeWIkiLlrZfmoLfvvJvllK/kuIDluKYiUGFydG5lciLnmoTmmK/ogqHku73lpZblirHkv6HmiZjlrp7kvZPlkI3vvIhQb3AgTWFydCBQYXJ0bmVyIExpbWl0ZWTvvInvvIwqKuS4jeiDveaNruatpOaOqOWumuWtmOWcqOWQiOS8meS6uuWIhuaIkOacuuWItioqCgoqKuWvueetvue6puiJuuacr+Wutioq77yaCi0g6ZSA5ZSu5YiG5oiQ77ya5a6Y5pa55pyq5oqr6Zyy5q+U5L6L77yM56ys5LiJ5pa55Lyw566XIDXigJMxMCXvvJvpm6rnkIPkvKDpl7sgTGFidWJ1IOm+meWutuWNh+S4uuWIqea2piA4Je+8m+iHquWqkuS9k+ensOWktOmDqCAxMOKAkzE1Je+8iOWdh+acquivgeWunu+8iQotIOaLm+iCoeS5pumUmueCue+8mioq6K6+6K6h6LS55bm05bqm5LiK6ZmQIuS4quS9jeaVsOawtOW5syIqKuKAlOKAlOWIhuaIkOacieWwgemhtgotICoq6Im65pyv5a626IKh5Lic5YyW5ZSv5LiA5qGI5L6LKirvvIjlrpjmlrnlj6/mn6XvvInvvJrnjovkv6HmmI7vvIhNb2xsee+8iTIwMTktMDYg54us5a625Lmw5pat54mI5p2DK+iOtyAyJSDogqHmnYPvvIjkvZzku7cgMzQ1LjMyIOS4h++8ie+8jElQTyDlkI7mjIHnuqYgMS40OSXvvIgyMDI1LTA5IOW4guWAvOe6piA0NiDkur/lhYPvvIkKLSDmlLblhaXnu4TlkIjvvJrplIDllK7liIbmiJAr6IGU5ZCN5o6I5p2DK+S5sOaWrS/ogqHmnYMr5ouN5Y2W54mI56iO77yb5LmQ5Zut6Ieq6JCl5LiN5YiG5oiQ77yI5paw5rWq6LSi57uPwrdZT1VOR+i0oue7jyAyMDI1LTA5LTE377yJCi0g6LSi5Yqh6JC954K577ya6K6+6K6h5Y+K5o6I5p2D6LS5IDIwMjUg5bm0ICoqOC4zMyDkur8qKu+8iOWNoOiQpeaUtiAyLjI1Je+8iemaj+mUgOmHj+e6v+aAp+WIhuaIkAoKIyMjIOaOiOadg+i0ueWQiOWQjOe7k+aehCA9IOWvuSBJUCDkvpvnu5nmlrnvvIjoibrmnK/lrrbvvInnmoTmv4DlirHmnLrliLbvvIgyMDI2LTA4LTIzIOihpeWFhe+8iQoKKirlkIjlkIzlj4zlsYLnu5PmnoQqKu+8iE5vdGUgMTcvMzAg5Y6f5paH77yJ77ya5pys6ZuG5Zui5LiO6Im65pyv5a626K6i56uL6Iul5bmy5o6I5p2D5Y2P6K6u77yM5Y+W5b6X54us5a625Y+K6Z2e54us5a625o6I5p2DIElQ44CC5LuY6LS55YiG5Lik56eN77yaCgotICoq5L+d5bqV77yI5Zu65a6a5pyA5L2O5LuY5qy+77yJKirvvJrpobvkuo7lkIjnuqbmnJ/lhoXliIbmnJ/mlK/ku5jvvIjlm7rlrprph5Hpop3vvIzot6jmnJ/vvIkKLSAqKuaMiemHj+WIhuaIkO+8iOWfuuS6jumUgOmHj+eahOWPr+WPmOS7mOasvu+8iSoq77ya6aG75LqO6Kem5Y+R5LuY5qy+5p2h5Lu25Y+R55Sf55qE5pyf6Ze05YaF5pSv5LuYCgoqKuS8muiuoeWkhOeQhioq77yITm90ZSA0MChoKe+8ie+8muW6lOS7mOaOiOadg+i0ueWIneWni+aMiSLku6XlkI7lkITlubTlm7rlrprmnIDkvY7lrprmnJ/ku5jmrL7kuYvnjrDlgLwi5YWl6LSmIOKGkiDnlKjlrp7pmYXliKnnjofms5XmjInmkYrplIDmiJDmnKzlh4/ku5jmrL7liJfnpLrvvJvliKnmga/orqHlhaXliKnmga/lvIDmlK/jgIIKCioq5bqU5LuY5o6I5p2D6LS55L2Z6aKdKirvvIjkurrmsJHluIHljYPlhYPvvIzmnaXmupDvvJpgMDk5OTJfMjAyNl/kuK3miqUucGRmYCBOb3RlIDE3IC8gYDA5OTkyXzIwMjVf5bm05oqlLnBkZmAgTm90ZSAzMO+8ie+8mgoKfCDpobnnm64gfCAyMDI2LTA2LTMwIHwgMjAyNS0xMi0zMSB8IDIwMjQtMTItMzEgfAp8LS0tLS0tfC0tLS0tLS0tLS0tfC0tLS0tLS0tLS0tfC0tLS0tLS0tLS0tfAp8IOW6lOS7mOaOiOadg+i0ueaAu+minSB8ICoqNTE4LDg1OCoq77yI4omINS4xOeS6v++8iSB8IDQ0Miw3NzIgfCAzNTYsMzcxIHwKfCDljbPmnJ/vvIjiiaQx5bm077yJIHwgNTEzLDU4MyB8IDQzNywyNDcgfCAzNDEsODM1IHwKfCDpnZ7ljbPmnJ/vvIg+MeW5tO+8iSB8IDUsMjc1IHwgNSw1MjUgfCAxNCw1MzYgfAoKKirliLDmnJ/ooagqKu+8iE5vdGUgMy4xKGMp77yM5ZCI57qm5pyq6LS0546w546w6YeR5rWB77yMMjAyNS0xMi0zMe+8ie+8muWwkeaWvOS4gOW5tCA0MzcsMjQ3IC8g5LiA6Iez5YWp5bm0IDIsMjQ4IC8g5YWp6Iez5LqU5bm0IDEsNzA5IC8g5LqU5bm05Lul5LiKIDIsODc4IC8g5ZCI57SE54++6YeR5rWB6YeP57i96aGNIDQ0NCwwODIgLyDos6zpnaLlgLwgNDQyLDc3MiDihpIgKio5OC41JSDkuIDlubTlhoXliLDmnJ8qKu+8iDQzNywyNDcvNDQ0LDA4Mu+8ieOAggoKKirmnLrliLbop6Por7vvvIjoibrmnK/lrrbnmoTmv4DlirHmnLrliLbop4bop5LvvIkqKu+8mgoKMS4gKirpnZ7ljbPmnJ/vvIg+MeW5tO+8iT0g5L+d5bqV5qy+55qE6ZW/5pyf5YiG5pyfKirvvIjpgLvovpHmjqjmlq3vvJrmjInph4/liIbmiJDlvZPmnJ/op6blj5HlvZPmnJ/mlK/ku5jvvIzkuI3ot6jlubTlvaLmiJDplb/mnJ/kuYnliqHvvJvmiqXlkYrmnKrnm7TmjqXlhpnmmI7vvIxOb3RlIDE3IOWPquivtOS4pOexu+S7mOasvueahOWumuS5ie+8iQoyLiAqKumdnuWNs+acn+KJiDDvvIg1MjfkuIfvvIzljaDmgLvpop0gMSXvvIk9IOWFrOWPuOWHoOS5juS4jeetvumVv+acn+WImuaAp+S/neW6lSoq77yM5o6I5p2D5oiQ5pys5Lul5YiG5oiQ5Yi25Li65Li744CB6ZqP6ZSA6YeP5rWu5YqoCjMuICoq5L+d5bqV5L+d5LiL6ZmQ77yI6Im65pyv5a6255qE56Gu5a6a5oCn5pS25YWl77yM562+57qm6aOO6Zmp5L2O77yJ44CB5YiG5oiQ57uZ5by55oCn77yI6ZSA6YeP5oyC6ZKp44CB5LiK5LiN5bCB6aG277yJKirigJTigJTov5nmmK8i5ZC45byV6Im65pyv5a625oqKIElQIOaOiOadg+e7meazoeazoeeOm+eJuSLnmoTmv4DlirHlpZHnuqYKNC4gKirkuI7liKnmtqbooagi5o6I5p2D6LS5Iu+8iOa1gemHj++8ieWMuuWIhioq77yaMjAyNkgxIOaOiOadg+i0uei0ueeUqCAqKjM3NiwyNDcqKu+8iOWQjOavlCAtMTYuNiXvvIzmr5vliKnnjocgKzFwY3Qg55qE6LSh54yu6aG577yJ77yb5bqU5LuY5o6I5p2D6LS5IDUuMTkg5Lq/5pivKirlrZjph4/otJ/lgLoqKu+8iOacquS7mOS5ieWKoe+8ie+8jOS4pOiAheamguW/teS4jeWQjO+8jOS4jeefm+ebvgo1LiAqKuS4jiLlj5HnjrAv5a215YyWIuWMuuWIhioq77ya5o6I5p2D6LS557uT5p6E5pivIuiOt+WPluW5tue7keWumuWklumDqOiJuuacr+WutiBJUCLnmoTmv4DlirHlronmjpLvvJvlhoXpg6jlrbXljJbvvIhQREMv6Ieq5pyJIElQ77yJ5piv5Y+m5LiA5p2h57q/4oCU4oCU6Ieq5Li75Lqn5ZOB5Y2gIDk5LjMl77yM5Y2V5LiA6Im65pyv5a6255qE6K6u5Lu35L6d6LWW5bqm5L2OCgojIyMg5pe26Ze057q/6KaB54K577yIMjAyMOKAkzIwMjbvvIkKCnwg5bm05Lu9IHwg6K6+6K6hL+WPkeeOsOeOr+iKguWPmOWMliB8CnwtLS0tLS18LS0tLS0tLS0tLS0tLS0tLS0tfAp8IDIwMjAgfCDmi5vogqHkuabvvJoxMTEg5ZCN5YaF6YOo6K6+6K6h5biI77ybSVAg5rGgIDg1IOS4qu+8iDEyIOiHquaciS8yMiDni6zlrrYvNTEg6Z2e54us5a6277yM55WM6Z2i5paw6Ze777yJ77yb5ZGY5belIDIsMzIw77ybTW9sbHkg5L6d6LWW5bqmIDIwMTcg5bm0IDg5LjMl4oaSMzIuOSUgfAp8IDIwMjEgfCDlkZjlt6UgNCwwNTPvvJvoh6rmnIkgSVAg5pS25YWl5Y2g5q+UIDU3LjYlIOWIm+aWsOmrmO+8m+WktOmDqCBJUCDmlLblhaXmm7TlnYfooaEgfAp8IDIwMjIgfCDmiqvpnLLlj6PlvoTmlLki6Im65pyv5a62IElQIu+8iOiHquaciSvni6zlrrblkIjlubbvvInvvIzljaDmlLblhaUgNzguOSXvvJvlkZjlt6UgNCwxNzggfAp8IDIwMjMgfCDlkZjlt6UgNCw4NDXvvIjplIDllK7lj6PlvoTph43liJLliIbvvInvvJvoibrmnK/lrrYgSVAg5Y+j5b6E5bu257utIHwKfCAyMDI0IHwg5ZGY5belIDYsNzAy77yb5pif5pif5Lq6IDIwMjQtMDgg5LiK57q/77ybNCBJUCDotoUgMTAg5Lq/77yIVEhFIE1PTlNURVJTIDMwLjQg5Lq/77yJ77yb5o6I5p2D6LS5IDMuOTMg5Lq/IHwKfCAyMDI1IHwg5ZGY5belIDEwLDg3Oe+8iOiuvuiuoeW8gOWPkSAyLDE5NO+8ie+8m+iJuuacr+WutiBJUCDmlLblhaUgMzM0IOS6v+OAgeWNoOe6piA5MCXvvIzmjojmnYMgSVAgOS4xJe+8mzE3IElQIOegtOS6v++8m1RIRSBNT05TVEVSUyAxNDEuNiDkur/vvJvmjojmnYPotLkgOC4zMyDkur8gfAp8IDIwMjZIMSB8IOiuvuiuoS/ooYzmlL8gMiwzMjLvvJvoibrmnK/lrrYgSVAgMTUyLjkg5Lq/5Y2gIDg5Je+8mzYgSVAg6LaFIDEwIOS6v+OAgTExIOegtOS6v++8m+aYn+aYn+S6uiAyNi41IOS6v++8iCs1ODAuNiXvvInvvJvnjovlroEi6LCD5pW05bm0IiLml6DnlKjkuYvnlKjigJTigJTlhbPms6jorr7orqHjgIHoibrmnK/kuI7mhJ/mgKflhoXlrrki77yI5Lit5oql5Lia57up5Lya77yJIHwKCiMjIyDmnaXmupDlj6/kv6HluqbliIbnuqcKCi0gKirlrpjmlrnkuIDmiYsqKu+8muWRmOW3peS6uuaVsO+8iOWQhOW5tOW5tOaKpe+8ieOAgTExMSDorr7orqHluIjvvIjmi5vogqHkuaYgcC4yNDXvvInjgIHnjovkv6HmmI4gMiUg6IKh5p2D77yI5oub6IKh5LmmL+adg+ebiuaKq+mcsu+8ieOAgeaLm+iBmOa4oOmBk++8iOW5tOaKpe+8ieOAgeaOiOadg+i0ue+8iOW5tOaKpemZhOazqO+8iQotICoq5Yi45ZWG56CU5oqlKirvvJpQREMg6IGM6IO95a6a5L2N77yI54ix5bu66K+B5Yi4IDIwMjYtMDgtMTLvvIkKLSAqKuadg+WogeWqkuS9kyoq77ya546L5L+h5piO5oyB6IKhL+WIhuaIkOe7k+aehO+8iOaWsOa1qui0oue7j8K3WU9VTkfotKLnu48gMjAyNS0wOS0xN++8ieOAgeaLm+iCoeS5piBJUCDmsaAgODUg5Liq77yI55WM6Z2i5paw6Ze7IDIwMjAtMDYtMDHvvIkKLSAqKuiHquWqkuS9ky/kuozmiYvvvIjmnKrnu4/lrpjmlrnor4Hlrp7vvIkqKu+8muWIhuaIkOavlOS+iyAxMOKAkzE1JeOAgUlQIOWQiOS8meS6uuiuoeWIkuOAgeeBteaEn+ebsuebkuaxoOOAgeS5sOaJi+WboumYnyAyMCsg5Lq644CB6Im65pyv5a625pWw6YePIDIwMCsvMzAwK+OAgem+meWutuWNhyA4JSDliKnmtqYKCiMjIOe7k+iuuu+8iOS/ruatoyAyMDI2LTA4LTIxIOWJjeeovyLliIbmiJDliLbplb/mnJ/ljovmr5vliKnCt+ehruWumiLvvIkKCi0g5o6I5p2D6LS55pivKirpmo/plIDph4/nur/mgKfnmoTotLnnlKgqKu+8jOS9huWNoOavlOeos+WumuWcqCB+MuKAkzMl77yMKirkuI3lrZjlnKgi6ZW/5pyf5Y6L5q+b5YipIueahOe7k+aehOaAp+aBtuWMlioq77ybMjAyNOKGkjIwMjUg5Y+N6ICM5pi+6JGX5pGK6JaE44CCCi0g55yf5q2j5Yaz5a6a5q+b5Yip55qE5piv6ZSA5ZSu5oiQ5pys77yIMjcuOSXvvInvvJvlhrPlrprlh4DliKnnjofnmoTkuLvopoHotLnnlKjmmK/nu4/plIDlj4rplIDllK7lvIDmlK/vvIg4MC44IOS6v++8jOWNoOiQpeaUtiAyMS44Je+8ieKAlOKAlOaOiOadg+i0ue+8iDguMyDkur/vvInkuI3otrPlhbYgMS8xMOOAggotIOWIhuaIkOWItueahOecn+WunumjjumZqeS4jeWcqCLmr5Tkvovpq5gi77yM6ICM5ZyoKirliIbmiJDljY/orq7ph43nrb7ml7booqvosIPpq5gqKu+8iOS4gOW5tOacn+WNj+iuru+8ieS4jioq5Y2V5LiAIElQIOWIhuaIkOWfuuaVsOWkpyoq4oCU4oCU5p2D6YeN5pyA57uI5Y+W5Yaz5LqO6K6u5Lu35Zyw5L2N77yM6ICM6Z2e5b2T5LiL5Y2g5q+U44CCCgojIyDlj4Lop4EKCi0gW1suLi/kuqfkuJrpk75dXSDigJQg5Lqn5Lia6ZO+5YWo5pmv77yI5LiK5ri4IElQIOS+m+e7mSAvIOS4rea4uOS6p+WTgeWMliAvIOS4i+a4uOa4oOmBk++8iQotIFtbMDAt5L6b5bqU6ZO+5LiO5Yi26YCgXV0g4oCUIOS+m+W6lOmTvuS4juWItumAoOmTvuadoe+8iOi0ouWKoeenkeebruWvueW6lCAvIOeOr+iKgue6p+mZkOWItuWFpeWPo++8iQotIFtbLi4v5pWw5o2u55uu5b2VXV0g4oCUIERCIOaVsOaNruebruW9lQotIFtbLi4v6L+Q6JCl5oyH5qCHXV0g4oCUIOi/kOiQpeaMh+agh+i3n+i4qgotIFtbLi4v5oqV6LWE6K6654K5XV0g4oCUIOaKlei1hCBUaGVzaXMKW1tyZXNlYXJjaC9pbmRleC5tZF1dIMK3IFtbcmVzZWFyY2gv5rOh5rOh546b54m5L+e7j+iQpS8wMi3liLbpgKDkuI7otKjmjqfnjq/oioIubWRdXQ==";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="01-设计IP环节.html">泡泡玛特 (09992) — 供应链环节分析 · 设计 / IP</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 供应链环节分析 · 设计 / IP</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-21</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/经营</span></div><div class="md" id="md"><h1>泡泡玛特 (09992) — 供应链环节：设计 / IP</h1>
+<blockquote>
+<p>供应链五环节之一的环节级独立分析，承接 <a href="00-%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%8E%E5%88%B6%E9%80%A0.html">00-供应链与制造</a>。结构性限制逐项验证 + 权重评估；<strong>未经数据验证的限制不列</strong>。</p>
+</blockquote>
+<h2>环节运行机制</h2>
+<ul>
+<li><strong>111 名内部设计师</strong>组成&quot;内部创意设计及工业开发团队&quot;，深入参与产品开发（招股书 p.245，2020-06-30 口径）</li>
+<li>截至 2020-06-30 已创作 <strong>9 个自有 IP</strong>（BOBO&amp;COCO、Yuki、BUNNY 等）；授权 IP 支付特许权使用费</li>
+<li><strong>产品原型和模具设计由公司负责</strong>（标准营运程序 + 原型 + 模具），模具归公司所有、可转让</li>
+<li>三种模式：<strong>签约分成</strong>（外部艺术家，独家）+ <strong>内部孵化</strong>（Pop Design Center）+ <strong>联名</strong>（迪士尼/三丽鸥等，引流为主）</li>
+<li>财务落点（2025 年报）：按销量提成的授权费 <strong>833,481</strong>（费用化）+ 设计服务费 <strong>86,446</strong>（费用化）；买断授权金资本化为无形资产（2025 添置 <strong>117,623</strong>）后按摊销进损益（127,050）</li>
+</ul>
+<h2>结构性限制与权重</h2>
+<table>
+<thead>
+<tr>
+<th>限制</th>
+<th style="text-align:center">权重</th>
+<th>量级证据</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>分成制（授权费按销量提成）</strong></td>
+<td style="text-align:center"><strong>低</strong></td>
+<td>授权费占营收 7 年稳定在 <strong>1.8%–3.0%</strong>（2019 2.9% → 2022 1.8% 谷 → 2024 3.0% 峰 → 2025 2.25%）；2025 授权费 833,481 = 营收 2.25% / 毛利 3.1% / <strong>行政开支 47%</strong></td>
+<td>量级小、占比无恶化趋势；2025 单年显著摊薄（3.0%→2.25%，营收 +185% 快于授权费 +112%）。不构成压毛利的结构性力量</td>
+</tr>
+<tr>
+<td><strong>IP 生命周期（单一 IP 3-5 年一轮）</strong></td>
+<td style="text-align:center"><strong>高</strong></td>
+<td>见 <a href="../../%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E4%BA%A7%E4%B8%9A%E9%93%BE.html">../产业链</a> 第六章；前三大 IP 占比目标 &lt;50% 意味着现状 &gt;50%</td>
+<td>影响营收规模本身而非成本，是核心风险</td>
+</tr>
+<tr>
+<td><strong>设计师产能上限</strong></td>
+<td style="text-align:center"><strong>低</strong></td>
+<td>设计/开发人员：2020 793 → 2021 1,617 → 2022 1,584 → 2023 1,110* → 2024 1,435 → 2025 2,194 → 2026H1 2,322（*2023 销售口径重划分）；纯设计岗 111 人（2020 招股书）</td>
+<td>产能瓶颈被签约艺术家网络（200+，二手口径）缓解；内部团队主责产品化而非爆款原创；2025 起科目改&quot;行政及设计开发&quot;，扩张显著但仍属规模内生变量，非结构性限制</td>
+</tr>
+</tbody>
+</table>
+<h2>授权费历史明细</h2>
+<p>人民币千元；2020–2024 年报为合并科目&quot;設計及授權費（Design and license fees）&quot;，2025 年报拆分为&quot;授權費 833,481&quot;与&quot;設計服務費 86,446&quot;（来源：各年年报附注&quot;行政开支&quot;科目 + <code>data/09992.db</code> income 表）：</p>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>营收</th>
+<th>设计及授权费</th>
+<th>占营收</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019</td>
+<td>1,683,434</td>
+<td>48,406</td>
+<td>2.88%</td>
+<td></td>
+</tr>
+<tr>
+<td>2020</td>
+<td>2,513,471</td>
+<td>62,721</td>
+<td>2.50%</td>
+<td></td>
+</tr>
+<tr>
+<td>2021</td>
+<td>4,490,651</td>
+<td>104,674</td>
+<td>2.33%</td>
+<td></td>
+</tr>
+<tr>
+<td>2022</td>
+<td>4,617,324</td>
+<td>84,026</td>
+<td>1.82%</td>
+<td>谷底：营收微增而授权费 -20%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>6,301,002</td>
+<td>156,921</td>
+<td>2.49%</td>
+<td></td>
+</tr>
+<tr>
+<td>2024</td>
+<td>13,037,749</td>
+<td>393,499</td>
+<td>3.02%</td>
+<td>峰值：海外扩张期外部授权增加</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>37,120,052</td>
+<td>833,481（单授权费）</td>
+<td>2.25%</td>
+<td>拆分口径；另设计服务费 86,446（0.23%）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>数据可得性：授权费是附注级科目，AKShare 港股利润表接口与 <code>data/09992.db</code> income 表均无（最细到&quot;行政开支&quot;），只能从年报附注提取。</p>
+</blockquote>
+<h2>设计团队现状与人才机制（2020–2026）</h2>
+<h3>设计/开发人员规模（官方口径）</h3>
+<p>年报&quot;人力资源&quot;章节原文提取；&quot;行政及开发人员&quot;含行政、产品开发、设计等全部非销售岗，<strong>≠ 纯设计师</strong>（纯设计岗仅招股书 111 人，2020-06-30）：</p>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th style="text-align:center">员工总数</th>
+<th style="text-align:center">销售员工</th>
+<th style="text-align:center">行政及开发/设计</th>
+<th style="text-align:center">员工成本</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020</td>
+<td style="text-align:center">2,320</td>
+<td style="text-align:center">1,527</td>
+<td style="text-align:center">793</td>
+<td style="text-align:center">2.43 亿</td>
+<td></td>
+</tr>
+<tr>
+<td>2021</td>
+<td style="text-align:center">4,053</td>
+<td style="text-align:center">2,436</td>
+<td style="text-align:center">1,617</td>
+<td style="text-align:center">6.70 亿</td>
+<td>含股权激励股份支付 0.39 亿</td>
+</tr>
+<tr>
+<td>2022</td>
+<td style="text-align:center">4,178</td>
+<td style="text-align:center">2,594</td>
+<td style="text-align:center">1,584</td>
+<td style="text-align:center">8.54 亿</td>
+<td></td>
+</tr>
+<tr>
+<td>2023</td>
+<td style="text-align:center">4,845</td>
+<td style="text-align:center">3,735</td>
+<td style="text-align:center">1,110*</td>
+<td style="text-align:center">—</td>
+<td>*销售口径重划分（2022 销售 2,594→重算 3,171），非裁员</td>
+</tr>
+<tr>
+<td>2024</td>
+<td style="text-align:center">6,702</td>
+<td style="text-align:center">5,267</td>
+<td style="text-align:center">1,435</td>
+<td style="text-align:center">—</td>
+<td>ESG 口径 6,273（不含外包/实习生）</td>
+</tr>
+<tr>
+<td>2025</td>
+<td style="text-align:center">10,879</td>
+<td style="text-align:center">8,685</td>
+<td style="text-align:center">2,194</td>
+<td style="text-align:center">22.52 亿</td>
+<td>科目改&quot;行政及<strong>设计</strong>开发&quot;；ESG 口径 10,434</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">2,322</td>
+<td style="text-align:center">—</td>
+<td>2026 中报</td>
+</tr>
+</tbody>
+</table>
+<h3>团队结构与职能</h3>
+<ul>
+<li><strong>PDC（泡泡设计中心）</strong>：把艺术家原画转化为可量产、可系列化的产品，令 IP 孵化从偶然爆款转向有节奏的持续输出（爱建证券 2026-08-12 深度报告）；也承担内部原创 IP 孵化</li>
+<li>全球 20+ 国家/地区本地办公室，设计力量本地化（2026 中报逐字稿）</li>
+<li><strong>PDC 官方点名 IP</strong>（年报 MD&amp;A 逐年原文，2026-08-23 核对）：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>年报原文点名</th>
+<th>设计师</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020</td>
+<td>PDC (in-house design team) 推出小甜豆(Sweet Bean)系列等，PDC 原创 IP 收入超 1 亿元</td>
+<td>雪宸</td>
+<td>09992_2020_年报 p11</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>小甜豆、小野(Hirono)分别收入 147.9/140.8 百万(+169.4%)；PINO JELLY、Zsiga 等；新推 HACIPUPU、NORI</td>
+<td>—</td>
+<td>09992_2022_年报 p11</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>小野收入同比 +149.5%；小甜豆、PINO JELLY 及 Zsiga 受市场欢迎</td>
+<td>—</td>
+<td>09992_2023_年报 p12</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>PDC 旗下 HIRONO、Zsiga、Nyota、inosoul 成绩出色</td>
+<td>Zsiga=吾丹丹(PDC 员工)</td>
+<td>09992_2024_年报 p13</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>另：<strong>BOBO&amp;COCO</strong>（2019 推出，PDC 内部开发，设计师卡卡，百度百科/爱企查）</li>
+<li><strong>权属三分类（澄清口径混乱）</strong>：PDC 内部孵化（版权自持+内部设计师）≠ <strong>买断 IP</strong>（外部艺术家创作、版权归公司：Molly、SKULLPANDA、DIMOO）≠ 独家授权 IP（版权在艺术家、有到期日：THE MONSTERS/Labubu 2030）。自媒体将 SKULLPANDA 等误归 PDC，实为买断 IP</li>
+</ul>
+<h3>人才吸收（&quot;发现&quot;与&quot;招聘&quot;）</h3>
+<p><strong>官方一手</strong>（年报&quot;与持份者关系&quot;章节，历年同句）：主要通过 <strong>校园招聘会、招聘代理、公司网站及社交网络平台</strong> 招聘雇员；有健全的内部培训政策。</p>
+<p><strong>二手报道</strong>（未经官方证实）：</p>
+<ul>
+<li>超 20 人<strong>艺术家发掘团队</strong>（雪球 2025-09-24）</li>
+<li>自办 <strong>PTS 潮流玩具展</strong>（2024 上海/2025 北京&quot;全球数百位艺术家&quot;）、国际艺术展、顶级院校合作、设计比赛（界面/中国日报）</li>
+<li><strong>大数据筛选</strong>艺术家，王宁自比&quot;赛马机制&quot;（搜狐号 2025-06-21）</li>
+<li>全员共创&quot;<strong>灵感盲盒池</strong>&quot;（东财财富号 2026-06-01，锦鲤小福案例）</li>
+<li>签约规模（均二手口径，官方不披露）：&quot;全球 300+ 艺术家合作、运营自有/独家 IP 约 50 个&quot;（雪球 2026-06-06）；&quot;签约 200+ 顶级艺术家 IP&quot;（搜狐号 2025-06-21）；&quot;深度合作/签约艺术家超 200 位&quot;（雪球 2026-08-05）</li>
+</ul>
+<h3>激励机制</h3>
+<p><strong>对内部设计师</strong>（东财财富号 2026-06-01，自媒体、未经官方证实）：</p>
+<ul>
+<li>不考核销量，考核市场反馈、设计创新性、工艺难度；品控权（改动须艺术家+公司双重同意，交付不达标可叫停）</li>
+<li>&quot;IP 合伙人计划&quot;：爆款 IP 衍生品持续分成三年；&quot;年度潮玩造物主&quot;称号；灵感盲盒池全员共创</li>
+</ul>
+<p><strong>对内部设计师（含 PDC）——股权激励：官方确认存在制度（2026-08-23 财报核对）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>结论</th>
+<th>官方依据</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① <strong>公司持续推进覆盖不同层级员工的股权激励计划</strong></td>
+<td>ESG 原文：&quot;公司持續推進覆蓋不同層級員工的股權激勵計劃，使員工能夠分享公司成長帶來的紅利&quot;（The Company continues to promote <strong>equity incentive plans that encompass employees at various levels</strong>）→ PDC 设计师属雇员层级，逻辑上在覆盖范围</td>
+<td>09992_2025_年报 p151（ESG 报告）</td>
+</tr>
+<tr>
+<td>② 股份奖励计划（Share Award Scheme）2020-07-24 采纳，为期 10 年</td>
+<td>目的：使选定参与者利益与集团一致、鼓励及挽留</td>
+<td>09992_2025_年报 p334 Note 28</td>
+</tr>
+<tr>
+<td>③ <strong>奖励信托名为 Pop Mart Partner Limited</strong>（2020-05-07 在 BVI 成立，作为特殊目的实体并入报表）</td>
+<td>注意信托名称含 &quot;Partner&quot; 字样——仅此可查，<strong>不能据此推定存在&quot;合伙人计划&quot;</strong></td>
+<td>09992_2025_年报 p334 Note 28</td>
+</tr>
+<tr>
+<td>④ RSU 授出对象 = <strong>本集团雇员 + 第三方供应商</strong></td>
+<td>Note 28 原文：&quot;本集團向選定參與者（<strong>包括本集團僱員及第三方供應商</strong>）授出受限制股份單位&quot;</td>
+<td>09992_2025_年报 p335 Note 28</td>
+</tr>
+<tr>
+<td>⑤ 2025 年 RSU 授出 858 千股、归属 3,802 千股、年末余额 3,564 千股；<strong>2025 年股份支付费用：雇员 71,604 千元 + 第三方供应商 5,025 千元</strong>（2024：雇员 94,817，供应商 0）</td>
+<td>RSU 费用总额 = 面向全体雇员的股份支付，<strong>未拆分到部门/个人</strong>（含不含 PDC 无法从财报确认）</td>
+<td>09992_2025_年报 p336-337 Note 28</td>
+</tr>
+<tr>
+<td>⑥ 归属时间表多样：即时全归 / 78-90 日单批 / 300 日(90 日归 50%+到期 50%) / 3 年(25%+3 等份) / 3-4 年分 3-4 批</td>
+<td>归属附绩效评估条件</td>
+<td>09992_2025_年报 p335 Note 28</td>
+</tr>
+<tr>
+<td>⑦ 计划限额：未获股东批准下 RSU 合计 ≤10% 股份，年度限额 5%</td>
+<td></td>
+<td>09992_2025_年报 p334 Note 28</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RSU 实际授出公告（官方，港交所公告，2026-08-23 搜索）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>公告日</th>
+<th>授出份数</th>
+<th>对象</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-01-13</td>
+<td>63,800</td>
+<td>雇员</td>
+<td>奖励过往表现</td>
+</tr>
+<tr>
+<td>2025-04-11</td>
+<td>497,911</td>
+<td>雇员</td>
+<td>分批归属</td>
+</tr>
+<tr>
+<td>2025-08-29</td>
+<td>58,362</td>
+<td>雇员</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-10-15</td>
+<td>38,289</td>
+<td>本集团雇员</td>
+<td>第 2-4 周年分批归属，附绩效</td>
+</tr>
+<tr>
+<td>2026-01-09</td>
+<td>52,082</td>
+<td>非执行董事吴越 8,609 + 集团雇员 43,473</td>
+<td>LVMH 吴越 2025-12 委任</td>
+</tr>
+<tr>
+<td>2026-01-14</td>
+<td>24,972</td>
+<td>雇员</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2026-07-08</strong></td>
+<td><strong>101,935</strong></td>
+<td><strong>雇员承授人 39,957 + 服务提供者承授人 61,978</strong></td>
+<td><strong>服务提供者（&gt;雇员！）</strong>；购买价均为零；归属取决绩效评估</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>解读：RSU 覆盖<strong>雇员 + 第三方供应商/服务提供者</strong>两类；2026-07-08 授出中&quot;服务提供者&quot;份额（61,978）超过雇员（39,957），说明股权激励范围<strong>不止员工</strong>，还延伸到持续提供服务的合作方——但公告<strong>不披露具体名单</strong>，无法确认是否含 PDC 设计师或签约艺术家。</p>
+</blockquote>
+<p><strong>证据链：内部设计师薪酬 ⊂ 雇员福利开支、不产生授权费（2026-08-23 财报核对）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>结论</th>
+<th>财报依据</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 内部设计师薪酬走&quot;雇员福利开支&quot;，<strong>不走授权费</strong></td>
+<td>Note 7 按性质划分开支中，<strong>雇员福利开支 2,252,340</strong> 与 <strong>授权费 833,481</strong> 是两个并列的独立科目；另&quot;设计服务费 86,446&quot;是第三方设计采购，也不是员工薪酬</td>
+<td>09992_2025_年报 p285 Note 7</td>
+</tr>
+<tr>
+<td>② 员工薪酬<strong>当期计提、12 个月内结清</strong>，不形成长期负债</td>
+<td>Note 40(i)：预期 12 个月内清算的工资薪金负债于期末确认，按预期支付金额计量，<strong>列示为即期雇员福利责任（current employee benefit obligations）</strong>——与应付授权费&quot;按固定最低付款现值入账 + 跨期分期（非即期 5,275）&quot;形成对照</td>
+<td>09992_2025_年报 p361 Note 40(i) vs (h)</td>
+</tr>
+<tr>
+<td>③ 授权 IP 才形成无形资产与应付授权费负债</td>
+<td>Note 15：<strong>Licensed IPs（授权 IP）</strong> 作为无形资产单独列示（2025 添置 117,623 / 摊销 112,258 / 年末账面 122,284）；内部自有 IP 无此科目</td>
+<td>09992_2025_年报 p296 Note 15</td>
+</tr>
+<tr>
+<td>④ 应付授权费=对艺术家的合同义务</td>
+<td>Note 40(h) 原文：应付授权费初始按&quot;以后各年固定最低定期付款之现值&quot;入账 → 只有与艺术家订立授权协议才产生此负债</td>
+<td>09992_2025_年报 p361 Note 40(h)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论</strong>：财报可证实&quot;内部设计师薪酬≠授权费、当期计提即期结清&quot;；但财报<strong>未披露任何设计师分成制度</strong>（&quot;IP 合伙人计划&quot;等仅自媒体来源，官方零披露）。所以&quot;内部设计师也有分成&quot;无法用财报证实，只能作为二手传闻标注。</p>
+<p><strong>PDC 具体 IP × 分成/激励追踪（2026-08-23 搜索）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>PDC IP</th>
+<th>设计师</th>
+<th>身份</th>
+<th>分成/激励证据</th>
+<th>来源等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小甜豆 Sweet Bean</td>
+<td>雪宸</td>
+<td>PDC 内部设计师</td>
+<td>官方零披露；自媒体称&quot;IP 合伙人计划&quot;爆款分成三年</td>
+<td>仅自媒体（东财财富号 2026-06-01）</td>
+</tr>
+<tr>
+<td>Zsiga</td>
+<td>吾丹丹（Dan）</td>
+<td>PDC 员工设计师（2022 年 Zsiga 亮相，2026-01 POP MART Gallery 首展）</td>
+<td>同上，官方零披露</td>
+<td>仅自媒体</td>
+</tr>
+<tr>
+<td>小野 Hirono</td>
+<td>Lang</td>
+<td><strong>创始团队成员</strong>、艺术总监（2011 年加入），王宁大学同学</td>
+<td>内部高管身份→走薪酬+股权激励（雇员福利开支/股份支付），非授权费；<strong>无分成披露</strong></td>
+<td>官方（创始团队）+ 自媒体（澎湃 2025-03-22：Lang 以自己儿子为原型设计）</td>
+</tr>
+<tr>
+<td>BOBO&amp;COCO</td>
+<td>卡卡</td>
+<td>PDC 内部设计师（2019 推出）</td>
+<td>官方零披露</td>
+<td>仅自媒体（百度百科/爱企查）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>要点</strong>：</p>
+<ol>
+<li><strong>PDC 内部设计师分成=官方零披露</strong>，现有唯一细节来自东财财富号 2026-06-01（&quot;IP 合伙人计划&quot;：爆款 IP 衍生品持续分成三年；&quot;年度潮玩造物主&quot;称号；灵感盲盒池全员共创）——<strong>未经官方证实</strong></li>
+<li><strong>财报能确认的只有两条</strong>：① 内部设计师薪酬⊂雇员福利开支（Note 7，当期计提、即期结清 Note 40(i)），不产生应付授权费；② <strong>股权激励制度官方确认存在</strong>（ESG p151&quot;覆盖不同层级员工&quot;+ Note 28 Share Award Scheme/RSU，2025 雇员股份支付 71.6 百万）——但<strong>未拆分到 PDC 部门/个人</strong></li>
+<li><strong>Hirono 的 Lang 是例外</strong>：非普通员工，是创始团队成员/艺术总监（王宁同学），其激励更可能落在<strong>股权/股份支付</strong>（walk 高管薪酬），但也<strong>未披露 IP 分成</strong></li>
+<li>对比签约艺术家（有分成比例证据，但同样无官方披露）：Labubu 龙家升 8%（利润）、SKULLPANDA 熊喵 7.5–9%、头部 10–15%（均自媒体）</li>
+<li><strong>&quot;合伙人计划&quot;官方零披露</strong>：财报/ESG/公告均无&quot;合伙人计划&quot;字样；唯一带&quot;Partner&quot;的是股份奖励信托实体名（Pop Mart Partner Limited），<strong>不能据此推定存在合伙人分成机制</strong></li>
+</ol>
+<p><strong>对签约艺术家</strong>：</p>
+<ul>
+<li>销售分成：官方未披露比例，第三方估算 5–10%；雪球传闻 Labubu 龙家升为利润 8%；自媒体称头部 10–15%（均未证实）</li>
+<li>招股书锚点：<strong>设计费年度上限&quot;个位数水平&quot;</strong>——分成有封顶</li>
+<li><strong>艺术家股东化唯一案例</strong>（官方可查）：王信明（Molly）2019-06 独家买断版权+获 2% 股权（作价 345.32 万），IPO 后持约 1.49%（2025-09 市值约 46 亿元）</li>
+<li>收入组合：销售分成+联名授权+买断/股权+拍卖版税；乐园自营不分成（新浪财经·YOUNG财经 2025-09-17）</li>
+<li>财务落点：设计及授权费 2025 年 <strong>8.33 亿</strong>（占营收 2.25%）随销量线性分成</li>
+</ul>
+<h3>授权费合同结构 = 对 IP 供给方（艺术家）的激励机制（2026-08-23 补充）</h3>
+<p><strong>合同双层结构</strong>（Note 17/30 原文）：本集团与艺术家订立若干授权协议，取得独家及非独家授权 IP。付费分两种：</p>
+<ul>
+<li><strong>保底（固定最低付款）</strong>：须于合约期内分期支付（固定金额，跨期）</li>
+<li><strong>按量分成（基于销量的可变付款）</strong>：须于触发付款条件发生的期间内支付</li>
+</ul>
+<p><strong>会计处理</strong>（Note 40(h)）：应付授权费初始按&quot;以后各年固定最低定期付款之现值&quot;入账 → 用实际利率法按摊销成本减付款列示；利息计入利息开支。</p>
+<p><strong>应付授权费余额</strong>（人民币千元，来源：<code>09992_2026_中报.pdf</code> Note 17 / <code>09992_2025_年报.pdf</code> Note 30）：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>2026-06-30</th>
+<th>2025-12-31</th>
+<th>2024-12-31</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应付授权费总额</td>
+<td><strong>518,858</strong>（≈5.19亿）</td>
+<td>442,772</td>
+<td>356,371</td>
+</tr>
+<tr>
+<td>即期（≤1年）</td>
+<td>513,583</td>
+<td>437,247</td>
+<td>341,835</td>
+</tr>
+<tr>
+<td>非即期（&gt;1年）</td>
+<td>5,275</td>
+<td>5,525</td>
+<td>14,536</td>
+</tr>
+</tbody>
+</table>
+<p><strong>到期表</strong>（Note 3.1(c)，合约未贴现现金流，2025-12-31）：少於一年 437,247 / 一至兩年 2,248 / 兩至五年 1,709 / 五年以上 2,878 / 合約現金流量總額 444,082 / 賬面值 442,772 → <strong>98.5% 一年内到期</strong>（437,247/444,082）。</p>
+<p><strong>机制解读（艺术家的激励机制视角）</strong>：</p>
+<ol>
+<li><strong>非即期（&gt;1年）= 保底款的长期分期</strong>（逻辑推断：按量分成当期触发当期支付，不跨年形成长期义务；报告未直接写明，Note 17 只说两类付款的定义）</li>
+<li><strong>非即期≈0（527万，占总额 1%）= 公司几乎不签长期刚性保底</strong>，授权成本以分成制为主、随销量浮动</li>
+<li><strong>保底保下限（艺术家的确定性收入，签约风险低）、分成给弹性（销量挂钩、上不封顶）</strong>——这是&quot;吸引艺术家把 IP 授权给泡泡玛特&quot;的激励契约</li>
+<li><strong>与利润表&quot;授权费&quot;（流量）区分</strong>：2026H1 授权费费用 <strong>376,247</strong>（同比 -16.6%，毛利率 +1pct 的贡献项）；应付授权费 5.19 亿是<strong>存量负债</strong>（未付义务），两者概念不同，不矛盾</li>
+<li><strong>与&quot;发现/孵化&quot;区分</strong>：授权费结构是&quot;获取并绑定外部艺术家 IP&quot;的激励安排；内部孵化（PDC/自有 IP）是另一条线——自主产品占 99.3%，单一艺术家的议价依赖度低</li>
+</ol>
+<h3>时间线要点（2020–2026）</h3>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>设计/发现环节变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020</td>
+<td>招股书：111 名内部设计师；IP 池 85 个（12 自有/22 独家/51 非独家，界面新闻）；员工 2,320；Molly 依赖度 2017 年 89.3%→32.9%</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>员工 4,053；自有 IP 收入占比 57.6% 创新高；头部 IP 收入更均衡</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>披露口径改&quot;艺术家 IP&quot;（自有+独家合并），占收入 78.9%；员工 4,178</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>员工 4,845（销售口径重划分）；艺术家 IP 口径延续</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>员工 6,702；星星人 2024-08 上线；4 IP 超 10 亿（THE MONSTERS 30.4 亿）；授权费 3.93 亿</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>员工 10,879（设计开发 2,194）；艺术家 IP 收入 334 亿、占约 90%，授权 IP 9.1%；17 IP 破亿；THE MONSTERS 141.6 亿；授权费 8.33 亿</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td>设计/行政 2,322；艺术家 IP 152.9 亿占 89%；6 IP 超 10 亿、11 破亿；星星人 26.5 亿（+580.6%）；王宁&quot;调整年&quot;&quot;无用之用——关注设计、艺术与感性内容&quot;（中报业绩会）</td>
+</tr>
+</tbody>
+</table>
+<h3>来源可信度分级</h3>
+<ul>
+<li><strong>官方一手</strong>：员工人数（各年年报）、111 设计师（招股书 p.245）、王信明 2% 股权（招股书/权益披露）、招聘渠道（年报）、授权费（年报附注）</li>
+<li><strong>券商研报</strong>：PDC 职能定位（爱建证券 2026-08-12）</li>
+<li><strong>权威媒体</strong>：王信明持股/分成结构（新浪财经·YOUNG财经 2025-09-17）、招股书 IP 池 85 个（界面新闻 2020-06-01）</li>
+<li><strong>自媒体/二手（未经官方证实）</strong>：分成比例 10–15%、IP 合伙人计划、灵感盲盒池、买手团队 20+ 人、艺术家数量 200+/300+、龙家升 8% 利润</li>
+</ul>
+<h2>结论（修正 2026-08-21 前稿&quot;分成制长期压毛利·确定&quot;）</h2>
+<ul>
+<li>授权费是<strong>随销量线性的费用</strong>，但占比稳定在 ~2–3%，<strong>不存在&quot;长期压毛利&quot;的结构性恶化</strong>；2024→2025 反而显著摊薄。</li>
+<li>真正决定毛利的是销售成本（27.9%）；决定净利率的主要费用是经销及销售开支（80.8 亿，占营收 21.8%）——授权费（8.3 亿）不足其 1/10。</li>
+<li>分成制的真实风险不在&quot;比例高&quot;，而在<strong>分成协议重签时被调高</strong>（一年期协议）与<strong>单一 IP 分成基数大</strong>——权重最终取决于议价地位，而非当下占比。</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../../%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E4%BA%A7%E4%B8%9A%E9%93%BE.html">../产业链</a> — 产业链全景（上游 IP 供给 / 中游产品化 / 下游渠道）</li>
+<li><a href="00-%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%8E%E5%88%B6%E9%80%A0.html">00-供应链与制造</a> — 供应链与制造链条（财务科目对应 / 环节级限制入口）</li>
+<li><a href="../%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95.html">../数据目录</a> — DB 数据目录</li>
+<li><a href="../../%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E8%BF%90%E8%90%A5%E6%8C%87%E6%A0%87.html">../运营指标</a> — 运营指标跟踪</li>
+<li><a href="../%E6%8A%95%E8%B5%84%E8%AE%BA%E7%82%B9.html">../投资论点</a> — 投资 Thesis
+<a href="../../../../research/index.md">research/index.md</a> · <a href="../../../../research/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E7%BB%8F%E8%90%A5/02-%E5%88%B6%E9%80%A0%E4%B8%8E%E8%B4%A8%E6%8E%A7%E7%8E%AF%E8%8A%82.md">research/泡泡玛特/经营/02-制造与质控环节.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E7%BB%8F%E8%90%A5">← 返回 经营</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/泡泡玛特/经营/01-设计IP环节.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

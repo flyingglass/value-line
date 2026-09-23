@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 运营指标跟踪</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 运营指标跟踪</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,1159 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">泡泡玛特</a> › <a href="运营指标.html">泡泡玛特 (09992) — 运营指标跟踪</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 运营指标跟踪</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-07-17</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特</span></div><div class="md" id="md"></div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/泡泡玛特/运营指标.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDms6Hms6HnjpvnibkgKDA5OTkyKSDigJQg6L+Q6JCl5oyH5qCH6Lef6LiqCgo+IOaguOW/g+i3n+i4que7tOW6pu+8mklQIOmbhuS4reW6puOAgeWTgeexu+a8lOi/m+OAgea4oOmBk+i9rOWMluOAgeWcsOeQhuaJqeW8oOOAgeebiOWIqeiDveWKm+OAggo+IDIwMjYtMDgtMjAg5pu05paw77yaMjAyNiDkuK3miqXlrozmlbTmmI7nu4blt7LlhaXlupPvvIjljLrln5/Dl+a4oOmBk8OXSVDDl+WTgeexuyArIOmXqOW6lyArIOS8muWRmO+8ie+8jOmmluasoeaKq+mcsua1t+WGheWkluWIhumDqOS4mue7qeOAggoKLS0tCgojIyDkuIDjgIFJUCDpm4bkuK3luqYKCiMjIyDmjIkgSVAg5ouG5YiG77yI55m+5LiH5YWD77yM5Lit5oql5oqr6Zyy5Y+j5b6E77yJCgp8IElQIHwgMjAyNkgxIOaUtuWFpSB8IOWNoOavlCB8IDIwMjVIMSDmlLblhaUgfCDljaDmr5QgfCDotovlir8gfAp8LS0tLXwtLS0tLS0tLTp8Oi0tLTp8LS0tLS0tLS06fDotLS06fC0tLS0tLXwKfCBUSEUgTU9OU1RFUlMgKExhYnVidSkgfCA0LDQ1NC40IHwgMjYuMCUgfCA0LDgxNC4wIHwgMzQuNyUgfCDwn5OJIOmmluW6puS4i+a7kSAtNy41Je+8jOWNoOavlOmqpOmZjSA4Ljcg5Liq55m+5YiG54K5IHwKfCDmmJ/mmJ/kurogfCAyLDY1MC4wIHwgMTUuNCUgfCAzODkuNCB8IDIuOCUgfCDwn5qAIOeIhuWPkSArNTgwLjYl77yM5pmL5Y2H56ys5LqM5aSnIElQIHwKfCBDUllCQUJZIHwgMSw2MzIuNiB8IDkuNSUgfCAxLDIxOC4yIHwgOC44JSB8IPCfk4ggKzM0LjAlIHwKfCBESU1PTyB8IDEsNjE5LjIgfCA5LjQlIHwgMSwxMDUuMSB8IDguMCUgfCDwn5OIICs0Ni41JSB8CnwgU0tVTExQQU5EQSB8IDEsNTUxLjIgfCA5LjAlIHwgMSwyMjAuNSB8IDguOCUgfCDwn5OIICsyNy4xJSB8CnwgSElST05PIHwgMSwwMDguOSB8IDUuOSUgfCA3MjguNCB8IDUuMiUgfCDwn5OIICszOC41JSB8CnwgTU9MTFkgfCA5MDAuNiB8IDUuMyUgfCAxLDM1Ny4yIHwgOS44JSB8IPCfk4kgLTMzLjclIHwKfCBac2lnYSB8IDI5OC4zIHwgMS43JSB8IDIxMS4zIHwgMS41JSB8IPCfk4ggKzQxLjIlIHwKfCDlhbbku5boibrmnK/lrrYgSVAgfCAxLDE3NC4zIHwgNi44JSB8IDEsMTg0LjUgfCA4LjUlIHwg5oyB5bmzIHwKfCAqKuiJuuacr+WutiBJUCDlkIjorqEqKiB8ICoqMTUsMjg5LjUqKiB8ICoqODkuMCUqKiB8ICoqMTIsMjI4LjYqKiB8ICoqODguMSUqKiB8ICsyNS4wJSB8Cnwg5o6I5p2DIElQIHwgMSw3NzEuMiB8IDEwLjMlIHwgMSw1MjQuOCB8IDExLjAlIHwgKzE2LjIlIHwKfCDlpJbph4flj4rlhbbku5YgfCAxMTIuMyB8IDAuNyUgfCAxMjIuOSB8IDAuOSUgfCAtOC43JSB8CgojIyMgSVAg6ZuG5Lit5bqm5Y6G5Y+y5Yik5patCgp8IOW5tOS7vSB8IOesrOS4gOWkpyBJUCB8IOWNoOiQpeaUtuavlCB8IOWJjeS4ieWkpyBJUCDlkIjorqHljaDmr5QgfCDliKTmlq0gfAp8LS0tLS0tfC0tLS0tLS0tfDotLS06fDotLS06fC0tLS0tLXwKfCAyMDE5IHwgTW9sbHkgfCA+NDAlIHwgPjYwJSB8IPCflLQg5Y2VIElQIOS+nei1luaegemrmCB8CnwgMjAyMiB8IE1vbGx5IHwgfjIwJSB8IH40NSUgfCDwn5+hIOWcqOWIhuaVo++8jOS9huacquWujOWFqOiEsemZqSB8CnwgMjAyNSB8IExhYnVidSB8IH40MCUgfCB+NTUlIHwg8J+foSBMYWJ1YnUg6ZuG5Lit5bqm5Zue5Y2H77yM6ZyA5YWz5rOoIHwKfCAyMDI2SDEgfCBMYWJ1YnUgfCAyNi4wJSB8IDUwLjklIHwg8J+foiDlpKcgSVAg5L6d6LWW5pi+6JGX57yT6Kej77yM5pif5pif5Lq65o6l5YqbIHwKCioq6ZiI5YC8KirvvJpUb3AgMyBJUCDljaDmr5QgPDUwJSDkuLrlgaXlurfvvIw+NzAlIOS4uue6ouiJsuitpuaIkuOAggoqKua0nuWvnyoq77yaMjAyNkgxIFRIRSBNT05TVEVSUyDljaDmr5Tku44gMzQuNyUg6ZmN6IezIDI2LjAl77yI5Y6G5Y+y5LiK6aaW5qyh5LiL5ruR77yJ77yM5pif5pif5Lq6ICs1ODAuNiUg5oiQ5Li65paw5byV5pOO44CC5YmN5LiJ5aSnID0gVEhFIE1PTlNURVJTKDI2LjAlKSArIOaYn+aYn+S6uigxNS40JSkgKyBDUllCQUJZKDkuNSUpID0gNTAuOSXvvIzpm4bkuK3luqboh6ogMjAyMiDlubTku6XmnaXpppbmrKHlm57liLDlgaXlurfnur/pmYTov5HjgIIqKklQIOair+mYn+S6pOaOpeW3suWPkeeUn++8mkxhYnVidSDpgIDmva7nmoTlkIzml7bmmJ/mmJ/kurrmjqXmo5LvvIzogIzpnZ7mlbTkvZPoobDokL3jgIIqKgoKLS0tCgojIyDkuozjgIHlk4HnsbvmvJTov5sKCiMjIyAyMDI2SDEg5ZOB57G75ouG5YiG77yI55m+5LiH5YWD77yJCgp8IOWTgeexuyB8IDIwMjZIMSDmlLblhaUgfCDljaDmr5QgfCAyMDI1SDEg5pS25YWlIHwg5Y2g5q+UIHwg5ZCM5q+UIHwKfC0tLS0tLXwtLS0tLS0tLTp8Oi0tLTp8LS0tLS0tLS06fDotLS06fC0tLS0tLXwKfCDmr5vnu5IgfCA5LDgyNC45IHwgNTcuMiUgfCA2LDEzOS4yIHwgNDQuMiUgfCArNjAuMCUgfAp8IOaJi+WKniB8IDUsMTkyLjUgfCAzMC4yJSB8IDUsMTc1LjkgfCAzNy4zJSB8ICswLjMlIHwKfCDooY3nlJ/lk4Hlj4rlhbbku5YgfCAyLDE1NS41IHwgMTIuNiUgfCAyLDU2MS4yIHwgMTguNSUgfCAtMTUuOCUgfAoKIyMjIOWOhuWPsui2i+WKvwoKfCDlk4HnsbsgfCAyMDIzIHwgMjAyNCB8IDIwMjUgfCAyMDI2SDEgfCDotovlir8gfAp8LS0tLS0tfDotLS06fDotLS06fDotLS06fDotLS06fC0tLS0tLXwKfCDnm7Lnm5Iv5omL5YqeIHwg5Li75YqbIHwg5qC45b+DIHwg56iz5a6aIHwgMzAuMiUgKOWBnOa7nikgfCDwn5OJIOWNoOavlOaMgee7reS4i+mZje+8jDIwMjZIMSDlkIzmr5Tku4UgKzAuMyUgfAp8IOavm+e7kiB8IOi1t+atpSB8IOeIhuWPkSB8IOaguOW/gyB8IDU3LjIlICgrNjAlKSB8IPCfk4gg5bey5Y2g6L+H5Y2K6JCl5pS277yM57ud5a+55Li75YqbIHwKfCBNRUdBIHwg5bCP6KeE5qihIHwg5aKe6ZW/IHwg5aKe6ZW/IHwgKOW5tuWFpeihjeeUn+WTgSkgfCDigJQgfAp8IOihjeeUn+WTgSB8IOihpeWFhSB8IOihpeWFhSB8IOaJqeWTgeexuyB8IDEyLjYlICgtMTUuOCUpIHwg8J+TiSDmlLblhaXkuIvmu5HvvIzlkKvkuZDlm60vUE9QIEJBS0VSWSB8CgoqKua0nuWvnyoq77ya5q+b57uS5bey5Y2g6JCl5pS2IDU3LjIlIOS4lCArNjAlIOmrmOWinumVv++8m+aJi+WKnu+8iOebsuebkuaguOW/g+WTgeexu++8ieWQjOavlOS7hSArMC4zJe+8jOWHoOi/keWBnOa7nuKAlOKAlOWTgeexu+mHjeW/g+W9u+W6lei9rOWQkeavm+e7kuOAguihjeeUn+WTgeS4i+a7keaIluWboOmrmOWfuuaVsCArIOmDqOWIhuWPo+W+hOiwg+aVtOOAggoKLS0tCgojIyDkuInjgIHmuKDpgZPovazljJYKCiMjIyDkuK3lm73nur/kuIrlrZDmuKDpgZPvvIjnmb7kuIflhYPvvIkKCnwg5bm05Lu9IHwg5oq955uS5py6IHwg5aSp54yrIHwg5oqW6Z+zIHwg5YW25LuWIHwg57q/5LiK5ZCI6K6hIHwg5oq955uS5py65Y2g5q+UIHwKfC0tLS0tLXwtLS0tLS0tLXwtLS0tLS18LS0tLS0tfC0tLS0tLXwtLS0tLS0tLS18Oi0tLTp8CnwgMjAyMSB8IDkyMSB8IDU5OSB8IOKAlCB8IDM0MSB8IDEsODYxIHwgNDkuNSUgfAp8IDIwMjIgfCA5NTUgfCA0NjIgfCDigJQgfCA0MTMgfCAxLDgzMCB8IDUyLjIlIHwKfCAyMDIzIHwgNzI5IHwgMzIyIHwgMjgzIHwgMTkwIHwgMSw1MjUgfCA0Ny44JSB8CnwgMjAyNCB8IDEsMTE0IHwgNjI4IHwgNjAxIHwgNDI5IHwgMiw3NzIgfCA0MC4yJSB8CnwgMjAyNSB8IDMsNDIzIHwgMSw3ODUgfCAxLDU5MCB8IDEsNzI0IHwgOCw1MjIgfCA0MC4yJSB8CnwgKioyMDI2SDEqKiB8ICoqMiwwNjMqKiB8ICoqOTAxKiogfCAqKjk3NioqIHwgKio4MzgqKiB8ICoqNCw3NzkqKiB8ICoqNDMuMiUqKiB8CgojIyMgMjAyNkgxIOS4reWbvea4oOmBk+WFqOaLhuWIhu+8iOeZvuS4h+WFg++8jOS4reaKpeaKq+mcsu+8iQoKfCDmuKDpgZMgfCAyMDI2SDEgfCDljaDmr5QgfCAyMDI1SDEgfCDljaDmr5QgfCDlkIzmr5QgfAp8LS0tLS0tfC0tLS0tLS0tOnw6LS0tOnwtLS0tLS0tLTp8Oi0tLTp8LS0tLS0tfAp8IOe6v+S4iyB8IDYsODY4LjYgfCA1Ni4zJSB8IDUsMDg0LjIgfCA2MS40JSB8ICszNS4xJSB8Cnwg4pScIOmbtuWUruW6lyB8IDYsMDg5LjcgfCA0OS45JSB8IDQsNDA1LjkgfCA1My4yJSB8ICszOC4yJSB8Cnwg4pScIOacuuWZqOS6uuWVhuW6lyB8IDc3OS4wIHwgNi40JSB8IDY3OC4zIHwgOC4yJSB8ICsxNC44JSB8Cnwg57q/5LiKIHwgNCw3NzguNyB8IDM5LjIlIHwgMiw5MzcuMyB8IDM1LjUlIHwgKzYyLjclIHwKfCDilJwg5oq955uS5py6IHwgMiwwNjIuOSB8IDE2LjklIHwgMSwxMjUuMiB8IDEzLjYlIHwgKzgzLjMlIHwKfCDilJwg5oqW6Z+zIHwgOTc2LjQgfCA4LjAlIHwgNTYxLjEgfCA2LjglIHwgKzc0LjAlIHwKfCDilJwg5aSp54yrIHwgOTAxLjMgfCA3LjQlIHwgNjU3LjUgfCA3LjklIHwgKzM3LjElIHwKfCDilJQg5YW25LuW57q/5LiKIHwgODM4LjIgfCA2LjklIHwgNTkzLjQgfCA3LjIlIHwgKzQxLjMlIHwKfCDmibnlj5Hlj4rlhbbku5YgfCA1NTMuMSB8IDQuNSUgfCAyNjEuMyB8IDMuMSUgfCArMTExLjclIHwKCioq5rSe5a+fKirvvJoKLSDmir3nm5LmnLogMjAyNkgxICs4My4zJe+8jOWNoOavlOWbnuWIsCA0My4yJeKAlOKAlOengeWfn+a4oOmBk+mHjeaWsOaIkOS4uue6v+S4iuaguOW/gwotIOaKlumfsyArNzQuMCXjgIHlpKnnjKsgKzM3LjEl77yM57q/5LiK5YWo5rig6YGT6auY5aKe6ZW/Ci0g5om55Y+R5Y+K5YW25LuWICsxMTEuNyXvvIjkuZDlm60vUE9QIEJBS0VSWS9QT1BPUCDmi4nliqjvvIkKCiMjIyDkuozlhYPliIbnsbsKCnwgfCDmir3nm5LmnLrvvIjoh6rmnInvvIkgfCDnrKzkuInmlrnvvIjlpKnnjKsr5Lqs5LicK+aKlumfsyvlhbbku5bvvIkgfAp8LS18Oi0tLTp8Oi0tLTp8CnwgMjAyNSDljaDmr5QgfCA0MC4yJSB8IDU5LjglIHwKfCAyMDI2SDEg5Y2g5q+UIHwgNDMuMiUgfCA1Ni44JSB8Cnwg54m55b6BIHwg56eB5Z+f77yM6auY5Yip5ram77yM5pWw5o2u6Zet546vIHwg5YWs5Z+f77yM6I635a6i5oiQ5pys6auY77yM5piT6Lef6LiqIHwKCi0tLQoKIyMg5Zub44CB5Zyw55CG5omp5bygCgojIyMgMjAyNkgxIOWMuuWfn+aUtuWFpe+8iOeZvuS4h+WFg++8jOS4reaKpeWPo+W+hO+8muS4reWbvT3lhoXlnLAr5riv5r6z5Y+w77yJCgp8IOWMuuWfnyB8IDIwMjZIMSDmlLblhaUgfCDljaDmr5QgfCAyMDI1SDEg5pS25YWlIHwg5Y2g5q+UIHwg5ZCM5q+UIHwKfC0tLS0tLXwtLS0tLS0tLTp8Oi0tLTp8LS0tLS0tLS06fDotLS06fC0tLS0tLXwKfCDkuK3lm70gfCAxMiwyMDAuNSB8IDcxLjAlIHwgOCwyODIuOCB8IDU5LjclIHwgKzQ3LjMlIHwKfCDkuprlpKogfCAyLDU3NS4wIHwgMTUuMCUgfCAyLDg1MC45IHwgMjAuNiUgfCAtOS43JSB8Cnwg576O5rSyIHwgMSw4OTEuNiB8IDExLjAlIHwgMiwyNjQuOSB8IDE2LjMlIHwgLTE2LjUlIHwKfCDmrKfmtLLlj4rlhbbku5YgfCA1MDUuNyB8IDMuMCUgfCA0NzcuNyB8IDMuNCUgfCArNS45JSB8CgoqKuS/oeWPtyoq77ya5rW35aSW5Y2g5q+U5LuOIDQwLjMlIOmZjeiHsyAyOS4wJeKAlOKAlCoq5rW35aSW5pS25YWl57ud5a+55YC85LiL5ruR77yILTExLjIl77yJKirvvIzkuLvopoHlm6Dnur/kuIrmtYHph4/nuqLliKnmtojpgIDvvIjor6bop4HkuIvvvInvvIzogIzkuK3lm73mnKzlnJ8gKzQ3LjMlIOW8uuWKsuWkjeiLj+OAggoKIyMjIOa1t+WkluWIhuWMuua4oOmBk++8iOeZvuS4h+WFg++8iQoKfCDljLrln58gfCDmuKDpgZMgfCAyMDI2SDEgfCDljaDmr5QgfCAyMDI1SDEgfCDlkIzmr5QgfAp8LS0tLS0tfC0tLS0tLXwtLS0tLS0tLTp8Oi0tLTp8LS0tLS0tLS06fDotLS06fAp8IOS6muWkqiB8IOmbtuWUruW6lyB8IDEsNzE2LjIgfCA2Ni42JSB8IDEsNDkzLjAgfCArMTQuOSUgfAp8IOS6muWkqiB8IOacuuWZqOS6uiB8IDU2LjUgfCAyLjIlIHwgMzIuNiB8ICs3My40JSB8Cnwg5Lqa5aSqIHwg57q/5LiK77yIQVBQL+WumOe9kS9TaG9wZWUg562J77yJIHwgNjQzLjYgfCAyNS4wJSB8IDEsMDY5LjIgfCAqKi0zOS44JSoqIHwKfCDkuprlpKogfCDmibnlj5Hlj4rlhbbku5YgfCAxNTguOCB8IDYuMiUgfCAyNTYuMSB8IC0zOC4wJSB8Cnwg576O5rSyIHwg6Zu25ZSu5bqXIHwgOTAzLjEgfCA0Ny43JSB8IDczNy4wIHwgKzIyLjUlIHwKfCDnvo7mtLIgfCDmnLrlmajkurogfCAxMDMuOSB8IDUuNSUgfCAxMDUuNCB8IC0xLjQlIHwKfCDnvo7mtLIgfCDnur/kuIrvvIhBUFAv5a6Y572RL0FtYXpvbiDnrYnvvIkgfCA3MjIuMSB8IDM4LjIlIHwgMSwzMjYuNiB8ICoqLTQ1LjYlKiogfAp8IOe+jua0siB8IOaJueWPkeWPiuWFtuS7liB8IDE2Mi41IHwgOC42JSB8IDk1LjkgfCArNjkuNCUgfAp8IOasp+a0siB8IOmbtuWUruW6lyB8IDQwMy4xIHwgNzkuNyUgfCAyNzIuMSB8ICs0OC4xJSB8Cnwg5qyn5rSyIHwg57q/5LiKIHwgNjcuNiB8IDEzLjQlIHwgMTY1LjAgfCAtNTkuMCUgfAoKKirmtJ7lr58qKu+8mua1t+WkluaVtOS9kyLnur/kuIvmtqjjgIHnur/kuIrot4wi44CC57q/5LiL6Zeo5bqX5aSn5bmF5omp5byg77yI576O5rSyIDQx4oaSODYg5a6244CB5qyn5rSyIDE44oaSNDUg5a6244CB5Lqa5aSqIDY54oaSOTAg5a6277yJ5bim5Yqo6Zu25ZSu5bqX5pS25YWl5aKe6ZW/77yb5L2G57q/5LiK5rig6YGT77yI6Ieq56CUIEFQUC/lrpjnvZHjgIFTaG9wZWXjgIFBbWF6b24g562J77yJ5ZCM5q+U5aSn5bmF5LiL5ruR4oCU4oCU5Lit5oql5Y+j5b6E77yaKioi5qC45b+DIElQIOeDreW6puWbnuW9kuW4uOaAge+8jOe6v+S4iumAmueUqOa1gemHj+WSjOiOt+WuouiDveWKm+S7jeWcqOW7uuiuvumYtuautSIqKu+8jOS6muWkqueUteWVhuW5s+WPsCBTaG9wZWUgLTYyLjEl44CC5rW35aSW57q/5LiK5piv5b2T5YmN5Li76KaB5aSx6KGA54K544CCCgojIyMg6Zeo5bqX572R57uc77yIMjAyNi0wNi0zMO+8iQoKfCDljLrln58gfCDpl6jlupfmlbAgfCDovoMgMjAyNSDlubTmnKvlh4Dlop4gfCDmnLrlmajkurrllYblupcgfAp8LS0tLS0tfDotLS06fDotLS06fDotLS06fAp8IOS4reWbveWGheWcsCvmuK/mvrPlj7AgfCA0NTUgfCArMTAgfCAyLDQ4MiDlj7AgfAp8IOS6muWkqiB8IDkwIHwgKzUgfCDigJQgfAp8IOe+jua0siB8IDg2IHwgKzIyIHwg4oCUIHwKfCDmrKfmtLIgfCA0NSB8ICs5IHwg4oCUIHwKfCAqKuWFqOeQg+WQiOiuoSoqIHwgKio2NzYqKiB8ICoqKzQ2KiogfCAqKjIsODI3IOWPsO+8iCsxOTDvvIkqKiB8CgojIyMg6Zu25ZSu5bqX57uP6JCl5pWI546H77yI55m+5LiH5YWDL+W6l++8jOS4reaKpeaKq+mcsueahOW6l+aVsOS4juaUtuWFpeWAkueul++8iQoKfCDljLrln58gfCAyMDI2SDEg5bqX5pWwIHwg6Zu25ZSu5bqX5pS25YWlIHwg5Y2V5bqX5Y2K5bm05pS25YWlIHwgMjAyNUgxIOWNleW6l+WNiuW5tOaUtuWFpSB8CnwtLS0tLS18Oi0tLTp8LS0tLS0tLS06fC0tLS0tLS0tOnwtLS0tLS0tLTp8Cnwg5Lit5Zu95YaF5ZywIHwgNDE5IHwgNSw0MjcuNCB8IDEyLjk1IHwgOC45MiAoNDA5IOW6ly8zLDY0OC40KSB8Cnwg5riv5r6z5Y+wIHwgMzYgfCA2NjIuMiB8IDE4LjM5IHwgMjIuMjggKDM0IOW6ly83NTcuNikgfAp8IOS6muWkqiB8IDkwIHwgMSw3MTYuMiB8IDE5LjA3IHwgMjEuNjQgKDY5IOW6ly8xLDQ5My4wKSB8Cnwg576O5rSyIHwgODYgfCA5MDMuMSB8IDEwLjUwIHwgMTcuOTcgKDQxIOW6ly83MzcuMCkgfAp8IOasp+a0siB8IDQ1IHwgNDAzLjEgfCA4Ljk2IHwgMTUuMTIgKDE4IOW6ly8yNzIuMSkgfAoKKirmtJ7lr58qKu+8muWNleW6l+aViOeOh+WFqOmdouS4i+a7ke+8iOa4r+a+s+WPsCAtMTcl44CB5Lqa5aSqIC0xMiXjgIHnvo7mtLIgLTQyJeOAgeasp+a0siAtNDEl77yJ77yM5Lit5Zu95YaF5Zyw5Y+N6ICMICs0NSXvvIjln7rmlbDkvY7jgIHmlrDlupfniKzlnaEgKyDljrvlubTlhbPlupfph43mlbTvvInjgILmtbflpJbljZXlupfmlYjnjofkuIvmu5EgPSDlvIDlupfmianlvKDmkYroloQgKyDnur/kuIrmtYHph4/lpJbmuqLlh4/lvLHvvIzpqozor4Ei5rW35aSW6auY5aKe6ZW/6Zi25q615bey6L+H44CB6L+b5YWl57K+57uG5YyW6L+Q6JCl5pyfIuOAggoKLS0tCgojIyDkupTjgIHnm4jliKnog73lipsKCiMjIyAyMDI2SDEg5Yip5ram5p6E5oiQ77yI55m+5LiH5YWD77yM5p2l5rqQ77yaMjAyNiDkuK3miqXvvIkKCnwg56eR55uuIHwgMjAyNkgxIHwgMjAyNUgxIHwg5ZCM5q+UIHwg5Y2g5pS25YWl5q+UIDI2SDEgfCDljaDmlLblhaXmr5QgMjVIMSB8CnwtLS0tLS18LS0tLS0tLS06fC0tLS0tLS0tOnw6LS0tOnw6LS0tOnw6LS0tOnwKfCDmlLblhaUgfCAxNywxNzIuOSB8IDEzLDg3Ni4zIHwgKzIzLjglIHwg4oCUIHwg4oCUIHwKfCDplIDllK7miJDmnKwgfCAoNSwyMDcuMikgfCAoNCwxMTUuMikgfCArMjYuNSUgfCAzMC4zJSB8IDI5LjclIHwKfCAqKuavm+WIqSoqIHwgKioxMSw5NjUuNyoqIHwgKio5LDc2MS4xKiogfCArMjIuNiUgfCAqKjY5LjclKiogfCAqKjcwLjMlKiogfAp8IOe7j+mUgOWPiumUgOWUruW8gOaUryB8ICgzLDkzMS4xKSB8ICgzLDE5Mi42KSB8ICsyMy4xJSB8IDIyLjklIHwgMjMuMCUgfAp8IOS4gOiIrOWPiuihjOaUv+W8gOaUryB8ICg5MjYuNSkgfCAoNzcwLjQpIHwgKzIwLjMlIHwgNS40JSB8IDUuNiUgfAp8IOWFtuS7luaUtuWFpSB8IDMwMi44IHwgNjcuMiB8ICszNTAlIHwgMS44JSB8IDAuNSUgfAp8IOWFtuS7lu+8iOS6j+aNn++8iS/mlLbnm4rlh4Dpop0gfCAoNjg4LjgpIHwgMTc5LjIgfCDovazkuo8gfCAtNC4wJSB8ICsxLjMlIHwKfCDilJwg5YW25Lit5rGH5YWR77yI5o2f77yJ55uKIHwgKDcyMC4zKSB8IDEyMC4xIHwg6L2s5LqPIHwgLTQuMiUgfCArMC45JSB8Cnwg57uP6JCl5rqi5YipIHwgNiw3MjQuNyB8IDYsMDQzLjcgfCArMTEuMyUgfCAzOS4yJSB8IDQzLjYlIHwKfCDotKLliqHmlLblhaXlh4Dpop0gfCAxMS41IHwgNjUuNSB8IC04Mi40JSB8IDAuMSUgfCAwLjUlIHwKfCDliIbljaDogZTokKXlhazlj7jmuqLliKkgfCAzMC42IHwgNDcuNiB8IC0zNS43JSB8IDAuMiUgfCAwLjMlIHwKfCDpmaTnqI7liY3muqLliKkgfCA2LDc2Ni45IHwgNiwxNTYuOSB8ICs5LjklIHwgMzkuNCUgfCA0NC40JSB8Cnwg5omA5b6X56iOIHwgKDEsNjY2LjUpIHwgKDEsNDc1LjIpIHwgKzEzLjAlIHwg5a6e6ZmF56iO546HIDI0LjYlIHwgMjQuMCUgfAp8IOacn+WGhea6ouWIqSB8IDUsMTAwLjMgfCA0LDY4MS43IHwgKzguOSUgfCAyOS43JSB8IDMzLjclIHwKfCDlvZLmr43lh4DliKkgfCA1LDAzOC40IHwgNCw1NzQuMCB8ICsxMC4xJSB8IDI5LjMlIHwgMzMuMCUgfAp8IOe7j+iwg+aVtOe6r+WIqSB8IDUsMTU1LjggfCA0LDcwOS42IHwgKzkuNSUgfCAzMC4wJSB8IDMzLjklIHwKCiMjIyDliIbpg6jkuJrnu6nvvIgyMDI2SDHvvIzkuK3miqXpppbmrKHmiqvpnLLvvIkKCnwg5YiG6YOoIHwgMjAyNkgxIOaUtuWFpSB8IOWIhumDqOS4mue7qSB8IOWIqea2pueOhyB8IDIwMjVIMSDmlLblhaUgfCDliIbpg6jkuJrnu6kgfCDliKnmtqbnjocgfAp8LS0tLS0tfC0tLS0tLS0tOnwtLS0tLS0tLTp8Oi0tLTp8LS0tLS0tLS06fC0tLS0tLS0tOnw6LS0tOnwKfCDkuK3lm73kuJrliqEgfCAxMiwyMDAuNSB8IDYsNDcxLjMgfCA1My4wJSB8IDgsMjgyLjggfCAzLDk4Ni45IHwgNDguMSUgfAp8IOa1t+WkluS4muWKoSB8IDQsOTcyLjQgfCAxLDUwOC41IHwgMzAuMyUgfCA1LDU5My41IHwgMiw0NjQuNSB8IDQ0LjElIHwKfCDmnKrliIbphY3pobnnm64gfCDigJQgfCAoODY5LjEpIHwg4oCUIHwg4oCUIHwgKDY1NC4xKSB8IOKAlCB8CgoqKuaguOW/g+a0nuWvnyoq77ya5Lit5Zu95YiG6YOo5Yip5ram546HIDQ4LjEl4oaSNTMuMCUg5o+Q5Y2H77yb5rW35aSW5YiG6YOo5Yip5ram546HIDQ0LjEl4oaSMzAuMyUg5aSn5bmF5LiL5ruRIDEzLjgg5Liq55m+5YiG54K544CC5rW35aSW5Yip5ram57ud5a+56aKdIC0zOC44Je+8iDI0LjbihpIxNS4xIOS6v++8ieKAlOKAlCoq5YeA5Yip546H5LiN5Y+K6aKE5pyf55qE5Li75Zug5piv5rW35aSW5Yip5ram6LSh54yu5aGM6Zm3KirvvIjlvIDlupfmipXlhaUgKyDnur/kuIrlpLHooYAgKyDmsYflhZHvvInvvIzogIzkuK3lm73kuJrliqHlrp7pmYXmmK/otoXpooTmnJ/nmoTjgIIKCiMjIyDlh4DliKnnjofkuI3lj4rpooTmnJ/lvZLlm6DvvIgyMDI2SDEg5a6e6ZmFIDI5LjMlIOWvueavlOmihOS8sCB+MzMuMiXvvIkKCjEuICoq5rW35aSW5YiG6YOo5Yip5ram546HIC0xMy44IOS4queZvuWIhueCuSoq77yI5pyA5aSn6aG577yJ77ya5rW35aSW5pS25YWlIC0xMS4yJSDkuJTotLnnlKjliJrmgKfvvIjpl6jlupflh4Dlop4gMTA1IOWuti/plIDllK7lkZjlt6UgNiwyMTnihpI5LDczNCDkurrvvInvvIzop4TmqKHkuI3nu4/mtY4KMi4gKirmsYflhZHmjZ/lpLEgLTcuMiDkur8qKu+8muS6uuawkeW4gei1sOW8uuiHtOaxh+WFkeS7jiArMS4yIOS6v+e/u+i9rOS4uiAtNy4yIOS6v++8iC04LjQg5Lq/77yJCjMuICoq5q+b5Yip546HIC0wLjYg5Liq55m+5YiG54K5KirvvJrmtbflpJbvvIjpq5jmr5vliKnvvInljaDmr5TkuIvpmY0gKyDljp/mnZDmlpnmtqjku7cKNC4gKirlrp7pmYXnqI7njocgMjQuMCXihpIyNC42JSoqCjUuICoq5a+55Yay6aG5KirvvJrlhbbku5bmlLblhaUgKzIuMzYg5Lq/77yI5pS/5bqc6KGl5YqpIDAuMzjihpIyLjQwIOS6v++8iSsg6LS555So546H5bCP5bmF5pS55ZaEICsg5bCR5pWw6IKh5Lic5p2D55uK5YeP5bCRCgojIyMg6LS555So5piO57uG77yI5Lit5oql5oqr6Zyy77yJCgp8IOe7j+mUgOWPiumUgOWUruW8gOaUr+aehOaIkCB8IDIwMjZIMSB8IDIwMjVIMSB8IOWQjOavlCB8CnwtLS0tLS18LS0tLS0tLS06fC0tLS0tLS0tOnw6LS0tOnwKfCDnp5/otYHnm7jlhbPlvIDmlK8gfCAxLDA0NC4xIHwgNzI4LjQgfCArNDMuMyUgfAp8IOmbh+WRmOemj+WIqeW8gOaUryB8IDgxNy4xIHwgNTYwLjggfCArNDUuNyUgfAp8IOi/kOi+k+WPiueJqea1geW8gOaUryB8IDY0NC43IHwgNjc3LjEgfCAtNC44JSB8CgotIOmUgOWUruWRmOW3pSA2LDIxOeKGkjksNzM0IOS6uu+8m+ihjOaUvy/orr7orqHkurrlkZggMSw4MzDihpIyLDMyMiDkuroKLSDnp5/otYHlvIDmlK8gKzQzJe+8mue6v+S4i+mbtuWUruW6l+i+gyAyNUgxIOWHgOWiniAxMDUg6Ze0Ci0g6LWE5pys5byA5pSvIDMuNzXihpI3LjI0IOS6v++8iCs5MyXvvInvvIzkuLvopoHotK3niankuJrljoLmiL/orr7lpIfvvIjmtbflpJblvIDlupfvvIkKCiMjIyAyMDI2IEgxIOS4mue7qeW/q+iur++8iDIwMjYtMDgtMjAg5Lit5oql5YWs5biD77yJCgp8IOaMh+aghyB8IDIwMjVIMSDlrp7pmYUgfCAyMDI2SDEg5a6e6ZmFIHwg5ZCM5q+UIHwg5biC5Zy66aKE5LywIHwg5a+55q+U6aKE5LywIHwKfC0tLS0tLXw6LS0tOnw6LS0tOnw6LS0tOnw6LS0tOnw6LS0tOnwKfCDokKXmlLYgfCAxMzguNzYg5Lq/IHwgMTcxLjcg5Lq/IHwgKzIzLjclIHwgMTk5Ljgg5Lq/IHwgLTE0LjElIHwKfCDmr5vliKnnjocgfCA3MC4zJSB8IDY5LjclIHwgLTAuNiDkuKrnmb7liIbngrkgfCA3MCUgfCAtMC4zIOS4queZvuWIhueCuSB8Cnwg5YeA5Yip5ramIHwgNDUuNzQg5Lq/77yI5b2S5q+N77yJIHwgNTAuNCDkur8gfCArMTAuMiUgfCA2Ni40IOS6vyB8IC0yNC4xJSB8Cgo+IOWOn+Wni+i1hOaWme+8mmByYXcvcmVzZWFyY2gv5rOh5rOh546b54m5LzIwMjYtMDgtMjAt5Lit5pyf5Lia57up5b+r6K6vLm1kYOOAgWBkYXRhL3BkZnMvMDk5OTIvMDk5OTJfMjAyNl/kuK3miqUucGRmYAoKLS0tCgojIyDlha3jgIHlupPlrZjkuI7kvpvlupTpk77vvIgyMDI2SDHvvIzkuJrnu6nkvJrpgJDlrZfnqL/lj6PlvoTvvIkKCiMjIyDmoLjlv4PmlbDmja4KCj4g5a6M5pW05aSa57u06Lef6Liq77yI5byA5bqXw5fokKXmlLbDl+WHj+WAvO+8ieingSBbW+i3n+i4qi/lrZjotKfot5/ouKpdXeOAggoKfCDmjIfmoIcgfCAyMDI2SDEgfCAyMDI1QSB8IDIwMjVIMSB8IOivtOaYjiB8CnwtLS0tLS18Oi0tLTp8Oi0tLTp8Oi0tLTp8LS0tLS0tfAp8IOW6k+WtmOaAu+minSB8IDYxLjAyIOS6v+WFgyB8IDU0LjczIOS6vyB8IDIyLjc0IOS6vyB8IOeOr+avlCArMTEuNSXvvIw3IOaciOi1t+ingemhtuWbnuiQvSB8Cnwg5bqT5a2Y5ZGo6L2s5aSp5pWwIHwgKioyMDEg5aSpKiogfCAxMjMg5aSpIHwgODMg5aSpIHwg8J+UtCB2cyDoi7nmnpzkuKrkvY1+5Y2B5Yeg5aSp6YeP57qnIHwKfCDlh4/lgLzmi6jlpIfkvZnpop0gfCA3NS41IOeZvuS4hyB8IDUyLjcg55m+5LiHIHwg4oCUIHwg5ouo5aSH546HIDAuOTUl4oaSMS4yMiXvvIzop6blupXlm57ljYcgfAp8IOW9k+acn+WHj+WAvOiuoeaPkCB8IDIyLjgg55m+5LiHIHwgMjEuMiDnmb7kuIcgfCA0LjMg55m+5LiHIHwg8J+UtCA9IDIwMjVIMSDnmoQgNS4zIOWAjSB8CnwgMiDlubTku6XkuIrlupPpvoTljaDmr5QgfCAyNVExIOi1t+S4iuWNhyB8IOKAlCB8IOKAlCB8IPCflLQg5YeP5YC86aOO6Zmp5L+h5Y+3IHwKfCAxIOW5tOS7peWGheW6k+WtmOmHkeminSB8IDI2UTEg5Y+M5L2N5pWw5LiL5ruRIHwg4oCUIHwg4oCUIHwg8J+foiDmlrDlk4HojIPnlbTvvIzmlrDlop7lupPlrZjlj5fmjqcgfAoKIyMjIOW9kuWboO+8iOeuoeeQhuWxgu+8iQoKPiDkuLvopoHmupDoh6ogKioyMDI1IOmrmOmAn+WinumVv+eahOmUgOWUrumihOa1i+WBj+W3rioq77yM5YGP5beu56ev57Sv5oiQ5bqT5a2Y44CC57uT5p6E5oCn5Zug57Sg77ya6LSn5YC85a+G5bqm5L2OIOKGkiDmtbfov5DkuLrkuLsg4oaSIOmVv+ihpei0p+WRqOacnyDihpIg5YmN572u5bqT5a2Y6auY44CCCgojIyMg5Y675YyW5LiJ5p2/5panCgoxLiAqKuWFqOeQg+i3qOWMuuWfn+iwg+aLqCoq77yI5aSn5Lit5Y2O5Yy65LuN5pyJ6ZyA5rGC55qE6LSn5ZOB6LCD5b6A5YW25LuW5Yy65Z+f77yM6ZmN5YWo55CD5bqT5a2Y5rC05L2N77yJCjIuICoq6K6i6LSn56uv566h5o6nKirvvIjkuIvljYrlubTkuI3kuLrov73kuJrnu6nliqDorqLvvIkKMy4gKirmi5Lnu53lpKfop4TmqKHkv4PplIAqKu+8iOWTgeeJjOS/neaKpCArIOa2iOi0ueiAheS9k+mqjO+8iQoKIyMjIOS+m+W6lOmTvuWvueetlu+8iCLoi7nmnpzlvI/op6Pms5Ui55qE6ZmN57qn54mI77yJCgotIOS8mOWFiCoq5rW35aSW5bel5Y6C5ZCR5rW35aSW5biC5Zy65L6b6LSnKirvvIjmupDlpLTnvKnnn63nianmtYHot53nprvvvIkKLSAqKuaVtOWQiOa1t+i/kC/nqbrov5Av6ZOB6LevKirlpJrlvI/ogZTov5DvvIzpmY3kvY7lpLTnqIvov5DotLkKLSAqKuS+m+W6lOmTvuS/oeaBr+WMlioq77yI5pyq5p2lIDEtMiDlubTmoLjlv4Pph43ngrnvvInvvJrnsr7lr4bnlJ/kuqcgKyDmupDlpLTpmY3lupPlrZgKLSDlhajnkIMgMTArIOWbveWutuWcsOWMuuS7k+WCqOeJqea1geS9k+ezuyArIOWJjee9ruS7k+W7uuiuvgoKIyMjIOi0p+WAvOWvhuW6piB2cyDoi7nmnpzvvIjkvKDlr7zpk77nroDov7DvvIkKCui/kOi+k+aIkOacrOaMiemHjemHjy/kvZPnp6/orqHvvJrnm7Lnm5IgwqU1OS04Oe+8iOi0p+WAvOWvhuW6pue6piDCpTMwMC02MDAva2fvvIl2cyBpUGhvbmUgwqU1LDAwMC0xMCwwMDDvvIjnuqYgwqUyNSwwMDAtNTAsMDAwL2tn77yJ77yM5ZCM6YeN6YeP6LSn5YC85beu5Lik5Liq5pWw6YeP57qnIOKGkiDnqbrov5DotLnljaDotKflgLzmr5Tkvovlt67kuKTkuKrmlbDph4/nuqcg4oaSIOazoeazoeeOm+eJueWPquiDveeUqOa1t+i/kO+8iOepuui/kOi0ueWQg+avm+WIqe+8ieKGkiDmtbfov5AgNDAtNjAg5aSp6KGl6LSn5ZGo5pyfIOKGkiDliY3nva7lupPlrZjpq5jjgILmoLjlv4PlkKvkuYnvvJoqKui0p+WAvOWvhuW6puWGs+WumuS+m+W6lOmTvuWuuemUmeepuumXtCoq4oCU4oCU6Iu55p6c6aKE5rWL6ZSZ5LqG56m66L+Q55+t5ZGo5pyf5Y+v5b+r6YCf57qg5q2j77yM5rOh5rOh546b54m55LiA5qyh5aSH6ZSZ5raI5YyW5LiA5bm044CCCgo+IOivpuingSBgcmF3L3Jlc2VhcmNoL+azoeazoeeOm+eJuS8yMDI2LTA4LTIwLeS4reacn+S4mue7qeW/q+iury5tZGAg56ys5YWt6IqC5YiG5p6Q5aSH5rOo44CC5b6F6aqM6K+B77ya5bqT5a2Y5LiL6ZmN5piv5ZCm5Ly06ZqP5bqT6b6E5pS55ZaE77yb5rW35aSW5bel5Y6CL+eJqea1geWfuuW7uuWFkeeOsOmAn+W6puOAggoKLS0tCgojIyDkuIPjgIHkvJrlkZjkuI7lpI3otK0KCnwg5oyH5qCHIHwgMjAyNkgxIHwgMjAyNUEgfCAyMDI1SDEgfAp8LS0tLS0tfC0tLS0tLS0tOnwtLS0tLS0tLTp8LS0tLS0tLS06fAp8IOWFqOeQg+e0r+iuoeazqOWGjOS8muWRmCB8ID4xIOS6vyB8IOKAlCB8IOKAlCB8Cnwg5Lit5Zu95YaF5Zyw57Sv6K6h5rOo5YaM5Lya5ZGYIHwgOCwyNDQg5LiHIHwgNywyNTgg5LiH77yIKzIsNjUwIOS4h++8iSB8IDUsOTEyIOS4h++8iCsxLDMwNCDkuIfvvIkgfAp8IOS4reWbveWGheWcsOS8muWRmOmUgOWUruWNoOavlCB8IDkyLjklIHwgOTMuNyUgfCA5MS4yJSB8Cnwg5Lit5Zu95YaF5Zyw5Lya5ZGY5aSN6LSt546HIHwgNTEuNiUgfCA1NS43JSB8IDUwLjglIHwKCj4gMjAyNCDlubTmnKvkuK3lm73lhoXlnLDms6jlhozkvJrlkZggNCw2MDgg5LiH77yIMjAyNSDlubTmiqXov73muq/lj6PlvoTvvInjgILmnaXmupDvvJoyMDI2IOS4reaKpSBQMjEtMjIgLyAyMDI1IOW5tOaKpSBQMTcgLyAyMDI1IOS4reaKpSBQMTLjgIIKCioq5rSe5a+fKirvvJrkuK3lm73lhoXlnLAgOTIuOSUg6ZSA5ZSu5p2l6Ieq5Lya5ZGY77yM5aSN6LSt546HIDUxLjYl4oCU4oCU55So5oi36buP5oCn5p6B5by677yI5LiO6IyF5Y+wIuWWneWkmuWWneWwkSLmoYbmnrblkIznkIbvvIzpnIDmsYLmoLjlv4PlnKjlpI3otK3ogIzpnZ7mi4nmlrDvvInjgILlpI3otK3njofovrnpmYXvvJo1MC44Je+8iDI1SDHvvInihpIgNTUuNyXvvIgyNUHvvInihpIgNTEuNiXvvIgyNkgx77yJ77yMMjAyNkgxIOWbnuiQveiHsyAyMDI1SDEg5Lul5LiL77yM6ZyA6Lef6Liq44CC5YWo55CD5rOo5YaM5Lya5ZGY56C05Lq/77yM5rW35aSW5Lya5ZGY6L+Q6JCl5piv5LiL5LiA6Zi25q616YeN5b+D44CCCgotLS0KCiMjIOWFq+OAgeaVsOaNruWPr+eUqOaAp+i+ueeVjAoKfCDmjIfmoIcgfCDnspLluqYgfCDmnaXmupAgfCDovrnnlYwgfAp8LS0tLS0tfC0tLS0tLXwtLS0tLS18LS0tLS0tfAp8IElQIOaLhuWIhiB8IOWNiuW5tOW6pu+8iDIwMjZIMSDotbfvvIkgfCDkuK3miqUgfCAyMDI2SDEg6LW35Lit5oql5oqr6Zyy5oyJIElQIOaYjue7hu+8m+WOhuWPsuW5tOW6puadpeiHquW5tOaKpSB8Cnwg5ZOB57G75ouG5YiGIHwg5Y2K5bm05bqmIHwg5Lit5oqlIHwgMjAyNkgxIOi1t+aKq+mcsiB8Cnwg57q/5LiK5a2Q5rig6YGTIHwg5Y2K5bm05bqm77yI5Lit5Zu977yJIHwg5Lit5oqlIHwg5rW35aSW57q/5LiK5ouG5YiGIDIwMjZIMSDotbfmiqvpnLIgfAp8IOa1t+WkluWcsOWMuuaLhuWIhiB8IOWNiuW5tOW6piB8IOS4reaKpSB8IDIwMjZIMSDotbfmjInljLrln5/Dl+a4oOmBk+aKq+mcsiB8Cnwg6Zeo5bqXL+acuuWZqOS6uuaVsOmHjyB8IOWNiuW5tOW6piB8IOS4reaKpSB8IOWQq+WMuuWfn+aYjue7hiArIOWNleW6l+aViOeOh+WPr+WAkueulyB8Cnwg5Lya5ZGYL+Wkjei0rSB8IOWNiuW5tOW6piB8IOS4reaKpSB8IOS7heS4reWbveWGheWcsOaVsOaNru+8m+WFqOeQg+S7heaAu+aVsCB8Cnwg5ZCM5bqX6ZSA5ZSuIHwg5LiN5Y+v5b6XIHwg4oCUIHwg5bm05oqlL+S4reaKpeWdh+S4jeaKq+mcsiB8Cnwg5q+b5Yip546HIHwg5Y2K5bm05bqmIHwgREIgKyDkuK3miqUgfCAyMDI2SDEgNjkuNyUgfAoKPiDimqDvuI8gMjAyNkgxIOi1t+S4reaKpeaKq+mcsue7tOW6puWkp+W5heWNh+e6p++8iElQL+WTgeexuy/ljLrln5/muKDpgZMv6Zeo5bqXL+S8muWRmC/liIbpg6jkuJrnu6nlhajmiqvpnLLvvInvvIzmraTliY3lubTku73ku4XmnInlubTluqbmlbDmja7jgILljoblj7Lot5/ouKrooajop4HnlKjmiLfmj5DkvpsgRXhjZWzvvIhgcmF3L3Jlc2VhcmNoL+azoeazoeeOm+eJuS8yMDI2LTA4LTIwLea4oOmBk+i3n+i4quihqC3nlKjmiLfmj5DkvpsueGxzeC5tZGDvvIwxOUgx4oCTMjVBIOW5tOW6puWPo+W+hO+8jOazqOaEjyAyNSDlubTotbfmuKDpgZPlj6PlvoTmnInosIPmlbTvvJoyNUgxIOi1t+e6v+S4iuaUueaMieWumOe9kS/lpKnnjKsv5oqW6Z+zL+WFtuS7lu+8ieOAggoKIyMg5Y+C6KeBCgotIFtbb3ZlcnZpZXddXSDigJQg5pWw5o2u55uu5b2V77yI5ZCr5pWw5o2u5bqT6KGo57uT5p6EICsgU1FMIOafpeivouekuuS+i++8iQotIFtb6Lef6LiqL+WtmOi0p+i3n+i4ql1dIOKAlCDlrZjotKfkuJPpobnvvJrlvIDlupfDl+iQpeaUtsOX5YeP5YC85LiJ57u06Lef6LiqCi0gW1t0aGVzaXNdXSDigJQg5oqV6LWE6K6654K5Ci0gW1tpbmR1c3RyeS1jaGFpbl1dIOKAlCBJUCDkuqfkuJrpk77lhajmma8KW1tyZXNlYXJjaC9pbmRleC5tZF1d";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">泡泡玛特</a> › <a href="运营指标.html">泡泡玛特 (09992) — 运营指标跟踪</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 运营指标跟踪</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-07-17</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特</span></div><div class="md" id="md"><h1>泡泡玛特 (09992) — 运营指标跟踪</h1>
+<blockquote>
+<p>核心跟踪维度：IP 集中度、品类演进、渠道转化、地理扩张、盈利能力。
+2026-08-20 更新：2026 中报完整明细已入库（区域×渠道×IP×品类 + 门店 + 会员），首次披露海内外分部业绩。</p>
+</blockquote>
+<hr />
+<h2>一、IP 集中度</h2>
+<h3>按 IP 拆分（百万元，中报披露口径）</h3>
+<table>
+<thead>
+<tr>
+<th>IP</th>
+<th style="text-align:right">2026H1 收入</th>
+<th style="text-align:center">占比</th>
+<th style="text-align:right">2025H1 收入</th>
+<th style="text-align:center">占比</th>
+<th>趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>THE MONSTERS (Labubu)</td>
+<td style="text-align:right">4,454.4</td>
+<td style="text-align:center">26.0%</td>
+<td style="text-align:right">4,814.0</td>
+<td style="text-align:center">34.7%</td>
+<td>📉 首度下滑 -7.5%，占比骤降 8.7 个百分点</td>
+</tr>
+<tr>
+<td>星星人</td>
+<td style="text-align:right">2,650.0</td>
+<td style="text-align:center">15.4%</td>
+<td style="text-align:right">389.4</td>
+<td style="text-align:center">2.8%</td>
+<td>🚀 爆发 +580.6%，晋升第二大 IP</td>
+</tr>
+<tr>
+<td>CRYBABY</td>
+<td style="text-align:right">1,632.6</td>
+<td style="text-align:center">9.5%</td>
+<td style="text-align:right">1,218.2</td>
+<td style="text-align:center">8.8%</td>
+<td>📈 +34.0%</td>
+</tr>
+<tr>
+<td>DIMOO</td>
+<td style="text-align:right">1,619.2</td>
+<td style="text-align:center">9.4%</td>
+<td style="text-align:right">1,105.1</td>
+<td style="text-align:center">8.0%</td>
+<td>📈 +46.5%</td>
+</tr>
+<tr>
+<td>SKULLPANDA</td>
+<td style="text-align:right">1,551.2</td>
+<td style="text-align:center">9.0%</td>
+<td style="text-align:right">1,220.5</td>
+<td style="text-align:center">8.8%</td>
+<td>📈 +27.1%</td>
+</tr>
+<tr>
+<td>HIRONO</td>
+<td style="text-align:right">1,008.9</td>
+<td style="text-align:center">5.9%</td>
+<td style="text-align:right">728.4</td>
+<td style="text-align:center">5.2%</td>
+<td>📈 +38.5%</td>
+</tr>
+<tr>
+<td>MOLLY</td>
+<td style="text-align:right">900.6</td>
+<td style="text-align:center">5.3%</td>
+<td style="text-align:right">1,357.2</td>
+<td style="text-align:center">9.8%</td>
+<td>📉 -33.7%</td>
+</tr>
+<tr>
+<td>Zsiga</td>
+<td style="text-align:right">298.3</td>
+<td style="text-align:center">1.7%</td>
+<td style="text-align:right">211.3</td>
+<td style="text-align:center">1.5%</td>
+<td>📈 +41.2%</td>
+</tr>
+<tr>
+<td>其他艺术家 IP</td>
+<td style="text-align:right">1,174.3</td>
+<td style="text-align:center">6.8%</td>
+<td style="text-align:right">1,184.5</td>
+<td style="text-align:center">8.5%</td>
+<td>持平</td>
+</tr>
+<tr>
+<td><strong>艺术家 IP 合计</strong></td>
+<td style="text-align:right"><strong>15,289.5</strong></td>
+<td style="text-align:center"><strong>89.0%</strong></td>
+<td style="text-align:right"><strong>12,228.6</strong></td>
+<td style="text-align:center"><strong>88.1%</strong></td>
+<td>+25.0%</td>
+</tr>
+<tr>
+<td>授权 IP</td>
+<td style="text-align:right">1,771.2</td>
+<td style="text-align:center">10.3%</td>
+<td style="text-align:right">1,524.8</td>
+<td style="text-align:center">11.0%</td>
+<td>+16.2%</td>
+</tr>
+<tr>
+<td>外采及其他</td>
+<td style="text-align:right">112.3</td>
+<td style="text-align:center">0.7%</td>
+<td style="text-align:right">122.9</td>
+<td style="text-align:center">0.9%</td>
+<td>-8.7%</td>
+</tr>
+</tbody>
+</table>
+<h3>IP 集中度历史判断</h3>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>第一大 IP</th>
+<th style="text-align:center">占营收比</th>
+<th style="text-align:center">前三大 IP 合计占比</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019</td>
+<td>Molly</td>
+<td style="text-align:center">&gt;40%</td>
+<td style="text-align:center">&gt;60%</td>
+<td>🔴 单 IP 依赖极高</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>Molly</td>
+<td style="text-align:center">~20%</td>
+<td style="text-align:center">~45%</td>
+<td>🟡 在分散，但未完全脱险</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>Labubu</td>
+<td style="text-align:center">~40%</td>
+<td style="text-align:center">~55%</td>
+<td>🟡 Labubu 集中度回升，需关注</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td>Labubu</td>
+<td style="text-align:center">26.0%</td>
+<td style="text-align:center">50.9%</td>
+<td>🟢 大 IP 依赖显著缓解，星星人接力</td>
+</tr>
+</tbody>
+</table>
+<p><strong>阈值</strong>：Top 3 IP 占比 &lt;50% 为健康，&gt;70% 为红色警戒。
+<strong>洞察</strong>：2026H1 THE MONSTERS 占比从 34.7% 降至 26.0%（历史上首次下滑），星星人 +580.6% 成为新引擎。前三大 = THE MONSTERS(26.0%) + 星星人(15.4%) + CRYBABY(9.5%) = 50.9%，集中度自 2022 年以来首次回到健康线附近。<strong>IP 梯队交接已发生：Labubu 退潮的同时星星人接棒，而非整体衰落。</strong></p>
+<hr />
+<h2>二、品类演进</h2>
+<h3>2026H1 品类拆分（百万元）</h3>
+<table>
+<thead>
+<tr>
+<th>品类</th>
+<th style="text-align:right">2026H1 收入</th>
+<th style="text-align:center">占比</th>
+<th style="text-align:right">2025H1 收入</th>
+<th style="text-align:center">占比</th>
+<th>同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>毛绒</td>
+<td style="text-align:right">9,824.9</td>
+<td style="text-align:center">57.2%</td>
+<td style="text-align:right">6,139.2</td>
+<td style="text-align:center">44.2%</td>
+<td>+60.0%</td>
+</tr>
+<tr>
+<td>手办</td>
+<td style="text-align:right">5,192.5</td>
+<td style="text-align:center">30.2%</td>
+<td style="text-align:right">5,175.9</td>
+<td style="text-align:center">37.3%</td>
+<td>+0.3%</td>
+</tr>
+<tr>
+<td>衍生品及其他</td>
+<td style="text-align:right">2,155.5</td>
+<td style="text-align:center">12.6%</td>
+<td style="text-align:right">2,561.2</td>
+<td style="text-align:center">18.5%</td>
+<td>-15.8%</td>
+</tr>
+</tbody>
+</table>
+<h3>历史趋势</h3>
+<table>
+<thead>
+<tr>
+<th>品类</th>
+<th style="text-align:center">2023</th>
+<th style="text-align:center">2024</th>
+<th style="text-align:center">2025</th>
+<th style="text-align:center">2026H1</th>
+<th>趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>盲盒/手办</td>
+<td style="text-align:center">主力</td>
+<td style="text-align:center">核心</td>
+<td style="text-align:center">稳定</td>
+<td style="text-align:center">30.2% (停滞)</td>
+<td>📉 占比持续下降，2026H1 同比仅 +0.3%</td>
+</tr>
+<tr>
+<td>毛绒</td>
+<td style="text-align:center">起步</td>
+<td style="text-align:center">爆发</td>
+<td style="text-align:center">核心</td>
+<td style="text-align:center">57.2% (+60%)</td>
+<td>📈 已占过半营收，绝对主力</td>
+</tr>
+<tr>
+<td>MEGA</td>
+<td style="text-align:center">小规模</td>
+<td style="text-align:center">增长</td>
+<td style="text-align:center">增长</td>
+<td style="text-align:center">(并入衍生品)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>衍生品</td>
+<td style="text-align:center">补充</td>
+<td style="text-align:center">补充</td>
+<td style="text-align:center">扩品类</td>
+<td style="text-align:center">12.6% (-15.8%)</td>
+<td>📉 收入下滑，含乐园/POP BAKERY</td>
+</tr>
+</tbody>
+</table>
+<p><strong>洞察</strong>：毛绒已占营收 57.2% 且 +60% 高增长；手办（盲盒核心品类）同比仅 +0.3%，几近停滞——品类重心彻底转向毛绒。衍生品下滑或因高基数 + 部分口径调整。</p>
+<hr />
+<h2>三、渠道转化</h2>
+<h3>中国线上子渠道（百万元）</h3>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>抽盒机</th>
+<th>天猫</th>
+<th>抖音</th>
+<th>其他</th>
+<th>线上合计</th>
+<th style="text-align:center">抽盒机占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021</td>
+<td>921</td>
+<td>599</td>
+<td>—</td>
+<td>341</td>
+<td>1,861</td>
+<td style="text-align:center">49.5%</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>955</td>
+<td>462</td>
+<td>—</td>
+<td>413</td>
+<td>1,830</td>
+<td style="text-align:center">52.2%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>729</td>
+<td>322</td>
+<td>283</td>
+<td>190</td>
+<td>1,525</td>
+<td style="text-align:center">47.8%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>1,114</td>
+<td>628</td>
+<td>601</td>
+<td>429</td>
+<td>2,772</td>
+<td style="text-align:center">40.2%</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>3,423</td>
+<td>1,785</td>
+<td>1,590</td>
+<td>1,724</td>
+<td>8,522</td>
+<td style="text-align:center">40.2%</td>
+</tr>
+<tr>
+<td><strong>2026H1</strong></td>
+<td><strong>2,063</strong></td>
+<td><strong>901</strong></td>
+<td><strong>976</strong></td>
+<td><strong>838</strong></td>
+<td><strong>4,779</strong></td>
+<td style="text-align:center"><strong>43.2%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>2026H1 中国渠道全拆分（百万元，中报披露）</h3>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th style="text-align:right">2026H1</th>
+<th style="text-align:center">占比</th>
+<th style="text-align:right">2025H1</th>
+<th style="text-align:center">占比</th>
+<th>同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线下</td>
+<td style="text-align:right">6,868.6</td>
+<td style="text-align:center">56.3%</td>
+<td style="text-align:right">5,084.2</td>
+<td style="text-align:center">61.4%</td>
+<td>+35.1%</td>
+</tr>
+<tr>
+<td>├ 零售店</td>
+<td style="text-align:right">6,089.7</td>
+<td style="text-align:center">49.9%</td>
+<td style="text-align:right">4,405.9</td>
+<td style="text-align:center">53.2%</td>
+<td>+38.2%</td>
+</tr>
+<tr>
+<td>├ 机器人商店</td>
+<td style="text-align:right">779.0</td>
+<td style="text-align:center">6.4%</td>
+<td style="text-align:right">678.3</td>
+<td style="text-align:center">8.2%</td>
+<td>+14.8%</td>
+</tr>
+<tr>
+<td>线上</td>
+<td style="text-align:right">4,778.7</td>
+<td style="text-align:center">39.2%</td>
+<td style="text-align:right">2,937.3</td>
+<td style="text-align:center">35.5%</td>
+<td>+62.7%</td>
+</tr>
+<tr>
+<td>├ 抽盒机</td>
+<td style="text-align:right">2,062.9</td>
+<td style="text-align:center">16.9%</td>
+<td style="text-align:right">1,125.2</td>
+<td style="text-align:center">13.6%</td>
+<td>+83.3%</td>
+</tr>
+<tr>
+<td>├ 抖音</td>
+<td style="text-align:right">976.4</td>
+<td style="text-align:center">8.0%</td>
+<td style="text-align:right">561.1</td>
+<td style="text-align:center">6.8%</td>
+<td>+74.0%</td>
+</tr>
+<tr>
+<td>├ 天猫</td>
+<td style="text-align:right">901.3</td>
+<td style="text-align:center">7.4%</td>
+<td style="text-align:right">657.5</td>
+<td style="text-align:center">7.9%</td>
+<td>+37.1%</td>
+</tr>
+<tr>
+<td>└ 其他线上</td>
+<td style="text-align:right">838.2</td>
+<td style="text-align:center">6.9%</td>
+<td style="text-align:right">593.4</td>
+<td style="text-align:center">7.2%</td>
+<td>+41.3%</td>
+</tr>
+<tr>
+<td>批发及其他</td>
+<td style="text-align:right">553.1</td>
+<td style="text-align:center">4.5%</td>
+<td style="text-align:right">261.3</td>
+<td style="text-align:center">3.1%</td>
+<td>+111.7%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>洞察</strong>：</p>
+<ul>
+<li>抽盒机 2026H1 +83.3%，占比回到 43.2%——私域渠道重新成为线上核心</li>
+<li>抖音 +74.0%、天猫 +37.1%，线上全渠道高增长</li>
+<li>批发及其他 +111.7%（乐园/POP BAKERY/POPOP 拉动）</li>
+</ul>
+<h3>二元分类</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">抽盒机（自有）</th>
+<th style="text-align:center">第三方（天猫+京东+抖音+其他）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025 占比</td>
+<td style="text-align:center">40.2%</td>
+<td style="text-align:center">59.8%</td>
+</tr>
+<tr>
+<td>2026H1 占比</td>
+<td style="text-align:center">43.2%</td>
+<td style="text-align:center">56.8%</td>
+</tr>
+<tr>
+<td>特征</td>
+<td style="text-align:center">私域，高利润，数据闭环</td>
+<td style="text-align:center">公域，获客成本高，易跟踪</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>四、地理扩张</h2>
+<h3>2026H1 区域收入（百万元，中报口径：中国=内地+港澳台）</h3>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th style="text-align:right">2026H1 收入</th>
+<th style="text-align:center">占比</th>
+<th style="text-align:right">2025H1 收入</th>
+<th style="text-align:center">占比</th>
+<th>同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中国</td>
+<td style="text-align:right">12,200.5</td>
+<td style="text-align:center">71.0%</td>
+<td style="text-align:right">8,282.8</td>
+<td style="text-align:center">59.7%</td>
+<td>+47.3%</td>
+</tr>
+<tr>
+<td>亚太</td>
+<td style="text-align:right">2,575.0</td>
+<td style="text-align:center">15.0%</td>
+<td style="text-align:right">2,850.9</td>
+<td style="text-align:center">20.6%</td>
+<td>-9.7%</td>
+</tr>
+<tr>
+<td>美洲</td>
+<td style="text-align:right">1,891.6</td>
+<td style="text-align:center">11.0%</td>
+<td style="text-align:right">2,264.9</td>
+<td style="text-align:center">16.3%</td>
+<td>-16.5%</td>
+</tr>
+<tr>
+<td>欧洲及其他</td>
+<td style="text-align:right">505.7</td>
+<td style="text-align:center">3.0%</td>
+<td style="text-align:right">477.7</td>
+<td style="text-align:center">3.4%</td>
+<td>+5.9%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>信号</strong>：海外占比从 40.3% 降至 29.0%——<strong>海外收入绝对值下滑（-11.2%）</strong>，主要因线上流量红利消退（详见下），而中国本土 +47.3% 强劲复苏。</p>
+<h3>海外分区渠道（百万元）</h3>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>渠道</th>
+<th style="text-align:right">2026H1</th>
+<th style="text-align:center">占比</th>
+<th style="text-align:right">2025H1</th>
+<th style="text-align:center">同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>亚太</td>
+<td>零售店</td>
+<td style="text-align:right">1,716.2</td>
+<td style="text-align:center">66.6%</td>
+<td style="text-align:right">1,493.0</td>
+<td style="text-align:center">+14.9%</td>
+</tr>
+<tr>
+<td>亚太</td>
+<td>机器人</td>
+<td style="text-align:right">56.5</td>
+<td style="text-align:center">2.2%</td>
+<td style="text-align:right">32.6</td>
+<td style="text-align:center">+73.4%</td>
+</tr>
+<tr>
+<td>亚太</td>
+<td>线上（APP/官网/Shopee 等）</td>
+<td style="text-align:right">643.6</td>
+<td style="text-align:center">25.0%</td>
+<td style="text-align:right">1,069.2</td>
+<td style="text-align:center"><strong>-39.8%</strong></td>
+</tr>
+<tr>
+<td>亚太</td>
+<td>批发及其他</td>
+<td style="text-align:right">158.8</td>
+<td style="text-align:center">6.2%</td>
+<td style="text-align:right">256.1</td>
+<td style="text-align:center">-38.0%</td>
+</tr>
+<tr>
+<td>美洲</td>
+<td>零售店</td>
+<td style="text-align:right">903.1</td>
+<td style="text-align:center">47.7%</td>
+<td style="text-align:right">737.0</td>
+<td style="text-align:center">+22.5%</td>
+</tr>
+<tr>
+<td>美洲</td>
+<td>机器人</td>
+<td style="text-align:right">103.9</td>
+<td style="text-align:center">5.5%</td>
+<td style="text-align:right">105.4</td>
+<td style="text-align:center">-1.4%</td>
+</tr>
+<tr>
+<td>美洲</td>
+<td>线上（APP/官网/Amazon 等）</td>
+<td style="text-align:right">722.1</td>
+<td style="text-align:center">38.2%</td>
+<td style="text-align:right">1,326.6</td>
+<td style="text-align:center"><strong>-45.6%</strong></td>
+</tr>
+<tr>
+<td>美洲</td>
+<td>批发及其他</td>
+<td style="text-align:right">162.5</td>
+<td style="text-align:center">8.6%</td>
+<td style="text-align:right">95.9</td>
+<td style="text-align:center">+69.4%</td>
+</tr>
+<tr>
+<td>欧洲</td>
+<td>零售店</td>
+<td style="text-align:right">403.1</td>
+<td style="text-align:center">79.7%</td>
+<td style="text-align:right">272.1</td>
+<td style="text-align:center">+48.1%</td>
+</tr>
+<tr>
+<td>欧洲</td>
+<td>线上</td>
+<td style="text-align:right">67.6</td>
+<td style="text-align:center">13.4%</td>
+<td style="text-align:right">165.0</td>
+<td style="text-align:center">-59.0%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>洞察</strong>：海外整体&quot;线下涨、线上跌&quot;。线下门店大幅扩张（美洲 41→86 家、欧洲 18→45 家、亚太 69→90 家）带动零售店收入增长；但线上渠道（自研 APP/官网、Shopee、Amazon 等）同比大幅下滑——中报口径：<strong>&quot;核心 IP 热度回归常态，线上通用流量和获客能力仍在建设阶段&quot;</strong>，亚太电商平台 Shopee -62.1%。海外线上是当前主要失血点。</p>
+<h3>门店网络（2026-06-30）</h3>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th style="text-align:center">门店数</th>
+<th style="text-align:center">较 2025 年末净增</th>
+<th style="text-align:center">机器人商店</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中国内地+港澳台</td>
+<td style="text-align:center">455</td>
+<td style="text-align:center">+10</td>
+<td style="text-align:center">2,482 台</td>
+</tr>
+<tr>
+<td>亚太</td>
+<td style="text-align:center">90</td>
+<td style="text-align:center">+5</td>
+<td style="text-align:center">—</td>
+</tr>
+<tr>
+<td>美洲</td>
+<td style="text-align:center">86</td>
+<td style="text-align:center">+22</td>
+<td style="text-align:center">—</td>
+</tr>
+<tr>
+<td>欧洲</td>
+<td style="text-align:center">45</td>
+<td style="text-align:center">+9</td>
+<td style="text-align:center">—</td>
+</tr>
+<tr>
+<td><strong>全球合计</strong></td>
+<td style="text-align:center"><strong>676</strong></td>
+<td style="text-align:center"><strong>+46</strong></td>
+<td style="text-align:center"><strong>2,827 台（+190）</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>零售店经营效率（百万元/店，中报披露的店数与收入倒算）</h3>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th style="text-align:center">2026H1 店数</th>
+<th style="text-align:right">零售店收入</th>
+<th style="text-align:right">单店半年收入</th>
+<th style="text-align:right">2025H1 单店半年收入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中国内地</td>
+<td style="text-align:center">419</td>
+<td style="text-align:right">5,427.4</td>
+<td style="text-align:right">12.95</td>
+<td style="text-align:right">8.92 (409 店/3,648.4)</td>
+</tr>
+<tr>
+<td>港澳台</td>
+<td style="text-align:center">36</td>
+<td style="text-align:right">662.2</td>
+<td style="text-align:right">18.39</td>
+<td style="text-align:right">22.28 (34 店/757.6)</td>
+</tr>
+<tr>
+<td>亚太</td>
+<td style="text-align:center">90</td>
+<td style="text-align:right">1,716.2</td>
+<td style="text-align:right">19.07</td>
+<td style="text-align:right">21.64 (69 店/1,493.0)</td>
+</tr>
+<tr>
+<td>美洲</td>
+<td style="text-align:center">86</td>
+<td style="text-align:right">903.1</td>
+<td style="text-align:right">10.50</td>
+<td style="text-align:right">17.97 (41 店/737.0)</td>
+</tr>
+<tr>
+<td>欧洲</td>
+<td style="text-align:center">45</td>
+<td style="text-align:right">403.1</td>
+<td style="text-align:right">8.96</td>
+<td style="text-align:right">15.12 (18 店/272.1)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>洞察</strong>：单店效率全面下滑（港澳台 -17%、亚太 -12%、美洲 -42%、欧洲 -41%），中国内地反而 +45%（基数低、新店爬坡 + 去年关店重整）。海外单店效率下滑 = 开店扩张摊薄 + 线上流量外溢减弱，验证&quot;海外高增长阶段已过、进入精细化运营期&quot;。</p>
+<hr />
+<h2>五、盈利能力</h2>
+<h3>2026H1 利润构成（百万元，来源：2026 中报）</h3>
+<table>
+<thead>
+<tr>
+<th>科目</th>
+<th style="text-align:right">2026H1</th>
+<th style="text-align:right">2025H1</th>
+<th style="text-align:center">同比</th>
+<th style="text-align:center">占收入比 26H1</th>
+<th style="text-align:center">占收入比 25H1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收入</td>
+<td style="text-align:right">17,172.9</td>
+<td style="text-align:right">13,876.3</td>
+<td style="text-align:center">+23.8%</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+</tr>
+<tr>
+<td>销售成本</td>
+<td style="text-align:right">(5,207.2)</td>
+<td style="text-align:right">(4,115.2)</td>
+<td style="text-align:center">+26.5%</td>
+<td style="text-align:center">30.3%</td>
+<td style="text-align:center">29.7%</td>
+</tr>
+<tr>
+<td><strong>毛利</strong></td>
+<td style="text-align:right"><strong>11,965.7</strong></td>
+<td style="text-align:right"><strong>9,761.1</strong></td>
+<td style="text-align:center">+22.6%</td>
+<td style="text-align:center"><strong>69.7%</strong></td>
+<td style="text-align:center"><strong>70.3%</strong></td>
+</tr>
+<tr>
+<td>经销及销售开支</td>
+<td style="text-align:right">(3,931.1)</td>
+<td style="text-align:right">(3,192.6)</td>
+<td style="text-align:center">+23.1%</td>
+<td style="text-align:center">22.9%</td>
+<td style="text-align:center">23.0%</td>
+</tr>
+<tr>
+<td>一般及行政开支</td>
+<td style="text-align:right">(926.5)</td>
+<td style="text-align:right">(770.4)</td>
+<td style="text-align:center">+20.3%</td>
+<td style="text-align:center">5.4%</td>
+<td style="text-align:center">5.6%</td>
+</tr>
+<tr>
+<td>其他收入</td>
+<td style="text-align:right">302.8</td>
+<td style="text-align:right">67.2</td>
+<td style="text-align:center">+350%</td>
+<td style="text-align:center">1.8%</td>
+<td style="text-align:center">0.5%</td>
+</tr>
+<tr>
+<td>其他（亏损）/收益净额</td>
+<td style="text-align:right">(688.8)</td>
+<td style="text-align:right">179.2</td>
+<td style="text-align:center">转亏</td>
+<td style="text-align:center">-4.0%</td>
+<td style="text-align:center">+1.3%</td>
+</tr>
+<tr>
+<td>├ 其中汇兑（损）益</td>
+<td style="text-align:right">(720.3)</td>
+<td style="text-align:right">120.1</td>
+<td style="text-align:center">转亏</td>
+<td style="text-align:center">-4.2%</td>
+<td style="text-align:center">+0.9%</td>
+</tr>
+<tr>
+<td>经营溢利</td>
+<td style="text-align:right">6,724.7</td>
+<td style="text-align:right">6,043.7</td>
+<td style="text-align:center">+11.3%</td>
+<td style="text-align:center">39.2%</td>
+<td style="text-align:center">43.6%</td>
+</tr>
+<tr>
+<td>财务收入净额</td>
+<td style="text-align:right">11.5</td>
+<td style="text-align:right">65.5</td>
+<td style="text-align:center">-82.4%</td>
+<td style="text-align:center">0.1%</td>
+<td style="text-align:center">0.5%</td>
+</tr>
+<tr>
+<td>分占联营公司溢利</td>
+<td style="text-align:right">30.6</td>
+<td style="text-align:right">47.6</td>
+<td style="text-align:center">-35.7%</td>
+<td style="text-align:center">0.2%</td>
+<td style="text-align:center">0.3%</td>
+</tr>
+<tr>
+<td>除税前溢利</td>
+<td style="text-align:right">6,766.9</td>
+<td style="text-align:right">6,156.9</td>
+<td style="text-align:center">+9.9%</td>
+<td style="text-align:center">39.4%</td>
+<td style="text-align:center">44.4%</td>
+</tr>
+<tr>
+<td>所得税</td>
+<td style="text-align:right">(1,666.5)</td>
+<td style="text-align:right">(1,475.2)</td>
+<td style="text-align:center">+13.0%</td>
+<td style="text-align:center">实际税率 24.6%</td>
+<td style="text-align:center">24.0%</td>
+</tr>
+<tr>
+<td>期内溢利</td>
+<td style="text-align:right">5,100.3</td>
+<td style="text-align:right">4,681.7</td>
+<td style="text-align:center">+8.9%</td>
+<td style="text-align:center">29.7%</td>
+<td style="text-align:center">33.7%</td>
+</tr>
+<tr>
+<td>归母净利</td>
+<td style="text-align:right">5,038.4</td>
+<td style="text-align:right">4,574.0</td>
+<td style="text-align:center">+10.1%</td>
+<td style="text-align:center">29.3%</td>
+<td style="text-align:center">33.0%</td>
+</tr>
+<tr>
+<td>经调整纯利</td>
+<td style="text-align:right">5,155.8</td>
+<td style="text-align:right">4,709.6</td>
+<td style="text-align:center">+9.5%</td>
+<td style="text-align:center">30.0%</td>
+<td style="text-align:center">33.9%</td>
+</tr>
+</tbody>
+</table>
+<h3>分部业绩（2026H1，中报首次披露）</h3>
+<table>
+<thead>
+<tr>
+<th>分部</th>
+<th style="text-align:right">2026H1 收入</th>
+<th style="text-align:right">分部业绩</th>
+<th style="text-align:center">利润率</th>
+<th style="text-align:right">2025H1 收入</th>
+<th style="text-align:right">分部业绩</th>
+<th style="text-align:center">利润率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中国业务</td>
+<td style="text-align:right">12,200.5</td>
+<td style="text-align:right">6,471.3</td>
+<td style="text-align:center">53.0%</td>
+<td style="text-align:right">8,282.8</td>
+<td style="text-align:right">3,986.9</td>
+<td style="text-align:center">48.1%</td>
+</tr>
+<tr>
+<td>海外业务</td>
+<td style="text-align:right">4,972.4</td>
+<td style="text-align:right">1,508.5</td>
+<td style="text-align:center">30.3%</td>
+<td style="text-align:right">5,593.5</td>
+<td style="text-align:right">2,464.5</td>
+<td style="text-align:center">44.1%</td>
+</tr>
+<tr>
+<td>未分配项目</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">(869.1)</td>
+<td style="text-align:center">—</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">(654.1)</td>
+<td style="text-align:center">—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心洞察</strong>：中国分部利润率 48.1%→53.0% 提升；海外分部利润率 44.1%→30.3% 大幅下滑 13.8 个百分点。海外利润绝对额 -38.8%（24.6→15.1 亿）——<strong>净利率不及预期的主因是海外利润贡献塌陷</strong>（开店投入 + 线上失血 + 汇兑），而中国业务实际是超预期的。</p>
+<h3>净利率不及预期归因（2026H1 实际 29.3% 对比预估 ~33.2%）</h3>
+<ol>
+<li><strong>海外分部利润率 -13.8 个百分点</strong>（最大项）：海外收入 -11.2% 且费用刚性（门店净增 105 家/销售员工 6,219→9,734 人），规模不经济</li>
+<li><strong>汇兑损失 -7.2 亿</strong>：人民币走强致汇兑从 +1.2 亿翻转为 -7.2 亿（-8.4 亿）</li>
+<li><strong>毛利率 -0.6 个百分点</strong>：海外（高毛利）占比下降 + 原材料涨价</li>
+<li><strong>实际税率 24.0%→24.6%</strong></li>
+<li><strong>对冲项</strong>：其他收入 +2.36 亿（政府补助 0.38→2.40 亿）+ 费用率小幅改善 + 少数股东权益减少</li>
+</ol>
+<h3>费用明细（中报披露）</h3>
+<table>
+<thead>
+<tr>
+<th>经销及销售开支构成</th>
+<th style="text-align:right">2026H1</th>
+<th style="text-align:right">2025H1</th>
+<th style="text-align:center">同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>租赁相关开支</td>
+<td style="text-align:right">1,044.1</td>
+<td style="text-align:right">728.4</td>
+<td style="text-align:center">+43.3%</td>
+</tr>
+<tr>
+<td>雇员福利开支</td>
+<td style="text-align:right">817.1</td>
+<td style="text-align:right">560.8</td>
+<td style="text-align:center">+45.7%</td>
+</tr>
+<tr>
+<td>运输及物流开支</td>
+<td style="text-align:right">644.7</td>
+<td style="text-align:right">677.1</td>
+<td style="text-align:center">-4.8%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>销售员工 6,219→9,734 人；行政/设计人员 1,830→2,322 人</li>
+<li>租赁开支 +43%：线下零售店较 25H1 净增 105 间</li>
+<li>资本开支 3.75→7.24 亿（+93%），主要购物业厂房设备（海外开店）</li>
+</ul>
+<h3>2026 H1 业绩快讯（2026-08-20 中报公布）</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align:center">2025H1 实际</th>
+<th style="text-align:center">2026H1 实际</th>
+<th style="text-align:center">同比</th>
+<th style="text-align:center">市场预估</th>
+<th style="text-align:center">对比预估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>营收</td>
+<td style="text-align:center">138.76 亿</td>
+<td style="text-align:center">171.7 亿</td>
+<td style="text-align:center">+23.7%</td>
+<td style="text-align:center">199.8 亿</td>
+<td style="text-align:center">-14.1%</td>
+</tr>
+<tr>
+<td>毛利率</td>
+<td style="text-align:center">70.3%</td>
+<td style="text-align:center">69.7%</td>
+<td style="text-align:center">-0.6 个百分点</td>
+<td style="text-align:center">70%</td>
+<td style="text-align:center">-0.3 个百分点</td>
+</tr>
+<tr>
+<td>净利润</td>
+<td style="text-align:center">45.74 亿（归母）</td>
+<td style="text-align:center">50.4 亿</td>
+<td style="text-align:center">+10.2%</td>
+<td style="text-align:center">66.4 亿</td>
+<td style="text-align:center">-24.1%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>原始资料：<code>raw/research/泡泡玛特/2026-08-20-中期业绩快讯.md</code>、<code>data/pdfs/09992/09992_2026_中报.pdf</code></p>
+</blockquote>
+<hr />
+<h2>六、库存与供应链（2026H1，业绩会逐字稿口径）</h2>
+<h3>核心数据</h3>
+<blockquote>
+<p>完整多维跟踪（开店×营收×减值）见 <a href="%E8%B7%9F%E8%B8%AA/%E5%AD%98%E8%B4%A7%E8%B7%9F%E8%B8%AA.html">跟踪/存货跟踪</a>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align:center">2026H1</th>
+<th style="text-align:center">2025A</th>
+<th style="text-align:center">2025H1</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>库存总额</td>
+<td style="text-align:center">61.02 亿元</td>
+<td style="text-align:center">54.73 亿</td>
+<td style="text-align:center">22.74 亿</td>
+<td>环比 +11.5%，7 月起见顶回落</td>
+</tr>
+<tr>
+<td>库存周转天数</td>
+<td style="text-align:center"><strong>201 天</strong></td>
+<td style="text-align:center">123 天</td>
+<td style="text-align:center">83 天</td>
+<td>🔴 vs 苹果个位~十几天量级</td>
+</tr>
+<tr>
+<td>减值拨备余额</td>
+<td style="text-align:center">75.5 百万</td>
+<td style="text-align:center">52.7 百万</td>
+<td style="text-align:center">—</td>
+<td>拨备率 0.95%→1.22%，触底回升</td>
+</tr>
+<tr>
+<td>当期减值计提</td>
+<td style="text-align:center">22.8 百万</td>
+<td style="text-align:center">21.2 百万</td>
+<td style="text-align:center">4.3 百万</td>
+<td>🔴 = 2025H1 的 5.3 倍</td>
+</tr>
+<tr>
+<td>2 年以上库龄占比</td>
+<td style="text-align:center">25Q1 起上升</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td>🔴 减值风险信号</td>
+</tr>
+<tr>
+<td>1 年以内库存金额</td>
+<td style="text-align:center">26Q1 双位数下滑</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td>🟢 新品范畴，新增库存受控</td>
+</tr>
+</tbody>
+</table>
+<h3>归因（管理层）</h3>
+<blockquote>
+<p>主要源自 <strong>2025 高速增长的销售预测偏差</strong>，偏差积累成库存。结构性因素：货值密度低 → 海运为主 → 长补货周期 → 前置库存高。</p>
+</blockquote>
+<h3>去化三板斧</h3>
+<ol>
+<li><strong>全球跨区域调拨</strong>（大中华区仍有需求的货品调往其他区域，降全球库存水位）</li>
+<li><strong>订货端管控</strong>（下半年不为追业绩加订）</li>
+<li><strong>拒绝大规模促销</strong>（品牌保护 + 消费者体验）</li>
+</ol>
+<h3>供应链对策（&quot;苹果式解法&quot;的降级版）</h3>
+<ul>
+<li>优先<strong>海外工厂向海外市场供货</strong>（源头缩短物流距离）</li>
+<li><strong>整合海运/空运/铁路</strong>多式联运，降低头程运费</li>
+<li><strong>供应链信息化</strong>（未来 1-2 年核心重点）：精密生产 + 源头降库存</li>
+<li>全球 10+ 国家地区仓储物流体系 + 前置仓建设</li>
+</ul>
+<h3>货值密度 vs 苹果（传导链简述）</h3>
+<p>运输成本按重量/体积计：盲盒 ¥59-89（货值密度约 ¥300-600/kg）vs iPhone ¥5,000-10,000（约 ¥25,000-50,000/kg），同重量货值差两个数量级 → 空运费占货值比例差两个数量级 → 泡泡玛特只能用海运（空运费吃毛利）→ 海运 40-60 天补货周期 → 前置库存高。核心含义：<strong>货值密度决定供应链容错空间</strong>——苹果预测错了空运短周期可快速纠正，泡泡玛特一次备错消化一年。</p>
+<blockquote>
+<p>详见 <code>raw/research/泡泡玛特/2026-08-20-中期业绩快讯.md</code> 第六节分析备注。待验证：库存下降是否伴随库龄改善；海外工厂/物流基建兑现速度。</p>
+</blockquote>
+<hr />
+<h2>七、会员与复购</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align:right">2026H1</th>
+<th style="text-align:right">2025A</th>
+<th style="text-align:right">2025H1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全球累计注册会员</td>
+<td style="text-align:right">&gt;1 亿</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">—</td>
+</tr>
+<tr>
+<td>中国内地累计注册会员</td>
+<td style="text-align:right">8,244 万</td>
+<td style="text-align:right">7,258 万（+2,650 万）</td>
+<td style="text-align:right">5,912 万（+1,304 万）</td>
+</tr>
+<tr>
+<td>中国内地会员销售占比</td>
+<td style="text-align:right">92.9%</td>
+<td style="text-align:right">93.7%</td>
+<td style="text-align:right">91.2%</td>
+</tr>
+<tr>
+<td>中国内地会员复购率</td>
+<td style="text-align:right">51.6%</td>
+<td style="text-align:right">55.7%</td>
+<td style="text-align:right">50.8%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>2024 年末中国内地注册会员 4,608 万（2025 年报追溯口径）。来源：2026 中报 P21-22 / 2025 年报 P17 / 2025 中报 P12。</p>
+</blockquote>
+<p><strong>洞察</strong>：中国内地 92.9% 销售来自会员，复购率 51.6%——用户黏性极强（与茅台&quot;喝多喝少&quot;框架同理，需求核心在复购而非拉新）。复购率边际：50.8%（25H1）→ 55.7%（25A）→ 51.6%（26H1），2026H1 回落至 2025H1 以下，需跟踪。全球注册会员破亿，海外会员运营是下一阶段重心。</p>
+<hr />
+<h2>八、数据可用性边界</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>粒度</th>
+<th>来源</th>
+<th>边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP 拆分</td>
+<td>半年度（2026H1 起）</td>
+<td>中报</td>
+<td>2026H1 起中报披露按 IP 明细；历史年度来自年报</td>
+</tr>
+<tr>
+<td>品类拆分</td>
+<td>半年度</td>
+<td>中报</td>
+<td>2026H1 起披露</td>
+</tr>
+<tr>
+<td>线上子渠道</td>
+<td>半年度（中国）</td>
+<td>中报</td>
+<td>海外线上拆分 2026H1 起披露</td>
+</tr>
+<tr>
+<td>海外地区拆分</td>
+<td>半年度</td>
+<td>中报</td>
+<td>2026H1 起按区域×渠道披露</td>
+</tr>
+<tr>
+<td>门店/机器人数量</td>
+<td>半年度</td>
+<td>中报</td>
+<td>含区域明细 + 单店效率可倒算</td>
+</tr>
+<tr>
+<td>会员/复购</td>
+<td>半年度</td>
+<td>中报</td>
+<td>仅中国内地数据；全球仅总数</td>
+</tr>
+<tr>
+<td>同店销售</td>
+<td>不可得</td>
+<td>—</td>
+<td>年报/中报均不披露</td>
+</tr>
+<tr>
+<td>毛利率</td>
+<td>半年度</td>
+<td>DB + 中报</td>
+<td>2026H1 69.7%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ 2026H1 起中报披露维度大幅升级（IP/品类/区域渠道/门店/会员/分部业绩全披露），此前年份仅有年度数据。历史跟踪表见用户提供 Excel（<code>raw/research/泡泡玛特/2026-08-20-渠道跟踪表-用户提供.xlsx.md</code>，19H1–25A 年度口径，注意 25 年起渠道口径有调整：25H1 起线上改按官网/天猫/抖音/其他）。</p>
+</blockquote>
+<h2>参见</h2>
+<ul>
+<li><a href="../%E8%85%BE%E8%AE%AF%E6%8E%A7%E8%82%A1/overview.html">overview</a> — 数据目录（含数据库表结构 + SQL 查询示例）</li>
+<li><a href="%E8%B7%9F%E8%B8%AA/%E5%AD%98%E8%B4%A7%E8%B7%9F%E8%B8%AA.html">跟踪/存货跟踪</a> — 存货专项：开店×营收×减值三维跟踪</li>
+<li><a href="../%E8%85%BE%E8%AE%AF%E6%8E%A7%E8%82%A1/thesis.html">thesis</a> — 投资论点</li>
+<li><a href="../%E8%85%BE%E8%AE%AF%E6%8E%A7%E8%82%A1/industry-chain.html">industry-chain</a> — IP 产业链全景
+<a href="../../../research/index.md">research/index.md</a></li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/泡泡玛特/运营指标.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

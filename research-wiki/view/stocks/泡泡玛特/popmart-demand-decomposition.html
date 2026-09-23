@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特需求拆解 — 归纳法 × 演绎法 × 芒格多元模型</title><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特需求拆解 — 归纳法 × 演绎法 × 芒格多元模型</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 .topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,6 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
 .md pre code{background:none;padding:0}
 .md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
 .md img{max-width:100%;border-radius:6px;cursor:zoom-in}
 #lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
 #lb.on{display:block}
@@ -106,4 +107,283 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
-</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">泡泡玛特</a> › <a href="popmart-demand-decomposition.html">泡泡玛特需求拆解 — 归纳法 × 演绎法 × 芒格多元模型</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特需求拆解 — 归纳法 × 演绎法 × 芒格多元模型</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span><span style="margin-left:auto;color:#b0b5bd">research/articles/synthesis</span></div><div class="md" id="md"></div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/synthesis/popmart-demand-decomposition.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var S="IyDms6Hms6HnjpvnibnpnIDmsYLmi4bop6PigJTigJTlvZLnurPms5Ugw5cg5ryU57uO5rOVIMOXIOiKkuagvOWkmuWFg+aooeWeiwoKPiDmlrnms5XorrrvvJrku47mtojotLnooYzkuLrljoblj7LmlbDmja7lvZLnurPnrKzkuIDmgKfljp/nkIYg4oaSIOa8lOe7juaOqOa8lOmcgOaxgueahOWPr+aMgee7reaApyDihpIg6IqS5qC85aSa5YWD5qih5Z6L5pig5bCECj4g55u45YWz77yaW1suLi/ms6Hms6Hnjpvnibkv5pWw5o2u55uu5b2VXV0KPiDlp4rlprnnr4fvvJpbW3BvcG1hcnQtaGlzdG9yaWNhbC1jeWNsZS1kZWZlbnNlXV3vvIjlhazlj7jlsYLpnaLnmoTlkajmnJ/pmLLlvqHvvInCtyDmnKzmlofogZrnhKbmtojotLnogIXlsYLpnaIKCi0tLQoKIyMg5LiA44CB5b2S57qz5rOV77ya5LuO5LiJ5Liq5Y6G5Y+y5LqL5a6e5Lit5o+Q5Y+W56ys5LiA5oCn5Y6f55CGCgojIyMgMS4xIOWOhuWPsuS6i+WunuS4gO+8muaKveebkuacuiB2cyDnrKzkuInmlrnmuKDpgZPnmoTov5vljJbvvIgyMDIxLTIwMjXvvIkKCmBgYArkuK3lm73nur/kuIrlrZDmuKDpgZPokKXmlLbvvIjnmb7kuIflhYPvvInvvJoKICDmuKDpgZMgICAgMjAyMSAgICAyMDIyICAgIDIwMjMgICAgMjAyNCAgICAyMDI1ICAgIDXlubTlj5jljJYKICDmir3nm5LmnLogICAgOTIxICAgIDk1NSAgICA3MjkgICAxLDExNCAgIDMsNDIzICAgKzI3MiUKICDlpKnnjKsgICAgICA1OTkgICAgNDYyICAgIDMyMiAgICAgNjI4ICAgMSw3ODUgICArMTk4JQogIOaKlumfsyAgICAgICAg4oCUICAgICAg4oCUICAgIDI4MyAgICAgNjAxICAgMSw1OTAgICAg4oCU77yIMjAyM+i1t++8iQogIOS6rOS4nCAgICAgIDE0MyAgICAxMzggICAgICDigJQgICAgICAg4oCUICAgICAgIOKAlCAgICDpgIDlh7oKICDlhbbku5YgICAgICAxOTggICAgMjc1ICAgIDE5MCAgICAgNDI5ICAgMSw3MjQgICArNzcxJQoK5oC757q/5LiK77yaICAgMSw4NjEgIDEsODMwICAxLDUyNSAgIDIsNzcyICAgOCw1MjIgICArMzU4JQpgYGAKCioq5b2S57qz5rSe5a+fKirvvJrov5nkuI3mmK8i57q/5LiK5rig6YGT5Zyo5aKe6ZW/IuKAlOKAlOi/meaYryoq5oq955uS5py65Zyo56K+5Y6L5LiA5YiHKirjgIIKCuaKveebkuacuu+8iOW+ruS/oeWwj+eoi+W6j+ebsuebkuacuu+8ieS7juWNoOe6v+S4ijQ5LjUl6ZmN6IezNDAuMiXvvIjljaDmr5TkuIvpmY3vvInvvIzkvYbnu53lr7nlgLzku445LjLkur/mtqjliLAzNC4y5Lq/44CC5oqW6Z+z5LuOMOa2qOWIsDE1Ljnkur/jgILlpKnnjKvlkozkuqzkuJzlnKgyMDIxLTIwMjPlubTmm77nu4/okI7nvKnvvIwyMDI0LTIwMjXlubTlj4jlj43lvLnjgIIKCioq56ys5LiA5oCn5Y6f55CG77ya5rig6YGT5LiN5piv5Lit5oCn55qE4oCU4oCU5LiN5ZCM55qE5rig6YGT5om/6L295LiN5ZCM55qE5raI6LS55Yqo5py644CCKioKCmBgYArmir3nm5LmnLrvvIjlvq7kv6HlsI/nqIvluo/vvInvvJrnm7Lnm5LmnLrliLbnmoTljp/nlJ/ovb3kvZMKICDmtojotLnogIXliqjmnLrvvJrmi4bnm5LnmoTlhbTlpYvmhJ/vvIjov4fnqIvmtojotLnvvIkKICAK5oqW6Z+z55u05pKt77ya5Yay5Yqo5raI6LS5ICsg56S+5Lqk5o6o6I2QCiAg5raI6LS56ICF5Yqo5py677ya6KKr5Li75pKt5oOF57uq5oSf5p+T77yI5Y2z5pe25ruh6Laz77yJCgrlpKnnjKsv5Lqs5Lic77ya6K6h5YiS5oCn6LSt5LmwCiAg5raI6LS56ICF5Yqo5py677ya5oiR55+l6YGT5oiR6KaB5LuA5LmI77yI55uu5qCH5raI6LS577yJCmBgYAoK5oq955uS5py655qE5Y6L5YCS5oCn5LyY5Yq/6K+05piO77yaKirms6Hms6HnjpvnibnnmoTmoLjlv4PmtojotLnliqjmnLrkuI3mmK8i5oiR6ZyA6KaB6L+Z5Liq546p5YW3Iu+8jOiAjOaYryLmiJHllpzmrKLmi4bnm5LnmoTov4fnqIsiKirjgILov5nmmK/mnKzotKjljLrliKvigJTigJTlroPmm7Tlg4/kubDlvannpajvvIzogIzkuI3mmK/kubDllYblk4HjgIIKCiMjIyAxLjIg5Y6G5Y+y5LqL5a6e5LqM77yaTW9sbHkg55qEIuesrOS6jOaYpSLvvIgyMDE2LTIwMjXvvIkKCmBgYApNb2xseSDokKXmlLbvvIjms6Hms6Hnjpvnibnlj6PlvoTvvInvvJoKICAyMDE2LTE5OiDku47pm7bliLDnjrDosaHnuqcg4oaSIOWNoOazoeazoeaUtuWFpSA+NDAlCiAgMjAyMC0yMTog5aKe6YCf5pS+57yT77yM5Y2g5q+U5LiL6ZmNCiAgMjAyMjogTW9sbHkg6KGw6YCAIOKGkiDms6Hms6HmlbTkvZPlop7pgJ/ot4zoh7MgMi44JQogIDIwMjM6IE1vbGx5IOmAhuWKv+WPjeW8ueiHsyAxMCDkur8r77yIKzI3Je+8ieKGkiAi56ys5LqM5pilIgogIDIwMjQ6IOe7p+e7reWinumVvwogIDIwMjU6IOeos+Wumui0oeeMriB+MTUlIOaUtuWFpQpgYGAKCioq5b2S57qz5rSe5a+fKirvvJpNb2xseSDkuI3mmK8i6L+H5LqG5beF5bOw5bCx5rC46L+c5LiL5ruRIuKAlOKAlOWug+e7j+WOhuS6huihsOmAgOeEtuWQjuWPjeW8ueOAgui/meS4quWPjei9rOaYr+WboOS4uuazoeazoeeOm+eJueWcqCBNb2xseSDkuIrlgZrkuobkuInku7bkuovvvJrlk4HniYzogZTlkI3vvIjml6XnlKjlk4Hnur/vvInjgIHpq5jnq6/ljJbvvIhNRUdB77yJ44CB6K6+6K6h6L+t5Luj77yI5paw57O75YiX77yJ44CCKipJUOeahOeUn+WRveWRqOacn+S4jeaYr+WbuuWumueahOKAlOKAlOWug+WPluWGs+S6jui/kOiQpeaKleWFpeOAgioqCgoqKuesrOS4gOaAp+WOn+eQhu+8mklQ55qE55Sf5ZG95YqbID0gZu+8iOWOn+Wni+iuvuiuoeeahOi0qOmHjyDDlyDov5DokKXnmoTmjIHnu63mipXlhaXvvIkqKgoKYGBgCk1vbGx5IOeahOWOn+Wni+iuvuiuoei0qOmHj++8mumrmO+8iOmHkeWPkeeip+ecvOWYn+WYtCA9IOaegeeugOS9humGkuebru+8iQogIOesrOS4gOaYpe+8muebsuebkuacuuWItuW8leeIhgogIOihsOmAgO+8mua2iOi0ueiAheaWsOmynOaEn+a2iOmAgAogIOesrOS6jOaYpe+8muiBlOWQjSArIE1FR0Eg57uZ6ICB55So5oi35paw6LSt5Lmw55CG55SxCiAgCuKGkiBJUOS4jeS8miLoh6rliqjov4fmsJQi44CC5a6D5LyaIuiiq+mBl+W/mCLlvZPlhazlj7jlgZzmraLnu5nlroPmlrDlhoXlrrnjgIIK4oaSIOazoeazoeeOm+eJuSAyMDIyIOW5tOeahOWNseacuuaVmeS8muS6huS7luS7rOi/meS4gOeCueKAlOKAlOS5i+WQjuS7luS7rOS4jeWGjeWBnOatoui/kOiQpeOAggpgYGAKCiMjIyAxLjMg5Y6G5Y+y5LqL5a6e5LiJ77ya5ZCM5LiA55So5oi377yM5LiN5ZCM5Lu35qC85bim55qE5raI6LS577yIMjAxNi0yMDI177yJCgpgYGAK5rOh5rOh546b54m555qE5ZOB57G75ryU6L+b77yaCiAgMjAxNi0xOTog5Y2V5LiA5ZOB57G777yINTkg5YWDIFBWQyDnm7Lnm5LvvIkKICAyMDIwLTIxOiDlop7liqAgNzkg5YWD55uy55uS44CBOTkg5YWD5aSn5aiDCiAgMjAyMzog5pCq6IO25q+b57uS77yIOTktMjk5IOWFg++8ieOAgU1FR0HvvIgxMDAwLTUwMDAg5YWD77yJCiAgMjAyNTog5q+b57uSICsg5omL5YqeICsgTUVHQSArIOihjeeUn+WTgSArIOenr+acqCArIEJKRAogICAgICAgIOavm+WIqeeOhyA3Mi4xJe+8iOWTgeexu+WkmuWFg+WMluaOqOWNh++8iQpgYGAKCioq5b2S57qz5rSe5a+fKirvvJrlkIzkuIDnvqTmtojotLnogIXvvIzlnKjkuI3lkIzlk4HnsbvkuIroirHkuoblrozlhajkuI3lkIznmoTpkrHjgILkubAgNTkg5YWDIE1vbGx5IOeahOa2iOi0ueiAhe+8jOWQjuadpeS5sOS6hiAyOTkg5YWD55qEIExBQlVCVSDmr5vnu5LvvIzlho3lkI7mnaXkubDkuoYgMTk5OSDlhYPnmoQgTUVHQeOAgioq5raI6LS55Y2H57qn5LiN5pivIua2iOi0ueiAheWPmOaciemSseS6hiLvvIzmmK8i5ZCM5LiA5Liq5oOF5oSf6ZyA5rGC5Zyo5LiN5ZCM5Lu35qC854K55om+5Yiw5LqG5LiN5ZCM6L295L2TIuOAgioqCgoqKuesrOS4gOaAp+WOn+eQhu+8mua2iOi0ueWKm+eahOWIhuWxgiA9IOWQjOS4gOS4qiBJUCDplJrlnKjkuI3lkIzku7fmoLzluKbnmoTovb3kvZPkuIrjgIIqKgoKYGBgCuS7t+agvOW8ueaAp+eahOaLhuino++8mgogIDU5IOWFg+ebsuebku+8muWGsuWKqOa2iOi0ue+8jOmcgOaxguW8ueaAp+mrmO+8iOS7t+agvOe/u+WAjeKGkuS5sOeahOS6uuWwkSA3MCXvvIkKICAyOTkg5YWD5q+b57uS77ya6L275bqm5pS26JeP77yM6ZyA5rGC5by55oCn5LitCiAgMTk5OSDlhYMgTUVHQe+8mumHjeW6puaUtuiXjy/mipXotYTvvIzpnIDmsYLlvLnmgKfkvY7vvIjnqIDnvLrpqbHliqjvvIkKYGBgCgotLS0KCiMjIOS6jOOAgea8lOe7juazle+8muS7juesrOS4gOaAp+WOn+eQhuaOqOa8lOmcgOaxgueahOWPr+aMgee7reaApwoKIyMjIDIuMSDmoLjlv4PlhazlvI/nmoTmvJTnu47ph43mnoQKCuS7juS4ieadoeesrOS4gOaAp+WOn+eQhuWHuuWPke+8jOmHjeaWsOWumuS5ieazoeazoeeOm+eJueeahOa2iOi0ueWFrOW8j++8mgoKYGBgCuS8oOe7n+WFrOW8j++8iOmUmeivr++8ie+8mgogIOiQpeaUtiA9IOi0reS5sOS6uuaVsCDDlyDkurrlnYfmtojotLnph5Hpop0KICDihpIg5YGH6K6+IuS6uui2iuadpei2iuWkmiLmiJYi5Lq65Z2H6LaK5p2l6LaK6auYIuKAlOKAlOi/h+S6jueugOWMlgoK5ryU57uO6YeN5p6E77yI5q2j56Gu77yJ77yaCiAg6JCl5pS2ID0gzqPvvIjmr4/kuKpJUOeahOaDheaEn+eUn+aAgeS9jSDDlyDmr4/kuKrovb3kvZPnmoTop6bovr7lipsgw5cg5q+P5Liq5rig6YGT55qE6L2s5YyW546H77yJCgogIOWxleW8gO+8mgogIElQ5oOF5oSf55Sf5oCB5L2N77ya5Lq657G75oOF5oSf57G75Z6L5pyJ6ZmQ5L2G6Laz5aSf5aSa77yI5Zac5oCS5ZOA5LmQK+WkjeWQiOaDhee7qu+8iQogICAgICAgICAgICAgICAg5rOh5rOh5q2j5Zyo6KaG55uW6LaK5p2l6LaK5aSa55qE55Sf5oCB5L2NCiAgCiAg6L295L2T6Kem6L6+5Yqb77ya5ZCM5LiASVDlj6/nlKjkuI3lkIzovb3kvZPop6bovr7kuI3lkIzmtojotLnogIUKICAgICAgICAgICAgICBNb2xseSBQVkMg6Kem6L6+5a2m55SfIOKGkiBNb2xseSBNRUdBIOinpui+vuaUtuiXj+WutgogIAogIOa4oOmBk+i9rOWMlueOh++8muaKveebkuacuui9rOWMliLlhrLliqjmi4bnm5Ii44CB5oqW6Z+z6L2s5YyWIuWNs+aXtua7oei2syLjgIHpl6jlupfovazljJYi5L2T6aqM5raI6LS5IgpgYGAKCioq6L+Z5Liq6YeN5p6E55qE5qC45b+D5oSP5LmJKirvvJrms6Hms6HnjpvnibnnmoTlop7plb/kuI3kvp3otZbkuo4i5pu05aSa5Lq65Lmw5pu05aSa5Lic6KW/IuKAlOKAlOWug+S+nei1luS6jioq5ZCM5LiA5Liq57O757uf55So5pu05aSa5pa55byP6Kem6L6+5pu05aSa5Lq6KirjgILov5nmmK/moLnmnKzkuI3lkIznmoTlop7plb/pgLvovpHjgIIKCiMjIyAyLjIg5ryU57uO5LiA77ya6ZyA5rGC55qE5Z+65pys55uY4oCU4oCUIuS8muS4jeS8muS5sCIKCmBgYArmvJTnu47liY3mj5DvvJoKUDE6IOS6uuexu+eahOi6q+S7veihqOi+vumcgOaxguaYr+awuOaBkueahO+8iOavj+S4gOS7o+S6uumDveeUqOafkOenjeaWueW8j+ihqOi+viLmiJHmmK/osIEi77yJClAyOiBa5LiW5Luj6YCJ5oup55qE5Y+v6LSf5ouF6Lqr5Lu96KGo6L6+5pa55byP77ya5r2u546pID4g55CD6Z6LID4g6KGX5aS05ZOB54mMID4g5b+r5pe25bCaClAzOiDms6Hms6HnjpvnibnljaDmja7kuoYgWiDkuJbku6Mi5Y+v6LSf5ouF6Lqr5Lu95raI6LS5IueahOW/g+aZuuWFpeWPowpQNDogWiDkuJbku6PmnKrmnaUgMTAtMTUg5bm06L+b5YWl5pS25YWl6auY5bOw5pyfIOKGkiDmtojotLnlipvkuIrljYcK4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACkM6ICLkvJrkuI3kvJrkubAi55qE5Z+65pys55uY5piv56iz5a6a55qE4oCU4oCU5LiN5piv5Zug5Li6Iua9rueOqeawuOi/nOeBqyLvvIwKICAg6ICM5piv5Zug5Li66Lqr5Lu96KGo6L6+55qE6ZyA5rGC5rC46L+c5a2Y5Zyo77yM5rOh5rOh546b54m55Yia5aW95piv5b2T5YmN6L+Z5Luj5Lq655qE6L295L2TCmBgYAoKKirlhbPplK7mjqjorroqKu+8muecn+ato+eahOmjjumZqeS4jeaYryLov5nku6PkurrnqoHnhLbkuI3llpzmrKLmva7njqnkuoYi77yM6ICM5pivKirkuIvkuIDku6Pkurrmib7liLDkuobkuIvkuIDkuKrouqvku73ooajovr7ovb3kvZPvvIzogIzms6Hms6HnjpvnibnkuI3lnKjlhbbkuK0qKuOAgui/meaYryAxMCDlubTlsLrluqbnmoTpo47pmanvvIzkuI3mmK8gMyDlubTlsLrluqbnmoTpo47pmanjgIIKCiMjIyAyLjMg5ryU57uO5LqM77ya6ZyA5rGC55qE5by55oCn4oCU4oCUIuS5sOWkmuWwkSIKCmBgYArmvJTnu47liY3mj5DvvJoKUDE6ICLkubDlpJrlsJEiID0gZu+8iOezu+WIl+WPkeW4g+iKguWljyDDlyDpmpDol4/mrL7lkLjlvJXlipsgw5cg56S+5Lqk6amx5Yqo5Yqb77yJClAyOiDns7vliJflj5HluIPoioLlpY/nlLHms6Hms6HnjpvnibnmjqfliLbvvIjkvpvnu5nnq6/vvInvvIzkuI3mmK/mtojotLnogIXlhrPlrprvvIjpnIDmsYLnq6/vvIkKUDM6IOmakOiXj+asvuacuuWItiA9IOWPr+WPmOWlluWKse+8iOaWr+mHkee6s+euse+8ie+8jOaYr+W3suefpeacgOW8uueahOihjOS4uuW8uuWMluaWueW8jwpQNDog56S+5Lqk6amx5Yqo5YqbID0gZu+8iOWwj+e6ouS5pi9UaWtUb2sg5LiK5pmS55uS55qE5Lyg5pKt5pWI546H77yJCuKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgApDOiAi5Lmw5aSa5bCRIuS4jeaYr+WklueUn+eahOa2iOi0ueiAheWBj+WlveKAlOKAlOWug+aYr+iiq+azoeazoeeOm+eJueeahOacuuWItuiuvuiuoeeahAogICDlj6ropoHmnLrliLbnu6fnu63lt6XkvZzvvIwi5Lmw5aSa5bCRIuS4jeS8muiHqueEtuWcsOihsOWHjwpgYGAKCioq5YWz6ZSu5o6o6K66KirvvJrkuI7ojIXlj7DkuI3lkIzigJTigJTojIXlj7DnmoQi5Zad5aSa5bCRIueUseWutOivt+WcuuaZr+WGs+Wumu+8iOWklueUn++8jOS4jeWPr+aOp++8ie+8jOazoeazoeeOm+eJueeahCLkubDlpJrlsJEi55SxKiroh6rlt7HnmoTlj5HluIPoioLlpY/lkozmnLrliLYqKuWGs+Wumu+8iOWGheeUn++8jOWPr+aOp++8ieOAgui/meS4jeaYr+abtOiEhuW8seKAlOKAlOi/meaYryoq5pu05Y+v5o6nKirjgIIKCioq6IqS5qC855qEIuWPjei/h+adpeaDsyIqKu+8muS7gOS5iOaDheWGteS4i+i/meS4quaOqOeQhuWkseaViO+8nwoKLSDkuI3mmK8i5raI6LS56ICF5Y6M5YCm5LqG55uy55uSIu+8jOiAjOaYryoq5pS/562W56aB5q2i55uy55uS5py65Yi2KirvvIjlpJbnlJ/lhrLlh7vvvIkKLSDkuI3mmK8i6ZqQ6JeP5qy+5LiN5YaN56iA57y6Iu+8jOiAjOaYryoq5LqM57qn5biC5Zy65bSp55uY5a+86Ie06ZqQ6JeP5qy+5Lu35YC85b2S6Zu2KioKLSDkuI3mmK8i5pmS55uS5LiN5YaN5rWB6KGMIu+8jOiAjOaYryoq5paw55qE56S+5Lqk5bmz5Y+w5Y+W5Luj5bCP57qi5Lmm77yM6ICM5rOh5rOh5pyq5YWl6am7KioKCiMjIyAyLjQg5ryU57uO5LiJ77ya6ZyA5rGC55qE5rex5bqm4oCU4oCUIuiKseWkmuWwkemSsSIKCmBgYArmvJTnu47liY3mj5DvvJoKUDE6IOWQjOS4gOa2iOi0ueiAheWvueWQjOS4gElQ55qE5oOF5oSf5oqV5YWl6ZqP5pe26Ze05ZKM5pS26JeP5rex5bqm6ICM5Yqg5rexClAyOiDms6Hms6Hnjpvnibnmj5Dkvpvkuobku44gNTkg5YWD5YiwIDUwMDAg5YWD55qE5Lu35qC85qKv5bqmClAzOiDku7fmoLzlvLnmgKfpmo/mlLbol4/mt7HluqbpgJLlh4/vvIjmlrDmiYvkubA1OeWFg++8jOmHjeW6pueyieS4neS5sDE5OTnlhYNNRUdB77yJClA0OiDmr5vliKnnjocgNzIuMSUg6K+05piO5b2T5YmN5Lu35qC85bim55qE5Yip5ram56m66Ze05YWF6LazCuKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgApDOiAi6Iqx5aSa5bCR6ZKxIuacieiHqueEtueahOWQkeS4iui/geenu+i3r+W+hOKAlOKAlOS4jeaYr+W8uui/q+a2iOi0ueWNh+e6p++8jAogICDogIzmmK/mtojotLnogIXlnKjmlLbol4/kuYvot6/kuIroh6rnhLbotbDlkJHmm7Tpq5jku7fkvY0KYGBgCgoqKuWFs+mUruaOqOiuuioq77ya5rOh5rOh546b54m55LiN6ZyA6KaBIuiuqeept+S6uuWPmOWvjCLmnaXmjqjpq5jlrqLljZXku7fjgILlroPlj6rpnIDopoEqKuiuqeW3suacieeahOeyieS4neWcqOaUtuiXj+S5i+i3r+S4iui1sOW+l+abtOa3sSoq44CC6ICM6L+Z5p2h6Lev5LiK55qE5q+P5LiA5q2l77yI55uy55uS4oaS5q+b57uS4oaSTUVHQeKGkuiBlOWQjeWQiOS9nO+8iemDveaYr+azoeazoeS4u+WKqOiuvuiuoeeahOOAggoKLS0tCgojIyDkuInjgIHoipLmoLzlpJrlhYPmqKHlnovmmKDlsITvvJrku47nrKzkuIDmgKfljp/nkIbliLDmipXotYTliKTmlq0KCiMjIyAzLjEg5LqU5p2h56ys5LiA5oCn5Y6f55CGIMOXIOiKkuagvOaooeWeiwoKfCDnrKzkuIDmgKfljp/nkIYgfCDoipLmoLzmqKHlnosgfCDmipXotYTlkKvkuYkgfAp8LS0tLS0tLS0tLS18LS0tLS0tLS0tfC0tLS0tLS0tLXwKfCDmuKDpgZPmib/ovb3kuI3lkIzmtojotLnliqjmnLrvvIjmir3nm5LmnLo96L+H56iL44CB5oqW6Z+zPeWGsuWKqOOAgeWkqeeMqz3nm67moIfvvIl8ICoq5b+D55CG5a2mL+WPr+WPmOWlluWKsSoqIHwg5oq955uS5py65Y2g5q+U6LaK6auY77yM55So5oi355qEIui/h+eoi+a2iOi0uSLlsZ7mgKfotorlvLrihpLlpI3otK3nmoTmnLrliLbpqbHliqjotornqLPlm7ogfAp8IElQ55Sf5ZG95YqbID0gZu+8iOiuvuiuoei0qOmHjyDDlyDov5DokKXmipXlhaXvvIl8ICoq5bel56iL5a2mL+e7tOaKpOaIkOacrCoqIHwgSVDkuI3kvJroh6rliqjmtojkuqHvvIzkvYbpnIDopoHmjIHnu63mipXlhaXjgILms6Hms6HlnKggTW9sbHkg5LiK6K+B5piO5LqGIui/kOiQpeiDvea/gOa0u+esrOS6jOaYpSIgfAp8IOWQjOS4gElQID0g5LiN5ZCM5Lu35qC85bim55qE6L295L2TIHwgKirlvq7op4Lnu4/mtY7lraYv5Lu35qC85q2n6KeGKiogfCDkuI3mmK8i6K6p5pu05aSa5Lq65p2l5LmwIu+8jOaYryLorqnlt7LmnaXnmoTkurrkubDmm7TlpJrnp40i4oCU4oCU5ZCO6ICF55qE6I635a6i5oiQ5pys5Li66Zu2IHwKfCDouqvku73ooajovr7pnIDmsYLmsLjmgZLvvIzovb3kvZPku6PpmYXmm7Tmm78gfCAqKuekvuS8muWtpi/ku6PpmYXliIblsYIqKiB8IOmjjumZqeS4jeWcqCLov5nku6Pkuroi77yM5ZyoIuS4i+S4gOS7oyLigJTigJQxMOW5tOWwuuW6pueahOWogeiDge+8jDPlubTlsLrluqbnmoTmnLrkvJogfAp8ICLkubDlpJrlsJEi55Sx5rOh5rOh6Ieq5bex6K6+6K6hIHwgKirlt6XnqIvlraYv5o6n5Yi257O757ufKiogfCDkuI3mmK/ooqvliqjnmoTpnIDmsYLnrqHnkIbvvIzmmK/kuLvliqjnmoTkvpvnu5npqbHliqjigJTigJTmr5TojIXlj7Dmm7Tlj6/mjqcgfAoKIyMjIDMuMiBMb2xsYXBhbG9vemEg5q2j5ZCR77ya5b2T5LqU5Yqb5YWx5oyvCgpgYGAK5b2T5Lul5LiL5LqU5Liq5p2h5Lu25ZCM5pe25ruh6Laz5pe277yM6ZyA5rGC5Lya6Z2e57q/5oCn5pS+5aSn77yaCiAg4pGgIOaWsElQ5pKe5LiK6aOO5Y+j77yIUG9pc3NvbuWRveS4re+8iQogIOKRoSDmlrDovb3kvZPmgbDlpb3ljLnphY1JUOiwg+aAp++8iOavm+e7kiArIExBQlVCVSA9IOWMluWtpuWPjeW6lOeahOaIkOaenO+8iQogIOKRoiDnpL7kuqTlvJXniIbvvIhMaXNh5L2p5oi0IOKGkiDlhajnkIPkvKDmkq0g4oaSIFRFROe6p+abneWFie+8iQogIOKRoyDlhajnkIPmuKDpgZPlkIzmraXpk7rlvIDvvIjmtbflpJbnlKjmiLflj5HnjrDihpLotK3kubDihpLmmZLnm5LvvIzlrozmlbTlvqrnjq/vvIkKICDikaQgWuS4luS7o+WcqOebuOW6lOW4guWcuuaBsOWlveWkhOS6jua2iOi0ueWKm+S4iuWNh+acnwogIArihpIg6L+Z5bCx5pivIDIwMjQtMjUg5bm055qE5pWF5LqL44CCCuKGkiDov5nkupTlipvmmK/lkKbkvJrlnKjmnKrmnaU15bm05YaN5qyh5ZCM5pe26Kem5Y+R77yf5LiN5bqU6K+l5pS+5YWl5Z+65YeG5YGH6K6+44CCCmBgYAoKIyMjIDMuMyBMb2xsYXBhbG9vemEg6LSf5ZCR77ya5b2T6ZyA5rGC5bSp5aGMCgpgYGAK5b2T5Lul5LiL5p2h5Lu25ZCM5pe26Kem5Y+R5pe277yM6ZyA5rGC5Lya6Z2e57q/5oCn5pS257yp77yaCiAg4pGgIOavm+e7kuWTgeexu+mAgOa9ru+8iOi9veS9k+eWsuWKs++8iQogIOKRoSDmlrBJUOaWreWxgu+8iFBvaXNzb27ov4fnqIvlh7rnjrDnvZXop4HnmoTov57nu60i5pyq5ZG95LitIu+8iQogIOKRoiDmtbflpJblj5fmjKvvvIjlnLDnvJjmlL/msrvmiJbmlofljJbmsLTlnJ/kuI3mnI3vvIkKICDikaMg5Zu95YaF5Li75Yqb55So5oi35bqm6L+HM+W5tOmrmOa0u+i3g+acn+WQjua1geWksQogIOKRpCDmlrDkuIDku6PlubTovbvkurrmib7liLDkuoblrozlhajkuI3lkIznmoTouqvku73ooajovr7ovb3kvZPvvIjkuIvkuIDku6NpUGhvbmXml7bliLvvvIkKICAK4oaSIOi/meS6lOS4quadoeS7tuacieS4gOWumueahOebuOWFs+aAp++8iOS4jeaYr+eLrOeri+eahO+8ie+8jOWQjOaXtuinpuWPkeeahOamgueOh+S4jeWuueW/veinhgrihpIg5L2G6YCQ5LiA5qOA6aqM77ya4pGg5Y+v6IO977yI6L295L2T5pyJ5ZGo5pyf77yJ77yM4pGh5bey5pyJ6aKE6Ziy77yI5rWB5rC057q/5Zyo6LeR77yJ77yMCiAg4pGi5Y+v5o6n5L2G6Z2e6Zu277yM4pGj5Y+q5b2x5ZON5a2Y6YeP5LiN5Yaz5a6a5rWB6YeP77yM4pGk5piv5pyA6L+c55qE5aiB6IOBCmBgYAoKIyMjIDMuNCDoipLmoLznmoQi5LqM5YC86Zeu6aKYIu+8mumcgOaxguacgOW3ruS8muaAjuagt++8nwoKYGBgCuacgOW3rumcgOaxguaDheaZr++8mgogIOaJgOacieS6uueahOWBh+iuvu+8muazoeazoeeOm+eJuSA9IOaWsOaXtuS7o+eahOiMheWPsAogIOacgOW3ruaDheWGte+8muS4jeaYryLlpKflrrbpg73kuI3kubDkuoYi77yI6Lqr5Lu96KGo6L6+6ZyA5rGC5LiN5Lya5raI5aSx77yJCiAgICAgICAgICAg6ICM5pivIuS4i+S4gOS7o+S6uuS4jeS5sOazoeazoeeOm+eJueS6hiIKCuajgOmqjO+8mgogIOKRoCDov5nkuKoi5pyA5beuIuS8muWcqDPlubTlhoXlj5HnlJ/lkJfvvJ8gICAgICAg5Yeg5LmO5LiN5Y+v6IO977yIWuS4luS7o+i/mOWcqOS5sO+8iQogIOKRoSDkvJrlnKgxMOW5tOWGheWPkeeUn+WQl++8nyAgICAgICAgICAgICAgICAg5pyJ5Y+v6IO977yIzrHkuJbku6Pplb/lpKfkuobvvIkKICDikaIg5rOh5rOh546b54m55pyJ5pe26Ze05bqU5a+55ZCX77yfICAgICAgICAgICAgICDmnInigJTigJRJUOWPr+S7pei/reS7o++8iOaWsElQ6ZSa5a6a5paw5LiA5Luj77yJCiAg4pGjIOazoeazoeeOm+eJueeahOezu+e7n+iDveWcqCLmnIDlt64i5Lit5a2Y5rS75ZCX77yfICAg6IO977yIMTI35Lq/546w6YeRK+mbtui0n+WAuivlhajnkIPnvZHnu5zvvIkK4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACue7k+iuuu+8mumcgOaxgueahOacgOW3ruaDheaZr+aYryLlrZjlnKjkvYbnvJPmhaLoobDlh48i4oCU4oCU5LiN5pivIueqgeeEtuW9kumbtiLjgIIKYGBgCgotLS0KCiMjIOWbm+OAgeS4juiMheWPsOeahOacgOe7iOWvueavlO+8iOS/ruato+eJiO+8iQoK5LmL5YmN55qE5a+55q+U6L+H5bqm5by66LCD5LqGIuiMheWPsOabtOehrOOAgeazoeazoeabtOi9ryLigJTigJTov5nlnKjnrKzkuIDmgKfljp/nkIblsYLpnaLkuI3lrozlhajmraPnoa7jgIIKCnwg57u05bqmIHwg6IyF5Y+wIHwg5rOh5rOh546b54m5IHwg5L+u5q2j5Yik5patIHwKfC0tLS0tLXwtLS0tLS18LS0tLS0tLS0tfC0tLS0tLS0tLXwKfCDpnIDmsYLnmoTln7rmnKznm5ggfCDnpL7kuqTmtqbmu5HvvIjlrrTor7flnLrmma/vvIl8IOi6q+S7veihqOi+vu+8iOW/g+eQhuiupOWQjO+8iXwg5Lik6ICF6YO95rC45oGS77yM6L295L2T5LiN5ZCMIHwKfCAi5Lya5LiN5LyaIueahOmpseWKqOWKmyB8IOeUn+eQhuaIkOeYvu+8iOehrO+8iXwg5b+D55CGSVDorqTlkIzvvIjova/vvIl8IOiMheWPsOehruWunuabtOehrCB8CnwgIuS5sOWkmuWwkSLnmoTpqbHliqjlipsgfCDlpJbpg6jlnLrmma/vvIjkuI3lj6/mjqfvvIl8ICoq5YaF6YOo5py65Yi277yI5Y+v5o6n77yJKiogfCDwn5+iIOazoeazoeabtOWPr+aOpyB8CnwgIuiKseWkmuWwkemSsSLnmoTpqbHliqjlipsgfCBC56uv6aKE566X77yI5LiN5Y+v5o6n77yJfCAqKuWTgeexu+iuvuiuoe+8iOWPr+aOp++8iSoqIHwg8J+foiDms6Hms6Hmm7Tlj6/mjqcgfAp8IOS6p+WTgeW9ouaAgSB8IOWbuuWumu+8iOiMheWPsOmFku+8iXwg5Y+v5Y+Y77yISVAr6L295L2T77yJfCDwn5+iIOazoeazoeabtOeBtea0uyB8Cnwg5Luj6ZmF5Lyg5om/IHwg6Zeu6aKY77ya5bm06L275Lq65LiN5Zad55m96YWSIHwg5pa55qGI77yaSVDov63ku6Popobnm5bku6PpmYUgfCDwn5+iIOazoeazoeabtOS4u+WKqCB8Cnwg5oqk5Z+O5rKz5rex5bqmIHwg5p6B5rex77yIMjAwMOW5tOaWh+WMlu+8iXwg5Lit562J77yIMTDlubTlk4HniYzvvIl8IOiMheWPsOabtOa3sSB8Cnwg5oqk5Z+O5rKz5a695bqmIHwg5p6B56qE77yI5LiA5Liq5ZOB57G777yJfCDkuK3nrYnlrr3vvIjlpJrlk4Hnsbsr5aSa5Yy65Z+f77yJfCDms6Hms6Hmm7Tlrr0gfAoKKirkv67mraPnmoToipLmoLzliKTmlq0qKu+8mgoKPiAi6IKh5Lu35YWs6YGT55qE5Lyf5aSn5LyB5Lia5q+U6IKh5Lu36LaF5L2O55qE5pmu6YCa5LyB5Lia5aW944CCIgoK6IyF5Y+w55qEIuS8n+WkpyLmnaXoh6rkuI3lj6/lpI3liLbnmoTmlofljJbmt7HluqbjgILms6Hms6HnjpvnibnnmoQi5Y+v6IO95Lyf5aSnIuadpeiHquWPr+aOp+eahOmcgOaxguezu+e7nyArIOWFqOeQg+aJqeW8oCArIElQ6L+t5Luj6IO95Yqb44CCCgoqKuS4pOiAheeahOS6kuihpeaApyoq77ya6IyF5Y+wID0g5L2g5bey57uP55+l6YGT5a6D5b6I5Lyf5aSn44CC5rOh5rOh546b54m5ID0g5L2g5q2j5Zyo55yL5a6D6LWw5ZCR5Lyf5aSn44CC5ZCO6ICF6ZyA6KaB5pu05aSa55qEIuS4jea4healmuS9huWPr+aOpeWPlyLvvIzliY3ogIXpnIDopoHmjqXlj5ci5bey57uP5b6I6LS1IuOAggoKLS0tCgo+IOaOqOa8lOaXpeacn++8mjIwMjYtMDYtMjfjgILku47mtojotLnljoblj7LlvZLnurPnrKzkuIDmgKfljp/nkIYgw5cg5ryU57uO5o6o5ryU6ZyA5rGC5Y+v5oyB57ut5oCnIMOXIOiKkuagvOWkmuWFg+aooeWei+aYoOWwhOOAggoKIyMg5Y+C6KeBCgpbW3BvcG1hcnQtY3ljbGUtZGVmZW5zZS1jb21wYXJpc29uXV0gwrcgW1tyZXNlYXJjaC9pbmRleC5tZF1dIMK3IFtbcmVzZWFyY2gv5rOh5rOh546b54m5L+aKlei1hOiuuueCuS5tZF1dCltbcmVzZWFyY2gv5rOh5rOh546b54m5L+aKlei1hOiuuueCuS5tZF1dCltbcmVzZWFyY2gvYXJ0aWNsZXMvc3ludGhlc2lzL+WbveS8gea/gOWKseacuuWIti3nva7ouqvkuovlhoXmoYbmnrbkuI7ojIXlj7DmoYjkvosubWRdXSDCtyBbW3Jlc2VhcmNoL2FydGljbGVzL3N5bnRoZXNpcy9wb3BtYXJ0LWhpc3RvcmljYWwtY3ljbGUtZGVmZW5zZS5tZF1d";function dec(s){return decodeURIComponent(Array.prototype.map.call(atob(s),function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))};var el=document.getElementById("md");if(window.marked){el.innerHTML=marked.parse(dec(S));}else{el.textContent=dec(S);}var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">泡泡玛特</a> › <a href="popmart-demand-decomposition.html">泡泡玛特需求拆解 — 归纳法 × 演绎法 × 芒格多元模型</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特需求拆解 — 归纳法 × 演绎法 × 芒格多元模型</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-06-27</span><span style="margin-left:auto;color:#b0b5bd">research/articles/synthesis</span></div><div class="md" id="md"><h1>泡泡玛特需求拆解——归纳法 × 演绎法 × 芒格多元模型</h1>
+<blockquote>
+<p>方法论：从消费行为历史数据归纳第一性原理 → 演绎推演需求的可持续性 → 芒格多元模型映射
+相关：<a href="%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95.html">../泡泡玛特/数据目录</a>
+姊妹篇：<a href="popmart-historical-cycle-defense.html">popmart-historical-cycle-defense</a>（公司层面的周期防御）· 本文聚焦消费者层面</p>
+</blockquote>
+<hr />
+<h2>一、归纳法：从三个历史事实中提取第一性原理</h2>
+<h3>1.1 历史事实一：抽盒机 vs 第三方渠道的进化（2021-2025）</h3>
+<pre><code>中国线上子渠道营收（百万元）：
+  渠道    2021    2022    2023    2024    2025    5年变化
+  抽盒机    921    955    729   1,114   3,423   +272%
+  天猫      599    462    322     628   1,785   +198%
+  抖音        —      —    283     601   1,590    —（2023起）
+  京东      143    138      —       —       —    退出
+  其他      198    275    190     429   1,724   +771%
+
+总线上：   1,861  1,830  1,525   2,772   8,522   +358%
+</code></pre>
+<p><strong>归纳洞察</strong>：这不是&quot;线上渠道在增长&quot;——这是<strong>抽盒机在碾压一切</strong>。</p>
+<p>抽盒机（微信小程序盲盒机）从占线上49.5%降至40.2%（占比下降），但绝对值从9.2亿涨到34.2亿。抖音从0涨到15.9亿。天猫和京东在2021-2023年曾经萎缩，2024-2025年又反弹。</p>
+<p><strong>第一性原理：渠道不是中性的——不同的渠道承载不同的消费动机。</strong></p>
+<pre><code>抽盒机（微信小程序）：盲盒机制的原生载体
+  消费者动机：拆盒的兴奋感（过程消费）
+  
+抖音直播：冲动消费 + 社交推荐
+  消费者动机：被主播情绪感染（即时满足）
+
+天猫/京东：计划性购买
+  消费者动机：我知道我要什么（目标消费）
+</code></pre>
+<p>抽盒机的压倒性优势说明：<strong>泡泡玛特的核心消费动机不是&quot;我需要这个玩具&quot;，而是&quot;我喜欢拆盒的过程&quot;</strong>。这是本质区别——它更像买彩票，而不是买商品。</p>
+<h3>1.2 历史事实二：Molly 的&quot;第二春&quot;（2016-2025）</h3>
+<pre><code>Molly 营收（泡泡玛特口径）：
+  2016-19: 从零到现象级 → 占泡泡收入 &gt;40%
+  2020-21: 增速放缓，占比下降
+  2022: Molly 衰退 → 泡泡整体增速跌至 2.8%
+  2023: Molly 逆势反弹至 10 亿+（+27%）→ &quot;第二春&quot;
+  2024: 继续增长
+  2025: 稳定贡献 ~15% 收入
+</code></pre>
+<p><strong>归纳洞察</strong>：Molly 不是&quot;过了巅峰就永远下滑&quot;——它经历了衰退然后反弹。这个反转是因为泡泡玛特在 Molly 上做了三件事：品牌联名（日用品线）、高端化（MEGA）、设计迭代（新系列）。<strong>IP的生命周期不是固定的——它取决于运营投入。</strong></p>
+<p><strong>第一性原理：IP的生命力 = f（原始设计的质量 × 运营的持续投入）</strong></p>
+<pre><code>Molly 的原始设计质量：高（金发碧眼嘟嘴 = 极简但醒目）
+  第一春：盲盒机制引爆
+  衰退：消费者新鲜感消退
+  第二春：联名 + MEGA 给老用户新购买理由
+  
+→ IP不会&quot;自动过气&quot;。它会&quot;被遗忘&quot;当公司停止给它新内容。
+→ 泡泡玛特 2022 年的危机教会了他们这一点——之后他们不再停止运营。
+</code></pre>
+<h3>1.3 历史事实三：同一用户，不同价格带的消费（2016-2025）</h3>
+<pre><code>泡泡玛特的品类演进：
+  2016-19: 单一品类（59 元 PVC 盲盒）
+  2020-21: 增加 79 元盲盒、99 元大娃
+  2023: 搪胶毛绒（99-299 元）、MEGA（1000-5000 元）
+  2025: 毛绒 + 手办 + MEGA + 衍生品 + 积木 + BJD
+        毛利率 72.1%（品类多元化推升）
+</code></pre>
+<p><strong>归纳洞察</strong>：同一群消费者，在不同品类上花了完全不同的钱。买 59 元 Molly 的消费者，后来买了 299 元的 LABUBU 毛绒，再后来买了 1999 元的 MEGA。<strong>消费升级不是&quot;消费者变有钱了&quot;，是&quot;同一个情感需求在不同价格点找到了不同载体&quot;。</strong></p>
+<p><strong>第一性原理：消费力的分层 = 同一个 IP 锚在不同价格带的载体上。</strong></p>
+<pre><code>价格弹性的拆解：
+  59 元盲盒：冲动消费，需求弹性高（价格翻倍→买的人少 70%）
+  299 元毛绒：轻度收藏，需求弹性中
+  1999 元 MEGA：重度收藏/投资，需求弹性低（稀缺驱动）
+</code></pre>
+<hr />
+<h2>二、演绎法：从第一性原理推演需求的可持续性</h2>
+<h3>2.1 核心公式的演绎重构</h3>
+<p>从三条第一性原理出发，重新定义泡泡玛特的消费公式：</p>
+<pre><code>传统公式（错误）：
+  营收 = 购买人数 × 人均消费金额
+  → 假设&quot;人越来越多&quot;或&quot;人均越来越高&quot;——过于简化
+
+演绎重构（正确）：
+  营收 = Σ（每个IP的情感生态位 × 每个载体的触达力 × 每个渠道的转化率）
+
+  展开：
+  IP情感生态位：人类情感类型有限但足够多（喜怒哀乐+复合情绪）
+                泡泡正在覆盖越来越多的生态位
+  
+  载体触达力：同一IP可用不同载体触达不同消费者
+              Molly PVC 触达学生 → Molly MEGA 触达收藏家
+  
+  渠道转化率：抽盒机转化&quot;冲动拆盒&quot;、抖音转化&quot;即时满足&quot;、门店转化&quot;体验消费&quot;
+</code></pre>
+<p><strong>这个重构的核心意义</strong>：泡泡玛特的增长不依赖于&quot;更多人买更多东西&quot;——它依赖于<strong>同一个系统用更多方式触达更多人</strong>。这是根本不同的增长逻辑。</p>
+<h3>2.2 演绎一：需求的基本盘——&quot;会不会买&quot;</h3>
+<pre><code>演绎前提：
+P1: 人类的身份表达需求是永恒的（每一代人都用某种方式表达&quot;我是谁&quot;）
+P2: Z世代选择的可负担身份表达方式：潮玩 &gt; 球鞋 &gt; 街头品牌 &gt; 快时尚
+P3: 泡泡玛特占据了 Z 世代&quot;可负担身份消费&quot;的心智入口
+P4: Z 世代未来 10-15 年进入收入高峰期 → 消费力上升
+──────────────────────────────
+C: &quot;会不会买&quot;的基本盘是稳定的——不是因为&quot;潮玩永远火&quot;，
+   而是因为身份表达的需求永远存在，泡泡玛特刚好是当前这代人的载体
+</code></pre>
+<p><strong>关键推论</strong>：真正的风险不是&quot;这代人突然不喜欢潮玩了&quot;，而是<strong>下一代人找到了下一个身份表达载体，而泡泡玛特不在其中</strong>。这是 10 年尺度的风险，不是 3 年尺度的风险。</p>
+<h3>2.3 演绎二：需求的弹性——&quot;买多少&quot;</h3>
+<pre><code>演绎前提：
+P1: &quot;买多少&quot; = f（系列发布节奏 × 隐藏款吸引力 × 社交驱动力）
+P2: 系列发布节奏由泡泡玛特控制（供给端），不是消费者决定（需求端）
+P3: 隐藏款机制 = 可变奖励（斯金纳箱），是已知最强的行为强化方式
+P4: 社交驱动力 = f（小红书/TikTok 上晒盒的传播效率）
+──────────────────────────────
+C: &quot;买多少&quot;不是外生的消费者偏好——它是被泡泡玛特的机制设计的
+   只要机制继续工作，&quot;买多少&quot;不会自然地衰减
+</code></pre>
+<p><strong>关键推论</strong>：与茅台不同——茅台的&quot;喝多少&quot;由宴请场景决定（外生，不可控），泡泡玛特的&quot;买多少&quot;由<strong>自己的发布节奏和机制</strong>决定（内生，可控）。这不是更脆弱——这是<strong>更可控</strong>。</p>
+<p><strong>芒格的&quot;反过来想&quot;</strong>：什么情况下这个推理失效？</p>
+<ul>
+<li>不是&quot;消费者厌倦了盲盒&quot;，而是<strong>政策禁止盲盒机制</strong>（外生冲击）</li>
+<li>不是&quot;隐藏款不再稀缺&quot;，而是<strong>二级市场崩盘导致隐藏款价值归零</strong></li>
+<li>不是&quot;晒盒不再流行&quot;，而是<strong>新的社交平台取代小红书，而泡泡未入驻</strong></li>
+</ul>
+<h3>2.4 演绎三：需求的深度——&quot;花多少钱&quot;</h3>
+<pre><code>演绎前提：
+P1: 同一消费者对同一IP的情感投入随时间和收藏深度而加深
+P2: 泡泡玛特提供了从 59 元到 5000 元的价格梯度
+P3: 价格弹性随收藏深度递减（新手买59元，重度粉丝买1999元MEGA）
+P4: 毛利率 72.1% 说明当前价格带的利润空间充足
+──────────────────────────────
+C: &quot;花多少钱&quot;有自然的向上迁移路径——不是强迫消费升级，
+   而是消费者在收藏之路上自然走向更高价位
+</code></pre>
+<p><strong>关键推论</strong>：泡泡玛特不需要&quot;让穷人变富&quot;来推高客单价。它只需要<strong>让已有的粉丝在收藏之路上走得更深</strong>。而这条路上的每一步（盲盒→毛绒→MEGA→联名合作）都是泡泡主动设计的。</p>
+<hr />
+<h2>三、芒格多元模型映射：从第一性原理到投资判断</h2>
+<h3>3.1 五条第一性原理 × 芒格模型</h3>
+<table>
+<thead>
+<tr>
+<th>第一性原理</th>
+<th>芒格模型</th>
+<th>投资含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>渠道承载不同消费动机（抽盒机=过程、抖音=冲动、天猫=目标）</td>
+<td><strong>心理学/可变奖励</strong></td>
+<td>抽盒机占比越高，用户的&quot;过程消费&quot;属性越强→复购的机制驱动越稳固</td>
+</tr>
+<tr>
+<td>IP生命力 = f（设计质量 × 运营投入）</td>
+<td><strong>工程学/维护成本</strong></td>
+<td>IP不会自动消亡，但需要持续投入。泡泡在 Molly 上证明了&quot;运营能激活第二春&quot;</td>
+</tr>
+<tr>
+<td>同一IP = 不同价格带的载体</td>
+<td><strong>微观经济学/价格歧视</strong></td>
+<td>不是&quot;让更多人来买&quot;，是&quot;让已来的人买更多种&quot;——后者的获客成本为零</td>
+</tr>
+<tr>
+<td>身份表达需求永恒，载体代际更替</td>
+<td><strong>社会学/代际分层</strong></td>
+<td>风险不在&quot;这代人&quot;，在&quot;下一代&quot;——10年尺度的威胁，3年尺度的机会</td>
+</tr>
+<tr>
+<td>&quot;买多少&quot;由泡泡自己设计</td>
+<td><strong>工程学/控制系统</strong></td>
+<td>不是被动的需求管理，是主动的供给驱动——比茅台更可控</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 Lollapalooza 正向：当五力共振</h3>
+<pre><code>当以下五个条件同时满足时，需求会非线性放大：
+  ① 新IP撞上风口（Poisson命中）
+  ② 新载体恰好匹配IP调性（毛绒 + LABUBU = 化学反应的成果）
+  ③ 社交引爆（Lisa佩戴 → 全球传播 → TED级曝光）
+  ④ 全球渠道同步铺开（海外用户发现→购买→晒盒，完整循环）
+  ⑤ Z世代在相应市场恰好处于消费力上升期
+  
+→ 这就是 2024-25 年的故事。
+→ 这五力是否会在未来5年再次同时触发？不应该放入基准假设。
+</code></pre>
+<h3>3.3 Lollapalooza 负向：当需求崩塌</h3>
+<pre><code>当以下条件同时触发时，需求会非线性收缩：
+  ① 毛绒品类退潮（载体疲劳）
+  ② 新IP断层（Poisson过程出现罕见的连续&quot;未命中&quot;）
+  ③ 海外受挫（地缘政治或文化水土不服）
+  ④ 国内主力用户度过3年高活跃期后流失
+  ⑤ 新一代年轻人找到了完全不同的身份表达载体（下一代iPhone时刻）
+  
+→ 这五个条件有一定的相关性（不是独立的），同时触发的概率不容忽视
+→ 但逐一检验：①可能（载体有周期），②已有预防（流水线在跑），
+  ③可控但非零，④只影响存量不决定流量，⑤是最远的威胁
+</code></pre>
+<h3>3.4 芒格的&quot;二值问题&quot;：需求最差会怎样？</h3>
+<pre><code>最差需求情景：
+  所有人的假设：泡泡玛特 = 新时代的茅台
+  最差情况：不是&quot;大家都不买了&quot;（身份表达需求不会消失）
+           而是&quot;下一代人不买泡泡玛特了&quot;
+
+检验：
+  ① 这个&quot;最差&quot;会在3年内发生吗？       几乎不可能（Z世代还在买）
+  ② 会在10年内发生吗？                 有可能（α世代长大了）
+  ③ 泡泡玛特有时间应对吗？              有——IP可以迭代（新IP锚定新一代）
+  ④ 泡泡玛特的系统能在&quot;最差&quot;中存活吗？   能（127亿现金+零负债+全球网络）
+──────────────────────────────
+结论：需求的最差情景是&quot;存在但缓慢衰减&quot;——不是&quot;突然归零&quot;。
+</code></pre>
+<hr />
+<h2>四、与茅台的最终对比（修正版）</h2>
+<p>之前的对比过度强调了&quot;茅台更硬、泡泡更软&quot;——这在第一性原理层面不完全正确。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>茅台</th>
+<th>泡泡玛特</th>
+<th>修正判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求的基本盘</td>
+<td>社交润滑（宴请场景）</td>
+<td>身份表达（心理认同）</td>
+<td>两者都永恒，载体不同</td>
+</tr>
+<tr>
+<td>&quot;会不会&quot;的驱动力</td>
+<td>生理成瘾（硬）</td>
+<td>心理IP认同（软）</td>
+<td>茅台确实更硬</td>
+</tr>
+<tr>
+<td>&quot;买多少&quot;的驱动力</td>
+<td>外部场景（不可控）</td>
+<td><strong>内部机制（可控）</strong></td>
+<td>🟢 泡泡更可控</td>
+</tr>
+<tr>
+<td>&quot;花多少钱&quot;的驱动力</td>
+<td>B端预算（不可控）</td>
+<td><strong>品类设计（可控）</strong></td>
+<td>🟢 泡泡更可控</td>
+</tr>
+<tr>
+<td>产品形态</td>
+<td>固定（茅台酒）</td>
+<td>可变（IP+载体）</td>
+<td>🟢 泡泡更灵活</td>
+</tr>
+<tr>
+<td>代际传承</td>
+<td>问题：年轻人不喝白酒</td>
+<td>方案：IP迭代覆盖代际</td>
+<td>🟢 泡泡更主动</td>
+</tr>
+<tr>
+<td>护城河深度</td>
+<td>极深（2000年文化）</td>
+<td>中等（10年品牌）</td>
+<td>茅台更深</td>
+</tr>
+<tr>
+<td>护城河宽度</td>
+<td>极窄（一个品类）</td>
+<td>中等宽（多品类+多区域）</td>
+<td>泡泡更宽</td>
+</tr>
+</tbody>
+</table>
+<p><strong>修正的芒格判断</strong>：</p>
+<blockquote>
+<p>&quot;股价公道的伟大企业比股价超低的普通企业好。&quot;</p>
+</blockquote>
+<p>茅台的&quot;伟大&quot;来自不可复制的文化深度。泡泡玛特的&quot;可能伟大&quot;来自可控的需求系统 + 全球扩张 + IP迭代能力。</p>
+<p><strong>两者的互补性</strong>：茅台 = 你已经知道它很伟大。泡泡玛特 = 你正在看它走向伟大。后者需要更多的&quot;不清楚但可接受&quot;，前者需要接受&quot;已经很贵&quot;。</p>
+<hr />
+<blockquote>
+<p>推演日期：2026-06-27。从消费历史归纳第一性原理 × 演绎推演需求可持续性 × 芒格多元模型映射。</p>
+</blockquote>
+<h2>参见</h2>
+<p><a href="popmart-cycle-defense-comparison.html">popmart-cycle-defense-comparison</a> · <a href="../../../research/index.md">research/index.md</a> · <a href="../../../research/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E6%8A%95%E8%B5%84%E8%AE%BA%E7%82%B9.md">research/泡泡玛特/投资论点.md</a>
+<a href="../../../research/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E6%8A%95%E8%B5%84%E8%AE%BA%E7%82%B9.md">research/泡泡玛特/投资论点.md</a>
+<a href="../../../research/articles/synthesis/%E5%9B%BD%E4%BC%81%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6-%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%8C%85%E5%8F%B0%E6%A1%88%E4%BE%8B.md">research/articles/synthesis/国企激励机制-置身事内框架与茅台案例.md</a> · <a href="../../../research/articles/synthesis/popmart-historical-cycle-defense.md">research/articles/synthesis/popmart-historical-cycle-defense.md</a></p>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/articles/synthesis/popmart-demand-decomposition.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>
