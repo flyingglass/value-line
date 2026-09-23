@@ -1531,6 +1531,26 @@ STOCKS = {
         "pfx": "sz", "industry": "汽车", "fiscal_yr_end": "12-31",
         "business_desc": "",
     },
+    "603882": {
+        "name": "金域医学",
+        "name_en": "KingMed Diagnostics",
+        "market": "cn",
+        "exchange": "SSE",
+        "currency": "CNY",
+        "ceo": "梁耀铭",
+        "inc": "中国广东省广州市",
+        "website": "www.kingmed.com.cn",
+        "org_id": "9900035075",
+        "pfx": "sh",
+        "shares": 463000000,         # 总股本(约, fetcher校正)
+        "shares_str": "463,000,000",
+        "industry": "医疗服务",
+        "fiscal_yr_end": "12-31",
+        "valuation_method": "pb",    # 亏损+重实验室资产改用PB法 (用户确认 2026-09-23), PB倍数见 db meta
+        "pb": 2.0,
+        "business_desc": "",
+        "alt_names": ["广州金域", "金域", "KingMed"],
+    },
 }
 
 # ============================================================
