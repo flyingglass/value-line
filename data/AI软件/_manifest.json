@@ -1,0 +1,741 @@
+{
+ "02556": {
+  "name": "迈富时",
+  "market": "hk",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "02556_迈富时_2026中报.pdf",
+    "title": "截至2026年6月30日止六個月的中期業績公告",
+    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0813/2026081300490_c.pdf",
+    "date": "2026-08-13",
+    "cached": true
+   }
+  ]
+ },
+ "01357": {
+  "name": "美图公司",
+  "market": "hk",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "01357_美图公司_2026中报.pdf",
+    "title": "截至2026年6月30日止六個月之中期業績公告 &#x3b; 自股份溢價賬派付中期股息；暫停辦理股份過戶登記手續；及委任非執行董事",
+    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0826/2026082600321_c.pdf",
+    "date": "2026-08-26",
+    "cached": true
+   }
+  ]
+ },
+ "03317": {
+  "name": "迅策",
+  "market": "hk",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "03317_迅策_2026中报.pdf",
+    "title": "Interim Report 2026",
+    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0921/2026092100985.pdf",
+    "date": "2026-09-21",
+    "cached": true
+   }
+  ]
+ },
+ "00696": {
+  "name": "中国民航信息网络",
+  "market": "hk",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "00696_中国民航信息网络_2026中报.pdf",
+    "title": "中期報告2026",
+    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0910/2026091000313_c.pdf",
+    "date": "2026-09-10",
+    "cached": true
+   }
+  ]
+ },
+ "01384": {
+  "name": "滴普科技",
+  "market": "hk",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "01384_滴普科技_2026中报.pdf",
+    "title": "2026中期報告",
+    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0828/2026082800410_c.pdf",
+    "date": "2026-08-28",
+    "cached": true
+   }
+  ]
+ },
+ "09669": {
+  "name": "北森控股",
+  "market": "hk",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "09669_北森控股_2026中报.pdf",
+    "title": "2025&#x2f;2026中期報告",
+    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1124/2025112401656_c.pdf",
+    "date": "2025-11-24",
+    "valid": true,
+    "check": "PASS 大小(1876KB); PASS PDF头; PASS 页数(106); PASS 英文内容; PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "06608": {
+  "name": "百融云创",
+  "market": "hk",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "06608_百融云创_2026中报.pdf",
+    "title": "截至2026年6月30日止六個月的中期業績公告及董事委員會組成變更",
+    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0831/2026083102420_c.pdf",
+    "date": "2026-08-31",
+    "valid": true,
+    "check": "PASS 大小(471KB); PASS PDF头; PASS 页数(34); PASS 公司名(百融云创); WARN 类型关键词未匹配",
+    "cached": false
+   }
+  ]
+ },
+ "02718": {
+  "name": "明略科技",
+  "market": "hk",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "02718_明略科技_2026中报.pdf",
+    "title": "2026中期報告",
+    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0921/2026092100573_c.pdf",
+    "date": "2026-09-21",
+    "valid": true,
+    "check": "PASS 大小(4479KB); PASS PDF头; PASS 页数(71); PASS 公司名(明略科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "600588": {
+  "name": "用友网络",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "600588_用友网络_2026中报.pdf",
+    "title": "用友网络2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-22/1225490345.PDF",
+    "date": "2026-08-22",
+    "valid": true,
+    "check": "PASS 大小(1168KB); PASS PDF头; PASS 页数(196); PASS 公司名(用友网络); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688111": {
+  "name": "金山办公",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688111_金山办公_2026中报.pdf",
+    "title": "金山办公2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-20/1225482678.PDF",
+    "date": "2026-08-20",
+    "valid": true,
+    "check": "PASS 大小(1301KB); PASS PDF头; PASS 页数(199); PASS 公司名(金山办公); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "002063": {
+  "name": "远光软件",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "002063_远光软件_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-29/1225531547.PDF",
+    "date": "2026-08-29",
+    "valid": true,
+    "check": "PASS 大小(1189KB); PASS PDF头; PASS 页数(188); PASS 公司名(远光软件); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "002153": {
+  "name": "石基信息",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "002153_石基信息_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-26/1225503143.PDF",
+    "date": "2026-08-26",
+    "valid": true,
+    "check": "PASS 大小(7508KB); PASS PDF头; PASS 页数(141); PASS 公司名(石基信息); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "002230": {
+  "name": "科大讯飞",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "002230_科大讯飞_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-21/1225485550.PDF",
+    "date": "2026-08-21",
+    "valid": true,
+    "check": "PASS 大小(2299KB); PASS PDF头; PASS 页数(270); PASS 公司名(科大讯飞); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "002410": {
+  "name": "广联达",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "002410_广联达_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-25/1225495670.PDF",
+    "date": "2026-08-25",
+    "valid": true,
+    "check": "PASS 大小(1115KB); PASS PDF头; PASS 页数(165); PASS 公司名(广联达); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "300253": {
+  "name": "卫宁健康",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "300253_卫宁健康_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-26/1225500912.PDF",
+    "date": "2026-08-26",
+    "valid": true,
+    "check": "PASS 大小(1918KB); PASS PDF头; PASS 页数(135); PASS 公司名(卫宁健康); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "300348": {
+  "name": "长亮科技",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "300348_长亮科技_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-27/1225513161.PDF",
+    "date": "2026-08-27",
+    "valid": true,
+    "check": "PASS 大小(2637KB); PASS PDF头; PASS 页数(210); PASS 公司名(长亮科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "300451": {
+  "name": "创业慧康",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "300451_创业慧康_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-29/1225529280.PDF",
+    "date": "2026-08-29",
+    "valid": true,
+    "check": "PASS 大小(1275KB); PASS PDF头; PASS 页数(153); PASS 公司名(创业慧康); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "301095": {
+  "name": "广立微",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "301095_广立微_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-29/1225528604.PDF",
+    "date": "2026-08-29",
+    "valid": true,
+    "check": "PASS 大小(4920KB); PASS PDF头; PASS 页数(178); PASS 公司名(广立微); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "301269": {
+  "name": "华大九天",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "301269_华大九天_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-29/1225525615.PDF",
+    "date": "2026-08-29",
+    "valid": true,
+    "check": "PASS 大小(4767KB); PASS PDF头; PASS 页数(144); PASS 公司名(华大九天); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "301638": {
+  "name": "南网数字",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "301638_南网数字_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-28/1225517237.PDF",
+    "date": "2026-08-28",
+    "valid": true,
+    "check": "PASS 大小(1106KB); PASS PDF头; PASS 页数(208); WARN 公司简称未匹配（首页全称＝南方电网数字电网研究院股份有限公司）",
+    "cached": false
+   }
+  ],
+  "note": "全称：南方电网数字电网研究院股份有限公司"
+ },
+ "600570": {
+  "name": "恒生电子",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "600570_恒生电子_2026中报.pdf",
+    "title": "恒生电子股份有限公司2026年半年度报告全文",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-26/1225505909.PDF",
+    "date": "2026-08-26",
+    "valid": true,
+    "check": "PASS 大小(1153KB); PASS PDF头; PASS 页数(183); PASS 公司名(恒生电子); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "600845": {
+  "name": "宝信软件",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "600845_宝信软件_2026中报.pdf",
+    "title": "2026年半年度报告全文",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-20/1225482447.PDF",
+    "date": "2026-08-20",
+    "valid": true,
+    "check": "PASS 大小(1190KB); PASS PDF头; PASS 页数(176); PASS 公司名(宝信软件); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "603039": {
+  "name": "泛微网络",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "603039_泛微网络_2026中报.pdf",
+    "title": "泛微网络2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-21/1225485065.PDF",
+    "date": "2026-08-21",
+    "valid": true,
+    "check": "PASS 大小(1175KB); PASS PDF头; PASS 页数(208); PASS 公司名(泛微网络); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "603171": {
+  "name": "税友股份",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "603171_税友股份_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-21/1225484533.PDF",
+    "date": "2026-08-21",
+    "valid": true,
+    "check": "PASS 大小(1190KB); PASS PDF头; PASS 页数(169); PASS 公司名(税友股份); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688188": {
+  "name": "上海柏楚电子科技",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688188_上海柏楚电子科技_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-18/1225477071.PDF",
+    "date": "2026-08-18",
+    "valid": true,
+    "check": "PASS 大小(1211KB); PASS PDF头; PASS 页数(184); PASS 公司名(上海柏楚电子科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688206": {
+  "name": "概伦电子",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688206_概伦电子_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-27/1225514208.PDF",
+    "date": "2026-08-27",
+    "valid": true,
+    "check": "PASS 大小(1566KB); PASS PDF头; PASS 页数(237); PASS 公司名(概伦电子); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688777": {
+  "name": "中控技术",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688777_中控技术_2026中报.pdf",
+    "title": "中控技术股份有限公司2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-29/1225531328.PDF",
+    "date": "2026-08-29",
+    "valid": true,
+    "check": "PASS 大小(3106KB); PASS PDF头; PASS 页数(244); PASS 公司名(中控技术); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "002315": {
+  "name": "焦点科技",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "002315_焦点科技_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-26/1225501362.PDF",
+    "date": "2026-08-26",
+    "valid": true,
+    "check": "PASS 大小(1097KB); PASS PDF头; PASS 页数(186); PASS 公司名(焦点科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "002530": {
+  "name": "金财互联",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "002530_金财互联_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-25/1225498106.PDF",
+    "date": "2026-08-25",
+    "valid": true,
+    "check": "PASS 大小(942KB); PASS PDF头; PASS 页数(133); PASS 公司名(金财互联); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "300766": {
+  "name": "每日互动",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "300766_每日互动_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-29/1225529667.PDF",
+    "date": "2026-08-29",
+    "valid": true,
+    "check": "PASS 大小(1509KB); PASS PDF头; PASS 页数(132); PASS 公司名(每日互动); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "301162": {
+  "name": "国能日新",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "301162_国能日新_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-15/1225474472.PDF",
+    "date": "2026-08-15",
+    "valid": true,
+    "check": "PASS 大小(1640KB); PASS PDF头; PASS 页数(157); PASS 公司名(国能日新); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "301556": {
+  "name": "托普云农",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "301556_托普云农_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-28/1225516955.PDF",
+    "date": "2026-08-28",
+    "valid": true,
+    "check": "PASS 大小(830KB); PASS PDF头; PASS 页数(128); PASS 公司名(托普云农); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "603990": {
+  "name": "麦迪科技",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "603990_麦迪科技_2026中报.pdf",
+    "title": "苏州麦迪斯顿医疗科技股份有限公司2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-27/1225509296.PDF",
+    "date": "2026-08-27",
+    "valid": true,
+    "check": "PASS 大小(1186KB); PASS PDF头; PASS 页数(182); PASS 公司名(麦迪科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688365": {
+  "name": "光云科技",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688365_光云科技_2026中报.pdf",
+    "title": "光云科技：2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-22/1225493492.PDF",
+    "date": "2026-08-22",
+    "valid": true,
+    "check": "PASS 大小(1248KB); PASS PDF头; PASS 页数(194); PASS 公司名(光云科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688787": {
+  "name": "海天瑞声",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688787_海天瑞声_2026中报.pdf",
+    "title": "海天瑞声2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-27/1225512561.PDF",
+    "date": "2026-08-27",
+    "valid": true,
+    "check": "PASS 大小(1847KB); PASS PDF头; PASS 页数(239); PASS 公司名(海天瑞声); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "300229": {
+  "name": "拓尔思",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "300229_拓尔思_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-29/1225523925.PDF",
+    "date": "2026-08-29",
+    "valid": true,
+    "check": "PASS 大小(2915KB); PASS PDF头; PASS 页数(152); PASS 公司名(拓尔思); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "300624": {
+  "name": "万兴科技",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "300624_万兴科技_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-24/1225490024.PDF",
+    "date": "2026-08-24",
+    "valid": true,
+    "check": "PASS 大小(1876KB); PASS PDF头; PASS 页数(206); PASS 公司名(万兴科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688088": {
+  "name": "虹软科技",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688088_虹软科技_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-25/1225499233.PDF",
+    "date": "2026-08-25",
+    "valid": true,
+    "check": "PASS 大小(1331KB); PASS PDF头; PASS 页数(208); PASS 公司名(虹软科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688095": {
+  "name": "福昕软件开发",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688095_福昕软件开发_2026中报.pdf",
+    "title": "福建福昕软件开发股份有限公司2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-28/1225522225.PDF",
+    "date": "2026-08-28",
+    "valid": true,
+    "check": "PASS 大小(3670KB); PASS PDF头; PASS 页数(215); PASS 公司名(福昕软件开发); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688207": {
+  "name": "格灵深瞳",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688207_格灵深瞳_2026中报.pdf",
+    "title": "格灵深瞳2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-22/1225493299.PDF",
+    "date": "2026-08-22",
+    "valid": true,
+    "check": "PASS 大小(1447KB); PASS PDF头; PASS 页数(211); PASS 公司名(格灵深瞳); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688318": {
+  "name": "财富趋势",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688318_财富趋势_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-28/1225520535.PDF",
+    "date": "2026-08-28",
+    "valid": true,
+    "check": "PASS 大小(1118KB); PASS PDF头; PASS 页数(179); PASS 公司名(财富趋势); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688327": {
+  "name": "云从科技",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688327_云从科技_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-22/1225493522.PDF",
+    "date": "2026-08-22",
+    "valid": true,
+    "check": "PASS 大小(1650KB); PASS PDF头; PASS 页数(215); PASS 公司名(云从科技); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688343": {
+  "name": "云天励飞股份",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688343_云天励飞股份_2026中报.pdf",
+    "title": "2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-27/1225515128.PDF",
+    "date": "2026-08-27",
+    "valid": true,
+    "check": "PASS 大小(3659KB); PASS PDF头; PASS 页数(188); PASS 公司名(云天励飞股份); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ },
+ "688615": {
+  "name": "合合信息",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "688615_合合信息_2026中报.pdf",
+    "title": "上海合合信息科技股份有限公司2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-20/1225482685.PDF",
+    "date": "2026-08-20",
+    "valid": true,
+    "check": "PASS 大小(1418KB); PASS PDF头; PASS 页数(232); PASS 公司名(合合信息); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
+ }
+}

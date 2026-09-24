@@ -81,6 +81,11 @@ TARGETS = [
     # 边界标的（模型/智能供给，是否算软件存疑）
     ("02513", "智谱", ["智谱AI"]),
     ("00100", "MINIMAX-W", ["MiniMax", "MINIMAX"]),
+    # ── 原文点名补充（2026-09-24）：庶人哑士《大模型吞噬软件》点名的港股 7 家里，
+    #    这 3 家不在港股通成分，上一版未纳入；本次按用户要求补齐其中报。
+    ("09669", "北森控股", ["北森"]),
+    ("06608", "百融云创", ["百融"]),
+    ("02718", "明略科技", ["明略"]),
 ]
 
 _INTERIM_OK = re.compile(r"中期報告|中期报告|中期業績|中期业绩|半年度|INTERIM\s+REPORT|INTERIM\s+RESULTS", re.I)
@@ -260,14 +265,31 @@ def main():
     ap.add_argument("--dump", metavar="CODE", help="只打印某代码的中报条目标题")
     ap.add_argument("--upgrade-zh", action="store_true",
                     help="已下载的是英文版且存在中文版时，删旧重下")
+    ap.add_argument("--codes", metavar="C1,C2",
+                    help="只处理指定代码（逗号分隔），其余不动；清单增量合并")
+    ap.add_argument("--rebuild", action="store_true",
+                    help="重建清单（默认在既有 _manifest.json 上增量合并）")
     args = ap.parse_args()
+
+    targets = TARGETS
+    if args.codes:
+        want = {c.strip().zfill(5) for c in args.codes.split(",") if c.strip()}
+        targets = [t for t in TARGETS if t[0] in want]
+        if not targets:
+            raise SystemExit("--codes 未匹配任何已知代码：%s" % args.codes)
 
     s = _sess()
     os.makedirs(OUT_ROOT, exist_ok=True)
     manifest_path = os.path.join(OUT_ROOT, "_manifest.json")
+    # 增量：以既有清单为基础，只覆盖本次处理到的代码
     manifest = {}
+    if not args.rebuild and os.path.exists(manifest_path):
+        try:
+            manifest = json.load(open(manifest_path, encoding="utf-8"))
+        except Exception:
+            manifest = {}
 
-    for code, name, alt in TARGETS:
+    for code, name, alt in targets:
         print("\n== %s %s ==" % (code, name))
         sid = resolve_stock_id(s, code)
         if not sid:

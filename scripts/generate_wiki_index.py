@@ -493,7 +493,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 """
 
 # 正文图片点击放大（灯箱）：md 内任意 img 点击后全屏显示原图，点任意处 / Esc 关闭
+# 仅当正文确实有 <img> 时才注入（历史 bug：无条件注入 + 未包 <script> + el 未定义，
+# 导致每个页面底部都可见这段裸文本并抛 ReferenceError）
 LIGHTBOX_JS = (
+    'var el=document.getElementById("md");'
     'var lb=document.createElement("div");lb.id="lb";'
     'lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";'
     'document.body.appendChild(lb);'
@@ -504,6 +507,13 @@ LIGHTBOX_JS = (
     'lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});'
     'document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});'
 )
+
+
+def lightbox_html(body_html):
+    """正文有图片才返回带 <script> 包裹的灯箱，否则返回空串"""
+    if '<img' not in body_html:
+        return ''
+    return '<script>' + LIGHTBOX_JS + '</script>'
 
 def kind_tag(kind):
     m = {'wiki': 'tag-wiki', 'raw': 'tag-raw', 'concept': 'tag-concept',
@@ -697,7 +707,7 @@ def group_article_page(art, seg, out, display_name, group_idx):
     html += '<a href="' + esc(posix_rel(out, OUT_HOME)) + '">首页</a>'
     html += '<a href="' + esc(posix_rel(out, md_file)) + '" style="margin-left:auto">原文文件 ↗</a></div>'
     html += '</div>'
-    html += LIGHTBOX_JS + '</body></html>'
+    html += lightbox_html(body_html) + '</body></html>'
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html)
 
@@ -833,7 +843,7 @@ def general_article_page(art, out):
     html += '<a href="' + esc(posix_rel(out, OUT_HOME)) + '">首页</a>'
     html += '<a href="' + esc(posix_rel(out, md_file)) + '" style="margin-left:auto">原文文件 ↗</a></div>'
     html += '</div>'
-    html += LIGHTBOX_JS + '</body></html>'
+    html += lightbox_html(body_html) + '</body></html>'
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html)

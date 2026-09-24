@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海方法论流水线总图</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="00-流水线总图.html">里海方法论流水线总图</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海方法论流水线总图</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-24</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论</span></div><div class="md" id="md"><h1>里海方法论流水线总图：① 初筛 → ② 解构·建模·跟踪 → ③ 共振</h1>
+<blockquote>
+<p><strong>一句话结论</strong>：里海从&quot;知道一家公司&quot;到&quot;敢重锤一家公司&quot;，走的是<strong>三段动作链</strong>，不是一次深度研究——<strong>① 决定值不值得花时间；② 决定靠什么赚钱、每天盯什么数；③ 决定什么时候扣扳机、下多重</strong>。<code>90-横切</code> 里的两页<strong>不占工序</strong>，是认识论与行业实例，随时读、不在流水线上执行。</p>
+<p><strong>本页是 <code>方法论/</code> 的唯一入口</strong>。归入 <code>00-</code> 前缀但放在目录根部，因此在组页里就是「方法论」这个标签本身。</p>
+</blockquote>
+<h2>一、流水线总览</h2>
+<pre><code>【第 ① 段】30 分钟初筛 ── 值不值得花时间？
+     穷举圈层 → 三板斧（简单 / 变化 / 财报）→ 两把尺子落档 → 60/25/15 精力分配
+        ↓  1-2 类才继续
+【第 ② 段】解构 · 建模 · 跟踪 ── 靠什么赚钱？最坏亏多少？每天盯什么？
+     解构：拆板块 → 找托底 → 找弹性 → 横向淘汰 → 主逻辑 + 底价 + 变量清单
+     建模：变量 → 每天/每季要盯的数 → 日频 / 季频持续跟踪（变量会换轨）
+        ↓  跟踪模型亮灯
+【第 ③ 段】共振 ── 什么时候扣扳机？
+     基本面 ✓ ＋ 位置（走出阶段底）✓ ＋ 资金面（看基本面的资金进场）✓
+        ↓
+     买入（仓位来自第 ② 段的赔率判断）
+        ↓
+     继续用同一套模型盯「主逻辑走完没有」＝卖点
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>段</th>
+<th>输入</th>
+<th>动作</th>
+<th>产出</th>
+<th>卡口（不满足即出局）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 初筛</strong></td>
+<td>能力圈名单 / 财务反筛 / 外部推荐</td>
+<td>三板斧 + 两把尺子</td>
+<td><strong>跟踪力度分配表</strong>（≠ 买入清单）</td>
+<td>不简单 / 无大变化 → 3-4 类，只给 15% 精力</td>
+</tr>
+<tr>
+<td><strong>② 解构建模跟踪</strong></td>
+<td>1-2 类标的</td>
+<td>500 字主逻辑 → 变量 → 跟踪模型</td>
+<td><strong>一句话主逻辑 + 底价 + 1-2 个可跟踪变量</strong></td>
+<td>500 字讲不清 / 变量无法公开跟踪 → 出局</td>
+</tr>
+<tr>
+<td><strong>③ 共振</strong></td>
+<td>亮灯的跟踪模型</td>
+<td>等三个信号同时亮</td>
+<td><strong>买点与仓位</strong></td>
+<td>只有价格动、基本面没动 → 不买；判定双左侧 → 一票否决</td>
+</tr>
+</tbody>
+</table>
+<h2>二、各组提炼</h2>
+<h3><code>10-初筛</code> — 决定&quot;值不值得花时间&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>页</th>
+<th>一句话提炼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E7%B1%BB%E8%B7%9F%E8%B8%AA%E5%88%86%E6%A1%A3%E6%B3%95.html">里海-四类跟踪分档法</a></strong>（本段总图）</td>
+<td>三步动作链 + 一条精力纪律。<strong>产出的不是买入清单，是跟踪力度分配表</strong>：1 类 60% / 2 类 25% / 3+4 类 15%；原文硬约束「1 类跟踪可能就几家」，早期口径上限约 <strong>10 家</strong>——超了就是尺子放水。分档之后还要<strong>二次梳理</strong>才谈得上抉择。</td>
+</tr>
+<tr>
+<td><strong><a href="10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E7%AE%80%E5%8D%95%E8%AE%BA.html">里海-简单论</a></strong></td>
+<td>第一道闸门，功能是<strong>把&quot;看不懂&quot;前置到选股阶段</strong>：术四字里&quot;简单决定能不能看，底部决定亏不亏，变化决定涨不涨&quot;；原话&quot;<strong>复杂的公司，其业绩释放路径上的可变因子太多</strong>&quot;（2020.5.2）。它的动作是<strong>绕开</strong>，不是挑出。</td>
+</tr>
+<tr>
+<td><strong><a href="10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">里海-变化论</a></strong></td>
+<td>第二道闸门，也是三板斧的<strong>核心</strong>：<strong>低估不是底，变化才是底</strong>。语料中的变化归纳为六类（治理股权 / 业绩拐点 / 行业景气·第二曲线 / 预期估值 / 筹码 / 无变化反例）。捕获的正确姿势<strong>不是预测，是跟踪</strong>，&quot;低位信其有&quot;。⚠️ 六类划分系 AI 归纳，非作者原话的分法。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>本段出口</strong>：落 1-2 类 → 进第 ② 段；落 3-4 类 → 只保留定期浏览，<strong>不做解构</strong>。</p>
+<h3><code>20-解构建模跟踪</code> — 决定&quot;靠什么赚钱、最坏亏多少、每天盯什么&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>页</th>
+<th>一句话提炼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E8%A7%A3%E6%9E%84%E6%B3%95.html">里海-解构法</a></strong></td>
+<td>目的不是&quot;搞懂公司&quot;，而是收敛出三样东西：<strong>一句话主逻辑 + 1-2 个业绩变量 + 一个&quot;全搞砸也亏不了&quot;的底价</strong>。500 字原则：讲不清就出局。四步＝拆板块 / 找托底 / 找弹性 / 横向淘汰。<strong>层次边界：生意模式层必答，专业层刻意不钻</strong>（&quot;很多化工产品的名字我都叫不来，我就是个门外汉&quot;）。唯一全程数字示范＝新希望（民生银行托底 → 底价 170-180 亿；2500 万头产能储备 vs 250 万头出栏 vs 猪收入仅占 5%；不选纯猪股＝&quot;如果猪周期晚两年，有些养猪的公司说不定撑不住&quot;）。</td>
+</tr>
+<tr>
+<td><strong><a href="20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%B7%9F%E8%B8%AA.html">里海-建模与跟踪</a></strong></td>
+<td>把变量变成&quot;每天/每季要盯的数&quot;。<strong>每段模型只盯 1-2 个变量</strong>——正因为单只变量少，才跟得起上百家池子。示范：鲁西（双氧水·PC 价格，日频，盯 8 个月）、榨菜（县城渠道数 + 恢复发货）、再升（短中长资金共振）。<strong>变量会随阶段换轨</strong>（榨菜从&quot;提价&quot;换成&quot;渠道&quot;），所以建模不是一劳永逸的活。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>本段出口</strong>：跟踪模型亮灯 → 交棒第 ③ 段。<strong>亮灯 ≠ 买入</strong>（鲁西第一波因&quot;逻辑不硬 + 我没钱&quot;没买）。</p>
+<h3><code>30-共振</code> — 决定&quot;什么时候扣扳机、下多重&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>页</th>
+<th>一句话提炼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a></strong></td>
+<td>第 ④ 段＝<strong>基本面 × 位置 × 资金面三者同亮</strong>才介入。原话&quot;<strong>低位的共振点，即使判断错了，也不会怎么亏钱，大不了就是亏时间而已</strong>&quot;。两个反面：<br>① 只有价格动、基本面没动（纯情绪）→ <strong>不买</strong>；<br>② 基本面动了但满仓没钱 → <strong>买不了</strong>（鲁西&quot;没买够&quot;是结构性代价，不是失误）。</td>
+</tr>
+<tr>
+<td><strong><a href="30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">里海-双左侧</a></strong></td>
+<td>买卖两端总开关，共用一条信念——<strong>市场先生的表态比我个人研究可信</strong>。<br><strong>卖出端</strong>：基本面预期往下 + 股价大走势往下 → &quot;<strong>怎么也要把筹码砍掉</strong>&quot;，不幻想不抄底。<br><strong>买入端</strong>：重锤前提＝<strong>股价趋势与基本面预期至少一端在右侧，&quot;最好股价先到右侧&quot;</strong>。</td>
+</tr>
+</tbody>
+</table>
+<h3><code>90-横切</code> — 不占工序，随时读</h3>
+<table>
+<thead>
+<tr>
+<th>页</th>
+<th>一句话提炼</th>
+<th>什么时候读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="90-%E6%A8%AA%E5%88%87/%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BBvs%E5%B7%B4%E8%8F%B2%E7%89%B9%E4%B8%89%E5%A5%BD-%E6%96%B9%E6%B3%95%E8%AE%BA%E5%AF%B9%E6%AF%94.html">里海体系vs巴菲特三好-方法论对比</a></strong></td>
+<td>两套推理结构之差：<strong>正向演绎 + 优质样本归纳</strong>（巴菲特）vs <strong>反向证伪 + 错误样本归纳</strong>（里海）；分歧不在&quot;要不要价值&quot;，而在<strong>远见型推理 vs 位置型推理</strong>。⚠️ 若只讲差异而丢掉&quot;研究驱动&quot;那一腿，就会误读成&quot;反研究&quot;。</td>
+<td>校准&quot;为什么可以这样干&quot;时；引用&quot;门外汉/不深研&quot;之前必读</td>
+</tr>
+<tr>
+<td><strong><a href="90-%E6%A8%AA%E5%88%87/%E9%87%8C%E6%B5%B7-%E5%82%A8%E8%83%BD%E4%B8%8E%E6%96%B0%E8%83%BD%E6%BA%90%E9%93%BE%E8%A7%82%E5%AF%9F%E6%B3%95.html">里海-储能与新能源链观察法</a></strong></td>
+<td>储能/新能源在语料里<strong>从来不是可配置的赛道，而是&quot;变化因子&quot;的行业实例</strong>：它能不能让一只<strong>已跌到位、业务看得懂</strong>的公司顶破原有天花板，才是关心的全部；且都按<strong>战术股</strong>处理，赚一波就走。闸门随时会关（阳光电源从&quot;隐形冠军正面案例&quot;转为&quot;根本看不明白&quot;的回避样本）。</td>
+<td>遇到&quot;热门赛道 + 低估值传统公司&quot;组合时，作为第 ① 段第二板的行业层参照</td>
+</tr>
+</tbody>
+</table>
+<h2>三、跨段三条纪律</h2>
+<ol>
+<li><strong>顺序不可颠倒</strong>（概率·赔率 → 频率）：原文&quot;<strong>千万不能搞错顺序，如果抛弃'概率和赔率'，盲目来搞频率，就成了普通散户的追涨杀跌</strong>&quot;。→ 跳过 ①② 直接照搬&quot;共振&quot;或照搬 1-4 类编号，方向恰好相反。</li>
+<li><strong>每张图的产出都不是买入信号</strong>：初筛产出的是<strong>精力分配表</strong>；解构产出的是<strong>底价与变量</strong>；建模产出的是<strong>亮灯</strong>。作者自己说分档&quot;<strong>完全还没有达到可以抉择的那个阶段</strong>&quot;。唯一产生买入动作的是第 ③ 段。</li>
+<li><strong>双左侧一票否决</strong>：任何阶段一旦判定双左侧，后续全部中止——&quot;<strong>不管你觉得多么的便宜，都不要锤进去</strong>&quot;。</li>
+</ol>
+<h2>四、目录导航</h2>
+<pre><code>方法论/
+├── 00-流水线总图.md          ← 本页（唯一入口）
+├── 10-初筛/                  ① 30 分钟初筛一家公司
+├── 20-解构建模跟踪/          ② 解构 · 建模 · 跟踪
+├── 30-共振/                  ③ 共振（扣扳机）
+└── 90-横切/                  认识论对比 + 行业实例
+</code></pre>
+<blockquote>
+<p>案例层入口在 <code>../案例/</code>（23 页），按流水线给每页定位；作者每年语料的逐册档案见 <code>../时间线/</code>。</p>
+</blockquote>
+<h2>参见</h2>
+<ul>
+<li><a href="10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E7%B1%BB%E8%B7%9F%E8%B8%AA%E5%88%86%E6%A1%A3%E6%B3%95.html">里海-四类跟踪分档法</a> · <a href="10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E7%AE%80%E5%8D%95%E8%AE%BA.html">里海-简单论</a> · <a href="10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">里海-变化论</a> — 第 ① 段</li>
+<li><a href="20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E8%A7%A3%E6%9E%84%E6%B3%95.html">里海-解构法</a> · <a href="20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%B7%9F%E8%B8%AA.html">里海-建模与跟踪</a> — 第 ② 段</li>
+<li><a href="30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a> · <a href="30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">里海-双左侧</a> — 第 ③ 段</li>
+<li><a href="90-%E6%A8%AA%E5%88%87/%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BBvs%E5%B7%B4%E8%8F%B2%E7%89%B9%E4%B8%89%E5%A5%BD-%E6%96%B9%E6%B3%95%E8%AE%BA%E5%AF%B9%E6%AF%94.html">里海体系vs巴菲特三好-方法论对比</a> · <a href="90-%E6%A8%AA%E5%88%87/%E9%87%8C%E6%B5%B7-%E5%82%A8%E8%83%BD%E4%B8%8E%E6%96%B0%E8%83%BD%E6%BA%90%E9%93%BE%E8%A7%82%E5%AF%9F%E6%B3%95.html">里海-储能与新能源链观察法</a> — 90 横切</li>
+<li><a href="../%E9%87%8C%E6%B5%B7-2444%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB.html">里海-2444投资体系</a> — 术四字（简单·底部·变化·分仓）与道四字（常识·概率·赔率·频率）</li>
+<li><a href="../%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">里海体系-总览</a> — 十年语料收敛后的体系速览</li>
+<li><a href="../../../../research/index.md">research/index.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E6%96%B9%E6%B3%95%E8%AE%BA">← 返回 方法论</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/方法论/00-流水线总图.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

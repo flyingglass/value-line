@@ -32,4 +32,7 @@ _tmp_*.txt
 # 广州上市公司中报批量下载产物（PDF + 打包 zip，体积大，不入版本库）
 data/广州/
 data/广州.zip
+
+# AI软件待选池中报批量下载产物（与 data/广州/ 同例：PDF 不入版本库，仅保留清单）
+data/AI软件/*.pdf
 scripts/out/tmp_*  

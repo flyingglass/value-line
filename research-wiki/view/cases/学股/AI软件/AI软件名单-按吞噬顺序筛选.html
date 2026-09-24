@@ -1,0 +1,978 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AI软件名单-按吞噬顺序筛选</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">学股 · 广深名单池</a> › <a href="AI软件名单-按吞噬顺序筛选.html">AI软件名单-按吞噬顺序筛选</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">AI软件名单-按吞噬顺序筛选</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">research/学股/AI软件</span></div><div class="md" id="md"><h1>AI 软件名单 · 按「AI 吞噬顺序」筛选（41 只）</h1>
+<blockquote>
+<p><strong>筛选标准</strong>：庶人哑士三篇（raw 均已在库）
+① <code>2026-09-24-庶人哑士-大模型吞噬软件-是叙事还是事实.md</code>
+② <code>2026-09-19-庶人哑士-关于AI应用的十个判断.md</code>（<strong>判据主体</strong>：10a/10b/10c + 第 5 条 + 第 9 条四级跃迁）
+③ <code>2026-09-02-庶人哑士-AI应用随想录.md</code>（<strong>本体层 Ontology 的定义</strong>）
+<strong>核心逻辑（用户 2026-09-24 确认）</strong>：<strong>AI 从下往上吃，越往上越吃不到。</strong>
+<strong>筛选对象</strong>：A 股核心 83 只 + 港股作者点名 7 家 + 00696 中民航信（额外纳入）= 91 只
+<strong>筛选结果</strong>：落进三层框架的 <strong>41 只</strong>；不落框架的 50 只见 §六
+<strong>脚本</strong>：<code>scripts/ai_sw_rank.py --final</code>（可重跑复现）　<strong>明细</strong>：<code>scripts/out/ai_sw_filter3.csv</code></p>
+</blockquote>
+<hr />
+<h2>一、标准：三层怎么分</h2>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>被吃的先后</th>
+<th>原文依据</th>
+<th>判定特征</th>
+<th>投资含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 浅层工具</strong></td>
+<td><strong>最先被吃</strong></td>
+<td>10a「模型能力越来越强之后，<strong>做得最浅的工具型应用会被模型吞掉，比如美图、做个 PPT 这些</strong>」</td>
+<td>产品核心功能<strong>本身就是通用大模型的基础能力</strong>（OCR/识图/编辑/PDF/语音/简单生成），无企业流程绑定，切换成本极低</td>
+<td><strong>回避</strong></td>
+</tr>
+<tr>
+<td><strong>② 本体层 Ontology</strong></td>
+<td><strong>吃不到</strong>（模型反而是赋能）</td>
+<td>10b「像 Palantir 那种<strong>做的又深又重又垂直细分的</strong>，模型能力反而是赋能，而不会是吞噬。它们有着大模型最羡慕却拿不到的<strong>私有数据</strong>和进不去的<strong>真实业务场景</strong>」</td>
+<td>握有某垂直行业的 system of record；数据带业务语义与勾稽关系；有权限与工作流；能把动作<strong>写回</strong>底层系统执行</td>
+<td><strong>最优</strong></td>
+</tr>
+<tr>
+<td><strong>③ 长尾 workbuddy</strong></td>
+<td><strong>也吃不到，但没人去吃</strong></td>
+<td>10c「还有一些领域，需要做深做重做垂直细分但<strong>价值量不大</strong>，模型公司深入不进去，体量又长不出一家 Palantir……适合 <strong>workbuddy 应用市场</strong>这种模式。而应用市场最稀缺的能力不是丰富，而是<strong>筛选判断</strong>」</td>
+<td>单点 AI 场景、AI 原生应用、Agent 平台与分发</td>
+<td><strong>有，但难挑</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>配套的尺子</strong>（第 9 条四级跃迁）：帮客户数据治理 ➡️ 数据中台 ➡️ <strong>本体层搭建</strong> ➡️ AIOS，即「土路 ➡️ 铺装路面 ➡️ 高速公路 ➡️ AI 跑车」。第①层在尺子最下面，第②层在第 3-4 级。</p>
+<p><strong>本体的硬判据</strong>（《随想录》）：「大多数 BI 工具只能<strong>读</strong>数据，而<strong>本体的动作可以写回</strong>到底层系统去执行」——<strong>能写回执行，是本体层与普通数据看板的分界线。</strong></p>
+<blockquote>
+<p>🔴 <strong>作者的核心验证指标＝营收增长（谁跑得快）+ NDR（谁做得深）</strong>，并明说「不能只盯营收增长」。
+本项目<strong>拿不到 NDR</strong>（A/H 股财报不披露），只能用「毛利率 + 是否盈利」近似。
+<strong>所有②层结论因此都标「待中报核实」——NDR 是这套框架的主证据，不是可选补充。</strong>
+⚠️ 作者对 A 股<strong>没点过任何一只</strong>，下表对 A 股的归类是<strong>本项目按原文判定特征作的推断</strong>，逐只「待核」。</p>
+</blockquote>
+<hr />
+<h2>二、作者点名 15 家：全部落位（先看这个）</h2>
+<h3>美股 8 家（★点名）</h3>
+<blockquote>
+<p>口径：WeStock 接口 <strong>FY2025</strong>（数据源最新只到 2025-12-31，<strong>与 A/H 股 26H1 不可横向比较</strong>）；金额＝亿美元。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>落位</th>
+<th>判读依据</th>
+<th>FY25营收</th>
+<th>同比%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PLTR</td>
+<td><strong>Palantir</strong></td>
+<td><strong>② 本体层</strong></td>
+<td>作者 10b 明说的唯一原型</td>
+<td>44.8</td>
+<td>+56.2</td>
+</tr>
+<tr>
+<td>SNOW</td>
+<td>Snowflake</td>
+<td>中间态 L2</td>
+<td>路径1：数据库变 agent 的记忆与知识库＝<strong>底座</strong></td>
+<td>36.3</td>
+<td>+29.2</td>
+</tr>
+<tr>
+<td>SAP</td>
+<td>SAP</td>
+<td>中间态 L2</td>
+<td><strong>第 5 条</strong>：ERP 是「定格照片」，缺过程</td>
+<td>415.3</td>
+<td>+12.3</td>
+</tr>
+<tr>
+<td>CRM</td>
+<td>Salesforce</td>
+<td>中间态 L2</td>
+<td>同上，CRM 同为「定格照片」</td>
+<td>378.9</td>
+<td>+8.7</td>
+</tr>
+<tr>
+<td>WDAY</td>
+<td>Workday</td>
+<td>中间态 L2</td>
+<td>HR system of record，与北森同类</td>
+<td>84.2</td>
+<td>+16.9</td>
+</tr>
+<tr>
+<td>HUBS</td>
+<td>Hubspot</td>
+<td>中间态 L2</td>
+<td>营销 SaaS，更轻</td>
+<td>31.3</td>
+<td>+19.2</td>
+</tr>
+<tr>
+<td>DDOG</td>
+<td>Datadog</td>
+<td>中间态 L2</td>
+<td>路径1：日志变 agent 行为证据＝可观测底座</td>
+<td>34.3</td>
+<td>+27.7</td>
+</tr>
+<tr>
+<td>NET</td>
+<td>Cloudflare</td>
+<td>框架外</td>
+<td>边缘网络/安全，三篇原文无对应层</td>
+<td>21.7</td>
+<td>+29.9</td>
+</tr>
+</tbody>
+</table>
+<h3>港股 7 家（★点名）</h3>
+<blockquote>
+<p>口径：TDX 损益表 <strong>26H1</strong>（09669 北森为 FY2026，财年截至 2026-03-31）；金额＝亿元。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>落位</th>
+<th>26H1营收</th>
+<th>同比%</th>
+<th>可买</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>02556</td>
+<td><strong>迈富时</strong></td>
+<td>③ 长尾</td>
+<td>19.60</td>
+<td>+111.2</td>
+<td>✅ 港股通</td>
+</tr>
+<tr>
+<td>09669</td>
+<td><strong>北森控股</strong></td>
+<td>③ 长尾</td>
+<td>11.05</td>
+<td>+16.9</td>
+<td>❌ 非港股通</td>
+</tr>
+<tr>
+<td>06608</td>
+<td><strong>百融云创</strong></td>
+<td>③ 长尾</td>
+<td>9.14</td>
+<td><strong>-43.3</strong></td>
+<td>❌ 非港股通</td>
+</tr>
+<tr>
+<td>01384</td>
+<td>滴普科技</td>
+<td>中间态 L2</td>
+<td>2.84</td>
+<td>+115.0</td>
+<td>✅ 港股通</td>
+</tr>
+<tr>
+<td>03317</td>
+<td>迅策</td>
+<td>中间态 L2</td>
+<td>9.67</td>
+<td>+388.8</td>
+<td>✅ 港股通</td>
+</tr>
+<tr>
+<td>02718</td>
+<td>明略科技</td>
+<td>中间态 L2</td>
+<td>7.60</td>
+<td>+18.0</td>
+<td>❌ 非港股通</td>
+</tr>
+<tr>
+<td>01357</td>
+<td><strong>美图公司</strong></td>
+<td><strong>① 最先被吃</strong></td>
+<td>22.13</td>
+<td>+21.5</td>
+<td>✅ 港股通</td>
+</tr>
+</tbody>
+</table>
+<h3>🔴 点名 15 家里，只有 1 只在②</h3>
+<p><strong>Palantir 是唯一落在②本体层的。</strong> 其余 14 家：③长尾 3 家（迈富时/北森/百融云）、①被吃 1 家（美图）、中间态 8 家、框架外 2 家。</p>
+<p><strong>两条由此推出的结论：</strong></p>
+<ol>
+<li><strong>美图是作者自己点出的反例</strong>：09-24 那篇把它列为「积极拥抱 AI」的样本，09-19 那篇 10a 又把它列为「会被模型吞掉」的代表。<strong>09-24 讲的是管理层态度，10a 讲的是结局。态度 ≠ 结局。</strong></li>
+<li><strong>作者点名的港股 7 家里，没有一只进②</strong>。唯一进②的港股是 00696 中国民航信息网络，而那是本项目额外纳入的、不是他点的。</li>
+</ol>
+<hr />
+<h2>三、② 本体层：吃不到，模型反而是赋能（19 只）</h2>
+<blockquote>
+<p>层内排序：点名优先 → 26H1 营收同比降序。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>点名</th>
+<th>市值亿</th>
+<th>PE</th>
+<th>26H1营收</th>
+<th>同比%</th>
+<th>26H1归母</th>
+<th>毛利率%</th>
+<th>Δpp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>301638</td>
+<td>南网数字</td>
+<td></td>
+<td>670.9</td>
+<td>91.7</td>
+<td>22.18</td>
+<td><strong>+42.4</strong></td>
+<td>2.02</td>
+<td>34.6</td>
+<td>+1.45</td>
+</tr>
+<tr>
+<td>301095</td>
+<td>广立微</td>
+<td></td>
+<td>150.1</td>
+<td>166.6</td>
+<td>3.41</td>
+<td>+38.7</td>
+<td>0.35</td>
+<td>60.4</td>
+<td>+1.82</td>
+</tr>
+<tr>
+<td>300348</td>
+<td>长亮科技</td>
+<td></td>
+<td>75.1</td>
+<td>363.8</td>
+<td>8.37</td>
+<td>+25.9</td>
+<td>-0.45</td>
+<td>27.0</td>
+<td>-4.99</td>
+</tr>
+<tr>
+<td>600845</td>
+<td>宝信软件</td>
+<td></td>
+<td>521.9</td>
+<td>40.0</td>
+<td>56.32</td>
+<td>+19.4</td>
+<td>7.07</td>
+<td>29.8</td>
+<td>-5.21</td>
+</tr>
+<tr>
+<td>300253</td>
+<td>卫宁健康</td>
+<td></td>
+<td>151.9</td>
+<td>-40.8</td>
+<td>9.94</td>
+<td>+18.5</td>
+<td>-1.76</td>
+<td>33.7</td>
+<td>-2.74</td>
+</tr>
+<tr>
+<td>688188</td>
+<td>柏楚电子</td>
+<td></td>
+<td>386.3</td>
+<td>24.7</td>
+<td>12.78</td>
+<td>+15.8</td>
+<td>7.87</td>
+<td>73.9</td>
+<td>-4.90</td>
+</tr>
+<tr>
+<td>301269</td>
+<td>华大九天</td>
+<td></td>
+<td>479.7</td>
+<td>796.0</td>
+<td>5.66</td>
+<td>+12.9</td>
+<td>-0.45</td>
+<td>87.5</td>
+<td>-1.64</td>
+</tr>
+<tr>
+<td>688206</td>
+<td>概伦电子</td>
+<td></td>
+<td>195.4</td>
+<td>459.9</td>
+<td>2.40</td>
+<td>+10.1</td>
+<td>-0.07</td>
+<td>85.1</td>
+<td>-6.52</td>
+</tr>
+<tr>
+<td>603171</td>
+<td>税友股份</td>
+<td></td>
+<td>162.4</td>
+<td>117.7</td>
+<td>10.12</td>
+<td>+9.7</td>
+<td>0.94</td>
+<td>62.2</td>
+<td>+3.17</td>
+</tr>
+<tr>
+<td>002230</td>
+<td>科大讯飞 ⚠️</td>
+<td></td>
+<td>920.5</td>
+<td>106.4</td>
+<td>116.23</td>
+<td>+6.5</td>
+<td>-2.04</td>
+<td>39.8</td>
+<td>-0.47</td>
+</tr>
+<tr>
+<td>00696</td>
+<td>中国民航信息网络</td>
+<td></td>
+<td>255.0</td>
+<td><strong>9.2</strong></td>
+<td>41.12</td>
+<td>+5.6</td>
+<td><strong>23.42</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>603039</td>
+<td>泛微网络</td>
+<td></td>
+<td>109.8</td>
+<td>31.3</td>
+<td>8.49</td>
+<td>+5.0</td>
+<td>1.15</td>
+<td>94.2</td>
+<td>+0.31</td>
+</tr>
+<tr>
+<td>600588</td>
+<td>用友网络</td>
+<td></td>
+<td>317.8</td>
+<td>-22.7</td>
+<td>37.27</td>
+<td>+4.1</td>
+<td>-9.29</td>
+<td>50.9</td>
+<td>+2.56</td>
+</tr>
+<tr>
+<td>002153</td>
+<td>石基信息</td>
+<td></td>
+<td>203.6</td>
+<td>-124.3</td>
+<td>12.69</td>
+<td>+1.6</td>
+<td>0.26</td>
+<td>48.4</td>
+<td>+0.98</td>
+</tr>
+<tr>
+<td>002063</td>
+<td>远光软件</td>
+<td></td>
+<td>100.0</td>
+<td>33.2</td>
+<td>10.61</td>
+<td>+0.5</td>
+<td>0.76</td>
+<td>49.0</td>
+<td>-3.50</td>
+</tr>
+<tr>
+<td>688777</td>
+<td>中控技术</td>
+<td></td>
+<td>633.1</td>
+<td>142.9</td>
+<td>36.35</td>
+<td>-5.1</td>
+<td>1.55</td>
+<td>31.7</td>
+<td>-0.41</td>
+</tr>
+<tr>
+<td>002410</td>
+<td>广联达</td>
+<td></td>
+<td>138.8</td>
+<td>34.0</td>
+<td>26.18</td>
+<td>-6.5</td>
+<td>2.00</td>
+<td>88.8</td>
+<td>+1.02</td>
+</tr>
+<tr>
+<td>600570</td>
+<td>恒生电子</td>
+<td></td>
+<td>377.6</td>
+<td>30.7</td>
+<td>21.44</td>
+<td>-11.7</td>
+<td>2.61</td>
+<td>69.4</td>
+<td>-0.19</td>
+</tr>
+<tr>
+<td>300451</td>
+<td>创业慧康</td>
+<td></td>
+<td>53.4</td>
+<td>-13.3</td>
+<td>4.55</td>
+<td>-21.1</td>
+<td>-1.97</td>
+<td>34.7</td>
+<td>-16.75</td>
+</tr>
+</tbody>
+</table>
+<p><strong>读法（正印证作者「不能只盯营收增长」）</strong>：本层增速最高的南网数字（+42.4%）是电网体系内公司、客户高度单一；而真正握着行业 record 的恒生电子（-11.7%）、广联达（-6.5%）、中控技术（-5.1%）<strong>营收都在收缩</strong>。<strong>「跑得快」和「做得深」在本层是背离的。</strong></p>
+<p><strong>本层财务质量最好的</strong>：00696 中民航信（PE 9.2、25FY 归母 23.42 亿）、宝信软件（PE 40.0、26H1 归母 7.07 亿）、柏楚电子（PE 24.7、归母 7.87 亿）、泛微网络（PE 31.3、毛利率 94.2%）。</p>
+<hr />
+<h2>四、③ 长尾 workbuddy：吃不到但没人去吃（12 只）</h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>点名</th>
+<th>市值亿</th>
+<th>PE</th>
+<th>26H1营收</th>
+<th>同比%</th>
+<th>26H1归母</th>
+<th>毛利率%</th>
+<th>Δpp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>02556</td>
+<td>迈富时</td>
+<td>★</td>
+<td>149.0</td>
+<td>50.6</td>
+<td>19.60</td>
+<td><strong>+111.2</strong></td>
+<td>0.89</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>09669</td>
+<td>北森控股</td>
+<td>★</td>
+<td>—</td>
+<td>—</td>
+<td>11.05</td>
+<td>+16.9</td>
+<td>-0.23</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>06608</td>
+<td>百融云创</td>
+<td>★</td>
+<td>—</td>
+<td>—</td>
+<td>9.14</td>
+<td><strong>-43.3</strong></td>
+<td>-3.20</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>002530</td>
+<td>金财互联</td>
+<td></td>
+<td>54.8</td>
+<td>87.9</td>
+<td>6.08</td>
+<td>+29.9</td>
+<td>0.43</td>
+<td>32.0</td>
+<td>-1.08</td>
+</tr>
+<tr>
+<td>688111</td>
+<td>金山办公 ⚠️</td>
+<td></td>
+<td>1030.2</td>
+<td>55.9</td>
+<td>33.13</td>
+<td>+24.7</td>
+<td>25.18</td>
+<td>84.9</td>
+<td>-0.14</td>
+</tr>
+<tr>
+<td>300766</td>
+<td>每日互动</td>
+<td></td>
+<td>85.5</td>
+<td>-240.6</td>
+<td>2.72</td>
+<td>+24.4</td>
+<td>-0.11</td>
+<td>60.8</td>
+<td>+0.31</td>
+</tr>
+<tr>
+<td>688787</td>
+<td>海天瑞声</td>
+<td></td>
+<td>54.2</td>
+<td>374.6</td>
+<td>1.92</td>
+<td>+22.4</td>
+<td>0.10</td>
+<td>49.1</td>
+<td>-1.07</td>
+</tr>
+<tr>
+<td>002315</td>
+<td>焦点科技</td>
+<td></td>
+<td>102.3</td>
+<td><strong>15.6</strong></td>
+<td>10.59</td>
+<td>+15.2</td>
+<td>2.60</td>
+<td>79.1</td>
+<td>-0.95</td>
+</tr>
+<tr>
+<td>688365</td>
+<td>光云科技</td>
+<td></td>
+<td>68.5</td>
+<td>-267.8</td>
+<td>3.02</td>
+<td>+15.1</td>
+<td>0.12</td>
+<td>73.1</td>
+<td>+3.05</td>
+</tr>
+<tr>
+<td>301162</td>
+<td>国能日新</td>
+<td></td>
+<td>68.6</td>
+<td>35.3</td>
+<td>3.52</td>
+<td>+9.7</td>
+<td>0.70</td>
+<td>63.7</td>
+<td>+2.33</td>
+</tr>
+<tr>
+<td>301556</td>
+<td>托普云农</td>
+<td></td>
+<td>51.9</td>
+<td>48.7</td>
+<td>2.36</td>
+<td>-5.4</td>
+<td>0.43</td>
+<td>49.0</td>
+<td>+1.24</td>
+</tr>
+<tr>
+<td>603990</td>
+<td>麦迪科技</td>
+<td></td>
+<td>58.4</td>
+<td>147.1</td>
+<td>1.23</td>
+<td>-8.9</td>
+<td>0.07</td>
+<td>60.1</td>
+<td>-3.55</td>
+</tr>
+</tbody>
+</table>
+<p><strong>三只点名港股都在这一层，恰好是作者的三种典型</strong>：</p>
+<ul>
+<li><strong>迈富时 +111.2%</strong>——作者明说它是「先卖 Agent 再渗透中台」的<strong>难路径</strong>（客户已有铺装路面，换中台如高速换轮子）。</li>
+<li><strong>北森 +16.9%</strong>——同为「先卖 HR Agent」的难路径。</li>
+<li><strong>百融云 -43.3%</strong>——<strong>点名样本里唯一营收腰斩、由盈转亏的</strong>（25H1 归母 +1.90 亿 → 26H1 -3.20 亿）。</li>
+</ul>
+<hr />
+<h2>五、① 浅层工具：最先被吃（10 只）— 按作者标准应回避</h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>点名</th>
+<th>市值亿</th>
+<th>PE</th>
+<th>26H1营收</th>
+<th>同比%</th>
+<th>26H1归母</th>
+<th>毛利率%</th>
+<th>Δpp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01357</td>
+<td>美图公司</td>
+<td>★</td>
+<td>168.0</td>
+<td>18.2</td>
+<td>22.13</td>
+<td>+21.5</td>
+<td>5.83</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>688615</td>
+<td>合合信息 ⚠️</td>
+<td></td>
+<td>170.7</td>
+<td>26.9</td>
+<td>10.31</td>
+<td>+22.3</td>
+<td>2.47</td>
+<td>87.0</td>
+<td>+0.67</td>
+</tr>
+<tr>
+<td>688207</td>
+<td>格灵深瞳</td>
+<td></td>
+<td>51.1</td>
+<td>-27.0</td>
+<td>0.50</td>
+<td>+18.7</td>
+<td>-0.95</td>
+<td>32.7</td>
+<td>-23.77</td>
+</tr>
+<tr>
+<td>688095</td>
+<td>福昕软件</td>
+<td></td>
+<td>52.5</td>
+<td>171.1</td>
+<td>4.71</td>
+<td>+11.4</td>
+<td>0.14</td>
+<td>91.6</td>
+<td>-0.41</td>
+</tr>
+<tr>
+<td>688088</td>
+<td>虹软科技</td>
+<td></td>
+<td>118.3</td>
+<td>46.1</td>
+<td>4.40</td>
+<td>+7.2</td>
+<td>0.77</td>
+<td>89.0</td>
+<td>+0.67</td>
+</tr>
+<tr>
+<td>688343</td>
+<td>云天励飞</td>
+<td></td>
+<td>229.6</td>
+<td>-54.1</td>
+<td>6.36</td>
+<td>-1.6</td>
+<td>-2.52</td>
+<td>29.0</td>
+<td>+0.52</td>
+</tr>
+<tr>
+<td>300624</td>
+<td>万兴科技</td>
+<td></td>
+<td>94.2</td>
+<td>-103.7</td>
+<td>7.06</td>
+<td>-7.1</td>
+<td>-0.69</td>
+<td>86.6</td>
+<td>-5.79</td>
+</tr>
+<tr>
+<td>688318</td>
+<td>财富趋势</td>
+<td></td>
+<td>279.7</td>
+<td>63.4</td>
+<td>1.21</td>
+<td>-8.7</td>
+<td>0.92</td>
+<td>67.7</td>
+<td>-11.82</td>
+</tr>
+<tr>
+<td>688327</td>
+<td>云从科技</td>
+<td></td>
+<td>102.8</td>
+<td>-18.3</td>
+<td>1.00</td>
+<td>-40.7</td>
+<td>-0.79</td>
+<td>42.8</td>
+<td>+5.08</td>
+</tr>
+<tr>
+<td>300229</td>
+<td>拓尔思</td>
+<td></td>
+<td>112.4</td>
+<td>-38.3</td>
+<td>1.26</td>
+<td>-48.4</td>
+<td>-1.69</td>
+<td>61.4</td>
+<td>-1.53</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>本层最值得警惕的不是亏钱的，而是赚钱的那 5 只</strong>：合合信息（PE 26.9、+22.3%、毛利率 87%）、美图（PE 18.2、+21.5%）、财富趋势（PE 63.4）、虹软（PE 46.1）、福昕（PE 171.1）。
+<strong>财务越漂亮越危险</strong>——因为它们的利润恰恰来自模型即将免费提供的能力。<strong>这一层是「好财务 + 坏生意」的典型。</strong></p>
+</blockquote>
+<hr />
+<h2>五·补 中报下载情况（2026-09-24：<strong>44 份，与名单严格对齐</strong>）</h2>
+<p>目录：<code>data/AI软件/</code>（平铺 <code>&lt;code&gt;_&lt;名称&gt;_&lt;年&gt;中报.pdf</code> + 单一 <code>_manifest.json</code>，逐份记录原始 URL 可回溯）。
+<strong>目录 PDF 数 = manifest 条目数 = 44</strong>，一一对应 41 只名单 + 3 只作者点名的中间态标的。</p>
+<table>
+<thead>
+<tr>
+<th>市场</th>
+<th>份数</th>
+<th>来源</th>
+<th>构成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A 股</td>
+<td><strong>36</strong></td>
+<td>巨潮资讯网 cninfo（<code>scripts/fetch_a_interim.py</code>）</td>
+<td>41 只里的 A 股<strong>全部拿到 2026 半年报</strong>，无缺口：②层 18 + ③层 9 + ①层 9</td>
+</tr>
+<tr>
+<td>港股</td>
+<td><strong>8</strong></td>
+<td>HKEXnews 披露易（<code>scripts/fetch_hk_interim.py</code>）</td>
+<td>名单内 5 只：00696 中民航信 / 01357 美图 / 02556 迈富时 / 06608 百融云 / 09669 北森<br>点名中间态 3 只：01384 滴普 / 03317 迅策 / 02718 明略（<strong>作者点名但落在 L2，按「点名优先」保留</strong>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>2026-09-24 已清理<strong>不在本名单的 18 份</strong>（金蝶、金山软件、微盟、智谱、MINIMAX 等港股通非点名标的）及对应的 19 条 manifest 条目（含 06727 星环科技，其 2026-09-18 才上市、本就无中报）。<strong>清理后目录与名单严格对齐。</strong> 需要恢复时可用 manifest 里留存的原始 URL 重新下载——但 manifest 已同步移除，故恢复需重新检索。</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>一处校验 WARN</strong>：<code>301638_南网数字_2026中报.pdf</code> 公司简称未匹配（208 页、1106KB，文件正常）。原因是首页全称为<strong>南方电网数字电网研究院股份有限公司</strong>，不含「南网数字」简称。已人工核过首页并补回清单。</p>
+</blockquote>
+<p><strong>下一步就能做的事</strong>：这 36 份 A 股半年报正是补 <strong>NDR / 复购率 / 增购率</strong>的原料（§七 第 2 条），也是判断 <strong>②层松紧</strong>（第 1 条）的证据来源——看各家到底有没有「过程数据」和「写回执行」的描述。</p>
+<hr />
+<h2>六、不在三层框架内的 50 只（暂不进主名单）</h2>
+<table>
+<thead>
+<tr>
+<th>桶</th>
+<th>只数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L2 数据中台</strong></td>
+<td>26</td>
+<td>作者第 9 条四级跃迁的第 2 级（铺装路面），<strong>还没到本体层</strong>。含达梦数据、星环科技、宇信科技、中科软、中望软件、赛意信息、鼎捷数智、东方国信、中科创达、朗新科技、新点软件、博思软件、顶点软件、能科科技、卓易信息、久远银海、金证股份、用友汽车、品茗科技、中科星图、赢时胜、中科江南、索辰科技，以及港股的迅策/滴普/明略</td>
+</tr>
+<tr>
+<td><strong>L3 数据治理 · 修路</strong></td>
+<td>13</td>
+<td>第 1 级（土路），项目制、毛利率 7-25%。含汉得信息、太极股份、中国软件、京北方、天阳科技、四方精创、银之杰、数字政通、久其软件、科大国创、航天软件、艾融软件、优刻得</td>
+</tr>
+<tr>
+<td><strong>SEC 网络安全</strong></td>
+<td>11</td>
+<td><strong>三篇原文一次都没提安全</strong>，框架无对应层，硬塞进①②③都是我编的。含深信服、三六零、奇安信、启明星辰、天融信、绿盟科技、迪普科技、电科网安、亚信安全、国投智能、航天信息</td>
+</tr>
+</tbody>
+</table>
+<p>全部保留在 <code>scripts/out/ai_sw_filter3.csv</code>，随时可按需要并入。</p>
+<hr />
+<h2>七、待核（按重要性）</h2>
+<ol>
+<li>🔴 <strong>②层 19 只可能判松了。</strong> 按作者<strong>第 5 条</strong>「ERP、CRM 这类 system of record……就像一张张<strong>定格后的照片</strong>，<strong>却没有从 A 到 B 的过程</strong>」——SAP/Salesforce 因缺过程只够 L2（见 §二）。若严格照此执行，本层的广联达、恒生电子、用友网络、石基信息、远光软件同样是「握 record、缺过程」，<strong>应降到 L2</strong>；真正能站稳②的是<strong>能把动作写回执行</strong>的：宝信软件（钢铁产线实时数据+控制）、柏楚电子（直接驱动设备）、00696（订座离港全流程）。<strong>收紧后②会从 19 只降到 4-6 只。本页当前按用户 2026-09-24 拍板的松口径呈现，此项待定。</strong></li>
+<li>🔴 <strong>NDR 全池不可得。</strong> 这是作者的核心指标（「谁做得深」），A/H 股均不披露。②层所有结论在拿到 NDR/复购率之前都只是<strong>推断</strong>。</li>
+<li>⚠️ <strong>金山办公归③存疑。</strong> 判③的理由是「文档编辑是模型能直接干的事」；但它的护城河若是「组织文档资产 + 私有化部署 + 信创」，应上移。它同时是全池财务最强者（毛利率 84.9%、26H1 归母 25.18 亿、市值 1030 亿），归类直接改变结论。</li>
+<li>⚠️ <strong>合合信息归①存疑。</strong> 核心是 OCR（扫描全能王/名片全能王），属模型原生能力；但 PE 26.9 + 22.3% 增长 + 87% 毛利率的财务表现在全池前列。<strong>「财务好但危险」的典型，需回中报看收入结构。</strong></li>
+<li>⚠️ <strong>科大讯飞归②存疑。</strong> 语音识别是模型原生能力（该判①），但教育/医疗/司法的私有场景深厚（该判②），两者对冲，暂放②并标注。</li>
+</ol>
+<hr />
+<h2>八、下一步</h2>
+<ol>
+<li><strong>先解决 §七 第 1 条</strong>：②层松紧一改，主战场从 19 只变 4-6 只，结论完全不同。</li>
+<li><strong>补 NDR/复购率</strong>：②层逐只回中报找客户续费、增购、客单价数据——这是作者框架的主证据。</li>
+<li><strong>百融云反例先做</strong>：点名样本里唯一营收腰斩的，它决定框架的可信边界在哪。</li>
+<li>之后才轮到估值与买点（本页不含任何买卖判断）。</li>
+</ol>
+</div><div class="backrow"><a href="../index.html#dir=AI%E8%BD%AF%E4%BB%B6">← 返回 AI软件</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/学股/AI软件/AI软件名单-按吞噬顺序筛选.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

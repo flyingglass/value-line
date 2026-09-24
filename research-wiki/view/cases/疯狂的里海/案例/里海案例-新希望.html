@@ -1,0 +1,704 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海案例·新希望</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海案例-新希望.html">里海案例·新希望</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海案例·新希望</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-24</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/案例</span></div><div class="md" id="md"><h1>里海案例 · 新希望（000876）</h1>
+<blockquote>
+<p><strong>一句话定位</strong>：案例库里<strong>唯一一个&quot;2444 要件全部成立、作者却几乎没赚到钱&quot;，并且在八年之后被基本面反过来质问的标本</strong>——教科书级的买入点（2018-10 前复权 5.39 元 / PB≈1.05 / 负债率 43%）配上教科书级的体系缺陷报告：<strong>那个&quot;PB 1 倍的底&quot;，是一家此后单年亏掉 95.91 亿、资产负债率从 43% 抬到 70.7%、每股净资产从 8.40 元掉到 3.99 元的公司给的，它还称作底吗？</strong></p>
+<p><strong>两条主线</strong>：① <strong>买入点纪律的正资产</strong>——群体亢奋与&quot;包打听&quot;都没让他在 30 元破戒（2021.5.27）；② <strong>弱者→强者转换的一次失败</strong>——2020.8 提出、2020.12-2021.5 被公司内部两个不可见变量击碎（2021.1.5）。</p>
+<p>⚠️ 口径：<strong>第一节是作者自述</strong>（与他案例页一致，未核实）；<strong>第三节起是外部财务/行情数据</strong>（akshare，2026-09-24 抓取）。两套口径分开列，引用时务必区分——这是本页与同目录其他案例页唯一不同处。</p>
+</blockquote>
+<h2>〇、先分清三件事（本案例最容易被读错的地方）</h2>
+<table>
+<thead>
+<tr>
+<th>常见误读</th>
+<th>事实</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;里海 7 元抄了新希望的底&quot;</td>
+<td><strong>没有</strong>。7 元出现在两处且都不是他的成本：2019.11.27 是<strong>假设句</strong>（&quot;如果建仓成本在 7 元左右……&quot;），2021.5.27 是<strong>别人的成本</strong>（&quot;当时股价就 7 块左右，所以很多朋友都在 10 块以下重仓了&quot;）。<strong>他自己的成本是 13～15 元区间</strong>（见存疑 1）</td>
+</tr>
+<tr>
+<td>&quot;他没买，案例价值有限&quot;</td>
+<td>相反。他 2019 上半年做过一次波段（7 元卖再升→13 元买→19 元卖→7 元买回再升），2022.2 仍持有。<strong>价值在于&quot;看得懂&quot;与&quot;敢下手&quot;之间的那道缝</strong></td>
+</tr>
+<tr>
+<td>&quot;2020.8 那篇是卖出复盘&quot;</td>
+<td>不是。写于 2020-08-28，处在<strong>顶部区域之后、腰斩之前</strong>，是&quot;模型讲解&quot;。真正的复盘是 2020.12 / 2021.1 / 2021.4 / 2021.5 四篇</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>一、2444 逐项映射（作者自述口径）</h2>
+<h3>1. 术·简单 —— ✓，但<strong>只在 2018 年成立，2021 年被打破</strong></h3>
+<ul>
+<li><strong>成立时</strong>：一句话说得完——&quot;饲料打底 + 禽与肉食 + <strong>民生银行股权每年十几个亿投资收益</strong> + 猪是一张没兑现的期权&quot;：
+<blockquote>
+<p>&quot;上述几块业务完全可以支撑起当时 200 多亿市值的体量，<strong>就算猪没搞起来，买进去也亏不了多少钱，而一旦猪这块起来了，或者说是猪周期来了，弹性就非常大了</strong>。&quot;（2021.4.6《这只股，人见人弃！》）</p>
+</blockquote>
+</li>
+<li><strong>被打破</strong>：决定业绩的两个变量不在公开披露里——
+<blockquote>
+<p>&quot;很明显，新希望这一波下跌就是两个不及预期，<strong>第一就是自繁自养的比例不及预期，第二就是单猪的成本不及预期</strong>。&quot;（<a href="https://mp.weixin.qq.com/s/sDp0-j_TubxiSYnL0Ny6lw">2021.1.5《我在PPW上面得到的经验和教训！》</a>）</p>
+</blockquote>
+</li>
+<li>→ 对应 <a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E7%AE%80%E5%8D%95%E8%AE%BA.html">方法论/里海-简单论</a> 的&quot;干扰因子少 / 业绩变量少&quot;：同一家公司<strong>会随阶段位移</strong>。2018 年是&quot;一个变量（猪价）&quot;的简单公司，2020 年变成&quot;两个内部执行变量 + 一个周期变量&quot;，而作者是在股价高位才发现。</li>
+</ul>
+<h3>2. 术·底部 —— ✓ 最硬的一条（已用外部数据核实）</h3>
+<blockquote>
+<p>&quot;例如新希望，<strong>16 年 3 月份到 18 年的 10 月份，历时两年多的一个大底部</strong>……前期这一波就是业绩砸不动了，最多砸到 7 块钱是业绩底部，<strong>但是大盘如果要往下面跌的话，股价还是会往下面跌，最低跌到 5 块多</strong>。&quot;（2020.11.10《这个股，我买在了最低！秘诀是？》）</p>
+</blockquote>
+<p>外部核实：前复权序列中 <strong>2018-10-19 最低 5.39 元，对应每股净资产 5.12 元 → PB≈1.05</strong>。自述&quot;Pb 估值一直在净资产附近&quot;<strong>数据侧成立</strong>。</p>
+<h3>3. 术·变化 —— ✓ 方向对，✗ 节奏不可控</h3>
+<blockquote>
+<p>&quot;所以猪周期一定会来，猪存栏量下跌到一定的时候，供应需求反转，周期就往上了，<strong>只不过具体到哪个时候来，哪个月份，哪一天开始，不知道</strong>。&quot;（2020.8.28 第八节）</p>
+</blockquote>
+<p>本案例给变化论补的一刀：<strong>变化的方向可以判断，变化时点不可判断</strong>。作者用&quot;底部 + 必然变化&quot;下注是对的，但等待的时间成本由资金方承担——他自己没重仓，而纯猪股的高位追随者里有人被强平（2021.3.9 转述：&quot;就像新希望一样，从 42 跌到 20，很多人在 25 块钱以下被迫卖掉&quot;）。</p>
+<h3>4. 术·分仓 —— ✗ 未执行，也是他承认的&quot;体系成本&quot;</h3>
+<ul>
+<li>三次自述，结论一致：
+<blockquote>
+<p>&quot;记得新希望，最底部是 5 元多，等我腾出精力来研究的时候，<strong>股价已经 15 元了</strong>……于是我也<strong>象征性地买了 5000 股</strong>。后来，新希望一口气涨到了 42 元。&quot;（2026.4.22《我的学股生涯（续）二十三》）
+&quot;等我腾出精力来研究的时候，股价已经在 14 元区间了，已经从底部起来了 1 倍不止，于是我选择了放弃，<strong>只拿了一丢丢仓位</strong>。&quot;（2021.4.6）
+&quot;到底要不要追呢？……<strong>最终我决定不追，只买了小仓位的筹码，最后我错过了 14 到 42 的巨大涨幅</strong>。&quot;（2021.5.27）</p>
+</blockquote>
+</li>
+<li>他把它定性为成本而非失误：
+<blockquote>
+<p>&quot;虽然我错过了新希望，<strong>但是我获得属于我自己的可持续的投资体系</strong>。&quot;（2026.4.22）</p>
+</blockquote>
+</li>
+</ul>
+<h3>5. 道（常识 / 赔率 / 概率）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>判定</th>
+<th>证据（作者原话）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>常识</strong></td>
+<td>✓</td>
+<td>&quot;民生银行这块的这个利润很稳健……每年都能带来十几个亿的净利润……<strong>而且因为在民生银行中持有股份，为公司融资这一块也是得到了很多的便利</strong>&quot;（2020.8.28 第五节）→ 实业托底 + 融资便利，两条都不需要专业知识</td>
+</tr>
+<tr>
+<td><strong>赔率</strong></td>
+<td>✓</td>
+<td>&quot;<strong>向下空间极小，向上可能的潜在空间非常大</strong>……最多跌到一百七八十亿到头了&quot;（2020.8.28）。外部核实：2018 年底部市值约 <strong>230 亿</strong>（前复权 5.39 元 × 约 42.6 亿股）——<strong>方向正确、幅度保守</strong></td>
+</tr>
+<tr>
+<td><strong>概率</strong></td>
+<td>⚠️</td>
+<td>周期&quot;必然来&quot;他判断对了；<strong>兑现质量</strong>的概率，他在 2020.12.16 承认判不了——这正是强弱转换断裂处</td>
+</tr>
+</tbody>
+</table>
+<h3>6. 能力·价值判断 —— ⚠️ 成败各半</h3>
+<ul>
+<li><strong>胜</strong>：2018 年与牧原的&quot;漏洞比较&quot;，弱者视角最漂亮的一次公开演示（2020.2.27《如果时间回到两年前》）：
+<blockquote>
+<p>&quot;最难的 2018 年，<strong>牧原的所有速动资产与流动负债之比仅为 0.21</strong>，资金链处于一种拆东墙补西墙的状态之中……<strong>投资牧原，是上没有顶，下也没有底，所以，这公司是有漏洞的</strong>。&quot;
+&quot;而再从展示资金链的速冻比这指标来看（新希望），也比牧原强不少，<strong>2015-2018 年分别为：0.65、0.56、0.45、0.44</strong>。&quot;
+&quot;在我们投资中，选择标的，<strong>一个很重要的理念就是要选择漏洞少的公司</strong>。&quot;
+（2018H1 分部口径，同为作者自述）&quot;饲料 231 亿元，毛利率 6.20%……<strong>猪养殖 17 亿元，毛利率 4.21%</strong>，相比去年下降 21.06%。所以猪这一块毛利率波动实在巨大。&quot;</p>
+</blockquote>
+</li>
+<li><strong>败</strong>：同一篇的结论&quot;<strong>因此，我还是会选择新希望</strong>&quot;，在事后股价上输给了牧原。<strong>必须并列说明</strong>：漏洞论保护的是<strong>下行风险</strong>（确实有效——新希望没破产也没退市），<strong>它从不保证选中弹性最大者</strong>。这不是判断错误，是弱者与强者之间的结构性取舍。</li>
+<li><strong>但同一篇也埋了他最大的遗憾自白</strong>：&quot;写这本书……赚了几万稿费，<strong>投资上潜在损失至少 7 位数</strong>&quot;（2020.2.27）</li>
+</ul>
+<h3>7. 能力·理解市场先生 —— ✓ 本案例最锋利的一句</h3>
+<blockquote>
+<p>&quot;公司股价从最低的 5.41 元一飞冲天，经过了三轮升浪，最高达到了 42.20 元的高点，而时间则不到两年……<strong>猪出栏仅仅从 200 多万头到 300 多万头（2019 年数据），股价就涨了几倍，而 2020 年猪出栏 800 万头时，股价却跌了一半。这真是扯淡啊，这充分说明了预期在中短期资产定价中的决定性作用啊。</strong>&quot;（2021.4.6）</p>
+</blockquote>
+<p><strong>涨的一段靠预期（出栏没兑现），跌的一段靠兑现（出栏兑现但质量崩了）</strong>——与 <a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C.html">里海案例-涪陵榨菜</a>&quot;业绩最好时反而是卖点&quot;完全同构。</p>
+<p>同一篇还给出了他自己版本的逻辑分层（2020.11.10）：&quot;如果你按照短逻辑来看就是估值修复。猪周期一来，1 倍 PB 修复成 2 倍 PB 就走了……<strong>所以我看 1500-2000 亿的中逻辑</strong>；长逻辑是什么呢？新希望会成为全产业链布局的公司&quot;——<strong>半年后正是中逻辑的前提（出栏质量）被证伪</strong>。</p>
+<h3>8. 能力·心性 —— ★ 本案例的第一遗产</h3>
+<blockquote>
+<p>&quot;人处在一种群体之中的话，会丧失理智的……<strong>当涨到 30 多的时候，没有人看空了，3000 亿，5000 亿的吼声都出来了</strong>……你们是不知道我当时的内心有多么的犹豫，多想在高位追进去啊……<strong>如果内心不够坚定的话，14 块没重仓，30 几才去加杠杆重仓，那可是真就完蛋了</strong>。&quot;（2021.5.27）
+&quot;<strong>这股要亏，就亏在两种操作方式上，一是受群体赚钱效应的影响，高位无脑追买，二是越涨越加杠杆，成本越加越高，下跌一半就爆仓。</strong>&quot;（同上）
+&quot;我越来越认同'<strong>投资是对特定性格、特定价值观的人的奖赏</strong>'这句话了。&quot;（同上）</p>
+</blockquote>
+<p>对照组就在同一篇：一位读者独仓加杠杆、从 30 多元一路加到爆仓。</p>
+<h3>9. 根（认知 / 修行）—— 把&quot;错过&quot;写进体系</h3>
+<ul>
+<li>2022.2.2 仍自责：&quot;新希望我也是一把泪，因为去年不多的自由时间我又用于写书去了……<strong>上车晚了，不过最终还是上车了</strong>&quot;。</li>
+<li>2025.2.18、2026.1.8 两次复盘把它移入&quot;错过清单&quot;而非&quot;错误清单&quot;：
+<blockquote>
+<p>&quot;过去这么多年，<strong>我错过的牛股真是太多了，2019 年的新希望</strong>，2020 年的博腾股份，等等……我把这些股的逻辑搞明白后，股价已经不在我认为的安全边际范围之内了，所以我就放弃了。&quot;（2026.1.8）</p>
+</blockquote>
+</li>
+<li>同一篇给出总闸门：&quot;<strong>我买股票有个原则，就是买入就赢，但不是买入就赚。</strong>&quot;</li>
+</ul>
+<hr />
+<h2>二、弱者 → 强者：一次被记录完整的失败</h2>
+<p><strong>2020.8.28 的设想</strong>（写在顶部之后、腰斩之前）：</p>
+<blockquote>
+<p>&quot;以弱者视角介入，在持有的过程当中，逐渐的认清了这家公司，<strong>变为强者视角</strong>。&quot;（第十二节）
+&quot;持股的逻辑就<strong>从周期变为成长</strong>……所以视角就从弱者向强者转化了，由投周期向投产业和管理层了。&quot;（同上）
+但同一节他已埋了自我约束：&quot;<strong>能否转为强者，其实对新希望能否搞得成我们仍然是没有绝对把握的</strong>，未来能不能够搞到 2500 万头，成为全国猪企的前三名，其实我们也没有绝对把握的，公司其实也没有绝对把握，只是我们觉得管理团队很靠谱，大概率能够搞成，那就 ok 了。&quot;（2020.8.28 第十三节）</p>
+</blockquote>
+<p><strong>2020.12-2021.5 的自我推翻</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>时点</th>
+<th>原话</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020.12.16<a href="https://mp.weixin.qq.com/s/wZEpkQhyW9pnrg5kP5i5CQ">《快腰斩了，怎么办？》</a></td>
+<td>&quot;悲喜两重天，新希望这个股，<strong>居然在 4 个月内几乎腰斩了</strong>&quot;；&quot;<strong>一直是预期在推动公司股价上涨，而业绩其实一直没有放出来</strong>……一旦不及预期，股价就会下杀&quot;</td>
+<td>股价先崩，原因后明</td>
+</tr>
+<tr>
+<td>同篇</td>
+<td>&quot;有些为了完成而完成的这个情况，<strong>用外购的仔猪来凑数，自有育肥却不尽如人意</strong>。这就是最近股价下杀的最重要的原因&quot;</td>
+<td><strong>关键缺陷找到了</strong></td>
+</tr>
+<tr>
+<td><a href="https://mp.weixin.qq.com/s/sDp0-j_TubxiSYnL0Ny6lw">2021.1.5《我在PPW上面得到的经验和教训！》</a></td>
+<td>上述&quot;两个不及预期&quot;；&quot;说实话，我周围有不少对这家公司研究非常深入的牛人，<strong>但是他们也没有办法把新希望这个两个不及预期的因子给预测出来，做强者真的很难</strong>&quot;</td>
+<td>承认外部不可知</td>
+</tr>
+<tr>
+<td><a href="https://mp.weixin.qq.com/s/sDp0-j_TubxiSYnL0Ny6lw">2021.1.5《我在PPW上面得到的经验和教训！》</a></td>
+<td>&quot;就算是上市公司的董秘，他不一定知道整个全貌……例如董秘要对外发布自繁自养预期的数据，这个数据一定是来自于养猪事业部，那么养猪事业部的那些技术人员，<strong>也肯定是按照最理想的状态报给他，但实际上搞不搞得成谁也没底</strong>&quot;</td>
+<td><strong>解释了为什么不可知</strong></td>
+</tr>
+<tr>
+<td>2021.4.6</td>
+<td>&quot;第三，感悟到了做强者的不易！……现实中这种偏差却会在预期的效用下无限放大……<strong>因此，做强者难啊！</strong>&quot;</td>
+<td>正式结案</td>
+</tr>
+<tr>
+<td>2021.5.30《做强者的不易！》</td>
+<td>&quot;上周去参加了新希望的股东会，火药味十足。其中，有投资者发表了长达 20 分钟的讲话，<strong>七问新希望</strong>。还有投资者直接给新希望扣上了'<strong>不诚信</strong>'的帽子！&quot;</td>
+<td>外部印证</td>
+</tr>
+</tbody>
+</table>
+<p><strong>本报告的判断（非作者原话）</strong>：
+强弱转换所需的信息精度 <strong>&gt;</strong> 公开披露所能提供的精度，这一条件在&quot;结果取决于基层执行力&quot;的养殖生意里<strong>不成立</strong>。里海给出的解法不是放弃强者视角，而是<strong>把位置重新设为第一性</strong>——只有足够低的位置，才有资格承受&quot;强者视角的不确定性&quot;：</p>
+<blockquote>
+<p>&quot;我个人认为，新希望未来应该还会有肉，但不会再有 2 年 7-8 倍了，哈哈！所以，<strong>还是要买得早买得低啊，买得低，就是最好的防守</strong>。&quot;（2020.9.24《在牛股上亏钱，是再正常不过的事情了！》）
+&quot;就算是公司内部的人也搞不清楚，除非是那几个核心人员……而我们外部投资人，盲目地在高估值时去拿这些筹码，貌似研究得很深入，又有什么用呢？……<strong>在高估值时去买任何一家公司都是风险，高估值就是风险</strong>。&quot;（2021.5.30《做强者的不易！》）</p>
+</blockquote>
+<hr />
+<h2>三、数据回核（外部口径 · akshare · 抓取日 2026-09-24）</h2>
+<blockquote>
+<p>说明：本节<strong>不是作者口径</strong>，是 2026 年回看的客观数据，用来检验上面的自述。行情为<strong>前复权</strong>（<code>adjust=&quot;qfq&quot;</code>）；财务取自 <code>stock_financial_abstract</code>，毛利率＝(营业总收入−营业成本)/营业总收入。</p>
+</blockquote>
+<h3>1. 里海口径 vs 外部数据</h3>
+<table>
+<thead>
+<tr>
+<th>作者自述（出处）</th>
+<th>外部数据</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;Pb 估值一直在净资产附近&quot;（2020.8.28）</td>
+<td>2018-10-19 最低 <strong>5.39</strong> / 每股净资产 <strong>5.12</strong> → <strong>PB≈1.05</strong></td>
+<td>✓ 成立</td>
+</tr>
+<tr>
+<td>&quot;PE 估值就 10 来倍&quot;（同上）</td>
+<td>2018 归母 17.05 亿；5.39 元 × 约 42.6 亿股≈230 亿市值 → PE≈13.5</td>
+<td>✓ 成立（略高）</td>
+</tr>
+<tr>
+<td>&quot;营收每年六七百亿&quot;&quot;净利 15 亿到 20 亿出头&quot;（同上）</td>
+<td>2018 营收 <strong>690.6 亿</strong>、归母 <strong>17.05 亿</strong></td>
+<td>✓ 成立</td>
+</tr>
+<tr>
+<td>&quot;2019 年利润到 50 个亿&quot;（同上第十节）</td>
+<td>2019 归母 <strong>50.42 亿</strong></td>
+<td>✓ 成立</td>
+</tr>
+<tr>
+<td>&quot;2018 年总资产 479 亿，<strong>资产负债率只有 43%</strong>&quot;（同上第十节）</td>
+<td>资产负债率 <strong>42.98%</strong> ✓；<strong>总资产本次未取到该科目，479 亿待核</strong></td>
+<td>⚠️ 一半核实</td>
+</tr>
+<tr>
+<td>&quot;最低 5.41 元 → 最高 42.20 元&quot;（2021.4.6）</td>
+<td>前复权 <strong>5.39（2018-10-19）→ 42.18（2020-09-02）</strong>，差 0.02 元系分红调整</td>
+<td>✓ 成立</td>
+</tr>
+<tr>
+<td>&quot;涨了 7-8 倍&quot;&quot;2 年最高涨 7 倍&quot;（多篇）</td>
+<td><strong>42.18/5.39 = 7.82 倍</strong>，历时约 23 个月</td>
+<td>✓ 成立</td>
+</tr>
+<tr>
+<td>&quot;最多跌到一百七八十亿到头了&quot;（2020.8.28）</td>
+<td>实际底部市值约 <strong>230 亿</strong></td>
+<td>✓ 方向对、幅度保守</td>
+</tr>
+<tr>
+<td>&quot;这公司还是值 200 亿&quot;（同上第十节）</td>
+<td>2018 年底部市值≈230 亿</td>
+<td>✓ 数量级对</td>
+</tr>
+</tbody>
+</table>
+<h3>2. 年度序列（外部口径）</h3>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>最低</th>
+<th>最高</th>
+<th>年末收盘</th>
+<th>归母净利(亿)</th>
+<th>营收(亿)</th>
+<th>毛利率</th>
+<th>资产负债率</th>
+<th>每股净资产(元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2016</td>
+<td>6.20</td>
+<td>8.25</td>
+<td>7.20</td>
+<td>24.69</td>
+<td>608.8</td>
+<td>1.86%</td>
+<td>31.66%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>6.81</td>
+<td>7.89</td>
+<td>7.10</td>
+<td>22.80</td>
+<td>625.7</td>
+<td>1.62%</td>
+<td>38.20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>2018</strong></td>
+<td><strong>5.39</strong></td>
+<td>8.27</td>
+<td>7.08</td>
+<td>17.05</td>
+<td>690.6</td>
+<td>2.49%</td>
+<td><strong>42.98%</strong></td>
+<td><strong>5.12</strong></td>
+</tr>
+<tr>
+<td>2019</td>
+<td>7.03</td>
+<td>23.59</td>
+<td>19.78</td>
+<td>50.42</td>
+<td>820.5</td>
+<td>5.55%</td>
+<td>49.16%</td>
+<td>6.18</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>15.51</td>
+<td><strong>42.18</strong></td>
+<td>22.38</td>
+<td>49.44</td>
+<td>1,098.3</td>
+<td>4.90%</td>
+<td>53.06%</td>
+<td>8.40</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>10.64</td>
+<td>28.18</td>
+<td>15.19</td>
+<td><strong>-95.91</strong></td>
+<td>1,262.6</td>
+<td><strong>-4.55%</strong></td>
+<td>64.98%</td>
+<td>6.16</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>12.24</td>
+<td>18.52</td>
+<td>12.89</td>
+<td>-14.60</td>
+<td>1,415.1</td>
+<td>0.36%</td>
+<td>68.02%</td>
+<td>5.74</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>8.81</td>
+<td>14.47</td>
+<td>9.30</td>
+<td>2.49</td>
+<td>1,417.0</td>
+<td>-3.54%</td>
+<td>72.28%</td>
+<td>4.79</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>7.73</td>
+<td>11.43</td>
+<td>8.96</td>
+<td>4.74</td>
+<td>1,030.6</td>
+<td>-0.42%</td>
+<td>69.01%</td>
+<td>4.90</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>8.25</td>
+<td>11.86</td>
+<td>9.22</td>
+<td>-17.84</td>
+<td>1,068.6</td>
+<td>-0.74%</td>
+<td>69.89%</td>
+<td>4.44</td>
+</tr>
+<tr>
+<td><strong>2026H1</strong>（至 9/24）</td>
+<td><strong>5.82</strong></td>
+<td>9.32</td>
+<td><strong>6.92</strong></td>
+<td><strong>-17.02</strong></td>
+<td>555.9</td>
+<td><strong>-1.83%</strong></td>
+<td><strong>70.70%</strong></td>
+<td><strong>3.99</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验注：① 2026 行&quot;最低/最高/收盘&quot;为 <strong>2026-01-01~2026-09-24</strong> 区间值，非全年；最低 <strong>5.82（2026-06-25）</strong>、最新收盘 <strong>6.92（2026-09-24）</strong>。② 毛利率口径为营业总收入 vs 营业成本，<strong>含全部业务</strong>；2021 年起为负说明主业本身不再赚钱。③ <strong>每股净资产自 2020 年 8.40 元降至 2026H1 的 3.99 元（-52%）</strong>——&quot;PB 1 倍的底&quot;对应的资产本身缩了一半，<strong>这是本页最重要的一条数据</strong>。</p>
+</blockquote>
+<h3>3. 当前估值位置（2026-09-24）</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收盘价</td>
+<td>6.92 元</td>
+<td>akshare 前复权，2026-09-24</td>
+</tr>
+<tr>
+<td>每股净资产</td>
+<td>3.99 元</td>
+<td>2026H1 期末</td>
+</tr>
+<tr>
+<td><strong>PB（自算）</strong></td>
+<td><strong>≈1.73 倍</strong></td>
+<td>6.92 / 3.99</td>
+</tr>
+<tr>
+<td>PB（第三方）</td>
+<td>1.94 倍（2026-09-23）</td>
+<td><code>stock_zh_valuation_baidu(000876, indicator=&quot;市净率&quot;)</code>，<strong>两口径差约 12%，原因待核</strong></td>
+</tr>
+<tr>
+<td>总股本（推算）</td>
+<td>约 44.8 亿股</td>
+<td>2026H1 归母 -17.02 亿 ÷ 基本每股收益 -0.38 元，<strong>为反推值，非官方股本</strong></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="新希望 000876 月收盘折线（前复权，2016-01 至 2026-09）">
+<style>
+.ax{font:11px system-ui,sans-serif;fill:#6b7280}
+.evt{font:11px system-ui,sans-serif;fill:#b91c1c;font-weight:600}
+.band{font:11px system-ui,sans-serif;fill:#374151}
+.cap{font:12px system-ui,sans-serif;fill:#6b7280}
+</style>
+<rect width="900" height="320" fill="#ffffff"/>
+<rect x="56.0" y="40" width="203.2" height="218" fill="#2563eb" opacity="0.13"/><text x="157.6" y="290" text-anchor="middle" class="band">底部横盘两年多</text><rect x="259.2" y="40" width="150.8" height="218" fill="#e11d48" opacity="0.13"/><text x="334.6" y="290" text-anchor="middle" class="band">预期推动主升 7.8 倍</text><rect x="410.0" y="40" width="472.0" height="218" fill="#0f766e" opacity="0.13"/><text x="646.0" y="290" text-anchor="middle" class="band">双向下：业绩兑现失败</text>
+<line x1="56" y1="258.0" x2="882" y2="258.0" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="262.0" text-anchor="end" class="ax">0</text><line x1="56" y1="233.8" x2="882" y2="233.8" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="237.8" text-anchor="end" class="ax">5</text><line x1="56" y1="209.6" x2="882" y2="209.6" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="213.6" text-anchor="end" class="ax">10</text><line x1="56" y1="185.3" x2="882" y2="185.3" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="189.3" text-anchor="end" class="ax">15</text><line x1="56" y1="161.1" x2="882" y2="161.1" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="165.1" text-anchor="end" class="ax">20</text><line x1="56" y1="136.9" x2="882" y2="136.9" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="140.9" text-anchor="end" class="ax">25</text><line x1="56" y1="112.7" x2="882" y2="112.7" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="116.7" text-anchor="end" class="ax">30</text><line x1="56" y1="88.4" x2="882" y2="88.4" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="92.4" text-anchor="end" class="ax">35</text><line x1="56" y1="64.2" x2="882" y2="64.2" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="68.2" text-anchor="end" class="ax">40</text><line x1="56" y1="40.0" x2="882" y2="40.0" stroke="#e5e7eb" stroke-width="1"/><text x="48" y="44.0" text-anchor="end" class="ax">45</text>
+<polyline points="56.0,224.5 62.6,223.1 69.1,221.8 75.7,221.8 82.2,221.4 88.8,221.5 95.3,223.1 101.9,222.8 108.4,220.8 115.0,223.1 121.6,223.2 128.1,222.5 134.7,223.1 141.2,222.5 147.8,223.4 154.3,222.3 160.9,221.9 167.4,223.1 174.0,224.0 180.6,223.8 187.1,222.8 193.7,223.6 200.2,219.4 206.8,223.0 213.3,224.4 219.9,224.9 226.4,225.2 233.0,229.0 239.6,227.4 246.1,229.6 252.7,229.3 259.2,230.1 265.8,224.8 272.3,223.7 278.9,220.5 285.4,207.6 292.0,194.5 298.6,175.1 305.1,159.2 311.7,174.7 318.2,165.1 324.8,164.3 331.3,175.6 337.9,152.0 344.4,159.2 351.0,162.2 357.6,170.9 364.1,141.6 370.7,106.6 377.2,99.4 383.8,123.1 390.3,113.7 396.9,100.6 403.4,74.0 410.0,123.9 416.6,127.9 423.1,132.3 429.7,149.6 436.2,155.6 442.8,141.5 449.3,161.2 455.9,177.6 462.4,184.3 469.0,187.0 475.6,202.8 482.1,205.1 488.7,186.6 495.2,188.4 501.8,188.5 508.3,184.4 514.9,180.1 521.4,183.6 528.0,175.8 534.6,190.1 541.1,188.9 547.7,184.0 554.2,181.1 560.8,182.0 567.3,190.8 573.9,195.7 580.4,192.1 587.0,195.6 593.6,194.6 600.1,194.2 606.7,194.0 613.2,195.1 619.8,203.5 626.3,201.5 632.9,197.5 639.4,201.6 646.0,204.8 652.6,208.9 659.1,209.7 665.7,212.9 672.2,218.5 678.8,215.2 685.3,212.2 691.9,214.9 698.4,209.6 705.0,213.8 711.6,212.2 718.1,214.4 724.7,207.7 731.2,210.6 737.8,211.9 744.3,214.6 750.9,216.0 757.4,211.8 764.0,213.2 770.6,211.6 777.1,211.7 783.7,212.7 790.2,211.4 796.8,210.1 803.3,210.5 809.9,210.9 816.4,212.4 823.0,213.3 829.6,214.2 836.1,215.8 842.7,218.3 849.2,215.7 855.8,219.8 862.3,227.6 868.9,224.1 875.4,223.6 882.0,224.5 882.0,258.0 56.0,258.0" fill="#fecdd3" opacity="0.35"/>
+<polyline points="56.0,224.5 62.6,223.1 69.1,221.8 75.7,221.8 82.2,221.4 88.8,221.5 95.3,223.1 101.9,222.8 108.4,220.8 115.0,223.1 121.6,223.2 128.1,222.5 134.7,223.1 141.2,222.5 147.8,223.4 154.3,222.3 160.9,221.9 167.4,223.1 174.0,224.0 180.6,223.8 187.1,222.8 193.7,223.6 200.2,219.4 206.8,223.0 213.3,224.4 219.9,224.9 226.4,225.2 233.0,229.0 239.6,227.4 246.1,229.6 252.7,229.3 259.2,230.1 265.8,224.8 272.3,223.7 278.9,220.5 285.4,207.6 292.0,194.5 298.6,175.1 305.1,159.2 311.7,174.7 318.2,165.1 324.8,164.3 331.3,175.6 337.9,152.0 344.4,159.2 351.0,162.2 357.6,170.9 364.1,141.6 370.7,106.6 377.2,99.4 383.8,123.1 390.3,113.7 396.9,100.6 403.4,74.0 410.0,123.9 416.6,127.9 423.1,132.3 429.7,149.6 436.2,155.6 442.8,141.5 449.3,161.2 455.9,177.6 462.4,184.3 469.0,187.0 475.6,202.8 482.1,205.1 488.7,186.6 495.2,188.4 501.8,188.5 508.3,184.4 514.9,180.1 521.4,183.6 528.0,175.8 534.6,190.1 541.1,188.9 547.7,184.0 554.2,181.1 560.8,182.0 567.3,190.8 573.9,195.7 580.4,192.1 587.0,195.6 593.6,194.6 600.1,194.2 606.7,194.0 613.2,195.1 619.8,203.5 626.3,201.5 632.9,197.5 639.4,201.6 646.0,204.8 652.6,208.9 659.1,209.7 665.7,212.9 672.2,218.5 678.8,215.2 685.3,212.2 691.9,214.9 698.4,209.6 705.0,213.8 711.6,212.2 718.1,214.4 724.7,207.7 731.2,210.6 737.8,211.9 744.3,214.6 750.9,216.0 757.4,211.8 764.0,213.2 770.6,211.6 777.1,211.7 783.7,212.7 790.2,211.4 796.8,210.1 803.3,210.5 809.9,210.9 816.4,212.4 823.0,213.3 829.6,214.2 836.1,215.8 842.7,218.3 849.2,215.7 855.8,219.8 862.3,227.6 868.9,224.1 875.4,223.6 882.0,224.5" fill="none" stroke="#e11d48" stroke-width="1.8"/>
+<circle cx="259.2" cy="231.9" r="3.5" fill="#e11d48"/><text x="265.2" y="217.9" text-anchor="start" class="evt">2018.10 底 5.39
+（里海写书错过）</text><circle cx="410.0" cy="53.7" r="3.5" fill="#e11d48"/><text x="416.0" y="39.7" text-anchor="end" class="evt">2020.9.2 顶 42.18</text><circle cx="475.6" cy="206.5" r="3.5" fill="#e11d48"/><text x="481.6" y="228.5" text-anchor="start" class="evt">2021.7 低 10.64</text><circle cx="862.3" cy="229.8" r="3.5" fill="#e11d48"/><text x="868.3" y="251.8" text-anchor="start" class="evt">2026.6.25 低 5.82</text>
+<text x="200.2" y="308" text-anchor="middle" class="ax">2018</text><text x="357.6" y="308" text-anchor="middle" class="ax">2020</text><text x="514.9" y="308" text-anchor="middle" class="ax">2022</text><text x="672.2" y="308" text-anchor="middle" class="ax">2024</text><text x="829.6" y="308" text-anchor="middle" class="ax">2026</text>
+<text x="56" y="20" class="cap">新希望 000876 · 月收盘（前复权）　单位：元</text>
+</svg>
+<figcaption>
+数据：akshare <code>stock_zh_a_hist(000876, adjust="qfq")</code>，抓取日 2026-09-24，区间 2016-01-05 ~ 2026-09-24。
+本图仅作「一眼看位置」，不承担新信息；跨 8 年前复权比较仅供定性，未复权口径下 2018 年低点为作者自述的 5.41 元。
+</figcaption>
+</figure>
+<hr />
+<h2>四、案例镜像对照</h2>
+<table>
+<thead>
+<tr>
+<th>对照案例</th>
+<th>同构</th>
+<th><strong>差异（必须单列）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E9%B2%81%E8%A5%BF%E5%8C%96%E5%B7%A5.html">里海案例-鲁西化工</a></td>
+<td>同为&quot;底部横盘 + 外部价格上涨 → 业绩拐点&quot;，都主张<strong>只盯 1-2 个变量</strong></td>
+<td>鲁西的关键变量（<strong>双氧水、PC 的公开报价</strong>）<strong>每日可得</strong>；新希望的关键变量（<strong>自繁自养比例、单头完全成本</strong>）<strong>只有公司内部知道</strong>。这解释了为什么同一套&quot;建模+跟踪&quot;打法，鲁西能等到实锤后在 8.95 元全仓，新希望只能买 5000 股——<strong>不是纪律差别，是变量可观测性的差别</strong></td>
+</tr>
+<tr>
+<td><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C.html">里海案例-涪陵榨菜</a></td>
+<td>&quot;业绩最好时＝预期兑现时＝卖点&quot;（榨菜：渠道数量 vs 新希望：800 万头出栏兑现即暴跌）</td>
+<td>榨菜的变量（提价 → 发货 → 县一级渠道数）<strong>外部可观察</strong>，且作者在低位深研数年；新希望&quot;出栏凑数&quot;这一层，<strong>即使去股东会七问也问不出来</strong>（2021.5.30）</td>
+</tr>
+<tr>
+<td><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%86%8D%E5%8D%87%E7%A7%91%E6%8A%80.html">里海案例-再升科技</a></td>
+<td>顶部之后事实都会暴露</td>
+<td>再升是<strong>基本面与趋势双降后仍死扛</strong>（实亏约 100 万）；新希望因为<strong>买点靠后所以仓位极小</strong>，反而豁免了 42.18 → 10.64 这一段。<strong>同一条&quot;不过安全边际不重仓&quot;的纪律：代价是错过主升，收益是躲过毁灭</strong>——本案例把这个取舍写得最清楚</td>
+</tr>
+<tr>
+<td>牧原（文中对照组，非本 wiki 案例）</td>
+<td>同为猪周期；2020.2.27 用&quot;漏洞论&quot;选了新希望而非牧原</td>
+<td><strong>结果层面牧原远胜</strong>。教训见 §一.6：漏洞论管下行、不管弹性。⚠️ <strong>这是本页唯一&quot;作者的公开推演被结果否定&quot;之处，不做修饰</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>五、2026-09-24 是不是买点？（本报告判断，非作者原话）</h2>
+<p><strong>结论：不构成买点，属&quot;观察区偏左&quot;。</strong> 按 <a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">方法论/里海-双左侧</a> 的两条腿逐条走：</p>
+<table>
+<thead>
+<tr>
+<th>腿</th>
+<th>状态</th>
+<th>证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基本面预期往下</strong>（腿一）</td>
+<td><strong>成立</strong></td>
+<td>2025 全年亏 17.84 亿、2026H1 再亏 17.02 亿；毛利率连续多年为负（2026H1 <strong>-1.83%</strong>）；资产负债率 <strong>70.70%</strong>（2018 年 42.98%）；每股净资产持续下滑</td>
+</tr>
+<tr>
+<td><strong>股价大的走势往下</strong>（腿二）</td>
+<td><strong>基本成立</strong></td>
+<td>2020-09 顶 42.18 → 2026-09-24 收 6.92（<strong>-84%</strong>）；2026 年内最低 5.82，<strong>逼近 2018 年历史底 5.39</strong></td>
+</tr>
+</tbody>
+</table>
+<p>而他自己对&quot;到了便宜区间能不能抄&quot;给过答案：</p>
+<blockquote>
+<p>&quot;我的意见是<strong>新希望到了这区间了，还真可以严密关注了，人弃我取，严密关注基本面的变化情况，但别急着抄底，否则在底部会折磨得你死去活来</strong>。&quot;（2020.12.16）
+&quot;那么，如果自己判断逻辑还在的话，可以随时抄底吗？……<strong>一家公司的底是不是可以抄，要有两方面的因子，首先就是筹码充分交换</strong>，不认同的资金走得快差不多了，也就跌不动了，很明显新希望还没到这一步；<strong>其次，在底部夯实的情况下，有向好的因子在慢慢出现</strong>。&quot;（同上）</p>
+</blockquote>
+<p><strong>要等到什么样的变化才谈得上&quot;重锤前提&quot;</strong>（<a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">方法论/里海-变化论</a> 捕获动作）：</p>
+<ol>
+<li><strong>自有育肥出栏占比</strong>与<strong>完全成本（元/kg）</strong>——他自己两次点名的唯一变量（<a href="https://mp.weixin.qq.com/s/wZEpkQhyW9pnrg5kP5i5CQ">2020.12.16《快腰斩了，怎么办？》</a> / <a href="https://mp.weixin.qq.com/s/sDp0-j_TubxiSYnL0Ny6lw">2021.1.5《我在PPW上面得到的经验和教训！》</a>），至今仍是本案唯一正确的跟踪锚；</li>
+<li><strong>资产负债率下行 / 财务费用改善</strong>——2026 年新增的风险点。2018 年&quot;融资能力强&quot;这条常识（2018.8.28 原文：&quot;融资能力强，比其他养猪公司的资产规模大，2018 年的总资产 479 亿……<strong>资产负债率只有 43%</strong>&quot;）<strong>到 2026 年已经反转</strong>；</li>
+<li><strong>民生银行股权是否处置</strong>——2018 年兜底逻辑的核心资产，需回年报确认当前持股比例（<strong>待核，见存疑 5</strong>）；</li>
+<li>股价端：<strong>不再创新低、中枢抬升</strong>（&quot;最好股价先到右侧&quot;）。</li>
+</ol>
+<hr />
+<h2>六、矛盾与存疑（照录，不抹平）</h2>
+<ol>
+<li><strong>买入价三种自述口径</strong>：13 元多（2022.2.3）/ 14 元（2021.4.6、2021.5.27）/ 15 元（2025.2.18、2026.4.22）。可能为不同时点或不同账户，<strong>未经统一，引用时须注明出处年份</strong>。</li>
+<li><strong>2019 年那笔波段的叙述</strong>：2019 上半年小结（2022.2.3 转载）写&quot;7 元左右卖了再升 13 元左右买了新希望，19 元左右卖了新希望&quot;，自评&quot;这纯属运气&quot;；2020.1.15 写&quot;去年新希望我 13 进，19 出，<strong>过了几个月 18 又进了</strong>&quot;——<strong>这最后一笔&quot;18 进&quot;的退出时点未在 raw 中找到，盈亏未知（待核）</strong>。</li>
+<li><strong>2019.11.27 的&quot;7 元左右&quot;是假设句</strong>，不是他的持仓成本，极易误读（见 §〇）。</li>
+<li><strong>2020.2.27 的牧原财务数据</strong>（营收 26→202 亿、速动比 0.21 等）为作者自述，<strong>未经本 wiki 核实</strong>，与今日牧原年报口径可能存在差异。</li>
+<li><strong>&quot;2018 年总资产 479 亿&quot;未核实</strong>：本次 akshare 未取到&quot;资产总计&quot;科目。同理，<strong>当前持有民生银行股权比例未核</strong>（作者 2018 年口径＝&quot;3% 多＝六和投资 75% × 民生银行 4.18%&quot;）。</li>
+<li><strong>PB 两个口径不一致</strong>：自算 1.73 vs 百度 1.94（2026-09-23），差约 12%，原因待核。</li>
+<li><strong>前复权的跨期比较限制</strong>：2026 年 5.82 与 2018 年 5.39 同属前复权序列，可作定性比较；<strong>未复权价（作者自述 2018 年低点 5.41）不可与之混用</strong>。</li>
+<li><strong>口径混用风险（本页特有）</strong>：本页第三节起混入外部数据，与其他案例页&quot;全部为作者自述&quot;不同，引用时<strong>必须区分两套口径</strong>。</li>
+<li><strong>关键数字的 PDF 复核未完成</strong>：按项目章程，亿元级数字应回年报 PDF；本页 2021 年 -95.91 亿等来自 <code>stock_financial_abstract</code>，<strong>尚未与 000876 年报 PDF 交叉验证</strong>（<code>data/pdfs/000876/</code> 尚不存在）。</li>
+<li><strong>他的实际盈亏不明</strong>：2019 年波段有赚（13→19），2022.2 仍持有、成本 13 元多、当时股价约 20 元；<strong>此后的减仓/清仓未见披露</strong>，故本案例无法给出&quot;作者在这只票上赚/亏多少&quot;的结论，<strong>不要自行推算</strong>。</li>
+</ol>
+<hr />
+<h2>七、跟踪清单</h2>
+<table>
+<thead>
+<tr>
+<th>频次</th>
+<th>看什么</th>
+<th>为什么是它</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月度</td>
+<td>生猪销售简报：<strong>出栏量 + 自有育肥占比 + 完全成本</strong></td>
+<td>作者两次点名的唯一变量（<a href="https://mp.weixin.qq.com/s/wZEpkQhyW9pnrg5kP5i5CQ">2020.12.16《快腰斩了，怎么办？》</a> / <a href="https://mp.weixin.qq.com/s/sDp0-j_TubxiSYnL0Ny6lw">2021.1.5《我在PPW上面得到的经验和教训！》</a>），也是 2020 年预期崩塌的同一处</td>
+</tr>
+<tr>
+<td>月度</td>
+<td>农业农村部<strong>能繁母猪 / 生猪存栏</strong></td>
+<td>他 2018 年判断&quot;猪周期必然来&quot;的客观锚（2020.8.28 第八节）</td>
+</tr>
+<tr>
+<td>季报</td>
+<td><strong>资产负债率、财务费用、短期借款</strong></td>
+<td>2018 年&quot;融资能力强&quot;是买入理由，2026 年 70.7% 已反转，<strong>这是安全垫是否还在的度量</strong></td>
+</tr>
+<tr>
+<td>年报</td>
+<td><strong>民生银行长期股权投资的账面值与投资收益</strong></td>
+<td>兜底资产当前状态（存疑 5）</td>
+</tr>
+<tr>
+<td>年报</td>
+<td><strong>资产减值计提</strong></td>
+<td>2021 年 96 亿亏损构成未核实；是否一次性出清，决定未来报表可信度</td>
+</tr>
+<tr>
+<td>触发降级</td>
+<td>若&quot;净资产继续下滑 + 再度大额亏损&quot;同时出现 → <strong>PB 1 倍不再是底</strong>（地板是移动的）</td>
+<td>本案例最贵的教训</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>参见</h2>
+<ul>
+<li><a href="../%E9%87%8C%E6%B5%B7-2444%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB.html">../里海-2444投资体系</a> — 术/道/能力/根四级（§一 的映射框架）</li>
+<li><a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">../方法论/里海-变化论</a> — &quot;低估不是底，变化才是底&quot; + 变化三性；本案例佐证&quot;<strong>近</strong>&quot;不可判断</li>
+<li><a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">../方法论/里海-双左侧</a> — 两条腿判定法（§五 用了它）</li>
+<li><a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E7%AE%80%E5%8D%95%E8%AE%BA.html">../方法论/里海-简单论</a> — &quot;干扰因子少 / 业绩变量少&quot;；本案例提供&quot;同一公司跨阶段位移&quot;的样本</li>
+<li><a href="../%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">../里海体系-总览</a> — §四 回避项、§五 买卖点</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E9%B2%81%E8%A5%BF%E5%8C%96%E5%B7%A5.html">里海案例-鲁西化工</a> — 同模型（困境反转）的正面闭环，关键变量可日频验证</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C.html">里海案例-涪陵榨菜</a> — 预期定价 + 完整生命周期样本</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%86%8D%E5%8D%87%E7%A7%91%E6%8A%80.html">里海案例-再升科技</a> — 双左侧死扛对照组</li>
+<li>raw 原文：<a href="../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/2020-08-28-%E8%BF%99%E5%AE%B6%E5%85%AC%E5%8F%B8%E8%82%A1%E4%BB%B72%E5%B9%B4%E6%B6%A8%E4%BA%867%E5%80%8D-%E4%B8%80%E4%B8%AA%E7%BB%8F%E5%85%B8%E7%9A%84%E9%80%89%E8%82%A1%E6%A8%A1%E5%9E%8B.html">../../../raw/research/疯狂的里海/2020-08-28-这家公司股价2年涨了7倍-一个经典的选股模型</a></li>
+</ul>
+<p><a href="../../../../research/index.md">research/index.md</a> · <a href="../../../../research/log.md">research/log.md</a></p>
+</div><div class="backrow"><a href="../index.html#dir=%E6%A1%88%E4%BE%8B">← 返回 案例</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/案例/里海案例-新希望.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海建模与跟踪法</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../../index.html">投研 Wiki</a> › <a href="../../index.html">里海 · 作者案例专题</a> › <a href="里海-建模与跟踪.html">里海建模与跟踪法</a></div><div class="topnav"><a href="../../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海建模与跟踪法</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-24</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论/20-解构建模跟踪</span></div><div class="md" id="md"><h1>里海建模与跟踪法：把主逻辑收敛成「每天要盯的几个数」</h1>
+<blockquote>
+<p><strong>一句话结论</strong>：建模就是把解构得到的 1-2 个业绩变量，变成<strong>公开渠道可持续取得的数</strong>，然后日频或季频地盯着它；跟踪 ≠ 买入，<strong>模型亮灯只是必要条件</strong>（扣扳机在第 ④ 段 <a href="../30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a>）。设计原则是<strong>变量越少越好</strong>——不是能力所限，是刻意的：<strong>变量少了，&quot;门外汉&quot;才敢在拐点当天知道。</strong></p>
+<p>⚠️ <strong>本页为分析整理层（非里海原文）</strong>。&quot;变量类型 → 跟踪对象&quot;的对应关系部分是作者原话（2020.11.13），&quot;少变量原则&quot;&quot;变量会换轨&quot;等提法系本文归纳，作者本人用的是&quot;建立跟踪模型 / 核心逻辑的演绎&quot;等表述。</p>
+</blockquote>
+<h2>〇、这一步解决什么问题</h2>
+<pre><code>解构产出：一句话主逻辑 + 业绩变量清单
+        ↓  建模
+模型产出：我每天 / 每季要看哪几个数？从哪查？
+        ↓  跟踪（日频 / 季频，可持续）
+等到 light 亮 → 交棒给第 ④ 段共振判断
+</code></pre>
+<p><strong>卡口在这里</strong>：变量如果从公开渠道跟踪不到（只有调研、只有管理层口头承诺），模型就不成立，这一支出局。这也是 <a href="../10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E7%AE%80%E5%8D%95%E8%AE%BA.html">里海-简单论</a> 的另一种表达——&quot;简单&quot;保证了变量少，&quot;可跟踪&quot;保证了变量能被公开验证。</p>
+<h2>一、建模通则（作者原话）</h2>
+<blockquote>
+<p>&quot;问：动态跟踪公司的方法有哪些？
+答：……<strong>比如说业绩增长是由主要产品的价格决定的，那么你要每天跟踪它的主要产品的价格走势，这个有行业网站是可以收集到的。再比如说业绩主要是由在建工程转固产生效益来决定的，那就要去跟踪在建工程的进度的情况</strong>，跟踪的渠道很多，通过网站，通过行业的一些分析，而且你也可以打电话去问这家公司，也可以参加股东会了解，也可以在互动易上问。&quot;
+—— <a href="https://mp.weixin.qq.com/s/2fgh8H3w1UQca-cIsB0V_g">《主播疯狂的里海已上线（上）》2020.11.13</a></p>
+</blockquote>
+<p><strong>变量类型 → 跟踪对象</strong>的对应（原文给出的两类，其余行系本文按同一逻辑推演，已标注）：</p>
+<table>
+<thead>
+<tr>
+<th>业绩驱动</th>
+<th>跟踪对象</th>
+<th>频率</th>
+<th>渠道（原文列出）</th>
+<th>性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要产品价格</td>
+<td>产品价格走势</td>
+<td><strong>日</strong></td>
+<td>行业网站 / 行业分析 / 互动易 / 股东会 / 直接打电话问公司</td>
+<td><strong>作者原话</strong>（同上）</td>
+</tr>
+<tr>
+<td>在建工程转固</td>
+<td>在建工程进度</td>
+<td>持续</td>
+<td>公告 + 同上</td>
+<td><strong>作者原话</strong>（同上）</td>
+</tr>
+<tr>
+<td>提价 / 铺货（消费品）</td>
+<td>发货节奏、渠道铺设数量</td>
+<td>季</td>
+<td>同上 + 年报半年报</td>
+<td>推演（榨菜案例，见下）</td>
+</tr>
+</tbody>
+</table>
+<h2>二、四个已公开的示范</h2>
+<table>
+<thead>
+<tr>
+<th>标的</th>
+<th>主逻辑（解构产出）</th>
+<th>跟踪模型盯什么</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>鲁西化工</strong></td>
+<td>① 资产负债率太高、借钱转型新型化工；② 中化进来后资产负债率问题解决了</td>
+<td><strong>每天搜集公司产品价格</strong>，具名品种只有 <strong>双氧水、PC（聚碳酸酯）</strong>——&quot;最近双氧水和 PC 的价格涨得比较猛……涨了多少我都比较清楚，就是跟踪嘛&quot;；跟踪 <strong>8 个月</strong></td>
+<td>2020.11.13（上） / 2021.1.1</td>
+</tr>
+<tr>
+<td><strong>涪陵榨菜</strong></td>
+<td>2015-2019 盯<strong>提价</strong>；2019 渠道碰天花板后换成<strong>恢复发货 + 县一级渠道铺设数量</strong></td>
+<td>&quot;发现县一级的渠道增加了几百个……我就预感到业绩在 2020 年一季度肯定会起来&quot;</td>
+<td>2020.11.13（上）</td>
+</tr>
+<tr>
+<td><strong>再升科技</strong></td>
+<td>猪舍过滤滤纸突破</td>
+<td>基本面演绎 + <strong>资金是否与基本面共振</strong>——&quot;12 月 31 日那天，短中长资金共振了，我很明确地知道是最佳买点&quot;</td>
+<td>2021.2.23</td>
+</tr>
+<tr>
+<td><strong>新希望</strong></td>
+<td>2018 解构定的变量是<strong>出栏量 + 猪价</strong>（&quot;猪周期必然来，只是不知道什么时候来&quot;）；2020.12 跌下来后换成 <strong>自有育肥出栏 + 完全成本</strong></td>
+<td>&quot;对于新希望来说，<strong>应该跟踪新希望的出栏，其中最重要的是自有育肥出栏这一块，另外就是成本控制这一块</strong>，决定了是不是能够以量补价，穿越猪周期&quot;</td>
+<td><a href="https://mp.weixin.qq.com/s/wZEpkQhyW9pnrg5kP5i5CQ">2020.12.16《快腰斩了，怎么办？》</a></td>
+</tr>
+</tbody>
+</table>
+<p>补充两个单一变量型：</p>
+<table>
+<thead>
+<tr>
+<th>标的</th>
+<th>只盯一个因子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>涪陵电力</strong></td>
+<td>在建工程进度</td>
+</tr>
+<tr>
+<td><strong>北部湾港</strong></td>
+<td>两个驱动因子（需求 / 装卸能力），判断出&quot;需求&quot;排第一</td>
+</tr>
+</tbody>
+</table>
+<h2>三、三条运行纪律</h2>
+<h3>1. 每段模型只盯 1-2 个变量</h3>
+<p>这不是偷懒，是让日频跟踪可持续的前提——恰恰相反：正因为单只标的只盯 1-2 个变量，作者才跟踪得起上百家的池子（<a href="../10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E7%B1%BB%E8%B7%9F%E8%B8%AA%E5%88%86%E6%A1%A3%E6%B3%95.html">里海-四类跟踪分档法</a> 的 60/25/15 精力分配才有可行性）。</p>
+<h3>2. 变量不是固定的，会随阶段换轨</h3>
+<p><strong>主动型换轨（先知先觉）</strong>——涪陵榨菜，唯一完整公开&quot;我提前换了变量&quot;的标的：</p>
+<pre><code>2015-2019  盯「提价」
+   ↓ 渠道铺设碰到天花板
+2019 之后  换成「恢复发货 + 县一级渠道数量」
+</code></pre>
+<p>→ 换轨发生在股价起来<strong>之前</strong>，是&quot;每天都要看&quot;的日频跟踪换来的提前量（2019Q4 发现县级渠道增几百个 → 预判 2020Q1 业绩起来）。</p>
+<p><strong>被动型换轨（被下跌逼出来的归因）</strong>——新希望：</p>
+<pre><code>2018（解构定）  「出栏量 + 猪价」← 外部周期变量
+   ↓ 2020.9 起 4 个月几乎腰斩
+2020.12 之后    「自有育肥出栏 + 完全成本」← 公司内部执行变量
+</code></pre>
+<blockquote>
+<p>&quot;很明显，新希望这一波下跌就是两个不及预期，<strong>第一就是自繁自养的比例不及预期，第二就是单猪的成本不及预期</strong>。&quot;（<a href="https://mp.weixin.qq.com/s/sDp0-j_TubxiSYnL0Ny6lw">2021.1.5《我在PPW上面得到的经验和教训！》</a>）</p>
+</blockquote>
+<p>⚠️ <strong>两次换轨不能并列成同一类</strong>，差别有两处：</p>
+<ol>
+<li><strong>时序</strong>：榨菜是先知先觉（换轨→预判→验证），新希望是事后归因（崩了→找原因→承认判不了）。作者本人在 2021.1.5 承认这两个变量&quot;<strong>就算是上市公司的董秘，他不一定知道整个全貌</strong>&quot;——即<strong>换轨后的变量可跟踪性反而下降了</strong>（从公开周期数据变成内部执行数据）。</li>
+<li><strong>性质</strong>：榨菜换的是&quot;同一个生意的下一阶段驱动&quot;，新希望换的是&quot;<strong>变量从外部周期变量变成了公司内部执行变量</strong>&quot;——这正是 <a href="../10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E7%AE%80%E5%8D%95%E8%AE%BA.html">里海-简单论</a> 说的&quot;同一家公司会随阶段位移&quot;：2018 年是&quot;一个变量&quot;的简单公司，2020 年变成&quot;两个内部执行变量 + 一个周期变量&quot;，而作者是在股价高位才发现的。</li>
+</ol>
+<p>→ <strong>建模不是一劳永逸的工作</strong>：主逻辑走完或失效后，解构与建模要重做一遍（回到 <a href="%E9%87%8C%E6%B5%B7-%E8%A7%A3%E6%9E%84%E6%B3%95.html">里海-解构法</a>）。换轨后的第一件事，是先问&quot;<strong>新变量还能不能从公开渠道跟踪到</strong>&quot;——跟踪不到的，按本页 §〇 的卡口，这一支出局。</p>
+<h3>3. 外包与亲自的边界</h3>
+<blockquote>
+<p>&quot;虽然是可以通过<strong>找人来负责跟踪整理</strong>的事情，但<strong>每个股都需要自己亲自过手，亲自来进行跟踪模型的搭建</strong>，就算把所有的杂事都外包，还是需要耗费自己的精力来抉择……前期梳理一家公司核心逻辑的工作量都是非常大的，而梳理之后，还得每天紧密跟踪核心逻辑的演绎情况。&quot;
+—— 2021.2.23</p>
+</blockquote>
+<h2>四、边界与未公开项（不得外推）</h2>
+<ol>
+<li><strong>&quot;建模 / 跟踪模型&quot;是作者对动作的自述，但模型内部构造从未公开</strong>：表格结构、预警阈值、具体抓取的行业网站名均无原文。鲁西具名的品种<strong>只有双氧水与 PC 两个</strong>（主营另有己内酰胺、甲酸、烧碱、多元醇等，语料无记载）。</li>
+<li><strong>跟踪时长不构成买入条件</strong>：鲁西盯了 8 个月才等到 9.29 的共振点，但<strong>等的不是时间，是信号</strong>；①/③ 之间不存在必然时序。</li>
+<li><strong>&quot;没钱&quot;会让第 ④ 段落空</strong>：鲁西第一波 7→12 元不买的两个原因之一是&quot;<strong>我没钱</strong>，当时满仓，持仓个股逻辑都没走完&quot;（2021.2.23）。模型亮灯而仓位被占，是这套体系的结构性代价，不是失误。</li>
+</ol>
+<h2>参见</h2>
+<ul>
+<li><a href="%E9%87%8C%E6%B5%B7-%E8%A7%A3%E6%9E%84%E6%B3%95.html">里海-解构法</a> — 上游：变量从哪来</li>
+<li><a href="../30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a> — 下游：模型亮灯之后怎么扣扳机</li>
+<li><a href="../10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">里海-变化论</a> — 变量的性质与&quot;是否被市场看清&quot;</li>
+<li><a href="../10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E7%B1%BB%E8%B7%9F%E8%B8%AA%E5%88%86%E6%A1%A3%E6%B3%95.html">里海-四类跟踪分档法</a> — 同时盯几十家的精力分配前提</li>
+<li><a href="../../%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E9%B2%81%E8%A5%BF%E5%8C%96%E5%B7%A5.html">案例/里海案例-鲁西化工</a> — 唯一被作者自述完整跑通的案例（含流水与&quot;没买够&quot;）</li>
+<li><a href="../../%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%96%B0%E5%B8%8C%E6%9C%9B.html">案例/里海案例-新希望</a> — 被动型换轨的完整出处（含&quot;两个不及预期&quot;与跟踪清单）</li>
+<li><a href="../../%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C.html">案例/里海案例-涪陵榨菜</a> — 变量换轨的唯一公开样本</li>
+<li><a href="../../%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%86%8D%E5%8D%87%E7%A7%91%E6%8A%80.html">案例/里海案例-再升科技</a> — 资金端指标的示范（也是失败样本）</li>
+<li><a href="../../../../../research/index.md">research/index.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../../index.html#dir=%E6%96%B9%E6%B3%95%E8%AE%BA">← 返回 方法论</a><a href="../../index.html">目录</a><a href="../../../../../index.html">首页</a><a href="../../../../../research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
