@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2020-08-28-这家公司股价2年涨了7倍-一个经典的选股模型</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="2020-08-28-这家公司股价2年涨了7倍-一个经典的选股模型.html">2020-08-28-这家公司股价2年涨了7倍-一个经典的选股模型</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2020-08-28-这家公司股价2年涨了7倍-一个经典的选股模型</h1><div class="meta-line"><span class="tag tag-raw">原始</span><span style="margin-left:auto;color:#b0b5bd">raw/research/疯狂的里海</span></div><div class="md" id="md"><h1>这家公司，股价2年涨了7倍！这是一个经典的选股模型！（公众号文章·新希望 000876 复盘）</h1>
+<blockquote>
+<p>来源：微信公众号「疯狂的里海」<br />
+原文链接：https://mp.weixin.qq.com/s/U2XsZWR2FxHJ3lrFq6Ddhg<br />
+作者：里海（公众号：fengkuanglihai，《A股价值成长投资之路》作者）<br />
+发布时间：2020-08-28 21:00<br />
+原始来源：《【疯狂的里海】公众号文章合集2020年 - 里海.txt》line 4125-4195（全文转录）<br />
+标的：新希望（000876），回到 <strong>2018 年</strong>场景做的复盘</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：弱者视角切入 · 高赔率低概率 · 猪周期催化 · 弱者→强者视角转化 · 抄作业也要懂逻辑</p>
+</blockquote>
+<p><strong>一句话核心</strong>：新希望是**&quot;弱者视角切入、持有过程中向强者视角转化&quot;的经典模板**——2018 年的它不是成长股，而是**向下有底（民生银行股权托底 + PB 在净资产附近）、向上弹性极大（猪板块仅占收入 5%，产能已储备 2500 万头）**的高赔率标的，<strong>猪周期 + 非洲猪瘟</strong>只是加速了逻辑落地（&quot;2 年最高涨 7 倍也有运气的成分&quot;）。</p>
+<p><strong>关键数据</strong>：</p>
+<ul>
+<li><strong>股价</strong>：2018 年之前长期横盘，2018 年后起飞 → <strong>2 年最高涨 7 倍</strong>（第一波就涨 <strong>4 倍</strong>）</li>
+<li><strong>估值（2018）</strong>：PB 在<strong>净资产附近</strong>，PE <strong>10 来倍</strong>；作者测算向下&quot;最多跌到 <strong>170-180 亿</strong>&quot;</li>
+<li><strong>民生银行股权</strong>：持股约 <strong>3% 多</strong>（六和投资 75% × 民生银行 4.18%），2018 年投资收益 <strong>15.76 亿</strong>，占归母净利 <strong>92.5%</strong></li>
+<li><strong>主业盘子（2018）</strong>：营收多年在 <strong>600-700 亿</strong>区间震荡，净利 <strong>15-20 亿出头</strong>（其中民生银行贡献约 15 亿，即<strong>主业几乎不赚钱</strong>）</li>
+<li><strong>板块收入占比</strong>：饲料 <strong>57%</strong>、禽 <strong>27%</strong>、食品 <strong>8%</strong>、<strong>猪仅 5%</strong></li>
+<li><strong>产能储备</strong>：2015 年 <strong>200-300 万头</strong> → 2016 年 <strong>1000 万头</strong> → 2017 年 <strong>1500 万头</strong> → 2018 年 <strong>2500 万头</strong></li>
+<li><strong>出栏</strong>：2018 年 <strong>250 万头</strong>；规划 2019/20/21 年 <strong>350 / 750 / 1300 万头</strong>；实际 2019 年 300 多万头</li>
+<li><strong>财务安全垫</strong>：2018 年总资产 <strong>479 亿</strong>（仅次于温氏），资产负债率 <strong>43%</strong>（仅高于温氏，远低于正邦、天邦、牧原）</li>
+<li><strong>猪周期节奏</strong>：约 <strong>4 年一轮</strong>（06-10 / 10-15 / 15-18）；补栏到出栏<strong>至少两年</strong></li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>高赔率 vs 概率不明显</strong>：&quot;股价长期横盘，跌无可跌……<strong>高赔率，但概率不明显的个股</strong>&quot;——催化剂（猪周期）一定会来，但&quot;具体到哪个时候来，哪个月份，哪一天开始，不知道&quot;。</li>
+<li><strong>为什么不买弹性更大的纯猪股</strong>：牧原&quot;持续大额融资，资金链在 2018 年前是非常紧张的&quot;、大股东质押比例大；&quot;<strong>如果猪周期晚两年，有些养猪的公司说不定撑不住，但新希望不怕</strong>&quot;——纯猪股一旦周期迟到，可能&quot;业绩连续亏损被 ST、被退市&quot;，是<strong>价值毁灭</strong>；新希望&quot;就算遭了（猪瘟），还有其它板块……这公司还是值 200 亿&quot;。</li>
+<li><strong>弱者→强者转化的边界</strong>：弱者视角看到 <strong>800 亿</strong>就到位（估值修复）；强者视角看 <strong>1000 万 / 1500 万 / 2500 万头 + 食品全产业链</strong>。但作者明确承认&quot;<strong>未来能不能够搞到 2500 万头……其实我们也没有绝对把握</strong>&quot;。</li>
+<li><strong>研究与判断是两码事</strong>（本篇未展开，见 2020.9.2《研究之美》）：买入时不需要预判公司&quot;搞不搞得成&quot;，只需要&quot;<strong>假设这家公司搞不成的情况下，我们是不是也能够赚一点钱或者不亏钱</strong>&quot;。</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li><strong>猪周期的客观指标</strong>：农业农村部公布的<strong>生猪存栏</strong>数据（2017 年底见顶后往下走）+ <strong>环保去散户</strong>（不让散户及小猪场养猪）→ 供给侧收缩。</li>
+<li><strong>公司侧的产能/产量节奏</strong>：产能储备（场地、人员、资金、种猪）与出栏规划的<strong>时间差</strong>（产能先行，出栏滞后一两年）。</li>
+<li><strong>管理层能不能干成</strong>：这是弱者转强者的关键——&quot;<strong>强者视角的关键点在于读懂管理层</strong>&quot;（刘畅从基层做起、&quot;养猪业务是刘畅提出来的&quot;）。</li>
+<li><strong>抄作业的纪律</strong>：&quot;<strong>抄作业不能无脑抄，也要明白逻辑才能抄</strong>，否则在股价大幅波动的时候也是会患得患失的&quot;——本文标的来自&quot;跟着大佬买的&quot;，非自己挖掘。</li>
+</ol>
+<p><strong>与 wiki 的关系</strong>（2026-09-24 注）：本页为<strong>原文层</strong>。新希望（000876）在 wiki 中<strong>尚无独立案例页</strong>（仅 <code>里海体系-总览</code> / <code>方法论/里海-简单论</code> 等处提及），本文是建页的第一手原料；其&quot;<strong>向下有底 + 弹性巨大 + 催化剂必然到来但时点未知</strong>&quot;结构与鲁西化工（中化+负债率解决 / 双氧水·PC 价格）同属<strong>模型 3 困境反转</strong>，但新希望多了&quot;<strong>弱者→强者转化</strong>&quot;这一段，为案例库中唯一。</p>
+<h2>正文</h2>
+<p>一、说在前面的</p>
+<p><strong>里海</strong>：我一直没有怎么说这个个股，但我是持有这公司的筹码的。两个原因吧，第一，这家公司在网上已经有许多人分析了，比我理解的深得多，我也就没有出来讲的必要了，我就学习看就行了，第二，这家公司不是我挖掘的，我是跟着大佬买的，所以我抄作业就行了。不过，我一直讲的是，<strong>抄作业不能无脑抄，也要明白逻辑才能抄，否则在股价大幅波动的时候也是会患得患失的</strong>。</p>
+<p>我算是明明白白抄作业的人吧。</p>
+<p>这家公司就是<strong>新希望</strong>！为啥要选择这家公司作为一个模板进行讲解呢？其实这个不是因为公司股价涨得好，比它涨得好的还有，例如猪股当中的牧原，比新希望更牛逼一些，但这家公司的挖掘过程和投资逻辑，是一个非常经典的<strong>弱者思维</strong>的案例，完全可以作为以后寻找标的的一个模板。</p>
+<p>二、新希望基本情况</p>
+<p><strong>里海</strong>：现在我们就回到 2018 年的场景中去，分析公司 2018 年及其之前的基本面，为什么在 2018 年要选择新希望？</p>
+<p>先说一个结论性的思考，投资新希望的这家公司，<strong>以弱者视角介入，在持有的过程当中，逐渐的认清了这家公司，变为强者视角</strong>。现在回到 2018 年，当然，如果当时能够发现这家公司的话，<strong>2 年最高涨 7 倍也有运气的成分在，谁也也预料到猪瘟的因子，催化了逻辑的快速落地</strong>。</p>
+<p>新希望这家公司其实很老了，创始人刘永好先生，在改革开放之初就开始创业了，这家公司是和我们改革开放紧紧绑在一起的，公司是最早上市的民营农牧企业，<strong>1998 年 3 月份</strong>就上市了，<strong>2011 年</strong>公司完成了体系内的重大资产重组市，并购了山东的六和集团，所以就成为了中国最大的，覆盖面最广的农牧类的上市公司，更名为新希望六合股份有限公司。</p>
+<p>我们说的上市公司新希望，并不是指的 1982 年成立的新希望集团，那是母公司，母公司下面有很多板块，比如说新希望乳业些，旗下有好几家上市公司，我们所投资的新希望是旗下农牧板块这一块的上市公司。新希望目前集团资产规模超过 <strong>1400 亿</strong>，年销售收入超过 <strong>1000 亿</strong>，是国内目前产业链最全，产品覆盖面最广的农牧类上市公司，我们就要就有了这样一个直观的感受，知道这家公司是做什么的。</p>
+<p>三、新希望产业板块</p>
+<p><strong>里海</strong>：回到 2018 年，我们看一下公司有哪些产业板块？</p>
+<p>第一，<strong>饲料</strong>，新希望它就是从饲料业务起家的，毛利润 <strong>30 亿元</strong>，每年禽料就是鸡鸭鹅这块饲料销量 <strong>1089 万吨</strong>，猪饲料 <strong>440 万吨</strong>，水产料 <strong>106 万吨</strong>。</p>
+<p>第二，<strong>白羽禽业务</strong>，就是鸡鸭等等这些，种禽 <strong>4.57 亿只</strong>，商品鸡鸭 <strong>2.6 亿只</strong>，每年禽屠宰有 <strong>7 亿只</strong>的规模，毛利润 <strong>15.9 亿元</strong>。</p>
+<p>第三，<strong>猪养殖业务</strong>，这是当时公司的很小的一个板块，17 年毛利润 <strong>5 亿元</strong>，18 年出栏 <strong>250 万头</strong>，但是公司有一个规划，就是 19 年、20 年、21 年分别出栏要达到 <strong>350、750、1300 万头</strong>。</p>
+<p>第四，<strong>民生银行的股权</strong>，有百分之三点几的股份，<strong>2018 年获得投资收益是 15.76 亿</strong>，持股民生银行，只是长期股权投资，所以没有并表在财务报表当中，是以长期股权投资存在。</p>
+<p>第五，<strong>肉食品业务</strong>，毛利润 <strong>7 亿</strong>；这里说的都是毛利润，为什么我这里说毛利润？因为 18 年之前，这些业务其实除了民生银行其实都几乎赚钱，净利润几乎都是亏的。</p>
+<p>四、新希望的历史业绩</p>
+<p><strong>里海</strong>：来看一下公司的业绩情况，公司从 12 年开始到 18 年，基本上营收在<strong>六七百亿</strong>这个区间震荡，没什么增长。而净利润同比没什么增长，就零附近波动。</p>
+<p>看净利润，每年的净利润都在 <strong>15 亿到 20 亿出头</strong>区间震荡，因为从这里看起来就没什么成长性，每年的营业收入六七百亿，每年的利润 15 亿到 20 亿出头。</p>
+<p>民生银行每年的收益基本上都是每年在 <strong>15 亿</strong>左右，也就是说公司的主营业务板块，养鸡、养猪、搞饲料就是不怎么赚钱，农牧业务方面收入稳增，但利润波动，17 年 18 年营业收入分别增长 <strong>2.8%，10.4%</strong>。在 2017 年受禽流感的影响和 18 年固定资产减值和养猪业务的亏损，所以除开民生银行投资收益外，其他版块利润几乎没有。</p>
+<p>五、持股民生银行</p>
+<p><strong>里海</strong>：看一看持股民生银行的历史情况，可以看到民生银行的投资收益占净归母利润的比例越来越高，到 18 年的时候几乎接近 <strong>100%</strong>，公司 <strong>1996 年</strong>参股民生银行，直到 <strong>2014 年</strong>之前都是第一大股东，投资民生银行不仅降低了公司的融资成本，同时给公司还带来了稳定的业绩收入。</p>
+<p>18 年公司控股子公司新希望六合公司持有新希望，六合投资有限公司 <strong>75%</strong>，新希望六合又占民生银行 <strong>4.18%</strong> 的股份，所以这一折算，总共持有了民生银行百分之三点几的股份。民生银行 18 年的投资收益占到归母净利润的 <strong>92.5%</strong>，也就是说其他板块都不赚钱，全靠民生银行。</p>
+<p>民生银行这块的这个利润很稳健，刘永好先生是民生银行的副董事长，平时他是不参与民生银行的管理，董事会的时候去参加一下投票就完了，每年都能带来十几个亿的净利润。因此，这是其它养猪的企业完全不具备的这一个优势，而且因为在民生银行中持有股份，为公司融资这一块也是得到了很多的便利。</p>
+<p>六、新希望的管理团队</p>
+<p><strong>里海</strong>：来看一下管理团队这一块，因为管理团队就是非常重要，因为核心管理层的思维模式决定了这家公司的前途。现在董事长是<strong>刘畅</strong>，就是刘永好的女儿，我对刘畅的感觉是比较好的，感觉她是非常务实的领导人。</p>
+<p>我们看一下刘畅的简历，她是从最基层做起，各岗位历练，然后慢慢做到公司的董事长，而且新希望养猪的业务就是刘畅提出来的，做到全产业链的延伸。而大股东刘永好一直都是改革开放的风云人物，82 年创业到现在都没垮，而同年代创业的很多人其实后面结局都不是太好，说明刘永好这个人的确是有自己的核心竞争力的。</p>
+<p>再来看其他的管理层，公司是一个家族企业，掌大权的还是一个家族的人，但在具体执行层面，公司是整合了被并购企业的高管和职业经理人团队的一个结合。公司高管团队中有不少是从被并购的山东六合公司过来的，例如<strong>吉崇星</strong>，以前是六合的，现在是公司的副总裁，慢慢的认同了新希望的文化，也有外来的职业经理人，例如<strong>王述华</strong>，是从联想集团过来的财务总监，例如<strong>胡吉</strong>，中国证监会过来的，现在公司董事会秘书，其实公司搞得好不好，人第一，战略决策者要有格局，要有一套管理哲学，执行层面要有战斗力。</p>
+<p>从各个渠道弄过来的高管，例如自己培养的高管，外面挖的牛人，还有并购企业过来的，必须要的让他们拧成一股劲，否则的话就是内部消耗。可以从各个渠道反映出来这个管理团队是不错的，管理团队行不行，长期跟踪其实就知道了。</p>
+<p>七、股价走势及估值</p>
+<p><strong>里海</strong>：公司股价在 18 年之前长期横盘，也就是说 18 年之前，这家公司其实是一家成熟股的估值，<strong>Pb 估值一直在净资产附近，PE 估值就 10 来倍</strong>，所以这家公司就是一个长期横盘，涨也涨不上去，跌也跌不下来的股。</p>
+<p>民生银行的股权投资收益率，形成了公司的业绩看起来还勉强，但毫无成长性。再回过头来看一下业绩，营收一直在六七百亿，利润十几亿到 20 亿出头徘徊，所以市场当时是不怎么认同公司的，这就是我们要找的股价长期横盘，而又因为民生银行的投资导致股价又没什么风险。18 年之后，股价突然涨起来了，就是猪板块的效应起来了。</p>
+<p>新希望股价长期横盘，跌无可跌，Pb 在净资产附近，下面有底，如果有利好的消息出来，或者公司的实质性业绩得到实质性改变，股价就会飞。因此，这就是一个<strong>向下空间极小，向上可能的潜在空间非常大</strong>的一个个股，股价的起飞就差潜在的业绩进行催化了。总结下就是<strong>高赔率，但概率不明显的个股</strong>，后来股价飞涨，催化因子就是猪周期。</p>
+<p>八、猪周期和非洲猪瘟</p>
+<p><strong>里海</strong>：2018 年之前，市场认为这家公司没什么前途，看不上眼。结果在 2018 年的时候，什么来了？非洲猪瘟来了，猪周期提前来了，而且就算是没有非洲猪瘟的话，其实猪周期也会来的，只是说非洲猪瘟导致了猪周期提前到来。我们去回看 2006 年到 2019 年的猪价走势图，明显的周期性，大概 <strong>4 年一个周期</strong>，06 年到 10 年一个周期，10 年到 15 年一个周期，15 年到 18 年是一个周期。</p>
+<p>因此可以得出一个结论，<strong>猪周期终究会来的</strong>，而且从这一轮产业演进的角度来看的话，快要临近了，猪周期就是这样一个概念，赚钱的时候大家看到养猪有利可图，大家就纷纷来养猪，到最终出猪要一年多的时间，养猪的多了，供应过剩，猪价就往下面跌了。</p>
+<p>养猪要母猪，母猪要怀孕的时间，生出来的小猪要育肥，最终出猪也要一年多的时间，这个过程至少有<strong>两年</strong>才能够补栏，才能够补得上去。等补出来的时候，大家都出来了，供给过剩了。</p>
+<p>所以大概四五年一个周期，这一轮从 2016 年开始，到 2018 年两年多，当时我们监测的数据，通过农业农村网站公布的数据，可以看到<strong>生猪存栏在往下面走了</strong>，这一轮猪存栏往下，其实还有一个因子，就是<strong>环保</strong>，因为环保问题，不让散户以及小猪场养猪了。生猪存栏，在 2017 年底达到一个高峰之后，然后就往下面走了。所以猪周期一定会来，猪存栏量下跌到一定的时候，供应需求反转，周期就往上了，<strong>只不过具体到哪个时候来，哪个月份，哪一天开始，不知道</strong>。</p>
+<p>九、公司在猪板块的规划</p>
+<p><strong>里海</strong>：非洲猪瘟是个意外的刺激因子，周期提前到了，那么为什么选择了新希望？因为<strong>弹性够大</strong>，按照新希望的产能布局，说明一点的是产能布局和能够出多少猪是不同步的，就首先要把产能搞好，然后猪才能未来在一两年之内出来，公司 15 年的时候储备了<strong>两三百万头</strong>的产能，在 16 年的时候储备了 <strong>1000 万头</strong>的产能，到 17 年的时候储备了 <strong>1500 万</strong>，到 18 年就储备了 <strong>2500 万</strong>，其实对应的是几年之后的一个出栏量。15 年的时候储备了两三百万头，按照正常来说，18 年的时候应该出来 300 万头以上，只不过后来公司看到猪价这个太低了，养一头猪亏一头猪，可能延缓了稳了一下，没有大量养猪，但产能一直在储备着的。</p>
+<p>产能包括什么？场地储备，人员储备，资金储备，要有钱来买母猪买种猪等等，一切搞好了还有育肥周期。</p>
+<p>公司的猪在公司整个盘子中是占比很小的一个板块，只占 <strong>5%</strong>，整个业绩收入的话，饲料占了 <strong>57%</strong>，养鸡养鸭养鹅这一块 <strong>27%</strong>，食品这块占 <strong>8%</strong>，猪只有 <strong>5%</strong>，这一块就有一个关键点了，一旦猪周期来了，公司的产量跟上，那么公司的<strong>业绩弹性就非常大</strong>。</p>
+<p>公司的布局规划很大，陆陆续续来，产能产量一上去，猪价上去，那么就形成了业绩的共振，再加上公司的业绩在底，股价在跌无可跌，向下空间很小，向上很大。所以就这个逻辑：估值低，因为有民生银行的业绩在那个地方摆着，就算是猪周期延缓一两年才来，其他业务也不怎么赚钱的话，股价也很难跌下去了，或者说是向下的空间非常小，<strong>最多跌到一百七八十亿到头了</strong>。</p>
+<p>十、为啥买新希望不买其他猪股</p>
+<p><strong>里海</strong>：公司的弹性很大，猪周期一来，猪价一上涨，产能一上去，这个利润就不得了，所以 2019 年利润到 <strong>50 个亿</strong>了，大部分是猪赚的，以前猪不赚钱，现在猪占大部分。</p>
+<p>融资能力强，比其他养猪公司的资产规模大，<strong>2018 年的总资产 479 亿</strong>，仅次于龙头温氏股份，<strong>资产负债率只有 43%</strong>，仅高于温氏，温氏是一个很保守的公司，远低于正邦，天邦和牧原。</p>
+<p>下面有其它板块作为支撑，不担忧猪瘟和猪战略失败的风险。猪瘟来了对猪企整体是好事，但万一猪企自己也大规模染上猪瘟怎么办？现在我知道的，其实像多多少少上市的猪企，都遭了一些，但新希望不拍，就算遭了，还有其它板块，反正之前占比很小，做战略失败了也没啥问题，<strong>这公司还是值 200 亿</strong>。不像牧原、天邦等纯猪股，虽然弹性大，但是你当时去买它的话，万一猪期晚了一两年，业绩连续亏损被 ST，被退市了，万一公司也染上了大规模的猪瘟，那就价值毁灭了。</p>
+<p>所以当时我和研究猪很深的前辈交流过，<strong>如果猪周期晚两年，有些养猪的公司说不定撑不住，但新希望不怕</strong>。回到 2018 年的环境中去的话，我们应该选新希望，向下没多少空间了，向上空间很大，虽然现在有些猪股比新希望涨更多，<strong>但不是我能力范围内的钱</strong>。</p>
+<p>十一、新希望和牧原</p>
+<p><strong>里海</strong>：这里专门做了一个对比，新希望不是不纯粹的猪股，牧原是一个纯粹的猪股，未来，新希望把养猪作为战略性的投入，这一块就是弹性，新希望大股东还有其他的产业板块，做猪周期来得早，来得晚，对企业的负面影响不大，而牧原的话就是纯粹的猪股，回过头去看一下牧原持续的大额融资，一直在大额融资，陆续融了几百亿，但只赚了一点点钱，持续大额融资，<strong>资金链在 2018 年前是非常紧张的</strong>。</p>
+<p>牧原大股东质押比例比较大，在体外把这个钱拿去干什么了，我们是查不到的。</p>
+<p>猪周期来的早晚，对牧原的影响是非常大的。后来我们开个玩笑，雏鹰农牧，退市了，如果这公司再撑一年，就活过来了，这个都是命，牧原的话比雏鹰农牧运气好，关键时刻猪周期来了，专业专注使这家公司成为了猪企的龙头，但是<strong>牧原其实 2018 年挺危险的，一直靠持续的融资在支撑</strong>。</p>
+<p>十二、弱者向强者视角的转化</p>
+<p><strong>里海</strong>：在弱者的体系下，选择了新希望，看错了也亏不了什么钱，新希望这些公司还是值一百七八十亿的。</p>
+<p>弱者体系保证看错了也不会大亏，甚至还可以赚一点钱出来，当时并没有考虑到猪瘟这个因子，如果不考虑猪瘟，就在弱者体系下，新希望猪周期这样一搞，几年时间到<strong>七八百亿</strong>是有很大可能的，也就是翻两番。只不过了后来这持有的过程当中，猪瘟这个因子太猛了，<strong>第一波就涨了 4 倍</strong>。</p>
+<p>在这个过程当中，大家慢慢的读懂了新希望的管理层，就觉得这个事公司的管理层能干成，对这家公司在猪板块能够成为全国前三名的主体，能够实现 <strong>2500 万头</strong>甚至更高，大家觉得公司不是在吹牛。结合这一轮超级猪周期，产能持续的向头部企业的集中，觉得 800 亿不是新希望顶，懂得公司的战略，所以持股的逻辑就<strong>从周期变为成长</strong>。而且新希望还有个战略，食品产业链的全链条覆盖，大家觉得公司能够干得成，所以视角就从弱者向强者转化了，由投周期向投产业和管理层了。</p>
+<p><strong>强者视角的关键点在于读懂管理层</strong>，好行业、好产品和优秀的管理团队，管理团队一定要搞懂，有些公司是好行业，也有好产品，但管理团队乱搞，或者是管理团队认识不到位，搞得一塌糊涂的情况多的是。</p>
+<p>新希望这家公司，就是弱者视角切入，持有过程中向强者视角转化。如果你只是看弱者的话，800 亿就出来了，估值修复到位了，强者视角，看的是 1000 万头，1500 万头，2500 万头，整个食品产业链的视角了。</p>
+<p>十三、感悟</p>
+<p><strong>里海</strong>：我觉得新希望对我的触动是什么呢？我们买一个股的时候不能够想当然，要<strong>假设我们这家公司搞不成的情况下，我们是不是也能够赚一点钱或者不亏钱</strong>？因为我不知道搞不搞得成，说实话管理层都搞不清楚他自己能不能搞得成。我买进去我会不会亏钱，我也不会亏钱，然后等他有可能搞成的因子在发生积极变化的时候，甚至变化没有落地，只是看出来可能会变化，股价有可能就涨一倍。</p>
+<p>新希望到现在也没出栏多少猪，2018 年 200 多万头就增加到了 2019 年的 300 多万，说是 2020 年出栏 800 万头，<strong>但股价已经涨 7 倍了，你找谁说理去</strong>？其他板块也没什么增长，就猪这一块多出栏了一百多万，股价就涨了 7 倍。</p>
+<p>这就是弱者体系切入然后转向强者视角的一个经典的案例。</p>
+<p>这里再强调一下，能否转为强者，其实对新希望能否搞得成我们仍然是没有绝对把握的，未来能不能够搞到 2500 万头，成为全国猪企的前三名，其实我们也没有绝对把握的，公司其实也没有绝对把握，只是我们觉得管理团队很靠谱，大概率能够搞成，那就 ok 了。</p>
+<p>新希望的案例非常经典，我们的选股格局要提高一些，如果能够找到像新希望的这种经典的个股，能够抓到两三个个股重仓持有了，就可以在投资界有永恒的传说了。</p>
+<p>最后，为预防万一，本人搞了一个备用号，平时转发一些投资类经典文章，欢迎大家关注！</p>
+</div><div class="backrow"><a href="../index.html#dir=%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99">← 返回 原始资料</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../raw/research/疯狂的里海/2020-08-28-这家公司股价2年涨了7倍-一个经典的选股模型.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>

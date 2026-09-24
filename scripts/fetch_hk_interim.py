@@ -2,7 +2,10 @@
 """fetch_hk_interim.py — 批量下载港股「中报」PDF 到独立目录
 
 用途：按给定港股代码清单，从 HKEXnews 抓最新的中期報告（中报）全文 PDF，
-      落到 data/pdfs/hk_ai_software/<code>/ 下，逐份校验并留 provenance 清单。
+      落到 data/AI软件/<code>/ 下，逐份校验并留 provenance 清单。
+
+注：不放 data/pdfs/ —— 该目录是 VL 流水线的年报/中报仓库（按 <code>/ 存），
+    本脚本产出属于「投研候选池的原始资料」，与 data/广州/ 同类，单独建目录。
 
 数据源：HKEXnews（港交所披露易，与 scripts/pdf_downloader.py 同源）
   · activestock_sehk_c.json / inactivestock_sehk_c.json   代码 → stockId
@@ -13,10 +16,11 @@
   .venv\\Scripts\\python scripts\\fetch_hk_interim.py --all-periods # 抓全部历史中报
   .venv\\Scripts\\python scripts\\fetch_hk_interim.py --dump 03317  # 只看某代码的中报条目标题
 
-输出：
-  data/pdfs/hk_ai_software/<code>/<code>_<年>_中报.pdf
-  data/pdfs/hk_ai_software/<code>/<code>_<年>_中报.validation.json （沿用 pdf_downloader 校验）
-  data/pdfs/hk_ai_software/_manifest.json                  全部下载清单（标题/日期/URL）
+输出（与 data/广州/ 同构：平铺 + 单一清单，不建代码子目录）：
+  data/AI软件/<code>_<名称>_<年>中报.pdf
+  data/AI软件/_manifest.json   每份记录 file/year/title/url/date + valid/check
+                              （沿用 pdf_downloader 校验，校验结果并入清单后删除
+                                .validation.json，保持目录只有 pdf + 清单）
 """
 import argparse
 import json
@@ -31,7 +35,7 @@ sys.path.insert(0, _HERE)
 from pdf_downloader import PDFValidator, _download_and_validate  # noqa: E402
 
 ROOT = os.path.dirname(_HERE)
-OUT_ROOT = os.path.join(ROOT, "data", "pdfs", "hk_ai_software")
+OUT_ROOT = os.path.join(ROOT, "data", "AI软件")
 
 HKEX_LIST_URLS = [
     "https://www1.hkexnews.hk/ncms/script/eds/activestock_sehk_c.json",
@@ -79,9 +83,16 @@ TARGETS = [
     ("00100", "MINIMAX-W", ["MiniMax", "MINIMAX"]),
 ]
 
-_INTERIM_OK = re.compile(r"中期報|中报|中期報|中期報告|中期报告|半年度|INTERIM", re.I)
-# 排除：摘要/更正/英文以外的噪音
-_INTERIM_BAD = re.compile(r"摘要|已取消|撤销|撤回|更正|補充|补充|通告|月報|月报", re.I)
+_INTERIM_OK = re.compile(r"中期報告|中期报告|中期業績|中期业绩|半年度|INTERIM\s+REPORT|INTERIM\s+RESULTS", re.I)
+# 排除：摘要/更正/纯程序性文件/含「中期」二字但非报告（股息、暂停过户、代表委任）
+# 注：只作用于标题首行（港股标题常把「業績公告 + 股息 + 暫停過戶」并成一条）
+_INTERIM_BAD = re.compile(
+    r"摘要|已取消|撤销|撤回|更正|補充|补充|通告|月報|月报|翌日披露|Proxy|Circular", re.I)
+# 优先级：正式中期報告 > 中期業績公告
+_INTERIM_GRADE = [
+    (re.compile(r"中期報告|中期报告|INTERIM\s+REPORT", re.I), 0),
+    (re.compile(r"中期業績|中期业绩|INTERIM", re.I), 1),
+]
 CJK = re.compile(r"[\u4e00-\u9fff]")
 
 _HKEX_CACHE = {}
@@ -116,14 +127,21 @@ def resolve_stock_id(s, code):
     return None
 
 
+def grade(title):
+    for rx, g in _INTERIM_GRADE:
+        if rx.search(title):
+            return g
+    return 9
+
+
 def search_interim(s, stock_id, lang="zh"):
-    """t2code=40200 → 中期報告/中期業績"""
+    """不限 t2code 全量检索后本地过滤（中期報告/中期業績公告散布在不同 t2code）"""
     p = {
         "lang": lang, "category": "0", "market": "SEHK",
         "stockId": str(stock_id), "searchType": "1", "documentType": "-1",
-        "t1code": "40000", "t2code": "40200", "t2Gcode": "-2",
-        "fromDate": "20240101", "toDate": "20260924",
-        "MB-Daterange": "0", "rowRange": "100",
+        "t1code": "-2", "t2code": "-2", "t2Gcode": "-2",
+        "fromDate": "20250101", "toDate": "20260924",
+        "MB-Daterange": "0", "rowRange": "200",
         "sortByOptions": "DateTime", "sortDir": "0",
     }
     r = s.get(HKEX_SEARCH, params=p, timeout=25)
@@ -178,7 +196,7 @@ def pick(s, stock_id):
                 continue
             if not _INTERIM_OK.search(title):
                 continue
-            if _INTERIM_BAD.search(title):
+            if _INTERIM_BAD.search(title.split("\n")[0]):
                 continue
             iso, _ = parse_date(it.get("DATE_TIME", ""))
             rows.append({
@@ -186,11 +204,13 @@ def pick(s, stock_id):
                 "year": infer_year(title, it.get("DATE_TIME", "")),
                 "title": title,
                 "url": link if link.startswith("http") else HKEX_BASE + link,
-                "lang": lang,
+                # API 不按 lang 过滤，同一请求会中英混排 → 按标题本身判语言
+                "lang": "zh" if CJK.search(title) else "en",
+                "grade": grade(title),
             })
         time.sleep(0.4)
-    # 去重：同一 (year, lang) 只留最新；再按 (year) 优先中文
-    rows.sort(key=lambda x: (x["date"], x["lang"] != "zh"), reverse=True)
+    # 去重：同一 (year, lang) 只留最优等级/最新日期
+    rows.sort(key=lambda x: (x["grade"], x["date"]))
     out, seen = [], set()
     for r in rows:
         key = (r["year"], r["lang"])
@@ -198,18 +218,53 @@ def pick(s, stock_id):
             continue
         seen.add(key)
         out.append(r)
-    out.sort(key=lambda x: (x["year"], x["lang"] != "zh"), reverse=True)
+    # 年份倒序 → 等级正序（正式報告優於業績公告）→ 中文優先
+    out.sort(key=lambda x: (-int(x["year"] or 0), x["grade"], 0 if x["lang"] == "zh" else 1))
     return out
+
+
+def _prev_source_url(path):
+    """已存在文件的真实来源 URL（.validation.json 已被并入清单，退化为从清单查）"""
+    try:
+        mf = json.load(open(os.path.join(OUT_ROOT, "_manifest.json"), encoding="utf-8"))
+    except Exception:
+        return ""
+    bn = os.path.basename(path)
+    for v in mf.values():
+        for f in v.get("files", []):
+            if f.get("file") == bn:
+                return f.get("url", "")
+    return ""
+
+
+def _absorb_validation(path):
+    """读 pdf_downloader 写的 .validation.json → 返回 (valid, detail) 后删除该文件"""
+    vj = re.sub(r"\.pdf$", ".validation.json", path)
+    if not os.path.exists(vj):
+        return None, None
+    try:
+        j = json.load(open(vj, encoding="utf-8"))
+        valid, detail = j.get("valid"), j.get("detail")
+    except Exception:
+        valid, detail = None, None
+    try:
+        os.remove(vj)
+    except Exception:
+        pass
+    return valid, detail
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--all-periods", action="store_true", help="下载全部历史中报（默认只取最新一期）")
     ap.add_argument("--dump", metavar="CODE", help="只打印某代码的中报条目标题")
+    ap.add_argument("--upgrade-zh", action="store_true",
+                    help="已下载的是英文版且存在中文版时，删旧重下")
     args = ap.parse_args()
 
     s = _sess()
     os.makedirs(OUT_ROOT, exist_ok=True)
+    manifest_path = os.path.join(OUT_ROOT, "_manifest.json")
     manifest = {}
 
     for code, name, alt in TARGETS:
@@ -217,7 +272,8 @@ def main():
         sid = resolve_stock_id(s, code)
         if not sid:
             print("  [skip] HKEXnews 未找到 stockId（可能已更名/退市）")
-            manifest[code] = {"name": name, "error": "stockId 未解析", "files": []}
+            manifest[code] = {"name": name, "market": "hk", "status": "fail", "files": [],
+                              "note": "HKEXnews 未找到 stockId（可能已更名/退市）"}
             continue
         cands = pick(s, sid)
         if args.dump == code or not cands:
@@ -225,8 +281,8 @@ def main():
                 print("   %s [%s] %s" % (c["date"], c["lang"], c["title"][:70]))
         if not cands:
             print("  [miss] 2024 年以来无中报条目")
-            manifest[code] = {"name": name, "stock_id": sid, "files": [],
-                              "note": "无中报条目"}
+            manifest[code] = {"name": name, "market": "hk", "status": "miss", "files": [],
+                              "note": "2024 年以来无中报条目"}
             continue
         if args.dump == code:
             continue
@@ -238,21 +294,35 @@ def main():
             if c["year"] in done_year:
                 continue
             done_year.add(c["year"])
-            d = os.path.join(OUT_ROOT, code)
-            os.makedirs(d, exist_ok=True)
-            out = os.path.join(d, "%s_%s_中报.pdf" % (code, c["year"]))
+            out = os.path.join(OUT_ROOT, "%s_%s_%s中报.pdf" % (code, name, c["year"]))
             if os.path.exists(out):
-                print("  [skip] 已存在 %s_%s_中报.pdf" % (code, c["year"]))
-                files.append({"year": c["year"], "pdf": out, "title": c["title"],
-                              "url": c["url"], "date": c["date"], "cached": True})
-                continue
+                old = _prev_source_url(out)
+                if args.upgrade_zh and old and old != c["url"] and c["lang"] == "zh":
+                    print("  [upgrade] 现文件非首选语种/版本，重下：%s %s" % (code, c["year"]))
+                    try:
+                        os.remove(out)
+                    except Exception:
+                        pass
+                else:
+                    print("  [skip] 已存在 %s_%s_%s中报.pdf" % (code, name, c["year"]))
+                    files.append({"year": c["year"], "file": os.path.basename(out),
+                                  "title": c["title"], "url": c["url"],
+                                  "date": c["date"], "cached": True})
+                    continue
             print("  [get] %s %s" % (c["date"], c["title"][:60]))
             ok = _download_and_validate(c["url"], out, name, "H1", c["year"], alt)
+            valid, detail = _absorb_validation(out)
             if ok:
-                files.append({"year": c["year"], "pdf": out, "title": c["title"],
-                              "url": c["url"], "date": c["date"], "cached": False})
+                files.append({"year": c["year"], "file": os.path.basename(out),
+                              "title": c["title"], "url": c["url"], "date": c["date"],
+                              "valid": valid, "check": detail, "cached": False})
             time.sleep(0.5)
-        manifest[code] = {"name": name, "stock_id": sid, "files": files}
+        files.sort(key=lambda x: x["year"], reverse=True)
+        manifest[code] = {"name": name, "market": "hk",
+                          "status": "ok" if files else "fail", "files": files}
+
+    if args.dump:  # 只查看条目，不改写清单
+        return
 
     mf = os.path.join(OUT_ROOT, "_manifest.json")
     with open(mf, "w", encoding="utf-8") as f:

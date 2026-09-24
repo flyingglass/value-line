@@ -658,7 +658,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 </tbody>
 </table>
 <hr />
-<h2>四、关键提醒（进池前必须知道）</h2>
+<h2>四、中报 PDF（已入库）</h2>
+<p><strong>目录</strong>：<code>data/AI软件/</code>（与 <code>data/广州/</code> 同构：<strong>平铺</strong> <code>&lt;code&gt;_&lt;名称&gt;_&lt;年&gt;中报.pdf</code> + 单一 <code>_manifest.json</code>），<strong>35 份 / 90 MB</strong>，下载脚本 <code>scripts/fetch_hk_interim.py</code>。清单按 code 记录每份的 <code>file / year / title / url / date</code> 与校验结果 <code>valid / check</code>（PDFValidator 的 PDF 头、页数、公司名、期次校验已并入清单，不再单独落 <code>.validation.json</code>）。</p>
+<ul>
+<li><strong>来源</strong>：HKEXnews 披露易原始 PDF（每份读到(url)可直接回溯），优先中文版，逐份跑 <code>pdf_downloader.PDFValidator</code>（PDF 头 + 大小 &gt;10KB + 页数 &gt;5 + 公司名 + 期次关键词）</li>
+<li><strong>覆盖</strong>：23/24 只。23 只拿到 <strong>2026 中报</strong>；其中 <strong>11 只额外拿到 2025 中报</strong>（00268/00354/00696/01357/01675/02013/02556/02586/03888/03896/06682/09678）——<strong>2025H1 与 2026H1 配对，正是验证第 ⑤ 类「毛利率降而营收涨」所必需的最小数据集</strong></li>
+<li><strong>唯一缺口</strong>：<strong>06727 星环科技</strong>——2026-09-18 才上市（配售结果公告日），<strong>尚无中报</strong>，属正常不是抓取失败</li>
+</ul>
+<p><strong>两处口径差别（读之前要知道）</strong></p>
+<ol>
+<li>01357 美图 / 01956 中科闻歌 / 02513 智谱 / 00100 MINIMAX / 02556 迈富时的 2026 是<strong>中期業績公告</strong>（截至 2026-09-24 尚未刊发完整中期報告），其余为完整<strong>中期報告</strong>。業績公告篇幅小（170KB~2.4MB），分部数据通常不全，引用前注意。</li>
+<li>校验&quot;公司名未匹配&quot;的 2 份：<strong>00696_2026</strong>（210 页中文版，疑封面为公司英文名）、<strong>01357_2025</strong>——文件已保留且页数/大小正常，<strong>属封面排版差异非损坏</strong>，读时留意即可。</li>
+</ol>
+<hr />
+<h2>五、关键提醒（进池前必须知道）</h2>
 <ol>
 <li><strong>原文点名的 7 家港股里，北森控股 09669、百融云 06608 不在港股通成分名单内（2026-09-24 快照）</strong>——即作者最看好的两个&quot;拥抱 AI 的中国 SaaS 样本&quot;买不到。能买到的是迈富时 02556、迅策 03317、滴普科技 01384、明略科技 02718、美图 01357。（明略 02718 本次未进池：营收 +18.0% 但 2025 全年归母 -64.15 亿，异常值需先解释，<strong>留作下一步</strong>）</li>
 <li><strong>六类 ≠ 六类同样可信</strong>：①② 是有明确财务痕迹的（人效/新客户），③⑤需要中报原文验证，④在当地无数据，⑥基本是信仰充值。</li>
@@ -666,9 +679,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <li>智谱/MINIMAX 的 2026 中报（如已刊发）营收数据是 TDX 口径，<strong>新股历史数据可能与招股书口径不一致</strong>，引用前需回溯招股书/中报原文。</li>
 </ol>
 <hr />
-<h2>五、下一步动作（按优先级）</h2>
+<h2>六、下一步动作（按优先级）</h2>
 <ol>
-<li><strong>读已下载的中报</strong>（<code>data/pdfs/hk_ai_software/&lt;code&gt;/</code>，见 <code>_manifest.json</code>），<strong>优先做第 ⑤ 类的毛利率方向</strong>——这一条决定了原文本地化是否成立，也决定了②④两类的可信度。</li>
+<li><strong>读已下载的中报</strong>（<code>data/AI软件/&lt;code&gt;_&lt;名称&gt;_&lt;年&gt;中报.pdf</code>，见 <code>_manifest.json</code>），<strong>优先做第 ⑤ 类的毛利率方向</strong>——这一条决定了原文本地化是否成立，也决定了②④两类的可信度。</li>
 <li><strong>补时间序列</strong>：把&quot;+388.8%&quot;这类增速拆成连续 6 个半年度，剔掉基数效应。</li>
 <li><strong>给 24 只逐个跑里海三板斧</strong>（简单 / 大变化 / 财报漏洞），按「1-4 类精力分配」落档；预期大部分会落 3 类。</li>
 <li>明略科技 02718 单独处理（2025 全年 -64.15 亿的异常值先解释）。</li>

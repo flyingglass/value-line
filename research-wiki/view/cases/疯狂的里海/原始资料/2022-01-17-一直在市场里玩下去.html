@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2022-01-17-一直在市场里玩下去</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="2022-01-17-一直在市场里玩下去.html">2022-01-17-一直在市场里玩下去</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2022-01-17-一直在市场里玩下去</h1><div class="meta-line"><span class="tag tag-raw">原始</span><span style="margin-left:auto;color:#b0b5bd">raw/research/疯狂的里海</span></div><div class="md" id="md"><h1>一直在市场里玩下去（公众号文章）</h1>
+<blockquote>
+<p>来源：微信公众号「疯狂的里海」<br />
+原文链接：https://mp.weixin.qq.com/s/cuTDVSTQqZn1btj87Hm86g<br />
+作者：里海（公众号：fengkuanglihai，《A股价值成长投资之路》作者）<br />
+发布时间：2022-01-17 22:05<br />
+原始来源：《【疯狂的里海】公众号文章合集2022年 - 里海.txt》line 206-236（全文转录）<br />
+关联：本文为其&quot;上周那篇走心的文章&quot;的下篇，展开讲自己方法的<strong>底层逻辑</strong>（上篇只讲了&quot;能够赚钱且可持续&quot;这一思想）</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：弱者思维 · 提前价值发现 · 不绝对集中 · 商业模式判断能力</p>
+</blockquote>
+<p><strong>一句话核心</strong>：个人投资者能长期在市场活下去的路径 = <strong>弱者思维 + 提前价值发现 + 不绝对集中</strong>；其中散户最该训练的能力不是做深研，而是 <strong>&quot;基于现成的分析资料进行商业模式的判断&quot;</strong> 的能力。</p>
+<p><strong>关键数据</strong>：</p>
+<ul>
+<li>持仓结构：<strong>3-5 只股</strong>，轮动方式；单只踩坑最多损失总仓位 <strong>15%</strong></li>
+<li>机构研报的可靠性：过 <strong>1-2 年</strong>回头看，&quot;很多研报的结论预测数据错得离谱&quot;</li>
+<li>提前发现的位置特征：估值一般很<strong>低</strong>、股价处于<strong>跌无可跌</strong>的位置</li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>散户的&quot;研究&quot;不叫研究</strong>——&quot;只能算是简单的资料堆砌，把一大堆资料进行搬运而已&quot;；但机构那套把下游车型、单车用量、竞争对手全部列出来建模的搞法，&quot;对我们散户来说，都是望尘莫及的事情&quot;，且&quot;大部分是很不准的&quot;。</li>
+<li><strong>好公司几乎不可能有好价格</strong>——&quot;如果有好价格的时候，那么从表面的基本面上来看就不是好公司&quot;（举例：爱尔眼科&quot;数据一如既往稳健，但股价已经不是当年的样子了&quot;）。</li>
+<li><strong>提前发现要逆众人而行</strong>——需要&quot;较强大的内心&quot;；但好处是&quot;就算判断错了，也很难亏大钱，大不了亏时间&quot;。</li>
+<li><strong>再高概率高赔率也不能独吊一只</strong>——&quot;不管认知能力多深……独吊一只的搞法就是有漏洞的&quot;。</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li><strong>弱者思维的两个自问</strong>（下注前的闸门）：①&quot;如果我不去做深入研究，能否做出买入的抉择？&quot;②&quot;如果未来公司出现我们不可掌控的事情，我们在这个位置买入是否有安全边际？&quot;——<strong>两者都无影响时才可以下注</strong>。</li>
+<li><strong>商业模式判断能力</strong>是基本面研究的过关标准：构建基于知识储备、又脱离知识储备，&quot;从具体的数据和知识中抽象出来，是属于自己的一种判断能力&quot;。</li>
+<li><strong>用赔率保护自己</strong>：提高盈利面的两条路——提升基本面确定性 <strong>或</strong> 用高赔率提升盈利率、保护本金。</li>
+<li><strong>黑天鹅保护</strong>优先于收益率：&quot;复利最大的障碍就是，不管你以前对了多少次，一旦有一次踩坑，那就前功尽弃。&quot;</li>
+</ol>
+<p><strong>与 wiki 的关系</strong>（2026-09-24 注）：line 222&quot;基于现成的分析资料进行商业模式的判断&quot;已被 <a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">方法论/里海-四段式工作流</a> 引用为第 ② 段&quot;解构&quot;的能力定义（<strong>生意模式层必须搞懂 vs 专业层刻意不钻</strong>）；本文&quot;3-5 只 / 单只最多 15%&quot;是分仓原则的直接出处。</p>
+<h2>正文</h2>
+<p>一、开篇：&quot;术&quot;不可简单复制</p>
+<p><strong>里海</strong>：又有几天没有写文了，哈哈，但不知道咋回事，这几天粉丝的数量反而涨起来了，也许是我上周那篇走心的文章打动了不少人吧，哈哈，但事实上由于没有代码，所以阅读量也不多嘛。</p>
+<p>上周末当天往返，迅速到成都去和成都的一些优秀的个人投资者喝了一顿酒，还是很多收获，其中从某著名投资人那里学到的最重要的一点就是：<strong>&quot;术&quot;是没有办法简单复制的，盲目模仿可能模仿不来，只有多看前人的书，看牛人方法背后的底层逻辑，慢慢找到适合自己的方法</strong>。做投资嘛，从&quot;术&quot;的层面来看是百花齐放的。所以大家也不要盲目模仿我的方法，而是要思考我的方法背后的逻辑和思维方式，找到适合自己的方法。我认为，任何方法都是存在且合理的，只要遵循一点，就是适合自己的好方法，这点就是：<strong>长期下来是正期望值，并且可持续</strong>！</p>
+<p>上篇文章其实我没写完，只简单写了我的方法的底层逻辑，也就是基于&quot;能够赚钱且可持续&quot;这个思想。因此，这里就接着，具体展开下。上篇文章的具体描述如下：</p>
+<p>弱者体系下的提前价值发现，再加上不绝对集中，可能是个人投资者能够在市场里长期生存并获得超额收益的很好的路径！再详细点解释的话，就是：做投资，如果能跳出价格波动的干扰，专注于追求提前发现价值，那么就会进入一种心流之中，而最后的赚钱不过是这种专注的副产物而已。</p>
+<p>二、第一点：弱者思维</p>
+<p><strong>里海</strong>：这是一种最重要的认知。也就是认为个人投资者无法 <strong>100%</strong> 的看清楚一家公司的逻辑，而事实上也是如此，投资中最重要的是什么？是确定性，然而，世界上没有 <strong>100%</strong> 可预测的事物，因此，本质上只是概率而已。我们做投资看过很多研报，特别是机构出的一些详细研报，洋洋洒洒几十页。可是，如果我们有意留心的话，我们过两三年，甚至仅仅一两年后来看，会发现很多研报的结论预测数据错得离谱，当然，很多时候就算数据错了，并不影响赚钱。</p>
+<p>机构尚且如此，更何况是个人呢？</p>
+<p>举个最简单的例子，我曾经投资过的 <strong>QAGF</strong>，若是机构的话，如果要做抉择，一定会建立模型，把公司每家下游的车型全部列出来，然后每辆车用的公司的什么零件，单车用量多少，潜在的竞争对手等等，全部列出来，然后再把公司的竞争对手列出来，推演以后能够卖多少，最后得到一个结论，再决定买不买这家公司的股票。且不说这样建立的测算模型最后准不准的问题（而事实上，大部分是很不准的），就单单是建立这个测算模型，对我们散户来说，都是望尘莫及的事情。那么，投资就没办法做了吗？非也，这个时候，我们就可以假设，如果我们不用知道这么细，是否可以推演出这家公司未来会不会比现在好呢？而一般情况下，只要略看一些资料，就可以做出比较准确的判断。而如果同时股价又还没有反映这个利好的话，那么，这个时候下注的正确率就非常高了。</p>
+<p>碰到研究不透的问题，这个时候，我们可以想一下，如果不去研究这个问题，绕开它，是否可以做出抉择呢？这就是弱者的一种思维模式。</p>
+<p>而事实上，我们散户的研究根本不叫什么研究，只能算是简单的资料堆砌，把一大堆资料进行搬运而已。我们散户的能力圈和认知圈以及知识储备实在是太少。所以，弱者思维对我们做投资的启示就是，<strong>一是如果我不去做深入研究，能否做出买入的抉择？二是如果未来公司出现我们不可掌控的事情，我们在这个位置买入是否有安全边际？当这两者对投资的抉择都没有影响的时候，那就可以下注了</strong>。</p>
+<p>而实际上，我认为我们散户应该要训练的能力，是 <strong>&quot;基于现成的分析资料进行商业模式的判断&quot;的能力</strong>。这种能力的构建基于知识储备，但又脱离了知识储备，是从具体的数据和知识中抽象出来，是属于自己的一种判断能力。而一旦具备了这种判断能力，基本上对基本面研究这个关口就可以过关了。</p>
+<p>三、第二点：提前价值发现</p>
+<p><strong>里海</strong>：提前价值发现，对我们散户最大的好处就是可以有效地保护自己。市场主流的投资思维是，通过研究，找到好公司，等待一个好价格买入，然后长期持有。不过，这个时候有个最大的问题是，<strong>好公司几乎不太可能有好价格，如果有好价格的时候，那么从表面的基本面上来看就不是好公司</strong>。</p>
+<p>无脑买入大家都认为好的公司有个最大的问题是，就算它是好公司，但因为估值较高，因此基本面的一点小波动就会让股价大幅回调，如果在高位买的，那可能就非常难受了。例如最近的爱尔眼科，从数据上来看，公司还是一如既往的稳健，但股价已经不是当年的样子了。</p>
+<p>所以，除了发现好公司，我认为提前发现一家公司的价值，也是属于价值投资的范畴。提前发现一家公司的价值，可以是以前不好，现在不好，但未来好；也有可能是过去好，现在好，未来更好；还有可能是一直好，但市场暂时没发现，等等等等。</p>
+<p>提前发现公司价值的方法有什么好处呢？好处就是<strong>可以通过赔率来保护自己</strong>。提高盈利面，除了提升基本面的确定性外，也可以用高赔率来提升盈利率和保护本金。</p>
+<p>不过，提前发现价值，有个问题就是，你和大部分人的看法是不一样的，你必须逆流而行，提前于众人发现一家公司变好的因子。一般来说，当你发现这样一家公司的时候，由于市场还没认识到，所以估值一般很低，股价通常处于跌无可跌的位置，因此，<strong>就算判断错了，也很难亏大钱，大不了亏时间</strong>，所以介入时的安全边际是很高的。</p>
+<p>不过，提前价值发现对个人来说是挺难的，一是要具备这种逆众人而行的思维方式，这真的挺难的，需要较强大的内心；二是需要较强的分析能力，需要具备相应的企业分析的专业知识，需要有独特的商业模式判断能力，需要有高维度的认知能力，能够从同样的信息中看出不一样的东西。</p>
+<p>四、第三点：不绝对集中</p>
+<p><strong>里海</strong>：那么，具备上述认知之后，是否就可以在市场里纵横天下，一直生存下去呢？非也！在市场里玩，最怕的就是踩坑，一旦踩一个坑，一夜回到解放前啊。<strong>复利最大的障碍就是，不管你以前对了多少次，一旦有一次踩坑，那就前功尽弃</strong>。</p>
+<p>所以，不绝对集中就是保护我们本金的有利武器。虽然我们前面经过弱者视角，通过提前价值发现等等措施来确保自己是在一个高概率和高赔率的点来下注的，但也绝不可能保证 <strong>100%</strong> 的准确。因此，不绝对集中，就是万一遇到小概率事件后的最强的保护措施，不至于前功尽弃。</p>
+<p>不管认知能力多深，也不管是否最后真的会碰到黑天鹅事件，也许有的人一辈子的投资生涯也不会遇到，但不代表这体系没有漏洞。<strong>不管怎么样，独吊一只的搞法就是有漏洞的</strong>。</p>
+<p>所以，通过弱者思维和提前发现价值的搞法，再加上不绝对集中，那么就极大可能能够在这市场上长期玩下去。</p>
+<p><strong>一般我是持有 3-5 只股，以轮动的方式来，即使一只股不幸踩坑，最多也就损失总仓位的 15%，不至于全军覆没。</strong></p>
+<p>五、结语</p>
+<p><strong>里海</strong>：投资，除了要找到一个适合自己的正期望值的打法之外，更重要的，一定是要有小概率事件发生后的保护措施啊！</p>
+</div><div class="backrow"><a href="../index.html#dir=%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99">← 返回 原始资料</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../raw/research/疯狂的里海/2022-01-17-一直在市场里玩下去.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>
