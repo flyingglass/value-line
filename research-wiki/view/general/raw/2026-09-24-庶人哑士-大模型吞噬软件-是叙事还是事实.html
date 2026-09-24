@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-09-24-庶人哑士-大模型吞噬软件-是叙事还是事实</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2026-09-24-庶人哑士-大模型吞噬软件-是叙事还是事实</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">raw/research/articles</span></div><div class="md" id="md"><h1>大模型吞噬软件：是叙事还是事实？</h1>
+<blockquote>
+<p>来源：微信公众号「庶人投资笔记」，原创<br />
+原文链接：https://mp.weixin.qq.com/s/hqdAvdjGR9VRJ6yjZ45iTw<br />
+作者：庶人哑士<br />
+发布时间：2026-09-24 07:00<br />
+关联篇目：《AI应用随想录》（2026-09-02）、《关于AI应用的十个判断》（2026-09-19），同公众号同作者<br />
+入库时间：2026-09-24</p>
+</blockquote>
+<hr />
+<h2>摘要（3 分钟速读）</h2>
+<p><strong>一句话核心</strong>：大模型吞噬软件<strong>部分是事实、不完全是叙事</strong>——应用层在&quot;模型泛化能力 + AI Coding 降低手搓门槛&quot;两头夹击下<strong>正在变薄</strong>，但传统软件厂商有<strong>四条现实路径</strong>把 AI 变成赋能而非吞噬；作者的结论是**&quot;AI 不仅不会完全吞噬软件，反而在很多方面对软件有利&quot;**，并从开发端/需求端/产品端/竞争端/商业模式/新品类六个维度列举了利好。</p>
+<p><strong>核心论证链</strong></p>
+<ol>
+<li><strong>软件的本质是工具</strong>：&quot;通过指挥计算机干活，进而帮助人们更高效干活的工具&quot;；传统软件是被动工具，AI 应用是&quot;具有一定主动性、可以帮助完成某个任务的工具——你可以称之为<strong>助理</strong>&quot;</li>
+<li><strong>大模型与传统软件两点最大不同</strong>：① 具备各种<strong>泛化能力</strong>（&quot;软件百晓生&quot;，对传统软件形成真实替代）；② 本身能<strong>通过 Coding 生产软件</strong>（中小用户手搓门槛与成本大降）。简单说即&quot;<strong>通百艺而专一长</strong>&quot;</li>
+<li><strong>模型能干的活有四条共性</strong>：判定标准清晰结果易验证 / 数据结构化、Context 轻 / 流程不复杂、时间跨度短 / 价值量大、ROI 高、值得重金投入</li>
+<li><strong>为什么 Coding 最先爆</strong>：四条共性基本都靠得上；接下来 AI 短剧、AI4S（Anthropic 自建湿实验室）只因<strong>第四点</strong>（价值量大）对得上，前三点&quot;差点儿意思&quot;</li>
+<li><strong>路径判断</strong>：&quot;<strong>低垂的果子先被摘</strong>，摘完一个再摘更高的果子时会更费力&quot;</li>
+</ol>
+<p><strong>关键事实与数据（原文口径）</strong></p>
+<ul>
+<li>积极拥抱 AI 的公司名单（作者称来自最近几个季度电话会 + 行业调研）：美股 <strong>Palantir、SAP、Salesforce、Hubspot、Workday、Datadog、Snowflake、Cloudflare</strong>；港股 <strong>迈富时、北森、美图、百融云、滴普、迅策、明略</strong>——&quot;<strong>AI 对于它们不仅不是吞噬，反而是赋能</strong>&quot;</li>
+<li>中小客户手搓软件的痛点：<strong>维护责任不清、合规性差、兼容性差</strong>；传统软件可把价格打到&quot;手搓的 <strong>2-3 倍</strong>&quot;但省掉所有维护成本</li>
+<li>组织边界的比喻：陆地大象只能 <strong>6~8 吨</strong>，海洋蓝鲸可重达<strong>上百吨</strong>（引《深奥的简洁》《我从达尔文那里学到的投资知识》）</li>
+</ul>
+<p><strong>四条现实路径（传统软件厂商拥抱 AI，原文编号）</strong></p>
+<ol>
+<li><strong>从功能软件变成&quot;业务AI的操作系统&quot;</strong>：Snowflake 把数据库变成 agent 的记忆与知识库；SAP / Salesforce 把每个 API 变成 agent 可调用的工具；Palantir / 北森把 RBAC 变成 agent 的操作边界；Datadog 把日志变成 agent 行为的可追溯证据</li>
+<li><strong>深耕模型做不了的深度</strong>：长周期状态管理（采购申请 发起→审批→下单→收货→质检→入库→付款→对账，跨数月、多人、复杂分支）是工作流引擎的活；概率生成器的<strong>精确计算与一致性存疑</strong>，需知识图谱/本体层等符号主义约束边界；行业 know-how 规则库（医保编码映射、人力资源科学、MES、WMS）是几十年积累的资产。最佳实践案例是 <strong>Palantir</strong></li>
+<li><strong>变成被集成的组件而非独立应用</strong>：放弃完整前端界面，把自己变成被 Agent 调用的 API 服务（百融云风控 API）、被低代码平台嵌入的数据源与动作（飞书/钉钉/企微审批流调用北森人力逻辑与薪资考勤排班数据）、被 MCP/Function Calling 直接调用的工具</li>
+<li><strong>往下沉市场走、往中小客户走</strong>：提供&quot;预置 AI + 预置流程模板 + 托管运维&quot;一体化方案；作者坚信&quot;<strong>专业分工是效率最高、成本最低的方式</strong>&quot;，&quot;客户手搓出来的是还凑合的玩具，不是真正的产品&quot;</li>
+</ol>
+<p><strong>六条 AI 利好软件（原文顺序）</strong></p>
+<ol>
+<li><strong>开发端</strong>：AI Coding 让成本大幅下降，&quot;几乎体现在了所有我看过的上市公司的财报的人效指标中&quot;</li>
+<li><strong>需求端</strong>：原本不具备经济性的内部流程被数字化、软件化；原来用不起软件的中小企业可以用了；IT 预算变成营销/人力/咨询预算，<strong>TAM 扩大</strong></li>
+<li><strong>产品端</strong>：从死工具变成活同事、甚至决策顾问，服务更个性化更主动，<strong>用户粘性增强、转换成本提高</strong></li>
+<li><strong>竞争端</strong>：无力拥抱 AI 的中小玩家出清，叠加中国 SaaS 两轮融资热潮后低谷期本身的供给出清，&quot;行业龙头正面临前所未有的大好局面&quot;</li>
+<li><strong>商业模式</strong>：由订阅制转为<strong>积分或 token 消耗</strong>，毛利率下降但营收暴涨——&quot;<strong>全栈Token工厂不再是叙事，而是在很多上市公司财报中真实发生的</strong>&quot;</li>
+<li><strong>新品类创造</strong>：AI 原生软件是新增量市场，&quot;投资科技和消费品公司，就是要有'看见看不见'的能力，要有'因为相信，所以看见'的想象力&quot;</li>
+</ol>
+<p><strong>核心矛盾</strong></p>
+<ul>
+<li><strong>部分事实 vs 完全吞噬</strong>：应用层确实在变薄（&quot;<strong>正视和接受这一点很重要</strong>&quot;），但&quot;说大模型完全吞噬软件，是既不懂生态系统，又不懂分工协作&quot;</li>
+<li><strong>无边界扩张不成立</strong>：组织大到一定程度，内部管理成本会远高于外部节省的交易费用，&quot;自然的'自临界法则'就不允许这样的庞然大物存在&quot;</li>
+<li><strong>手搓的边界</strong>：单人手搓的规模效应&quot;始终赶不上服务多租户的专业厂家&quot;，但中小客户确实在被分流</li>
+</ul>
+<p><strong>投资策略结论（原文）</strong></p>
+<blockquote>
+<p>&quot;当下的投资策略是：<strong>想办法吃到前五类的红利，并积累对AI应用的know-how，保持对第6类机会的关注</strong>。&quot;</p>
+</blockquote>
+<p><strong>局限提示（阅读时注意）</strong></p>
+<ul>
+<li>文章通篇为<strong>定性判断与投资框架</strong>，未给出财务数据出处；&quot;十几家公司管理层都这么说、行业调研也能验证&quot;为作者自述，<strong>未列具体电话会期次与引文</strong>，引用前需回溯各公司业绩会原文</li>
+<li>涉及具体公司（Palantir、Snowflake、SAP、Salesforce、Datadog、北森、迈富时、百融云等）的路径描述为作者归纳，非公司官方口径</li>
+<li>&quot;手搓的 2-3 倍&quot;定价、人效指标改善等为作者经验判断，<strong>无量化出处</strong></li>
+</ul>
+<hr />
+<h2>正文（完整原文）</h2>
+<p>大模型的本质也是软件。</p>
+<p>不管是本地部署（OP），云端部署（SaaS），传统软件通常都是具备某种功能的工具。它通常可以提高人们完成某项任务的效率。比如CRM可以提高销售跟单的效率，ERP可以提高业务数据存、管、用的效率，T云、珍客、HubSpot可以提高营销获客的效率。</p>
+<p>从这个维度，可以抽离出软件的本质：它是一个通过指挥计算机干活，进而帮助人们更高效干活的工具。</p>
+<p>沿着这条线往下推，传统软件和AI应用软件，没有啥本质的不同。传统软件无非是被动的、等待着人们去使用的工具；AI应用软件是具有一定主动性、可以帮助完成某个任务的工具--你可以称之为助理。</p>
+<p>大模型这个软件与传统软件最大的不同有两点：一是具备各种泛化能力，二是本身能够通过Coding生产软件。简单说，就是&quot;通百艺而专一长&quot;。</p>
+<p>大模型吞噬软件，也正是基于这两点。</p>
+<p>和传统软件聚焦于某一项或几项功能不同，大模型具备极强的泛化能力，这让它变成了&quot;软件百晓生&quot;。无论是哪个行业、哪个领域，它多少都能懂一点，也能干一点活儿。这对传统软件形成了真实的替代。</p>
+<p>另一方面，AI的Coding能力，让用户手搓软件的门槛和成本都大大降低。也确实观察到部分中小用户在这么做。</p>
+<p>所以，模型吞噬软件确实部分是事实，不完全是叙事。应用层在两头夹击之下在变薄，正视和接受这一点很重要。</p>
+<p>但如果我们再往深了挖一下，可以得出大模型能干的那些活儿的一些共性：</p>
+<ol>
+<li>判定标准清晰，结果易验证；</li>
+<li>数据高度结构化，不太依赖真实工作场景，Context轻；</li>
+<li>流程并不复杂，且时间跨度比较短，</li>
+<li>价值量大，ROI高，值得重金投入。</li>
+</ol>
+<p>为什么Coding最先爆？因为上面四点基本都靠得上。为什么接下来是AI短剧？然后是AI4S？为什么Anthropic自己会花钱建湿实验室？因为第四点对得上，而前面三点都差点儿意思。</p>
+<p>路径非常清晰：低垂的果子先被摘，摘完一个再摘更高的果子时会更费力。</p>
+<p>传统软件厂商也没有闲着。你去听最近几个季度的电话会，会发现无论是美股的Palantir、SAP、Salesforce、Hubspot、Workday、Datadog、Snowflake、Cloudflare，还是港股的迈富时、北森、美图、百融云、滴普、迅策、明略，它们都在积极拥抱AI。AI对于它们不仅不是吞噬，反而是赋能。</p>
+<p>如果只是一家这么说，可以不信。当中美两地十几家公司的管理层都这么说，行业调研也能验证的时候，还选择不信吗？</p>
+<p>它们拥抱的姿势多种多样，有管理层的战略选择，也有公司自身禀赋的现实约束。从它们的动作中，可以总结出几个现实路径：</p>
+<p><strong>路径1：从功能软件变成&quot;业务AI的操作系统&quot;</strong></p>
+<p>Snowflake把数据库变成agent的记忆和知识库；SAP和Salesforce把每个API变成agent可调用的工具；Panlatir和北森把RBAC变成agent的操作边界；Datadog把日志变成agent行为的可追溯证据。</p>
+<p><strong>路径2：深耕模型做不了的深度</strong></p>
+<p>大模型不擅长的东西，恰恰是传统软件的护城河。这方面的最佳实践案例就是Palantir。比如长周期状态管理：一个采购申请从发起→审批→下单→收货→质检→入库→付款→对账，跨越数月、涉及多人、有复杂分支逻辑。这是工作流引擎的活，不是对话能解决的。</p>
+<p>当下的大模型是基于连接主义的Transformer架构的概率生成器，完成任务的精确计算和一致性存疑，财务核算、税务申报、库存精确扣减——模型会&quot;差不多&quot;，业务要&quot;分毫不差&quot;。这时候需要知识图谱和本体层这种符号主义来约束行为边界。</p>
+<p>通用大模型也缺乏行业深度规则（know-how）的理解。比如医保编码映射、人力资源科学、制造业MES系统执行、供应链WMS调度等等，这些规则库是几十年积累的资产。</p>
+<p><strong>路径3：变成被集成的组件而非独立应用</strong></p>
+<p>就像生态系统的角色多种多样，犀鸟可以和犀牛互相寄生一样。AI应用这个生态系统中，也有各种各样的生态位。</p>
+<p>可以放弃做完整前端界面，直接把能力送过去给AI Agent调用，把自己变成：被AI agent调用的API服务（&quot;帮我查这个客户的信用额度&quot;→调用百融云的风控API）、被低代码平台嵌入的数据源和动作（飞书/钉钉/企微的审批流里调用北森的人力业务逻辑和薪资考勤排班数据）、被大模型MCP/Function Calling直接调用的工具。</p>
+<p><strong>路径4：往下沉市场走，往中小客户走</strong></p>
+<p>中小客户手搓的痛点是维护责任不清、合规性差、兼容性差。传统软件可以把价格打到手搓的2-3倍但省掉所有维护成本，提供&quot;预置AI+预置流程模板+托管运维&quot;的一体化方案。</p>
+<p>我始终相信专业分工是效率最高、成本最低的方式。客户手搓出来的是还凑合的玩具，不是真正的产品。单人手搓的规模效应，始终赶不上服务多租户的专业厂家。</p>
+<p>说大模型完全吞噬软件，是既不懂生态系统，又不懂分工协作。</p>
+<p>没有谁可以无边界扩张，吃下一切。无论是过往的历史经验，还是第一性原理都支持这个判断。当一个组织大到一定程度，内部的管理成本会远高于外部节省的交易费用。自然的&quot;自临界法则&quot;就不允许这样的庞然大物存在。</p>
+<p>确实无法理解的，建议可以去看一下《深奥的简洁》和《我从达尔文那里学到的投资知识》。企业组织作为一个活物，和自然界有着诸多相通之处。陆地上的大象为什么只能有6~8吨？而海洋里的蓝鲸可以重达上百吨？沙堆为什么堆到一定高度就会沙崩？</p>
+<p>AI不仅不会完全吞噬软件，反而在很多方面对软件有利：</p>
+<ol>
+<li>开发端：AI Coding让成本大幅下降，这几乎体现在了所有我看过的上市公司的财报的人效指标中。</li>
+<li>需求端：原有不具备经济性的内部流程开始被数字化、软件化了，原来用不起软件的中小企业也可以用了，原来的IT预算变成了营销、人力、咨询等预算，TAM空间扩大了。</li>
+<li>产品端：从死工具变成了活同事，甚至是决策顾问，服务更个性化、也更主动，用户粘性增强，转换成本提高。</li>
+<li>竞争端：无力拥抱AI的中小玩家正在出清，竞争格局正在优化。叠加中国SaaS行业在经历了两轮融资热潮后低谷期本身的供给出清，行业龙头正面临前所未有的大好局面。</li>
+<li>商业模式：由订阅制转变为积分或token消耗，毛利率下降但是营收暴涨。全栈Token工厂不再是叙事，而是在很多上市公司财报中真实发生的。</li>
+<li>新品类创造：AI原生软件是新的增量市场。这可能是创业公司做出来的，也可能是现有公司跑出来的。它们会长什么样，我还不知道。但投资科技和消费品公司，就是要有&quot;看见看不见&quot;的能力，要有&quot;因为相信，所以看见&quot;的想象力。</li>
+</ol>
+<p>未来随着模型能力提升、token成本下降、智能供给不再稀缺，一定会带来应用的繁荣。当下的投资策略是：想办法吃到前五类的红利，并积累对AI应用的know-how，保持对第6类机会的关注。</p>
+</div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../raw/research/articles/2026-09-24-庶人哑士-大模型吞噬软件-是叙事还是事实.md" style="margin-left:auto">原文文件 ↗</a></div></div>var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</body></html>
