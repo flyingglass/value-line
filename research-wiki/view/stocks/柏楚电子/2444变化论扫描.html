@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>柏楚电子 (688188.SH) — 2444 变化论扫描</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">柏楚电子</a> › <a href="2444变化论扫描.html">柏楚电子 (688188.SH) — 2444 变化论扫描</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">柏楚电子 (688188.SH) — 2444 变化论扫描</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-25</span><span style="margin-left:auto;color:#b0b5bd">research/柏楚电子</span></div><div class="md" id="md"><h1>柏楚电子（688188.SH）— 2444 变化论扫描</h1>
+<blockquote>
+<p>资料性质：<strong>本地材料仅 2026 中报 PDF 一份</strong>（逐页提取核对）；2025H1 分部、2026Q1、9 月两则公告、股价行情为<strong>外部来源</strong>（链接见 frontmatter），已在表内逐处标注来源等级。</p>
+<p>🟢 观测（原文或实算）· 🟡 推算（交代算法）· 🔴 不可识别（公司未披露）。</p>
+</blockquote>
+<hr />
+<h2>一、结论速览</h2>
+<p><strong>一句话核心</strong>：柏楚有变化，但<strong>没有一处满足「变化论」的全部要件</strong>——唯一合格候选（智能焊接 / 整线转型）已连续披露多期、被多家券商写进研报，<strong>披露当天就被市场用两根阴线吞掉</strong>；而比变化更前置的「底部」要件<strong>完全不成立</strong>。</p>
+<p><strong>关键读数</strong>（除标注外单位人民币）：</p>
+<ul>
+<li>2025 全年：营收 <strong>21.96 亿</strong>（+26.52%）· 归母 <strong>11.13 亿</strong>（+26.04%）· 扣非 10.27 亿（+25.07%）· 毛利率 <strong>77.66%</strong>（-2.28pct）　🟢</li>
+<li>2026H1：营收 <strong>12.78 亿</strong>（+15.84%）· 归母 <strong>7.87 亿</strong>（+22.97%）· 扣非 <strong>7.14 亿</strong>（+20.20%）　🟢 中报原文</li>
+<li>2026Q2 单季：营收 <strong>7.30 亿</strong>（+20.17%，环比 +33.23%）· 归母 4.71 亿（+22.37%）· 毛利率 <strong>73.49%</strong>（同比 -6.22pct）　🟢</li>
+<li>2026H1 综合毛利率 <strong>73.93%</strong>（2025H1 78.83%，<strong>-4.90pct</strong>；2025 全年 77.66%）　🟢 实算</li>
+<li>分部收入：平面 <strong>7.07 亿</strong>（占 55.3%／+4.39%）· 管材 <strong>2.80 亿</strong>（21.9%／+18.33%）· 三维 <strong>0.35 亿</strong>（2.8%／+2.94%）· 其他 <strong>2.56 亿</strong>（<strong>20.0%／+64.75%</strong>）　🟢 中报分部信息 + 2025H1 分部反算</li>
+<li>位置：全周期最高 <strong>135.23</strong>（2021-08-27）· 2026 年高 <strong>127.04</strong>（05-19，历史次高）· 2026 年低 <strong>88.50</strong>（07-20）· <strong>现价 95.25</strong>（2026-09-24）　🟡 腾讯行情前复权</li>
+<li>估值（2026-09-24）：市值 <strong>386.29 亿</strong> · PE(TTM) <strong>30.67</strong> · PB <strong>6.09</strong>　🟡 腾讯行情</li>
+</ul>
+<p><strong>核心矛盾</strong>：它的基本盘（平面切割）增速已降到 <strong>+4.39%</strong>，而增长几乎全部来自毛利率仅 <strong>48%</strong> 的「其他」（智能硬件/焊接）——<strong>增速与毛利率正在互相对冲</strong>；市场为此付了 PE 30x 的价格，但这套结构换挡已被公开定价。</p>
+<hr />
+<h2>二、位置判定（变化论的前置要件）</h2>
+<p>变化论是 <strong>「位置 × 变化」双要件</strong>，「低估不是底，变化才是底」。底部要件的定义是<strong>跌无可跌 + 走出来的长期横盘</strong>（底不是算出来的，是走出来的）。</p>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>日期</th>
+<th>前复权价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上市以来最高</td>
+<td>2021-08-27</td>
+<td><strong>135.23</strong></td>
+</tr>
+<tr>
+<td>上市以来最低</td>
+<td>2019-10-21</td>
+<td>24.55</td>
+</tr>
+<tr>
+<td>阶段最低</td>
+<td>2022-04-29</td>
+<td>53.07</td>
+</tr>
+<tr>
+<td>阶段高点</td>
+<td>2024-10-08</td>
+<td>125.24</td>
+</tr>
+<tr>
+<td><strong>历史次高</strong></td>
+<td><strong>2026-05-19</strong></td>
+<td><strong>127.04</strong></td>
+</tr>
+<tr>
+<td>2026 年低</td>
+<td>2026-07-20</td>
+<td>88.50</td>
+</tr>
+<tr>
+<td><strong>现价</strong></td>
+<td><strong>2026-09-24</strong></td>
+<td><strong>95.25</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>距 2021 年高点 <strong>-29.6%</strong>，距 2026 年 5 月次高 <strong>-25.0%</strong>，距 2022 年低点 <strong>+79.5%</strong>。</li>
+<li>年度振幅（前复权）：2024 年 65.96–125.24 · 2025 年 76.13–112.38 · 2026 年 88.50–127.04。</li>
+</ul>
+<p><strong>判定：❌ 不满足。</strong> 它不是「跌无可跌」（四个月前刚创历史次高），也不是「走出来的长期横盘」（2023 年至今是 88–127 的宽幅震荡）。形态是<strong>高位成长白马的中段震荡</strong>，不是筹码充分交换的无人问津区。</p>
+<hr />
+<h2>三、六类变化逐条扫描</h2>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>柏楚对应物</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 治理 / 股权 / 资产</strong></td>
+<td>无换股东、无国改、无资产腾挪。2026-09-04 高管变动 + 新股权激励：实控人唐晔本就是董事长，兼任总经理属治理安排，<strong>不是所有权变化</strong></td>
+<td>✗</td>
+</tr>
+<tr>
+<td><strong>2 业绩拐点</strong></td>
+<td>2026Q2 营收 +20.17% 快于 Q1 +10.53%；但公司<strong>从未被「杀业绩」</strong>，无困境反转可言，且毛利率同期下移</td>
+<td>✗ 不构成</td>
+</tr>
+<tr>
+<td><strong>3 行业景气 / 第二曲线</strong></td>
+<td><strong>智能焊接 + 整线方案 + 精密微加工</strong>：2026H1「其他」收入 2.56 亿、<strong>+64.75%</strong>，占比 14.09%→<strong>20.04%</strong>；募投已调向「智能产线机器人解决方案」「锂电焊接智能解决方案」</td>
+<td>✅ <strong>唯一合格容器</strong></td>
+</tr>
+<tr>
+<td><strong>4 预期 / 估值</strong></td>
+<td>无「管理改善释放利润」型叙事；股权激励反而增费用</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><strong>5 筹码 / 市场先生</strong></td>
+<td>宽幅震荡而非长期横盘；利空砸不动、利好也推不动（见第四节）</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><strong>6 无变化（反例）</strong></td>
+<td>经营优秀、被充分认知、估值不低、缺新理由</td>
+<td>⚠️ <strong>当前最接近的档位</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>四、三性检验（大 / 近 / 未被看清）</h2>
+<p>对唯一合格候选（智能焊接 / 整线转型）：</p>
+<table>
+<thead>
+<tr>
+<th>三性</th>
+<th>检验</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>大</strong></td>
+<td>只有<strong>卖方测算</strong>：钢结构免示教焊接机器人需求 &gt;10 万台、对应 &gt;300 亿市场、软件部分 &gt;100 亿（西部证券口径）。<strong>公司未披露任何 TAM 数字</strong></td>
+<td>⚠️ 待验证</td>
+</tr>
+<tr>
+<td><strong>近</strong></td>
+<td>已在兑现：2026H1「其他」<strong>2.56 亿、+64.75%</strong>（🟢 分部信息实算）</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><strong>未被看清</strong></td>
+<td>①<strong>公开了几期</strong>——智能焊接募投项目 2023 年即立项，2026 中报已被十余家券商写入研报（申万宏源称「焊接业务有望接力切割成为第二成长曲线」）；②<strong>披露当天怎么走</strong>——2026 中报 <strong>08-18</strong> 披露当日收 107.15（<strong>+4.13%</strong>），08-19 收 102.40（<strong>-4.43%</strong>）即全数回吐，至 09-24 收 <strong>95.25</strong>，<strong>低于披露前 08-17 的 102.90</strong></td>
+<td>❌ <strong>明确不成立</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键读数</strong>：市场看见了，且没有给出正反馈——8 月那一轮「+4.13% → -4.43%」是全页最有信息量的一组价格。</p>
+<hr />
+<h2>五、高管变更与股权激励的归位</h2>
+<p><strong>2026-09-04 董事会（第三届第三十四次），09-05 披露：</strong></p>
+<ul>
+<li>总经理 <strong>谢淼</strong> 因工作调整辞任，转任<strong>市场营销与服务中心负责人</strong>（持股 3,200.32 万股、7.87%）；董秘 <strong>周荇</strong> 辞任（转任副总经理，持股 0.57%）；<strong>唐晔</strong>（实控人、董事长）<strong>兼任总经理</strong>，<strong>周志禹</strong> 任董秘。（公告编号 2026-029）</li>
+</ul>
+<p><strong>2026 年限制性股票激励计划（草案）</strong>：拟授 <strong>435 万股</strong>（占总股本 1.07%），首次授予 354.61 万股、覆盖 <strong>217 人</strong>（含 1 名外籍员工），授予价 <strong>50.70 元/股</strong>，有效期 72 个月；考核以 <strong>2025 年营收或净利润</strong>为基数，2026–2028 目标增速 <strong>40%／80%／120%</strong>，达 25%／50%／75% 归属 90%，达 15%／30%／45% 归属 80%。<strong>尚需临时股东会审议。</strong></p>
+<p>两点判定：</p>
+<ol>
+<li><strong>不算类 1（治理 / 股权）变化</strong>。类 1 的本质是股权或资产层面的腾挪；唐晔本就同时是实控人与董事长，「兼任」是治理安排，不改变所有权与盈利能力。</li>
+<li><strong>激励目标是「承诺」，不是「变化」</strong>。按变化论口径，<strong>市场给兑现定价、不给承诺定价</strong>；且目标值（2026 年 +40%）高于卖方一致预期（约 +29%，🟡 研报汇总口径），只能进跟踪清单，不能当理由。</li>
+</ol>
+<hr />
+<h2>六、证据层：2026H1 分部数据与毛利率归因</h2>
+<table>
+<thead>
+<tr>
+<th>分部</th>
+<th>2026H1 收入</th>
+<th>占比</th>
+<th>同比</th>
+<th>2026H1 毛利率</th>
+<th>2025H1 毛利率</th>
+<th>毛利率变动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平面解决方案</td>
+<td>7.07 亿</td>
+<td>55.3%</td>
+<td><strong>+4.39%</strong></td>
+<td>79.69%</td>
+<td>82.13%</td>
+<td>-2.44pct</td>
+</tr>
+<tr>
+<td>管材解决方案</td>
+<td>2.80 亿</td>
+<td>21.9%</td>
+<td>+18.33%</td>
+<td>82.30%</td>
+<td>85.53%</td>
+<td>-3.23pct</td>
+</tr>
+<tr>
+<td>三维解决方案</td>
+<td>0.35 亿</td>
+<td>2.8%</td>
+<td>+2.94%</td>
+<td>79.07%</td>
+<td>85.01%</td>
+<td>-5.94pct</td>
+</tr>
+<tr>
+<td><strong>其他</strong>（智能硬件/焊接等）</td>
+<td><strong>2.56 亿</strong></td>
+<td><strong>20.0%</strong></td>
+<td><strong>+64.75%</strong></td>
+<td><strong>48.17%</strong></td>
+<td>52.91%</td>
+<td>-4.74pct</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>12.78 亿</td>
+<td>100%</td>
+<td>+15.84%</td>
+<td><strong>73.93%</strong></td>
+<td>78.83%</td>
+<td><strong>-4.90pct</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🟢 2026H1 分部收入与成本取自中报「分部信息」表（分部间抵销为空，四项加总＝合并数）；2025H1 分部取自公开可视化半年报与券商中报点评（两家口径互校后与中报披露的上年同期营收 11.03 亿完全吻合）；2025H1 分部毛利率取自申万点评。</p>
+<p><strong>毛利率 -4.90pct 的两段分解</strong>（🟡 推算，算法：以 2025H1 分部权重 × 2026H1 分部毛利率得 75.79%，再与 2026H1 实际 73.93% 相减）：</p>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>各分部自身毛利率下移</td>
+<td><strong>约 -3.0pct</strong></td>
+</tr>
+<tr>
+<td>低毛利「其他」占比提升（14.09%→20.04%）</td>
+<td><strong>约 -1.9pct</strong></td>
+</tr>
+</tbody>
+</table>
+<p>含义：低毛利硬件占比提升是<strong>结构性的、且尚未见顶</strong>（募投仍在往整线/焊接加码）；同时<strong>四个分部自身的毛利率都在下滑</strong>，这不能只用「产品结构」解释。</p>
+<hr />
+<h2>七、档位与跟踪清单</h2>
+<p><strong>档位</strong>：按《双左侧》分档表，柏楚<strong>三档皆不属</strong>——不是双左侧，不是「老登股」，也不是高位情绪股，而是表外的<strong>高位成长白马</strong>。变化论的处置是：<strong>看得懂，但不在买点；要的是「低位信其有」，它在高位。</strong></p>
+<p><strong>可证伪跟踪清单</strong>（按重要性排序）：</p>
+<ol>
+<li><strong>「其他」分部（焊接/整线/智能硬件）占营收比</strong> —— 能否从 20.04% 继续上台阶，决定它能否脱离切割周期 beta；</li>
+<li><strong>平面切割增速</strong> —— 当前 +4.39%，是短期波动还是渗透率见顶；</li>
+<li><strong>毛利率能否止跌</strong> —— 2025 年 77.66% → 2026H1 73.93% → Q2 单季 73.49%；四个分部毛利率同步下滑的原因需在年报口径上确认；</li>
+<li><strong>股权激励考核（2026 年营收或净利较 2025 年 +40%）</strong> —— 只看 Q3 单季，不看累计；</li>
+<li><strong>整线级订单可见度</strong> —— 是否出现可核到公告的整线项目（此前流传的船厂整线订单仅见研报转述、未核到公告原文，🟡）。</li>
+</ol>
+<hr />
+<h2>八、边界与不可识别项</h2>
+<ul>
+<li><strong>本地数据层缺位</strong>：柏楚<strong>不在本项目标的库</strong>（无 <code>data/688188.db</code>、不在 <code>config.py</code>），本地唯一一手材料是 <code>data/AI软件/688188_上海柏楚电子科技_2026中报.pdf</code>；股价为临时取数（腾讯行情接口，前复权，<strong>未落库</strong>），复现依赖同一接口。</li>
+<li><strong>市占率为第三方口径</strong>：中低功率约 60%（较此前小幅下滑）、高功率「国内第一」但份额数字各家不一。公司原文只表述「中低功率市占率维持领先」「高功率保持国内第一」，<strong>不给百分比</strong>。行业规模（激光切割控制系统约 30 亿 / 焊接软件 &gt;100 亿）同理，仅见卖方测算。</li>
+<li><strong>🔴 不可识别</strong>：①智能焊接 / AI 的单项收入（装在「其他」分部内，公司不按业务拆分）；②「其他」分部中智能硬件与焊接各自贡献——因此第 1–6 节凡涉及「焊接贡献多少」的判断，都只能站在分部整体增速上，不能下沉到焊接单项；③订单与在手订单（不披露）。</li>
+<li><strong>两种分类不可混用</strong>：产品介绍按<strong>产品线</strong>（随动控制系统 / 板卡控制系统 / 总线控制系统 / 智能切割头及配套软硬件），定期报告的分产品与分部口径则按<strong>应用场景</strong>（平面 / 管材 / 三维 / 其他）。引用时必须写明用的是哪套口径，跨年比较同理。</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../../cases/%E5%AD%A6%E8%82%A1/AI%E8%BD%AF%E4%BB%B6/AI%E8%BD%AF%E4%BB%B6%E5%90%8D%E5%8D%95-%E6%8C%89%E5%90%9E%E5%99%AC%E9%A1%BA%E5%BA%8F%E7%AD%9B%E9%80%89.html">AI软件名单-按吞噬顺序筛选</a> — 688188 在②本体层的卡位判据（能写回执行）</li>
+<li><a href="../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">疯狂的里海/方法论/10-初筛/里海-变化论</a> — 六类变化与三性检验的口径来源</li>
+<li><a href="../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">疯狂的里海/方法论/30-共振/里海-双左侧</a> — 分档表与「双左侧」判定</li>
+<li><a href="../%E4%B8%AD%E8%88%AA%E4%BF%A1/AI%E8%90%BD%E7%82%B9%E4%B8%8E%E6%88%90%E6%9C%AC%E7%BB%93%E6%9E%84.html">中航信/AI落点与成本结构</a> — 同批扫描的另一只本体层标的（00696）</li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/柏楚电子/2444变化论扫描.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
