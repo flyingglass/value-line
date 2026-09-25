@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>中国航信 (00696.HK) — AI 落点与成本结构</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">中航信</a> › <a href="AI落点与成本结构.html">中国航信 (00696.HK) — AI 落点与成本结构</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">中国航信 (00696.HK) — AI 落点与成本结构</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-25</span><span style="margin-left:auto;color:#b0b5bd">research/中航信</span></div><div class="md" id="md"><h1>中国航信（00696.HK）— AI 落点与成本结构</h1>
+<blockquote>
+<p>资料性质：<strong>公司定期报告披露摘录</strong>（非第三方文章转载）。引文为<strong>原文逐字、繁体保留</strong>；数据表由原文数字汇总并标注算法；🟡 为推算项，🔴 为不可识别项。</p>
+<p>覆盖报告：2024 年报 · 2025 中报 · 2025 年报 · 2026 中报（四条 HKEXnews 原始链接见「一、来源索引」）。</p>
+</blockquote>
+<hr />
+<h2>一、结论速览</h2>
+<p><strong>一句话核心</strong>：中航信的 AI 披露分两条线——<strong>对内</strong>已有「以大模型为基座的智能客户服务平台」「SRE + 统一智能运维平台」、20P 私有化 AI 算力；<strong>对外</strong>有「启航」「共翔睿行」行业垂直大模型、民航多模态高质量数据集、工信部/国资委 AI 案例、机场「AI 全场景」、现代航空新零售 MAR。但<strong>财务上读不出 AI 带来的收入增量，成本侧反而在变重人力</strong>：人工成本占营业总成本 <strong>38.6% → 41.2% → 43.8%</strong>，增速持续高于营收。</p>
+<p><strong>关键数据</strong>（单位：人民币，除标注外）：</p>
+<ul>
+<li>员工总数：<strong>6,722</strong>（2024-12-31）→ <strong>6,740</strong>（2025-06-30）→ <strong>6,901</strong>（2025-12-31）→ <strong>6,822</strong>（2026-06-30）</li>
+<li>人工成本：<strong>24.90 亿</strong>（2024）→ <strong>26.12 亿</strong>（2025，+4.9%）→ <strong>10.58 亿</strong>（2026H1，+9.3%）</li>
+<li>人工成本占营业总成本：<strong>38.6%</strong>（2024）→ <strong>39.9%</strong>（2025H1）→ <strong>41.2%</strong>（2025）→ <strong>43.8%</strong>（2026H1）</li>
+<li>职工企业年金费用：<strong>0.890 亿</strong>（2024）→ <strong>1.002 亿</strong>（2025）→ <strong>0.508 亿</strong>（2026H1）</li>
+<li>营收同比：<strong>+26.3%</strong>（2024）→ <strong>-0.6%</strong>（2025）→ <strong>+5.6%</strong>（2026H1）</li>
+<li>折旧及摊销：<strong>8.99 亿、-27.6%</strong>（2025）→ <strong>+5.2%</strong>（2026H1）</li>
+<li>研发费用：<strong>6.16 亿、-25.3%</strong>（2025；其中人工成本 4.07 亿、-24.7%）</li>
+<li>航旅智能产品及服务收入：<strong>11.13 亿、+18.8%</strong>（2025，占 12.7%）→ <strong>4.42 亿、+14.9%</strong>（2026H1，占 10.8%）</li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>AI 投入可验证，AI 收入不可识别</strong>：AI 相关动作连续三年有披露（智能客服平台 → 垂类大模型 → 智能运维/算力），但公司<strong>不按 AI 拆收入</strong>；可验证的只有板块整体（航旅智能）与客户数（数据智能及数据治理：2025 年报「10 余家」→ 2026 中报「60 余家」）。</li>
+<li><strong>人工成本增速持续高于营收增速</strong>、占比一路上升，与「AI 降本」的直觉相反；公司自身措辞只到「数字人力转型」「落实市场化退出制度」「向智能运维转变」，<strong>原文未出现减员/裁员表述</strong>。</li>
+<li><strong>2025 年利润弹性的来源不可外推</strong>：2025 年折旧摊销 -27.6%（部分固定资产已提足），但 <strong>2026H1 已转为 +5.2%</strong>（固定资产同比增加）。</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li>人工成本增速 vs 营收增速——连续两期低于营收，才谈得上 AI 提效兑现</li>
+<li>航旅智能板块占比（2026H1 = 10.8%）与 TRP 客户数（2025 年报 = 19 家航司）</li>
+<li>折旧摊销是否持续正增长（已从 -27.6% 翻为 +5.2%）</li>
+<li>研发费用与研发资本化政策（口径扰动项，见「四、3」）</li>
+</ol>
+<hr />
+<h2>二、来源索引</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>报告</th>
+<th>报告期</th>
+<th>发布日期</th>
+<th>PDF 页数</th>
+<th>原文链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>2024 年年度报告</td>
+<td>FY2024</td>
+<td>2025-04-22</td>
+<td>271</td>
+<td>https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0422/2025042200784_c.pdf</td>
+</tr>
+<tr>
+<td>②</td>
+<td>2025 年中期报告</td>
+<td>2025H1</td>
+<td>2025-09-12</td>
+<td>214</td>
+<td>https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0912/2025091200773_c.pdf</td>
+</tr>
+<tr>
+<td>③</td>
+<td>2025 年年度报告</td>
+<td>FY2025</td>
+<td>2026-04-22</td>
+<td>287</td>
+<td>https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0422/2026042200655_c.pdf</td>
+</tr>
+<tr>
+<td>④</td>
+<td>2026 年中期报告</td>
+<td>2026H1</td>
+<td>2026-09-10</td>
+<td>210</td>
+<td>https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0910/2026091000313_c.pdf</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>页面引用约定：下文「PDF 第 N 页」指 pdfplumber 的 0 基页索引 +1，与报告页脚印刷页码不同（如 PDF 第 19 页 = 页脚 17），<strong>均可按上述链接逐页复核</strong>。</p>
+</blockquote>
+<h2>三、员工与人工成本</h2>
+<table>
+<thead>
+<tr>
+<th>报告期</th>
+<th>期末员工总数</th>
+<th>人工成本</th>
+<th>占营业总成本</th>
+<th>职工企业年金费用</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FY2024</td>
+<td><strong>6,722 名</strong></td>
+<td>约 <strong>24.897 亿元</strong></td>
+<td><strong>38.6%</strong></td>
+<td>约 0.890 亿元</td>
+<td>①PDF p23、p24</td>
+</tr>
+<tr>
+<td>2025H1</td>
+<td><strong>6,740 名</strong></td>
+<td>约 <strong>9.682 亿元</strong></td>
+<td><strong>39.9%</strong></td>
+<td>约 0.473 亿元</td>
+<td>②PDF p15</td>
+</tr>
+<tr>
+<td>FY2025</td>
+<td><strong>6,901 名</strong></td>
+<td>约 <strong>26.123 亿元</strong></td>
+<td><strong>41.2%</strong></td>
+<td>约 1.002 亿元</td>
+<td>③PDF p19</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td><strong>6,822 名</strong></td>
+<td>约 <strong>10.582 亿元</strong></td>
+<td><strong>43.8%</strong></td>
+<td>约 0.508 亿元</td>
+<td>④PDF p14</td>
+</tr>
+</tbody>
+</table>
+<p>🟡 补充推算（由上式数字相除，非公司披露）：人均人工成本 ≈ <strong>37.9 万元/年</strong>（FY2025）、<strong>15.5 万元/半年</strong>（2026H1）；人工成本同比 FY2025 <strong>+4.9%</strong>、2026H1 <strong>+9.3%</strong>（2025H1 为 +3.2%）。</p>
+<p><strong>逐字引文</strong>：</p>
+<blockquote>
+<p><strong>① 2024 年报 PDF p23</strong>：「於二零二四年十二月三十一日，本集團的員工總數為6,722名。」</p>
+</blockquote>
+<blockquote>
+<p><strong>① 2024 年报 PDF p24</strong>：「於二零二四年度，本集團人工成本為約人民幣2,489.7百萬元（二零二三年度：人民幣2,063.7百萬元），佔本集團二零二四年營業總成本的約38.6%。其中，本集團二零二四年度的企業年金費用總額約人民幣89.0百萬元（二零二三年度︰人民幣82.9百萬元）。」</p>
+</blockquote>
+<blockquote>
+<p><strong>② 2025 中报 PDF p15</strong>：「二零二五年六月三十日，本集團的員工總數為6,740名。二零二五年上半年本集團的人工成本約為人民幣968.2百萬元，佔本集團二零二五年上半年營業總成本的約39.9%。其中，本集團二零二五年上半年的企業年金費用總額約人民幣47.3百萬元（二零二四年上半年︰人民幣40.9百萬元）。」</p>
+</blockquote>
+<blockquote>
+<p><strong>③ 2025 年报 PDF p19</strong>：「於二零二五年十二月三十一日，本集團的員工總數為6,901名。」</p>
+<p>「於二零二五年度，本集團人工成本為約人民幣2,612.3百萬元（二零二四年度：人民幣2,489.7百萬元），佔本集團二零二五年營業總成本的約41.2%。其中，本集團二零二五年度企業年金費用總額約人民幣100.2百萬元（二零二四年度：人民幣89.0百萬元）。」</p>
+</blockquote>
+<blockquote>
+<p><strong>④ 2026 中报 PDF p14</strong>：「於二零二六年六月三十日，本集團的員工總數為6,822名。二零二六年上半年本集團的人工成本約為人民幣1,058.2百萬元，佔本集團二零二六年上半年營業總成本的約43.8%。其中，本集團二零二六年上半年的企業年金費用總額約人民幣50.8百萬元（二零二五年上半年：人民幣47.3百萬元）。」</p>
+</blockquote>
+<blockquote>
+<p>校验：四期期末员工数分别对应各期报告「员工」小节原文；2026-06-30 的 6,822 名较 2025-12-31 减少 79 名、较 2025-06-30 增加 82 名。</p>
+</blockquote>
+<h2>四、成本结构</h2>
+<h3>1. 费用按性质分类（2025 年报 PDF p215，附注五十九）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>2025（元）</th>
+<th>2024（元）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人工成本</td>
+<td>2,612,324,531.53</td>
+<td>2,489,731,900.37</td>
+</tr>
+<tr>
+<td>折旧及摊销</td>
+<td>899,327,941.12</td>
+<td>1,242,701,146.84</td>
+</tr>
+<tr>
+<td>技术支持及维护费</td>
+<td>819,282,314.42</td>
+<td>776,810,258.53</td>
+</tr>
+<tr>
+<td>机场数字化软硬件成本（注 1）</td>
+<td>778,808,005.16</td>
+<td>910,165,471.31</td>
+</tr>
+<tr>
+<td>离港及分销支持费（注 2）</td>
+<td>628,436,378.91</td>
+<td>566,470,303.92</td>
+</tr>
+<tr>
+<td>其他营业成本</td>
+<td>493,051,365.22</td>
+<td>492,744,961.87</td>
+</tr>
+<tr>
+<td>网络使用费</td>
+<td>109,312,279.04</td>
+<td>89,630,825.35</td>
+</tr>
+<tr>
+<td>财务费用</td>
+<td>-104,978,038.30</td>
+<td>-209,393,370.09</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>6,235,564,777.10</strong></td>
+<td><strong>6,358,861,498.10</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注 1：以前年度披露名称为「集成业务销售成本」；注 2：以前年度披露名称为「佣金及推广费用」，并将其中支付业务成本归类为其他营业成本。（均为原文注）</p>
+<p>口径：表内合计 62.36 亿元，与 MD&amp;A「营业总成本 63.33 亿元」相差 9,750 万元，系该附注未含税金及附加等项。</p>
+</blockquote>
+<h3>2. 营业总成本同比说明（2025 年报 PDF p13 / 2026 中报 PDF p8）</h3>
+<blockquote>
+<p><strong>③ PDF p13</strong>：「本集團二零二五年度營業總成本為人民幣6,333.1百萬元，較二零二四年的人民幣6,453.5百萬元，減少了人民幣120.4百萬元或1.9%。……• 人工成本增長了4.9%，主要是由於本集團職工薪酬及五險二金同比增長所致；• 折舊及攤銷下降了27.6%，主要是由於本集團部分固定資產、無形資產已提足折舊攤銷所致；……」</p>
+</blockquote>
+<blockquote>
+<p><strong>④ PDF p8</strong>：「本集團二零二六年上半年營業總成本為人民幣2,417.9百萬元，較二零二五年上半年的人民幣2,427.9百萬元，減少了人民幣10.0百萬元或0.4%。……• 人工成本增長了9.3%，主要是本集團職工薪酬及五險二金同比增長所致；• 折舊及攤銷增長了5.2%，主要是本集團固定資產同比增加，導致折舊攤銷略有增加所致；……」</p>
+</blockquote>
+<h3>3. 口径扰动（研发费用与资本化）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>2025</th>
+<th>2024</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>研发费用合计</td>
+<td><strong>6.156 亿元</strong></td>
+<td><strong>8.246 亿元</strong></td>
+</tr>
+<tr>
+<td>其中：人工成本</td>
+<td><strong>4.068 亿元</strong>（-24.7%）</td>
+<td>5.404 亿元</td>
+</tr>
+<tr>
+<td>其中：技术支持费</td>
+<td>1.900 亿元</td>
+<td>2.623 亿元</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>出处：③ PDF p137 附注四十七「研發費用」（金额逐项见原文）；合计 615,641,255.14 元 = ③ PDF 合并利润表。</p>
+<p><strong>🔴 关键提示（原文）</strong>：<strong>① PDF p16</strong>：「• 人工成本增加了20.6%，主要是由於本集團研發費用資本化同比減少、職工薪酬及五險二金同比增長等因素影響所致」——即 FY2024 人工成本 +20.6% 含<strong>资本化政策变动</strong>，不等于当年真实加薪幅度；跨期读人工成本趋势时须一并看研发费用与资本化口径。</p>
+</blockquote>
+<h3>4. 五板块收入</h3>
+<table>
+<thead>
+<tr>
+<th>板块</th>
+<th>FY2025（百万元）</th>
+<th>同比</th>
+<th>占比</th>
+<th>2026H1（百万元）</th>
+<th>同比</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>航空信息平台服务</td>
+<td>4,616.0</td>
+<td>+2.0%</td>
+<td>52.7%</td>
+<td>2,352.2</td>
+<td><strong>-1.7%</strong></td>
+<td>57.2%</td>
+</tr>
+<tr>
+<td>机场数字化服务</td>
+<td>1,495.4</td>
+<td>-20.8%</td>
+<td>17.1%</td>
+<td>600.4</td>
+<td><strong>+43.5%</strong></td>
+<td>14.6%</td>
+</tr>
+<tr>
+<td>航旅智能产品及服务</td>
+<td>1,112.7</td>
+<td><strong>+18.8%</strong></td>
+<td>12.7%</td>
+<td>442.2</td>
+<td><strong>+14.9%</strong></td>
+<td>10.8%</td>
+</tr>
+<tr>
+<td>结算及清算服务</td>
+<td>875.5</td>
+<td>+8.4%</td>
+<td>10.0%</td>
+<td>453.6</td>
+<td>+11.4%</td>
+<td>11.0%</td>
+</tr>
+<tr>
+<td>信息网络及数字基础设施</td>
+<td>659.9</td>
+<td>-0.3%</td>
+<td>7.5%</td>
+<td>256.5</td>
+<td><strong>-8.9%</strong></td>
+<td>6.2%</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>8,765.8</strong></td>
+<td><strong>-0.6%</strong></td>
+<td>100%</td>
+<td><strong>4,112.1</strong></td>
+<td><strong>+5.6%</strong></td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>出处：③ PDF p12-13（收入分段说明）、④ PDF p7-8。2026H1 平台服务下降原文理由：「該項收入的減少主要是系統總處理量同比相對穩定，但外國及地區航空公司收入受匯率變動的一定影響所致」；信息网络下降理由：「分銷信息技術服務業務量同比減少所致」；航旅智能增长理由：「客戶IT服務需求增加及產品拓展所致」。</p>
+<p>校验：分板块加总 = 合计（FY2025 8,765.8；2026H1 4,112.1），与合并利润表「營業額」一致；占比按原文四舍五入，末位可能与 100% 有 ±0.1pp 偏差。</p>
+</blockquote>
+<h2>五、AI 披露 · 对内（提效 / 运维 / 算力）</h2>
+<p><strong>1. 智能客服平台（2024 年建成）</strong> — 出处 ① PDF p13：</p>
+<blockquote>
+<p>「二零二四年，本集團作為中國民航健康運行的「中樞神經」，積極履行社會責任，全面加強核心系統穩定性、智能化運維及安全保障能力……另一方面，技術能力穩步提升，<strong>完成以大模型為基座的「智能客戶服務平台」建設，向航司、機場、代理人用戶全面開放</strong>；完成國內120家機場5G虛擬專線的建設實施……」</p>
+</blockquote>
+<p><strong>2. 智能运维与 SRE 体系（2026H1）</strong> — 出处 ④ PDF p6：</p>
+<blockquote>
+<p>「持續聚焦智能安全運維體系建設，推動運維向規範化、智能化、精細化轉型。一是完善安全運營管理制度，規範流程，築牢制度保障；二是穩步落地核心功能灰度發布，優化運維模式；三是<strong>初步建立SRE運維體系，推動從被動響應向主動預防轉型</strong>，提升系統可靠性；四是<strong>搭建統一智能運維平台，建立「業務－軟件－IT組件－基礎設施」四層監控架構，實現全鏈路可視化及態勢感知</strong>，全面賦能業務平穩運行……」</p>
+</blockquote>
+<p><strong>3. 2026 年工作计划中的相关表述</strong> — 出处 ③ PDF p6（董事会致辞）：</p>
+<blockquote>
+<p>「三是安全固本強基……<strong>加速向智能運維轉變</strong>，完善「兩地三中心」災備體系規劃，築牢民航信息安全屏障；四是全面精益管理，打好提質增效攻堅戰，對標世界一流企業管理水平，<strong>推進企業、資金、成本、採購、人力資源管理精益化</strong>，強化總部價值創造職能，<strong>構建全價值鏈成本管控體系</strong>，建強科技人才梯隊，完善人才評價與激勵機制，<strong>落實市場化退出制度</strong>，提升全要素生產率；五是組織架構調整……統籌推進市場、研發、運行三大體系聯動改革……六是數字航信建設……<strong>推進數字人力轉型</strong>，實現財務穿透式監管與業財全域貫通……」</p>
+</blockquote>
+<blockquote>
+<p>注：原文出处另见 ③ PDF p6「二零二六年……重點着力於以下六方面工作」段。「市场化退出制度」「数字人力转型」均为原文表述，<strong>原文未出现「减员/裁员」字样</strong>。</p>
+</blockquote>
+<p><strong>4. AI 算力：20P 私有化算力平台（关联交易）</strong> — 出处 ③ PDF p63：</p>
+<blockquote>
+<p>「如本公司日期為二零二五年八月二十九日公告所述，本公司與中航信雲數據訂立算力服務合同，據此，中航信雲數據同意向本公司提供算力服務，期限為自二零二五年九月一日起至二零二六年八月三十一日止。……服務內容：中航信雲數據在其數據中心內為本公司搭建<strong>私有化部署的AI算力平台，提供總規模為20P的算力服務，包含9台智能計算服務器</strong>、私有化資源池所需的組網設備、全閃存分佈式存儲服務、安全服務、算力調度服務等……」</p>
+</blockquote>
+<blockquote>
+<p>校验：该合同期限为 2025-09-01 至 2026-08-31（一年期），交易对手为本公司关联方「中航信雲數據」。</p>
+</blockquote>
+<h2>六、AI 披露 · 对外（产品 / 生态 / 案例）</h2>
+<p><strong>1. 行业垂直大模型与创新业务（2025 年）</strong> — 出处 ③ PDF p10：</p>
+<blockquote>
+<p>「二零二五年，在創新業務及人工智能應用方面，牽頭制定區塊鏈國際標準，建成基於「航旅鏈」和數字人民幣服務平台的創新業務底座，累計服務53家客戶；<strong>「啟航」和「共翔睿行」行業垂直大模型已推廣應用</strong>。」</p>
+</blockquote>
+<blockquote>
+<p>出处 ③ PDF p11（科技创新）：「着力培育戰略性新興產業，<strong>承擔「中央企業AI+專項行動」，研發「啟航」和「共翔睿行」行業垂直大模型並獲備案</strong>。深耕產業協同生態構建……<strong>首批加入交通大模型創新與產業聯盟</strong>，並以理事單位身份深化合作。」</p>
+</blockquote>
+<p><strong>2.「AI+航旅」生态与国家级案例（2026H1）</strong> — 出处 ④ PDF p6：</p>
+<blockquote>
+<p>「二零二六年上半年，本集團緊扣高水平科技自立自強戰略導向，深耕關鍵核心技術自主可控與「<strong>AI+航旅</strong>」融合創新……「AI+航旅」生態建設成果豐碩，本集團<strong>建成民航多模態高質量數據集併入選國資委行業高質量數據集，1項成果入選央企人工智能戰略性高價值場景，2項成果獲評工信部人工智能典型案例</strong>。同時，本公司承擔的<strong>工信部未來產業人工智能項目完成建設</strong>。」</p>
+</blockquote>
+<p><strong>3. 航旅智能板块（产品侧，2026H1）</strong> — 出处 ④ PDF p5：</p>
+<blockquote>
+<p>「二零二六年上半年，本集團持續完善航旅智能產品及服務……<strong>啟動規劃現代航空新零售解決方案，攜手國際航空運輸協會(IATA)、海南航空舉辦以OOSD（報價－訂單－結算－交付）架構為基礎的現代航空新零售(MAR)驗證發布會</strong>，助力航空公司從「位移服務」向「以用戶為中心」的數字化零售方向轉型……<strong>數據智能應用產品及數據治理方案累計服務客戶60餘家</strong>。加快低空經濟布局，完善「一系統、一平台、多產品」的業務布局……打造「<strong>海南省低空經濟商務協同平台</strong>」在第六屆中國國際消費品博覽會上線發布。」</p>
+</blockquote>
+<blockquote>
+<p>对照 2025 年报同期表述（③ PDF p10）：「數據智能應用產品及數據治理方案簽約<strong>10餘家客戶</strong>」；低空经济「自主研發的「<strong>有人機無人機協同運行系統</strong>」在新疆石河子、雲南文山機場成功投產，完成運輸機場首次融合飛行驗證」；TRP「穩定支撐<strong>19家</strong>航空公司數字化轉型」；ATOMS「覆蓋<strong>7家</strong>航空公司、投產航站超過50個」。</p>
+</blockquote>
+<p><strong>4. 机场侧 AI 场景与信创</strong> — 出处 ④ PDF p4：</p>
+<blockquote>
+<p>「二零二六年上半年，本集團持續創新打造機場數智化整體解決方案，與上海國際機場股份有限公司、海南機場集團簽署戰略合作框架協議，共同探索國際航空樞紐數字化建設、智慧機場一網統管平台落地、<strong>AI機場全場景創新應用</strong>等重點領域……智慧機場中台推廣至<strong>19家</strong>千萬級機場，基於人臉識別的暢行平台在全國<strong>53家</strong>機場上線，行李全流程跟蹤系統(RFID)推廣至<strong>119家</strong>機場。」</p>
+</blockquote>
+<blockquote>
+<p>出处 ④ PDF p6（信创）：「在烏魯木齊天山國際機場成功發布「航旅共翔離港系統機場全流程信創方案」，首次在年旅客吞吐量逾千萬級國際樞紐機場實現<strong>離港等核心系統全棧國產化改造</strong>……分銷主機客票銷售等核心業務已<strong>全面切換至國產開放系統</strong>，國產化離港系統關鍵指標優於傳統進口系統。」</p>
+</blockquote>
+<p><strong>5. 对外分销与结算侧（AI/新标准相关）</strong> — 出处 ④ PDF p5、p4：</p>
+<blockquote>
+<p>「本集團分銷網絡已經觸達海外33個國家和地區，持續豐富可銷售資源，<strong>與9家外航簽署NDC協議（新分銷協議）</strong>。」</p>
+<p>「本集團建設的海外航空公司客運收入結算系統(IPRA on Mars)，構建了<strong>適配國際航協統一訂單(ONE Order)與低成本航空公司一體化訂單</strong>的收入管理體系，基於此自主研發的解決方案於6月經中國智能交通協會專家評審，達到「國際先進水平」。」</p>
+</blockquote>
+<h2>七、不可识别项（边界）</h2>
+<ol>
+<li><strong>AI 单项收入</strong>：四份报告均<strong>未按 AI 拆分收入</strong>，故「AI 加速增量渗透」的财务效果<strong>不可量化</strong>（🔴 不可识别），只能以航旅智能板块 + 客户数近似。</li>
+<li><strong>AI 相关成本</strong>：研发费用、管理/销售费用中的「人工成本」均为合并口径，<strong>无法拆分出 AI 部分</strong>（🔴）。</li>
+<li><strong>员工数按类型拆分</strong>（研发人员/运维人员占比）：四份报告均未披露（🟡 未能取得）。</li>
+<li><strong>平台费单价</strong>：由「平台服务收入 ÷ 系统处理量」推算得 FY2025 ≈ 6.02 元/人次（🟡 推算，分母处理量以年报 +4.7% 反推），<strong>非公司披露</strong>。</li>
+</ol>
+<hr />
+<h2>参见</h2>
+<ul>
+<li><a href="../../cases/%E5%AD%A6%E8%82%A1/AI%E8%BD%AF%E4%BB%B6/AI%E8%BD%AF%E4%BB%B6%E5%90%8D%E5%8D%95-%E6%8C%89%E5%90%9E%E5%99%AC%E9%A1%BA%E5%BA%8F%E7%AD%9B%E9%80%89.html">AI软件名单-按吞噬顺序筛选</a> — 00696 在②本体层的卡位判据（能写回执行）</li>
+<li><a href="../../general/concepts/AI%E5%BA%94%E7%94%A8-%E6%99%BA%E8%83%BD%E5%A4%8D%E5%88%A9%E4%B8%8E%E5%9B%9B%E7%BA%A7%E8%B7%83%E8%BF%81.html">AI应用-智能复利与四级跃迁</a> — 「吃不到 vs 被吃掉」框架与四级跃迁</li>
+<li><a href="../../general/concepts/%E6%9C%AC%E4%BD%93%E5%B1%82Ontology-%E6%95%B0%E6%8D%AE%E4%B8%8EAI%E7%9A%84%E4%B8%AD%E9%97%B4%E5%B1%82.html">本体层Ontology-数据与AI的中间层</a> — 本体层定义</li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/中航信/AI落点与成本结构.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
