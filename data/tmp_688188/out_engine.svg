@@ -1,0 +1,87 @@
+<svg viewBox="0 0 680 464" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>柏楚电子逐年收入增量的引擎拆解 2020-2026H1</title>
+<desc>按年分组柱状图，每组四根柱表示当期各业务线贡献的收入增量（亿元），正值向上、负值向下，组上方标注当期净增量。2024年起披露口径变更。数据来自年报与中报原文。</desc>
+<rect x="61.0" y="28" width="166.6" height="20" rx="4" fill="#EAF3DE"/>
+<text x="144.3" y="42.5" font-size="11" fill="#3B6D11" text-anchor="middle">① 中低功率软件渗透</text>
+<rect x="233.6" y="28" width="166.6" height="20" rx="4" fill="#FAEEDA"/>
+<text x="316.9" y="42.5" font-size="11" fill="#854F0B" text-anchor="middle">② 高功率总线 + 智能切割头</text>
+<rect x="406.1" y="28" width="166.6" height="20" rx="4" fill="#E6F1FB"/>
+<text x="489.4" y="42.5" font-size="11" fill="#0C447C" text-anchor="middle">③ 软硬一体化 + 管材</text>
+<rect x="578.7" y="28" width="80.3" height="20" rx="4" fill="#FCEBEB"/>
+<text x="618.9" y="42.5" font-size="11" fill="#A32D2D" text-anchor="middle">④ 智能焊接 / 微加工</text>
+<text x="58" y="16" font-size="11.5" fill="#2C2C2A">逐年收入增量由谁贡献（亿元，向上＝拉动 / 向下＝拖累）</text>
+<line x1="58" y1="328.0" x2="662" y2="328.0" stroke="#D3D1C7" stroke-width="0.5"/>
+<text x="52" y="332.0" font-size="11" fill="#5F5E5A" text-anchor="end">-1</text>
+<line x1="58" y1="257.6" x2="662" y2="257.6" stroke="#888780" stroke-width="1.0"/>
+<text x="52" y="261.6" font-size="11" fill="#5F5E5A" text-anchor="end">+0</text>
+<line x1="58" y1="187.2" x2="662" y2="187.2" stroke="#D3D1C7" stroke-width="0.5"/>
+<text x="52" y="191.2" font-size="11" fill="#5F5E5A" text-anchor="end">+1</text>
+<line x1="58" y1="116.7" x2="662" y2="116.7" stroke="#D3D1C7" stroke-width="0.5"/>
+<text x="52" y="120.7" font-size="11" fill="#5F5E5A" text-anchor="end">+2</text>
+<rect x="68.6" y="218.3" width="14.0" height="39.3" fill="#B5D4F4" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="85.6" y="216.0" width="14.0" height="41.5" fill="#9FE1CB" stroke="#185FA5" stroke-width="1.1"/>
+<rect x="102.6" y="224.5" width="14.0" height="33.0" fill="#CECBF6" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="119.6" y="234.3" width="14.0" height="23.3" fill="#B4B2A9" stroke="#FFFFFF" stroke-width="0.5"/>
+<text x="101.1" y="66" font-size="11.5" font-weight="500" fill="#185FA5" text-anchor="middle">净 +1.95</text>
+<text x="101.1" y="346.0" font-size="11" fill="#5F5E5A" text-anchor="middle">2020</text>
+<rect x="154.9" y="201.5" width="14.0" height="56.1" fill="#B5D4F4" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="171.9" y="201.8" width="14.0" height="55.8" fill="#9FE1CB" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="188.9" y="208.4" width="14.0" height="49.2" fill="#CECBF6" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="205.9" y="177.3" width="14.0" height="80.3" fill="#B4B2A9" stroke="#185FA5" stroke-width="1.1"/>
+<text x="187.4" y="66" font-size="11.5" font-weight="500" fill="#185FA5" text-anchor="middle">净 +3.43</text>
+<text x="187.4" y="346.0" font-size="11" fill="#5F5E5A" text-anchor="middle">2021</text>
+<rect x="241.2" y="257.6" width="14.0" height="60.1" fill="#B5D4F4" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="258.2" y="257.6" width="14.0" height="49.6" fill="#9FE1CB" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="275.2" y="257.2" width="14.0" height="1.0" fill="#CECBF6" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="292.2" y="170.8" width="14.0" height="86.8" fill="#B4B2A9" stroke="#185FA5" stroke-width="1.1"/>
+<text x="273.7" y="66" font-size="11.5" font-weight="500" fill="#A32D2D" text-anchor="middle">净 -0.32</text>
+<text x="273.7" y="346.0" font-size="11" fill="#5F5E5A" text-anchor="middle">2022</text>
+<rect x="327.5" y="257.6" width="14.0" height="31.2" fill="#B5D4F4" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="344.5" y="148.8" width="14.0" height="108.8" fill="#9FE1CB" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="361.5" y="126.5" width="14.0" height="131.1" fill="#CECBF6" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="378.5" y="103.9" width="14.0" height="153.7" fill="#FAC775" stroke="#185FA5" stroke-width="1.1"/>
+<text x="360.0" y="66" font-size="11.5" font-weight="500" fill="#185FA5" text-anchor="middle">净 +5.14</text>
+<text x="360.0" y="346.0" font-size="11" fill="#5F5E5A" text-anchor="middle">2023</text>
+<rect x="413.8" y="173.8" width="14.0" height="83.7" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.1"/>
+<rect x="430.8" y="183.6" width="14.0" height="74.0" fill="#9FE1CB" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="447.8" y="236.7" width="14.0" height="20.8" fill="#CECBF6" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="464.8" y="209.5" width="14.0" height="48.1" fill="#E8A0A0" stroke="#FFFFFF" stroke-width="0.5"/>
+<text x="446.3" y="66" font-size="11.5" font-weight="500" fill="#185FA5" text-anchor="middle">净 +3.22</text>
+<text x="446.3" y="346.0" font-size="11" fill="#5F5E5A" text-anchor="middle">2024*</text>
+<rect x="500.1" y="139.2" width="14.0" height="118.4" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.1"/>
+<rect x="517.1" y="182.1" width="14.0" height="75.5" fill="#9FE1CB" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="534.1" y="238.5" width="14.0" height="19.1" fill="#CECBF6" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="551.1" y="154.5" width="14.0" height="103.0" fill="#E8A0A0" stroke="#FFFFFF" stroke-width="0.5"/>
+<text x="532.6" y="66" font-size="11.5" font-weight="500" fill="#185FA5" text-anchor="middle">净 +4.49</text>
+<text x="532.6" y="346.0" font-size="11" fill="#5F5E5A" text-anchor="middle">2025</text>
+<rect x="586.4" y="236.7" width="14.0" height="20.9" fill="#B5D4F4" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="603.4" y="226.9" width="14.0" height="30.6" fill="#9FE1CB" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="620.4" y="256.9" width="14.0" height="1.0" fill="#CECBF6" stroke="#FFFFFF" stroke-width="0.5"/>
+<rect x="637.4" y="186.7" width="14.0" height="70.9" fill="#E8A0A0" stroke="#185FA5" stroke-width="1.1"/>
+<text x="618.9" y="66" font-size="11.5" font-weight="500" fill="#185FA5" text-anchor="middle">净 +1.75</text>
+<text x="618.9" y="346.0" font-size="11" fill="#5F5E5A" text-anchor="middle">26H1</text>
+<line x1="403.1" y1="24" x2="403.1" y2="352.0" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="403.1" y="364" font-size="11" fill="#854F0B" text-anchor="middle">披露口径变更：切割头并入三大解决方案</text>
+<text x="58" y="382" font-size="11" fill="#5F5E5A">深色描边＝当年最大贡献引擎；2023「切割头＋其他」为口径重分类后的合计增量</text>
+<text x="58" y="404" font-size="11" fill="#5F5E5A">2019-2023：</text>
+<rect x="140.0" y="395" width="10" height="10" fill="#B5D4F4" stroke="#888780" stroke-width="0.5"/>
+<text x="154.0" y="404.0" font-size="11" fill="#444441">随动/平板</text>
+<rect x="223.1" y="395" width="10" height="10" fill="#9FE1CB" stroke="#888780" stroke-width="0.5"/>
+<text x="237.1" y="404.0" font-size="11" fill="#444441">板卡</text>
+<rect x="276.7" y="395" width="10" height="10" fill="#CECBF6" stroke="#888780" stroke-width="0.5"/>
+<text x="290.7" y="404.0" font-size="11" fill="#444441">总线</text>
+<rect x="330.3" y="395" width="10" height="10" fill="#FAC775" stroke="#888780" stroke-width="0.5"/>
+<text x="344.3" y="404.0" font-size="11" fill="#444441">切割头</text>
+<rect x="395.7" y="395" width="10" height="10" fill="#B4B2A9" stroke="#888780" stroke-width="0.5"/>
+<text x="409.7" y="404.0" font-size="11" fill="#444441">其他</text>
+<text x="58" y="428" font-size="11" fill="#5F5E5A">2024-  ：</text>
+<rect x="140.0" y="419" width="10" height="10" fill="#B5D4F4" stroke="#888780" stroke-width="0.5"/>
+<text x="154.0" y="428.0" font-size="11" fill="#444441">平面解决方案</text>
+<rect x="240.8" y="419" width="10" height="10" fill="#9FE1CB" stroke="#888780" stroke-width="0.5"/>
+<text x="254.8" y="428.0" font-size="11" fill="#444441">管材解决方案</text>
+<rect x="341.6" y="419" width="10" height="10" fill="#CECBF6" stroke="#888780" stroke-width="0.5"/>
+<text x="355.6" y="428.0" font-size="11" fill="#444441">三维解决方案</text>
+<rect x="442.4" y="419" width="10" height="10" fill="#E8A0A0" stroke="#888780" stroke-width="0.5"/>
+<text x="456.4" y="428.0" font-size="11" fill="#444441">其他＝焊接·微加工</text>
+<text x="58" y="452" font-size="11" fill="#888780">* 2024 增量基数＝2023 重述口径（按 2024 年报四类同比反推，合计 13.96 亿）；26H1＝26H1 vs 25H1</text>
+</svg>

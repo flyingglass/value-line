@@ -5,5 +5,6 @@
   "installedAt": 1779608276579,
   "source": "marketplace",
   "iconSource": "wechat-publisher",
-  "preinstalledTemplate": true
+  "preinstalledTemplate": true,
+  "installedContentHash": "sha256:6a98cea467bb87210a78cd82d6ca314003bed42f5dd8f96e3d18454b7411fcf6"
 }
