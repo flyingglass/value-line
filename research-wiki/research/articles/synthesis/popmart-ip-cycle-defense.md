@@ -160,6 +160,6 @@ created: 2026-06-27
 
 ## 参见
 
-[[popmart-cycle-defense-comparison]] · [[research/index.md]] · [[research/泡泡玛特/产业链.md]]
-[[research/泡泡玛特/产业链.md]]
-[[research/泡泡玛特/产业链.md]] · [[research/TCL中环/research-reports.md]]
+[[popmart-cycle-defense-comparison]] · [[research/index.md]] · [[research/白马/泡泡玛特/产业链.md]]
+[[research/白马/泡泡玛特/产业链.md]]
+[[research/白马/泡泡玛特/产业链.md]] · [[research/白马/TCL中环/research-reports.md]]

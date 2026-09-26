@@ -2,7 +2,7 @@
 generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
 
 页面结构与交互：
-    index.html                               首页（按 标的/投资案例/多学科 导航 + 搜索）
+    index.html                               首页（白马 / 学股 / 疯狂的里海 / 多学科 四个分类 tab + 搜索）
     view/stocks/<标的>/index.html            标的组页：文件夹标签(跟踪/经营/…/概览/原始资料)，
                                              点击标签在当前页切换面板，不跳转
     view/stocks/<标的>/<目录…>/<文章>.html    独立文章阅读页
@@ -16,6 +16,8 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
     · 每篇 md 仍生成独立阅读页，正文在生成期用 markdown-it-py 预渲染为 HTML 内嵌
       （不依赖任何 CDN / 联网，离线双击即看），[[页面名]] 解析为站内链接
     · 多学科整组页与标的/案例组页同构：主题 当 tab，首页只保留标题+主题 chip+进入
+    · 首页一级分类与 research/ 下一级目录对齐（白马/学股/疯狂的里海/多学科），
+      tab 点击就地切换面板；搜索跨 tab 过滤并自动跳到第一个有命中的分类
 
 运行：
     .venv\\Scripts\\python scripts\\generate_wiki_index.py
@@ -78,6 +80,10 @@ CASE_GROUP_NAMES = {
     '疯狂的里海': '里海 · 作者案例专题',
     '学股': '学股 · 广深名单池',
 }
+
+# 标的容器目录：其下一级才是标的目录（标的归入 research/白马/<code>/）。
+# 容器对最终站点透明：组键、view 输出目录、链接解析仍按 <code> 处理。
+CONTAINER_DIRS = ('白马',)
 
 # 组顶层文件夹（标签）的展示顺序；未列出的按名称字典序；概览 紧随其后；原始资料始终垫底
 GROUP_DIR_ORDER = {
@@ -199,6 +205,9 @@ def read_article(fpath, relwiki):
         'title': page_title(meta, stem),
         'kind': 'wiki',
         'path': relwiki,
+        # 真实磁盘路径（标的可能位于容器目录，如 research/白马/<code>/…，
+        # 此时 path 仍是逻辑视角 research/<code>/…，供分组/布局使用）
+        'real_path': os.path.relpath(fpath, WIKI_DIR).replace(os.sep, '/'),
         'date': str(date_),
         'summary': extract_summary(body),
         'body': body,
@@ -220,22 +229,31 @@ def scan_wiki():
             cases[gid] = {'name': gname, 'articles': []}
         cases[gid]['articles'].append(art)
 
-    # research/<code>/
+    # research/<code>/ 与 research/<容器>/<code>/
     research_dir = os.path.join(WIKI_DIR, "research")
     if os.path.isdir(research_dir):
+        stock_dirs = []          # (gid, gname, industry, is_case, 磁盘目录)
         for sub in sorted(os.listdir(research_dir)):
             subpath = os.path.join(research_dir, sub)
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
-            is_case = sub in CASE_GROUP_NAMES
-            gname = CASE_GROUP_NAMES.get(sub, sub)
-            industry = stock_info.get(sub, '其他')
-            for rel, fpath in iter_md(subpath):
-                art = read_article(fpath, f"research/{sub}/{rel}")
+            if sub in CONTAINER_DIRS:
+                for code in sorted(os.listdir(subpath)):
+                    cpath = os.path.join(subpath, code)
+                    if os.path.isdir(cpath) and code not in CASE_GROUP_NAMES:
+                        stock_dirs.append((code, code, stock_info.get(code, '其他'),
+                                           False, cpath))
+                continue
+            stock_dirs.append((sub, CASE_GROUP_NAMES.get(sub, sub),
+                               stock_info.get(sub, '其他'),
+                               sub in CASE_GROUP_NAMES, subpath))
+        for gid, gname, industry, is_case, dpath in stock_dirs:
+            for rel, fpath in iter_md(dpath):
+                art = read_article(fpath, f"research/{gid}/{rel}")
                 if is_case:
-                    add_case(sub, gname, art)
+                    add_case(gid, gname, art)
                 else:
-                    add_article(sub, sub, industry, art)
+                    add_article(gid, gname, industry, art)
 
     # raw/research/<code>/
     raw_dir = os.path.join(WIKI_DIR, "raw", "research")
@@ -489,7 +507,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .backrow a:hover{color:var(--blue)}
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 """
 
 # 正文图片点击放大（灯箱）：md 内任意 img 点击后全屏显示原图，点任意处 / Esc 关闭
@@ -618,10 +642,12 @@ def register_link(art):
     """登记「标题 / 文件名 / wiki 内相对路径」三种叫法，供 [[...]] 解析"""
     rel = art['path'].replace(os.sep, '/')
     names = [art.get('title', ''), os.path.splitext(os.path.basename(art['path']))[0]]
-    for pref in ('research/', 'raw/research/'):
-        if rel.startswith(pref):
-            short = rel[len(pref):]
-            names += [short, os.path.splitext(short)[0]]
+    # 逻辑路径（research/<code>/…）与真实路径（含容器目录，research/白马/<code>/…）都登记
+    for cand in dict.fromkeys([rel, art.get('real_path', rel)]):
+        for pref in ('research/', 'raw/research/'):
+            if cand.startswith(pref):
+                short = cand[len(pref):]
+                names += [short, os.path.splitext(short)[0]]
     for nm in names:
         for k in _link_keys(nm):
             LINK_MAP[k] = art['_out']
@@ -688,7 +714,7 @@ def render_md(body, md_dir, out):
 
 
 def group_article_page(art, seg, out, display_name, group_idx):
-    md_file = os.path.join(WIKI_DIR, art['path'].replace('/', os.sep))
+    md_file = os.path.join(WIKI_DIR, art.get('real_path', art['path']).replace('/', os.sep))
     body_html = render_md(art['body'], os.path.dirname(md_file), out)
     tab = seg[0] if seg else '概览'
     back_target = posix_rel(out, group_idx) + '#dir=' + quote(tab)
@@ -824,7 +850,7 @@ def generate_group(scope, gid, info):
 # ---------------------------------------------------------------------------
 
 def general_article_page(art, out):
-    md_file = os.path.join(WIKI_DIR, art['path'].replace('/', os.sep))
+    md_file = os.path.join(WIKI_DIR, art.get('real_path', art['path']).replace('/', os.sep))
     body_html = render_md(art['body'], os.path.dirname(md_file), out)
     topic = art.get('topic', '通用')
     frag = 'dir=' + quote(topic)
@@ -938,9 +964,51 @@ def home_section_stock_blocks(groups, from_file):
         html += '<div class="secgrid">' + home_section_blocks(order, from_file, 'stocks') + '</div>'
     return html
 
-def home_section_case_blocks(cases, from_file):
-    order = sorted(cases.items(), key=lambda x: x[0])
-    return home_section_blocks(order, from_file, 'cases')
+def folder_titles(folder):
+    """递归收集文件夹下全部文章标题（供首页卡片搜索命中用）。"""
+    out = [a['title'] for a in folder.files]
+    for s in folder.subs.values():
+        out += folder_titles(s)
+    return out
+
+def home_section_case_groups(gid, info, from_file):
+    """专题 tab（学股 / 疯狂的里海）：按组内标签生成卡片，点击直达组页对应标签。"""
+    group_idx = os.path.join(VIEW_DIR, 'cases', gid, 'index.html')
+    idx_href = posix_rel(from_file, group_idx)
+    root = build_group_tree(info['articles'], gid)
+    html = ''
+    for name, cnt in ordered_tabs(gid, root):
+        href = idx_href + (('#dir=' + quote(name)) if name else '')
+        titles = ([a['title'] for a in root.files] if name == '概览'
+                  else folder_titles(root.subs[name]))
+        data = (gid + ' ' + info.get('name', gid) + ' ' + name + ' ' +
+                ' '.join(titles)).lower()
+        html += '<div class="grp" data-search="' + esc(data) + '">'
+        html += ('<div class="grp-hd"><a class="name" href="' + esc(href) + '">' +
+                 esc(name) + '</a>')
+        html += '<span class="pill topic">' + str(cnt) + ' 篇</span></div>'
+        html += '</div>'
+    return html
+
+def split_home_groups(groups):
+    """按 wiki 文章是否位于 research/白马/ 拆分：(白马标的, 仅原始资料的组)。"""
+    baima, raw_only = {}, {}
+    for gid, info in groups.items():
+        hit = any(a.get('real_path', '').startswith('research/白马/')
+                  for a in info['articles'])
+        (baima if hit else raw_only)[gid] = info
+    return baima, raw_only
+
+def home_section_baima(baima, raw_only, from_file):
+    """白马 tab：白马标的按行业分行；仅有原始资料的组单列一节垫底（保留入口）。"""
+    html = home_section_stock_blocks(baima, from_file)
+    if raw_only:
+        html += ('<div class="subhead">仅原始资料 <span class="count">' +
+                 str(len(raw_only)) + ' 个</span></div>')
+        html += ('<div class="secgrid">' +
+                 home_section_blocks(sorted(raw_only.items()), from_file, 'stocks') +
+                 '</div>')
+    return html
 
 def home_section_general(general, from_file):
     """多学科每个主题分类单独一张卡片（不再整体显示 多学科 + 总篇数 的大标题块）。"""
@@ -959,51 +1027,88 @@ def home_section_general(general, from_file):
         html += '</div>'
     return html
 
+HOME_JS = """\
+<script>(function(){
+var btns=[].slice.call(document.querySelectorAll('.tabbtn'));
+var panels=[].slice.call(document.querySelectorAll('.panel'));
+function activate(dir){
+  if(!dir){dir=btns.length?btns[0].getAttribute('data-dir'):'';}
+  btns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-dir')===dir);});
+  panels.forEach(function(p){var on=p.getAttribute('data-dir')===dir;p.classList.toggle('active',on);p.style.display=on?'block':'none';});
+}
+function fromHash(){
+  var h=(location.hash||'').replace(/^#/,'');
+  try{h=decodeURIComponent(h);}catch(e){}
+  var m=h.match(/(?:^|&)dir=([^&]*)/);
+  return m?m[1]:'';
+}
+btns.forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();activate(this.getAttribute('data-dir'));});});
+window.addEventListener('hashchange',function(){var d=fromHash();if(d)activate(d);});
+activate(fromHash());
+var input=document.getElementById('search');
+function doSearch(){
+  var q=(input.value||'').trim().toLowerCase();
+  var counts={},order=[],total=0;
+  panels.forEach(function(p){
+    var n=0;
+    p.querySelectorAll('.grp').forEach(function(g){
+      var hit=!q||(g.getAttribute('data-search')||'').indexOf(q)>-1;
+      g.style.display=hit?'':'none';
+      if(hit)n++;
+    });
+    p.querySelectorAll('.secgrid').forEach(function(sg){
+      var any=false;
+      sg.querySelectorAll('.grp').forEach(function(c){if(c.style.display!=='none')any=true;});
+      sg.style.display=any?'':'none';
+    });
+    var dir=p.getAttribute('data-dir');
+    counts[dir]=n;order.push(dir);total+=n;
+    btns.forEach(function(b){if(b.getAttribute('data-dir')===dir){var c=b.querySelector('.n');if(c)c.textContent=n;}});
+  });
+  if(q&&total){
+    var cur=document.querySelector('.tabbtn.active');
+    var curDir=cur?cur.getAttribute('data-dir'):'';
+    if(!counts[curDir]){for(var i=0;i<order.length;i++){if(counts[order[i]]){activate(order[i]);break;}}}
+  }
+  document.getElementById('noresults').style.display=total?'none':'block';
+}
+if(input){input.addEventListener('input',doSearch);input.addEventListener('keydown',function(e){if(e.key==='Escape'){this.value='';doSearch();}});}
+})();</script>"""
+
+
 def build_home(groups, cases, general):
-    stocks_html = home_section_stock_blocks(groups, OUT_HOME)
-    cases_html = home_section_case_blocks(cases, OUT_HOME)
-    general_html = home_section_general(general, OUT_HOME)
+    """首页：一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科）+ 分类内卡片。"""
+    baima, raw_only = split_home_groups(groups)
+
+    panels = []      # [(tab 名, 卡片数, panel 内层 HTML)]
+    inner = ('<div id="sec-stocks">' +
+             home_section_baima(baima, raw_only, OUT_HOME) + '</div>')
+    panels.append(('白马', inner.count('class="grp"'), inner))
+    for gid, info in sorted(cases.items()):
+        inner = ('<div class="casegrid">' +
+                 home_section_case_groups(gid, info, OUT_HOME) + '</div>')
+        panels.append((gid, inner.count('class="grp"'), inner))
+    if general:
+        inner = ('<div id="sec-general">' +
+                 home_section_general(general, OUT_HOME) + '</div>')
+        panels.append(('多学科', inner.count('class="grp"'), inner))
 
     body = head_html('投研 Wiki')
     body += topbar_html(OUT_HOME, [])
     body += '<div class="wrap">'
-    body += '<div class="filters"><input type="text" id="search" placeholder="搜索标的 / 标签 / 文章标题…（正文检索请在打开文章后按 Ctrl+F）" oninput="doSearch()"></div>'
-    body += '<div class="section-title" data-sec="stocks">📌 按标的 <span class="count" id="cstocks"></span></div>'
-    body += '<div id="sec-stocks">' + stocks_html + '</div>'
-    if cases_html:
-        body += '<div class="section-title" data-sec="cases">💼 投资案例 <span class="count" id="ccases"></span></div>'
-        body += '<div id="sec-cases">' + cases_html + '</div>'
-    if general_html:
-        body += '<div class="section-title" data-sec="general">📖 多学科 <span class="count" id="cgeneral"></span></div>'
-        body += '<div id="sec-general">' + general_html + '</div>'
+    body += '<div class="filters"><input type="text" id="search" placeholder="搜索标的 / 标签 / 文章标题…（正文检索请在打开文章后按 Ctrl+F）"></div>'
+    body += '<div class="tabbar">'
+    for name, cnt, _inner in panels:
+        body += ('<button class="tabbtn" data-dir="' + esc(name) + '">' + esc(name) +
+                 '<span class="n">' + str(cnt) + '</span></button>')
+    body += '</div>'
+    for i, (name, _cnt, inner) in enumerate(panels):
+        cls = 'panel active' if i == 0 else 'panel'
+        body += ('<div class="' + cls + '" data-dir="' + esc(name) + '">' +
+                 inner + '</div>')
     body += '<div class="no-results" id="noresults">没有匹配的内容</div>'
     body += '</div>'
-    body += ('<script>'
-             'function doSearch(){'
-             'var q=(document.getElementById("search").value||"").trim().toLowerCase();'
-             'var secs={stocks:0,cases:0,general:0},total=0;'
-             'document.querySelectorAll(".grp").forEach(function(g){'
-             '  var hit=!q||(g.getAttribute("data-search")||"").indexOf(q)>-1;'
-             '  g.style.display=hit?"":"none";'
-             '  if(hit){total++;var sec=g.closest("#sec-stocks")?"stocks":(g.closest("#sec-cases")?"cases":"general");secs[sec]++;}'
-             '});'
-             'document.querySelectorAll(".secgrid").forEach(function(g){'
-             '  var any=false;'
-             '  g.querySelectorAll(".grp").forEach(function(c){if(c.style.display!=="none")any=true;});'
-             '  g.style.display=any?"":"none";'
-             '});'
-             '["stocks","cases","general"].forEach(function(k){'
-             '  var t=document.querySelector(\'.section-title[data-sec="\'+k+\'"]\');'
-             '  if(!t)return;'
-             '  t.style.display=secs[k]>0?"flex":"none";'
-             '  var c=document.getElementById("c"+k);'
-             '  if(c)c.textContent=secs[k]+" 个分组";'
-             '});'
-             'document.getElementById("noresults").style.display=total?"none":"block";'
-             '}'
-             'document.getElementById("search").addEventListener("keydown",function(e){if(e.key==="Escape"){this.value="";doSearch();}});'
-             'doSearch();'
-             '</script>')
+    body += HOME_JS
     body += '</body></html>'
     with open(OUT_HOME, 'w', encoding='utf-8') as f:
         f.write(body)

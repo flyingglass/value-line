@@ -106,7 +106,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .backrow a:hover{color:var(--blue)}
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 </style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E8%8A%92%E6%A0%BC%C2%B7%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA">芒格·格栅理论</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">芒格格栅理论——多学科思维投资框架</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-01</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"><h1>芒格格栅理论——多学科思维投资框架</h1>
 <blockquote>
 <p>来源：<a href="../raw/%E5%93%88%E6%A0%BC%E6%96%AF%E7%89%B9%E6%9C%97_2023_%E6%9F%A5%E7%90%86%E8%8A%92%E6%A0%BC%E7%9A%84%E6%99%BA%E6%85%A7-%E6%8A%95%E8%B5%84%E7%9A%84%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA.html">《查理·芒格的智慧：投资的格栅理论》（罗伯特·哈格斯特朗，第2版·纪念版）</a>

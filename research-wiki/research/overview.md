@@ -20,12 +20,15 @@ research/
 ├── index.md             投研索引（按标的 + 按主题）
 ├── overview.md          本概述
 ├── log.md               操作日志
-├── <code>/              标的目录
-│   ├── overview.md      数据目录
-│   ├── thesis.md        投资 Thesis
-│   ├── industry-chain.md 产业链全景
-│   ├── operating-metrics.md 运营指标
-│   └── research-reports.md  券商研报索引
+├── 白马/                标的目录
+│   └── <code>/          标的（如 泡泡玛特/贵州茅台/腾讯控股…）
+│       ├── overview.md      数据目录
+│       ├── thesis.md        投资 Thesis
+│       ├── industry-chain.md 产业链全景
+│       ├── operating-metrics.md 运营指标
+│       └── research-reports.md  券商研报索引
+├── 学股/                广深名单池与个股研究
+├── 疯狂的里海/          作者案例专题
 └── articles/            通用投研文章
     ├── concepts/        投资概念与框架
     ├── entities/        人物/机构

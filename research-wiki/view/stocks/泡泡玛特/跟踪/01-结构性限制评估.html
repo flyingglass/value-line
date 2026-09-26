@@ -106,7 +106,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .backrow a:hover{color:var(--blue)}
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 </style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="01-结构性限制评估.html">泡泡玛特 (09992) — 经营环节结构性限制评估</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 经营环节结构性限制评估</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-24</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/跟踪</span></div><div class="md" id="md"><h1>泡泡玛特 (09992) — 结构性限制评估（环节级）</h1>
 <blockquote>
 <p>逐环节独立成文、逐一验证。<strong>未经数据验证的限制不列</strong>。
@@ -228,6 +234,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <li><a href="../%E7%BB%8F%E8%90%A5/00-%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%8E%E5%88%B6%E9%80%A0.html">../经营/00-供应链与制造</a> — 链条总览（2020→2026 时间线）</li>
 <li><a href="../%E7%BB%8F%E8%90%A5/01-%E8%AE%BE%E8%AE%A1IP%E7%8E%AF%E8%8A%82.html">../经营/01-设计IP环节</a> ~ <a href="../%E7%BB%8F%E8%90%A5/04-%E6%B8%A0%E9%81%93%E9%94%80%E5%94%AE%E7%8E%AF%E8%8A%82.html">../经营/04-渠道销售环节</a> — 各环节事实与数据</li>
 <li><a href="04-%E6%B5%B7%E5%86%85%E5%A4%96%E6%94%B6%E5%85%A5%E5%88%86%E5%8C%96%EF%BC%882026H1%EF%BC%89%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%88%A4%E6%8D%AE.html">04-海内外收入分化（2026H1）机制与判据</a> — 海内外分化机制、五个口径陷阱与跟踪判据（本页&quot;海外单店效率/海外线上获客＝一次性&quot;的判据细化）
-<a href="../../../../research/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E8%B7%9F%E8%B8%AA/03-%E7%8E%AF%E8%8A%82%E6%BC%94%E5%8F%98%E6%97%B6%E5%BA%8F%EF%BC%882020-2026H1%EF%BC%89.md">research/泡泡玛特/跟踪/03-环节演变时序（2020-2026H1）.md</a> · <a href="../../../../research/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E8%B7%9F%E8%B8%AA/02-%E7%8E%AF%E8%8A%82%E4%B8%8E%E8%B4%A2%E5%8A%A1%E7%A7%91%E7%9B%AE%E5%AF%B9%E5%BA%94%EF%BC%882026H1%EF%BC%89.md">research/泡泡玛特/跟踪/02-环节与财务科目对应（2026H1）.md</a></li>
+<a href="../../../../research/%E7%99%BD%E9%A9%AC/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E8%B7%9F%E8%B8%AA/03-%E7%8E%AF%E8%8A%82%E6%BC%94%E5%8F%98%E6%97%B6%E5%BA%8F%EF%BC%882020-2026H1%EF%BC%89.md">research/白马/泡泡玛特/跟踪/03-环节演变时序（2020-2026H1）.md</a> · <a href="../../../../research/%E7%99%BD%E9%A9%AC/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/%E8%B7%9F%E8%B8%AA/02-%E7%8E%AF%E8%8A%82%E4%B8%8E%E8%B4%A2%E5%8A%A1%E7%A7%91%E7%9B%AE%E5%AF%B9%E5%BA%94%EF%BC%882026H1%EF%BC%89.md">research/白马/泡泡玛特/跟踪/02-环节与财务科目对应（2026H1）.md</a></li>
 </ul>
-</div><div class="backrow"><a href="../index.html#dir=%E8%B7%9F%E8%B8%AA">← 返回 跟踪</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/泡泡玛特/跟踪/01-结构性限制评估.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
+</div><div class="backrow"><a href="../index.html#dir=%E8%B7%9F%E8%B8%AA">← 返回 跟踪</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/白马/泡泡玛特/跟踪/01-结构性限制评估.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

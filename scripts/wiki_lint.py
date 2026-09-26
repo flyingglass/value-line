@@ -40,11 +40,27 @@ OPTIONAL_STOCK_FILES = {
 # 研报索引页的占位特征
 REPORT_STUB_MARKERS = ["无已拉取研报", "当前无研报", "暂无研报", "待拉取", "无研报"]
 REPORT_MIN_LINES = 5
-STOCK_DIRS = [d.name for d in (WIKI / "research").iterdir()
-              if d.is_dir() and d.name != "articles"]
-# 研究专题目录：与标的目录平级但无 overview/thesis 四件套，不参与标的完整性检查
+# 研究专题目录：无 overview/thesis 四件套，不参与标的完整性检查
 NON_STOCK_DIRS = {"疯狂的里海"}
-STOCK_DIRS = [d for d in STOCK_DIRS if d not in NON_STOCK_DIRS]
+# 标的容器目录：其下一级才是标的目录（2026-09-26 起标的归入 research/白马/）
+STOCK_CONTAINER_DIRS = {"白马"}
+
+
+def _list_stock_dirs():
+    """标的目录名（相对 research/）；容器目录下的标的带容器前缀，如「白马/贵州茅台」。"""
+    names = []
+    for d in sorted((WIKI / "research").iterdir()):
+        if not d.is_dir() or d.name == "articles" or d.name in NON_STOCK_DIRS:
+            continue
+        if d.name in STOCK_CONTAINER_DIRS:
+            names += [f"{d.name}/{s.name}" for s in sorted(d.iterdir())
+                      if s.is_dir() and s.name not in NON_STOCK_DIRS]
+        else:
+            names.append(d.name)
+    return names
+
+
+STOCK_DIRS = _list_stock_dirs()
 VL_DIRS = ["modules", "concepts", "entities", "synthesis"]
 RESEARCH_ARTICLE_DIRS = ["concepts", "entities", "papers", "synthesis"]
 

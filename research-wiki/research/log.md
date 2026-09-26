@@ -1,5 +1,47 @@
 # 投研操作日志
 
+## [2026-09-26] 结构 | 标的目录整体归入 `research/白马/`，全库引用同步
+
+### 用户指令
+- 「在 research 目录下建一个目录：白马。把除学股和疯狂的里海外的公司，全部移动到白马这个目录」
+
+### 操作：移动
+- 新建 `research/白马/`，移入 **22 个标的目录**：阿里巴巴、安琪酵母、柏楚电子、分众传媒、贵州茅台、建滔积层板、建滔集团、京东方、宁德时代、泡泡玛特、拼多多、人福医药、润泽科技、神火股份、时代天使、腾讯控股、云铝股份、中航信、紫金矿业、TCL科技、TCL中环、TME
+- 保留原位：`学股/`、`疯狂的里海/`（专题目录）、`articles/`、`index.md` / `overview.md` / `log.md`
+- `raw/` 未动（只进不改），`raw/research/<code>/` 仍为一级标的目录
+
+### 操作：引用同步（60 个 md）
+- wikilink 补前缀：`[[<code>/…]]` → `[[白马/<code>/…]]`（index.md **117 处** + articles/ 与标的页若干）
+- 文本路径补前缀：`research/<code>/…` → `research/白马/<code>/…`（index.md 10 处等）
+- 跨目录相对链接：`research/articles/synthesis/` 下 `[[../../泡泡玛特/…]]` → `[[../../白马/泡泡玛特/…]]`（自私的基因-商业基因映射分析、popmart-demand-decomposition）
+- **`log.md` 历史条目保持原样**（不作追溯修改，新记录一律写新路径）
+- 未改动：`raw/**`；`[[../建滔集团/…]]` 等同层相对链接（相对关系未变）
+- `research/overview.md` 目录结构图、`.codebuddy/CODEBUDDY.md` 架构图同步补 `白马/` 与 `学股/`、`疯狂的里海/`
+
+### 操作：脚本适配
+- `scripts/generate_wiki_index.py`：新增 `CONTAINER_DIRS = ('白马',)`，扫描时容器目录下钻一层；**容器对站点透明**——组键、`view/stocks/<code>/` 输出目录、布局逻辑仍按 `<code>` 走（文章走逻辑路径 `research/<code>/…`），新增 `real_path` 字段用于读文件与相对图片解析；`register_link` 同时登记逻辑与真实路径两种叫法
+- `scripts/wiki_lint.py`：新增 `_list_stock_dirs()`，标的目录名形如 `白马/贵州茅台`
+- `scripts/wiki_fix.py`：新增 `stock_rel()` 剥掉容器前缀后再匹配参见规则
+- 同步：`scripts/002027/insert_revenue.py`（注释路径）、`.codebuddy/skills/adler-reading/skill.md`、`research-wiki/vl/modules/generate_wiki_index.py.md`
+
+### 验证
+- `wiki_lint.py`：22 个标的全部被识别（`白马/<code>`），ERROR 均为**既有的四件套缺失**，无新增
+- 站点重建 **304 页**（标的 26 个 / 投资案例 2 个专题 / 通用 56 篇）；`wl-miss`（未命中链接）计数 **339 → 339**，**无新增断链**
+- 🔴 约定：此后新增标的的 wiki 页面一律建在 `research/白马/<code>/`
+
+### 站点首页分类 tab（同一需求的下半段）
+- 用户指令：「你把投研的 html 也这样分类，tab 下面对应相应的卡片」
+- `scripts/generate_wiki_index.py`：首页由「📌 按标的 / 💼 投资案例 / 📖 多学科」三区，改为 **四个一级分类 tab**（与 `research/` 下一级目录对齐）：**白马 / 学股 / 疯狂的里海 / 多学科**，点击就地切换、不跳转
+  - **白马**：按 `real_path` 是否位于 `research/白马/` 拆出 22 个标的（沿用**按行业分行**网格）；仅有原始资料的组（AMZN / GOOGL / MSFT / 中芯国际）单列「仅原始资料」一节垫底，入口不丢
+  - **学股 / 疯狂的里海**：按组内标签（广州 / 深圳 / 跟踪 / AI软件、案例 / 方法论 / 时间线 / 概览 / 原始资料）铺卡片，点击直达组页对应标签（`#dir=`）
+  - **多学科**：主题卡片（原逻辑保留）
+  - 新增 `HOME_JS`：tab 切换 + `#dir=` hash + **跨 tab 搜索**（实时刷新各 tab 命中数；当前 tab 命中 0 而别处有命中时自动切过去；全无命中也提示）
+  - 删除已无用的 `home_section_case_blocks()`；CSS 新增 `.casegrid`（专题卡片网格），tab 面板沿用组页「tab 连体白底」样式（`.tabbtn.active` + `.panel.active` 同构）
+- 生成结果：4 个 tab（白马 **26** / 学股 **4** / 疯狂的里海 **5** / 多学科 **6** 张卡片），站点仍 **304 页**
+- 文档同步：`vl/modules/generate_wiki_index.py.md`「首页 HTML 结构」整节重写（含交互约定）
+
+---
+
 ## [2026-09-26] 里海案例 | 新增「里海案例·阳谷华泰」（300121）+ 数据底座 + 周K 复盘图
 
 ### 用户指令

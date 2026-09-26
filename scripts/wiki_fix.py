@@ -149,18 +149,26 @@ updated: {TODAY}
     return ""
 
 
+def stock_rel(rel):
+    """剥掉 research/ 与标的容器目录前缀，返回「<code>/…」形式，便于按标的判断。"""
+    for pref in ("research/白马/", "research/"):
+        if rel.startswith(pref):
+            return rel[len(pref):]
+    return rel
+
+
 def seealso_specific(rel):
     """按目录返回确定性参见链接。
 
     一律使用全局唯一的页面名，避免 resolve_link 的 stem 兜底匹配到同名页
     （如各标的目录下都有「运营指标.md」）。
     """
-    if rel.startswith("research/泡泡玛特/业绩/"):
+    srel = stock_rel(rel)
+    if srel.startswith("泡泡玛特/业绩/"):
         if rel.endswith("业绩会纪要索引（2020-2026）.md"):
             return ["[[经营时间序列（2020-2026）]]"]
         return ["[[业绩会纪要索引（2020-2026）]]"]
-    if rel.startswith(("research/拼多多/业绩/", "research/阿里巴巴/业绩/",
-                       "research/TME/业绩/")):
+    if srel.startswith(("拼多多/业绩/", "阿里巴巴/业绩/", "TME/业绩/")):
         return ["[[艾德勒-四级阅读法]]"]
     if rel.startswith("research/疯狂的里海/"):
         if rel.endswith("疯狂的里海.md"):

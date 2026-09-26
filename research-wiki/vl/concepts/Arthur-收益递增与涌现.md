@@ -155,5 +155,5 @@ Arthur 在同一篇 *Science* 论文中同时提出：
 
 ## 参见
 
-[[vl/index.md]] · [[research/articles/concepts/阿瑟-收益递增与涌现.md]] · [[research/润泽科技/operating-metrics.md]]
-[[research/润泽科技/operating-metrics.md]] · [[vl/index.md]]
+[[vl/index.md]] · [[research/articles/concepts/阿瑟-收益递增与涌现.md]] · [[research/白马/润泽科技/operating-metrics.md]]
+[[research/白马/润泽科技/operating-metrics.md]] · [[vl/index.md]]

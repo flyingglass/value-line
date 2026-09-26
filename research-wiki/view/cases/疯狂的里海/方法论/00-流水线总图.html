@@ -106,7 +106,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .backrow a:hover{color:var(--blue)}
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 </style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="00-流水线总图.html">里海方法论流水线总图</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海方法论流水线总图</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-24</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论</span></div><div class="md" id="md"><h1>里海方法论流水线总图：① 初筛 → ② 解构·建模·跟踪 → ③ 共振</h1>
 <blockquote>
 <p><strong>一句话结论</strong>：里海从&quot;知道一家公司&quot;到&quot;敢重锤一家公司&quot;，走的是<strong>三段动作链</strong>，不是一次深度研究——<strong>① 决定值不值得花时间；② 决定靠什么赚钱、每天盯什么数；③ 决定什么时候扣扳机、下多重</strong>。<code>90-横切</code> 里的两页<strong>不占工序</strong>，是认识论与行业实例，随时读、不在流水线上执行。</p>

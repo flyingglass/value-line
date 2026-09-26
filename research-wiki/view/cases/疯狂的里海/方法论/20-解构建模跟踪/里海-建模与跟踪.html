@@ -106,7 +106,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .backrow a:hover{color:var(--blue)}
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 </style></head><body><div class="topbar"><a class="logo" href="../../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../../index.html">投研 Wiki</a> › <a href="../../index.html">里海 · 作者案例专题</a> › <a href="里海-建模与跟踪.html">里海建模与跟踪法</a></div><div class="topnav"><a href="../../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海建模与跟踪法</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-24</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论/20-解构建模跟踪</span></div><div class="md" id="md"><h1>里海建模与跟踪法：把主逻辑收敛成「每天要盯的几个数」</h1>
 <blockquote>
 <p><strong>一句话结论</strong>：建模就是把解构得到的 1-2 个业绩变量，变成<strong>公开渠道可持续取得的数</strong>，然后日频或季频地盯着它；跟踪 ≠ 买入，<strong>模型亮灯只是必要条件</strong>（扣扳机在第 ④ 段 <a href="../30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a>）。设计原则是<strong>变量越少越好</strong>——不是能力所限，是刻意的：<strong>变量少了，&quot;门外汉&quot;才敢在拐点当天知道。</strong></p>

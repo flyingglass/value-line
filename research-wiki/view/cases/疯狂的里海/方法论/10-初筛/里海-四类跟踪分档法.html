@@ -106,7 +106,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .backrow a:hover{color:var(--blue)}
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 </style></head><body><div class="topbar"><a class="logo" href="../../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../../index.html">投研 Wiki</a> › <a href="../../index.html">里海 · 作者案例专题</a> › <a href="里海-四类跟踪分档法.html">里海四类跟踪分档法</a></div><div class="topnav"><a href="../../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海四类跟踪分档法</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-19</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论/10-初筛</span></div><div class="md" id="md"><h1>里海四类跟踪分档法：一张可执行的行动图</h1>
 <blockquote>
 <p><strong>一句话结论</strong>：里海<strong>没有打分表，也没有阈值</strong>——他给的是一条<strong>三步动作链</strong>（穷举圈层 → 30 分钟三板斧 → 两把尺子落档）加<strong>一条精力纪律</strong>（60 / 25 / 15）。分档的产出<strong>不是买入清单，而是跟踪力度的分配表</strong>；它的存在意义是让&quot;频率&quot;这个因子有标的池可用。原文自己就承认这是主观判断：<strong>&quot;一家公司到底分为一类还是二类，这完全就是我通过阅读分析客观的材料，例如研报、年报等，我自己做的主观判断而已。&quot;</strong>（<a href="https://mp.weixin.qq.com/s/unfTzf5v3Q1HdhQPGrbK-g">《终于搞完一件大事的基础性工作！》2021.8.12</a>，raw 2021 年合集 line 4090）</p>

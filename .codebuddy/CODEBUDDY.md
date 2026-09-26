@@ -28,12 +28,15 @@ research-wiki/
     ├── index.md              索引（按标的 + 按主题）
     ├── overview.md           概述
     ├── log.md                操作日志
-    ├── <code>/               标的目录
-    │   ├── overview.md       数据目录
-    │   ├── thesis.md         投资 Thesis
-    │   ├── industry-chain.md 产业链全景
-    │   ├── operating-metrics.md 运营指标
-    │   └── research-reports.md  券商研报索引
+    ├── 白马/                 标的目录（容器）
+    │   └── <code>/           标的
+    │       ├── overview.md   数据目录
+    │       ├── thesis.md     投资 Thesis
+    │       ├── industry-chain.md 产业链全景
+    │       ├── operating-metrics.md 运营指标
+    │       └── research-reports.md  券商研报索引
+    ├── 学股/                 广深名单池
+    ├── 疯狂的里海/           作者案例专题
     └── articles/             通用投研文章（与 vl/ 同构）
         ├── concepts/         投资概念与框架
         ├── entities/         人物/机构
@@ -48,9 +51,11 @@ research-wiki/
 - 结构与 `research/` 并行，两者交叉链接互通
 
 **research/** — 投研 wiki：
-- 标的专项 → `research/<code>/`（overview / thesis / industry-chain 等）
+- 标的专项 → `research/白马/<code>/`（overview / thesis / industry-chain 等）
+- 专题 → `research/学股/`、`research/疯狂的里海/`
 - 通用知识 → `research/articles/concepts|entities|papers|synthesis/`
 - 必须有 `index.md`、`overview.md`、`log.md`
+- 🔴 新增标的的 wiki 页面一律建在 `research/白马/<code>/` 下
 
 **raw/** — 原始资料，只进不改：
 - VL 项目相关 → `raw/vl/articles/`

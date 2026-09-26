@@ -85,7 +85,7 @@ data = [
     # ========== 2026H1 ==========
     # ⚠️ 半年度数据不入库: revenue_structure 主键为 (code, year, dim_type, dim_name) 年度口径。
     # 若以 year='2026' 入库, 2026 年报入库时会被 INSERT OR REPLACE 覆盖丢失; 且 build.py/engine.py 按年度读取。
-    # 2026H1 行业拆分完整数据见 research-wiki/research/分众传媒/运营指标.md (来源: 002027_2026_中报.pdf p15)
+    # 2026H1 行业拆分完整数据见 research-wiki/research/白马/分众传媒/运营指标.md (来源: 002027_2026_中报.pdf p15)
     # 参考: 2026H1 总营收 5,991.38M (-1.98%), 楼宇媒体 5,628.82M (-0.05%), 影院媒体 345.35M (-26.29%)
 ]
 

@@ -106,7 +106,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .backrow a:hover{color:var(--blue)}
 .no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
 .empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 </style></head><body><div class="topbar"><a class="logo" href="../../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../../index.html">投研 Wiki</a> › <a href="../../index.html">里海 · 作者案例专题</a> › <a href="里海-双左侧.html">里海双左侧</a></div><div class="topnav"><a href="../../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海双左侧</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-07</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论/30-共振</span></div><div class="md" id="md"><h1>里海体系中的&quot;双左侧&quot;：卖出端总开关 × 买入端右侧前提</h1>
 <blockquote>
 <p><strong>一句话结论</strong>：<strong>双左侧 = 基本面的预期往下 + 股价大的走势往下，双双成立</strong>；一旦确认，唯一动作是 <strong>&quot;怎么也要把筹码砍掉&quot;</strong>（不幻想反弹、不抄底）。其<strong>对偶的买入判据</strong>：重锤的前提 = 股价趋势与基本面预期<strong>至少有一个是右侧，最好股价先到右侧</strong>。两端共用同一条底层信念——<strong>中长期市场先生绝对有效，他的表态比我个人的研究可信</strong>：卖出端用它防&quot;装睡&quot;，买入端用它防&quot;抢跑&quot;。</p>

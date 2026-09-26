@@ -26,9 +26,9 @@ description: |
 4. 回答四个基本问题
 5. 保存到 wiki 对应位置（注意：摘要属于 research/，不进 raw/）：
 
-   - **业绩会逐字稿** → `research-wiki/research/<code>/业绩/<时间>-<业绩会名称>-艾德勒阅读摘要.md`
-     - 参照标杆：`research/拼多多/业绩/2026-Q2业绩电话会-艾德勒阅读摘要.md`、`research/泡泡玛特/业绩/2026-中报业绩发布会-艾德勒阅读摘要.md`
-   - 其他资料（研报/文章/书籍）→ `research-wiki/research/<code>/` 或 `research/articles/` 对应子目录
+   - **业绩会逐字稿** → `research-wiki/research/白马/<code>/业绩/<时间>-<业绩会名称>-艾德勒阅读摘要.md`
+     - 参照标杆：`research/白马/拼多多/业绩/2026-Q2业绩电话会-艾德勒阅读摘要.md`、`research/白马/泡泡玛特/业绩/2026-中报业绩发布会-艾德勒阅读摘要.md`
+   - 其他资料（研报/文章/书籍）→ `research-wiki/research/白马/<code>/` 或 `research/articles/` 对应子目录
    - 头部加 frontmatter：`topic`（标题）/ `category`（如"投研-资料摘要"）/ `structure`（如"艾德勒四级阅读法（检视 → 通读 → 分析 → 比较）"）/ `created`（日期）/ `source`（指向 raw 原文相对路径，如 `raw/research/拼多多/2026-08-24-xxx.md`）
    - 自有分析笔记用 `sources` 复数（可列 PDF 页码、调研链接等多源）
 6. **校验**：复现 `extract_summary()` 确认列表页抓到「一句话核心」；解码 index.html 的 base64 body，确认与源文件字节级一致
