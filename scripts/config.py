@@ -1530,6 +1530,13 @@ STOCKS = {
         "pfx": "sz", "industry": "化工", "fiscal_yr_end": "12-31",
         "business_desc": "",
     },
+    "300121": {
+        "name": "阳谷华泰",
+        "name_en": "Yanggu Huatai Chemical",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "化工", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
     "300786": {
         "name": "国林科技",
         "name_en": "Guolin Technology",
