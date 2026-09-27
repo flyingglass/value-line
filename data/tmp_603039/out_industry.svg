@@ -1,0 +1,26 @@
+<svg viewBox="0 0 680 418" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>中国协同管理软件行业玩家分层</title>
+<desc>四层结构：互联网平台型SaaS、传统产品主导型、ERP生态捆绑型、项目定制与区域小厂。</desc>
+<text x="40" y="18" font-size="14" font-weight="500" fill="#2C2C2A">协同管理软件行业的四层玩家</text>
+<rect x="40" y="34" width="600" height="74" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+<rect x="40" y="34" width="4" height="74" rx="2" fill="#185FA5"/>
+<text x="60" y="60" font-size="14" font-weight="500" fill="#0C447C">互联网平台型（SaaS）</text>
+<text x="60" y="82" font-size="12.5" fill="#2C2C2A">钉钉 · 企业微信 · 飞书 · 金山WPS</text>
+<text x="60" y="100" font-size="11.5" fill="#5F5E5A">免费/低价获客，正从中小往大客户渗透</text>
+<rect x="40" y="122" width="600" height="74" rx="10" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+<rect x="40" y="122" width="4" height="74" rx="2" fill="#854F0B"/>
+<text x="60" y="148" font-size="14" font-weight="500" fill="#633806">传统产品主导型（泛微所在层）</text>
+<text x="60" y="170" font-size="12.5" fill="#2C2C2A">泛微 · 致远互联 · 蓝凌（钉钉系）</text>
+<text x="60" y="188" font-size="11.5" fill="#5F5E5A">央国企＋信创大单，重本地化实施</text>
+<rect x="40" y="210" width="600" height="74" rx="10" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<rect x="40" y="210" width="4" height="74" rx="2" fill="#0F6E56"/>
+<text x="60" y="236" font-size="14" font-weight="500" fill="#085041">ERP 生态捆绑型</text>
+<text x="60" y="258" font-size="12.5" fill="#2C2C2A">用友（友空间）· 金蝶（云之家）</text>
+<text x="60" y="276" font-size="11.5" fill="#5F5E5A">随 ERP 一起卖，独立获客弱</text>
+<rect x="40" y="298" width="600" height="74" rx="10" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="40" y="298" width="4" height="74" rx="2" fill="#5F5E5A"/>
+<text x="60" y="324" font-size="14" font-weight="500" fill="#2C2C2A">项目定制 / 区域小厂</text>
+<text x="60" y="346" font-size="12.5" fill="#2C2C2A">慧点科技（东软系）· 万户 · 华天动力 · 九思</text>
+<text x="60" y="364" font-size="11.5" fill="#5F5E5A">单个项目收费高、规模化低，被逐步出清</text>
+<text x="40" y="396" font-size="11.5" fill="#888780">分层依据：中报三分法（产品主导型／项目定制型／SaaS服务型）＋收入量级与获客路径</text>
+</svg>

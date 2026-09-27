@@ -36,3 +36,6 @@ data/广州.zip
 # AI软件待选池中报批量下载产物（与 data/广州/ 同例：PDF 不入版本库，仅保留清单）
 data/AI软件/*.pdf
 scripts/out/tmp_*  
+
+# 调研临时产物（data/tmp_<code>/）中的 PDF 不入版本库（与 data/AI软件/*.pdf 同例）
+data/tmp_*/*.pdf

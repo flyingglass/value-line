@@ -1,0 +1,42 @@
+<svg viewBox="0 0 680 420" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>泛微网络 2026 上半年经营活动现金流出结构与「支付其他与经营活动有关的现金」拆解</title>
+<desc>横向条形图。上半部分为经营活动现金流出 11.46 亿元的四个科目构成；下半部分为其中「支付其他与经营活动有关的现金」7.82 亿元的逐项拆解。数据来自 2026 年半年报原文。</desc>
+<text x="20" y="18" font-size="12" fill="#2C2C2A">泛微网络 2026H1：经营活动现金流出的钱，去了哪</text>
+<text x="20" y="46" font-size="11.5" fill="#0C447C">① 经营活动现金流出合计 11.46 亿元，由四个科目构成</text>
+<text x="246" y="71" font-size="11" fill="#444441" text-anchor="end">支付其他与经营活动有关的现金</text>
+<rect x="254" y="58" width="232.1" height="18" rx="2" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="493.1" y="71" font-size="11" fill="#2C2C2A">7.82亿</text>
+<text x="552.1" y="71" font-size="11" fill="#888780">68%</text>
+<text x="246" y="103" font-size="11" fill="#444441" text-anchor="end">支付给职工及为职工支付的现金</text>
+<rect x="254" y="90" width="63.7" height="18" rx="2" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="324.7" y="103" font-size="11" fill="#2C2C2A">2.15亿</text>
+<text x="383.7" y="103" font-size="11" fill="#888780">19%</text>
+<text x="246" y="135" font-size="11" fill="#444441" text-anchor="end">支付的各项税费</text>
+<rect x="254" y="122" width="24.3" height="18" rx="2" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+<text x="285.3" y="135" font-size="11" fill="#2C2C2A">0.82亿</text>
+<text x="344.3" y="135" font-size="11" fill="#888780">7%</text>
+<text x="246" y="167" font-size="11" fill="#444441" text-anchor="end">购买商品、接受劳务支付的现金</text>
+<rect x="254" y="154" width="19.9" height="18" rx="2" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="280.9" y="167" font-size="11" fill="#2C2C2A">0.67亿</text>
+<text x="339.9" y="167" font-size="11" fill="#888780">6%</text>
+<text x="20" y="206" font-size="11.5" fill="#854F0B">② 其中 7.82 亿元「支付其他」再往下拆（金额 / 占比）</text>
+<text x="246" y="229" font-size="11" fill="#444441" text-anchor="end">当期项目实施费（付给服务商）</text>
+<rect x="254" y="216" width="201.0" height="18" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="0.8"/>
+<text x="462.0" y="229" font-size="11" fill="#2C2C2A">4.62亿</text>
+<text x="521.0" y="229" font-size="11" fill="#888780">59%</text>
+<text x="246" y="261" font-size="11" fill="#444441" text-anchor="end">清偿上期应付项目实施费</text>
+<rect x="254" y="248" width="79.4" height="18" rx="2" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="340.4" y="261" font-size="11" fill="#2C2C2A">1.83亿</text>
+<text x="399.4" y="261" font-size="11" fill="#888780">23%</text>
+<text x="246" y="293" font-size="11" fill="#444441" text-anchor="end">预付服务商款项净增</text>
+<rect x="254" y="280" width="24.0" height="18" rx="2" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="285.0" y="293" font-size="11" fill="#2C2C2A">0.55亿</text>
+<text x="344.0" y="293" font-size="11" fill="#888780">7%</text>
+<text x="246" y="325" font-size="11" fill="#444441" text-anchor="end">其他零星（差旅·办公·推广·押金）</text>
+<rect x="254" y="312" width="35.5" height="18" rx="2" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.8"/>
+<text x="296.5" y="325" font-size="11" fill="#2C2C2A">0.82亿</text>
+<text x="355.5" y="325" font-size="11" fill="#888780">10%</text>
+<text x="20" y="368" font-size="11" fill="#888780">前三项＝「付给外部服务商的钱」共 7.00 亿元，占该科目 90%（第 2、3 项为推算）</text>
+<text x="20" y="388" font-size="11" fill="#888780">推算依据：应付项目实施费 5.47→3.64 亿；预付款项 5.39→5.94 亿（半年报附注原文）</text>
+<text x="20" y="408" font-size="11" fill="#888780">对照：同期「支付给职工」仅 2.15 亿，不足「支付其他」的三分之一</text>
+</svg>
