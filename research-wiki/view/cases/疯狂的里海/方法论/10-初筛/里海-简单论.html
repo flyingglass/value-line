@@ -17,12 +17,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
 .grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
 /* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
-#sec-stocks{display:flex;flex-direction:column;gap:18px}
-#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
-#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
-#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
-#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
-#sec-stocks .grp-hd .pill{align-self:center}
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
 #sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
 #sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
 #sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
@@ -112,7 +112,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
 .casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
 .casegrid .grp-hd .pill{align-self:center}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 </style></head><body><div class="topbar"><a class="logo" href="../../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../../index.html">投研 Wiki</a> › <a href="../../index.html">里海 · 作者案例专题</a> › <a href="里海-简单论.html">里海简单论</a></div><div class="topnav"><a href="../../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海简单论</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-14</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/方法论/10-初筛</span></div><div class="md" id="md"><h1>里海体系中的&quot;简单论&quot;：可识别性闸门 × 四维判据 × 绕开动作</h1>
 <blockquote>
 <p><strong>一句话结论</strong>：在里海体系里，&quot;简单&quot;不是偏好、不是风格，而是<strong>弱者体系的第一道闸门</strong>——它的功能是把&quot;看不懂&quot;这件事<strong>前置到选股阶段</strong>，用&quot;变量少&quot;换取&quot;看得懂、跟踪得起、判断错了也能提前知道&quot;。术四字中，<strong>简单决定&quot;能不能看&quot;，底部决定&quot;亏不亏&quot;，变化决定&quot;涨不涨&quot;</strong>。原文最精炼的一句是：<strong>&quot;复杂的公司，其业绩释放路径上的可变因子太多。&quot;</strong>（<a href="https://mp.weixin.qq.com/s/zuqOGcU7eTILwnttBNjl3g">《喜欢简单的企业》2020.5.2</a>）</p>
@@ -197,7 +197,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 </ul>
 <h3>1.4 补充第四问：收入是一次性的还是可重复的（本项目补，2026-09-25）</h3>
 <blockquote>
-<p>⚠️ <strong>性质声明</strong>：本条<strong>不是</strong>里海原生四维判据之一，是本项目补的<strong>第五问</strong>，用于把&quot;简单&quot;与&quot;持有尺度&quot;接上；样本 = 1（<a href="../../../%E5%AD%A6%E8%82%A1/%E8%B7%9F%E8%B8%AA/%E5%B9%BF%E5%B7%9E-%E8%BE%BE%E6%84%8F%E9%9A%86.html">广州-达意隆</a> 002209），提供的是<strong>检查动作</strong>，不是阈值。</p>
+<p>⚠️ <strong>性质声明</strong>：本条<strong>不是</strong>里海原生四维判据之一，是本项目补的<strong>第五问</strong>，用于把&quot;简单&quot;与&quot;持有尺度&quot;接上；样本 = 1（<a href="../../../%E6%9C%AC%E5%9C%B0/%E8%BE%BE%E6%84%8F%E9%9A%86/%E8%B7%9F%E8%B8%AA.html">本地/达意隆/跟踪</a> 002209），提供的是<strong>检查动作</strong>，不是阈值。</p>
 </blockquote>
 <ul>
 <li>里海原生四维（业务 / 财务结构 / 干扰因子 / 业绩变量）回答的是&quot;<strong>能不能看</strong>&quot;；<strong>收入可重复性</strong>回答的是&quot;<strong>能拿多久</strong>&quot;——它决定 <a href="%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">里海-变化论</a> §二 的<strong>战术股 vs 战略股</strong>分层：</li>
@@ -226,7 +226,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <ul>
 <li><strong>易错点</strong>：<strong>一句话说得清 ≠ 战略股</strong>。达意隆（002209）业务一句话能说清（卖液态食品包装整线）、业绩变量只有一个（订单在哪个季度交付确认），按四维判据<strong>过&quot;简单&quot;这一关没有问题</strong>；但客户十年才建一次线 → 收入不可重复 → <strong>战术股</strong>。只做四维判据、不问这一句，就会把&quot;看得懂&quot;误当成&quot;拿得住&quot;（即再升式错配的另一个入口）。</li>
 <li><strong>怎么问</strong>：<strong>同一客户是否会在可预期周期内再买一次？</strong> 披露里优先找复购率 / 备件与服务收入占比；找不到时按业务属性反推，<strong>并标注「本项目判断」</strong>（达意隆即为反推，非直接披露）。</li>
-<li>完整证据与数据：<a href="../../../%E5%AD%A6%E8%82%A1/%E8%B7%9F%E8%B8%AA/%E5%B9%BF%E5%B7%9E-%E8%BE%BE%E6%84%8F%E9%9A%86.html">广州-达意隆</a> §2.2。</li>
+<li>完整证据与数据：<a href="../../../%E6%9C%AC%E5%9C%B0/%E8%BE%BE%E6%84%8F%E9%9A%86/%E8%B7%9F%E8%B8%AA.html">本地/达意隆/跟踪</a> §2.2。</li>
 </ul>
 <h2>二、怎么用：三个可操作的量化门槛</h2>
 <p><strong>这是&quot;简单&quot;区别于一般&quot;投资要简单&quot;套话的地方——作者给了三个能落地的刻度。</strong></p>
@@ -497,7 +497,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <li><a href="../90-%E6%A8%AA%E5%88%87/%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BBvs%E5%B7%B4%E8%8F%B2%E7%89%B9%E4%B8%89%E5%A5%BD-%E6%96%B9%E6%B3%95%E8%AE%BA%E5%AF%B9%E6%AF%94.html">里海体系vs巴菲特三好-方法论对比</a> — 为什么弱者体系必须靠&quot;减少变量&quot;而非&quot;加深研究&quot;来获得把握</li>
 <li><a href="../../%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E7%94%B5%E5%8A%9B.html">里海案例-涪陵电力</a> — 术·简单极致样本（只盯在建工程一个科目）</li>
 <li><a href="../../%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E7%A7%A6%E5%AE%89%E8%82%A1%E4%BB%BD.html">里海案例-秦安股份</a> / <a href="../../%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C.html">里海案例-涪陵榨菜</a> — 财务结构简单 / 消费股能力圈正例</li>
-<li><a href="../../../%E5%AD%A6%E8%82%A1/%E8%B7%9F%E8%B8%AA/%E5%B9%BF%E5%B7%9E-%E8%BE%BE%E6%84%8F%E9%9A%86.html">广州-达意隆</a> — §1.4 第五问（收入可重复性 → 战术股）的出处，样本=1</li>
+<li><a href="../../../%E6%9C%AC%E5%9C%B0/%E8%BE%BE%E6%84%8F%E9%9A%86/%E8%B7%9F%E8%B8%AA.html">本地/达意隆/跟踪</a> — §1.4 第五问（收入可重复性 → 战术股）的出处，样本=1</li>
 <li><a href="../../%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%86%8D%E5%8D%87%E7%A7%91%E6%8A%80.html">里海案例-再升科技</a> — 反证：&quot;研究最深却亏最多&quot;，隐形冠军模型的深研要求与简单论相反</li>
 <li><a href="../../%E6%97%B6%E9%97%B4%E7%BA%BF/%E9%87%8C%E6%B5%B7%E5%B9%B4%E5%BA%A6%E6%97%B6%E9%97%B4%E7%BA%BF-2020%E5%B9%B4.html">里海年度时间线-2020年</a> / <a href="../../%E6%97%B6%E9%97%B4%E7%BA%BF/%E9%87%8C%E6%B5%B7%E5%B9%B4%E5%BA%A6%E6%97%B6%E9%97%B4%E7%BA%BF-2021%E5%B9%B4.html">里海年度时间线-2021年</a> / <a href="../../%E6%97%B6%E9%97%B4%E7%BA%BF/%E9%87%8C%E6%B5%B7%E5%B9%B4%E5%BA%A6%E6%97%B6%E9%97%B4%E7%BA%BF-2022%E5%B9%B4.html">里海年度时间线-2022年</a> — 四板斧 / 160 家四类归档 / 三点版定型的原始出处
 <a href="../../../../../research/index.md">research/index.md</a> · <a href="../../../../../research/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.md">research/疯狂的里海/方法论/里海-变化论.md</a></li>

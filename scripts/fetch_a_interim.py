@@ -10,7 +10,7 @@
   · static.cninfo.com.cn/<adjunctUrl>      PDF 直链
 
 目标清单：默认取 `scripts/out/ai_sw_filter3.csv` 中**落在三层框架内**的 A 股
-（即 [[学股/AI软件/AI软件名单-按吞噬顺序筛选]] 的 41 只里的 A 股部分）。
+（即 [[AI软件/AI软件名单-按吞噬顺序筛选]] 的 41 只里的 A 股部分）。
 可用 --codes 自行指定。
 
 用法：

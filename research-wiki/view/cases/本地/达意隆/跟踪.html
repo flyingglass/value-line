@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>达意隆</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">本地 · 广深</a> › <a href="跟踪.html">达意隆</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">达意隆</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-23</span><span style="margin-left:auto;color:#b0b5bd">research/本地/达意隆</span></div><div class="md" id="md"><h1>达意隆（002209）</h1>
+<blockquote>
+<p><strong>一句话定位</strong>：<strong>用客户预付款做客户一次性资本开支的项目型装备商</strong>——护城河是真的（客户愿意先付钱），变化也持续了四年，但收入天生一次性 ⇒ <strong>只能是战术股</strong>；按流水线判读，<strong>当前落 3 类跟踪档，不做解构/建模/共振，不构成买点</strong>。</p>
+<p><strong>本页性质</strong>：证据层全部来自<strong>本项目 DB 实算</strong>，<strong>不是里海原文</strong>，也不代表里海观点；凡本项目推断均标「本项目判断」。
+<strong>标签＝股票池</strong>：收录本项目自有候选池标的的深度案例，与 <code>疯狂的里海/案例/</code> 目录（里海实盘案例库）区分。</p>
+<p>⚠️ <strong>编号约定（读本页前必看）</strong>：本页同时用两套编号，<strong>含义不同、不可互换</strong>——① <strong>2444 四关</strong>（简单·底部·变化·分仓）＝术四字判据；② <strong>1-4 类跟踪档</strong>＝精力分配（1 类 60% / 2 类 25% / 3+4 类 15%）。撞车警告见 <a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E7%B1%BB%E8%B7%9F%E8%B8%AA%E5%88%86%E6%A1%A3%E6%B3%95.html">里海-四类跟踪分档法</a> §4.3。</p>
+<p>⚠️ <strong>段序（2026-09-27 对齐）</strong>：① 筛 → ② 解构 → ③ 建模与跟踪 → ④ 落档 → ⑤ 共振。<strong>本页 ④ 为落档、⑤ 为共振</strong>；<a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a> 的原文编号 <strong>④ 为共振</strong>，两套编号勿混。</p>
+</blockquote>
+<hr />
+<h2>一、① 筛（30 分钟三板斧：简单 / 变化 / 财报漏洞）</h2>
+<h3>1.1 三板斧</h3>
+<table>
+<thead>
+<tr>
+<th>板</th>
+<th>判定</th>
+<th>依据（均出自 <code>data/db/002209.db</code> 实算）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>板 1 · 简单</strong></td>
+<td>⚠️ <strong>勉强过</strong></td>
+<td>业务简单 ✓（只做液态食品包装整线一个行当）；业绩变量可收敛到一个（交付确认节奏）；<strong>但财务结构这一维不过</strong>——2026Q2 存货 12.90 亿 + 应收账款 5.28 亿 = 18.18 亿，占资产合计 38.57 亿的 <strong>47.1%</strong></td>
+</tr>
+<tr>
+<td><strong>板 2 · 变化</strong></td>
+<td><strong>✗</strong></td>
+<td>变化真实且大（合同负债 2022 年末 2.32 亿 → 2026Q1 12.77 亿），但<strong>自 2023Q1 起连续 14 个季度公开、市场看了两年不认</strong> → 不满足&quot;大部分人还未看清楚&quot;；利润端反转 2024 年就开始，2025 年股价 <strong>+74.5%</strong>（9.17 → 16.00，收盘口径）已定价</td>
+</tr>
+<tr>
+<td><strong>板 3 · 财报</strong></td>
+<td>⚠️ <strong>有漏洞</strong></td>
+<td>商业模式清楚（客户预付 → 备料在产 → 交付确认）；漏洞在两端：① 存货 + 应收占总资产 <strong>47.1%</strong>；② <strong>2026Q1 扣非仅 439.5 万</strong>，非经常性损益 0.1377 亿中政府补助 0.1471 亿 → 主业当季近乎不挣钱，须由 Q3 验证</td>
+</tr>
+</tbody>
+</table>
+<h3>1.2 两把尺子</h3>
+<table>
+<thead>
+<tr>
+<th>尺子</th>
+<th>操作问题</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>概率</strong>（变化是否真实、够大）</td>
+<td>变化的&quot;真&quot;没问题；但&quot;未被看清&quot;不成立（连续 14 个季度公开），且收入一次性 ⇒ 单次兑现不能外推成趋势</td>
+<td><strong>打折</strong></td>
+</tr>
+<tr>
+<td><strong>赔率</strong>（①底部 ②向上空间 ③多头资金力度）</td>
+<td>①底部 ✗（见下）；②向上空间：需 PB 重回 2.2x 才谈得上，空间有限；③资金：8/21 涨停、8 月 +30.2% 已进场，且该波已走完</td>
+<td><strong>✗</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>「底部」这一项单独算清（价格一律用前复权收盘，BPS＝2026 中报 4.615）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>锚</th>
+<th>数值</th>
+<th>与现价（13.46）的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021 年以来最低收盘</td>
+<td><strong>5.17</strong>（2021-02-08）</td>
+<td>现价 = 其 <strong>2.60 倍</strong></td>
+</tr>
+<tr>
+<td>2026 年内最低收盘</td>
+<td><strong>9.54</strong>（2026-07-22）</td>
+<td>现价较其 <strong>+41.1%</strong></td>
+</tr>
+<tr>
+<td>2026 年区间高点</td>
+<td>收盘 <strong>17.20</strong>（2026-04-22）；盘中最高 <strong>20.23</strong>（2025-07-17）</td>
+<td>4/22 → 7/22 <strong>−44.5%</strong></td>
+</tr>
+<tr>
+<td>PB</td>
+<td>底部 9.54 → <strong>2.07x</strong>；现价 → <strong>2.92x</strong>（约 57% 分位）</td>
+<td>位置已不在底部区</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>且 2026-04-22 → 07-22 的 −44.5% 是<strong>单边下跌后直接跳涨，中间无横盘、无筹码交换</strong> → 按 <a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a> 的&quot;位置&quot;要件（走出阶段底／空头衰竭），这一条同样不成立。</p>
+</blockquote>
+<hr />
+<h2>二、② 解构（一句话主逻辑 / 底价 / 变量清单）</h2>
+<h3>2.1 一句话主逻辑（≤500 字，本项目实算）</h3>
+<p>达意隆卖<strong>液态食品包装整线</strong>（吹瓶→灌装→旋盖→贴标→输送→二次包装）。客户下单即预付，形成<strong>合同负债</strong>；公司拿预付款备料生产，形成<strong>存货</strong>；交付验收后确认收入。因此合同负债与存货是<strong>同一笔订单的两面</strong>（承诺端与在产端），不是两个独立信号。业绩变量只有一个：<strong>订单什么时候交付、落在哪个季度确认</strong>。护城河真实（2026Q2 合同负债 11.46 亿 vs 应收账款 5.28 亿，客户愿意先付钱），但<strong>收入一次性</strong>（同一客户十年才建一次线）⇒ 按 <a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">里海-变化论</a> 的尺度分层属<strong>战术股</strong>，不是战略股。</p>
+<h3>2.2 生意四特征</h3>
+<table>
+<thead>
+<tr>
+<th>生意特征</th>
+<th>数据</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>客户先付钱</strong></td>
+<td>2026Q2 合同负债 <strong>11.46 亿</strong> vs 应收账款 <strong>5.28 亿</strong></td>
+<td>与里海描述的行业通病（<a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%9D%B0%E7%91%9E%E8%82%A1%E4%BB%BD.html">里海案例-杰瑞股份</a> 式&quot;下游欠钱&quot;）<strong>方向相反</strong>，是真实护城河</td>
+</tr>
+<tr>
+<td><strong>收入一次性</strong></td>
+<td>客户一条产线用 10-15 年</td>
+<td>同一客户十年才建一次线 ⇒ <strong>收入不可重复</strong>，天生战术股</td>
+</tr>
+<tr>
+<td><strong>前五客户集中度下降</strong></td>
+<td>2025 年前五 7.10 亿，同比<strong>仅 +10%</strong>（当年营收 +21.6%）</td>
+<td>增量来自<strong>客户群扩散</strong>，而非老客户反复扩产——佐证&quot;一次性&quot;</td>
+</tr>
+<tr>
+<td><strong>合同负债与存货同源</strong></td>
+<td>2023Q1 同时起跳（2.32 / 6.01 → 11.46 / 12.90）</td>
+<td>两者是<strong>同一件事的两面</strong>（客户预付 → 备料在产 → 交付确认），<strong>不是两个独立信号</strong>，不可重复计数</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>期次修正（2026-09-25）</strong>：原表写作&quot;2026Q2 合同负债 11.46 亿 vs 应收账款 <strong>4.51 亿</strong>&quot;——4.51 亿是 <strong>2025 年末</strong>值；2026Q2 应收账款为 <strong>5.28 亿</strong>（<code>data/db/002209.db</code> balance，科目&quot;应收票据及应收账款&quot;）。</p>
+</blockquote>
+<p><strong>本项目判断</strong>：护城河真实 ≠ 可以长期持有。收入模式的&quot;一次性&quot;决定了它只能抓极端时点的边际变化，抓完就走。</p>
+<h3>2.3 底价：缺位 ⇒ 第 ② 段卡口未过</h3>
+<p><a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E8%A7%A3%E6%9E%84%E6%B3%95.html">里海-解构法</a> 要求第 ② 段产出&quot;一个全搞砸也亏不了的底价&quot;。本页<strong>没有底价</strong>：config 初选的 <strong>PB 1.0x 落在 2014 年以来从未低于 2.02x 的区间之外</strong>，口径未定案（见 <a href="%E7%A0%94%E7%A9%B6%E8%B5%84%E6%96%99.html">本地/达意隆/研究资料</a> 附 D）。</p>
+<hr />
+<h2>三、③ 建模与跟踪（日频 · 季频盯哪几个数）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>变量</th>
+<th>频率</th>
+<th>渠道</th>
+<th>亮灯条件（本项目设定）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>单季扣非</strong>（交付确认节奏的兑现端）</td>
+<td>季</td>
+<td>定期报告（一/三季报、半年报、年报）</td>
+<td><strong>连续两季 ≥0.8 亿</strong>（2026Q2 的 0.986 亿是历史最高单季，但只一次不算趋势）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>合同负债同比</strong>（订单储备）</td>
+<td>季</td>
+<td>同上</td>
+<td>同比 <strong>≥+40%</strong>；⚠️ <strong>只看同比，绝不可看环比</strong>（Q1 环比 +20~73%、Q2 每年回落，是季节性不是趋势）</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>深度＝合同负债 / TTM 营收</strong></td>
+<td>季</td>
+<td>计算</td>
+<td>≥55%（2025 末 57.2% → 2026Q2 56.9%，<strong>已在 2025 末停住</strong>）；掉破 50% = 证伪</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>行业级高频锚（海关包装机械出口、下游食品饮料制造业固投）频率高于季报，<strong>升到 2 类后才启用</strong>，见 <a href="%E7%A0%94%E7%A9%B6%E8%B5%84%E6%96%99.html">本地/达意隆/研究资料</a> 附 B.4。</p>
+</blockquote>
+<hr />
+<h2>四、④ 落档（1-4 类跟踪档）</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>跟踪档位</strong></td>
+<td><strong>3 类</strong>（概率与赔率暂时都不具备，只能等一个大的变化催化两率）</td>
+</tr>
+<tr>
+<td><strong>精力</strong></td>
+<td>3 类 + 4 类合计 <strong>15%</strong></td>
+</tr>
+<tr>
+<td><strong>对应动作</strong>（原文口径）</td>
+<td><strong>&quot;跟踪下定期公告和重大公告，掌握公司的重大动态就行&quot;</strong>；落到公司层面即 <strong>&quot;就看看年报和半年报就可以了&quot;</strong></td>
+</tr>
+<tr>
+<td><strong>升 2 类的触发条件</strong>（本项目设定，须三条同时满足）</td>
+<td>① 单季扣非<strong>连续两季</strong> ≥0.8 亿（2026Q2 的 0.986 亿只亮一次不算趋势）；② 股价回到 <strong>PB ≤2.2x</strong>（≈10.15 元）或横盘换手充分；③ 合同负债同比 <strong>≥+40%</strong> 且深度（合同负债/TTM 营收）不破 50%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>五、⑤ 共振（买点状态）</h2>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>判据</th>
+<th>当前（截至 2026-09-22）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基本面</strong>（跟踪模型亮灯）</td>
+<td>单季扣非连续两季 ≥0.8 亿</td>
+<td>❌ 只有 2026Q2 一季；2026Q1 仅 0.044 亿</td>
+</tr>
+<tr>
+<td><strong>位置</strong>（走出阶段底／空头衰竭）</td>
+<td>回到底部区或横盘换手充分</td>
+<td>❌ 4/22 → 7/22 的 −44.5% 后直接跳涨，中间无横盘、无筹码交换；PB 2.92x</td>
+</tr>
+<tr>
+<td><strong>资金面</strong>（看基本面的资金进场）</td>
+<td>8/21 涨停（+10.03%）、8 月 +30.2%</td>
+<td>⚠️ 已进场，且该波已走完</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>里海原话对照</strong>：<em>&quot;这类标的常常就是一波流上去，上去差不多了就要赶紧走。&quot;</em>（<a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E9%87%8C%E6%B5%B7-2444%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB.html">里海-2444投资体系</a>）→ 2026-07-22 → 09-22 的 <strong>+41.1%</strong> 就是那一波。</p>
+</blockquote>
+<p><strong>双左侧检查</strong>（<a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">里海-双左侧</a>）：基本面预期（单季利润）向上 + 股价自 7/22 起向上 → <strong>非双左侧</strong>，不触发&quot;必砍&quot;；但正因不在双左侧，它同时<strong>不提供&quot;跌透&quot;的买入端条件</strong>。</p>
+<p><strong>结论</strong>：三信号未同亮 → <strong>不介入</strong>。</p>
+<blockquote>
+<p><strong>因果层级（本页最该记住的一条）</strong>：合同负债（资产负债表）＝<strong>承诺</strong>；利润表＝<strong>兑现</strong>。<strong>市场给兑现定价，不给承诺定价。</strong> 把&quot;承诺&quot;当成&quot;变化&quot;本身，是本轮最该记住的一条。</p>
+</blockquote>
+<hr />
+<h2>参见</h2>
+<ul>
+<li><a href="%E7%A0%94%E7%A9%B6%E8%B5%84%E6%96%99.html">本地/达意隆/研究资料</a> — 研究细节存档（矛盾/存疑、判据修正索引、数据序列、行业坐标、研报收录、本地数据层）</li>
+<li><a href="../%E5%B9%BF%E5%B7%9E/%E5%B9%BF%E5%B7%9E%E5%90%8D%E5%8D%95-%E5%BE%85%E9%80%89%E6%B1%A0-%E6%8C%89%E5%8F%98%E5%8C%96%E6%8E%92%E5%BA%8F.html">广州名单-待选池-按变化排序</a> — 本页推翻其 09-22 版 A 档结论；该页 09-24 已重排，达意隆落 <strong>3 类</strong></li>
+<li><a href="../%E5%B9%BF%E5%B7%9E/%E5%B9%BF%E5%B7%9E%E5%90%8D%E5%8D%95-%E5%BE%85%E9%80%89%E6%B1%A0%E8%B7%9F%E8%B8%AA%E8%A1%A8.html">广州名单-待选池跟踪表</a> — 达意隆原始定性条目</li>
+<li><a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%8D%9A%E9%9A%86%E6%8A%80%E6%9C%AF.html">里海案例-博隆技术</a> — <strong>镜像案例</strong>：同为项目制装备商，里海 2025.2-3 买入、2025.9 以&quot;短期确定性不太够&quot;卖出，持 6-7 个月</li>
+<li><a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E7%B1%BB%E8%B7%9F%E8%B8%AA%E5%88%86%E6%A1%A3%E6%B3%95.html">里海-四类跟踪分档法</a> — 1-4 类跟踪档与 60/25/15 精力分配（含 §4.3 编号撞车警告）</li>
+<li><a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a> — 段序依据；⚠️ 本页 ④ 为落档、⑤ 为共振，该页原文编号 <strong>④ 为共振</strong></li>
+<li><a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E8%A7%A3%E6%9E%84%E6%B3%95.html">里海-解构法</a> — 第 ② 段底价要求的出处（本页底价缺位）</li>
+<li><a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%B7%9F%E8%B8%AA.html">里海-建模与跟踪</a> — 第 ③ 段跟踪模型的卡口（变量须可公开跟踪）</li>
+<li><a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">里海-双左侧</a> — 第五节双左侧检查</li>
+<li><a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E9%87%8C%E6%B5%B7-2444%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB.html">里海-2444投资体系</a> — 术四字（简单·底部·变化·分仓）</li>
+<li><a href="../../../../research/index.md">research/index.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E8%BE%BE%E6%84%8F%E9%9A%86">← 返回 达意隆</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/本地/达意隆/跟踪.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

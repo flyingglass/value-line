@@ -111,5 +111,5 @@ sources:
 - [[industry-chain]] — 产业链全景
 - [[research-reports]] — 券商研报索引
 [[research/index.md]]
-[[research/白马/安琪酵母/overview.md]] · [[research/白马/安琪酵母/industry-chain.md]]
-[[research/白马/泡泡玛特/投资论点.md]] · [[research/白马/泡泡玛特/数据目录.md]]
+[[research/消费/安琪酵母/overview.md]] · [[research/消费/安琪酵母/industry-chain.md]]
+[[research/消费/泡泡玛特/投资论点.md]] · [[research/消费/泡泡玛特/数据目录.md]]

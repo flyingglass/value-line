@@ -1,0 +1,939 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>广州名单-待选池跟踪表</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">本地 · 广深</a> › <a href="广州名单-待选池跟踪表.html">广州名单-待选池跟踪表</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">广州名单-待选池跟踪表</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">research/本地/广州</span></div><div class="md" id="md"><h1>广州名单 · 待选池跟踪表（里海 2444）</h1>
+<blockquote>
+<p><strong>来源</strong>：<code>广州上市公司名单-A股与港股.md</code> 中<strong>未划掉</strong>的条目（＝初筛保留、尚未 pass）。</p>
+</blockquote>
+<h2>一、打分口径（里海 2444 速查）</h2>
+<table>
+<thead>
+<tr>
+<th>栏位</th>
+<th>问自己的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>简单</td>
+<td>业务是否一眼看得懂？产品是否被长期需要？变量是否少到弱者能算清账？</td>
+</tr>
+<tr>
+<td>底部</td>
+<td>是否跌透并横住？底部形态与基本面是否契合？不是「高位回落中」</td>
+</tr>
+<tr>
+<td>变化</td>
+<td>是否有正在发生的变化（产能投放 / 新主业 / 提价 / 新管理层 / 并购）？且变化尚未被市场定价</td>
+</tr>
+<tr>
+<td>分仓</td>
+<td>是否已想好「弱者视角」的仓位与买入节奏？最坏情况下能否承受</td>
+</tr>
+</tbody>
+</table>
+<h2>二、候选 · 跟踪（35 家）</h2>
+<h3>2.1 按行业分组（35 家）</h3>
+<blockquote>
+<p><strong>分组（2026-09-19 重排）</strong>：<strong>全部标的按行业分类</strong>（A股用东财一级行业；港股按其 F10 行业归入同一分组——<strong>康臣药业 → 医药生物</strong>、<strong>名创优品 → 商贸零售</strong>、<strong>汇量科技 → 媒体及娱乐</strong>）。行业为<strong>外生变量</strong>：同行业/同产业链的标的常被同一个景气变量驱动，合并看可避免把同一变量重复计成多个「变化」。</p>
+</blockquote>
+<h4>2.1.1 基础化工（9 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000893</td>
+<td>亚钾国际</td>
+<td>周期景气股 / 重资产资源兑现股，<strong>不在底部</strong></td>
+<td><strong>等下个周期底</strong></td>
+<td>钾价下行 → 净利回落至 10 亿量级 → 股价跌透横住，而新增产能仍在推进</td>
+</tr>
+<tr>
+<td>301283</td>
+<td>聚胶股份</td>
+<td>卫材热熔胶（吸收性卫生用品用胶）隐形冠军，客户为金佰利/恒安/宝洁/维达等全球前十大卫品厂；波兰+马来西亚+广州三极产能，消费品包装胶为新放量业务。<strong>2026-09-18 用户点名进候选，未扫</strong></td>
+<td><strong>进候选（待扫）</strong></td>
+<td>待核：① <strong>增收不增利能否修复</strong>——2026H1 营收 13.46 亿（+35.47%）但归母仅 7131.77 万（<strong>-12.09%</strong>），净利率约 5.3%，利润被<strong>原材料涨价 + 美元贬值汇兑损失 2895 万</strong>两头挤压（原料为石油衍生品，成本外生）；② 海外（波兰/马来西亚）产能爬坡与汇率敞口；③ 经营现金流 -1.32 亿（备货+应收+供应链融资）是否为扩张期正常现象；④ 估值分位与股价位置（09-18 收盘 25.64 元）；⑤ 中期分红 10 派 3 元的分红持续性</td>
+</tr>
+<tr>
+<td>301373</td>
+<td>凌玮科技</td>
+<td><strong>里海亲自做过的标的</strong>（2025.2-3 从硅宝切来买入，2025.9 因&quot;无法掌握新产能释放节奏&quot;卖出，赚了 20~30%）：纳米二氧化硅（消光用）国内龙头，行业标准牵头起草单位；现金收购<strong>江苏辉迈 70%</strong> 切入球形硅微粉（M9 级覆铜板原料 → AI 概念）后股价 30 → 最高 204。<strong>2026-09-18 用户点名进候选，未扫</strong></td>
+<td><strong>进候选（待扫）</strong></td>
+<td>⚠️ <strong>位置极高，不是里海口径的底部</strong>：现价 118.44（09-18 收盘），近 250 日区间 <strong>24.30~203.99</strong>，自高点回撤约 42%（仍在&quot;高位回落中&quot;）；TTM 归母约 1.40 亿 → <strong>PE-TTM 约 92 倍</strong>、市值约 128 亿。待核：① <strong>2026H1 营收 2.93 亿（+27.9%）来自哪里</strong>——归母仅 6785 万（<strong>+4.07%</strong>）而扣非 6407 万（+16.94%），少数股东损益 282.64 万出现说明辉迈已并表，需拆分&quot;并表增量 vs 主业&quot;；② 毛利率 45.7%（较上年同期 43.7% 提升）——里海担心的&quot;<strong>新产能折旧吞噬利润</strong>&quot;尚未兑现，但 2025 年报口径产能利用率仅 74.31% ＋ 2 万吨气凝胶在建，需跟踪投产后的利用率与折旧；③ 辉迈球形硅微粉是否仍处&quot;下游客户小试&quot;（里海定性为<strong>外生催化剂／运气项</strong>，明确不计入体系战绩）；④ 里海&quot;简单✓&quot;的判定今天是否仍成立（主业之外多了一块电子材料）。数据源：<code>data/db/301373.db</code>（2026-09-18 拉取）；年报/中报 PDF 齐（<code>data/pdfs/301373/</code>，含 2026 中报）；参见 <a href="../../%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E5%87%8C%E7%8E%AE%E7%A7%91%E6%8A%80.html">里海案例-凌玮科技</a></td>
+</tr>
+<tr>
+<td>301683</td>
+<td>慧谷新材</td>
+<td><strong>功能性树脂 + 功能性涂层材料</strong>，四大下游：家电 / 包装 / 新能源 / 电子；2026H1 营收 <strong>5.76 亿（+16.22%）</strong>、归母 <strong>1.11 亿（+3.37%）</strong>、扣非 1.10 亿（+3.00%）、经营现金流 <strong>7281.51 万（+42.65%）</strong>；分部：包装 2.17 亿（+27.12%，数码喷印墨水树脂 +45.53%）、新能源 1.01 亿（<strong>+61.05%</strong>）、电子 4612.32 万（+19.58%）、家电 1.84 亿（<strong>-0.6%</strong>）；涂层材料毛利率 <strong>41.13%</strong>（同比 -1.15pct）；<strong>2026H1 完成 IPO 上市（次新股）</strong>，总资产 26.84 亿（较上年末 +81.67%）</td>
+<td><strong>进候选（待扫）</strong></td>
+<td>2026-09-19 用户点名进候选。待核：① <strong>增收不增利</strong>——归母 +3.37% 远低于营收 +16.22%，压因为营业成本 <strong>+20.67%</strong>（毛利率 -1.15pct）+ 研发 +25.21% 至 4030 万 + 期间费用增加，需拆分&quot;上市相关一次性费用 vs 持续性成本&quot;；② 新能源 1.01 亿（+61.05%）仅占营收 17.5%，而占比 32% 的家电已零增长 → 变化是否够大够远；③ 次新股风险：<strong>募投产能爬坡与折旧</strong>、解禁时点、上市后 ROE 被摊薄；④ 位置：现价 <strong>98.61</strong>（09-18 收盘），2026 年内区间 <strong>90.81~148.35</strong>（自高点回撤约 34%）；⑤ 估值（09-18 收盘口径，AKShare 百度估值接口 2026-09-19 取）：<strong>总市值 62.24 亿</strong>、<strong>PE-TTM 29.58</strong>、<strong>PB 2.64</strong>；由市值 ÷ PE 反推 TTM 归母 ≈ <strong>2.10 亿</strong>，与自算口径（2025H2 0.997 + 2026H1 1.107）吻合；按市值 ÷ 现价 98.61 反推总股本 ≈ <strong>6,312 万股</strong>（推算值，待与 IPO 发行公告／中报股本表核对）；⑥ 与同组 <strong>聚胶股份 301283</strong>（同为材料、同样增收不增利）对照看。数据源：蓝鲸/东财 08-24 中报简析（未与中报原件复核）、AKShare 日线（2026-09-19 取，不在本地 DB）</td>
+</tr>
+<tr>
+<td>603002</td>
+<td>宏昌电子</td>
+<td>宏昌电子材料股份有限公司（<strong>广州黄埔</strong>），1995-09-28 成立、<strong>2012-05-18 上交所上市</strong>，注册资金 113,407.8509 万元（总股本 <strong>11.34 亿股</strong>，全流通）；巨潮主营口径「电子级环氧树脂的生产和销售」，行业归为计算机、通信和其他电子设备制造业。<strong>2025 年报营收结构</strong>（本库 <code>data/db/603002.db</code>）：环氧树脂 <strong>19.61 亿（63.76%）</strong> + 覆铜板/半固化片 <strong>10.82 亿（35.18%）</strong>；细分液态环氧 10.81 亿（35.54%）、覆铜板/半固化片 10.82 亿（35.55%）、阻燃环氧 5.25 亿（17.26%）、固态 2.37 亿（7.79%）、溶剂 1.17 亿（3.85%）；<strong>国内 94.16%</strong>。2026H1 营收 <strong>21.86 亿（+64.83%）</strong>、归母 <strong>0.394 亿（+141.15%）</strong>、扣非 <strong>0.518 亿（+257.47%）</strong>、毛利率 <strong>9.38%（+2.77pct）</strong>、净利率 1.80%、ROE 1.13%、每股经营现金流 <strong>0.047 元</strong>、资产负债率 <strong>45.23%</strong>（上年同期 30.53%）；2025 全年营收 30.76 亿（+43.46%）、归母 0.354 亿（<strong>-30.10%</strong>）</td>
+<td><strong>进候选（待扫，⚠️ 高位高估值）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>）。⚠️ <strong>里海&quot;底部&quot;关明显不满足</strong>：现价 <strong>19.18</strong>，2026 年内区间 <strong>7.57~26.23</strong>（自低点 +153%，距高点仅 -27%），近 4 日换手 <strong>9.1%~11.1%</strong>（日成交约 1 亿股）；估值 <strong>市值 217.52 亿 / PE-TTM 372.28 / PB 6.25</strong>（09-19），TTM 归母自算 = 0.354 − 0.163 + 0.394 = <strong>0.585 亿</strong>，即&quot;变化已被定价&quot;。待核：① <strong>2026H1 分部数据未取到</strong>——须回中报原件拆环氧树脂 vs 覆铜板/半固化片的收入与毛利率，判断 +64.83% 增长是<strong>量（新产能投放）还是价（涨价）</strong>；② <strong>题材验证</strong>：覆铜板/CCL 与 AI·PCB 涨价叙事的关系，须证实其利润贡献（参照南网数字 301638 的「题材验证」条目）；③ <strong>税率异常</strong>：H1 利润总额 7382 万 → 净利 3939 万，所得税约 3443 万（实际税率约 46.6%），<strong>须核原因</strong>；④ <strong>现金流质量</strong>：2025 全年每股经营现金流仅 <strong>0.0164 元</strong>（约 0.19 亿）远低于归母 0.354 亿，H1 改善至 0.047 元；应收周转 92.6 天、存货 35.6 天，须看应收与存货占用；⑤ <strong>加杠杆</strong>：资产负债率 30.53%（2025H1）→ <strong>45.23%</strong>（2026H1），需核有息负债与在建工程（是否产能扩张）；⑥ Q2 单季才是改善主体（Q1 营收 9.89 亿/归母 <strong>46.85 万</strong>，Q2 营收 11.97 亿/归母 3892 万），须确认改善能否延续至 H2；⑦ 扣非 0.518 亿 &gt; 归母 0.394 亿（非经常损益约 <strong>-1240 万</strong>），利润<strong>不靠非经常收益</strong>撑，方向偏正面；⑧ 全流通 11.34 亿股，<strong>无解禁变量</strong>。数据源：本库 <code>data/db/603002.db</code>（fetcher 2026-09-19 拉，含年报口径营收结构）+ AKShare 巨潮公司概况、新浪日线、百度估值；<strong>2026H1 分部与中报原件均未复核</strong></td>
+</tr>
+<tr>
+<td>603193</td>
+<td>润本股份</td>
+<td><strong>驱蚊类 + 个人护理类消费品</strong>（「润本」品牌：电热蚊香液/驱蚊液 + 婴童护理）——巨潮公司概况主营业务口径；2013-12-30 成立、<strong>2023-10-17 上交所主板上市</strong>（次新，上市满三年约在 2026-10），注册地广州经济技术开发区新庄五路 3 号，法人代表赵贵钦，证监会行业「化学原料和化学制品制造业」；2026H1 营收 <strong>10.54 亿（+17.74%）</strong>、归母 <strong>2.25 亿（+20.03%）</strong>、扣非 <strong>2.17 亿</strong>、毛利率 <strong>60.52%（+2.51pct）</strong>、净利率 <strong>21.36%</strong>、ROE <strong>9.72%</strong>、每股经营现金流 <strong>0.47 元</strong>、资产负债率 <strong>8.20%</strong>、每股净资产 <strong>5.79 元</strong>；2025 全年营收 15.45 亿（+17.19%）、归母 3.15 亿（+4.78%）</td>
+<td><strong>进候选（待扫）</strong></td>
+<td>2026-09-19 用户点名入待选。待核：① <strong>收入结构未取到</strong>——驱蚊类 vs 个人护理类各自收入/毛利/增速须回 2026 中报原件补，且<strong>驱蚊有春夏季节性</strong>（H1 占比偏高），H1 数据不可直接外推全年；② <strong>渠道结构</strong>——线上（天猫/抖音/京东）直销占比与<strong>平台推广费率/流量成本</strong>变化，是日化新品牌的核心变量；③ <strong>增速趋势</strong>——2025H1 +20.31% → 2025 全年 +17.19% → 2026Q1 <strong>+11.27%</strong> → 2026H1 +17.74%，Q1 明显放缓需确认是季节性还是动能下降；④ <strong>现金流质量</strong>——每股经营现金流 0.47 元 vs EPS 约 0.56 元（2.25 亿 ÷ 4.05 亿股），现金流/净利约 0.85，须看应收与存货；⑤ <strong>低负债 + 类现金</strong>：资产负债率仅 8.20%，IPO 募投项目进度与产能投放<strong>待核</strong>；⑥ <strong>解禁时点（分仓关键）</strong>：流通股仅 <strong>1.0334 亿股</strong>（占总股本约 25.5%，总股本按注册资金 40,459.33 万元推得 ≈ 4.05 亿股），上市满三年首发限售解禁约在 <strong>2026-10-17</strong>，<strong>须回首发限售解禁公告核对</strong>；⑦ 位置与估值：现价 <strong>20.20</strong>（09-18 收盘，+2.18%、换手 3.10%），2026 年内区间 <strong>18.34~26.62</strong>（距高点约 -24%，<strong>中位偏下</strong>）；估值 <strong>总市值 81.73 亿 / PE-TTM 23.21 / PB 3.49</strong>（09-19 口径），TTM 归母自算 = 3.15 − 1.88 + 2.25 = <strong>3.52 亿</strong>（与市值 ÷ PE 反推吻合）；⑧ 与同组 <strong>丸美生物 603983</strong>（国货美妆，亦未扫）同属日化消费 + 线上渠道驱动，<strong>渠道与流量成本是同一变量</strong>，勿重复计为独立变化。数据源：AKShare 巨潮公司概况 + 同花顺财务摘要 + 新浪日线 + 百度估值（2026-09-19 取，<strong>未与中报原件复核</strong>，本地无 <code>data/db/603193.db</code>）</td>
+</tr>
+<tr>
+<td>603983</td>
+<td>丸美生物</td>
+<td>国货美妆（丸美主品牌 + 恋火彩妆），线上渠道驱动；<strong>2026-09-22 已扫</strong>：2026H1 营收 <strong>16.63 亿（-5.76%）</strong>、归母 <strong>1.55 亿（-10.86%）</strong>、扣非 <strong>1.13 亿（-32.13%）</strong>；Q2 营收 7.82 亿（<strong>-14.84%</strong>，降幅扩大）／归母 5445 万（+38.32%）；公司口径＝主动「<strong>以质换量</strong>」调整业务结构、控制达播节奏、阶段性淡化规模诉求；主品牌丸美稳健增长、<strong>恋火主动调整</strong></td>
+<td><strong>3 类 · 等大变化</strong>（原「进候选（已扫，⚠️ 变化为负）」；变化为负，按里海口径落 3 类＝等一个大的变化（收入端转正），动作＝定期公告级）</td>
+<td>待核：① <strong>收入端何时转正</strong>——H1 -5.76% 且 Q2 降幅扩至 -14.84%，Q2 利润 +38.32% 是<strong>降本型</strong>而非收入驱动，属&quot;负变化 + 待拐点&quot;；② <strong>扣非 -32.13% 远差于归母 -10.86%</strong>，非经常性损益约 4200 万的来源须回中报原件拆（决定是否含一次性）；③ 恋火调整进度与大单品矩阵（重组胶原等）收入占比；④ 营销费用率与线上流量成本（与同组 <strong>润本股份 603193</strong> 同一变量，勿重复计）；⑤ 位置与估值：现价 <strong>32.04</strong>（09-22 收盘，+4.13%），250 日区间 <strong>21.20~40.86</strong>（<strong>分位 55.1%</strong>、距高点 -21.6%，年内 -4.6%）、总市值 <strong>128.48 亿／PE-TTM 56.28／PB 3.80</strong> → 位置中性而估值偏高，市场未给&quot;困境&quot;定价。数据源：2026 中报简析（证券之星/新浪研报 08-29~09-07，<strong>未与中报原件复核</strong>）＋腾讯行情 09-22</td>
+</tr>
+<tr>
+<td>688548</td>
+<td>广钢气体</td>
+<td><strong>电子大宗气体</strong>：广州广钢气体能源股份有限公司（<strong>广州荔湾·白鹤洞街道芳村大道东 2 号广钢气体大厦</strong>），<strong>2023-08-15 科创板上市</strong>（发行价 13.15，首日 open 16.53／high 17.43／close <strong>12.87</strong>，<strong>首日破发</strong>），总股本 <strong>13.194 亿股</strong>（全流通）；国务院&quot;科改示范企业&quot;、国家级专精特新；产品为电子大宗气体六大品种（氮／氦／氧／氢／氩／二氧化碳）；<strong>现场制气（On-site）模式：在客户现场建大宗气站、公司拥有并运营、合同期通常 15 年</strong> ＋ 零售供气（Merchant，合同期 3-5 年）；纯度要求 <strong>ppb 级</strong>（通用工业气体为 ppm 级）；长期由外资垄断，<strong>公司是进入全球氦气供应链的第一家内资气体公司</strong>。2026H1 营收 <strong>13.331 亿（+19.62%）</strong>、营业成本 8.614 亿 → <strong>毛利率 35.4%</strong>（上年 26.4%）、销售／管理／财务／研发费用 0.234／0.985／0.130／0.580 亿、利润总额 <strong>3.011 亿（+115.97%）</strong>、归母 <strong>2.559 亿（+117.73%）</strong>、扣非 <strong>2.290 亿（+121.63%）</strong>、经营现金流 <strong>3.612 亿（-14.53%）</strong>、投资现金流 <strong>-5.845 亿</strong>、筹资 +2.291 亿、归母净资产 <strong>61.804 亿（+3.00%）</strong>、总资产 <strong>94.441 亿（+6.02%）</strong>、EPS <strong>0.19 元</strong>、加权 ROE <strong>4.17%</strong>（扣非 <strong>3.74%</strong>）、研发投入占营收 <strong>4.40%</strong></td>
+<td><strong>进候选（待扫，⚠️ 不在底部：正在被爆炒 5 日 +17.7%／换手 5 倍放大 + PE-TTM 102 倍 + 利润翻倍含氦气涨价与战略库存释放的一次性成分）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>；本地有中报原件但无 <code>data/db/688548.db</code>）。待核：① 🔴 <strong>利润翻倍的两个驱动必须拆开</strong>（中报 P7／P14 原件自述）：<strong>新建电子大宗气体项目陆续投产</strong>（可持续）＋ <strong>全球氦气供需格局变化导致氦气涨价</strong>（周期性）＋ <strong>公司&quot;有序释放战略库存&quot;</strong>（<strong>一次性</strong>）——须核氦气收入/毛利占比、战略库存规模与剩余量、氦气价格当前位置；<strong>高基数下 2027 年利润能否维持是关键</strong>；② ⚠️ <strong>估值已透支</strong>：市值 <strong>434.08 亿</strong>／PE-TTM <strong>102.37</strong>／PE 静 <strong>151.95</strong>／<strong>PB 7.02</strong>／市销率 <strong>16.42</strong>／PEG 6.30 —— 2025 全年归母仅 2.857 亿；③ ⚠️ <strong>位置不是底部</strong>：现价 <strong>32.90</strong>，近 200 日 <strong>12.10~57.31</strong>（2026 年内 14.53~57.31），距年内高点 -42.6%，但<strong>最近 5 日 27.96→28.40→29.27→30.35→32.90（+17.7%）</strong>、换手 1.10%→4.97%（<strong>4.5 倍</strong>）、成交额 4.05→21.10 亿（<strong>5.2 倍</strong>）——<strong>资金正在涌入，与&quot;跌透横住、无人问津&quot;完全相反</strong>；④ ⚠️ <strong>重资产高杠杆扩张</strong>：固定资产 <strong>41.610 亿</strong>（占总资产 <strong>44.06%</strong>）＋ 在建工程 <strong>13.671 亿</strong>（14.48%）＝ 55.3 亿（占总资产 58.5%），有息负债＝短期借款 7.569 亿 ＋ 长期借款 10.279 亿 ＝ <strong>17.85 亿</strong>，而<strong>货币资金仅 0.873 亿</strong>（0.92%），经营现金流 3.612 亿需覆盖 5.845 亿资本开支 → 缺口靠筹资（+2.291 亿）；须核在建项目清单、投产时间表与后续资本开支计划；⑤ <strong>历史并非稳定增长</strong>：归母 2023 <strong>3.196 亿</strong> → 2024 <strong>2.480 亿</strong>（<strong>下滑</strong>）→ 2025 2.857 亿 → 2026H1 2.559 亿；营收 2023 18.354／2024 21.035／2025 <strong>24.245 亿</strong> —— <strong>营收连增但利润 2024 年下滑</strong>，须核 2024 年利润下滑原因（价格？新项目爬坡？）；⑥ <strong>非经常性损益 2700 万</strong>（政府补助 318 万 ＋ 金融资产公允价值变动及处置损益 <strong>2148 万</strong>），占归母 10.6%，须核金融资产内容与持续性；⑦ 应收款项 7.426 亿（+24.74%，快于营收 +19.62%）、其他非流动金融资产 2.613 亿（<strong>+342.41%</strong>）、其他非流动资产 2.129 亿（+65.91%，预付设备及工程款）三项异动须核；⑧ <strong>客户集中度与合同结构</strong>：&quot;前五名客户&quot;未在文本层命中（疑为图片页），须回原件核——现场制气 15 年长约的客户是谁（半导体／面板厂）、单客户依赖度、合同到期分布；⑨ <strong>氦气进口依存度高、供应链稀缺</strong>（公司自述），地缘与价格双风险；⑩ 数据源。数据源：<code>data/广州/688548_广钢气体_2026中报.pdf</code>（<strong>本地原件</strong>，P6-7 主要会计数据／P25 利润表与资产状况／P26 负债状况／P9-14 行业与业务模式／P168-169 营收成本分解）＋ AKShare 新浪财务摘要、新浪日线（qfq，首日 2023-08-15）、东财 <code>stock_value_em</code>（2026-09-18 收盘价）</td>
+</tr>
+<tr>
+<td>688625</td>
+<td>呈和科技</td>
+<td><strong>高分子材料助剂（成核剂／合成水滑石／抗氧剂／复合助剂）＋ 电子材料</strong>：呈和科技股份有限公司（<strong>广州白云·北太路 1633 号广州民营科技园科强路 2 号</strong>），<strong>2021-06-07 科创板上市</strong>（首日 open 19.21／close 19.58），总股本 <strong>2.597 亿股</strong>（全流通）；成核剂获<strong>工信部制造业单项冠军</strong>、水滑石获广东省制造业单项冠军；<strong>首家通过美国 FDA 食品接触物质审批的国内企业</strong>；核心产品系 <strong>LyondellBasell、Novolen 及 Unipol 全球聚丙烯主流工艺装置指定添加助剂</strong>；客户为中石化、中石油、云天化、巨正源等；有效境内外专利 <strong>118 项</strong>（发明 85 项），核心技术对应产品收入占比 <strong>90.31%</strong>。2026H1 营收 <strong>4.815 亿（+2.99%）</strong>、营业成本 2.658 亿 → <strong>毛利率 44.79%</strong>（公司自述）、销售／管理／财务／研发费用 0.256／0.399／0.019／0.230 亿、利润总额 <strong>1.435 亿（-15.78%）</strong>、归母 <strong>1.287 亿（-12.57%）</strong>、扣非 <strong>1.059 亿（-22.44%）</strong>、经营现金流 <strong>1.634 亿（+4.66%）</strong>、投资 <strong>-2.400 亿</strong>、筹资 <strong>+2.035 亿</strong>、归母净资产 <strong>16.439 亿（+9.20%）</strong>、总资产 <strong>35.137 亿（+14.51%）</strong>、EPS <strong>0.50 元</strong>、加权 ROE <strong>8.24%</strong>（扣非 6.78%）、研发投入占营收 <strong>4.78%</strong></td>
+<td><strong>进候选（待扫，⚠️ 不在底部：10 日 +33.7%、PB 11.17、PE-TTM 71 倍 + 基本面拐头向下：营收增速降至 2.21%、归母 -12.57%、扣非 -22.44% + 炒作主线电子材料仅占营收 5.94% 且毛利率仅 24.1%）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>；本地有中报原件但无 <code>data/db/688625.db</code>）。待核：① 🔴 <strong>炒作主线与基本面严重脱节</strong>：<strong>电子材料 2026H1 收入仅 2,860 万、占总营收 5.94%、毛利率仅 24.1%</strong>（主业高分子材料助剂 4.062 亿、毛利率 46.4%；另有贸易产品 4,653 万）——须核电子级聚苯醚树脂／电子级阻燃剂的产能、在手订单、客户与爬坡节奏，能否支撑 183.58 亿市值；② 🔴 <strong>短期借款 10.952 亿</strong>（上年末 8.540 亿，半年 <strong>+2.41 亿</strong>）vs 货币资金 <strong>7.692 亿</strong>、归母净资产 16.439 亿——须核借款用途（并购？扩产？）与利息负担上升幅度；③ 🔴 <strong>商誉由 1,936 万暴增至 1.610 亿（+731.62%）</strong>，公司说明为&quot;收购子公司，合并过程中确认的商誉&quot;——<strong>中报未明确收购标的</strong>，须回原件核收购对象、对价、业绩承诺与整合风险；④ ⚠️ <strong>增长拐头</strong>：营收增速由 2025 年的 13-15% 降至 <strong>2.21%</strong>，净利润 <strong>-12.10%</strong>，营业利润率由 2025 年 33.69% 降至 <strong>29.83%</strong>；公司自述境外&quot;欧洲及东南亚客户开工不足、销售数量减少、运输保费等成本提高、毛利承压&quot;，境外收入 1.180 亿（-1.29%）占主营 <strong>24.52%</strong>、汇兑损失 791 万；⑤ <strong>股份支付</strong>：Q2 确认股份支付税后费用 <strong>2,010.81 万</strong>，剔除后归母 <strong>1.488 亿（+1.08%）</strong>——即<strong>剔除一次性会计影响后经营层面几乎零增长</strong>，销售费用 +54.74%、管理费用 +57.18% 均源于此；⑥ ⚠️ <strong>应收账款账面余额 4.077 亿，占当期营收 84.67%</strong>（+38.47%，公司说明&quot;主要是标准仓单应收账款增加&quot;）；另有应收银行承兑汇票 <strong>1.097 亿</strong>——须核<strong>标准仓单业务性质</strong>（贸易？套保？）与账龄、回款；⑦ <strong>会计政策追溯调整</strong>：2025 年数据因标准仓单交易会计处理新规追溯调整，上年同期 EPS <strong>调整前 0.78 → 调整后 0.57</strong>——须核调整范围与跨期可比性；⑧ ⚠️ <strong>估值</strong>：市值 <strong>183.58 亿</strong>／PE-TTM <strong>71.36</strong>／PE 静 66.57／<strong>PB 11.17</strong>／市销率 18.52／PEG 7.11；⑨ ⚠️ <strong>位置不是底部</strong>：现价 <strong>70.70</strong>，近 200 日 <strong>25.68~99.94</strong>（2026 年内 29.56~99.94，距高点 -29.3%），<strong>最近 10 日 52.89→70.70（+33.7%）</strong>，换手率 2.39%→<strong>4.80%</strong>、成交额 3.44→<strong>8.65 亿</strong>；⑩ 复合助剂&quot;<strong>生产原理属行业共性技术、进入门槛相对较低、竞争较激烈</strong>&quot;（公司自述）；主要原材料芳香醛、铝盐 A、抗氧剂需外购；⑪ ✅ <strong>历史业绩优秀（须与当下区分）</strong>：营收 2020 4.603／2021 5.762／2022 6.949／2023 7.996／2024 8.732／<strong>2025 9.774 亿</strong>；归母 2020 1.165／2021 1.570／2022 1.952／2023 2.261／2024 2.503／<strong>2025 2.758 亿</strong>；ROE 2023 17.71%／2024 18.39%／2025 <strong>18.32%</strong>；⑫ 前五名客户未在文本层命中（疑图片页），须回原件核客户集中度。数据源：<code>data/广州/688625_呈和科技_2026中报.pdf</code>（<strong>本地原件</strong>，P7-8 公司情况与主要会计数据／P21 经营讨论／P33-36 风险与资产负债／P149 营收成本分解／P61-62 资产负债表科目）＋ AKShare 新浪财务摘要、新浪日线（qfq，首日 2021-06-07）、东财 <code>stock_value_em</code>（2026-09-18 收盘价）</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.2 医药生物（6 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>002030</td>
+<td>达安基因</td>
+<td>分子诊断（IVD），2026H1 营收 3.28 亿（-3.17%）、归母 <strong>-1.20 亿</strong>（亏损收窄，上年同期 -1.82 亿）；股价 5.28 元</td>
+<td><strong>3 类 · 等大变化</strong>（原「进候选」；无正向变化，按里海口径落 3 类＝等一个大的变化，动作＝定期公告级）</td>
+<td>待核：亏损收窄来自费用压缩还是收入端改善、后疫情检测需求回落后的主业重构</td>
+</tr>
+<tr>
+<td>01681</td>
+<td>康臣药业</td>
+<td><strong>中药（肾科为核心）</strong>：康臣药业集团，广州黄埔（广州经济技术开发区东区东鹏大道 71 号）。2025 年报分部：肾科药物 24.02 亿（<strong>70.3%</strong>）＋ 玉林制药 4.73 亿（13.8%）＋ 妇儿药物 3.76 亿（11.0%）＋ 医用对比剂 1.88 亿（5.5%）。<strong>2026H1（2026-08-26 公告）</strong>：营收 <strong>17.85 亿元（+13.8%）</strong>、权益股东应占溢利 <strong>5.95 亿元（+19.5%）</strong>、基本 EPS <strong>0.71 元（+20.3%）</strong>；宣派中期股息 <strong>每股 0.38 港元</strong>（总额约 2.75 亿元）；期内回购 <strong>259.8 万股</strong>、代价约 3,545.6 万港元。2025 全年：营收 34.17 亿（+15.17%）、毛利 26.67 亿（<strong>毛利率 78.05%</strong>）、归母 10.78 亿（+18.41%）、净利率 <strong>31.87%</strong>、ROE <strong>24.98%</strong>、ROIC <strong>43.96%</strong>、资产负债率 <strong>24.53%</strong>、流动比率 3.22、EPS 1.27 元、BPS 5.41 元；分红连续 10 年以上（2021-2025 年 DPS 0.30／0.30／0.75／0.60／<strong>0.73</strong> 港元）</td>
+<td><strong>进候选（待扫）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>；本地有 <code>data/db/01681.db</code>，含三大表至 2025 年报 + 行情至 2026-07-30）。待核：① <strong>位置</strong>：现价 <strong>13.31 港元</strong>（09-18 收盘，+1.06%），近 250 日 <strong>11.97~18.42</strong>（距高点约 -28%，中位偏下）——<strong>不是「跌透横住」，是稳定型</strong>；② <strong>估值粗算（⚠️ 股本/币种待核）</strong>：按 2025 年末权益 48.38 亿 ÷ BPS 5.41 反推总股本 ≈ <strong>8.94 亿股</strong> → 总市值 ≈ <strong>119 亿港元</strong>；TTM 归母 = 10.78 − 4.98 + 5.95 = <strong>11.75 亿元</strong> → 按 0.865（HKD/CNY，2026-08-28 本地 <code>fx_rates.db</code>）换算 <strong>PE-TTM 约 8.8 倍</strong>、<strong>PB 约 1.3</strong>；近 12 个月股息 0.33 + 0.38 = 0.71 港元 → <strong>股息率约 5.3%</strong>；③ ⚠️ <strong>币种必须回原件核</strong>：东财标注 HKD，但收入 34.17 亿与年报人民币数吻合，判断财务为人民币原值、股价为港元，PE/市值均按 0.865 换算，<strong>须回 2026 中报原件核对币种与总股本</strong>；④ <strong>外生政策变量</strong>：中药集采／医保谈判／配方颗粒政策，须核核心品种（肾科 70.3%）是否已被纳入集采及降价幅度；⑤ <strong>2026H1 分部数据未取到</strong>（AKShare 仅到 2025 年报），须回中报原件补肾科/玉林/妇儿/对比剂的收入与增速；⑥ <strong>现金流质量</strong>：2025 年 OCF/营收 35.46%，须核 2026H1 经营现金流与应收账期（中药流通常见压货）；⑦ <strong>回购 + 分红能否持续</strong>（H1 回购 3,545.6 万港元、中期息 0.38 港元，占 H1 归母约 46%）；⑧ 与同组 <strong>白云山 00874</strong>（未扫，港股中药）同属中药，<strong>集采与中药材价格是同一变量</strong>，勿重复计为独立变化。数据源：<code>data/db/01681.db</code>（income/balance/cashflow/indicators/dividend/kline，last_fetch 2026-07-31，<strong>不含 2026H1</strong>）＋ 新浪港股 2026-08-26 康臣药业中期业绩公告转载（营收 17.85 亿／归母 5.95 亿／EPS 0.71／中期息 0.38 港元／回购 259.8 万股）＋ AKShare 港股日线（2026-09-19 取，09-18 收盘 13.31）</td>
+</tr>
+<tr>
+<td>300482</td>
+<td>万孚生物</td>
+<td>POCT 快速检测（试剂 + 仪器），IVD 出海占比高；<strong>2026-09-22 已扫</strong>：<strong>2025 全年营收 20.87 亿（-31.91%）、归母 -6302.49 万（由盈转亏，上年 5.62 亿）</strong> → TTM 亏损、<strong>PE 不可用</strong>；2026H1 营收 <strong>10.39 亿（-16.63%）</strong>、归母 1.23 亿（<strong>-35.24%</strong>）、扣非 8917.96 万（<strong>-41.92%</strong>）、<strong>经营现金流 4.24 亿</strong>（上年同期 -5631 万，<strong>+853%</strong>）；<strong>Q2 营收 4.57 亿（+2.56%，单季转正）</strong>、归母 3812 万（+59912.62%，<strong>基数极低该同比无判断价值</strong>）；成因＝后疫情需求回落 + 集采深化 + 终端降价 + 产品结构变化致毛利率下降，研发与销售费用仍维持高位；战略转向「价值驱动」（化学发光／分子诊断／病理）</td>
+<td><strong>进候选（已扫，⚠️ 困境 + 位置最低档，但变化未确认）</strong></td>
+<td>待核：① <strong>拐点验证</strong>——Q2 单季营收 +2.56% 是否连续改善起点，<strong>须看 Q3 能否第二季转正</strong>（H1 仍双降，当前只能算&quot;边际改善信号&quot;）；② <strong>2025 年亏损成因</strong>：是否含商誉/存货/应收减值等一次性（须回 2025 年报原件），决定 TTM 亏损是&quot;洗大澡&quot;还是持续恶化；③ <strong>现金流 +853% 的构成</strong>：4.24 亿是终端纯销回款改善，还是压货/应收压缩/应付延长的周转腾挪，须回中报现金流量表附注；④ 集采与检验降价后续影响、海外收入占比与增速（未取到分部数据）；⑤ 位置与估值：现价 <strong>16.56</strong>（09-22 收盘 +0.18%），250 日区间 <strong>15.40~26.29</strong> → <strong>分位 10.7%</strong>、距高点 -37.0%、年内 -17.9%；<strong>PB 1.45</strong>、总市值 77.53 亿、PE 不可用（TTM 亏损）；⑥ 与 <strong>达安基因 002030、金域医学 603882</strong> 同受集采/医保控费变量驱动，勿重复计为独立变化。数据源：2025 年报（东财图解财报/经济参考报 2026-01、04）+ 2026 中报（蓝鲸/东财/证券之星 08-23~24，<strong>未与原件复核</strong>）＋腾讯行情 09-22</td>
+</tr>
+<tr>
+<td>603233</td>
+<td>大参林</td>
+<td><strong>医药零售连锁</strong>（广州荔湾）：药品/中药饮片/参茸滋补/保健品/医疗器械/个人护理/家居用品连锁零售；大参林医药集团股份有限公司，1999-02-12 成立、<strong>2017-07-31 上交所上市</strong>，注册资金 113,885.452 万元（总股本 <strong>11.39 亿股</strong>，新浪日线流通股 11.3886 亿股 → <strong>基本全流通</strong>）；注册地广州市荔湾区龙溪大道 410 号。2026H1 营收 <strong>139.91 亿（+3.46%）</strong>、归母 <strong>9.27 亿（+16.10%）</strong>、扣非 <strong>9.31 亿（+18.05%）</strong>、毛利率 <strong>35.60%（+0.74pct）</strong>、净利率 <strong>7.16%（+0.82pct）</strong>、ROE <strong>11.59%</strong>、每股经营现金流 <strong>1.13 元</strong>（2025H1 为 2.56 元，<strong>同比 -56%</strong>）、资产负债率 65.05%。门店 <strong>18,726 家</strong>（直营 10,740 + 加盟 7,986），H1 净增 <strong>968 家</strong>（自建 273、收购 146、加盟 696、关闭 147）</td>
+<td><strong>进候选（待扫，⚠️ 变化偏慢）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>，本地无 <code>data/db/603233.db</code>）。<strong>利润端修复是主线</strong>：净利率 3.70%（2024）→ 4.94%（2025）→ <strong>7.16%（2026H1）</strong>，Q2 单季营收 70.18 亿（+6.87%）/ 归母 4.16 亿（<strong>+22.99%</strong>）提速；门店扩张重启（闭店从出清期回归常态，2024H2 起进入&quot;省内加密期&quot;）。⚠️ 但<strong>营收几乎零增长</strong>（+3.46%，零售分部仅 <strong>+1.37%</strong>），改善靠毛利率 +0.74pct 与销售费用率 -0.63pct（20.89%）——<strong>属&quot;降本增效&quot;型慢变量</strong>，与珠江啤酒 002461 同类。待核：① <strong>改善可持续性</strong>：零售毛利率 +0.86pct 归因&quot;供应链整合 + 自有品牌占比提升 + 促销数字化&quot;，须回中报原件拆&quot;结构性 vs 一次性&quot;；② <strong>品类结构在恶化</strong>：中参药材 11.71 亿（<strong>-11.18%</strong>，靠毛利率 +4.37pct 补偿）、非药品 14.06 亿（-1.01%），高毛利品类收入下滑须核（消费降级？参茸需求？）；③ <strong>口径差</strong>：分产品加总 135.39 亿（中西成药 109.62 + 中参药材 11.71 + 非药品 14.06）vs 营收 139.91 亿，<strong>差 4.52 亿待核</strong>；④ <strong>加盟模式双刃</strong>：加盟及分销 23.83 亿（+11.53%，占 17.0%）毛利率仅 <strong>10.13%</strong>，而 H1 净增门店中加盟占 696/968（72%）→ 低毛利业务占比上升会稀释整体毛利，且加盟店合规/质量风险；⑤ <strong>现金流背离</strong>：每股经营现金流 2.56 → <strong>1.13 元</strong>（约 29.1 亿 → 12.9 亿，同比 -56%）而净利 +16%，须核（存货/应付账款周期/加盟赊销）；⑥ <strong>商誉</strong>：并购持续（H1 收购 146 家），商誉余额与减值风险待查（年报附注，未取到）；⑦ <strong>外生政策变量</strong>：医保门诊统筹、个人账户改革、药品比价、线上药房（美团/京东）冲击——方向不明，属不可控变量；⑧ 分红未取（现金流型标的，股息率关键）；⑨ 估值对照（09-19）：<strong>PE-TTM 15.35 为四家最低</strong>（益丰 603939 15.67、老百姓 603883 22.20、一心堂 002727 23.46），<strong>PB 2.78 为四家最高</strong>（益丰 2.32、老百姓 1.37、一心堂 0.85）→ PB/PE 隐含 <strong>TTM ROE 18.1%</strong>，为四家最高（益丰 14.8%、老百姓 6.2%、一心堂 3.6%）；TTM 归母自算 = 12.35 − 7.98 + 9.27 = <strong>13.64 亿</strong>（与市值 209.32 亿 ÷ PE 15.35 反推吻合）。数据源：AKShare 巨潮公司概况 + 同花顺财务摘要 + 新浪日线 + 百度估值（2026-09-19 取）；分部/门店/费用率来自<strong>东吴证券 2026-08-26 半年报点评</strong>（新浪财经转载，<strong>未与中报原件复核</strong>；原件见巨潮 2026-08-25 公告）</td>
+</tr>
+<tr>
+<td>603882</td>
+<td>金域医学</td>
+<td><strong>第三方医学检验（ICL）龙头</strong>（广州国际生物岛）：为医院/体检机构提供医学检验与病理诊断外包服务，近年主打<strong>特检</strong>（实体肿瘤、神经免疫、血液病、感染）+ <strong>&quot;医检 4.0 / AI IN ALL&quot;</strong>（域见医言大模型、DeepGEM 病理多模态、智能体&quot;小域医&quot;）；2026H1 营收 <strong>28.84 亿（-3.76%）</strong>、归母 <strong>1.90 亿（+324.27%，扭亏）</strong>、扣非 <strong>2.03 亿（+307.38%）</strong>、毛利率 <strong>36.71%（+2.78pct）</strong>、净利率 7.34%、ROE 2.92%、每股经营现金流 0.52 元、资产负债率 29.42%；Q2 单季营收 15.33 亿（<strong>+0.19%</strong>，降幅收窄）；2025 全年营收 60.30 亿（-16.12%）、归母 <strong>-1.73 亿</strong>（亏损）</td>
+<td><strong>进候选（待扫）</strong></td>
+<td>2026-09-19 用户点名进候选。待核：① <strong>利润修复的成色</strong>——H1 扭亏主因毛利率 +2.78pct 与降本（AI/智能体累计节约 2.3 万人天、人均单产 +5.81%、智慧实验室人效 +15.9%），须回中报原件确认<strong>是否含信用/资产减值冲回或一次性收益</strong>（扣非 2.03 亿 &gt; 归母 1.90 亿，非经常项为负，方向偏正面但仍需拆）；② <strong>营收尚未转正</strong>（-3.76%），Q2 +0.19% 是否真企稳需 Q3 验证；ICL 受<strong>医保控费、检验项目降价/集采</strong>影响，属外生政策变量（与融捷 002192、亚钾 000893 同为&quot;外生变量决定利润&quot;，但方向相反——此处是政策压价）；③ <strong>PE-TTM 127.52 不可用</strong>（TTM 归母仅约 1.02 亿 = −1.73 + 0.848 + 1.90，与市值÷PE 反推吻合），须用 <strong>PB 2.06</strong> + 正常化盈利（2021-2022 高点的净利与 ROE 待查）衡量；④ <strong>应收账款与减值未取到</strong>——历史亏损与应收减值相关，须查应收/营收比与账龄；⑤ 经营侧变化（21 财经 08-25）：三级医院收入占比 <strong>54.37%（+3.19pct）</strong>、高端民营收入 <strong>+63.84%</strong>、合作共建实验室超 <strong>800 家</strong>（+8.7%）、累计精准医学中心近 <strong>110 家</strong>、县域医共体近 <strong>100 个</strong>、特检（感染探针捕获/肿瘤多基因/全外显子）增长 10%~40%；⑥ 位置：现价 <strong>28.01</strong>（09-18 收盘，当日 +3.1% 且换手放大至 3.43%），年内区间 <strong>22.16~37.03</strong>（距高点约 -24%，<strong>中位偏下</strong>）；⑦ 估值（09-18）：总市值 <strong>129.76 亿</strong>、PE-TTM 127.52、<strong>PB 2.06</strong>；流通股本 4.58 亿股。数据源：东方财富转 21 世纪经济报道 2026-08-25 中报解读、证券之星/新浪中报简析、AKShare 同花顺财务摘要 + 新浪日线 + 百度估值（2026-09-19 取，<strong>未与中报原件复核</strong>，本地无 <code>data/db/603882.db</code>）</td>
+</tr>
+<tr>
+<td>688177</td>
+<td>百奥泰</td>
+<td><strong>生物药（生物类似药 + 创新药）</strong>：广州百奥泰生物制药股份有限公司（<strong>广州黄埔·国际生物岛螺旋二路 18 号</strong>），<strong>2020-02-21 科创板上市</strong>（首日收盘 60.20），总股本 <strong>4.1408 亿股</strong>；已上市产品 <strong>格乐立®（阿达木单抗 BAT1406）／普贝希®/Avzivi®/Bevyx®（贝伐珠单抗 BAT1706）／施瑞立®/Tofidence®（托珠单抗 BAT1806）</strong>；License-out：Hikma（美国，2021-08 签署，2024-07 收 2000 万美元首付款）、STADA（2024-05）、Gedeon Richter 吉瑞医药（BAT2206 乌司奴单抗，2024-10）、Avalon Pharma（2026-02-03），另有 Cipla Gulf／Biomm（巴西）／Mega Lifesciences（印尼）／Macter（巴基斯坦、阿富汗）等区域合作。2026H1 营收 <strong>5.185 亿（+17.35%）</strong>、营业成本 1.011 亿 → <strong>毛利率 80.5%</strong>、研发费用 <strong>4.684 亿（+34.30%，占营收 90.3%）</strong>、销售费用 1.592 亿（+22.81%）、归母 <strong>-2.520 亿</strong>（上年 -1.249 亿，<strong>亏损扩大 1.27 亿</strong>）、扣非 -2.540 亿、经营现金流 <strong>+1.450 亿</strong>（上年 -81.43 万）、归母净资产 <strong>1.239 亿</strong>（上年同期 3.760 亿，<strong>-67.04%</strong>）、总资产 25.749 亿、资产负债率 <strong>95.19%</strong>、EPS -0.61 元、加权 ROE <strong>-100.77%</strong></td>
+<td><strong>进候选（待扫，⚠️ 持续亏损扩大 + 净资产仅剩 1.24 亿）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>；本地有中报原件但无 <code>data/db/688177.db</code>）。待核：① ⚠️ <strong>最大的看点也是最不确定的点 = 待确认授权款</strong>：资产负债表中 <strong>合同负债 9.510 亿</strong>（占总资产 36.93%，+33.89%，公司注明&quot;主要系收到药品权益转让款&quot;）＋<strong>其他非流动负债 1.953 亿</strong>（+34.87%，&quot;长期待确认授权许可收入的合同款&quot;）＝ <strong>11.46 亿待确认收入</strong>，为 2026H1 营收 5.185 亿的 <strong>2.2 倍</strong>；须核<strong>每笔授权的金额、确认条件与确认节奏</strong>（Hikma／STADA／吉瑞／Avalon 各笔分别多少、何时转收入）——这是未来收入的来源，也是利润表最大的调节项；② ⚠️ <strong>净资产仅剩 1.239 亿</strong>：半年亏 2.52 亿，按此速度<strong>净资产可支撑不足半年</strong>；资产负债率 95.19%（2025 年末 83.56%、2025H1 74.05%），但其中 9.51 亿为合同负债（非真负债），<strong>真实偿付压力须剔除合同负债后重算</strong>（有息负债＝短期借款 1.049 亿 ＋ 长期借款 4.867 亿 ≈ 5.9 亿，货币资金仅 3.354 亿）；③ ⚠️ <strong>再融资风险</strong>：投资现金流 -2.277 亿（永和创新产业基地在建 0.978 亿）＋ 筹资现金流 +2.014 亿（借款 +3615.90%），持续失血下<strong>增发/可转债稀释是大概率</strong>，弱者视角的最坏情况难承受；④ <strong>亏损为什么扩大</strong>：营收 +17.35% 而亏损翻倍，主因<strong>研发费用 +34.30%（+1.196 亿）</strong>；须核在研管线构成与资本化政策（全部费用化）；⑤ <strong>盈利史</strong>：2020 上市以来仅 <strong>2021 年盈利 0.819 亿</strong>（靠授权），2022 -4.804 亿 / 2023 -3.945 亿 / 2024 <strong>-5.103 亿</strong> / 2025 -3.319 亿 / 2026H1 -2.520 亿，<strong>累计亏损巨大</strong>；⑥ <strong>收入质量待拆</strong>：5.185 亿营收中药品销售 vs 授权许可收入确认各多少未取到（分部附注未提取到），须回中报原件核；⑦ <strong>费用率 128.39%</strong>（新浪口径，费用是营收的 1.28 倍），销售费用率 30.7%，生物类似药<strong>集采降价与同类竞争</strong>（阿达木单抗/贝伐珠单抗国内玩家众多）是持续压力；⑧ <strong>估值</strong>：市值 <strong>71.22 亿</strong>／PE-TTM <strong>-15.52</strong>（亏损，无意义）／<strong>PB 57.46</strong>（因净资产仅 1.24 亿）／市销率 7.04 —— <strong>PB 与 PE 均不可用</strong>，只能按管线与授权款给估值；⑨ 数据源。数据源：<code>data/广州/688177_百奥泰_2026中报.pdf</code>（<strong>本地原件</strong>，P7 主要会计数据／P37 利润表／P38-39 资产负债重大变动／P62 授权协议附注／P12-13 产品线）＋ AKShare 新浪财务摘要、新浪日线（qfq，首日 2020-02-21）、东财 <code>stock_value_em</code>（2026-09-19 取）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>组内提示：<strong>达安基因 002030、万孚生物 300482</strong>（IVD）＋<strong>金域医学 603882</strong>（ICL 第三方检验）受<strong>集采／医保控费／检验降价</strong>同一政策变量驱动；<strong>大参林 603233</strong>（零售连锁）受门诊统筹／比价与线上分流影响；<strong>百奥泰 688177</strong>（生物药）与<strong>康臣药业 01681</strong>（港股，中成药＋造影剂）各自看品种与集采。勿把政策变量重复计为多个独立变化。 另：2.2 pass 档中的 <strong>688393 安必平</strong>（病理诊断，属 IVD）如需扩组，可调回本组重扫。</p>
+</blockquote>
+<h4>2.1.3 机械设备（4 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>002209</td>
+<td>达意隆</td>
+<td>饮料包装机械整线（可口可乐/百事/达能/娃哈哈/统一等认证供应商，出口 50+ 国家）；PE(TTM) 17.45、<strong>3 年分位 0.14%</strong>；2026H1 营收 11.20 亿（+17.01%）、归母 1.19 亿（+31.24%）</td>
+<td><strong>进候选（跟踪）</strong></td>
+<td>待核：① 增长来自出海还是国内饮料厂扩产（变化是否已被定价）；② 订单可见度与单季收入确认波动（Q1 曾季节性下滑）；③ 市值/股本未取到</td>
+</tr>
+<tr>
+<td>002833</td>
+<td>弘亚数控</td>
+<td>板式家具机械龙头（封边机/数控钻/加工中心），2026H1 营收 15.03 亿（+21.75%）、扣非 2.34 亿（+14.4%）、经营现金流 3.58 亿（+48.7%）；境外 5.59 亿（+31.35%，占 37.2%，半年新高）；<strong>变化真实（第 2 类业绩拐点+第 3 类海外第二曲线）但已被定价</strong>：8/27 业绩会 50 家机构调研、8/30 卖方研报已出、PE-TTM 17.3 / PB 2.7 / 市值 76 亿（09-17）</td>
+<td><strong>跟踪（变化已定价，非买点）</strong></td>
+<td>家具设备是地产后周期，等板块杀估值回底部区（参照 2025 年下行预演）且海外/新产能逻辑未被证伪——届时「简单✓+底部✓+变化仍在」三者齐备再议；数据源：腾讯财经/证券时报/东财（2026-09-17 检索，不在本地 DB）</td>
+</tr>
+<tr>
+<td>300503</td>
+<td>昊志机电</td>
+<td><strong>电主轴</strong>（PCB 钻孔机 / 加工中心）＋ 机器人核心部件（谐波减速器 / 编码器）；<strong>2026-09-18 已扫</strong>：股价 <strong>63.1 元</strong>（09-15 收盘）、PE-TTM <strong>68.02</strong>、近 5 年分位 <strong>64.82%</strong>（属&quot;高位加速&quot;而非底部），2026H1 归母同比 <strong>+266.57%</strong> 已在价内，支撑叙事的机器人部件仅占主营 <strong>1.48%</strong></td>
+<td><strong>进候选（已扫 · 用户 09-18 复核要求不划掉）</strong></td>
+<td>原判 pass 的三条理由保留（高位加速 / 变化已被定价 / 机器人部件占比过小）。回到可买的触发条件：① 机器人部件收入占比从 1.48% 提升到可验证量级并有订单与客户披露；② 股价回到底部区（PE 与分位显著回落）而变化仍在；③ 主业（机床/电主轴）景气独立好转。依据见存档页</td>
+</tr>
+<tr>
+<td>688090</td>
+<td>瑞松科技</td>
+<td><strong>机器人自动化生产线系统集成（汽车焊装细分头部）</strong>：机器人／智能技术／高端智能装备研发设计制造，提供柔性化、数字化、智能化成套系统解决方案（中日合资瑞松北斗、中德合资瑞松威尔）；2026H1 营收 <strong>6.25 亿（+71.67%）</strong>、归母 <strong>4184.41 万</strong>（上年同期 <strong>-128.77 万</strong>，扭亏）、扣非 <strong>3902.24 万</strong>（上年 -315.00 万）、利润总额 4924.59 万（+1945.76%）、经营现金流 <strong>1.055 亿（+2142.94%）</strong>、毛利率 <strong>22.98%（+2.46pct）</strong>、ROE 4.53%、资产负债率 <strong>50.06%</strong>（2025H1 40.73%）；分产品：机器人自动化生产线 <strong>5.332 亿（85.3%）</strong>／机器人工作站 0.605 亿（9.7%）／配件及其他 0.314 亿（5.0%）；分地区：西北 <strong>1.966 亿（31.5%）</strong>／华东 1.560 亿／华南 1.423 亿／海外 0.789 亿（12.6%）；第二增长曲线 = <strong>高精高速六轴机器人 PLR</strong>（2026-01 投产下线，光通信／半导体显示／EMS 均为小批量）</td>
+<td><strong>进候选（待扫，⚠️ 高位高估值 + 减持窗口）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>，本地无 <code>data/db/688090.db</code>）。待核：① ⚠️ <strong>里海「底部」关明显不满足</strong>：现价 <strong>86.61</strong>（09-18 收盘，单日 <strong>+10.25%</strong>、换手 <strong>8.07%</strong>、成交额 10.62 亿），2026 年内 <strong>34.17~115.85</strong>（自低点 <strong>+153%</strong>，距高点 -25%）；估值 <strong>市值 137.47 亿／PE-TTM 251.41／PB 14.64／市销率 11.40</strong>（TTM 归母自算 = 1154.75 + 128.77 + 4184.41 = <strong>5467.93 万</strong>，与市值 ÷ PE 反推吻合）——属「<strong>变化已被定价</strong>」；② ⚠️ <strong>股东减持计划 2026-09-23 ~ 2026-12-22</strong>（09-15 机构调研披露，<strong>股东与数量未披露</strong>），处高位且减持窗口下周开启，<strong>分仓节奏的关键变量</strong>；③ ⚠️ <strong>五年营收横盘</strong>：2021-2025 营收 9.31／10.06／10.16／8.87／<strong>9.45 亿</strong>，归母 2558 万／<strong>-6273 万</strong>／4924 万／1125 万／<strong>1155 万</strong>——利润极薄且波动，须判断 2026H1 的 +71.67% 是<strong>订单周期兑现还是趋势起点</strong>；④ <strong>增长来源</strong>：西北 1.97 亿（+37.76%）＋海外 0.789 亿（+60.55%）驱动，新拓展卡特彼勒／数码模、加深西部数据／春风动力／江门豪爵——须核<strong>在手订单与新签订单</strong>（公司 09-15 明确<strong>未给全年指引</strong>）；⑤ <strong>项目制非标</strong>：收入 69.8% 按「某一时段内」确认（4.361 亿），须看合同负债／存货／发出商品与验收周期；资产负债率一年内 +9.3pct，须核有息负债与合同资产；⑥ <strong>股本变动</strong>：2026H1 由 1.2237 亿股增至 <strong>1.5900 亿股</strong>（资本公积转增，约每 10 股转增 3 股），所有每股指标须按新股本口径；⑦ <strong>利润含金量</strong>：扣非 3902 万 &lt; 归母 4184 万、非经常损益 282.17 万；扣除股份支付影响净利润 4469.48 万；货币资金 5.77 亿；⑧ <strong>第二曲线须证实</strong>：PLR 六轴机器人公司自述「业绩贡献占比还不是很大」，光通信（全球连接器龙头供应资质、MPO 设备过验证）／半导体显示（两家龙头小批量复购）／EMS 小批量订单均未到收入量级；⑨ 与同组 <strong>昊志机电 300503</strong>（机器人部件仅占主营 1.48%）、<strong>凌玮科技 301373</strong>、<strong>新莱福 301323</strong> 同处「设备／材料」层，<strong>机器人与 AI 资本开支是同一变量</strong>，勿重复计为独立变化。数据源：<code>data/广州/688090_瑞松科技_2026中报.pdf</code>（<strong>本地原件</strong>，P7 主要会计数据／P189 股本／P193-194 营业收入分部／P236-237 子公司）＋ AKShare 新浪财务摘要、新浪日线（<strong>首日 2020-02-17，科创板上市</strong>）、东财估值（2026-09-19 取）＋ 中国经营报《瑞松科技半年报亮眼 第二增长曲线开始发力》2026-08-31（东财转载）＋ 证券之星 2026-09-16 机构调研纪要</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.4 有色金属（3 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>002192</td>
+<td>融捷股份</td>
+<td>周期景气兑现股：锂精矿占营收 93%，<strong>价格外生</strong>（碳酸锂 5 月约 21 万→9 月约 12.4 万元/吨）；2026H1 归母 10.02 亿为历史最佳</td>
+<td><strong>等下个周期底</strong>（周期股，名单不划掉）</td>
+<td>锂价下行 → 业绩回落至低基数 → 股价跌透横住，而 35 万吨选矿仍在推进；现价 60.94 元（09-17），市值约 158 亿；量增靠原矿外运窗口（约 2026-12 到期），扩产未启动</td>
+</tr>
+<tr>
+<td>002709</td>
+<td>天赐材料</td>
+<td>锂电材料（电解液全球龙头）+ 日化材料双主业，强周期、价格外生（与融捷同类）</td>
+<td><strong>进候选（待扫）</strong></td>
+<td>待核：电解液/六氟价格位置与产能格局、2026H1 业绩与估值分位、是否「等周期底」</td>
+</tr>
+<tr>
+<td>301323</td>
+<td>新莱福</td>
+<td>三大块：<strong>吸附功能材料</strong>（磁胶/广告与消费用）+ <strong>电子陶瓷元件</strong>（压敏电阻 / NTC 热敏电阻）+ <strong>高能射线防护材料</strong>；2026H1 营收 5.96 亿（<strong>+32.13%</strong>）、归母 8568.42 万（+27.5%），电子陶瓷与射线防护增速更快，但<strong>经营现金流承压</strong>；<strong>2026-09-18 用户点名进候选，未扫</strong></td>
+<td><strong>进候选（待扫）</strong></td>
+<td>待核：① 三块业务的收入结构、毛利差异与各自下游（消费/家电电子/医疗防护）；② 增长来自量还是价、是否可持续；③ 经营现金流承压的具体原因（应收/存货/资本开支）；④ 与广合科技 001389、高澜股份（已划掉）同处「材料/零部件」层，勿把同一算力资本开支变量重复计为独立变化；⑤ 估值分位与股价位置。数据源：蓝鲸/证券之星 08-24 中报简析（2026-09-18 检索，未与中报原件复核，不在本地 DB）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>组内提示：融捷（上游锂矿，001-002 段）／天赐（中游电解液，跨有色与电气）／新莱福（磁性材料）＋同链的 <strong>鹏辉能源 300438</strong>（电池，2.1.x 电气设备）——任一段的「变化」都可能只是同一轮锂/储能周期的映射；跟踪时先问「这个变化是价格给的还是量给的」。</p>
+</blockquote>
+<h4>2.1.5 电子设备（2 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001389</td>
+<td>广合科技</td>
+<td>PCB（算力 / 服务器板）＋泰国海外工厂；2026H1 营收 43.88 亿（<strong>+80.98%</strong>）、归母 9.56 亿；股价 170.91 元（09-15），算力需求驱动量价齐升</td>
+<td><strong>进候选</strong></td>
+<td>已有 <code>report/广合科技.html</code>；待核：算力需求可持续性、产能爬坡与客户认证、当前估值分位（股价已在高位）</td>
+</tr>
+<tr>
+<td>002841</td>
+<td>视源股份</td>
+<td>液晶显示主控板卡全球龙头 + 教育交互平板（希沃）+ 会议平板（MAXHUB）；<strong>2026-09-22 已扫</strong>：2026H1 营收 <strong>143.89 亿（+36.20%）</strong>、归母 <strong>15.21 亿（+282.44%）</strong>、扣非 <strong>9.82 亿（+246.34%）</strong>、EPS 2.21、中期 10 派 5 元；⚠️ <strong>归母中约 35.4% 来自非经常性</strong>＝确认<strong>公允价值变动收益 5.13 亿</strong>（所持其他非流动金融资产评估增值，<strong>账面浮动、不具可持续性</strong>）；⚠️ <strong>经营现金流 -10.89 亿</strong>（上年同期 +0.20 亿）＝为 Q3 旺季备货 + 存储器件涨价周期中增加关键原材料策略性储备，<strong>存货 45.87 亿 → 77.89 亿（+69.79%）</strong>，短期借款快速攀升；增长归因＝智能控制部件海内外订单增长 + 教育/企业服务 AI 融合 + 全球化</td>
+<td><strong>进候选（已扫，⚠️ 变化真实但成色待验：三成半利润为浮盈 + 现金流转负 + 存货高企）</strong></td>
+<td>待核：① <strong>剔除 5.13 亿公允价值变动后的真实盈利</strong>——按市值 335.89 亿 ÷ PE-TTM 15.72 反算 TTM 归母约 21.4 亿，须回中报原件核非经常性明细后再定 PE；② <strong>存货 77.89 亿（+69.79%）的减值风险与去化</strong>：公司称旺季消耗后现金流已快速回补（IR 答复），<strong>须用 Q3 报表验证</strong>；③ 分部数据未取到——智能控制部件 vs 教育/会议平板的收入与毛利率，判断 +36.20% 是主业订单还是新品放量；④ <strong>股东减持</strong>：两股东拟合计减持不超 0.85%（09-20 公告）；⑤ **港股 IPO 第三次递表（2026-07）**的摊薄与时点（前两次均因六个月期满失效）；⑥ 位置：现价 <strong>48.04</strong>（09-22 收盘 +2.78%），250 日区间 <strong>31.53~55.98</strong> → <strong>分位 67.5%</strong>、距高点 -14.2%、年内 <strong>+19.1%</strong>；总市值 <strong>335.89 亿／PE-TTM 15.72／PB 2.40</strong> → 变化已部分被定价。数据源：2026 中报公告（08-26）+ 财报拆解（百家号/证券时报 08-27~09-19）+ 公司 IR 答复（p5w）+ 腾讯行情 09-22；<strong>未与中报原件复核</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.6 交通运输（2 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000429</td>
+<td>粤高速A</td>
+<td>高速公路收费（控股里程 306.78 公里），现金流 / 分红型；2026H1 营收 21.19 亿（+0.05%，基本持平）、归母 8.50 亿，增收不增利</td>
+<td><strong>3 类 · 等大变化</strong>（原「进候选」；无正向变化，按里海口径落 3 类＝等一个大的变化，动作＝定期公告级）</td>
+<td>已有 <code>report/粤高速A.html</code>；待核：股息率与分红政策、参控股路段改扩建进度与收费年限</td>
+</tr>
+<tr>
+<td>600428</td>
+<td>中远海特</td>
+<td><strong>特种船运输</strong>（中远海运集团旗下，广州天河）：多用途船 / 半潜船 / 重吊船 / 纸浆船 / <strong>汽车船（滚装）</strong> 等特种船队，承运机械设备、重大件、纸浆、汽车等&quot;非集装箱&quot;货物；2026H1 营收 <strong>144.46 亿（+34.07%）</strong>、归母 <strong>13.71 亿（+66.24%）</strong>、扣非 13.38 亿（+60.22%）、毛利率 <strong>23.16%</strong>（上年同期 20.50%）、净利率 13.39%、ROE 7.89%、每股经营现金流 <strong>1.37 元</strong>、资产负债率 57.77%；<strong>汽车船收入 36.8 亿（+98.5%）、毛利率 34.1%</strong> 为最大亮点；2025 全年营收 232.11 亿（+38.32%）、归母 17.80 亿（+16.29%）</td>
+<td><strong>进候选（待扫）</strong></td>
+<td>2026-09-19 用户点名进候选。待核：① <strong>周期位置</strong>——克拉克森海运指数较年初上涨超 32%，行业景气处高位（经观 09-12），H1 利润大增含运价因素，属&quot;周期兑现&quot;而非&quot;跌透反转&quot;，与融捷 002192、亚钾 000893 同类（利润由外生价格决定）；② <strong>变化的归属</strong>：汽车船 +98.5% 是中国汽车出口拉动的运力投放结果，需拆分&quot;新增运力投产 vs 运价上涨&quot;，并看新船交付计划与未来两年运力过剩风险；③ 分部数据缺失——半潜船/纸浆船/重吊船/多用途船的收入与毛利率<strong>未取到</strong>，须回 2026 中报原件补全；④ 负债率 57.77% 且重资产（造船资本开支），需看资本开支与现金流覆盖；⑤ 位置：现价 <strong>11.17</strong>（09-18 收盘），2026 年内区间 <strong>7.07~12.09</strong>（距高点约 -8%，<strong>处年内高位区</strong>）；⑥ 估值（09-18 口径，AKShare 百度估值接口 2026-09-19 取）：总市值 <strong>306.50 亿</strong>、<strong>PE-TTM 13.17</strong>、<strong>PB 1.80</strong>；TTM 归母自算 = 17.80 − 8.25 + 13.71 = <strong>23.26 亿</strong>（与市值÷PE 反推 23.3 亿吻合）；流通股本 24.45 亿股（新浪日线）；⑦ 公司将于 <strong>2026-09-21 13:00 召开半年度业绩说明会</strong>，可作为信息增量节点。数据源：经济观察网 09-12 中报简讯（汽车船分部）、AKShare 同花顺财务摘要 + 新浪日线 + 百度估值（2026-09-19 取，未与中报原件复核，不在本地 DB）</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.7 商贸零售（2 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>003010</td>
+<td>若羽臣</td>
+<td>电商代运营（TP）起家 + 自有品牌（绽家/斐萃）转型；<strong>2026-09-22 已扫</strong>：2026H1 营收 <strong>22.86 亿（+73.29%）</strong>、归母 <strong>1.67 亿（+131.72%）</strong>、归母净利率 <strong>7.33%（+1.85pct）</strong>、EPS 0.55；Q2 营收 12.91 亿（+73.25%）／归母 9512 万（+112.12%），<strong>高于此前业绩预告区间上限（1.45~1.59 亿）</strong>；<strong>自有品牌收入 12.42 亿（+105.83%，占营收约 54%）</strong>，其中绽家 7.4 亿；⚠️ 营业成本 7.89 亿（+38.88%）而<strong>费用等成本 12.97 亿（+92.19%）</strong>——费用增速快于收入，增长由营销投放驱动</td>
+<td><strong>进候选（已扫，✅ 变化力度最大之一；⚠️ 但估值不便宜且未横住）</strong></td>
+<td>待核：① <strong>投放驱动的持续性</strong>——费用 +92.19% 快于收入 +73.29%，须回中报原件核销售费用率与投放 ROI，若为&quot;买量换增长&quot;则利润弹性不可持续；② <strong>分部毛利率未取到</strong>：自有品牌（12.42 亿）vs 代运营/品牌管理业务各自的收入、毛利与增速须回中报原件补，判断基本盘是否萎缩；③ 绽家之后的第二品牌（斐萃/奥伦纳素）爬坡与调整进度；④ <strong>位置与估值</strong>：现价 <strong>28.46</strong>（09-22 收盘 <strong>-3.30%</strong>、换手 3.64%），250 日区间 <strong>21.30~58.98</strong> → <strong>分位 19.0%、距高点 -51.7%</strong>、年内 -20.8%；<strong>PB 11.13</strong>、PE-TTM 30.57、总市值 88.53 亿 → <strong>已深跌但估值仍高，且仍在下跌未横住</strong>，按里海&quot;底部&quot;关（跌透横住）<strong>尚不满足</strong>；⑤ 解禁/减持时点待核。数据源：2026 中报（同花顺 09-01、和讯中报点评 09-15、东财研报 PDF 09-04，<strong>未与原件复核</strong>）＋腾讯行情 09-22</td>
+</tr>
+<tr>
+<td>09896</td>
+<td>名创优品</td>
+<td><strong>全球生活方式零售（MINISO + TOP TOY 潮玩）</strong>：名创优品集团控股，广州海珠琶洲（铭丰广场 8 楼），NYSE: MNSO 双重上市。<strong>2026H1（2026-08-28 公告）</strong>：收入 <strong>114.99 亿元（+22.4%）</strong>、权益股东应占利润 <strong>9.62 亿元（+6.1%）</strong>、EPS 0.79 元；名创优品门店 <strong>8,151（2025-12-31）→ 8,309（2026-06-30）</strong>，半年净增 <strong>158 家</strong>；TOP TOY <strong>334 → 365 家</strong>；H1 GMV 约 <strong>199 亿元</strong>。东财口径：毛利 50.94 亿（毛利率 <strong>44.30%</strong>）、<strong>经营溢利 16.40 亿（+6.1%）</strong>、<strong>除税前溢利 12.97 亿</strong>（较经营溢利少 3.43 亿）、存货 35.44 亿；2026H1 总资产 303.43 亿／总权益 104.21 亿 → <strong>资产负债率 65.66%</strong>。2025 全年：收入 214.44 亿（+26.18%）、毛利 96.48 亿（毛利率 44.99%）、经营溢利 33.03 亿、<strong>除税前 19.13 亿</strong>、归母 <strong>12.05 亿（-53.96%）</strong>、ROE 11.51%、ROIC 7.31%、资产负债率 <strong>62.56%</strong>（2024 年 42.85%）；2024 全年归母 26.18 亿、ROE 26.87%、ROIC 29.34%。<strong>利润腰斩的直接原因＝投资永辉超市</strong>：2025 财年投资永辉<strong>亏损 8.127 亿元</strong>（界面新闻 2026-03-31 财报口径；永辉亏损分摊自 2025Q2 首次计入，当季 -1.19 亿元），截至 2025-12-31 仍持永辉约 <strong>29.4%</strong> 股权</td>
+<td><strong>进候选（待扫，✅ 位置最符合「底部」但变化方向未定）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>；本地无 <code>data/db/09896.db</code>）。待核：① ✅ <strong>位置</strong>：现价 <strong>16.96 港元</strong>（09-18 收盘，-2.58%），近 250 日 <strong>16.96~48.327</strong> → <strong>现价即区间最低</strong>，自高点 <strong>-64.9%</strong>，本组跌幅最深；但 09-09 以来 18.47→16.96 仍在下移，<strong>是否「横住」未确认</strong>（中报后仅 3 周）；② 🔴 <strong>核心矛盾＝永辉（29.4% 股权）</strong>：2025 年投资亏损 8.127 亿元；须核 (a) <strong>2026H1 是否继续分摊永辉亏损、金额多少</strong>——H1 经营溢利 16.40 亿 vs 除税前 12.97 亿，差额 <strong>-3.43 亿</strong>须拆为财务费用／永辉分摊／其他；(b) 是否有<strong>减持或退出永辉</strong>的计划与迹象——这是最大的潜在「变化」与股价弹性来源；(c) 永辉自身调改进展与减亏节奏；③ ⚠️ <strong>增收不增利</strong>：2026H1 收入 +22.4% 但经营溢利仅 +6.1%、归母 +6.1% → <strong>增长没转化为利润</strong>，须核海外直营（高毛利）vs 国内加盟（低毛利）结构、销售费用率、新开店补贴与爬坡期；④ <strong>门店扩张质量</strong>：半年净增 158 家（名创）+ 31 家（TOP TOY），须拿<strong>同店 GMV／单店收入</strong>（H1 GMV 199 亿 ÷ 平均门店数 ≈ 单店 240 万，须与历史对照）；⑤ ⚠️ <strong>估值粗算（待核）</strong>：按 2026H1 权益 104.21 亿 ÷ BPS 8.7466 反推股本 ≈ <strong>11.91 亿股</strong> → 市值 ≈ <strong>202 亿港元</strong>；TTM 归母 = 12.05 − 9.06 + 9.62 = <strong>12.61 亿元</strong> → 换算约 14.6 亿港元 → <strong>PE-TTM 约 13.9 倍</strong>、<strong>PB 约 1.68</strong>；须回中报核股本与币种；⑥ <strong>出海是主引擎</strong>（须回中报原件核海外收入占比与增速、海外单店模型）；⑦ <strong>双重上市</strong>：港股 09896 与美股 MNSO 并存，须注意两地流动性与价差；⑧ 与同组 <strong>丸美生物 603983</strong>／<strong>瑞立科密 001285</strong> 无关联，但与 <strong>广州酒家 603043</strong> 等消费股同受<strong>居民消费力</strong>这一变量影响，跟踪时勿把同一消费变量重复计。数据源：新浪财经/智通财经 2026-08-28《名创优品发布中期业绩》（收入 114.99 亿／归母 9.62 亿／EPS 0.79／门店 8,309／TOP TOY 365／GMV 199 亿）＋ 界面新闻 2026-03-31（2025 财年投资永辉亏损 8.127 亿元、持股 29.4%）＋ 雪球 2025-08-21（2025Q2 首次分摊永辉亏损 -1.19 亿）＋ AKShare 港股三大表/分析指标/日线（2026-09-19 取，<strong>未与中报原件复核</strong>）</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.8 交运设备（1 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001285</td>
+<td>瑞立科密</td>
+<td>商用车底盘<strong>主动安全/电控系统</strong>（ABS/ESC/EBS 等）领军企业，向乘用车与两轮车延伸；<strong>2025-09-30 上市次新股</strong>，总股本 1.81 亿股；<strong>2026-09-22 已扫</strong>：2026H1 营收 <strong>13.46 亿（+24.56%）</strong>、归母 1.86 亿（<strong>+30.95%</strong>）、扣非 1.63 亿（+24.67%）；<strong>Q2 营收 8.12 亿（+33.0%）／归母 1.03 亿（+34.96%）／扣非 9687 万（+36.37%）＝单季加速</strong>；资产负债率 27.96%；中期拟 10 转 4.5 股；EPS 1.03 元（-1.90%，摊薄所致）</td>
+<td><strong>跟踪，暂不进池（🔴 2026-09-30 解禁＝现流通 101%，一周后落地）</strong></td>
+<td>待核：① <strong>解禁（分仓硬约束）</strong>：流通市值 17.74 亿 / 总市值 77.19 亿 → 流通仅约 23%，<strong>2026-09-30 解禁 4198 万股 ≈ 现流通 101%</strong>，落地后须观察 1-2 季成交量与价格能否横住；② <strong>位置与估值</strong>：现价 <strong>42.76</strong>（09-22 收盘 -1.11%），上市以来区间 <strong>38.70~79.80</strong> → <strong>分位 9.9%、距高点 -46.4%</strong>、年内 -31.4%；<strong>PE-TTM 20.48／PB 1.98</strong>（本组估值最低之一）；③ 变化成色：Q2 单季营收 +33.0%／扣非 +36.37% 加速，须回中报原件核是商用车景气回暖还是新产品/新客户放量，并看毛利率与应收；④ 券商预测（<strong>长城证券口径，第三方预测非本项目判断</strong>）：2026/2027/2028 归母 4.40/5.93/7.66 亿，对应 PE 18.1/13.4/10.4 倍（同花顺 F10，09-22 检索），<strong>须以实际业绩验证</strong>；⑤ 募投「大湾区汽车智能电控系统研发智造总部」投产进度与产销/毛利率信号；⑥ 是否出现再融资/并购。数据源：2026 中报（同花顺 08-25、证券之星 09-18~20）+ 同花顺 F10 盈利预测 + 腾讯行情 09-22；<strong>未与中报原件复核</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.9 食品饮料（1 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>002461</td>
+<td>珠江啤酒</td>
+<td>广东啤酒区域龙头（啤酒酿造 + 啤酒文化），业务可懂；PE(TTM) 19.33、<strong>3 年分位 1.93%</strong>、股息率 2.18%；2026H1 营收 33.59 亿（+5.04%）、归母 6.74 亿（约 +20%，量价齐升·大单品·省内份额提升）</td>
+<td><strong>3 类 · 等大变化</strong>（原「跟踪，变化关偏弱」；按里海口径落 3 类＝等一个大的变化，动作＝「就看看年报和半年报」，<strong>留在池内不划掉</strong>）</td>
+<td>变化 = 提结构 + 抢份额，属&quot;不大、不远、全市场看得清&quot;的慢变量；除非出现省外扩张 / 大单品放量 / 分红政策变化，否则偏&quot;稳定但缺大变化&quot;</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.10 纺织服装（1 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>002832</td>
+<td>比音勒芬</td>
+<td>高端运动休闲服饰（高尔夫细分），高毛利高 ROE 消费股；<strong>2026-09-22 已扫</strong>：2026H1 营收 <strong>26.01 亿（+23.66%）</strong>、归母 4.91 亿（<strong>+18.41%</strong>）、扣非 4.73 亿（<strong>+21.20%</strong>）；<strong>Q2 营收 10.79 亿（+31.99%）／归母 1.04 亿（+25.92%）／扣非 9557 万（+36.35%）＝单季加速</strong>；综合毛利率 <strong>75.88%</strong>（市场称「衣中茅台」，高于同期爱马仕 71.14%）；资产负债率 28.68%</td>
+<td><strong>进候选（已扫，⚠️ 变化真实但已被定价：年内 +70.4%、250 日分位 85.6%）</strong></td>
+<td>待核：① <strong>位置</strong>——现价 <strong>25.65</strong>（09-22 收盘 -0.66%），250 日区间 <strong>14.74~27.48</strong> → <strong>分位 85.6%、距高点仅 -6.7%、年内 +70.4%</strong>；总市值 <strong>146.39 亿／PE-TTM 23.35／PB 2.70</strong> → Q2 加速的变化<strong>已被股价计入</strong>，按里海口径<strong>不是买点</strong>，等回撤到底部区且增长未被证伪；② <strong>存货与周转未取到</strong>：高毛利模式下存货是否随门店扩张累积，须回中报原件核存货/应收与周转天数（原有预设&quot;增长放缓&quot;被 H1 数据证伪——营收 +23.66%、Q2 +31.99% 实为加速）；③ 分部数据未取到：主品牌 vs 第二曲线的收入占比与店效，判断增长的来源与天花板；④ 消费β：与 <strong>润本股份 603193 / 丸美生物 603983 / 名创优品 09896</strong> 同受居民消费力与线上流量成本影响，勿重复计为独立变化。数据源：2026 中报（同花顺/证券之星/深港在线 08-28~09-20，<strong>未与原件复核</strong>）＋腾讯行情 09-22</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.11 电气设备（1 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>300438</td>
+<td>鹏辉能源</td>
+<td>锂电池（储能 + 消费 + 动力），广州本地；<strong>2026-09-18 用户圈选进候选，未扫</strong></td>
+<td><strong>进候选（待扫）</strong></td>
+<td>待核：储能/消费/动力三块收入结构与毛利差异、2026H1 业绩与产能利用率、估值分位；与融捷 002192、天赐 002709 同属锂电链，<strong>锂价与产能周期是同一变量</strong>，勿重复计为独立变化</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.12 信息技术（1 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>301638</td>
+<td>南网数字</td>
+<td><strong>南方电网旗下数字化平台</strong>：电网数字化（以「电鸿」为核心引擎，2024 年收入占比 39.64%）＋ 企业数字化 ＋ 数字基础设施（三大网级数据中心，设计运营容量 <strong>33MW</strong>，2026-06 上架率<strong>近 7 成</strong>，兼营通用/智能算力与算力网络租赁）；2026H1 营收 <strong>22.18 亿（+42.37%）</strong>、归母 <strong>2.02 亿（+1453.65%）</strong>、毛利率 <strong>34.62%</strong>、净利率 9.06%、三费占营收 15.4%（同比 -26.47%）、<strong>每股经营现金流 -0.12 元</strong>；历史营收 2023/24/25 = 42.34/60.90/72.17 亿，归母 3.77/5.70/6.30 亿</td>
+<td><strong>进候选（待扫）</strong></td>
+<td>2026-09-19 用户点名进候选。待核：① <strong>季节性极强</strong>——2025H1 归母仅 0.130 亿、2024 前三季度甚至 -0.434 亿，而 2025 全年 6.298 亿 → 收入/利润集中在 Q4，<strong>H1 数据不具代表性</strong>，+1453% 的同比是低基数产物，不可外推；② <strong>客户集中</strong>：南方电网体系内客户占比高（半年报原文），成长取决于南网信息化/电力投资规划，属「大股东即客户」的体制内生意，需看市场化外单占比；③ <strong>现金流与应收</strong>：每股经营现金流 -0.12 元，<strong>应收账款/利润 223.76%</strong>（证券之星提示关注）；④ <strong>资本回报一般</strong>：ROIC 去年 6.46%、历史中位 6.69%，净利仅个位数（9.06%）；⑤ 位置：现价 <strong>22.06</strong>（09-18 收盘，+2.51%，换手率 3.58%）；TTM 归母约 <strong>8.19 亿</strong>（6.298 − 0.130 + 2.024，自算）→ <strong>总市值/PE-TTM 待核</strong>（股本未取到；按换手率粗估流通市值约 55 亿，仅参照）；⑥ 题材属性：数据中心/算力是股价叙事，但需证实其利润贡献。数据源：证券之星中报简析（搜狐 2026-08-29）、公司 2026 半年报问答、AKShare 财务摘要（2026-09-19 取，未与中报原件复核，不在本地 DB）</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.13 专业服务 · 计量检测（1 家）</h4>
+<blockquote>
+<p><strong>组名说明</strong>：名单沿用的<strong>东财一级行业</strong>名为「休闲、生活及专业服务」（该一级分类涵盖专业服务／检测认证，属分类体系命名问题，与&quot;休闲&quot;字面无关）；本组按业务实质标注为<strong>计量检测（TIC）</strong>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>002967</td>
+<td>广电计量</td>
+<td><strong>国企第三方计量检测服务</strong>（广州国资）：<strong>计量校准</strong> ＋ 可靠性/环境试验 ＋ 集成电路测试与分析 ＋ 电磁兼容（EMC）检测 ＋ 生命科学；下游为特殊装备、汽车、新能源、集成电路、商业航天、通信、低空经济、AI 等国家战略性产业。<strong>2026H1</strong>：营收 <strong>16.86 亿（+14.03%）</strong>、归母 <strong>1.22 亿（+25.16%）</strong>、扣非 <strong>1.04 亿（+24.83%）</strong>、经营现金流净额 <strong>1.23 亿（+55.67%）</strong>、毛利率 <strong>43.57%（+0.21pct）</strong>、净利率 6.96%（+0.71pct）、EPS 0.20 元、加权 ROE 2.59%；<strong>分项营收</strong>：可靠性与环境试验 4.15 亿（+11.17%）／<strong>计量 3.86 亿（+10.95%）</strong>／生命科学 2.42 亿（+14.89%）／EMC 1.81 亿（+9.18%）／集成电路测试 1.44 亿（+10.41%）；中期分红预案 <strong>10 派 1.5 元</strong>；Q2 单季营收 9.73 亿（+13.06%）／归母 1.05 亿（+13.39%）</td>
+<td><strong>进候选（待扫）</strong></td>
+<td>待核：① <strong>行业景气与价格战</strong>——检测单价、产能利用率（2026H1 营收 +14.03%、毛利率与净利率小幅改善，须判断可持续性）；② <strong>利润率修复节奏</strong>：净利率仅 6.96%（毛利率 43.57%），人力与折旧占比高，须核人均产值、资本开支与实验室利用率；③ <strong>国企考核与激励变化</strong>（广州国资）；④ 估值与位置：8/20 收盘口径 <strong>PE-TTM ≈ 24.94／PB(LF) ≈ 2.28／市销率(TTM) ≈ 2.94</strong>（<strong>须以最新行情复算</strong>），股价位置未取到；⑤ 数据源：中国证券报/花城 2026-08-20 半年报简讯、新浪财经 2026 中报点评（<strong>未与中报原件复核</strong>，本地无 <code>data/db/002967.db</code>）</td>
+</tr>
+</tbody>
+</table>
+<h4>2.1.14 媒体及娱乐（1 家）</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>里海定性</th>
+<th>结论</th>
+<th>触发条件 / 待核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01860</td>
+<td>汇量科技</td>
+<td><strong>程序化移动广告平台（Mintegral）</strong>：汇量科技有限公司，广州天河（珠江新城天盈广场东塔）。<strong>2026H1（2026-08-24 公告，美元口径）</strong>：收入 <strong>11.56 亿美元（+23.2%）</strong>、净收入 3.08 亿美元（+21.5%）、<strong>经调整净利润 5,211 万美元（+39.5%）</strong>；Mintegral 收入 <strong>11.15 亿美元（+24.3%，占 96.5%）</strong>，其中<strong>游戏品类 8.43 亿美元（+27.5%，占 Mintegral 75.6%）</strong>、非游戏 2.72 亿美元（+15.5%）；<strong>AI 智能出价贡献 Mintegral 收入 90%+</strong>；新一代<strong>广告 AI 基础设施主要开发已完成，测试中、分阶段上线</strong>。东财人民币口径 2026H1：收入 78.70 亿（+17.2%）、毛利 16.88 亿（<strong>毛利率 21.45%</strong>，上年 21.44%）、研发 8.60 亿、<strong>经营溢利 2.99 亿（上年 3.21 亿，-6.8%）</strong>、除税前溢利 3.77 亿（+28.3%）、股东应占 3.18 亿（+37.7%）。2025 全年：收入 143.86 亿（+35.74%）、归母 4.33 亿（+291.46%）、ROE 24.42%、<strong>ROIC 仅 8.85%</strong>、资产负债率 66.47%、<strong>流动比率 0.97</strong>；2026H1 总权益 30.16 亿／总资产 65.32 亿 → 负债率降至 53.8%。2026-07-17 授出 2,520.9 万股奖励股份并拟回购；09-10 斥资 539.12 万港元回购 55 万股</td>
+<td><strong>进候选（待扫，⚠️ 不在底部：09-18 单日 +13.07% 放量、5 日 +30%，变化正在被定价）</strong></td>
+<td>2026-09-19 用户点名入待选（<strong>仅名单动作，不做 VL 入库</strong>；本地无 <code>data/db/01860.db</code>）。待核：① ⚠️ <strong>位置相反</strong>：现价 <strong>12.72 港元</strong>（09-18 收盘 <strong>+13.07%</strong>，成交 4,586 万股／5.58 亿港元，为平日 3-4 倍），近 250 日 <strong>9.52~21.62</strong>（距高点 -41%），但自 09-11 低点 9.78 起 <strong>5 个交易日 +30%</strong>；驱动为<strong>连续回购 + AI Infra 上线预期</strong>（经济观察网 09-15、搜狐/雪球 09-18 游戏传媒指数领涨）——<strong>属「资金正在涌入」，与「跌透横住、无人问津」完全相反</strong>；② 🔴 <strong>经营溢利下滑 vs 归母大增</strong>：2026H1 经营溢利 2.99 亿（<strong>-6.8%</strong>）而除税前 3.77 亿（+28.3%）、归母 3.18 亿（+37.7%）→ 差额来自非经营项目，<strong>须回中报原件拆明</strong>（财务费用／可转债公允价值变动／汇兑／投资收益）；公司口径「经调整净利润 5,211 万美元（+39.5%）」与报表归母 3.18 亿元人民币（约 4,470 万美元）<strong>口径不一致，须对齐</strong>；③ ⚠️ <strong>币增速口径差</strong>：人民币口径 +17.2% vs 美元口径 +23.2%，差异源于汇率，估值须按统一币种重算；④ <strong>估值粗算（待核）</strong>：按 2025 年末权益 20.84 亿 ÷ BPS 1.1945 反推股本 ≈ <strong>17.44 亿股</strong> → 市值 ≈ <strong>222 亿港元</strong>；TTM 归母（人民币）= 4.33 − 2.31 + 3.18 = <strong>5.20 亿</strong> → 换算约 6.0 亿港元 → <strong>PE-TTM 约 37 倍（偏高）</strong>；2026H1 权益增至 30.16 亿（利润 3.18 亿之外的 6 亿+ 来源待核，股本可能已变），<strong>须回中报股本表核对</strong>；⑤ ⚠️ <strong>财务结构</strong>：2025 年流动比率 <strong>0.97（&lt;1）</strong>、资产负债率 66.47%，ROE 24.42% 与 ROIC 8.85% 的落差＝杠杆贡献；广告平台需为流量采买垫资，<strong>须看应收/应付账期与经营现金流</strong>（东财未取到 2026H1 现金流）；⑥ <strong>生意属性（外生变量）</strong>：Mintegral 占 96.5%、游戏占 75.6% → 下游是<strong>游戏买量预算</strong>，受游戏行业景气、苹果 ATT 隐私政策、Google/Meta 平台规则三重外生变量影响，与里海强调的「变量少、弱者能算清账」有距离；AI Infra 能否提升 ROAS 与 take rate，须跟踪上线后的客户留存数据；⑦ <strong>摊薄</strong>：07-17 授出 2,520.9 万股奖励股份；⑧ 与同组 <strong>广合科技 001389/01989</strong>（算力硬件）不同——汇量是<strong>广告变现</strong>层，同受 AI 资本开支叙事驱动，<strong>勿把同一「AI」变量重复计为两个独立变化</strong>。数据源：智通财经 2026-08-24《汇量科技发布 2026 年中期业绩》（美元口径）＋ 经济观察网 2026-09-15《收涨 3.38% 回购叠加 AI Infra 上线预期驱动》＋ 搜狐 2026-09-18 SHS 游戏传媒指数（汇量领涨 13.07%）＋ AKShare 港股三大表/分析指标/日线（2026-09-19 取，<strong>未与中报原件复核</strong>）</td>
+</tr>
+</tbody>
+</table>
+<h2>四、边界清单（26 家：注册地不在广州、办公地址在广州，仅供参考）</h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>注册地</th>
+<th>办公地所在区</th>
+<th>简单</th>
+<th>底部</th>
+<th>变化</th>
+<th>分仓</th>
+<th>结论</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000028</td>
+<td>国药一致</td>
+<td>医药生物</td>
+<td>广东省深圳市福田区八卦四路15号一致药业大厦</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>000659</td>
+<td>珠海中富</td>
+<td>轻工制造</td>
+<td>珠海市香洲区联峰路780号3栋</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>000690</td>
+<td>宝新能源</td>
+<td>公用事业</td>
+<td>广东省梅县华侨城香港花园香港大道宝丽华综合大楼</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>000691</td>
+<td>亚太实业</td>
+<td>基础化工</td>
+<td>甘肃省兰州市兰州新区亚太工业科技总部基地A1号楼</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>000833</td>
+<td>粤桂股份</td>
+<td>综合</td>
+<td>广西壮族自治区贵港市贵港高新区粤桂产业园幸福路1号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>001209</td>
+<td>洪兴股份</td>
+<td>纺织服装</td>
+<td>汕头市潮南区峡山洋内居委村道东(洪兴工业区)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>001366</td>
+<td>播恩集团</td>
+<td>农林牧渔</td>
+<td>江西省赣州经济技术开发区迎宾大道中段</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>002292</td>
+<td>奥飞娱乐</td>
+<td>文化传媒</td>
+<td>广东省汕头市澄海区凤翔路北侧、金鸿公路东侧奥飞动漫产业园</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>002431</td>
+<td>ST棕榈</td>
+<td>建筑</td>
+<td>郑州市郑东新区俊贤路38号森大郑东1号项目一期3号楼5层11号铺</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>002485</td>
+<td>ST雪发</td>
+<td>商贸零售</td>
+<td>山东省诸城市舜王街道舜王大道7877号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>002584</td>
+<td>西陇科学</td>
+<td>基础化工</td>
+<td>广东省汕头市潮汕路西陇中街1-3号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>002929</td>
+<td>润建股份</td>
+<td>信息技术</td>
+<td>南宁市西乡塘区总部路1号中国东盟科技企业孵化基地一期D7栋501室</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>003041</td>
+<td>真爱美家</td>
+<td>纺织服装</td>
+<td>浙江省义乌市苏溪镇好派路999号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300030</td>
+<td>阳普医疗</td>
+<td>医药生物</td>
+<td>珠海市横琴新区环岛东路3000号横琴国际商务中心801-8017室</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300043</td>
+<td>星辉娱乐</td>
+<td>互联网</td>
+<td>汕头市澄海区星辉工业园(上华镇夏岛路北侧)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300146</td>
+<td>汤臣倍健</td>
+<td>食品饮料</td>
+<td>广东省珠海市金湾区三灶科技工业园星汉路19号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300149</td>
+<td>睿智医药</td>
+<td>医药生物</td>
+<td>江门市江海区胜利南路164号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300591</td>
+<td>万里马</td>
+<td>纺织服装</td>
+<td>东莞市长安镇建安路367号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300804</td>
+<td>广康生化</td>
+<td>基础化工</td>
+<td>英德市农用化工产业链专用基地(沙口镇红丰管理区)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300808</td>
+<td>久量股份</td>
+<td>家电</td>
+<td>湖北省十堰市郧阳区城关镇沿江大道88号综合服务楼15楼</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>600132</td>
+<td>重庆啤酒</td>
+<td>食品饮料</td>
+<td>重庆市北部新区高新园大竹林街道恒山东路9号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>600259</td>
+<td>中稀有色</td>
+<td>有色金属</td>
+<td>海口市龙华区滨海大道69号海口宝华海景大酒店8楼809房</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>600866</td>
+<td>星湖科技</td>
+<td>农林牧渔</td>
+<td>广东省肇庆市工农北路67号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>600995</td>
+<td>南网储能</td>
+<td>公用事业</td>
+<td>云南省文山市凤凰路29号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>605090</td>
+<td>九丰能源</td>
+<td>公用事业</td>
+<td>江西省赣州市于都县工业新区振兴大道西侧</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>688189</td>
+<td>ST南新</td>
+<td>医药生物</td>
+<td>湖南省长沙市浏阳市经济技术开发区康里路1号</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>五、依据与存档</h2>
+<blockquote>
+<p>pass 逐条依据（六要素对照）与跟踪标的关键数据已拆分为独立页：<strong><a href="%E5%B9%BF%E5%B7%9E%E5%BE%85%E9%80%89%E6%B1%A0-%E4%BE%9D%E6%8D%AE%E5%AD%98%E6%A1%A3.html">本地/广州/广州待选池-依据存档</a></strong>（2026-09-17 拆分）。</p>
+<p>已划掉的 <strong>134 家</strong>（划掉口径与依据）见 <strong>[本地/广州/广州名单-已划掉（134 家）](广州名单-已划掉（134 家）.html)</strong>（2026-09-19 拆分为独立页）。</p>
+<p>本表只保留名单与结论；新依据一律记入该页，避免本表越滚越长。</p>
+</blockquote>
+</div><div class="backrow"><a href="../index.html#dir=%E5%B9%BF%E5%B7%9E">← 返回 广州</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/本地/广州/广州名单-待选池跟踪表.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

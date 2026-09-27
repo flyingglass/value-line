@@ -16,7 +16,7 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
     · 每篇 md 仍生成独立阅读页，正文在生成期用 markdown-it-py 预渲染为 HTML 内嵌
       （不依赖任何 CDN / 联网，离线双击即看），[[页面名]] 解析为站内链接
     · 多学科整组页与标的/案例组页同构：主题 当 tab，首页只保留标题+主题 chip+进入
-    · 首页一级分类与 research/ 下一级目录对齐（白马/学股/疯狂的里海/多学科），
+    · 首页一级分类与 research/ 下一级目录对齐（白马/本地/疯狂的里海/多学科），
       tab 点击就地切换面板；搜索跨 tab 过滤并自动跳到第一个有命中的分类
 
 运行：
@@ -75,21 +75,21 @@ page_labels = {
     '券商研报': '研报索引',
 }
 
-# 作者案例专题目录（research/ 下的子目录名 → 组显示名）
+# 专题目录（research/ 下的子目录名 → 组显示名；非标的目录，无四件套要求）
 CASE_GROUP_NAMES = {
     '疯狂的里海': '里海 · 作者案例专题',
-    '学股': '学股 · 广深名单池',
+    '本地': '本地 · 广深',
 }
 
-# 标的容器目录：其下一级才是标的目录（标的归入 research/白马/<code>/）。
+# 标的容器目录：其下一级才是标的目录（2026-09-27 起：白马 / 消费 / AI软件）。
 # 容器对最终站点透明：组键、view 输出目录、链接解析仍按 <code> 处理。
-CONTAINER_DIRS = ('白马',)
+CONTAINER_DIRS = ('白马', '消费', 'AI软件')
 
 # 组顶层文件夹（标签）的展示顺序；未列出的按名称字典序；概览 紧随其后；原始资料始终垫底
 GROUP_DIR_ORDER = {
     '泡泡玛特': ['跟踪', '经营', '需求', '业绩'],
     '疯狂的里海': ['案例', '方法论', '时间线'],
-    '学股': ['广州', '深圳', '跟踪'],
+    '本地': ['广州', '深圳'],
 }
 
 RAW_DIR_NAMES = ('原始资料', '原始资料·源')
@@ -418,12 +418,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
 .grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
 /* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
-#sec-stocks{display:flex;flex-direction:column;gap:18px}
-#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
-#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
-#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
-#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
-#sec-stocks .grp-hd .pill{align-self:center}
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
 #sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
 #sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
 #sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
@@ -513,7 +513,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
 .casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
 .casegrid .grp-hd .pill{align-self:center}
-@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 """
 
 # 正文图片点击放大（灯箱）：md 内任意 img 点击后全屏显示原图，点任意处 / Esc 关闭
@@ -684,7 +684,7 @@ def convert_wikilinks(body, out):
         if name.lower().endswith('.md'):
             src = os.path.join(WIKI_DIR, name.replace('/', os.sep))
             return '[' + label + '](' + posix_rel(out, src) + ')'
-        # 允许带目录前缀（学股/广州/xxx、../案例/xxx），按末段匹配
+        # 允许带目录前缀（本地/广州/xxx、../案例/xxx），按末段匹配
         cands = [name, name.replace('\\', '/').split('/')[-1]]
         target = None
         for cand in cands:
@@ -991,17 +991,26 @@ def home_section_case_groups(gid, info, from_file):
     return html
 
 def split_home_groups(groups):
-    """按 wiki 文章是否位于 research/白马/ 拆分：(白马标的, 仅原始资料的组)。"""
-    baima, raw_only = {}, {}
+    """按标的容器目录（research/白马/、消费/、AI软件/）拆分：
+    (各容器 → 组, 仅原始资料的组)，一个容器 tab 一类选股模型。"""
+    by_container = {d: {} for d in CONTAINER_DIRS}
+    raw_only = {}
     for gid, info in groups.items():
-        hit = any(a.get('real_path', '').startswith('research/白马/')
-                  for a in info['articles'])
-        (baima if hit else raw_only)[gid] = info
-    return baima, raw_only
+        hit = None
+        for a in info['articles']:
+            rp = a.get('real_path', '')
+            for d in CONTAINER_DIRS:
+                if rp.startswith('research/' + d + '/'):
+                    hit = d
+                    break
+            if hit:
+                break
+        (by_container[hit] if hit else raw_only)[gid] = info
+    return by_container, raw_only
 
-def home_section_baima(baima, raw_only, from_file):
-    """白马 tab：白马标的按行业分行；仅有原始资料的组单列一节垫底（保留入口）。"""
-    html = home_section_stock_blocks(baima, from_file)
+def home_section_container(container_groups, raw_only, from_file):
+    """标的容器 tab：容器内标的按行业分行；仅原始资料的组只在首个 tab 垫底一节。"""
+    html = home_section_stock_blocks(container_groups, from_file)
     if raw_only:
         html += ('<div class="subhead">仅原始资料 <span class="count">' +
                  str(len(raw_only)) + ' 个</span></div>')
@@ -1077,13 +1086,16 @@ if(input){input.addEventListener('input',doSearch);input.addEventListener('keydo
 
 
 def build_home(groups, cases, general):
-    """首页：一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科）+ 分类内卡片。"""
-    baima, raw_only = split_home_groups(groups)
+    """首页：一级分类 tab（各标的容器 / 各专题 / 多学科）+ 分类内卡片。"""
+    by_container, raw_only = split_home_groups(groups)
 
     panels = []      # [(tab 名, 卡片数, panel 内层 HTML)]
-    inner = ('<div id="sec-stocks">' +
-             home_section_baima(baima, raw_only, OUT_HOME) + '</div>')
-    panels.append(('白马', inner.count('class="grp"'), inner))
+    for i, cdir in enumerate(CONTAINER_DIRS):
+        inner = ('<div class="secstocks">' +
+                 home_section_container(by_container.get(cdir, {}),
+                                        raw_only if i == 0 else None, OUT_HOME) +
+                 '</div>')
+        panels.append((cdir, inner.count('class="grp"'), inner))
     for gid, info in sorted(cases.items()):
         inner = ('<div class="casegrid">' +
                  home_section_case_groups(gid, info, OUT_HOME) + '</div>')

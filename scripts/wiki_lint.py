@@ -41,13 +41,13 @@ OPTIONAL_STOCK_FILES = {
 REPORT_STUB_MARKERS = ["无已拉取研报", "当前无研报", "暂无研报", "待拉取", "无研报"]
 REPORT_MIN_LINES = 5
 # 研究专题目录：无 overview/thesis 四件套，不参与标的完整性检查
-NON_STOCK_DIRS = {"疯狂的里海"}
-# 标的容器目录：其下一级才是标的目录（2026-09-26 起标的归入 research/白马/）
-STOCK_CONTAINER_DIRS = {"白马"}
+NON_STOCK_DIRS = {"疯狂的里海", "本地"}
+# 标的容器目录：其下一级才是标的目录（2026-09-27 起：白马 / 消费 / AI软件）
+STOCK_CONTAINER_DIRS = {"白马", "消费", "AI软件"}
 
 
 def _list_stock_dirs():
-    """标的目录名（相对 research/）；容器目录下的标的带容器前缀，如「白马/贵州茅台」。"""
+    """标的目录名（相对 research/）；容器目录下的标的带容器前缀，如「消费/贵州茅台」。"""
     names = []
     for d in sorted((WIKI / "research").iterdir()):
         if not d.is_dir() or d.name == "articles" or d.name in NON_STOCK_DIRS:
