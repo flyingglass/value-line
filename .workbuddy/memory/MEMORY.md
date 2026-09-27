@@ -21,6 +21,8 @@ generate_report.py → report.html
 **汇率**：`data/fx_rates.db` → `daily_rates(date, usd_cny, hkd_cny)`，源 AKShare `currency_boc_safe`，**单位为 100 外币兑 CNY**（hkd_cny=86.5 → 1HKD=0.865CNY），港股按日期换算
 
 ## 数据口径陷阱
+- 🔴 **披露表「本期/上期」两列不可同时累加**：从年报/中报附注构建「客户或项目 × 年度」时间序列时，每行都带本期数与上期数；若对同一主体把两列都写进序列，**同一年会被计两次（正好翻倍）**。实测：宝信关联交易中宝钢股份 FY2024 错算 26.71 亿、真值 13.35 亿。正确：**只取各年报告的「本期」列**，序列最早一年（无独立报告）才取上期列。凡跨年序列先做自检——用「某年报的上期」与「上一年报的本期」互相对照，两者应相等
+- 🔴 **趋势判断必须年度口径与半年口径互校**：只用半年数会得出相反结论。实测宝信：2026H1 关联占比 49.9% < 2025H1 的 51.6%（似「外部化推进」），但年度口径 2025 年占比 55.7% > 2024 年 50.7%，且 2025 年非关联收入 -27.8% 比关联 -11.6% 跌得更狠 → 真实结论是**依赖度回升**。定趋势前先拿年度数对齐
 - 🔴 dividend 表只存「年度分红」一笔，**不含中期**：600519 2025 年度 28.02 vs 真实全年 51.95（股息率 2.17% vs 4.02%）→ 算股息率前必须查该年中期分红并手工相加
 - 单季拆分：Q1 用当年 Q1 累计值本身，**不可**用 Q1累计−上年Q4累计（会得负值垃圾）
 - 🔴 **求 TTM（近四季）不可把 income 表四个累计值相加**——Q2/Q3/Q4 是**累计口径**，相加会高估约 2.3 倍（002209 实测：错算得 TTM 45.98 亿，真值 20.13 亿）。正确：`TTM = 上年年报 + 本年累计 − 上年同期累计`。凡比值型指标（合同负债/TTM 营收等）必先自检分母量级
@@ -42,7 +44,7 @@ generate_report.py → report.html
 ## 新增标的速查（VL 流水线）
 ```
 ① cninfo 查 org_id: POST http://www.cninfo.com.cn/new/information/topSearch/query  keyWord=<简称>
-② config.py 加 STOCKS + 切 ACTIVE_STOCK（注意 engine.py 只读 ACTIVE_STOCK，直接命令行跑脚本会串标的！）
+② config.py 加 STOCKS + 切 ACTIVE_STOCK（注意 engine.py 只读 ACTIVE_STOCK，直接命令行跑脚本会串标的！**另：build.py 会在开头 `_set_active(code)`、结尾固定 `_set_active("09992")` 复位，所以 build 跑完 ACTIVE_STOCK 会回到 09992、提交里不会带这项变更；要真正切换须 build 后手工改**）
 ③ fetcher.py <code> → pdf_downloader.py <code>（两者自带 pop 代理，直接跑即可）
 ④ extract_mda.py <code>
 ⑤ scripts/<code>/insert_revenue.py（金额统一为百万元；pct 由金额自算避免手工误差；单一取值维度不入库）
@@ -75,6 +77,7 @@ CN 补充：此机器上 eastmoney 直连必失败，**但 fetcher/pdf_downloade
 - **skill 路径失效待修**：`lihai-2444-analysis/SKILL.md` 写的 `方法论/里海-变化论.md`、`方法论/里海-双左侧.md` 实际在 `方法论/10-初筛/`、`方法论/30-共振/` 下（用户未点头前不擅自改）
 
 ## 已知 Bug 模式
+- 🔴 **build.py step_4_5 自动生成的 `business_commentary.py` 必须手工重写**（2026-09-27 宝信 600845 实测）：生成器产出有三处硬伤 —— ① P1 引用**未定义变量 `name`** → `build()` 抛 NameError → engine **静默回退**到通用评论，而 Step 8 仍报 ALL PASS，**不报错、极易漏过**；② business 段结构描述重复矛盾（「软件开发及工程服务68%…65%…服务外包34%…32%」）；③ P3/P5 是「规模成本优势／渠道粘性／产能释放／需求回暖」通用套话，对无实体产能、需求取决于集团 capex 的标的完全不成立。**验收法：跑完 build 后查 `report_data.json` 的 `analyst.commentary_from_script` 必须为 `True`**
 - **单引号**：JS 单引号字符串里 `DIV'D` 会截断 → 改用 Unicode `\u2019`
 - **花括号**：Python f-string 里的 JS `{ }` 必须写 `{{ }}`
 - 🔴 **bash 双引号 + `python -c` 写 Markdown**：反引号被当命令替换；若其中是**真实存在的相对路径**（如 `学股/广州/xxx.md`），sh 会**把该 md 当脚本执行**，`> **来源**：` 行触发重定向凭空造垃圾文件。
