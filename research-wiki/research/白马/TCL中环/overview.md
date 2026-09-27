@@ -9,7 +9,7 @@ updated: 2026-06-19
 
 ## DB 表
 
-数据库文件: `data/002129.db`，共 9 张表（定义见 `fetcher.py:_init_tables`）。
+数据库文件: `data/db/002129.db`，共 9 张表（定义见 `fetcher.py:_init_tables`）。
 
 ## `revenue_structure` 表
 

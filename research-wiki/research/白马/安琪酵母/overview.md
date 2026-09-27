@@ -14,7 +14,7 @@ sources:
 
 ## DB 表
 
-数据库文件: `data/600298.db`，共 9 张表（定义见 `fetcher.py:_init_tables`）。
+数据库文件: `data/db/600298.db`，共 9 张表（定义见 `fetcher.py:_init_tables`）。
 
 ## `revenue_structure` 表
 

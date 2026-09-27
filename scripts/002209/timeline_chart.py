@@ -13,7 +13,7 @@
 """
 import sqlite3, datetime, os, json
 
-DB = r'C:/LY/Repo/llm/value-line/data/002209.db'
+DB = r'C:/LY/Repo/llm/value-line/data/db/002209.db'
 OUT = r'C:/LY/Repo/llm/value-line/report/002209-timeline.html'
 
 # ============================== 取数 ==============================
@@ -301,7 +301,7 @@ TPL = """<!DOCTYPE html>
  td:first-child,th:first-child{text-align:left;}
 </style></head><body>
 <h1>达意隆 002209 · 五轨时间线对照（2021-01 → 2026-09）</h1>
-<div class="sub">共享同一条真实日期时间轴 · 数据来源 data/002209.db（AKShare）· 股价为前复权日收盘</div>
+<div class="sub">共享同一条真实日期时间轴 · 数据来源 data/db/002209.db（AKShare）· 股价为前复权日收盘</div>
 __SVG__
 <div class="note">
 <b>读图要点</b><br>

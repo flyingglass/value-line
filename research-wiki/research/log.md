@@ -1,5 +1,33 @@
 # 投研操作日志
 
+## [2026-09-27] 结构 | 所有 SQLite 归入 `data/db/`，全库引用同步
+
+### 用户指令
+- 「data 下面新建一个 db 目录，所有的 db 都移动到这个 db 目录，所有的引用也修改好」
+
+### 操作：移动
+- 新建 `data/db/`，`data/` 根下 **101 个 .db**（100 只标的数据库 + `fx_rates.db`）全部移入；`data/` 根下不再有 .db
+- `data/pdfs/`、`data/disclosure/`、`data/广州/`、`data/AI软件/`、`data/tmp_*` 位置不变
+
+### 操作：引用同步（130 个文件，227 处）
+- **join 形式 19 处**：`os.path.join(..., "data", "x.db")` / `"data", f"{code}.db"` → 中间插入 `"db"`
+- **路径字面量 208 处**：`data/x.db`、`data/{code}.db`、`C:/…/data/x.db` → `data/db/…`
+- **4 处变量拼接手工改**：
+  - `scripts/config.py`：`db_path()` 改用新增的 `DB_DIR` 常量，并在启动时 `os.makedirs(DB_DIR)`；`DATA_DIR` 语义不变（data 根）
+  - `scripts/ccass_fetcher.py`：`db_path()` 同上
+  - `scripts/fetcher.py::_read_fx_rate()`：`config.DATA_DIR, "db", "fx_rates.db"`
+  - `scripts/gz_pool_position.py::from_db()`：`DATA, "db", "%s.db" % code`
+- **1 处硬编码绝对路径**：`scripts/002209/timeline_chart.py` 的 `DB = .../value-line/data/db/002209.db`
+- **文档 15 文件 20 处**（含模板写法 `data/<code>.db`）：`.codebuddy/CODEBUDDY.md`、`.workbuddy/WORKBUDDY.md`、两处 skills、`vl/overview.md`、`vl/modules/engine.py.md`、`research/index.md`、里海案例/方法论页；`vl/concepts/项目目录结构.md` 目录树重画
+- **不改**：`raw/`（只进不改）、历史记录（`research/log.md`、`vl/log.md`、`.workbuddy/memory/**`）
+
+### 验证
+- 静态：py 中含路径的字符串字面量 **0 处指向不存在的文件**；join 形式 **0 处漏改**
+- 功能：`config.db_path` / `ccass_fetcher.db_path` 对全部 **100 只标的**命中真实文件；`engine.DataReader("600519")` 读库成功；`scripts/tools/verify_case_pages.py` **22 页全 OK**
+- 产物：站点重建 **304 页**；`report/**/*.html` 不含 db 路径文本（VL 报告无需重建）
+
+---
+
 ## [2026-09-26] 结构 | 标的目录整体归入 `research/白马/`，全库引用同步
 
 ### 用户指令

@@ -2,7 +2,7 @@
 """分众传媒(002027) 营收结构数据 — 从年报PDF提取"""
 import sqlite3
 
-conn = sqlite3.connect("data/002027.db")
+conn = sqlite3.connect("data/db/002027.db")
 
 # 金额单位: 百万元 (从年报原始数据/1,000,000换算)
 # 百分比: 基于总营收计算

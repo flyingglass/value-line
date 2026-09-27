@@ -2,7 +2,7 @@
 """TCL中环(002129) 营收结构数据 — 从年报PDF提取"""
 import sqlite3
 
-conn = sqlite3.connect("data/002129.db")
+conn = sqlite3.connect("data/db/002129.db")
 
 # 金额单位: 亿元 (从年报原始数据)
 # 百分比: 基于总营收计算

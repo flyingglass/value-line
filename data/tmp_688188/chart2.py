@@ -1,6 +1,6 @@
 import sqlite3, datetime as dt
 
-c = sqlite3.connect('data/688188.db')
+c = sqlite3.connect('data/db/688188.db')
 
 # ---------- 股价 ----------
 d0s, d1s = '2021-08-01', '2023-12-31'

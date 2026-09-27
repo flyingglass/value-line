@@ -21,7 +21,7 @@ s = [f'<svg viewBox="0 0 {W} {H}" width="100%" role="img" xmlns="http://www.w3.o
      '<title>宝信软件单季营业收入 2021-2026</title>',
      '<desc>分组柱状图显示各年四个季度营收。2025年二季度21.77亿元为2021年以来最低，2026年二季度29.88亿元仍低于2023与2024年同期。</desc>',
      '<text x="20" y="20" font-size="14" font-weight="500" fill="#2C2C2A">单季营业收入：2026Q2 的 +37.3% 来自哪（亿元）</text>',
-     '<text x="20" y="38" font-size="11" fill="#888780">数据：data/600845.db income「一、营业总收入」，单季由累计值拆分｜2026 年 Q3/Q4 未披露</text>']
+     '<text x="20" y="38" font-size="11" fill="#888780">数据：data/db/600845.db income「一、营业总收入」，单季由累计值拆分｜2026 年 Q3/Q4 未披露</text>']
 for v in range(0, 57, 10):
     s.append(f'<line x1="{X0}" y1="{Y(v):.1f}" x2="{X1}" y2="{Y(v):.1f}" stroke="#D3D1C7" stroke-width="0.5"/>')
     s.append(f'<text x="{X0-6}" y="{Y(v)+4:.1f}" font-size="11" fill="#5F5E5A" text-anchor="end">{v}</text>')

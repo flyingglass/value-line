@@ -2048,8 +2048,8 @@ def _detect_rpt_ccy(reader, stock):
 def _get_fx_rate(date_str):
     """获取 HKD/CNY 汇率 (100 HKD = ? CNY)，失败返回 None"""
     import sqlite3, os
-    # 项目根 data/fx_rates.db (原为 scripts/data/... 不存在, 导致汇率恒为None)
-    db_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "fx_rates.db")
+    # 项目根 data/db/fx_rates.db (原为 scripts/data/... 不存在, 导致汇率恒为None)
+    db_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "db", "fx_rates.db")
     if not os.path.exists(db_path):
         return None
     try:

@@ -4,7 +4,7 @@ category: 投研-数据目录
 created: 2026-07-22
 updated: 2026-07-22
 sources:
-  - data/300750.db
+  - data/db/300750.db
   - scripts/300750/insert_revenue.py
 ---
 
@@ -12,7 +12,7 @@ sources:
 
 ## DB 表
 
-数据库文件: `data/300750.db`，共 9 张表（定义见 `fetcher.py:_init_tables`）。
+数据库文件: `data/db/300750.db`，共 9 张表（定义见 `fetcher.py:_init_tables`）。
 
 ## `revenue_structure` 表
 
@@ -72,7 +72,7 @@ ORDER BY dim_type, amount DESC;
 | ROE | 24.67% | 24.04% | 24.13% | 24.91% |
 | 资产负债率 | 70.56% | 69.34% | 65.24% | 61.94% |
 
-> 数据来源: `data/300750.db` — income + indicators 表
+> 数据来源: `data/db/300750.db` — income + indicators 表
 
 ## 资产负债表关键项目 (FY2025)
 
@@ -108,7 +108,7 @@ ORDER BY dim_type, amount DESC;
 | 估值方法 | CF (15.0x) |
 | 股价(2026-06-14) | ¥394.85 |
 
-> 来源: `scripts/config.py` > STOCKS, `data/300750.db` > meta
+> 来源: `scripts/config.py` > STOCKS, `data/db/300750.db` > meta
 
 ## 数据可用性边界
 

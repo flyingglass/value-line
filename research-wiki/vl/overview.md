@@ -40,7 +40,7 @@ build.py --cf 15.0
 
 | 产出 | 文件 | 说明 |
 |------|------|------|
-| SQLite 数据库 | data/<code>.db | 8 张表，全部财务数据 |
+| SQLite 数据库 | data/db/<code>.db | 8 张表，全部财务数据 |
 | 报告 JSON | report_data.json | engine.py 输出，所有计算指标 |
 | VL 单页 HTML | report/<Name>.html | 自包含，含 ECharts K 线图 |
 | 阅读报告 | report/<Name>_reading.md | 8 模块深度分析 |

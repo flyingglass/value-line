@@ -1,6 +1,6 @@
 import sqlite3, datetime as dt
 
-c = sqlite3.connect('data/688188.db')
+c = sqlite3.connect('data/db/688188.db')
 rows = c.execute("select date,high,low,close from kline where date between '2021-12-01' and '2023-06-30' order by date").fetchall()
 d0 = dt.date.fromisoformat(rows[0][0]); d1 = dt.date.fromisoformat(rows[-1][0])
 span = (d1 - d0).days

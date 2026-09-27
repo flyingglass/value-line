@@ -2,7 +2,7 @@
 topic: 云铝股份 (000807) — 投资 Thesis
 category: 投研-投资论点
 created: 2026-07-22
-sources: [data/000807.db]
+sources: [data/db/000807.db]
 ---
 # 云铝股份 — 投资 Thesis
 

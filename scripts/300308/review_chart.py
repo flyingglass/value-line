@@ -21,7 +21,7 @@ plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
 plt.rcParams["axes.unicode_minus"] = False
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB = os.path.join(BASE, "data", "300308.db")
+DB = os.path.join(BASE, "data", "db", "300308.db")
 ASSETS = os.path.join(BASE, "research-wiki", "research", "疯狂的里海", "assets")
 
 UP, DOWN = "#d93a34", "#1f9e63"
@@ -34,7 +34,7 @@ SPEC = dict(
     name="中际旭创", start="2018-01-01",
     title=("中际旭创（300308）行情复盘 · 周K（前复权）· 2018-2026",
            "数据驱动复盘；本图不含「里海买卖点」——中际旭创不是里海案例标的"),
-    footnote=("数据：data/300308.db（kline 前复权 qfq，按周 W-FRI 聚合成周K）\n"
+    footnote=("数据：data/db/300308.db（kline 前复权 qfq，按周 W-FRI 聚合成周K）\n"
               "口径：前复权连续价；顶底由脚本自动定位年份最高/最低周，未手填。"),
     phases=[
         ("2018-01-01", "2019-12-31", "阶段一 · 区间震荡\n2018-2019"),

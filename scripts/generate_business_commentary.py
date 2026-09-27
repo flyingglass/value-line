@@ -209,7 +209,7 @@ def generate(code):
         return True
 
     # ── 营收结构摘要 ──
-    db_path = os.path.join(BASE, "data", f"{code}.db")
+    db_path = os.path.join(BASE, "data", "db", f"{code}.db")
     prod_summary = ""
     reg_summary = ""
     if os.path.exists(db_path):

@@ -130,7 +130,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <tr>
 <th>板</th>
 <th>判定</th>
-<th>依据（均出自 <code>data/002209.db</code> 实算）</th>
+<th>依据（均出自 <code>data/db/002209.db</code> 实算）</th>
 </tr>
 </thead>
 <tbody>
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 </tbody>
 </table>
 <blockquote>
-<p>⚠️ <strong>期次修正（2026-09-25）</strong>：原表写作&quot;2026Q2 合同负债 11.46 亿 vs 应收账款 <strong>4.51 亿</strong>&quot;——4.51 亿是 <strong>2025 年末</strong>值；2026Q2 应收账款为 <strong>5.28 亿</strong>（<code>data/002209.db</code> balance，科目&quot;应收票据及应收账款&quot;）。</p>
+<p>⚠️ <strong>期次修正（2026-09-25）</strong>：原表写作&quot;2026Q2 合同负债 11.46 亿 vs 应收账款 <strong>4.51 亿</strong>&quot;——4.51 亿是 <strong>2025 年末</strong>值；2026Q2 应收账款为 <strong>5.28 亿</strong>（<code>data/db/002209.db</code> balance，科目&quot;应收票据及应收账款&quot;）。</p>
 </blockquote>
 <p><strong>本项目判断</strong>：护城河真实 ≠ 可以长期持有。收入模式的&quot;一次性&quot;决定了它只能抓极端时点的边际变化，抓完就走。</p>
 <h3>2.3 底价：缺位 ⇒ 第 ② 段卡口未过</h3>
@@ -677,7 +677,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <td>13.60 亿（89.44%）</td>
 <td><strong>17.23 亿（93.12%）</strong></td>
 <td>+26.7%</td>
-<td><code>data/002209.db</code> revenue_structure（年报口径，本项目实算）</td>
+<td><code>data/db/002209.db</code> revenue_structure（年报口径，本项目实算）</td>
 </tr>
 <tr>
 <td>达意隆 · <strong>境外</strong></td>
@@ -787,7 +787,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <h2>附 D 本地数据层</h2>
 <ul>
 <li><code>scripts/config.py</code> <code>STOCKS[&quot;002209&quot;]</code>：达意隆，饮料包装机械整线，cn / sz / SZSE，实控人张颂明，总股本 204,530,050 股。</li>
-<li>数据库 <code>data/002209.db</code>：kline（2008-01-30 ~ 2026-09-22，4351 根，qfq）、income、balance、cashflow、indicators、dividend、revenue_structure。</li>
+<li>数据库 <code>data/db/002209.db</code>：kline（2008-01-30 ~ 2026-09-22，4351 根，qfq）、income、balance、cashflow、indicators、dividend、revenue_structure。</li>
 <li>生成脚本 <code>scripts/002209/timeline_chart.py</code>（五轨时间线对照，含坐标越界断言）；产物 <code>report/002209-timeline.html</code> <strong>已按用户要求删除</strong>，需要时重跑即得。</li>
 <li>估值口径：PB 方法，PB = 1.0x 为 config 初选值，但 1.0x 落在 2014 年以来从未低于 2.02x 的区间外，<strong>该口径尚未定案</strong>（即 2.3 所说&quot;底价缺位&quot;）。</li>
 </ul>

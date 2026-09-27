@@ -5,7 +5,7 @@ created: 2026-07-17
 sources:
   - research/白马/人福医药/overview.md
   - scripts/600079/business_commentary.py
-  - data/600079.db
+  - data/db/600079.db
 ---
 
 # 人福医药 (600079) — 运营指标跟踪

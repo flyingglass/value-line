@@ -8,7 +8,7 @@ pct 口径: 分部间抵销金额不单独入库。
 """
 import sqlite3, os
 _root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-conn = sqlite3.connect(os.path.join(_root, "data/600129.db"))
+conn = sqlite3.connect(os.path.join(_root, "data/db/600129.db"))
 
 _RAW = [  # (code, year, dim_type, dim_name, 金额万元, pct)
     # ========== by_industry 2025 (2025年报 P14, 正向分部) ==========

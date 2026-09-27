@@ -6,7 +6,7 @@ sources:
   - research/白马/TCL中环/overview.md (产品结构)
   - research/白马/TCL中环/thesis.md (护城河+风险)
   - raw/research/TCL中环/ (5 篇研报/分析)
-  - data/002129.db
+  - data/db/002129.db
 ---
 
 # TCL中环 (002129) — 运营指标跟踪

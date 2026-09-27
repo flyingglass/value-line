@@ -3,7 +3,7 @@ topic: 宁德时代 (300750) — 投资 Thesis
 category: 投研-投资论点
 created: 2026-07-22
 sources:
-  - data/300750.db
+  - data/db/300750.db
   - scripts/300750/business_commentary.py
   - scripts/config.py
 ---
@@ -14,7 +14,7 @@ sources:
 
 宁德时代是全球最大的动力电池和储能电池制造商，核心赚钱模式是**研发 + 规模化制造 + 全球化客户绑定**。2025 年营收 4,237 亿（+17%），归母净利 722 亿（+42%），毛利率 26.3%，ROE 24.9%。核心 alpha 在于动力电池全球市占率超 35% 的绝对龙头地位 + 储能电池高速增长（14.7% 营收，增速超动力）+ 上游锂矿/回收垂直整合降本。
 
-（来源：`data/300750.db`、`scripts/config.py`、`business_commentary.py`）
+（来源：`data/db/300750.db`、`scripts/config.py`、`business_commentary.py`）
 
 ---
 

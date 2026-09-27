@@ -6,7 +6,7 @@ ccass_fetcher.py — 港交所 CCASS 席位持股数据抓取 / 入库
     https://www.hkexnews.hk/sdw/search/searchsdw_c.aspx
 公开页面，无需 API key、无需登录。
 
-写入 data/<code>.db 的 ccass_holding 表（日频 × 席位粒度），
+写入 data/db/<code>.db 的 ccass_holding 表（日频 × 席位粒度），
 为现有基本面数据库补一个「日频资金面 / 筹码结构」维度。
 
 表结构：
@@ -242,7 +242,7 @@ class CCASSFetcher:
 # ── 数据库 ──────────────────────────────────────────────────
 
 def db_path(code: str) -> str:
-    return os.path.join(DATA_DIR, f"{code}.db")
+    return os.path.join(DATA_DIR, "db", f"{code}.db")
 
 
 def init_table(conn: sqlite3.Connection) -> None:

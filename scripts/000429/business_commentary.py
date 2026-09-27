@@ -16,7 +16,7 @@
      参股路段（惠盐/广肇/江中/康大/赣康/广乐）通行费收入计入投资收益而非营业收入, 不混淆。
 
 数据来源:
-  - metrics / spot / cagr / revenue_structure 参数 = engine 由 data/000429.db 计算
+  - metrics / spot / cagr / revenue_structure 参数 = engine 由 data/db/000429.db 计算
   - 年报原文 = 粤高速A 2025年年度报告 / 2024年年度报告, 正文内逐条标注页码
 """
 

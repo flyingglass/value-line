@@ -4,7 +4,7 @@ category: 投研-行业分析
 created: 2026-07-17
 sources:
   - raw/research/润泽科技/2026-06-26-300442-idc-operating-metrics.md
-  - data/300442.db
+  - data/db/300442.db
 ---
 
 # 润泽科技 (300442) — 数据中心产业链全景

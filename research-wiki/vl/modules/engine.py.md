@@ -99,7 +99,7 @@ AKShare ↔ income ↔ balance ↔ PDF 三源交叉，TOTAL_SHARES 三路径反�
 ## 数据流
 
 ```
-SQLite (data/<code>.db) → engine.py
+SQLite (data/db/<code>.db) → engine.py
     ↓ 双路径读取 (indicators 或 income/balance/cashflow)
     ↓ 计算 24 项指标 + 估值线 + 验证
     ↓ 动态检测数据源边界

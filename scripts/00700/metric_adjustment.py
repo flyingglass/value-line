@@ -18,7 +18,7 @@ import os, sqlite3, re
 def _read_fx_rate(date_str):
     """读取 HKD/CNY 汇率, 返回 1 HKD = ? CNY, 失败返回 None"""
     fx_db = os.path.join(os.path.dirname(os.path.dirname(
-        os.path.abspath(__file__))), "data", "fx_rates.db")
+        os.path.abspath(__file__))), "data", "db", "fx_rates.db")
     if not os.path.exists(fx_db):
         return None
     try:

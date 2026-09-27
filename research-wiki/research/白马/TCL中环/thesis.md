@@ -7,7 +7,7 @@ sources:
   - raw/research/TCL中环/2026-03-25-国金证券-一体化布局加速技术专利优势渐显.md
   - raw/research/TCL中环/2025-10-29-国金证券-亏损显著收窄反内卷带动盈利能力修复.md
   - raw/research/TCL中环/2025-08-26-民生证券-成本与运营持续优化组件业务亏损收窄.md
-  - data/002129.db
+  - data/db/002129.db
   - report/reading/002129.md
 ---
 

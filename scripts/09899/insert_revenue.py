@@ -2,7 +2,7 @@
 """网易云音乐(09899) 营收结构数据 — 来源: 年报PDF原文学会(按商品/服务种类)"""
 import sqlite3
 
-conn = sqlite3.connect("data/09899.db")
+conn = sqlite3.connect("data/db/09899.db")
 
 # 金额单位: 亿元 (年报原文 / 10000万)
 # 数据来源: 各年年报PDF 附注5 — 客戶合約收入分類

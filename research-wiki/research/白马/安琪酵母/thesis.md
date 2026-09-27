@@ -7,7 +7,7 @@ sources:
   - scripts/600298/business_commentary.py
   - report/reading/600298.md
   - raw/research/安琪酵母/2026-06-23-vl-report.md
-  - data/600298.db
+  - data/db/600298.db
 ---
 
 # 安琪酵母 (600298) — 投资 Thesis
@@ -54,7 +54,7 @@ sources:
 - 本地化供应绕过关税壁垒，海外毛利率 32.1% 显著高于国内
 - 海外收入增速 +19.9% 远超国内 +4.1%
 
-（来源：`scripts/600298/business_commentary.py` P1；`data/600298.db` revenue_structure by_region）
+（来源：`scripts/600298/business_commentary.py` P1；`data/db/600298.db` revenue_structure by_region）
 
 ### 护城河 3：技术壁垒
 - 菌种选育 + 发酵工艺 Know-how（四十年积累），新进入者难以复制

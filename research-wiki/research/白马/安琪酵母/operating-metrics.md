@@ -5,7 +5,7 @@ created: 2026-07-17
 sources:
   - research/白马/安琪酵母/overview.md (毛利率趋势)
   - research/白马/安琪酵母/thesis.md (海外毛利率)
-  - data/600298.db
+  - data/db/600298.db
   - report/reading/600298.md
 ---
 

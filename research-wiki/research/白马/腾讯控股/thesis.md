@@ -2,7 +2,7 @@
 topic: 腾讯控股 (00700) — 投资 Thesis
 category: 投研-投资论点
 created: 2026-07-22
-sources: [data/00700.db, scripts/00700/business_commentary.py]
+sources: [data/db/00700.db, scripts/00700/business_commentary.py]
 ---
 # 腾讯控股 (00700) — 投资 Thesis
 

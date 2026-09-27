@@ -34,7 +34,7 @@
 import sqlite3, os
 
 _root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-conn = sqlite3.connect(os.path.join(_root, "data/000429.db"))
+conn = sqlite3.connect(os.path.join(_root, "data/db/000429.db"))
 
 _RAW = [  # (code, year, dim_type, dim_name, 金额元, pct)
     # ========== by_product (业务类型, 来源: 年报附注35 营业收入分解) ==========

@@ -3,7 +3,7 @@ topic: 紫金矿业 (02899)
 category: 投研-数据目录
 created: 2026-07-22
 sources:
-  - data/02899.db
+  - data/db/02899.db
   - scripts/02899/insert_revenue.py
 ---
 
@@ -11,7 +11,7 @@ sources:
 
 ## DB 表
 
-数据库文件: `data/02899.db`，共 9 张表（定义见 `fetcher.py:_init_tables`）。
+数据库文件: `data/db/02899.db`，共 9 张表（定义见 `fetcher.py:_init_tables`）。
 
 ## `revenue_structure` 表
 
@@ -68,7 +68,7 @@ ORDER BY year, amount DESC;
 | ROIC | 9.48% | 7.76% | 10.33% | 14.57% |
 | 资产负债率 | 59.33% | 59.66% | 55.19% | 51.56% |
 
-> 数据来源: `data/02899.db` — indicators 表
+> 数据来源: `data/db/02899.db` — indicators 表
 
 ## 资产负债表关键项目 (FY2025)
 
@@ -108,7 +108,7 @@ ORDER BY year, amount DESC;
 | 股价(2026-06-14) | HKD 30.1 |
 | PE | 3.44x |
 
-> 来源: `scripts/config.py` > STOCKS, `data/02899.db` > meta
+> 来源: `scripts/config.py` > STOCKS, `data/db/02899.db` > meta
 
 ## 数据可用性边界
 

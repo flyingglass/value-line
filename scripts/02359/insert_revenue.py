@@ -2,7 +2,7 @@
 """药明康德(02359) 营收结构数据 — 从年报原文提取"""
 import sqlite3
 
-conn = sqlite3.connect("data/02359.db")
+conn = sqlite3.connect("data/db/02359.db")
 
 # 金额单位: 亿元 (从年报原文 / 100000000)
 # 百分比: 年报原文

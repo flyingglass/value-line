@@ -68,10 +68,10 @@ research-wiki/
 ### 共享数据（AI 可在 ingest/query 中读取）
 | 资产 | 位置 | 内容 |
 |------|------|------|
-| 财务数据库 | `data/<code>.db` | 9 表：三大报表 + 指标 + 分红 + 行情 + 营收拆分 |
+| 财务数据库 | `data/db/<code>.db` | 9 表：三大报表 + 指标 + 分红 + 行情 + 营收拆分 |
 | 年报 PDF | `data/pdfs/<code>/` | 500+ PDF 年报/中报/季报 |
 | 券商研报 | `ak.stock_research_report_em(symbol)` | 东方财富-个股研报列表（机构/评级/日期/盈利预测），PDF 不可直链下载 |
-| 汇率 | `data/fx_rates.db` | HKD/CNY 每日汇率 |
+| 汇率 | `data/db/fx_rates.db` | HKD/CNY 每日汇率 |
 | 标的配置 | `config.py` | 42 只标的的基本信息 |
 
 ### 工作流
@@ -168,7 +168,7 @@ research-wiki/
 
 ## 🔴 投研数据（不可违背）
 **严禁编造任何数据。** 所有投研输出中的数字必须准确，且注明出处。
-- 数据来源优先级：年报 PDF 原文 > `data/<code>.db` > `report_data.json` > IMA 知识库原始资料
+- 数据来源优先级：年报 PDF 原文 > `data/db/<code>.db` > `report_data.json` > IMA 知识库原始资料
 - 无出处 = 不可用。标注"未知/待查"优于凭空估算
 - 市场份额、行业规模、单价区间等不可从 DB 直接得出的数字，必须引用外部原文
 - 引用格式：`（来源：<文件名/API/IMA kb 名称>）`

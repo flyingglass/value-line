@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """广州待选池 35 家 · 位置（赔率第①细项：空头是否衰竭）统一测算
 
-数据源：本地 data/<code>.db 的 kline 表优先；缺失则 AKShare 补拉。
+数据源：本地 data/db/<code>.db 的 kline 表优先；缺失则 AKShare 补拉。
 输出：scripts/out/gz_pool_position.csv + 控制台表格。
 
 指标口径（本项目近似，非里海原方法）：
@@ -54,7 +54,7 @@ START, END = "20250101", "20260924"
 
 
 def from_db(code):
-    p = os.path.join(DATA, "%s.db" % code)
+    p = os.path.join(DATA, "db", "%s.db" % code)
     if not os.path.exists(p):
         return None
     try:

@@ -7,7 +7,7 @@ sources:
   - data/pdfs/00696/00696_2025_中报.pdf
   - data/pdfs/00696/00696_2025_年报.pdf
   - data/AI软件/00696_中国民航信息网络_2026中报.pdf
-  - data/00696.db
+  - data/db/00696.db
   - https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0422/2025042200784_c.pdf
   - https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0912/2025091200773_c.pdf
   - https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0422/2026042200655_c.pdf

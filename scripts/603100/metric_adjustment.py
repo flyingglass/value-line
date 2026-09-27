@@ -58,7 +58,7 @@ def adjust_dividends(reader, stock_cfg):
 
 if __name__ == "__main__":
     conn = sqlite3.connect(os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data/603100.db"))
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data/db/603100.db"))
     db_dps = {r[0]: r[1] for r in conn.execute("SELECT report_year, cash_dps FROM dividend")}
     adj = adjust_dividends(None, {})
     print(f"{'年度':<6}{'DB每股':>10}{'调整后每股':>12}{'分红总额(亿)':>14}")

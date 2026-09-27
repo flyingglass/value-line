@@ -18,7 +18,7 @@ created: 2026-06-22
 
 ## DB 表
 
-`data/600079.db`，9 表。`revenue_structure` 仅有 `by_product` 维度（2021-2025，每年 2 条）。
+`data/db/600079.db`，9 表。`revenue_structure` 仅有 `by_product` 维度（2021-2025，每年 2 条）。
 
 > ⚠️ 子公司拆分未入 DB，以下数据来自年报 PDF Page 49。
 

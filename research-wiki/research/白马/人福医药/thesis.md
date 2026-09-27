@@ -4,7 +4,7 @@ category: 投研-投资论点
 created: 2026-07-17
 sources:
   - scripts/600079/business_commentary.py
-  - data/600079.db
+  - data/db/600079.db
   - research/白马/人福医药/overview.md
 ---
 
@@ -14,7 +14,7 @@ sources:
 
 人福医药是中国麻醉药品领域龙头企业，核心赚钱模式是**管制牌照壁垒下的麻醉镇痛/镇静药品研发、生产和销售**。核心子公司宜昌人福（持股 80%）贡献 118% 的归母净利，是国内最大的麻醉药品定点研发生产基地。2025 年营收 239.6 亿（-5.8%），归母净利 18.6 亿（+39.5%），招商局入主开启央企治理升级+降本增效新阶段。当前 PE 约 14x，因 ST 折价，摘帽后存在估值修复空间。
 
-（来源：`scripts/600079/business_commentary.py`、`data/600079.db`、年报 PDF）
+（来源：`scripts/600079/business_commentary.py`、`data/db/600079.db`、年报 PDF）
 
 ---
 

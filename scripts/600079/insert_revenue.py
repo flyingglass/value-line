@@ -2,7 +2,7 @@
 """人福医药(600079) 营收结构数据 — 从年报PDF原文提取(分行业)"""
 import sqlite3
 
-conn = sqlite3.connect("data/600079.db")
+conn = sqlite3.connect("data/db/600079.db")
 
 # 金额单位: 亿元 (从年报原文 / 100000000)
 # 百分比: 基于分行业营收合计计算

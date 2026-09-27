@@ -72,7 +72,7 @@ sources:
 
 > 🔑 海外毛利率远超国内（32.1% vs 19.7%），海外收入占比从 41% 向 50% 提升是结构性利润驱动力。
 
-（来源：`scripts/600298/business_commentary.py` P1；`data/600298.db` revenue_structure by_region）
+（来源：`scripts/600298/business_commentary.py` P1；`data/db/600298.db` revenue_structure by_region）
 
 ---
 

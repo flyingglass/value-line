@@ -5,7 +5,7 @@
 方法：同一时间区间分别按 日 / 周 聚合画 K 线，并给出「K 线根数」与「每根占多少像素」，
       与截图对比即可判定周期。
 
-数据口径：data/002507.db kline 表（前复权 qfq）。
+数据口径：data/db/002507.db kline 表（前复权 qfq）。
           图中「名义价 56.24」= 前复权 2020-09-03 最高 38.21（不复权口径）。
 
 输出：research-wiki/research/疯狂的里海/assets/kline-002507-period-compare.png
@@ -29,7 +29,7 @@ plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
 plt.rcParams["axes.unicode_minus"] = False
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB = os.path.join(BASE, "data", "002507.db")
+DB = os.path.join(BASE, "data", "db", "002507.db")
 OUT_DIR = os.path.join(BASE, "research-wiki", "research", "疯狂的里海", "assets")
 OUT_PNG = os.path.join(OUT_DIR, "kline-002507-period-compare.png")
 
@@ -163,7 +163,7 @@ def main():
              "若糊成一整条色带、只有价格轮廓，说明约 1210 根 → 日K。\n"
              "口径：本图价格为前复权（qfq，已还原除权除息，供跨期比较）；你截图上的 56.24 是不复权名义价，"
              "同一天（2020-09-03）前复权最高为 38.21。两者不可直接混用。\n"
-             "数据：data/002507.db kline 表。",
+             "数据：data/db/002507.db kline 表。",
              fontsize=8.4, color="#5a6068", va="bottom", linespacing=1.7)
 
     os.makedirs(OUT_DIR, exist_ok=True)

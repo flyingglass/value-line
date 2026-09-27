@@ -3,7 +3,7 @@ topic: 紫金矿业 (02899) — 产业链全景
 category: 投研-行业分析
 created: 2026-07-22
 sources:
-  - data/02899.db (revenue_structure)
+  - data/db/02899.db (revenue_structure)
   - scripts/02899/business_commentary.py
 ---
 

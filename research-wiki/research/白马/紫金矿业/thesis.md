@@ -3,7 +3,7 @@ topic: 紫金矿业 (02899) — 投资 Thesis
 category: 投研-投资论点
 created: 2026-07-22
 sources:
-  - data/02899.db
+  - data/db/02899.db
   - scripts/02899/business_commentary.py
   - scripts/config.py
 ---
@@ -14,7 +14,7 @@ sources:
 
 紫金矿业是全球成长最快的大型跨国矿业集团之一，核心赚钱模式是**低成本逆周期并购 + 自主勘探增储 + 规模化开采冶炼**。2025 年营收 3,491 亿（+15%），归母净利 518 亿（+62%），毛利率 27.7%，ROE 31.8%。核心 alpha 在于全球顶级矿山资产组合（铜/金/锂）受益于大宗商品超级周期 + 行业最低成本曲线带来的利润弹性。当前 PE 仅 3.44x，PB 估值。
 
-（来源：`data/02899.db`、`scripts/config.py`）
+（来源：`data/db/02899.db`、`scripts/config.py`）
 
 ---
 

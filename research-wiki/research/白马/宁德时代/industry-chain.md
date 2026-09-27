@@ -3,7 +3,7 @@ topic: 宁德时代 (300750) — 产业链全景
 category: 投研-行业分析
 created: 2026-07-22
 sources:
-  - data/300750.db (revenue_structure)
+  - data/db/300750.db (revenue_structure)
   - scripts/300750/business_commentary.py
 ---
 

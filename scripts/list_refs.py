@@ -11,12 +11,12 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project ro
 
 
 def db_path(code):
-    return os.path.join(BASE, "data", f"{code}.db")
+    return os.path.join(BASE, "data", "db", f"{code}.db")
 
 
 def _get_fx(date_str):
     """读取 HKD/CNY 汇率 (返回 1 HKD = ? CNY)，失败返回 None"""
-    fx_db = os.path.join(BASE, "data", "fx_rates.db")
+    fx_db = os.path.join(BASE, "data", "db", "fx_rates.db")
     if not os.path.exists(fx_db):
         return None
     try:

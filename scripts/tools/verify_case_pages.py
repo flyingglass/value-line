@@ -5,7 +5,7 @@
   1) 时间线表头为 4 列（含「业绩（间隔 / 公告）」）
   2) 页面引用了 kline-<code>-review.png
   3) 该图片文件在 assets/ 中真实存在
-  4) data/<code>.db 存在
+  4) data/db/<code>.db 存在
   5) data/disclosure/<code>_disclosure.json 存在
 
 用法：.venv\\Scripts\\python scripts\\tools\\verify_case_pages.py
@@ -46,7 +46,7 @@ for code, name in sorted(M.items()):
         "OK" if img in txt else "缺",
         "OK" if os.path.exists(os.path.join(ASSETS, img)) else "缺",
         "OK" if os.path.exists(os.path.join(BASE, "data", "disclosure", "%s_disclosure.json" % code)) else "缺",
-        "OK" if os.path.exists(os.path.join(BASE, "data", "%s.db" % code)) else "缺",
+        "OK" if os.path.exists(os.path.join(BASE, "data", "db", "%s.db" % code)) else "缺",
     )
     print("%-8s %-8s %-5s %-6s %-6s %-6s %-5s" % row)
     if "缺" in row[2:]:

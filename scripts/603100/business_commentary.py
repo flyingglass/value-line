@@ -9,7 +9,7 @@
   3. 面向未来的判断仅来自年报/中报原文表述，不做主观外推。
 
 数据来源:
-  - metrics / spot / cagr / revenue_structure 参数 = engine 由 data/603100.db 计算
+  - metrics / spot / cagr / revenue_structure 参数 = engine 由 data/db/603100.db 计算
   - 年报原文 = 2025年年度报告(2026-04-15 董事会) / 2026年半年度报告, 正文内逐条标注
 """
 

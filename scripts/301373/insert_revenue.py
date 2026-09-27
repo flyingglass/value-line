@@ -5,7 +5,7 @@
 """
 import sqlite3, os
 _root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-conn = sqlite3.connect(os.path.join(_root, "data/301373.db"))
+conn = sqlite3.connect(os.path.join(_root, "data/db/301373.db"))
 
 _RAW = [  # (code, year, dim_type, dim_name, 金额亿元, pct)
     # ========== by_product ==========

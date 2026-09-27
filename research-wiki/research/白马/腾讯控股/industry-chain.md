@@ -2,7 +2,7 @@
 topic: 腾讯控股 (00700) — 产业链全景
 category: 投研-行业分析
 created: 2026-07-22
-sources: [data/00700.db]
+sources: [data/db/00700.db]
 ---
 # 腾讯控股 — 互联网科技产业链
 

@@ -98,7 +98,7 @@ def _set_active(code):
         f.write(c)
 
 def _db_path(code):
-    return os.path.join(BASE, "data", f"{code}.db")
+    return os.path.join(BASE, "data", "db", f"{code}.db")
 
 def _pdf_dir(code):
     # B股复用A股年报PDF目录 (config.pdf_code)
@@ -115,7 +115,7 @@ def _report_path(code):
 
 def _get_fx(date_str):
     """读取 HKD/CNY 汇率 (返回 1 HKD = ? CNY)，失败返回 None"""
-    fx_db = os.path.join(BASE, "data", "fx_rates.db")
+    fx_db = os.path.join(BASE, "data", "db", "fx_rates.db")
     if not os.path.exists(fx_db):
         return None
     try:

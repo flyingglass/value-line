@@ -847,7 +847,7 @@ def _extract_dps_from_pdf(code, year):
 
 def _read_fx_rate(date_str):
     """读取 HKD/CNY 汇率, 返回 1 HKD = ? CNY, 失败返回 None"""
-    fx_db = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "fx_rates.db")
+    fx_db = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "db", "fx_rates.db")
     if not os.path.exists(fx_db):
         return None
     try:
@@ -867,14 +867,14 @@ def _read_fx_rate(date_str):
 # 汇率数据 (HKD/CNY)
 # ============================================================
 def fetch_fx_rates():
-    """抓取 HKD/CNY 汇率存入 data/fx_rates.db
+    """抓取 HKD/CNY 汇率存入 data/db/fx_rates.db
     DB 表: daily_rates (date TEXT PRIMARY KEY, hkd_cny REAL)
     hkd_cny 存储 100 HKD = ? CNY, 使用时 ÷100
     用途: H股价格(HKD)→报表货币(CNY)换算
     数据源: 外汇管理局中间价 (currency_boc_safe), 覆盖 1994 至今
     """
     import os as _os
-    db_path = _os.path.join(config.DATA_DIR, "fx_rates.db")
+    db_path = _os.path.join(config.DATA_DIR, "db", "fx_rates.db")
     print("  [fx_rates] ", end="", flush=True)
     try:
         df = ak.currency_boc_safe()

@@ -4,7 +4,7 @@ category: 投研-投资论点
 created: 2026-07-17
 sources:
   - raw/research/润泽科技/2026-06-26-300442-idc-operating-metrics.md
-  - data/300442.db
+  - data/db/300442.db
   - research/白马/润泽科技/operating-metrics.md
 ---
 
@@ -14,7 +14,7 @@ sources:
 
 润泽科技是国内领先的第三方超大规模数据中心（IDC）运营商，正向 AIDC 智能算力服务转型。核心赚钱模式是**重资产投建算力中心（电/地/能耗指标）→ 批发/零售给互联网和 AI 客户 → 折旧回收 + 运维收益**。2025 年 AIDC 营收首次突破 44% 占比，交付 220MW 新算力（超过去 16 年累计的 40%），处于从 IDC 向 AIDC 的结构性切换点。CF=15.0x，PB=1.0x 参考。
 
-（来源：`data/300442.db`、年报 PDF 2022-2025）
+（来源：`data/db/300442.db`、年报 PDF 2022-2025）
 
 ---
 

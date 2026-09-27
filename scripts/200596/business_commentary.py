@@ -17,7 +17,7 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__
 
 def _get_fx(date_str=None):
     """1 HKD = ? CNY (fx_rates.db 存 100HKD=?CNY)"""
-    db = os.path.join(_ROOT, "data", "fx_rates.db")
+    db = os.path.join(_ROOT, "data", "db", "fx_rates.db")
     if not os.path.exists(db):
         return None
     try:
@@ -37,7 +37,7 @@ def _get_fx(date_str=None):
 
 def _latest_close(code):
     """取该标的最新前复权收盘价"""
-    db = os.path.join(_ROOT, "data", f"{code}.db")
+    db = os.path.join(_ROOT, "data", "db", f"{code}.db")
     if not os.path.exists(db):
         return None, None
     try:
@@ -53,7 +53,7 @@ def _latest_close(code):
 
 def _yearly_avg_close(code):
     """按年聚合前复权月均价 → {年份: 年均价}"""
-    db = os.path.join(_ROOT, "data", f"{code}.db")
+    db = os.path.join(_ROOT, "data", "db", f"{code}.db")
     if not os.path.exists(db):
         return {}
     try:

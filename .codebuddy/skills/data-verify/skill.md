@@ -13,7 +13,7 @@ description: |
 
 - wiki md 中引用的财务数字（营收/利润/存货/渠道/IP 拆分/费用附注等）
 - 验证前先明确三源角色：
-  - **AKShare DB**（`data/<code>.db`）：结构化全期序列，快速比对锚点
+  - **AKShare DB**（`data/db/<code>.db`）：结构化全期序列，快速比对锚点
   - **年报/中报 PDF**（`data/pdfs/<code>/`）：官方口径裁定者，附注级科目唯一来源
   - **用户提供 Excel / raw 资料**：第四源交叉，常有旧口径残留，不可直抄
 
@@ -22,7 +22,7 @@ description: |
 ### 1. 建立参照系
 - 导出 DB 关键表全期为临时文本：
   ```
-  .venv\Scripts\python.exe -c "import sqlite3; conn=sqlite3.connect('data/<code>.db'); ..."
+  .venv\Scripts\python.exe -c "import sqlite3; conn=sqlite3.connect('data/db/<code>.db'); ..."
   先看 `SELECT DISTINCT report_date` 和 item_name 清单，再按期导出过滤行项
   ```
 - pdfplumber 批量导出年报/中报全文为 txt（含页码标记），便于 grep 定位与反复搜索

@@ -115,7 +115,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 @media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
 </style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">宁德时代</a> › <a href="overview.html">宁德时代 (300750)</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">宁德时代 (300750)</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-07-22</span><span style="margin-left:auto;color:#b0b5bd">research/宁德时代</span></div><div class="md" id="md"><h1>300750 宁德时代 — 数据目录</h1>
 <h2>DB 表</h2>
-<p>数据库文件: <code>data/300750.db</code>，共 9 张表（定义见 <code>fetcher.py:_init_tables</code>）。</p>
+<p>数据库文件: <code>data/db/300750.db</code>，共 9 张表（定义见 <code>fetcher.py:_init_tables</code>）。</p>
 <h2><code>revenue_structure</code> 表</h2>
 <table>
 <thead>
@@ -299,7 +299,7 @@ ORDER BY dim_type, amount DESC;
 </tbody>
 </table>
 <blockquote>
-<p>数据来源: <code>data/300750.db</code> — income + indicators 表</p>
+<p>数据来源: <code>data/db/300750.db</code> — income + indicators 表</p>
 </blockquote>
 <h2>资产负债表关键项目 (FY2025)</h2>
 <table>
@@ -419,7 +419,7 @@ ORDER BY dim_type, amount DESC;
 </tbody>
 </table>
 <blockquote>
-<p>来源: <code>scripts/config.py</code> &gt; STOCKS, <code>data/300750.db</code> &gt; meta</p>
+<p>来源: <code>scripts/config.py</code> &gt; STOCKS, <code>data/db/300750.db</code> &gt; meta</p>
 </blockquote>
 <h2>数据可用性边界</h2>
 <table>

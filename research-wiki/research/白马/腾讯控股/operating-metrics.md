@@ -2,7 +2,7 @@
 topic: 腾讯控股 (00700) — 运营指标跟踪
 category: 投研-运营指标
 created: 2026-07-22
-sources: [data/00700.db]
+sources: [data/db/00700.db]
 ---
 # 腾讯控股 — 运营指标
 

@@ -2,7 +2,7 @@
 """宝信软件 600845 · 2444 视角位置图：月收盘（前复权）+ 阶段底色 + 顶底与事件点"""
 import sqlite3, datetime as dt
 
-c = sqlite3.connect("data/600845.db")
+c = sqlite3.connect("data/db/600845.db")
 mon = c.execute("""
   SELECT date, close FROM kline
   WHERE date IN (SELECT MAX(date) FROM kline GROUP BY substr(date,1,7))
@@ -29,7 +29,7 @@ s = [f'<svg viewBox="0 0 {W} {H}" width="100%" role="img" xmlns="http://www.w3.o
      '<title>宝信软件月收盘价与2444阶段划分（2022-06 至 2026-09）</title>',
      '<desc>前复权月收盘折线，按预期定价、高位震荡、杀业绩、低位待确认四个阶段着色；标注2023年6月顶43.58元与2026年6月低15.99元，以及两次财报披露日。</desc>',
      '<text x="20" y="20" font-size="14" font-weight="500" fill="#2C2C2A">宝信软件（600845）月收盘价 · 前复权 · 2444 视角位置</text>',
-     '<text x="20" y="38" font-size="11" fill="#888780">数据：data/600845.db kline（qfq）｜截至 2026-09-24｜阶段划分为本项目分析层整理</text>']
+     '<text x="20" y="38" font-size="11" fill="#888780">数据：data/db/600845.db kline（qfq）｜截至 2026-09-24｜阶段划分为本项目分析层整理</text>']
 for d0, d1, fill, label in bands:
     x0, x1 = X(d0), X(d1 if d1 <= t1 else t1)
     s.append(f'<rect x="{x0:.1f}" y="{MT}" width="{x1-x0:.1f}" height="{PH}" fill="{fill}" opacity="0.75"/>')

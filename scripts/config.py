@@ -6,9 +6,11 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root (scripts/ → ../)
 DATA_DIR = os.path.join(BASE_DIR, "data")
+DB_DIR = os.path.join(DATA_DIR, "db")   # 所有 <code>.db 统一放在 data/db/ 下
 
 # 确保数据目录存在
 os.makedirs(os.path.join(DATA_DIR, "pdfs"), exist_ok=True)
+os.makedirs(DB_DIR, exist_ok=True)
 
 # ============================================================
 # 标的定义
@@ -1454,7 +1456,7 @@ STOCKS = {
     # ============================================================
     # 里海案例标的（research-wiki 案例页数据底座）
     #   用途：案例页「事件时间线」的业绩（间隔/公告）列 + 周K复盘图（scripts/linhai_chart.py）
-    #   数据：scripts/fetcher.py                      → data/<code>.db（kline + 三大报表 + 指标 + 分红）
+    #   数据：scripts/fetcher.py                      → data/db/<code>.db（kline + 三大报表 + 指标 + 分红）
     #         scripts/tools/fetch_disclosure_cn.py     → data/disclosure/<code>_disclosure.json
     #   说明：以下条目仅作**数据源登记**，供 research-wiki 使用；无需为它们准备报告层资产。
     # ============================================================
@@ -1651,7 +1653,7 @@ ACTIVE_STOCK = "09992"
 # SQLite 路径
 # ============================================================
 def db_path(code):
-    return os.path.join(DATA_DIR, f"{code}.db")
+    return os.path.join(DB_DIR, f"{code}.db")
 
 def pdf_code(code):
     """年报PDF归属代码。B股与A股共用同一份年报 → 复用A股PDF目录。"""

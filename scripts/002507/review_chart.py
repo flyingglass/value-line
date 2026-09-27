@@ -8,7 +8,7 @@
   4) 标注里海（疯狂的里海）买点 / 卖点（日期 + 当时名义价）
 
 数据口径：
-  · 价格 = data/002507.db kline 表（前复权 qfq），为连续可比价
+  · 价格 = data/db/002507.db kline 表（前复权 qfq），为连续可比价
   · 公告日 = data/disclosure/002507_disclosure.json（巨潮资讯 cninfo 实际披露日）
   · 买卖点价位 = 案例原文的「当时实际成交价（名义价）」，与前复权价不同口径：
     图上按日期定位、以文字标注名义价，脚注已说明
@@ -39,7 +39,7 @@ plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
 plt.rcParams["axes.unicode_minus"] = False
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB = os.path.join(BASE, "data", "002507.db")
+DB = os.path.join(BASE, "data", "db", "002507.db")
 DISC_JSON = os.path.join(BASE, "data", "disclosure", "002507_disclosure.json")
 OUT_DIR = os.path.join(BASE, "research-wiki", "research", "疯狂的里海", "assets")
 OUT_PNG = os.path.join(OUT_DIR, "kline-002507-review.png")
@@ -631,7 +631,7 @@ def main():
 
     # ================= 脚注（图例已内置在两块面板内） =================
     fig.text(0.042, 0.004,
-             "数据：data/002507.db（kline 前复权 qfq，全部按周（W-FRI）聚合成周K）· 巨潮资讯 cninfo 实际公告披露日 · "
+             "数据：data/db/002507.db（kline 前复权 qfq，全部按周（W-FRI）聚合成周K）· 巨潮资讯 cninfo 实际公告披露日 · "
              "里海买卖点与事件出处见 research-wiki/research/疯狂的里海/案例/里海案例-涪陵榨菜.md\n"
              "口径：图为前复权连续价（已还原除权除息，供跨期比较）；买卖点数值为原文「当时实际成交价（名义价）」，"
              "两者口径不同，故按日期定位、以文字标注名义价（如 2020-09-04 清仓 @49.2  /  前复权当日约 37 元；"

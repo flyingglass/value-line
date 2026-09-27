@@ -3,14 +3,14 @@ topic: 腾讯控股 (00700)
 category: 投研-数据目录
 created: 2026-07-22
 sources:
-  - data/00700.db
+  - data/db/00700.db
 ---
 
 # 00700 腾讯控股 — 数据目录
 
 ## DB 表
 
-数据库文件: `data/00700.db`，共 9 张表。
+数据库文件: `data/db/00700.db`，共 9 张表。
 
 ## `revenue_structure` 表
 
@@ -66,7 +66,7 @@ sources:
 | 估值方法 | CF (15.0x) |
 | 股价(2026-06-13) | HKD 463.6 |
 
-> 数据来源: `data/00700.db`、`scripts/config.py`
+> 数据来源: `data/db/00700.db`、`scripts/config.py`
 
 ## 数据可用性边界
 

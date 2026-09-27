@@ -2,7 +2,7 @@
 """润泽科技(300442) 营收结构数据 — 从年报PDF提取"""
 import sqlite3
 
-conn = sqlite3.connect("data/300442.db")
+conn = sqlite3.connect("data/db/300442.db")
 
 # 金额单位: 亿元
 # 数据来源: 2021-2025各年年报、东方财富F10、同花顺

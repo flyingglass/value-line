@@ -1,6 +1,6 @@
 import sqlite3, datetime as dt
 
-con = sqlite3.connect('data/688188.db')
+con = sqlite3.connect('data/db/688188.db')
 cur = con.cursor()
 cur.execute("SELECT date, close FROM kline WHERE adj='qfq' ORDER BY date") if False else None
 cur.execute("PRAGMA table_info(kline)")
