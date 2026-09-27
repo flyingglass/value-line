@@ -81,6 +81,11 @@ CASE_GROUP_NAMES = {
     '本地': '本地 · 广深',
 }
 
+# 标的容器根下散落的 md（名单池）→ 归入「<容器>·名单池」组
+# 例：research/AI软件/AI软件名单-待选池.md → 组 id「AI软件·名单池」
+LIST_SUFFIX = '·名单池'
+LIST_LABEL = ' · 名单池'
+
 # 标的容器目录：其下一级才是标的目录（2026-09-27 起：白马 / 消费 / AI软件）。
 # 容器对最终站点透明：组键、view 输出目录、链接解析仍按 <code> 处理。
 CONTAINER_DIRS = ('白马', '消费', 'AI软件')
@@ -238,6 +243,16 @@ def scan_wiki():
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
             if sub in CONTAINER_DIRS:
+                # 容器根下直接散落的 md（名单池：AI软件名单-*.md 等）→ 单独成组
+                root_mds = [(rel, fpath) for rel, fpath in iter_md(subpath)
+                            if '/' not in rel]
+                if root_mds:
+                    lst_gid = sub + LIST_SUFFIX
+                    for rel, fpath in root_mds:
+                        art = read_article(fpath, f"research/{sub}/{rel}")
+                        add_article(lst_gid, sub + LIST_LABEL, '名单池', art)
+                    groups[lst_gid]['container'] = sub
+                    groups[lst_gid]['is_list'] = True
                 for code in sorted(os.listdir(subpath)):
                     cpath = os.path.join(subpath, code)
                     if os.path.isdir(cpath) and code not in CASE_GROUP_NAMES:
@@ -954,14 +969,23 @@ def home_section_blocks(pairs, from_file, scope):
     return html
 
 def home_section_stock_blocks(groups, from_file):
-    """按行业分组，同类标的连排成一行网格；不同行业用独立行隔开（类与类之间留空）。"""
+    """按行业分组，同类标的连排成一行网格；不同行业用独立行隔开（类与类之间留空）。
+    名单池组单独成一行垫底（名单是名单、标的是标的）。"""
     by_ind = {}
     for gid, info in groups.items():
+        if info.get('is_list'):
+            continue
         by_ind.setdefault(info.get('industry', '其他'), []).append((gid, info))
     html = ''
     for ind in sorted(by_ind):
         order = sorted(by_ind[ind], key=lambda x: x[0])
         html += '<div class="secgrid">' + home_section_blocks(order, from_file, 'stocks') + '</div>'
+    lists = sorted((gid, info) for gid, info in groups.items() if info.get('is_list'))
+    if lists:
+        html += ('<div class="subhead">名单池 <span class="count">' +
+                 str(len(lists)) + ' 个</span></div>')
+        html += ('<div class="secgrid">' +
+                 home_section_blocks(lists, from_file, 'stocks') + '</div>')
     return html
 
 def folder_titles(folder):
@@ -996,15 +1020,15 @@ def split_home_groups(groups):
     by_container = {d: {} for d in CONTAINER_DIRS}
     raw_only = {}
     for gid, info in groups.items():
-        hit = None
+        hit = info.get('container')      # 名单池组自带容器归属
         for a in info['articles']:
+            if hit:
+                break
             rp = a.get('real_path', '')
             for d in CONTAINER_DIRS:
                 if rp.startswith('research/' + d + '/'):
                     hit = d
                     break
-            if hit:
-                break
         (by_container[hit] if hit else raw_only)[gid] = info
     return by_container, raw_only
 
