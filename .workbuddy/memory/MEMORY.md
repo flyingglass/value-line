@@ -6,7 +6,7 @@
 
 ## 数据流
 ```
-fetcher.py / insert_revenue.py → data/{code}.db
+fetcher.py / insert_revenue.py → data/db/{code}.db（真实路径由 config.py `DB_DIR` 决定）
 extract_mda.py → meta.mda_text（PDF 按 6 类关键词分段；质量门 = categories≥3 + total≥10 + overview_pct<70% + ≥300字）
 engine.py → report_data.json（mda_quality=1 → _parse_mda_text；=0 → _build_business/_commentary_from_data 纯财务自生成）
 generate_report.py → report.html
@@ -82,3 +82,4 @@ CN 补充：此机器上 eastmoney 直连必失败，**但 fetcher/pdf_downloade
 - **花括号**：Python f-string 里的 JS `{ }` 必须写 `{{ }}`
 - 🔴 **bash 双引号 + `python -c` 写 Markdown**：反引号被当命令替换；若其中是**真实存在的相对路径**（如 `学股/广州/xxx.md`），sh 会**把该 md 当脚本执行**，`> **来源**：` 行触发重定向凭空造垃圾文件。
   规避：多行文本先用 Write 工具落文件，或 python 代码用**单引号**包裹；检测：`git status` 冒出 `??` 异常文件名 → 立刻用 python `os.remove` 精确删除
+- 🔴 **`sqlite3.connect()` 对不存在的路径不报错，会静默创建 0 字节空文件**（2026-09-27 实测：误连 `data/600845.db` 后仅报 `no such table`，磁盘上多出一个 0 字节文件）。**VL 数据库真实路径 = `data/db/<code>.db`**（`config.py` 的 `DB_DIR = os.path.join(DATA_DIR, "db")`），**不是** `data/<code>.db`；连库前先确认文件存在，`git status` 冒出 `?? data/<code>.db` 即为误建，须立即删除

@@ -1460,6 +1460,23 @@ STOCKS = {
     #         scripts/tools/fetch_disclosure_cn.py     → data/disclosure/<code>_disclosure.json
     #   说明：以下条目仅作**数据源登记**，供 research-wiki 使用；无需为它们准备报告层资产。
     # ============================================================
+    # ---- AI 软件名单（2026-09-27 初筛 = 本体论 3 只 + 电网 2 只）数据源登记 ----
+    #      本体论 3 只＝00696 中航信 / 688188 柏楚电子 / 600845 宝信软件（均已在库）
+    #      电网 2 只＝301638 南网数字 / 002063 远光软件（本次新增，仅登记数据源）
+    "301638": {
+        "name": "南网数字",
+        "name_en": "",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "工业软件", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
+    "002063": {
+        "name": "远光软件",
+        "name_en": "YGSOFT",
+        "market": "cn", "exchange": "SZSE", "currency": "CNY",
+        "pfx": "sz", "industry": "工业软件", "fiscal_yr_end": "12-31",
+        "business_desc": "",
+    },
     "000830": {
         "name": "鲁西化工",
         "name_en": "Luxi Chemical",

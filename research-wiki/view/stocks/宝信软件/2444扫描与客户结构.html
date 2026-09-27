@@ -1,0 +1,839 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>宝信软件 (600845.SH) — 2444 扫描与客户结构</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+#sec-stocks{display:flex;flex-direction:column;gap:18px}
+#sec-stocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-stocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-stocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-stocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-stocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}#sec-stocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">宝信软件</a> › <a href="2444扫描与客户结构.html">宝信软件 (600845.SH) — 2444 扫描与客户结构</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">宝信软件 (600845.SH) — 2444 扫描与客户结构</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-27</span><span style="margin-left:auto;color:#b0b5bd">research/宝信软件</span></div><div class="md" id="md"><h1>宝信软件（600845.SH）— 2444 扫描与客户结构</h1>
+<blockquote>
+<p><strong>数据层</strong>：本标的已纳入 VL 流水线（<code>data/db/600845.db</code> · <code>config.py</code> · <code>report/宝信软件.html</code>）。本页数字全部取自库内表与 2019–2025 年报、2025/2026 中报 PDF 原文，未引用库外行情或新闻来源。</p>
+<p>🟢 观测（原文或实算）· 🟡 推算（交代算法）· 🔴 不可识别（公司未披露）。</p>
+</blockquote>
+<hr />
+<h2>一、结论速览</h2>
+<p><strong>一句话核心</strong>：宝信有变化，但两条候选变化的<strong>证据都不足</strong>——单季营收 +37.3% 拆开是「低基数 ＋ 项目确认节奏」，宝之云 IDC 尚未在收入结构上接棒（高毛利的服务外包占比反而从 35.4% 降到 31.6%）；而比变化更前置的「底部」要件<strong>不成立</strong>（2026-06 刚创 2021 年以来新低）。</p>
+<p><strong>关键读数</strong>（人民币，合并口径）</p>
+<ul>
+<li>2025 全年：营收 <strong>109.72 亿</strong>（<strong>-19.58%</strong>）· 归母 <strong>13.05 亿</strong>（-42.4%）· 扣非归母 12.12 亿（-44.8%）· 主营毛利率 <strong>31.65%</strong>（2023 年 36.90%）　🟢</li>
+<li>2026H1：营收 <strong>56.32 亿</strong>（+19.45%）· 归母 <strong>7.07 亿</strong>（+22.97%）· 主营毛利率 <strong>29.72%</strong>（-5.20pct）　🟢</li>
+<li>2026 单季营收：Q1 <strong>26.44 亿（+4.2%）</strong> · Q2 <strong>29.88 亿（+37.3%）</strong>——Q2 绝对额仍<strong>低于</strong> 2023Q2（31.55）与 2024Q2（33.52）　🟢</li>
+<li>宝武系关联销售：<strong>61.16 亿</strong>（-17.9%），2022 年 74.45 亿见顶后连跌三年；占营业收入 <strong>55.7%</strong>　🟢</li>
+<li>位置（前复权）：2021-03-12 低 <strong>18.52</strong> · 2023-06-20 高 <strong>43.58</strong> · 2026-06-29 低 <strong>15.99</strong> · <strong>现价 18.26</strong>（2026-09-24）　🟢</li>
+<li>估值：市值 521.9 亿 · <strong>PE 42.5x</strong>（历史中位 40.9x）· PB 4.37x · 股息率 1.26%　🟡</li>
+</ul>
+<p><strong>核心矛盾</strong>：宝信的业绩下滑是<strong>结构性</strong>的（客户资本开支节奏 ＋ 项目一次性交付的商业模式），但估值没有同步下修——<strong>股价自 2023 年 6 月高点回落 58%，PE 却仍在历史中位上方</strong>，因为分母（扣非净利）跌得比股价更狠（-44.8%）。</p>
+<hr />
+<h2>二、位置判定（变化论的前置要件）</h2>
+<p>变化论是「位置 × 变化」双要件。底部要件的定义是<strong>跌无可跌 ＋ 走出来的长期横盘</strong>（底不是算出来的，是走出来的）。</p>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>日期</th>
+<th>前复权价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021 年低</td>
+<td>2021-03-12</td>
+<td>18.52</td>
+</tr>
+<tr>
+<td><strong>本轮高点</strong></td>
+<td><strong>2023-06-20</strong></td>
+<td><strong>43.58</strong></td>
+</tr>
+<tr>
+<td>2024 年低</td>
+<td>2024-10-31</td>
+<td>25.51</td>
+</tr>
+<tr>
+<td>2025 年低</td>
+<td>2025-12-17</td>
+<td>19.42</td>
+</tr>
+<tr>
+<td><strong>2021 年以来新低</strong></td>
+<td><strong>2026-06-29</strong></td>
+<td><strong>15.99</strong></td>
+</tr>
+<tr>
+<td><strong>现价</strong></td>
+<td><strong>2026-09-24</strong></td>
+<td><strong>18.26</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>年度区间</strong>（前复权）</p>
+<table>
+<thead>
+<tr>
+<th>年</th>
+<th>低</th>
+<th>高</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021</td>
+<td>18.52</td>
+<td>37.46</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>18.89</td>
+<td>31.88</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>28.71</td>
+<td><strong>43.58</strong></td>
+</tr>
+<tr>
+<td>2024</td>
+<td>25.51</td>
+<td>38.35</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>19.42</td>
+<td>37.45</td>
+</tr>
+<tr>
+<td>2026</td>
+<td><strong>15.99</strong></td>
+<td>25.83</td>
+</tr>
+</tbody>
+</table>
+<p><strong>阶段划分</strong>（年末收盘／月收盘）</p>
+<table>
+<thead>
+<tr>
+<th>段</th>
+<th>区间</th>
+<th>起点 → 终点</th>
+<th>形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 预期定价</td>
+<td>2022-06 ~ 2023-06</td>
+<td>28.94 → 42.44</td>
+<td>营收 -1.78% 的一年，股价 +47%</td>
+</tr>
+<tr>
+<td>② 高位震荡</td>
+<td>2023-06 ~ 2024-12</td>
+<td>42.44 → 28.30</td>
+<td>营收 +6.31%、扣非仍增，估值先杀</td>
+</tr>
+<tr>
+<td>③ 杀业绩</td>
+<td>2025-01 ~ 2026-06</td>
+<td>28.30 → 16.45</td>
+<td>2025 年营收 -19.58%、扣非 -44.8% 落地</td>
+</tr>
+<tr>
+<td>④ 低位待确认</td>
+<td>2026-07 ~ 今</td>
+<td>16.45 → 18.26</td>
+<td>反弹但尚未形成横盘</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定：❌ 不满足。</strong> 2026-06-29 盘中 15.99 跌破 2021-03-12 的前低 18.52（-13.7%），<strong>创 2021 年以来新低</strong>；2023-06 以来全程单边下行，<strong>没有出现「走出来的长期横盘」</strong>。形态是「杀业绩」的中后段，不是筹码充分交换的无人问津区。</p>
+<hr />
+<h2>三、六类变化逐条扫描</h2>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>宝信对应物</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 治理 / 股权 / 资产</strong></td>
+<td>宝钢股份持股 <strong>49.34%</strong> 多年未变；中国宝武与宝钢股份 2013 年出具、<strong>无固定期限</strong>的「体系内新增商业机会优先给予上市公司」承诺函仍有效（触发持股 ≥30%）。期内仅 2025-02 收购云南昆钢电子信息科技 100% 股权、募投项目变更（公告 2026-001）</td>
+<td>✗ 无实质变化</td>
+</tr>
+<tr>
+<td><strong>2 业绩拐点</strong></td>
+<td>单季营收 <strong>2026Q1 +4.2% → Q2 +37.3%</strong>。拆开后是<strong>低基数 ＋ 项目确认节奏</strong>：Q2 绝对额 29.88 亿仍低于 2023Q2 / 2024Q2；同期销售收现 -7.3%、合同负债 -9.3%（反向）</td>
+<td>⚠️ 仅 1 期、现金不印证</td>
+</tr>
+<tr>
+<td><strong>3 行业景气 / 第二曲线</strong></td>
+<td><strong>宝之云 IDC / 算力</strong>：在建工程 17.62 亿（宝之云系占约九成）、每股资本开支 0.15 → 0.46 元。但服务外包（含 IDC ＋ 运维）收入占比 <strong>35.38% → 31.58%</strong>，2026H1 增量贡献仅 12.1%</td>
+<td>⚠️ 在建、未接棒</td>
+</tr>
+<tr>
+<td><strong>4 预期 / 估值</strong></td>
+<td>股价自高点 -58%，<strong>但 PE 42.5x 仍高于历史中位 40.9x</strong> → 杀的是业绩，不是估值</td>
+<td>↓ 未到便宜</td>
+</tr>
+<tr>
+<td><strong>5 筹码 / 市场先生</strong></td>
+<td>2023-06 以来单边下行，2026-06 创 2021 年以来新低；<strong>无长期横盘、无充分换手</strong></td>
+<td>↓ 未交换</td>
+</tr>
+<tr>
+<td><strong>6 无变化（反例）</strong></td>
+<td>2026 中报披露当日仅 <strong>+0.80%</strong>，其后 8/21 -1.92%、8/24 -1.15% → 变化没有被市场当成变化</td>
+<td>⚠️ 部分适用</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>四、三性检验（大 / 近 / 未被看清）</h2>
+<p>对唯一有想象空间的候选（宝之云 IDC / 算力）：</p>
+<table>
+<thead>
+<tr>
+<th>三性</th>
+<th>检验</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>大</strong></td>
+<td>IDC 收入<strong>混在「服务外包」中不单列</strong>（公司口径为「信息系统运行维护 ＋ 云计算运营服务 ＋ IDC 运营服务」三项合并）；机柜数、上架率、单柜收入均不披露 → 满产收入弹性<strong>算不出来</strong></td>
+<td>🔴 不可识别</td>
+</tr>
+<tr>
+<td><strong>近</strong></td>
+<td>在建工程 17.62 亿（宝之云系约 15.9 亿）：华北基地 A4A5A6 楼进度 35.9%、IDC 五期 34.8%、华北一期 89.07%；本期在建转固 9.60 亿，固定资产账面价值 13.64 → <strong>21.59 亿（+58.4%）</strong></td>
+<td>✓ 已在转固</td>
+</tr>
+<tr>
+<td><strong>未被看清</strong></td>
+<td>只公开 1 期改善（2026Q2）；<strong>披露当天怎么走</strong>——2026-08-20 中报披露当日 <strong>+0.80%</strong>，其后两日续跌</td>
+<td>❌ 不成立</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>五、变化的正负结构：老引擎退坡 vs 新引擎在建</h2>
+<p><strong>宝武系关联销售</strong>（亿元；各年年报附注十四「关联方出售商品 / 提供劳务」，同一集团下多家子公司已合并）</p>
+<table>
+<thead>
+<tr>
+<th>年</th>
+<th>关联销售</th>
+<th>营业收入</th>
+<th>占比</th>
+<th>非关联收入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018</td>
+<td>23.70</td>
+<td>58.19</td>
+<td>40.7%</td>
+<td>34.49</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>29.73</td>
+<td>68.49</td>
+<td>43.4%</td>
+<td>38.76</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>38.22</td>
+<td>95.18</td>
+<td>40.2%</td>
+<td>56.96</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>65.65</td>
+<td>117.59</td>
+<td>55.8%</td>
+<td>51.94</td>
+</tr>
+<tr>
+<td><strong>2022</strong></td>
+<td><strong>74.45（峰值）</strong></td>
+<td>131.50</td>
+<td>56.6%</td>
+<td>57.05</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>72.65</td>
+<td>129.16</td>
+<td>56.2%</td>
+<td>56.51</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>69.16</td>
+<td>136.44</td>
+<td>50.7%</td>
+<td><strong>67.28（峰值）</strong></td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>61.16（-17.9%）</strong></td>
+<td><strong>109.72（-19.58%）</strong></td>
+<td>55.7%</td>
+<td>48.56（<strong>-27.8%</strong>）</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>口径提示</strong>：2021 年报因同一控制下企业合并<strong>追溯重述 2020 年</strong>——关联销售 38.22 → 47.04 亿、营业收入 95.18 → 102.25 亿（占比 40.2% → 46.0%）；故 <strong>2020 → 2021 的可比增速为 +39.5%</strong>，而非表中 38.22 → 65.65 的 +71.8%。引用该年数据时必须写明用的是哪一套口径。</p>
+<p><strong>客户级生命周期</strong>（各集团在宝信的收入，亿元）</p>
+<table>
+<thead>
+<tr>
+<th>集团</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>峰值年</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>马钢系</td>
+<td>0.06</td>
+<td>0.81</td>
+<td><strong>12.43</strong></td>
+<td>9.79</td>
+<td>6.73</td>
+<td>4.72</td>
+<td>2.67</td>
+<td>2021</td>
+</tr>
+<tr>
+<td>太钢系</td>
+<td>—</td>
+<td>0.18</td>
+<td>0.52</td>
+<td>6.04</td>
+<td><strong>7.44</strong></td>
+<td>2.13</td>
+<td>1.94</td>
+<td>2023</td>
+</tr>
+<tr>
+<td>昆钢系</td>
+<td>—</td>
+<td>—</td>
+<td>0.23</td>
+<td><strong>3.55</strong></td>
+<td>2.01</td>
+<td>1.99</td>
+<td>0.74</td>
+<td>2022</td>
+</tr>
+<tr>
+<td>湛江钢铁</td>
+<td>2.60</td>
+<td>4.23</td>
+<td><strong>6.90</strong></td>
+<td>4.30</td>
+<td>3.03</td>
+<td>2.09</td>
+<td>2.22</td>
+<td>2021</td>
+</tr>
+<tr>
+<td>武钢系</td>
+<td>5.75</td>
+<td>5.85</td>
+<td>4.52</td>
+<td>6.35</td>
+<td>7.35</td>
+<td><strong>9.10</strong></td>
+<td>5.07</td>
+<td>2024</td>
+</tr>
+<tr>
+<td>梅山系</td>
+<td>2.41</td>
+<td>2.75</td>
+<td>4.52</td>
+<td>4.85</td>
+<td>4.90</td>
+<td><strong>5.52</strong></td>
+<td>2.03</td>
+<td>2024</td>
+</tr>
+<tr>
+<td>欧冶系</td>
+<td>0.47</td>
+<td>0.72</td>
+<td>3.46</td>
+<td><strong>6.42</strong></td>
+<td>5.53</td>
+<td>4.02</td>
+<td>3.72</td>
+<td>2022</td>
+</tr>
+<tr>
+<td>八一钢铁</td>
+<td>0.72</td>
+<td>1.52</td>
+<td><strong>2.41</strong></td>
+<td>1.08</td>
+<td>1.20</td>
+<td>1.35</td>
+<td>0.62</td>
+<td>2021</td>
+</tr>
+<tr>
+<td>长江钢铁</td>
+<td>—</td>
+<td>—</td>
+<td>0.63</td>
+<td>2.02</td>
+<td><strong>2.21</strong></td>
+<td>0.22</td>
+<td>0.06</td>
+<td>2023</td>
+</tr>
+<tr>
+<td>山钢系</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>0.21</td>
+<td>0.72</td>
+<td>0.24</td>
+<td><strong>4.57</strong></td>
+<td>2025 ↑</td>
+</tr>
+<tr>
+<td>新余钢铁</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>0.09</td>
+<td>2.32</td>
+<td>1.51</td>
+<td><strong>4.27</strong></td>
+<td>2025 ↑</td>
+</tr>
+</tbody>
+</table>
+<p><strong>形态高度一致：集团重组或新基地投产后 1–3 年冲到峰值，之后回落，且很少回到峰值的一半</strong>（马钢 -79%、太钢 -74%、昆钢 -79%、湛江 -68%、梅山 -63%）。山钢、新余钢铁仍在上升段。</p>
+<p><strong>机制：两层收入，性质完全不同</strong></p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>科目</th>
+<th>性质</th>
+<th>2025 年读数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目层</td>
+<td>软件开发及工程服务</td>
+<td><strong>一次性交付</strong>（集团统一编码 / MES / ERP 等统建），做完即止</td>
+<td><strong>-27.71%</strong></td>
+</tr>
+<tr>
+<td>底盘层</td>
+<td>服务外包</td>
+<td><strong>按年 / 按月续费</strong>（运维 ＋ 云 ＋ IDC）</td>
+<td>+2.98%</td>
+</tr>
+</tbody>
+</table>
+<p>老基地掉下去的是<strong>项目层</strong>，不是客户流失。2025 年「工程 -27.71% / 外包 +2.98%」的分化就是该机制的财务显影。</p>
+<hr />
+<h2>六、客户结构与收入模型：项目制 vs 服务外包</h2>
+<p><strong>七年序列</strong>（亿元；各年年报「主营业务分产品情况」原生科目）</p>
+<table>
+<thead>
+<tr>
+<th>年</th>
+<th>软件开发及工程服务</th>
+<th>同比</th>
+<th>服务外包</th>
+<th>同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019</td>
+<td>45.70</td>
+<td>+24.37%</td>
+<td>20.55</td>
+<td>+19.36%</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>67.18</td>
+<td>+47.00%</td>
+<td>26.16</td>
+<td>+27.31%</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>85.02</td>
+<td>+19.10%</td>
+<td>31.21</td>
+<td>+8.87%</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>95.90</td>
+<td>+12.80%</td>
+<td>34.10</td>
+<td>+9.27%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>93.22</td>
+<td><strong>-2.80%</strong></td>
+<td>34.91</td>
+<td>+2.37%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>99.11</td>
+<td>+6.31%</td>
+<td>36.56</td>
+<td>+4.73%</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>71.64</td>
+<td><strong>-27.71%</strong></td>
+<td>37.65</td>
+<td>+2.98%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>服务外包七年单调递增、从未下降</strong>（CAGR <strong>10.62%</strong>）；项目制同期两次负增长（2023、2025；CAGR 7.78%）。</li>
+<li>2025 年最典型：项目制 -27.71%，服务外包仍 +2.98%——<strong>客户不做新项目了，维护费照收</strong>。</li>
+<li>但服务外包增速本身在收窄：27.31%（2020）→ 8.87% → 9.27% → 2.37% → 4.73% → <strong>2.98%（2025）</strong>。<strong>「续费年金池」的累积速度已从高速扩张变为原地踏步。</strong></li>
+</ul>
+<p><strong>2026H1 增量归因：项目制占 87.1%</strong></p>
+<table>
+<thead>
+<tr>
+<th>分部</th>
+<th>2026H1</th>
+<th>2025H1（倒推）</th>
+<th>增量</th>
+<th>占增量</th>
+<th>拉动率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软件开发及工程服务</td>
+<td>38.17</td>
+<td>30.18</td>
+<td><strong>+7.99</strong></td>
+<td><strong>87.1%</strong></td>
+<td><strong>16.98pct</strong></td>
+</tr>
+<tr>
+<td>服务外包</td>
+<td>17.76</td>
+<td>16.65</td>
+<td>+1.11</td>
+<td>12.1%</td>
+<td>2.36pct</td>
+</tr>
+<tr>
+<td>系统集成</td>
+<td>0.30</td>
+<td>0.22</td>
+<td>+0.07</td>
+<td>0.8%</td>
+<td>0.16pct</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>56.23</td>
+<td>47.05</td>
+<td>+9.18</td>
+<td>100%</td>
+<td>19.50pct</td>
+</tr>
+</tbody>
+</table>
+<p>🟡 2025H1 分部用 2026 中报披露的同比倒推（倒推合计 47.0529 亿 vs 中报披露 47.0535 亿，偏差 6 万元）。</p>
+<ul>
+<li>结构占比：项目制 <strong>64.14% → 67.89%</strong>（+3.74pct）· 服务外包 <strong>35.38% → 31.58%</strong>（-3.80pct）→ <strong>高毛利那块占比反而在降</strong>。</li>
+<li>分部毛利率：项目制 25.78%（2025 年报）→ <strong>23.70%</strong>（2026H1）；服务外包 42.96% → <strong>42.97%</strong>。</li>
+</ul>
+<p><strong>现金与预收：三条反向证据</strong></p>
+<table>
+<thead>
+<tr>
+<th>科目</th>
+<th>2025H1</th>
+<th>2026H1</th>
+<th>变动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>销售商品、提供劳务收到的现金</td>
+<td>62.24 亿</td>
+<td>57.67 亿</td>
+<td><strong>-7.3%</strong></td>
+</tr>
+<tr>
+<td>收现比（收现 ÷ 营业收入）</td>
+<td>1.32</td>
+<td><strong>1.02</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>合同负债</td>
+<td>31.58 亿</td>
+<td>28.65 亿</td>
+<td><strong>-9.3%</strong></td>
+</tr>
+<tr>
+<td>存货</td>
+<td>39.27 亿</td>
+<td>42.48 亿</td>
+<td>+8.2%</td>
+</tr>
+<tr>
+<td>合同资产</td>
+<td>—</td>
+<td>26.24 亿</td>
+<td>+11.37%</td>
+</tr>
+<tr>
+<td>期初合同负债本期结转收入</td>
+<td>11.13 亿（占营收 23.6%）</td>
+<td><strong>14.67 亿（占 26.1%）</strong></td>
+<td>+31.9%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>含义</strong>：营业收入 +19.45% 是<strong>加速消耗存量</strong>（期初结转 +31.9%）做出来的，而新收到的现金（-7.3%）与新锁定的预收同时减少——<strong>高增长来自吃存量，不是新订单堆起来的</strong>。</p>
+<p><strong>结论</strong>：宝信当前增长 <strong>87% 由项目制驱动</strong>。服务外包是「底盘」（毛利率 42.97%、占比 31.58%），<strong>但不是本期增长来源</strong>。判断「增长来自哪块业务」必须算<strong>拉动率</strong>（上年占比 × 今年增速），只看同比增速会误判。</p>
+<hr />
+<h2>七、2444 判定与操作含义</h2>
+<table>
+<thead>
+<tr>
+<th>要件</th>
+<th>判定</th>
+<th>证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>术·简单</td>
+<td>⚠️</td>
+<td>三类业务（项目制 / 服务外包 / 系统集成）＋ 关联销售占 55.7% ＋ IDC 收入不单列；一句话说不完</td>
+</tr>
+<tr>
+<td>术·底部</td>
+<td><strong>✗</strong></td>
+<td>2026-06-29 盘中 15.99 创 2021 年以来新低；无长期横盘段</td>
+</tr>
+<tr>
+<td>术·变化</td>
+<td>⚠️</td>
+<td>类 2 仅 1 期且现金不印证；类 3 在建未接棒；三性只满足「近」</td>
+</tr>
+<tr>
+<td>道·赔率</td>
+<td>⚠️</td>
+<td>PE 42.5x 仍高于历史中位 40.9x；CF 15x 对应 8.70 元（现价 18.26，隐含约 31.5x）</td>
+</tr>
+<tr>
+<td>三模型</td>
+<td>模型 1 ⚠️ 部分</td>
+<td>有「白马杀业绩」的壳，但病因是<strong>结构性客户资本开支</strong>，非经营周期波动</td>
+</tr>
+<tr>
+<td><strong>分档</strong></td>
+<td><strong>低位待确认（观察区）</strong></td>
+<td>股价腿左侧成立；基本面腿 2025 年成立、2026H1 出现反向证据但现金不支持</td>
+</tr>
+</tbody>
+</table>
+<p><strong>双左侧口径</strong>：<strong>股价腿左侧成立</strong>（单边下行 ＋ 创新低）；<strong>基本面腿</strong>——2025 年营收 -19.58%、扣非 -44.8% 属左侧，2026H1 单季与半年度改善但<strong>现金与预收反向</strong>，只能记「左侧尾部待确认」。两端都未到右侧，<strong>不构成重锤前提</strong>。</p>
+<p><strong>与涪陵榨菜的镜像（差异必须单列，不能套结局）</strong></p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>涪陵榨菜</th>
+<th>宝信软件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跌的是什么</td>
+<td><strong>利润没崩、估值崩</strong>（净利十年稳在 7–8 亿）</td>
+<td><strong>利润崩、估值没崩</strong>（扣非 -44.8%，PE 仍在历史中位上方）</td>
+</tr>
+<tr>
+<td>业绩底判据</td>
+<td>「坏财报砸不动 ＝ 业绩底」</td>
+<td><strong>反向：好财报推不动</strong>（2026-08-20 中报披露当日仅 +0.80%）</td>
+</tr>
+<tr>
+<td>所处阶段</td>
+<td>预期清算后进入长期横盘</td>
+<td>尚未进入横盘</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ 榨菜那句判据在宝信身上要<strong>反着用</strong>。在出现「利空砸不动」或「横盘微放量」之前，只能停在观察区。</p>
+<p><strong>可证伪跟踪清单（按重要性）</strong></p>
+<ol>
+<li><strong>2026Q3 / Q4 单季营收绝对额</strong> —— 能否站上 2023–24 年同期水平（Q2 基准 31.55 亿 / Q4 基准 40.98 亿）；Q2 的 +37.3% 是延续还是单点；</li>
+<li><strong>销售收现同比能否转正</strong>（现 -7.3%）与<strong>合同负债能否止跌回升</strong>（现 -9.3%）——现金先于利润；</li>
+<li><strong>服务外包增速能否重回双位数</strong>（2020 年 27.31% → 2025 年 2.98%）及其占营收比能否止跌（现 31.58%）；</li>
+<li><strong>宝之云 IDC 收入何时单列</strong> —— 把「战术变化」升格为「战略变化」的唯一硬证据；</li>
+<li><strong>山钢 / 新余钢铁在 2026 年是否复现「冲高—回落」</strong>（山钢日照 2026H1 关联销售已同比约 -39%）——判断「新基地补位」还能不能续。</li>
+</ol>
+<hr />
+<h2>八、边界与不可识别项</h2>
+<ul>
+<li><strong>IDC 收入 🔴 不可识别</strong>：公司把「信息系统运行维护 ＋ 云计算运营服务 ＋ IDC 运营服务」三项合并为「服务外包」披露，机柜数、上架率、单柜收入均不披露 → 宝之云的收入规模与满产弹性无法从报表剥离。</li>
+<li><strong>单季数据为累计拆分</strong>：<code>income</code> 表按累计口径存储，单季 ＝ 本期累计 − 上期累计（Q1 直接取当年 Q1 累计）。Q1 不可用「Q1 累计 − 上年 Q4 累计」。</li>
+<li><strong>关联销售为附注十四逐家加总</strong>：🟡 同一集团多家子公司已按名称归一化合并；各年报的「上期」列与前一报的「本期」列已逐家交叉核对一致。</li>
+<li><strong>口径重述</strong>：2020 年数据在 2021 年报被追溯重述（见第五节口径提示），跨 2020/2021 比较须统一口径。</li>
+<li><strong>未纳入页面的项</strong>：宝武集团整体资本开支节奏、钢铁去产能对存量客户的影响、IDC 电价与折旧政策——公司均未披露，无法量化。</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">疯狂的里海/方法论/10-初筛/里海-变化论</a> — 六类变化与三性检验的口径来源</li>
+<li><a href="../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">疯狂的里海/方法论/30-共振/里海-双左侧</a> — 分档表与「双左侧」判定</li>
+<li><a href="../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E9%87%8C%E6%B5%B7-2444%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB.html">疯狂的里海/里海-2444投资体系</a> — 2444 总纲</li>
+<li><a href="../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C.html">疯狂的里海/案例/里海案例-涪陵榨菜</a> — 业绩底判据的镜像案例</li>
+<li><a href="../%E6%9F%8F%E6%A5%9A%E7%94%B5%E5%AD%90/2444%E5%8F%98%E5%8C%96%E8%AE%BA%E6%89%AB%E6%8F%8F.html">白马/柏楚电子/2444变化论扫描</a> — 同批扫描的另一只工业软件标的</li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/白马/宝信软件/2444扫描与客户结构.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
