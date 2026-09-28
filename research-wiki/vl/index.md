@@ -54,3 +54,5 @@
 - [[../raw/research/articles/投资框架-复杂经济学指导手册]] — 四本著作整合框架，已移至 raw/research/articles/（原始资料命名空间）
 
 ## 综合分析 (synthesis/)
+
+- [[synthesis/index|VL 综合分析索引]] — 跨标的 / 跨市场 / 跨周期横向结论层（编制口径 + 入口，暂无成稿页面）

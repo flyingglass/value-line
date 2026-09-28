@@ -105,6 +105,13 @@ def resolve_link(link, current_rel, key_to_paths):
         if not p2.suffix:
             p2 = p2.with_suffix(".md")
         cands.append(p2.as_posix())
+    # 2b. 含路径前缀时按 wiki 根解析（如 [[research/白马/TCL科技/thesis]]）
+    #     优先于 stem 兜底，避免同名页（overview / thesis / 跟踪）歧义命中错误标的
+    if "/" in link:
+        p3 = Path(link)
+        if not p3.suffix:
+            p3 = p3.with_suffix(".md")
+        cands.append(p3.as_posix())
     # 3. 全局 stem 匹配: 用 link 的 name (保留 .py 等点号) 作为 key
     link_name = Path(link).name
     for key in (link_name.lower(), Path(link_name).stem.lower()):

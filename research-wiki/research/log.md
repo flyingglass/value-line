@@ -5559,3 +5559,34 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 - 关联销售年度序列解析脚本（`data/tmp_600845/parse_rel2.py`）仍在临时目录，如需长期复用可移入 `scripts/600845/`
 
 触及页面：research/白马/宝信软件/2444扫描与客户结构.md（新建）、research/index.md、research/log.md、research/白马/柏楚电子/2444变化论扫描.md
+
+
+---
+
+## [2026-09-28] 全库 | 深度 wiki lint：P0 断链修复 + 结构补齐
+
+### 背景
+- 触发：拉取 `76ec40e7` 后做一次深度 lint；常规 `wiki_lint.py` 报 ERROR 31 / WARN 325 / INFO 20
+- 深度检查另发现：`resolve_link` 的 stem 全局兜底**掩盖了重构回归**——`f469af3` 给 `research/` 加容器层（白马/消费/AI软件）后，页面内相对路径链接全部多算/少算一层
+
+### 本次变更
+- **P0 真断链 21 处**
+  - 泡泡玛特业绩索引 **11 条** raw 链接 `../../raw/research/泡泡玛特/…` → `../../../../raw/research/泡泡玛特/…`（容器层多一级）
+  - 建滔积层板 / 建滔集团 `overview.md`、安琪酵母 `industry-chain.md` / `thesis.md` 的 report 链接 → 回溯 **4 级**到项目根（原 `../../report/` 指向 wiki 内，本就不存在）
+  - `芒格多元学科投资决策框架.md`：删除 4 个无出处的概念链 `[[均值回归]]` `[[思维格栅模型]]` `[[行为金融学]]` `[[贝叶斯定理]]`（用户判定「没用就删除」，未新建概念页以免凭空写）
+  - `research/index.md` 里 `[[疯狂的里海/里海-涪陵榨菜战略股复盘]]` ×2 **保留不动**——位于首行「最后更新」历史回顾块，与 log.md 同为 append-only 记录，改它等于篡改历史
+- **P2 结构补齐**：7 页补 frontmatter（AI软件名单 2 + 广深名单 5）· 10 页补 `## 参见` · 4 页注册进 `research/index.md`（`00-流水线总图` / `里海-解构法` / `里海-建模与跟踪` / `里海案例-阳谷华泰`）· 删除空目录 `research/articles/synthesis/assets/` · 新建 `vl/synthesis/index.md`（含编制口径，无成稿前不填内容）
+- **`scripts/wiki_fix.py`**：`TODAY` 改为当日动态；新增 `research/本地/` 与 `research/AI软件/` 的 frontmatter 推断与名单页参见规则；参见链接过滤自引
+- **`scripts/wiki_lint.py`**：`resolve_link` 新增「wiki 根相对」候选并**优先于 stem 兜底**，修掉同名页（overview / thesis / 跟踪）歧义命中错误标的的问题
+
+### 验证
+- lint：其他 WARN **24 → 2**（剩余 2 处即上述历史回顾块）· INFO **20 → 16** · 交叉引用缺口 **301 → 286**
+- ERROR **31 不变**：标的四件套缺失，已用 `git ls-tree 92b03615` 比对确认**非重构丢文件**（重构前这些目录本来就只有「业绩/」或中文名页）
+
+### 待办（本次未做）
+- P1：相对路径 wikilink 232 处未统一为 vault 根绝对路径（如 `[[方法论/里海-简单论]]` `[[案例/里海案例-新希望]]`）
+- 解析修正后**暴露的跨标的误链 5 处**（原被 stem 歧义掩盖）：泡泡玛特/数据目录 ← 产业链、TCL科技/operating-metrics ← TCL中环/industry-chain、人福·紫金 industry-chain·thesis ← TCL中环/research-reports
+- 剩余交叉引用缺口 286 处（收益递减，未批量补）
+- raw 有资料但 wiki 无派生页：AMZN / GOOGL / MSFT / 中芯国际
+
+触及页面：research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md、research/白马/建滔积层板/overview.md、research/白马/建滔集团/overview.md、research/消费/安琪酵母/industry-chain.md、research/消费/安琪酵母/thesis.md、research/articles/synthesis/芒格多元学科投资决策框架.md、research/index.md、research/log.md、research/AI软件/AI软件名单-待选池.md、research/AI软件/AI软件名单-按吞噬顺序筛选.md、research/本地/广州/广州上市公司名单-A股与港股.md、research/本地/广州/广州名单-待选池-按变化排序.md、research/本地/广州/广州名单-待选池跟踪表.md、research/本地/广州/广州待选池-依据存档.md、research/本地/深圳/深圳上市公司名单-A股与港股.md、research/articles/concepts/AI应用-智能复利与四级跃迁.md、research/articles/concepts/本体层Ontology-数据与AI的中间层.md、research/疯狂的里海/方法论/90-横切/里海-储能与新能源链观察法.md、research/疯狂的里海/里海体系-总览.md、research/AI软件/中航信/AI落点与成本结构.md、research/AI软件/柏楚电子/2444变化论扫描.md、research/AI软件/宝信软件/2444扫描与客户结构.md、vl/synthesis/index.md（新建）

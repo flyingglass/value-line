@@ -1,0 +1,92 @@
+Wiki 根: C:\LY\Repo\llm\value-line\research-wiki   页面数: 326
+
+=== A. 同名页冲突（wikilink 解析歧义） ===
+重名 stem: 13 组
+  overview  (15): ['research/overview.md', 'research/消费/安琪酵母/overview.md', 'research/白马/TCL中环/overview.md', 'research/白马/TCL科技/overview.md', 'research/白马/云铝股份/overview.md', 'research/白马/京东方/overview.md']
+  thesis  (13): ['research/消费/安琪酵母/thesis.md', 'research/白马/TCL中环/thesis.md', 'research/白马/TCL科技/thesis.md', 'research/白马/云铝股份/thesis.md', 'research/白马/京东方/thesis.md', 'research/白马/人福医药/thesis.md']
+  industry-chain  (12): ['research/消费/安琪酵母/industry-chain.md', 'research/白马/TCL中环/industry-chain.md', 'research/白马/TCL科技/industry-chain.md', 'research/白马/云铝股份/industry-chain.md', 'research/白马/京东方/industry-chain.md', 'research/白马/人福医药/industry-chain.md']
+  operating-metrics  (11): ['research/消费/安琪酵母/operating-metrics.md', 'research/白马/TCL中环/operating-metrics.md', 'research/白马/TCL科技/operating-metrics.md', 'research/白马/云铝股份/operating-metrics.md', 'research/白马/京东方/operating-metrics.md', 'research/白马/人福医药/operating-metrics.md']
+  跟踪  (4): ['research/AI软件/中航信/跟踪.md', 'research/AI软件/宝信软件/跟踪.md', 'research/AI软件/柏楚电子/跟踪.md', 'research/本地/达意隆/跟踪.md']
+  运营指标  (4): ['research/消费/分众传媒/运营指标.md', 'research/消费/时代天使/运营指标.md', 'research/消费/泡泡玛特/运营指标.md', 'research/消费/贵州茅台/运营指标.md']
+  research-reports  (4): ['research/消费/安琪酵母/research-reports.md', 'research/白马/TCL中环/research-reports.md', 'research/白马/人福医药/research-reports.md', 'research/白马/润泽科技/research-reports.md']
+  产业链  (3): ['research/消费/时代天使/产业链.md', 'research/消费/泡泡玛特/产业链.md', 'research/消费/贵州茅台/产业链.md']
+  index  (2): ['research/index.md', 'vl/index.md']
+  log  (2): ['research/log.md', 'vl/log.md']
+  数据目录  (2): ['research/消费/分众传媒/数据目录.md', 'research/消费/泡泡玛特/数据目录.md']
+  投资论点  (2): ['research/消费/时代天使/投资论点.md', 'research/消费/泡泡玛特/投资论点.md']
+  2026-q2业绩电话会-艾德勒阅读摘要  (2): ['research/白马/TME/业绩/2026-Q2业绩电话会-艾德勒阅读摘要.md', 'research/白马/拼多多/业绩/2026-Q2业绩电话会-艾德勒阅读摘要.md']
+
+=== B. 标的覆盖度（config.py vs wiki） ===
+config.py 候选标的名 111 个；wiki 标的目录 23 个
+  wiki 标的目录: ['AI软件/中航信', 'AI软件/宝信软件', 'AI软件/柏楚电子', '消费/分众传媒', '消费/安琪酵母', '消费/时代天使', '消费/泡泡玛特', '消费/贵州茅台', '白马/TCL中环', '白马/TCL科技', '白马/TME', '白马/云铝股份', '白马/京东方', '白马/人福医药', '白马/宁德时代', '白马/建滔积层板', '白马/建滔集团', '白马/拼多多', '白马/润泽科技', '白马/神火股份', '白马/紫金矿业', '白马/腾讯控股', '白马/阿里巴巴']
+  [?] wiki 有目录但 config.py 无同名项: ['AI软件/中航信', 'AI软件/宝信软件', 'AI软件/柏楚电子', '消费/分众传媒', '消费/安琪酵母', '消费/时代天使', '消费/泡泡玛特', '消费/贵州茅台', '白马/TCL中环', '白马/TCL科技', '白马/TME', '白马/云铝股份', '白马/京东方', '白马/人福医药', '白马/宁德时代', '白马/建滔积层板', '白马/建滔集团', '白马/拼多多', '白马/润泽科技', '白马/神火股份', '白马/紫金矿业', '白马/腾讯控股', '白马/阿里巴巴']
+
+=== C. 数据覆盖度（data/db/*.db vs wiki 标的页） ===
+data/db 数据库: 103 个 -> ['000100', '000333', '000408', '000429', '000596', '000625', '000651', '000725', '000786', '000792', '000807', '000830', '000893', '000933', '00148', '002014', '002027', '002053', '002063', '002128', '002129', '002209', '002353', '00241', '002415', '002478', '002507', '002532', '002539', '002568', '002597', '002895', '00388', '00546', '00696', '00700', '00883', '00981', '01088', '01114', '01368', '01378', '01513', '01579', '01681', '01698', '01888', '02097', '02099', '02328', '02359', '02400', '02899', '03606', '06181', '06699', '09633', '09899', '09988', '09992', '200596', '300006', '300019', '300121', '300308', '300401', '300435', '300442', '300547', '300596', '300750', '300786', '301373', '301638', '600066', '600079', '600129', '600285', '600298', '600309', '600452', '600519', '600595', '600845', '600900', '601225', '601318', '603002', '603100', '603288', '603325', '603601', '603612', '603758', '603882', '605077', '605499', '688188', 'GOOGL', 'NVDA', 'PDD', 'TSM', 'fx_rates']
+
+=== D. 本地资源引用缺失 ===
+  图片缺失合计: 0
+
+=== E. 站内相对 md 链接 / report 引用 ===
+  research/log.md -> 目标不存在: 2fgh8H3w…
+  research/log.md -> 目标不存在: lDUHkao…
+  research/log.md -> 目标不存在: 2fgh8H3w…
+  research/log.md -> 目标不存在: gtVg_DZ8…
+  research/log.md -> 目标不存在: wZEpkQh…
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2021-03-26-年度业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2021-08-27-中期业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2022-03-28-年度业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2022-08-25-中期业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2023-03-29-年度业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2023-08-23-中期业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2024-03-20-年度业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2024-08-21-中期业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2025-03-26-年度业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2025-08-20-中期业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2026-03-25-年度业绩发布会纪要.md
+  research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md -> 目标不存在: ../../raw/research/泡泡玛特/2026-08-20-中期业绩发布会完整逐字稿.md
+  research/白马/建滔积层板/overview.md -> 目标不存在: ../../report/建滔积层板.html
+  research/白马/建滔集团/overview.md -> 目标不存在: ../../report/建滔集团.html
+  存在: 13  不存在: 19
+
+=== F. index.md 注册缺口 ===
+  research/index.md: 4 页未注册
+    - research/疯狂的里海/方法论/00-流水线总图.md
+    - research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md
+    - research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md
+    - research/疯狂的里海/案例/里海案例-阳谷华泰.md
+  vl/index.md: 0 页未注册
+
+=== G. raw 资料 vs wiki 派生页 ===
+  raw/research/AMZN/ (1 篇)  [!] wiki 无同名页面
+  raw/research/GOOGL/ (1 篇)  [!] wiki 无同名页面
+  raw/research/MSFT/ (1 篇)  [!] wiki 无同名页面
+  raw/research/TME/ (1 篇)
+  raw/research/articles/ (31 篇)
+  raw/research/中芯国际/ (1 篇)  [!] wiki 无同名页面
+  raw/research/人福医药/ (1 篇)
+  raw/research/安琪酵母/ (1 篇)
+  raw/research/拼多多/ (1 篇)
+  raw/research/泡泡玛特/ (18 篇)
+  raw/research/疯狂的里海/ (10 篇)
+  raw/research/腾讯控股/ (3 篇)
+  raw/research/贵州茅台/ (4 篇)
+  raw/research/阿里巴巴/ (1 篇)
+
+=== H. frontmatter 字段规范 ===
+  无 frontmatter: 8 -> ['research/AI软件/AI软件名单-待选池.md', 'research/AI软件/AI软件名单-按吞噬顺序筛选.md', 'research/本地/广州/广州上市公司名单-A股与港股.md', 'research/本地/广州/广州名单-待选池-按变化排序.md', 'research/本地/广州/广州名单-待选池跟踪表.md', 'research/本地/广州/广州待选池-依据存档.md', 'research/本地/深圳/深圳上市公司名单-A股与港股.md', 'WIKI-SCHEMA.md']
+  字段使用频次: {'category': 222, 'created': 221, 'topic': 209, 'sources': 110, 'updated': 92, 'title': 60, 'source': 38, '- https': 15, 'structure': 14, 'module': 13, 'type': 11, 'depends_on': 11}
+
+=== I. 页面规模分布 ===
+  最长 10 页:
+     19606 行  raw/vl/akshare-reference/akshare-stock-api.md
+      4228 行  research/log.md
+       776 行  research/本地/广州/广州待选池-依据存档.md
+       753 行  research/本地/深圳/深圳上市公司名单-A股与港股.md
+       565 行  raw/research/泡泡玛特/2026-01-27-花旗-泡泡玛特全球消费者调查（拆箱消费者行为）.md
+       549 行  raw/research/articles/里德利_1999_基因组-生命之书23章.md
+       538 行  raw/research/articles/2026-09-07-曾鸣访谈-和曾鸣聊产业史观-我的非共识判断.md
+       511 行  raw/research/articles/哈格斯特朗_2023_查理芒格的智慧-投资的格栅理论.md
+       505 行  vl/log.md
+       485 行  raw/research/泡泡玛特/2025-12-02-伯恩斯坦-泡泡玛特消费者调研（原文）.md
+  正文 <8 行页面: 0

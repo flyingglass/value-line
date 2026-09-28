@@ -1,0 +1,594 @@
+============================================================
+research-wiki Lint Report
+============================================================
+Wiki 根: C:\LY\Repo\llm\value-line\research-wiki
+Markdown 文件总数: 327
+  raw/: 81
+  vl/: 38
+  research/: 207
+
+问题统计: ERROR=31  WARN=288  INFO=15
+
+--- raw/research/AMZN/AMZN-Q2-2026-earnings-call-transcript-zh.md ---
+  [INFO] raw 文件未用日期前缀命名: AMZN-Q2-2026-earnings-call-transcript-zh.md
+
+--- raw/research/GOOGL/GOOGL-Q2-2026-earnings-call-transcript-zh.md ---
+  [INFO] raw 文件未用日期前缀命名: GOOGL-Q2-2026-earnings-call-transcript-zh.md
+
+--- raw/research/MSFT/MSFT-FY2026-Q4-earnings-call-transcript-zh.md ---
+  [INFO] raw 文件未用日期前缀命名: MSFT-FY2026-Q4-earnings-call-transcript-zh.md
+
+--- raw/research/articles/伯克希尔股东大会1994-2021-分类版深度摘要.md ---
+  [INFO] raw 文件未用日期前缀命名: 伯克希尔股东大会1994-2021-分类版深度摘要.md
+
+--- raw/research/人福医药/2026-07-17-data-source-log.md ---
+  [INFO] 含占位符 '待补充'
+
+--- raw/research/安琪酵母/2026-07-17-data-source-log.md ---
+  [INFO] 含占位符 '待补充'
+
+--- raw/research/腾讯控股/2Q26-earnings-PPT-中文版.md ---
+  [INFO] raw 文件未用日期前缀命名: 2Q26-earnings-PPT-中文版.md
+
+--- raw/vl/akshare-reference/akshare-stock-api.md ---
+  [INFO] 含占位符 'XXX'
+
+--- research/AI软件/中航信/AI落点与成本结构.md ---
+  [WARN] 交叉引用缺口: research/AI软件/中航信/跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/AI软件/柏楚电子/2444变化论扫描.md → 本页未反引
+
+--- research/AI软件/中航信/industry-chain.md ---
+  [ERROR] 标的 AI软件/中航信 缺失 industry-chain.md
+
+--- research/AI软件/中航信/operating-metrics.md ---
+  [ERROR] 标的 AI软件/中航信 缺失 operating-metrics.md
+
+--- research/AI软件/中航信/overview.md ---
+  [ERROR] 标的 AI软件/中航信 缺失 overview.md
+
+--- research/AI软件/中航信/thesis.md ---
+  [ERROR] 标的 AI软件/中航信 缺失 thesis.md
+
+--- research/AI软件/宝信软件/2444扫描与客户结构.md ---
+  [WARN] 交叉引用缺口: research/AI软件/宝信软件/跟踪.md → 本页未反引
+
+--- research/AI软件/宝信软件/industry-chain.md ---
+  [ERROR] 标的 AI软件/宝信软件 缺失 industry-chain.md
+
+--- research/AI软件/宝信软件/operating-metrics.md ---
+  [ERROR] 标的 AI软件/宝信软件 缺失 operating-metrics.md
+
+--- research/AI软件/宝信软件/overview.md ---
+  [ERROR] 标的 AI软件/宝信软件 缺失 overview.md
+
+--- research/AI软件/宝信软件/thesis.md ---
+  [ERROR] 标的 AI软件/宝信软件 缺失 thesis.md
+
+--- research/AI软件/柏楚电子/2444变化论扫描.md ---
+  [WARN] 交叉引用缺口: research/AI软件/柏楚电子/跟踪.md → 本页未反引
+
+--- research/AI软件/柏楚电子/industry-chain.md ---
+  [ERROR] 标的 AI软件/柏楚电子 缺失 industry-chain.md
+
+--- research/AI软件/柏楚电子/operating-metrics.md ---
+  [ERROR] 标的 AI软件/柏楚电子 缺失 operating-metrics.md
+
+--- research/AI软件/柏楚电子/overview.md ---
+  [ERROR] 标的 AI软件/柏楚电子 缺失 overview.md
+
+--- research/AI软件/柏楚电子/thesis.md ---
+  [ERROR] 标的 AI软件/柏楚电子 缺失 thesis.md
+
+--- research/articles/concepts/投资框架-复杂经济学指导手册.md ---
+  [WARN] 交叉引用缺口: research/articles/concepts/AI应用-智能复利与四级跃迁.md → 本页未反引
+
+--- research/articles/concepts/芒格-临界质量.md ---
+  [WARN] 交叉引用缺口: research/articles/concepts/AI应用-智能复利与四级跃迁.md → 本页未反引
+
+--- research/articles/concepts/阿瑟-收益递增与涌现.md ---
+  [WARN] 交叉引用缺口: research/articles/concepts/AI应用-智能复利与四级跃迁.md → 本页未反引
+  [WARN] 交叉引用缺口: research/articles/concepts/本体层Ontology-数据与AI的中间层.md → 本页未反引
+
+--- research/articles/synthesis/generational-risk-sanrio-disney-popmart.md ---
+  [WARN] 交叉引用缺口: research/articles/synthesis/巴芒论迪士尼.md → 本页未反引
+
+--- research/articles/synthesis/盲眼钟表匠-芒格评价与多元思维模型启示.md ---
+  [WARN] 交叉引用缺口: research/articles/synthesis/ESS切换-企业跨越与失败分析.md → 本页未反引
+  [WARN] 交叉引用缺口: research/articles/synthesis/自私的基因-商业基因映射分析.md → 本页未反引
+
+--- research/articles/synthesis/竞争性毁灭-四书格栅分析.md ---
+  [WARN] 交叉引用缺口: research/articles/synthesis/盲眼钟表匠-芒格评价与多元思维模型启示.md → 本页未反引
+  [WARN] 交叉引用缺口: research/articles/synthesis/竞争演化初步框架-五书多元思维模型.md → 本页未反引
+
+--- research/index.md ---
+  [WARN] 断链: [[疯狂的里海/里海-涪陵榨菜战略股复盘]] 无对应文件
+  [WARN] 断链: [[疯狂的里海/里海-涪陵榨菜战略股复盘]] 无对应文件
+
+--- research/log.md ---
+  [INFO] 含占位符 'TBD'
+  [INFO] 含占位符 'XXX'
+
+--- research/本地/广州/广州名单-已划掉（134 家）.md ---
+  [WARN] 交叉引用缺口: research/本地/广州/广州名单-待选池-按变化排序.md → 本页未反引
+
+--- research/本地/达意隆/研究资料.md ---
+  [WARN] 交叉引用缺口: research/本地/广州/广州名单-待选池-按变化排序.md → 本页未反引
+  [WARN] 交叉引用缺口: research/本地/达意隆/跟踪.md → 本页未反引
+
+--- research/消费/分众传媒/industry-chain.md ---
+  [ERROR] 标的 消费/分众传媒 缺失 industry-chain.md
+
+--- research/消费/分众传媒/thesis.md ---
+  [ERROR] 标的 消费/分众传媒 缺失 thesis.md
+
+--- research/消费/分众传媒/数据目录.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/00-供应链与制造.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/01-设计IP环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/02-制造与质控环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/03-仓储物流环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/需求/用户习惯与行为-两份外资行调研综合.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/经营/黄牛套利与市场规模.md → 本页未反引
+
+--- research/消费/分众传媒/运营指标.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/业绩/经营重点关注.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/00-供应链与制造.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/01-设计IP环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/02-制造与质控环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/03-仓储物流环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/03-环节演变时序（2020-2026H1）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/04-海内外收入分化（2026H1）机制与判据.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/存货跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/横切变量跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/需求/用户习惯与行为-两份外资行调研综合.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/经营/渠道改革.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/经营/销量与吨价.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/经营/非标价格体系与吨价分解.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/经营/黄牛套利与市场规模.md → 本页未反引
+
+--- research/消费/安琪酵母/industry-chain.md ---
+  [WARN] 交叉引用缺口: research/消费/安琪酵母/overview.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/投资论点.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/数据目录.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/运营指标.md → 本页未反引
+
+--- research/消费/安琪酵母/operating-metrics.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/产业链.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/投资论点.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/数据目录.md → 本页未反引
+
+--- research/消费/安琪酵母/research-reports.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/数据目录.md → 本页未反引
+
+--- research/消费/安琪酵母/thesis.md ---
+  [WARN] 交叉引用缺口: research/消费/安琪酵母/overview.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/产业链.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/数据目录.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/运营指标.md → 本页未反引
+
+--- research/消费/时代天使/产业链.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/业绩/经营重点关注.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/00-供应链与制造.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/01-设计IP环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/02-制造与质控环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/01-结构性限制评估.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/存货跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/经营/黄牛套利与市场规模.md → 本页未反引
+
+--- research/消费/时代天使/投资论点.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/业绩/经营重点关注.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/01-设计IP环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/存货跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/需求/情绪需求持续性跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/需求/用户习惯与行为-两份外资行调研综合.md → 本页未反引
+
+--- research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/数据目录.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/需求/情绪需求持续性跟踪.md → 本页未反引
+
+--- research/消费/泡泡玛特/业绩/经营重点关注.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/需求/用户习惯与行为-两份外资行调研综合.md → 本页未反引
+
+--- research/消费/泡泡玛特/数据目录.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/产业链.md → 本页未反引
+
+--- research/消费/泡泡玛特/经营/00-供应链与制造.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/产业链.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/02-环节与财务科目对应（2026H1）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/横切变量跟踪.md → 本页未反引
+
+--- research/消费/泡泡玛特/经营/01-设计IP环节.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/01-结构性限制评估.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/03-环节演变时序（2020-2026H1）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/横切变量跟踪.md → 本页未反引
+
+--- research/消费/泡泡玛特/经营/02-制造与质控环节.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/01-结构性限制评估.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/02-环节与财务科目对应（2026H1）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/横切变量跟踪.md → 本页未反引
+
+--- research/消费/泡泡玛特/经营/03-仓储物流环节.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/01-结构性限制评估.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/02-环节与财务科目对应（2026H1）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/横切变量跟踪.md → 本页未反引
+
+--- research/消费/泡泡玛特/经营/04-渠道销售环节.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/01-结构性限制评估.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/02-环节与财务科目对应（2026H1）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/横切变量跟踪.md → 本页未反引
+
+--- research/消费/泡泡玛特/跟踪/存货跟踪.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/业绩/业绩会纪要索引（2020-2026）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/业绩/经营重点关注.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/经营/03-仓储物流环节.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/02-环节与财务科目对应（2026H1）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/跟踪/03-环节演变时序（2020-2026H1）.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/运营指标.md → 本页未反引
+
+--- research/消费/泡泡玛特/需求/情绪需求持续性跟踪.md ---
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/投资论点.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/泡泡玛特/需求/用户习惯与行为-两份外资行调研综合.md → 本页未反引
+
+--- research/消费/贵州茅台/overview.md ---
+  [ERROR] 标的 消费/贵州茅台 缺失 overview.md
+
+--- research/消费/贵州茅台/thesis.md ---
+  [ERROR] 标的 消费/贵州茅台 缺失 thesis.md
+
+--- research/消费/贵州茅台/产业链.md ---
+  [INFO] 含占位符 '待补充'
+
+--- research/消费/贵州茅台/经营/渠道改革.md ---
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/运营指标.md → 本页未反引
+
+--- research/消费/贵州茅台/经营/销量与吨价.md ---
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/经营/渠道价格链与经销商利润推演.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/经营/黄牛套利与市场规模.md → 本页未反引
+  [WARN] 交叉引用缺口: research/消费/贵州茅台/运营指标.md → 本页未反引
+
+--- research/疯狂的里海/方法论/10-初筛/里海-变化论.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/30-共振/里海-四段式工作流.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/引用纪律-行业规模与市占率分母三检.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海-储能与新能源链观察法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-新希望.md → 本页未反引
+
+--- research/疯狂的里海/方法论/10-初筛/里海-四类跟踪分档法.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/30-共振/里海-四段式工作流.md → 本页未反引
+
+--- research/疯狂的里海/方法论/10-初筛/里海-简单论.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/30-共振/里海-四段式工作流.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海-储能与新能源链观察法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-新希望.md → 本页未反引
+
+--- research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+
+--- research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/引用纪律-行业规模与市占率分母三检.md → 本页未反引
+
+--- research/疯狂的里海/方法论/30-共振/里海-双左侧.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/30-共振/里海-四段式工作流.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海-储能与新能源链观察法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-新希望.md → 本页未反引
+
+--- research/疯狂的里海/方法论/30-共振/里海-四段式工作流.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-涪陵榨菜.md → 本页未反引
+
+--- research/疯狂的里海/方法论/90-横切/引用纪律-行业规模与市占率分母三检.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+
+--- research/疯狂的里海/方法论/90-横切/里海体系vs巴菲特三好-方法论对比.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2016年.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2018年.md ---
+  [INFO] 含占位符 'XXX'
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2019年.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2020年.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2021年.md ---
+  [INFO] 含占位符 'XXX'
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-常宝股份.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2022年.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海-储能与新能源链观察法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-常宝股份.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2024年.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-常宝股份.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2025年.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-常宝股份.md → 本页未反引
+
+--- research/疯狂的里海/时间线/里海年度时间线-2026年.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海体系vs巴菲特三好-方法论对比.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-云南能投.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-阳谷华泰.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-再升科技.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海体系vs巴菲特三好-方法论对比.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-云南能投.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-利安隆.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-国林科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-川环科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-新希望.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-涪陵榨菜.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-硅宝科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-莱美药业.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-国林科技.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-云南能投.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-博隆技术.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-太极集团.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海体系vs巴菲特三好-方法论对比.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-涪陵榨菜.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-花园生物.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-鲁西化工.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-川环科技.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-凌玮科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-川环科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-阳谷华泰.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-新希望.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-涪陵榨菜.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-新希望.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-涪陵电力.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海-储能与新能源链观察法.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-硅宝科技.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-中泰股份.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-云南能投.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-凌玮科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-博隆技术.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-花园生物.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-秦安股份.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海体系vs巴菲特三好-方法论对比.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-凌玮科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-国林科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-川环科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-常宝股份.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-涪陵榨菜.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-硅宝科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-阳谷华泰.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-鲁西化工.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-花园生物.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-阳谷华泰.md → 本页未反引
+
+--- research/疯狂的里海/案例/里海案例-鲁西化工.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/20-解构建模跟踪/里海-解构法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-新希望.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/疯狂的里海.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-再升科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-太极集团.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-川环科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-常宝股份.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-杰瑞股份.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-涪陵榨菜.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-涪陵电力.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-硅宝科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-长安汽车.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-鲁西化工.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/疯狂的里海/里海-2444投资体系.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-简单论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/30-共振/里海-四段式工作流.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海-储能与新能源链观察法.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/90-横切/里海体系vs巴菲特三好-方法论对比.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2016年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2017年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2018年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2019年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2020年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2021年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2022年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2023年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2024年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2025年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2026年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-再升科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-太极集团.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-川环科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-常宝股份.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-新希望.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-杰瑞股份.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-涪陵榨菜.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-涪陵电力.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-硅宝科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-长安汽车.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-鲁西化工.md → 本页未反引
+
+--- research/疯狂的里海/里海-业绩归因.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-凌玮科技.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-博隆技术.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-阳谷华泰.md → 本页未反引
+
+--- research/疯狂的里海/里海体系-总览.md ---
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/00-流水线总图.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/10-初筛/里海-变化论.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/方法论/30-共振/里海-四段式工作流.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2017年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2018年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2019年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2020年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2021年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2022年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2023年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2024年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/时间线/里海年度时间线-2025年.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/案例/里海案例-新希望.md → 本页未反引
+  [WARN] 交叉引用缺口: research/疯狂的里海/里海-业绩归因.md → 本页未反引
+
+--- research/白马/TCL中环/industry-chain.md ---
+  [WARN] 交叉引用缺口: research/白马/TCL中环/operating-metrics.md → 本页未反引
+
+--- research/白马/TCL中环/research-reports.md ---
+  [INFO] 含占位符 '待补充'
+
+--- research/白马/TCL科技/operating-metrics.md ---
+  [WARN] 交叉引用缺口: research/白马/TCL中环/industry-chain.md → 本页未反引
+
+--- research/白马/TME/industry-chain.md ---
+  [ERROR] 标的 白马/TME 缺失 industry-chain.md
+
+--- research/白马/TME/operating-metrics.md ---
+  [ERROR] 标的 白马/TME 缺失 operating-metrics.md
+
+--- research/白马/TME/overview.md ---
+  [ERROR] 标的 白马/TME 缺失 overview.md
+
+--- research/白马/TME/thesis.md ---
+  [ERROR] 标的 白马/TME 缺失 thesis.md
+
+--- research/白马/人福医药/industry-chain.md ---
+  [WARN] 交叉引用缺口: research/白马/TCL中环/research-reports.md → 本页未反引
+
+--- research/白马/建滔积层板/industry-chain.md ---
+  [ERROR] 标的 白马/建滔积层板 缺失 industry-chain.md
+
+--- research/白马/建滔积层板/operating-metrics.md ---
+  [ERROR] 标的 白马/建滔积层板 缺失 operating-metrics.md
+
+--- research/白马/建滔集团/operating-metrics.md ---
+  [ERROR] 标的 白马/建滔集团 缺失 operating-metrics.md
+
+--- research/白马/拼多多/industry-chain.md ---
+  [ERROR] 标的 白马/拼多多 缺失 industry-chain.md
+
+--- research/白马/拼多多/operating-metrics.md ---
+  [ERROR] 标的 白马/拼多多 缺失 operating-metrics.md
+
+--- research/白马/拼多多/overview.md ---
+  [ERROR] 标的 白马/拼多多 缺失 overview.md
+
+--- research/白马/拼多多/thesis.md ---
+  [ERROR] 标的 白马/拼多多 缺失 thesis.md
+
+--- research/白马/紫金矿业/industry-chain.md ---
+  [WARN] 交叉引用缺口: research/白马/TCL中环/research-reports.md → 本页未反引
+
+--- research/白马/紫金矿业/thesis.md ---
+  [WARN] 交叉引用缺口: research/白马/TCL中环/research-reports.md → 本页未反引
+
+--- research/白马/阿里巴巴/industry-chain.md ---
+  [ERROR] 标的 白马/阿里巴巴 缺失 industry-chain.md
+
+--- research/白马/阿里巴巴/operating-metrics.md ---
+  [ERROR] 标的 白马/阿里巴巴 缺失 operating-metrics.md
+
+--- research/白马/阿里巴巴/overview.md ---
+  [ERROR] 标的 白马/阿里巴巴 缺失 overview.md
+
+--- research/白马/阿里巴巴/thesis.md ---
+  [ERROR] 标的 白马/阿里巴巴 缺失 thesis.md
+
+--- vl/concepts/24 行统计阵列.md ---
+  [WARN] 交叉引用缺口: vl/concepts/三市场数据适配.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/concepts/李录阅读法融合.md → 本页未反引
+
+--- vl/concepts/VL 估值方法论.md ---
+  [WARN] 交叉引用缺口: vl/concepts/8 步流水线.md → 本页未反引
+
+--- vl/concepts/Wiki操作手册.md ---
+  [INFO] 含占位符 'TODO'
+
+--- vl/concepts/开发环境配置.md ---
+  [WARN] 交叉引用缺口: vl/concepts/跨电脑迁移与云备份.md → 本页未反引
+
+--- vl/modules/build.py.md ---
+  [WARN] 交叉引用缺口: vl/modules/extract_mda.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/fetcher.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/generate_business_commentary.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/pdf_downloader.py.md → 本页未反引
+
+--- vl/modules/config.py.md ---
+  [WARN] 交叉引用缺口: vl/modules/generate_business_commentary.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/generate_index.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/generate_report.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/list_refs.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/pdf_downloader.py.md → 本页未反引
+
+--- vl/modules/engine.py.md ---
+  [WARN] 交叉引用缺口: vl/modules/generate_reading.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/generate_report.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/tdx_client.py.md → 本页未反引
+
+--- vl/modules/extract_mda.py.md ---
+  [WARN] 交叉引用缺口: vl/modules/pdf_downloader.py.md → 本页未反引
+
+--- vl/modules/fetcher.py.md ---
+  [WARN] 交叉引用缺口: vl/modules/build.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/tdx_client.py.md → 本页未反引
+
+--- vl/modules/generate_index.py.md ---
+  [WARN] 交叉引用缺口: vl/modules/config.py.md → 本页未反引
+  [WARN] 交叉引用缺口: vl/modules/generate_wiki_index.py.md → 本页未反引
+
+--- vl/modules/generate_report.py.md ---
+  [WARN] 交叉引用缺口: vl/modules/config.py.md → 本页未反引
+
+Lint 完成。

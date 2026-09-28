@@ -4,6 +4,7 @@
 """
 import re
 import sys
+import datetime
 from pathlib import Path
 from collections import defaultdict
 
@@ -11,7 +12,7 @@ WIKI = Path(__file__).resolve().parent.parent / "research-wiki"
 FRONT_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
 WIKILINK_RE = re.compile(r"\[\[([^\]]+)\]\]")
 ALIAS_SPLIT = re.compile(r"\s*\|\s*")
-TODAY = "2026-09-10"
+TODAY = datetime.date.today().isoformat()
 # 默认只补 frontmatter / 参见区块；交叉引用缺口属系统性（历史结论 diminishing
 # returns），仅在显式传 --crossref 时追加，避免一次改动上千行。
 CROSSREF = "--crossref" in sys.argv
@@ -122,6 +123,25 @@ updated: {TODAY}
 tags: []
 ---
 """
+    # 本地（广深）上市公司名单页
+    if rel.startswith("research/本地/"):
+        city = "广州" if "/广州/" in rel else ("深圳" if "/深圳/" in rel else "本地")
+        return f"""---
+topic: {title}
+category: {city}名单池
+created: {TODAY}
+updated: {TODAY}
+---
+"""
+    # AI 软件标的池（顶层名单页）
+    if rel.startswith("research/AI软件/"):
+        return f"""---
+topic: {title}
+category: AI软件-名单池
+created: {TODAY}
+updated: {TODAY}
+---
+"""
     elif rel == "research/overview.md":
         return f"""---
 topic: 投研 wiki 概述
@@ -164,6 +184,32 @@ def seealso_specific(rel):
     （如各标的目录下都有「运营指标.md」）。
     """
     srel = stock_rel(rel)
+    # 本地（广深）名单页：同目录姊妹页互链
+    if srel.startswith("本地/广州/"):
+        return ["[[广州上市公司名单-A股与港股]]", "[[广州名单-待选池-按变化排序]]",
+                "[[广州名单-待选池跟踪表]]", "[[广州名单-已划掉（134 家）]]",
+                "[[广州待选池-依据存档]]"]
+    if srel.startswith("本地/深圳/"):
+        return ["[[深圳上市公司名单-A股与港股]]", "[[广州上市公司名单-A股与港股]]"]
+    # AI 软件名单页
+    if srel == "AI软件/AI软件名单-待选池.md":
+        return ["[[AI软件名单-按吞噬顺序筛选]]",
+                "[[research/AI软件/中航信/AI落点与成本结构]]",
+                "[[research/AI软件/柏楚电子/2444变化论扫描]]",
+                "[[research/AI软件/宝信软件/2444扫描与客户结构]]"]
+    if srel == "AI软件/AI软件名单-按吞噬顺序筛选.md":
+        return ["[[AI软件名单-待选池]]",
+                "[[research/AI软件/中航信/AI落点与成本结构]]",
+                "[[research/AI软件/柏楚电子/2444变化论扫描]]",
+                "[[research/AI软件/宝信软件/2444扫描与客户结构]]"]
+    # 里海横切方法论 → 总览 / 总图
+    if rel.endswith("里海-储能与新能源链观察法.md"):
+        return ["[[里海体系-总览]]", "[[research/疯狂的里海/方法论/00-流水线总图.md]]"]
+    # 本体论 × AI 应用 概念互链
+    if rel.endswith("本体层Ontology-数据与AI的中间层.md"):
+        return ["[[AI应用-智能复利与四级跃迁]]", "[[阿瑟-收益递增与涌现]]"]
+    if rel.endswith("AI应用-智能复利与四级跃迁.md"):
+        return ["[[本体层Ontology-数据与AI的中间层]]", "[[阿瑟-收益递增与涌现]]"]
     if srel.startswith("泡泡玛特/业绩/"):
         if rel.endswith("业绩会纪要索引（2020-2026）.md"):
             return ["[[经营时间序列（2020-2026）]]"]
@@ -188,6 +234,9 @@ def seealso_specific(rel):
 def gen_seealso(rel, incoming, seealso_refs, pages):
     """为页面生成 ## 参见 区块内容。"""
     links = list(seealso_specific(rel))
+    # 过滤指向自身的链接（名单类页面互链规则含本页）
+    self_stem = Path(rel).stem.lower()
+    links = [l for l in links if Path(l.strip("[[").rstrip("]]")).stem.lower() != self_stem]
     # 已有的参见链接
     existing = seealso_refs.get(rel, set())
     # 从 incoming 里取 3-5 个最相关的来源页（仅在无确定性规则时使用）

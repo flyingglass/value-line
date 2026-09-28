@@ -149,8 +149,8 @@ sources:
 
 - [[消费/安琪酵母/overview]] — 数据目录
 - [[消费/安琪酵母/thesis]] — 投资 Thesis（赚钱逻辑 + 护城河 + 风险 + 催化剂）
-- [[../report/安琪酵母]] — VL 报告
-- [[../report/reading/600298]] — VL 阅读报告
+- [report/安琪酵母.html](../../../../report/安琪酵母.html) — VL 报告
+- [report/reading/600298.md](../../../../report/reading/600298.md) — VL 阅读报告
 [[research/消费/安琪酵母/operating-metrics.md]] · [[research/index.md]]
 [[research/消费/安琪酵母/research-reports.md]] · [[research/消费/安琪酵母/operating-metrics.md]]
 [[research/消费/安琪酵母/operating-metrics.md]] · [[research/消费/安琪酵母/research-reports.md]]
