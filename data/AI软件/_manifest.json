@@ -737,5 +737,22 @@
     "cached": false
    }
   ]
+ },
+ "600406": {
+  "name": "国电南瑞",
+  "market": "a",
+  "status": "ok",
+  "files": [
+   {
+    "year": "2026",
+    "file": "600406_国电南瑞_2026中报.pdf",
+    "title": "国电南瑞2026年半年度报告",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+    "date": "2026-08-27",
+    "valid": true,
+    "check": "PASS 大小(2479KB); PASS PDF头; PASS 页数(234); PASS 公司名(国电南瑞); PASS 类型(H1)",
+    "cached": false
+   }
+  ]
  }
 }
