@@ -37,5 +37,6 @@ data/广州.zip
 data/AI软件/*.pdf
 scripts/out/tmp_*  
 
-# 调研临时产物（data/tmp_<code>/）中的 PDF 不入版本库（与 data/AI软件/*.pdf 同例）
-data/tmp_*/*.pdf
+# 调研临时工作台（data/tmp_<code>/）整体不入版本库：临时脚本/图表/中间数据都是过程留痕，
+# 成果应沉淀到 research-wiki/。本地文件保留，仅不跟踪。
+data/tmp_*/
