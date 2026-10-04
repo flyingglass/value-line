@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>电网三标的 · 里海画像分析（国电南瑞 / 南网数字 / 远光软件）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">AI软件·名单池</a> › <a href="电网三标的-里海画像分析.html">电网三标的 · 里海画像分析（国电南瑞 / 南网数字 / 远光软件）</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">电网三标的 · 里海画像分析（国电南瑞 / 南网数字 / 远光软件）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-10-04</span><span style="margin-left:auto;color:#b0b5bd">research/AI软件</span></div><div class="md" id="md"><h1>电网三标的 · 里海画像分析（国电南瑞 / 南网数字 / 远光软件）</h1>
+<blockquote>
+<p><strong>方法</strong>＝里海「公司画像」六问：① 商业模式与财务结构有无雷 → ② 毛利率稳定时增长的制约因子（制造业＝产能+需求；电网系无产能变量，换成<strong>两网资本开支节奏</strong>）→ ③ 有无<strong>第二曲线</strong> → ④ 涨的因子是否同时打开 → ⑤ 跌＝预期打太满 + 需求反向 → ⑥ <strong>股价与基本面有时滞，市场预期你的预期</strong>。
+方法出处：公众号「疯狂的里海」《一家涨了15倍又下跌了85%的公司的画像分析》（2026-09-29，原文 https://mp.weixin.qq.com/s/TwHZIX3yIHdvoYBTmJw4rQ ，在库 <code>raw/research/疯狂的里海/</code>）。
+<strong>定位</strong>：<a href="AI%E8%BD%AF%E4%BB%B6%E5%90%8D%E5%8D%95-%E6%8C%89%E5%90%9E%E5%99%AC%E9%A1%BA%E5%BA%8F%E7%AD%9B%E9%80%89.html">AI软件/AI软件名单-按吞噬顺序筛选</a> §8.2「电网方向」回答&quot;AI 吃不吃得到&quot;；本页用里海画像回答&quot;<strong>涨跌因子是否打开、当前在什么位置</strong>&quot;，两套口径互不替代。
+⚠️ 「南国数字」＝口误，标的为<strong>南网数字 301638</strong>（南方电网数字电网研究院股份有限公司）。三家均为电网侧信息化/装备链，非发电企业。</p>
+</blockquote>
+<h2>一、对照总表</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>国电南瑞 600406</th>
+<th>南网数字 301638</th>
+<th>远光软件 002063</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>属性</td>
+<td>国网系二次设备/自动化龙头</td>
+<td>南网系数字平台（2025-11-18 上市）</td>
+<td>国网数科控股、国务院国资委实控</td>
+</tr>
+<tr>
+<td>价格 / 市值（2026-09-30 收盘）</td>
+<td>22.52 元 / 1,808.8 亿</td>
+<td>20.59 元 / 654.7 亿（流通仅 51.5 亿）</td>
+<td>5.26 元 / 100.8 亿</td>
+</tr>
+<tr>
+<td>PE(TTM) / PB</td>
+<td>21.5 / 3.56</td>
+<td>79.9 / 5.88</td>
+<td>33.6 / 2.52</td>
+</tr>
+<tr>
+<td>26H1 营收</td>
+<td>277.67 亿 <strong>+14.5%</strong></td>
+<td>22.18 亿 <strong>+42.4%</strong></td>
+<td>10.61 亿 <strong>+0.54%</strong></td>
+</tr>
+<tr>
+<td>26H1 归母</td>
+<td>30.73 亿 +4.1%</td>
+<td>2.02 亿（同比 +1453% 🟡 低基数）</td>
+<td>0.76 亿</td>
+</tr>
+<tr>
+<td>26H1 毛利率</td>
+<td>25.34%（−1.11pp）</td>
+<td>34.62%（+1.45pp）</td>
+<td>49.0%（−3.50pp）</td>
+</tr>
+<tr>
+<td>距 2026 年内高点</td>
+<td>−28.4%（31.44 @2026-03-09）</td>
+<td>−41.4%（35.16 @2026-03-11）</td>
+<td>−30.3%（7.49 @2026-03-12）</td>
+</tr>
+<tr>
+<td>250 日收盘分位 🟡</td>
+<td>32.0%（至 09-30）</td>
+<td>14.3%（至 09-24）</td>
+<td>7.2%（至 09-24）</td>
+</tr>
+<tr>
+<td>增长制约因子</td>
+<td>两网 capex + 产品结构</td>
+<td>南网信息化节奏（客户单一、Q4 集中）</td>
+<td>国网信息化预算</td>
+</tr>
+<tr>
+<td>第二曲线</td>
+<td>海外 +196.6%、能源低碳 +47%</td>
+<td>算力/数据中心 +110.6%</td>
+<td><strong>未成型</strong>（智慧能源仅占 12.6%）</td>
+</tr>
+<tr>
+<td>画像定位</td>
+<td>慢变量白马</td>
+<td>次新 + 第二曲线待验</td>
+<td>变化因子缺失</td>
+</tr>
+</tbody>
+</table>
+<h2>二、国电南瑞 600406 — 业绩台阶 + 估值周期</h2>
+<ul>
+<li><strong>商业模式</strong>：能源电力智能化整体解决方案商，覆盖电网调度自动化、继电保护、柔性输电、新能源并网控制（26 中报原文）；&quot;三域四层&quot;布局，培育人工智能、新型储能、柔性输电、功率半导体、算电协同等战新产业。</li>
+<li><strong>基本面</strong>：归母 2014 年起 <strong>12 年逐年上行</strong>（🟢 新浪利润表口径）：12.83 → 48.52（2020）→ 82.79 亿（2025），毛利率稳定在 25-30% 区间。</li>
+<li><strong>26H1 结构（中报，主营口径）</strong>：电网智能 133.06 亿 <strong>+8.9%</strong>（毛利 29.90%）/ 能源低碳 96.14 亿 <strong>+47.0%</strong>（毛利 18.64%）/ 数能融合 36.96 亿 −5.2% / 工业互联 9.54 亿 −23.4%；<strong>海外 58.94 亿 +196.6%</strong>（占主营 21.3%），国内 218.05 亿 −1.9%。增长发动机已换成出海 + 储能/新能源，传统电网盘稳增。</li>
+<li><strong>股价（前复权）</strong>：2020 年末 12.35 → 2021-12 峰 30.76（<strong>+149%</strong>），而同期归母仅 +16% → <strong>涨幅基本来自估值扩张</strong>；2022 年低 15.28（自峰 <strong>−50%</strong>），同期归母 +14% → <strong>纯杀估值</strong>；其后业绩把估值重新消化，2026-03-09 盘中 31.44 创新高，现回撤 28.4%，PE 21.5。</li>
+<li><strong>读法</strong>：不是赫达型（没有 15 倍、也没有 −85%），是&quot;业绩台阶 + 估值周期&quot;——跌下去靠业绩涨回来。<strong>三家画像最完整、唯一估值不贵的一家</strong>。</li>
+<li><strong>跟踪要点</strong>：海外订单持续性（当前 +196.6% 的高基数）、能源低碳毛利率（18.64%，已 −2.95pp）、两网 capex 与特高压交付节奏。</li>
+</ul>
+<h2>三、南网数字 301638 — 次新股版「市场预期了你的预期」</h2>
+<ul>
+<li><strong>商业模式</strong>：南方电网旗下数字化平台，三大板块＝电网数字化（电鸿为引擎）+ 企业数字化 + 数字基础设施（三大网级数据中心 33MW，上架率近 7 成）；客户高度集中于南网体系内，收入/利润<strong>集中在 Q4</strong>（2025H1 归母仅 0.130 亿）。</li>
+<li><strong>基本面</strong>：营收 2022-2025 = 56.86 / 42.34 / 60.90 / 72.17 亿，归母 6.53 / 3.77 / 5.70 / <strong>6.30 亿</strong>——<strong>三年利润原地踏步</strong>（2025 尚不及 2022）。26H1 营收 +42.4% 的同时经营现金流 <strong>−3.90 亿</strong>。</li>
+<li><strong>26H1 三块拆分（中报）</strong>：电网数字化 7.77 亿 <strong>+2.95%</strong>（毛利 37.52%，核心业务几乎不增）/ 企业数字化 6.26 亿 +52.8%（毛利 30.99%）/ <strong>数字基础设施 8.14 亿 +110.6%</strong>（毛利 34.66%，占 36.7% 已成第一大板块）——<strong>兑现增长的是最易复制、最不&quot;本体&quot;的算力/IDC</strong>，不是市场讲&quot;电鸿本体层&quot;故事的核心业务。</li>
+<li><strong>股价（前复权）</strong>：上市首日 2025-11-18 收 18.43 → 2026-03-11 峰 35.16（<strong>+91%</strong>）→ 现 20.59（自峰 <strong>−41.4%</strong>）；250 日分位 14.3%，PE(TTM) 79.9（🟡 TTM 归母 ≈ 2.02 + 6.17 = 8.19 亿）。</li>
+<li><strong>读法</strong>：这是赫达文末那句&quot;<strong>市场预期了你的预期</strong>&quot;的次新股版本——上市 4 个月把&quot;电鸿 + 算力&quot;预期打满，而基本面的兑现要等 Q4 年报才能验证；第二曲线（算力）本身成色与可持续性未验，<strong>典型迟疑态</strong>。</li>
+<li><strong>跟踪要点</strong>：Q4 年报验证全年利润；数字基础设施（算力/IDC）收入的可持续性与现金流转正；南网体系外订单占比；电鸿核心业务能否重新加速。</li>
+</ul>
+<h2>四、远光软件 002063 — 三因子一个都没打开</h2>
+<ul>
+<li><strong>商业模式</strong>：国网数科控股（国务院国资委实控），深耕&quot;数智企业 + 智慧能源&quot;，核心产品远光达普（YG-DAP，云原生/AI 原生企业数字核心系统）。</li>
+<li><strong>基本面</strong>：营收 8.17（2014）→ 16.92（2020）→ 23.89（2023）→ 25.92 亿（2025），<strong>2023 年起停滞</strong>；归母 2023 见峰 3.44 → 2.93 → 3.00 亿。26H1 营收 <strong>+0.54%</strong>，全口径毛利率 49.0%（−3.50pp；中报分行业口径电力行业 49.07%、−3.97pp）。</li>
+<li><strong>收入结构（26H1 中报）</strong>：<strong>电力行业占 96.80%</strong>；数智企业 86.47%（−0.89%）、智慧能源 12.58%（+11.61%）——<strong>第二曲线未成型</strong>。</li>
+<li><strong>股价（前复权）</strong>：2015-06-03 峰 12.79 → 现 5.26（<strong>−58.9%</strong>）；2021-01 至今仅 +18%，5-8 元区间横盘五年；2026-03-12 年内高 7.49，现 −30.3%，250 日分位 7.2%，PE 33.6。</li>
+<li><strong>读法</strong>：用赫达那把尺子量——财务结构没有雷（央企背景、账期正常），但&quot;产能+需求+第二曲线&quot;<strong>三因子一个都没打开</strong>，所以 2018-2021 式行情从未出现。<strong>这是&quot;没有第二曲线的软件公司&quot;的标准形态</strong>，当前估值在横盘区间内也不便宜。</li>
+<li><strong>跟踪要点</strong>：有无新变化因子（信创全栈替换、AI 原生产品放量、国网数智化预算）；毛利率能否企稳（AI 研发投入 vs 人效）。</li>
+</ul>
+<h2>五、结论</h2>
+<p><strong>三家没有一家是&quot;涨 15 倍又跌 85%&quot;的同构体</strong>，分化恰好落在画像第③问（第二曲线）：</p>
+<table>
+<thead>
+<tr>
+<th>标的</th>
+<th>画像结论</th>
+<th>位置读法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国电南瑞</td>
+<td>第二曲线已落地（海外 +196.6%、能源低碳 +47%），业绩台阶扎实</td>
+<td>估值处中枢（PE 21.5），距高点 −28%，<strong>赔率最好</strong></td>
+</tr>
+<tr>
+<td>南网数字</td>
+<td>基本面刚反弹（+42%），但预期在算力第二曲线，Q4 才能验证</td>
+<td>79.9x 已把预期打满，<strong>迟疑均衡态</strong></td>
+</tr>
+<tr>
+<td>远光软件</td>
+<td>无变化因子，业绩停、毛利率掉</td>
+<td>横盘下沉，<strong>画像缺第一块砖</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>附：数据口径与待核</h2>
+<ul>
+<li>价格/PE/PB：600406 为腾讯行情 2026-09-30 收盘快照；301638/002063 财务与 K 线取 <code>data/db/</code>（行情至 2026-09-24），PE(TTM) 600406=1808.75/84.0（🟡 TTM=25FY−25H1+26H1）、301638=654.69/8.19。</li>
+<li>250 日分位为收盘价窗口内的分位，<strong>仅作位置参考</strong>（依 <a href="../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/10-%E5%88%9D%E7%AD%9B/%E9%87%8C%E6%B5%B7-%E5%8F%98%E5%8C%96%E8%AE%BA.html">疯狂的里海/方法论/10-初筛/里海-变化论</a> §五：分位低 ≠ 变化未被定价）。</li>
+<li>🔴 待核 1：600406 营收 2015→2016 由 96.78 亿跳至 282.48 亿（新浪口径），疑资产重组并表，未核。</li>
+<li>🔴 待核 2：301638 的 2022-2023 为上市前披露口径；其 H1 数据不代表全年（利润集中 Q4），+1453% 为低基数产物。</li>
+</ul>
+<h2>参见</h2>
+<p><a href="AI%E8%BD%AF%E4%BB%B6%E5%90%8D%E5%8D%95-%E6%8C%89%E5%90%9E%E5%99%AC%E9%A1%BA%E5%BA%8F%E7%AD%9B%E9%80%89.html">AI软件/AI软件名单-按吞噬顺序筛选</a> · <a href="AI%E8%BD%AF%E4%BB%B6%E5%90%8D%E5%8D%95-%E5%BE%85%E9%80%89%E6%B1%A0.html">AI软件/AI软件名单-待选池</a> · <a href="../../cases/%E6%9C%AC%E5%9C%B0/%E5%B9%BF%E5%B7%9E/%E5%B9%BF%E5%B7%9E%E5%90%8D%E5%8D%95-%E5%BE%85%E9%80%89%E6%B1%A0%E8%B7%9F%E8%B8%AA%E8%A1%A8.html">本地/广州/广州名单-待选池跟踪表</a></p>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/AI软件/电网三标的-里海画像分析.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
