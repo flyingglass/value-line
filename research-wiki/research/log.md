@@ -5612,3 +5612,30 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 - 🔴 待核 2：301638 的 2022-2023 为上市前披露口径，H1 不代表全年（利润集中 Q4，+1453% 为低基数产物）
 
 触及页面：research/AI软件/电网三标的-里海画像分析.md（新建）、research/AI软件/AI软件名单-按吞噬顺序筛选.md、research/AI软件/AI软件名单-待选池.md、research/index.md、research/log.md、research-wiki/raw/research/疯狂的里海/2026-09-29-一家涨了15倍又下跌了85%的公司的画像分析.md（首次提交）
+
+## [2026-10-04] feat | 山东赫达（002810）营收 × 披露时点 × 股价 对照图上线 + 出图能力沉淀为 skill
+
+### 操作
+- 新增 `research/白马/002810/营收-披露时点-股价对照图.md` 与 `assets/revenue-price-timeline.png`
+- 出图脚本参数化并沉淀为项目级 skill `.codebuddy/skills/revenue-price-timeline/`（SKILL.md + scripts/revenue_price_timeline.py + references/implementation-notes.md）
+- 数据源：东方财富「利润表-按报告期」（营业总收入 + NOTICE_DATE 披露日）+ 新浪日线前复权（数据截至 2026-09-30）
+- 明细落盘 `scripts/out/002810_revenue_vs_price.csv`；重建静态站 `research-wiki/view/`
+
+### Wiki 产出 / 页面更新
+- research/白马/002810/营收-披露时点-股价对照图.md（新建）
+- research/index.md（注册条目 + 最后更新）
+- research/log.md（本条）
+- research-wiki/view/*（重建静态站）
+
+### 核心结论（页面为准）
+- 共 40 期报告入图（FY / H1 / Q1 / Q3 各 10 期）
+- 营收仅在 2023 年出现负增长 −9.7%；FY2024 营收 19.57 亿为历史最高，2025-04-26 披露当日收盘仅 11.24 元（营收新高与股价低点同时出现）
+- 2021 年内收盘高点 57.06 元（前复权）出现在 FY2021（+19.2%）披露之前；该年报 2022-04-26 披露时收盘 32.94 元
+
+### 口径与待核
+- 柱高为按报告期累计营收，跨口径（3 / 6 / 9 / 12 个月）不可直接比高低；柱顶百分比为同口径上年同期同比
+- 年报与次年一季报常同日披露，Q1 柱叠在 FY 柱内部
+- 前复权口径：2021-12-31 收盘 57.06 元（前复权），不复权约 85.58 元
+- 上市日 2016-08-26 之前披露的报告期未入图
+
+触及页面：research/白马/002810/营收-披露时点-股价对照图.md（新建）、research/index.md、research/log.md、research-wiki/view/*（重建）、.codebuddy/skills/revenue-price-timeline/（新建 skill）、scripts/002810/（脚本）、scripts/out/002810_revenue_vs_price.csv
