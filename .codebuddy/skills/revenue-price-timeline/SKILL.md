@@ -57,11 +57,16 @@ agent_created: true
 5. 柱宽随涵盖月份递增：Q1 22 天 / H1 30 天 / Q3 38 天 / FY 46 天；年报半透明（alpha 0.48）以便与同年一季报同日披露时叠放可见。
 6. 字体按可用性探测：Microsoft YaHei → SimHei → Noto Sans CJK SC → Source Han Sans SC → Arial Unicode MS。
 7. 画布 29×12.4 inch @150dpi，标题左对齐、图例一行 7 项在标题下方，脚注 5 行说明数据来源/读法/图层顺序/颜色口径/口径与行情起点。
+8. **标题与图例必须按 inch 拉开，别凭感觉给 pad**：图例用 `loc="lower left"` + `bbox_to_anchor=(0.0, 1.032)`（悬在绘图区上沿之上 ≈0.032×axes高），标题用 `loc="left"` + `pad=78`（≈1.08 inch）。
+   实测坑：早期写的「图例 `1.076` + 标题 `pad=46`」在 8.73 inch 高的绘图区上分别落在 ≈0.66 / 0.64 inch，**同一高度 → 标题与图例字压字**。
+   复核公式：图例锚点偏移(inch) = 0.032 × axes 高度；标题 pad(pt)/72 必须 > 锚点偏移 + 图例高度(≈0.3 inch)，留 0.4 inch 以上净空。
 
 ## 落盘约定（本仓库）
 
 - 图：`research-wiki/research/<分类>/<中文名>/assets/revenue-price-timeline.png`
-- 明细：`scripts/out/<code>_revenue_vs_price.csv`（脚本与明细仍按 6 位代码命名，与 `scripts/<code>/` 一致）
+- 明细：`scripts/out/<code>_revenue_vs_price.csv`（脚本与明细仍按 6 位代码命名，与 `scripts/<code>/` 一致）。
+  **注意**：脚本缺省把 CSV 写在 PNG 同目录同名，要按本仓库约定落盘得显式加 `--csv scripts/out/<code>_revenue_vs_price.csv`，否则会在 assets/ 里多出一份副本。
+- **Windows cmd 传中文 `--out`**：先 `set "PYTHONUTF8=1"`（必须带引号；写成 `set PYTHONUTF8=1 &&` 会带上尾随空格 → `invalid PYTHONUTF8 environment variable value`）。不设置则 argv 里的中文会 mojibake，报 `OSError: [Errno 22] Invalid argument: 'research-wiki/research/????/…'`。
 - **目录名一律用股票简称中文名，不用 6 位代码**（如 `白马/山东赫达`、`白马/贵州茅台`），与同级已有目录的命名风格保持一致；中文名取图上所用简称（`--name`，缺省时由接口自动查询得到）。
 - 新标的先确认「分类目录 + 中文名」再写，勿自建分类；已建页标的沿用其既有目录。
 - **目录改名时**（如把代码目录换成中文名）必须连带同步，否则 wiki 链接会断：
@@ -72,6 +77,7 @@ agent_created: true
 
 ## 已验证样例
 
+- **688188 柏楚电子 · 2019-08-08 ~ 2026-09-30**（2026-10-05，落 `AI软件/柏楚电子/`）：科创板也走 SH 前缀，28 期报告入图（FY/H1/Q1/Q3 各 7 期）；显式 `--extremes 2019:low,2021:high,2022:low,2026:high`，页面要点引用的高低点数字与图完全一致（`parse_extremes` 取年内收盘极值，可先用 `stock_zh_a_daily` 自行算一遍再传）。
 - **002810 山东赫达 · 2016-08-26 ~ 2026-09-30**（2026-10-04）：共 40 期报告入图（FY/H1/Q1/Q3 各 10 期）。2021 年内收盘高点 57.06 元（前复权，不复权约 85.58 元），而 FY2021 营收 15.60 亿 +19.2% 要到 2022-04-26 才披露（当日收盘 32.94 元）；2024 年内收盘低点 9.78 元；三季报披露集中在 10-19 ~ 10-31，年报集中在 04-26 ~ 04-28。
   复现命令即上面的「快速使用」；`--extremes` 用显式指定可复刻四色标注位置（自动挑选会在个别年份给出不同结果）。
 - **600519 贵州茅台 · 2016-01-01 起**（2026-10-04）：验证沪市前缀、简称自动获取（东财个股信息接口被拒时由全市场代码表兜底）、大额量程下刻度步长自适应（左轴 0~2500 元 / 步长 500）。

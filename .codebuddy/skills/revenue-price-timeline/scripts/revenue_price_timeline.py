@@ -357,14 +357,16 @@ def draw(items, px, name, code, extremes, out_path,
                               label="定期报告披露当日股价"))
     handles.append(plt.Line2D([], [], color="#e6e9ef", lw=1.2, ls=(0, (3, 3)),
                               label="定期报告披露时点"))
-    ax.legend(handles=handles, loc="upper left", fontsize=9.0, frameon=True,
+    # 图例整体悬于绘图区上方（loc="lower left" + 锚点 y=1.032，约 0.28 inch），
+    # 标题 pad=78pt（约 1.08 inch）再往上，两者留约 0.6 inch 净空，避免字压字
+    ax.legend(handles=handles, loc="lower left", fontsize=9.0, frameon=True,
               framealpha=0.94, ncol=7, columnspacing=1.4,
-              bbox_to_anchor=(0.0, 1.076), borderaxespad=0.0)
+              bbox_to_anchor=(0.0, 1.032), borderaxespad=0.0)
 
     ax.set_title("%s（%s）股价 · 营收 · 披露时点对照图　%d-%d（含季报）"
                  % (name, code, start.year, end.year),
                  fontsize=15.0, fontweight="bold", color="#1a1d22",
-                 loc="left", pad=46)
+                 loc="left", pad=78)
     fig.text(0.040, 0.115,
              "数据：营业收入与定期报告披露日取自东方财富「利润表-按报告期」（NOTICE_DATE 为该期报告公开披露日）；"
              "股价为新浪日线前复权收盘价（数据截至 %s）。\n"
