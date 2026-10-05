@@ -14,7 +14,7 @@
 用法示例：
     python revenue_price_timeline.py --code 002810 --name 山东赫达 \
         --extremes 2018:low,2021:high,2024:low,2026:high \
-        --out research-wiki/research/白马/002810/assets/revenue-price-timeline.png
+        --out research-wiki/research/白马/山东赫达/assets/revenue-price-timeline.png
 """
 import argparse
 import os

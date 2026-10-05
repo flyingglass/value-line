@@ -19,7 +19,7 @@ agent_created: true
 .venv/Scripts/python .codebuddy/skills/revenue-price-timeline/scripts/revenue_price_timeline.py \
   --code 002810 --name 山东赫达 --end 2026-09-30 \
   --extremes 2018:low,2021:high,2024:low,2026:high \
-  --out research-wiki/research/白马/002810/assets/revenue-price-timeline.png
+  --out research-wiki/research/白马/山东赫达/assets/revenue-price-timeline.png
 ```
 
 最小用法（其余全部自动）：
@@ -60,9 +60,15 @@ agent_created: true
 
 ## 落盘约定（本仓库）
 
-- 图：`research-wiki/research/<分类>/<code>/assets/revenue-price-timeline.png`
-- 明细：`scripts/out/<code>_revenue_vs_price.csv`
-- 02xxx 等已建页标的沿用其既有目录；新标的一律先确认目录再写，勿自建分类。
+- 图：`research-wiki/research/<分类>/<中文名>/assets/revenue-price-timeline.png`
+- 明细：`scripts/out/<code>_revenue_vs_price.csv`（脚本与明细仍按 6 位代码命名，与 `scripts/<code>/` 一致）
+- **目录名一律用股票简称中文名，不用 6 位代码**（如 `白马/山东赫达`、`白马/贵州茅台`），与同级已有目录的命名风格保持一致；中文名取图上所用简称（`--name`，缺省时由接口自动查询得到）。
+- 新标的先确认「分类目录 + 中文名」再写，勿自建分类；已建页标的沿用其既有目录。
+- **目录改名时**（如把代码目录换成中文名）必须连带同步，否则 wiki 链接会断：
+  1. `git mv` 重命名目录（保留 git 历史）；
+  2. 改 `research/index.md` 里的 `[[分类/旧名/文章]]` wikilink（含「最后更新」摘要里的那些）；
+  3. 改页面正文里复现命令的 `--out` 路径、以及本 SKILL.md 与脚本 docstring 的示例路径；
+  4. 跑 `.venv/Scripts/python scripts/generate_wiki_index.py` 重建视图，再用 `git rm -r research-wiki/view/stocks/<旧名>` 删掉旧视图目录。
 
 ## 已验证样例
 
