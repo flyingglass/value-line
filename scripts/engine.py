@@ -1529,19 +1529,29 @@ def _parse_mda_text(mda_text):
     if not sections:
         return None
 
-    # business_summary: 经营总览 前2句
-    overview = sections.get("overview", [])
-    bs_lines = overview[:2] if overview else sections.get(list(sections.keys())[0], [])[:2]
+    def _complete(lines):
+        """只要完整句: 以句末标点收尾且长度足够。
+
+        PDF 提取偶尔仍会留下半截残句(如「…具有增稠性、⽔溶性」)，
+        这类残片直接进报告就成了读不通的碎片，必须过滤掉。
+        """
+        return [l for l in lines
+                if len(l) >= 25 and l.rstrip().endswith(("。", "！", "？"))]
+
+    # business_summary: 经营总览 前2句（须为完整句，否则宁可不用）
+    overview = _complete(sections.get("overview", []))
+    fallback = _complete(sections.get(list(sections.keys())[0], []))
+    bs_lines = (overview[:2] or fallback[:2])
     business_summary = "；".join(bs_lines) if bs_lines else ""
 
     # mda_sections: 产品+渠道+地区+成本
     mda_sections = {}
     for key in ["product", "channel", "region", "cost"]:
-        lines = sections.get(key, [])
+        lines = _complete(sections.get(key, []))
         if lines:
             mda_sections[key] = lines
 
-    outlook_lines = sections.get("outlook", [])
+    outlook_lines = _complete(sections.get("outlook", []))
 
     return {
         "business_summary": business_summary,
@@ -2551,17 +2561,20 @@ def build_report(code=None):
     # 尝试加载个股专属脚本
     per_stock_mod = _load_per_stock_script(code)
     per_stock_result = None
+    script_failed = False
     if per_stock_mod:
         try:
             per_stock_result = per_stock_mod.build(stock, metrics, revenue_structure, years, cagr, spot)
         except Exception as e:
             print(f"  ⚠️ per-stock script error: {e}")
+            script_failed = True
 
     # Business: per-stock > PDF > config.business_desc > generic
+    #   per-stock 脚本存在但执行失败时，不再回退到 PDF 原文(易落半截残句)，改走 config/数据自生成
     business = None
     if per_stock_result and per_stock_result.get("business"):
         business = per_stock_result["business"]
-    elif mda_parsed and mda_parsed.get("business_summary"):
+    elif (not script_failed) and mda_parsed and mda_parsed.get("business_summary"):
         business = mda_parsed["business_summary"]
     elif stock.get("business_desc"):
         business = stock.get("business_desc")
@@ -2572,7 +2585,7 @@ def build_report(code=None):
     commentary_from_mda = []
     if per_stock_result and per_stock_result.get("commentary"):
         commentary_from_mda = per_stock_result["commentary"]
-    elif mda_parsed and mda_parsed.get("mda_sections"):
+    elif (not script_failed) and mda_parsed and mda_parsed.get("mda_sections"):
         sec = mda_parsed["mda_sections"]
         if "product" in sec:
             commentary_from_mda.append("【业务结构】" + "；".join(sec["product"][:3]))

@@ -32,26 +32,71 @@ def _is_narrative(s, max_ratio=0.22):
     return True
 
 
+def _merge_soft_wraps(text):
+    """合并 PDF 排版造成的软换行。
+
+    pdfplumber 按排版行输出，中文句子常在行中被切断（如「…等优良特」+「性，⼴泛应⽤于…」）。
+    直接按 \n 切句会把半截残句当成完整句，必须先按「行尾是否句末标点」合并回段落。
+    """
+    out, buf = [], ""
+    for raw in text.split("\n"):
+        s = raw.strip()
+        if not s:
+            if buf:
+                out.append(buf)
+                buf = ""
+            continue
+        if not buf:
+            buf = s
+            continue
+        # 上一行已以句末标点收尾 → 断句
+        if re.search(r'[。！？；]$', buf):
+            out.append(buf)
+            buf = s
+        # 新行像标题/编号项/表格行 → 断开，不合并
+        elif (re.match(r'^(第[一二三四五六七八九十百]+[章节条]|[（(]\s*[一二三四五六七八九十]'
+                       r'|\d+[.、)）]|[一二三四五六七八九十]+[、.])', s)
+              or len(s) <= 6):
+            out.append(buf)
+            buf = s
+        else:
+            buf += s
+    if buf:
+        out.append(buf)
+    return out
+
+
 def extract_chinese_sentences(text):
-    """从PDF文本中提取叙事性中文句子（>20中文字符，过滤财务数据句）"""
-    parts = re.split(r'[。！？\n]', text)
+    """从PDF文本中提取叙事性中文句子（先合并软换行，再按句末标点切句）。
+
+    注意: 不再用正则删除句内英文片段——那会把句子从中间啃断，产生「…优良特」这类残句。
+    改为按「中文字符占比」过滤表格行/表头。
+    """
     results = []
-    for p in parts:
-        p = p.strip()
-        cn = len(re.findall(r'[\u4e00-\u9fff]', p))
-        if cn < 20:
-            continue
-        # 过滤英文残留、表头
-        p = re.sub(r'\b[a-zA-Z][a-zA-Z0-9\'.,;:!?\d\-/\s()（）\[\]]*\b', '', p)
-        p = p.strip()
-        if ';(' in p or '),(' in p or len(re.findall(r'[；;]', p)) > 2:
-            continue
-        if len(p) <= 25:
-            continue
-        # 过滤财务数据句 (通用, 不绑定公司)
-        if not _is_narrative(p):
-            continue
-        results.append(p)
+    seen = set()
+    for para in _merge_soft_wraps(text):
+        # 只在句末标点后切分，保留标点本身
+        for p in re.split(r'(?<=[。！？])', para):
+            p = p.strip()
+            if not p:
+                continue
+            cn = len(re.findall(r'[\u4e00-\u9fff]', p))
+            if cn < 20 or len(p) <= 25:
+                continue
+            # 过滤表格行 / 表头: 分隔符过多或中文占比过低
+            if len(re.findall(r'[；;|｜]', p)) > 2:
+                continue
+            if cn / max(len(p), 1) < 0.5:
+                continue
+            if ';(' in p or '),(' in p:
+                continue
+            # 过滤财务数据句 (通用, 不绑定公司)
+            if not _is_narrative(p):
+                continue
+            if p in seen:
+                continue
+            seen.add(p)
+            results.append(p)
     return results
 
 
