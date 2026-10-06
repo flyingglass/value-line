@@ -41,7 +41,7 @@ def main():
     a = ap.parse_args()
 
     pat = os.path.join(config.pdf_dir(a.code),
-                       f"{config.pdf_code(a.code)}_{a.year}_{a.period}.pdf")
+                       config.pdf_basename(a.code, a.year, a.period))
     files = sorted(glob.glob(pat), reverse=True)
     if not files:
         print("未找到:", pat)

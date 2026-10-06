@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
-pdf_path = r"c:\LY\Repo\llm\value-line\data\pdfs\华晨中国\01114_2025_年报.pdf"
+pdf_path = r"c:\LY\Repo\llm\value-line\data\pdfs\华晨中国\01114_华晨中国_2025_年报.pdf"
 if not os.path.exists(pdf_path):
     print(f"FILE NOT FOUND: {pdf_path}")
     sys.exit(1)

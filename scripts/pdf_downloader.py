@@ -165,7 +165,8 @@ def download_cninfo(code, periods=None):
                 if _TITLE_BLACKLIST_RE.search(title): continue
                 title_clean = re.sub(r"<[^>]+>", "", title)
                 fy = _infer_fiscal_year(title_clean, str(a.get("announcementTime","")))
-                out = os.path.join(pdf_dir, f"{code}_{fy}_{config.PERIOD_NAME[period]}.pdf")
+                out = os.path.join(pdf_dir, config.pdf_basename(
+                    code, fy, config.PERIOD_NAME[period]))
                 if os.path.exists(out):
                     results["SKIP"] += 1; continue
 
@@ -280,7 +281,8 @@ def download_hkex(code, periods=None):
                     if not re.search(r"[\u4e00-\u9fff]", title): continue
 
                 fy = _infer_fiscal_year(title, str(ann.get("DATE_TIME","")))
-                out = os.path.join(pdf_dir, f"{code}_{fy}_{config.PERIOD_NAME[period]}.pdf")
+                out = os.path.join(pdf_dir, config.pdf_basename(
+                    code, fy, config.PERIOD_NAME[period]))
                 if os.path.exists(out):
                     results["SKIP"] += 1; continue
 
@@ -592,7 +594,7 @@ def download_us(code, periods=None):
             slug = _stocklight_slug(stock)
             ticker = code.lower()
             for yr, fid in ids:
-                out_name = f"{code}_{yr}_年报.pdf"
+                out_name = config.pdf_basename(code, yr, "年报")
                 out = os.path.join(config.pdf_dir(code), out_name)
                 if os.path.exists(out):
                     results["SKIP"] += 1
@@ -621,7 +623,7 @@ def download_us(code, periods=None):
         else:
             print(f"  [10-Q] 发现 {len(q_list)} 份季报")
             for q, fy, doc_url in q_list:
-                out_name = f"{code}_{fy}_{Q_NAME[q]}.htm"
+                out_name = config.pdf_basename(code, fy, Q_NAME[q], ext="htm")
                 out = os.path.join(config.pdf_dir(code), out_name)
                 if os.path.exists(out):
                     results["SKIP"] += 1

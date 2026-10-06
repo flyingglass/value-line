@@ -101,8 +101,8 @@ def _db_path(code):
     return os.path.join(BASE, "data", "db", f"{code}.db")
 
 def _pdf_dir(code):
-    # B股复用A股年报PDF目录 (config.pdf_code)
-    return os.path.join(BASE, "data", "pdfs", config.pdf_code(code))
+    # B股复用A股年报PDF目录 (目录名为中文公司名 → config.pdf_name)
+    return os.path.join(BASE, "data", "pdfs", config.pdf_name(code))
 
 def _report_path(code):
     stock = config.STOCKS.get(code, {})
