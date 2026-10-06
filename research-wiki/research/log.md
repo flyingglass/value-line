@@ -5556,7 +5556,7 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 
 ### 待办
 - `research/白马/宝信软件/` 缺 overview / thesis / industry-chain / operating-metrics 四件套（lint 会报 ERROR，与柏楚电子、中航信同口径「先挂着，正式立项时一起建」）
-- 关联销售年度序列解析脚本（`data/tmp_600845/parse_rel2.py`）仍在临时目录，如需长期复用可移入 `scripts/600845/`
+- 关联销售年度序列解析脚本（`data/tmp_宝信软件/parse_rel2.py`）仍在临时目录，如需长期复用可移入 `scripts/600845/`
 
 触及页面：research/白马/宝信软件/2444扫描与客户结构.md（新建）、research/index.md、research/log.md、research/白马/柏楚电子/2444变化论扫描.md
 
