@@ -3,7 +3,7 @@
 import pdfplumber, os
 
 code = "03606"
-pdf_dir = f"data/pdfs/03606"
+pdf_dir = f"data/pdfs/福耀玻璃"
 pdfs = sorted([f for f in os.listdir(pdf_dir) if f.endswith('.pdf')]) if os.path.isdir(pdf_dir) else []
 if pdfs:
     latest = pdfs[-1]
