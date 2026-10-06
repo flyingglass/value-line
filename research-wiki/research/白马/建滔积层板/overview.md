@@ -58,7 +58,7 @@ updated: 2026-09-10
 ## 数据资产
 
 - 财务数据库：`data/db/01888.db`
-- 年报 PDF：`data/pdfs/01888/` (13份)
+- 年报 PDF：`data/pdfs/建滔积层板/` (13份)
 - VL 报告：`report/建滔积层板.html`
 - 阅读报告：`report/reading/01888.md`
 

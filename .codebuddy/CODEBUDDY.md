@@ -69,7 +69,7 @@ research-wiki/
 | 资产 | 位置 | 内容 |
 |------|------|------|
 | 财务数据库 | `data/db/<code>.db` | 9 表：三大报表 + 指标 + 分红 + 行情 + 营收拆分 |
-| 年报 PDF | `data/pdfs/<code>/` | 500+ PDF 年报/中报/季报 |
+| 年报 PDF | `data/pdfs/<中文名>/` | 500+ PDF 年报/中报/季报（目录按中文公司名，如 `data/pdfs/山东赫达/`；目录内文件名仍为 `<code>_<年>_<期>.pdf`，`pdf_downloader` 靠文件名做「已存在则跳过」） |
 | 券商研报 | `ak.stock_research_report_em(symbol)` | 东方财富-个股研报列表（机构/评级/日期/盈利预测），PDF 不可直链下载 |
 | 汇率 | `data/db/fx_rates.db` | HKD/CNY 每日汇率 |
 | 标的配置 | `config.py` | 42 只标的的基本信息 |

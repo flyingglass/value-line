@@ -99,7 +99,7 @@ WHERE code = '600298' AND year = '2025' AND dim_type = 'by_region';
 
 ## 年报 PDF
 
-92 个 PDF 文件存放于 `data/pdfs/600298/`（2014-2026 年报/半年报/季报）。
+92 个 PDF 文件存放于 `data/pdfs/安琪酵母/`（2014-2026 年报/半年报/季报）。
 
 ## 估值
 

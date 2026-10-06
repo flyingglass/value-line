@@ -1705,8 +1705,16 @@ def pdf_code(code):
     """年报PDF归属代码。B股与A股共用同一份年报 → 复用A股PDF目录。"""
     return STOCKS.get(code, {}).get("pdf_code", code)
 
+def pdf_name(code):
+    """年报PDF目录名（中文公司名）。B股复用A股目录 → 取 pdf_code 对应标的的中文名。
+
+    data/pdfs/ 下按中文名分目录（如 data/pdfs/山东赫达/），便于人工检索；
+    目录内的文件名仍保留 <code>_<年>_<期>.pdf，pdf_downloader 靠它做「已存在则跳过」。
+    """
+    return STOCKS.get(pdf_code(code), {}).get("name", pdf_code(code))
+
 def pdf_dir(code):
-    d = os.path.join(DATA_DIR, "pdfs", pdf_code(code))
+    d = os.path.join(DATA_DIR, "pdfs", pdf_name(code))
     os.makedirs(d, exist_ok=True)
     return d
 

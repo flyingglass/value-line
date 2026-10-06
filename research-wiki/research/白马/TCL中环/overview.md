@@ -74,7 +74,7 @@ ORDER BY year;
 
 ## 年报 PDF
 
-47 份年报/中报/季报 PDF，存放于 `data/pdfs/002129/`。
+47 份年报/中报/季报 PDF，存放于 `data/pdfs/TCL中环/`。
 
 ## 估值
 

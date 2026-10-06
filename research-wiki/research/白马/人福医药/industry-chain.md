@@ -5,7 +5,7 @@ created: 2026-07-17
 sources:
   - scripts/600079/business_commentary.py
   - research/白马/人福医药/overview.md
-  - data/pdfs/600079/600079_2025_年报.pdf
+  - data/pdfs/人福医药/600079_2025_年报.pdf
 ---
 
 # 人福医药 (600079) — 麻醉药产业链全景
