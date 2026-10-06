@@ -9,12 +9,17 @@
 | 披露日 | 东财 NOTICE_DATE | 港交所披露易 titleSearchServlet（业绩公告刊发日 **精确到分钟**） |
 | 行情 | ak.stock_zh_a_daily(qfq) | ak.stock_hk_daily(qfq)，单位港元 |
 | 期别 | 一季报 / 中报 / 三季报 / 年报 四色 | 港股无强制季报 → **仅中报(H1) / 年报(FY) 两色** |
+| 季度更新 | A 股 Q1/Q3 本身就是定期财报 | 另在 x 轴下方用**橙色三角**标记自愿性季度业务状况（Q1/Q3），只有时点、无营收 |
 
 港股特有口径：
 - 业绩公告有「午间休市刊发」与「收市后刊发」两类。前者的价格反应在**当日午后**，
   后者的反应在**次日**。故标注点统一取「披露后首个交易日」收盘价（hour<16 → 当日；
   hour>=16 → 下一交易日），口径为「市场首次完整消化该期业绩的收盘价」。
 - 营收以**人民币**列示，股价为**港元**，两者不可直接相乘，仅作走势对照。
+- 公司惯例每年自愿发布「第一/第三季度最新業務狀況」（首期 2021Q3，之后 Q1 在 4 月中下旬、
+  Q3 在 10 月下旬）。这类公告**没有营业额数据**，不能画成营收柱，只留一条淡橙点线贯穿柱区，
+  并在 x 轴刻度标签下方的「季度轨道」上给一个橙色三角 + 标签「YYQn」，用于把「定期财报节奏」
+  与「季度经营披露节奏」放在同一条时间轴上对照。
 
 用法：
     python scripts/09992/revenue_price_timeline_hk.py --code 09992 --name 泡泡玛特 \
@@ -49,6 +54,10 @@ PRICE_C = "#2f6fd0"
 GRID_C = "#e8eaee"
 YEAR_C = "#c3ccd9"
 NOTE_C = "#6b7280"
+# 季度业务状况（公司自愿公告，非定期财报）：标记/竖线/文字
+QNOTE_C = "#e08a4c"
+QNOTE_LINE_C = "#f2c9a8"
+QNOTE_TXT_C = "#a8552a"
 
 REV_ITEM = "004001001"          # 「营业额」
 
@@ -180,6 +189,29 @@ def parse_result_announcements(ann):
     return sorted(out, key=lambda x: x["notice"])
 
 
+QUARTER_RE = re.compile(
+    r"二零([〇一二三四五六七八九]{2})年第([一二三])季度最新業務狀況")
+
+
+def parse_quarterly_updates(ann):
+    """挑出公司自愿发布的「季度业务状况」公告（每年 Q1 / Q3 两期）。
+
+    港股没有强制季报，这类公告也不是定期财报（东财利润表里没有对应期次的营业额），
+    因此不进营收柱，只作为信息披露时点在图上标记。
+    """
+    out = []
+    for _, r in ann.iterrows():
+        m = QUARTER_RE.search(str(r["TITLE"]))
+        if not m:
+            continue
+        year = 2000 + _cn2int(m.group(1))
+        q = _cn2int(m.group(2))
+        if q not in (1, 3):
+            continue
+        out.append(dict(year=year, q=q, notice=r["dt"], title=str(r["TITLE"])))
+    return sorted(out, key=lambda x: x["notice"])
+
+
 # ----------------------------------------------------------------- 营收 / 行情
 def fetch_revenue(code):
     """东财港股利润表「营业额」（按报告期累计），单位：亿元。"""
@@ -195,9 +227,16 @@ def fetch_revenue(code):
     return df[["period_end", "rev"]].reset_index(drop=True)
 
 
-def fetch_price(code, start=None, end=None):
+def fetch_price(code, start=None, end=None, ipo=None):
     d = _retry(lambda: ak.stock_hk_daily(symbol=code, adjust="qfq"))
     d["date"] = pd.to_datetime(d["date"])
+    if ipo is not None:
+        # 可选：按上市日截断。数据源若给出上市日之前的行（试盘报价/不同源兜底），
+        # 图上会多出一段「上市前」的股价线，给 --ipo 即截掉。
+        # 不给此参数时，图的左端就是数据源给出的首个交易日。
+        # 注意：绘图区左右还会被 matplotlib autoscale 再加约 5% 留白，属正常，
+        # 别据此以为行情数据起点比 set_xlim 的左端更早（二者不是一回事）。
+        d = d[d["date"] >= pd.Timestamp(ipo)]
     if start is not None:
         d = d[d["date"] >= start]
     if end is not None:
@@ -278,7 +317,7 @@ def nice_ticks(top, target=7):
 
 # ----------------------------------------------------------------- 绘图
 def draw(items, px, name, code, extremes, out_path,
-         price_mult=1.14, rev_mult=1.14, footer_extra=""):
+         price_mult=1.14, rev_mult=1.14, footer_extra="", q_items=None):
     x_px = mdates.date2num(px["date"])
     y_px = px["close"].to_numpy(dtype=float)
 
@@ -295,7 +334,11 @@ def draw(items, px, name, code, extremes, out_path,
 
     fig = plt.figure(figsize=(29.0, 12.4), dpi=150)
     fig.patch.set_facecolor("#ffffff")
-    gs = fig.add_gridspec(1, 1, left=0.040, right=0.962, top=0.856, bottom=0.152)
+    # bottom 抬高到 0.175（原 0.152）：给 x 轴下方留一条「季度轨道」，
+    # 顺序自上而下＝柱的 MM-DD(-4~-13pt) / 年份刻度标签(-6~-19pt，横向错开) /
+    # 季度三角与标签(-23~-33pt) / 脚注(约 -36pt 起)，四层不互压
+    gs = fig.add_gridspec(1, 1, left=0.040, right=0.962, top=0.856,
+                          bottom=0.175)
     ax = fig.add_subplot(gs[0])
     ax.set_facecolor("#fafbfc")
     ax.set_ylim(0, price_top)
@@ -309,6 +352,33 @@ def draw(items, px, name, code, extremes, out_path,
     for ts in sorted({it["notice"] for it in items}):
         ax.axvline(mdates.date2num(ts), color="#e6e9ef", lw=0.85,
                    ls=(0, (3, 3)), zorder=1.2)
+
+    # ---- 季度业务状况（自愿公告）：淡橙点线贯穿柱区 + x 轴下方「季度轨道」标记 ----
+    #      三角与期次标签统一压到 x 轴刻度标签下方的轨道上（Q_Y，约轴下 28pt），
+    #      既不压 stock 曲线也不抢营收柱；标签横排在三角右侧，
+    #      相邻两期相隔约半年（≈300px），不会互相挤
+    q_used = [q for q in (q_items or [])
+              if px["date"].min() <= q["notice"] <= end]
+    if q_used:
+        q_note = ("x 轴下方橙色三角＝公司自愿发布的季度业务状况公告（每年 Q1 / Q3 两期，"
+                  "港股无强制季报故无对应营业额数据，只作信息披露时点）：图上共 %d 期，"
+                  "最早 %s、最新 %s。"
+                  % (len(q_used), q_used[0]["notice"].strftime("%Y-%m-%d"),
+                     q_used[-1]["notice"].strftime("%Y-%m-%d")))
+    else:
+        q_note = ""
+    q_track = ax.get_xaxis_transform()      # x=date2num 数据坐标，y=axes fraction
+    Q_Y = -0.046                            # ≈ 轴下方 28pt
+    for q in q_used:
+        xv = mdates.date2num(q["notice"])
+        ax.plot([xv, xv], [0, price_top * 0.96], color=QNOTE_LINE_C, lw=0.9,
+                ls=(0, (2, 4)), zorder=1.15)
+        ax.plot([xv], [Q_Y], marker="^", ms=5.0, color=QNOTE_C, mec="none",
+                transform=q_track, clip_on=False, zorder=Z_LABEL)
+        ax.annotate("%02dQ%d" % (q["year"] % 100, q["q"]), (xv, Q_Y),
+                    xycoords=q_track, textcoords="offset points",
+                    xytext=(5, 0), ha="left", va="center",
+                    fontsize=7.0, color=QNOTE_TXT_C, zorder=Z_LABEL)
 
     for key in DRAW_ORDER:
         st = STYLE[key]
@@ -393,8 +463,12 @@ def draw(items, px, name, code, extremes, out_path,
                               label="业绩公告后首个交易日股价"))
     handles.append(plt.Line2D([], [], color="#e6e9ef", lw=1.2, ls=(0, (3, 3)),
                               label="业绩公告刊发时点"))
+    if q_used:
+        handles.append(plt.Line2D([], [], color=QNOTE_C, lw=1.4, ls=(0, (2, 4)),
+                                  marker="^", ms=5.0, mec="none",
+                                  label="季度业务状况公告（自愿，无营收数据）"))
     ax.legend(handles=handles, loc="lower left", fontsize=9.6, frameon=True,
-              framealpha=0.94, ncol=5, columnspacing=1.8,
+              framealpha=0.94, ncol=6, columnspacing=1.6,
               bbox_to_anchor=(0.0, 1.032), borderaxespad=0.0)
 
     ax.set_title("%s（%s.HK）股价 · 营业额 · 披露时点对照图　%d-%d（年报 + 中报）"
@@ -412,8 +486,9 @@ def draw(items, px, name, code, extremes, out_path,
              "披露时刻口径：业绩公告分「午间休市刊发」（12:00 前后，当日午后即有反应，取当日收盘）"
              "与「收市后刊发」（16:30-18:00，反应在次日，取次日收盘）两类，图上标注点统一取披露后首个交易日收盘价。\n"
              "币种提示：营业额为人民币、股价为港元，两者量纲不同，本图仅作走势与位置对照，不可相除；"
-             "行情起点为 %s，此前披露的报告期未入图。%s"
-             % (end.strftime("%Y-%m-%d"), start.strftime("%Y-%m-%d"), footer_extra),
+             "行情起点为 %s，此前披露的报告期未入图。%s\n%s"
+             % (end.strftime("%Y-%m-%d"), start.strftime("%Y-%m-%d"),
+                footer_extra, q_note),
              fontsize=8.8, color="#7a828d", ha="left", va="top",
              linespacing=1.75)
 
@@ -429,6 +504,8 @@ def main():
     ap.add_argument("--code", required=True, help="港股代码，如 09992")
     ap.add_argument("--name", default=None, help="股票简称，缺省用代码")
     ap.add_argument("--start", default=None, help="起始日 YYYY-MM-DD，缺省取行情首日")
+    ap.add_argument("--ipo", default=None,
+                    help="上市日 YYYY-MM-DD；接口偶发返回上市前的行，给此值即截断")
     ap.add_argument("--end", default=None, help="截止日 YYYY-MM-DD，缺省取今天")
     ap.add_argument("--out", default=None, help="输出 PNG 路径")
     ap.add_argument("--csv", default=None, help="明细 CSV 路径")
@@ -445,9 +522,12 @@ def main():
     start = pd.Timestamp(args.start) if args.start else None
     end = pd.Timestamp(args.end) if args.end else None
 
-    px = fetch_price(code, start, end)
+    px = fetch_price(code, start, end, ipo=args.ipo)
     if px.empty:
         raise SystemExit("未取到行情：%s" % code)
+    print("行情 %s ~ %s（%d 个交易日%s）"
+          % (px["date"].min().date(), px["date"].max().date(), len(px),
+             "，已按 --ipo 截断" if args.ipo else ""))
     name = args.name or code
 
     rev = fetch_revenue(code)
@@ -457,6 +537,12 @@ def main():
     for a in ann_items:
         print("   ", a["notice"], "%s %s" % (a["kind"],
               a["period_end"].date()), a["title"][:52])
+
+    q_ann = parse_quarterly_updates(ann)
+    print("\n季度业务状况公告（自愿，非定期财报）%d 条：" % len(q_ann))
+    for q in q_ann:
+        print("   ", q["notice"], "%dQ%d" % (q["year"], q["q"]),
+              q["title"][:44])
 
     items = build_frames(ann_items, rev, px["date"].min())
     if not items:
@@ -473,7 +559,8 @@ def main():
     out, pat = draw(items, px, name, code,
                     [ex for ex in extremes
                      if px["date"].min().year <= ex["year"] <= px["date"].max().year],
-                    out, price_mult=args.price_mult, rev_mult=args.rev_mult)
+                    out, price_mult=args.price_mult, rev_mult=args.rev_mult,
+                    q_items=q_ann)
     print("\nPNG ->", os.path.abspath(out))
 
     for p in pat:
@@ -485,6 +572,10 @@ def main():
     if args.json:
         with open(args.json, "w", encoding="utf-8") as f:
             json.dump(dict(code=code, name=name, periods=pat,
+                           quarterly=[dict(label="%dQ%d" % (q["year"], q["q"]),
+                                           notice=q["notice"].strftime(
+                                               "%Y-%m-%d %H:%M"),
+                                           title=q["title"]) for q in q_ann],
                            price_start=str(px["date"].min().date()),
                            price_end=str(px["date"].max().date()),
                            last_close=round(float(px["close"].iloc[-1]), 2)),
