@@ -1,0 +1,568 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里海案例·涪陵榨菜·提价发现与跟踪决策时间线</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">里海 · 作者案例专题</a> › <a href="里海案例-涪陵榨菜-提价发现与跟踪决策时间线.html">里海案例·涪陵榨菜·提价发现与跟踪决策时间线</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">里海案例·涪陵榨菜·提价发现与跟踪决策时间线</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-10-07</span><span style="margin-left:auto;color:#b0b5bd">research/疯狂的里海/案例</span></div><div class="md" id="md"><h1>里海案例 · 涪陵榨菜：提价「不掉量」的发现 → 跟踪 → 决策（时间线还原）</h1>
+<blockquote>
+<p><strong>一句话</strong>：「提价不掉量」第一次以文字出现在 <strong>2017.1</strong>，且是<strong>陈述语气</strong>（作为买入理由），不是「发现」；<strong>严格验证（量价拆分）在 2018.3，晚于建仓约 14 个月</strong>；而「2016 年我是如何一步步看出提价的」这条完整因果链，<strong>只存在于 2026 年的回忆</strong>里。</p>
+<p>本页是 <a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C.html">里海案例-涪陵榨菜</a> 的<strong>认知链条溯源</strong>子页。主线案例页按「术/道/能力/根」做体系映射，本页按<strong>时间</strong>还原「他何时知道什么、据此做了什么」。</p>
+</blockquote>
+<h2>〇、阅读须知：史料分层（本页的方法论前提）</h2>
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>含义</th>
+<th>可信度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢</td>
+<td><strong>当时记录</strong>——事件当年写的文章、公告</td>
+<td>高</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td><strong>事后回忆</strong>——隔年或多年后回述</td>
+<td>中（回忆录体裁，存在事后合理化）</td>
+</tr>
+<tr>
+<td>⚪</td>
+<td><strong>公司公告 / 财报事实</strong></td>
+<td>高（但需区分披露日与信息可用日）</td>
+</tr>
+<tr>
+<td>🔴</td>
+<td><strong>阴性证据</strong>——应当出现却没有出现</td>
+<td>用于排除</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>本页最重要的一条</strong>：2016 年全年公众号文章<strong>零提及涪陵榨菜</strong>（2016 合集检索无命中）。因此「2016 年他如何发现提价」这一段<strong>没有任何当时记录</strong>，唯一出处是 2026.2.26 学股史。<strong>引榨菜案例时应优先引 2017/2018 年当时文章，谨慎引 2026 年学股史。</strong></p>
+</blockquote>
+<hr />
+<h2>一、结论先行（三条）</h2>
+<ol>
+<li><strong>起点是 2017.1，不是 2016。</strong> 「提价不掉量」首次成文在 <a href="https://mp.weixin.qq.com/s/7eKY3dgVYOWTzn5ningD3g">2017-11-20《一根K线改三观…》</a>：「2016 年，公司提价，但<strong>市场销量毫无影响</strong>」——陈述已知事实，无任何「我是怎么发现的」叙述。</li>
+<li><strong>验证严重滞后于决策。</strong> 严格证明（销量 +17.26% / 吨价 +15% / 运费增幅&lt;10%）在 <a href="https://mp.weixin.qq.com/s/05myd5Bu8Peqb61ST4ukcg">2018.3.23 长文</a>，距建仓约 14 个月。<strong>即：先买，后证明。</strong></li>
+<li><strong>完整「发现过程」是十年后重建的叙事。</strong> <a href="https://mp.weixin.qq.com/s/LEsu7wKX5I7QOa0-VyDjwg">2026.2.26 学股史十九</a> 才给出「财报拐点 → 找原因发现提价 → 用 Q1 数据判断不掉量 → 实地调研 → 全仓买入」的链条。他本人 2021.9.17 自述第一波「F10 就买，运气钱」，2023.6.20 复盘定性「运气多」。</li>
+</ol>
+<hr />
+<h2>二、主线时间线</h2>
+<h3>第一幕 · 2015-2016：只有公司侧事实 + 十年后回忆（🔴 无当时记录）</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015</td>
+<td>公司<strong>尝试性小幅提价</strong>，「结果提价后发现销量并未下滑」，此后三年持续提价、毛利率大增</td>
+<td>🟡 2023.4.24 事后总结</td>
+</tr>
+<tr>
+<td>2016-03-31</td>
+<td>2015 年报：全年营收 +2.67%、净利 +19.23%；<strong>Q4 营收 +21.47%、净利 +557.67%</strong></td>
+<td>⚪</td>
+</tr>
+<tr>
+<td>2016-04-23</td>
+<td>2016 一季报：营收 <strong>+22.05%</strong>、净利 <strong>+24.08%</strong>（2015Q3 为营收 -1.23%、净利 +5.48%）</td>
+<td>⚪</td>
+</tr>
+<tr>
+<td>2016 年内</td>
+<td>学股史口径：看出 Q4 拐点 → 排除「压缩 Q4 做 Q1」→ 搜集全部公开资料 → <strong>「发现了秘密，就是公司的部分产品开始提价了，提价前，经销商紧急拿货导致 4 季度业绩不错」</strong> → 「提价会不会导致客户流失呢？<strong>2016 年 1 季度的数据表明，并不会</strong>」</td>
+<td>🟡 <strong>2026.2.26 回忆</strong></td>
+</tr>
+<tr>
+<td>2016 年内</td>
+<td>常识解释提价手法：「100 克→90 克而售价不变」「60 克→75 克，1 元→1.5 元」——<strong>原文明注「我此刻并未去查询具体的提价数据，只是模拟数据说明其提价策略」</strong></td>
+<td>🟡 模拟数据，非实证</td>
+</tr>
+<tr>
+<td>2016 年内</td>
+<td>借原东家业务拜访进公司（<strong>第一次以投资者心态走进上市公司</strong>），问「未来战略 + 对榨菜行业竞争的看法」→「心头就有底了」；<strong>同行者「大部分人都不相信」，唯 1 位前同事跟买</strong></td>
+<td>🟡 黑箱：高管说了什么原文一字未录</td>
+</tr>
+<tr>
+<td>2016 年内</td>
+<td>市值 30 多亿、预估利润冲 2 亿 → <strong>账户不到 10 万全部买入</strong>（3 年后翻约 5 倍）</td>
+<td>🟡 与 2017 当时记录冲突，见 §六</td>
+</tr>
+</tbody>
+</table>
+<h3>第二幕 · 2017.1-2017.12：当时记录开始（🟢 全部为当年文章）</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2017.1</strong></td>
+<td>2016 年度业绩预告大幅增长 → <strong>挖掘时点</strong>。当时<strong>市值约 70 亿、业绩 2.5 亿、动态 PE 不到 30 倍</strong>；买入理由原文：「2016 年，公司提价，但<strong>市场销量毫无影响</strong>……没的说，就一个字：买！」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/7eKY3dgVYOWTzn5ningD3g">2017-11-20</a>「涪陵榨菜（时间点 1 月份）」</td>
+</tr>
+<tr>
+<td>2017-04-17</td>
+<td>「涪陵榨菜是我<strong>最近新介入</strong>的长线股，说个内心话我是<strong>提着胆子慢慢介入</strong>的……作为传统的行业还是觉得略贵，如果能有意外事件导致下杀，那就是最佳介入点」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/9TQh_LMgIDagHsS44IH2oA">《择股与择时…》</a></td>
+</tr>
+<tr>
+<td>2017-03 起</td>
+<td>「我从今年 <strong>3 月份</strong>开始写文章，介绍涪陵榨菜」；「从 3 月份到 7 月份整个就是震荡，<strong>7 月份之后才是主升浪</strong>」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/7jLaj7Ng47CFJUJmcwKhxg">2017-10-28《熬》</a></td>
+</tr>
+<tr>
+<td>2017-10-31</td>
+<td>「我选出这支股票的时候，它的估值也就 20 多倍……不过涪陵榨菜<strong>已经不符合我目前对新入选股票的要求了</strong>。因为<strong>明年的成长，从我现在来看很难达到 50%</strong>」——<strong>第一次口头预警，早于财报证据 5 个月</strong></td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/RU4-VkdCMOvF3Wsy92w3Zg">《一起来选股》</a></td>
+</tr>
+<tr>
+<td>2017-11-15</td>
+<td>「1 月挖了新城控股，3 月挖了隆基股份，<strong>3 月挖了涪陵榨菜</strong>」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/HiPNhDbQyaeNyx8LzorShw">《不折腾…》</a></td>
+</tr>
+<tr>
+<td>2017-11 中旬</td>
+<td><strong>「榨菜又变相涨价了，预计会提高榨菜 8% 的利润率，因此提高明年目标收益率到 25%」</strong>——<strong>提价→利润的量化测算，早于 2020 直播公开模型三年</strong></td>
+<td>🟢 《一周投资碎片化思考（一）》（合集内位于 11-15 与 11-20 之间，确切日期待核）</td>
+</tr>
+<tr>
+<td><strong>2017-11-21</strong></td>
+<td><strong>终端硬观察</strong>：「最近两三年提了<strong>两次价</strong>，<strong>销量不减反增，市场占有率不降反高</strong>……<strong>最近榨菜又变相提价了，175 克的脆口榨菜，变成了 150 克，然而价格并没有降</strong>」<br>另：「<strong>今年年初</strong>我有幸，买入了这家公司的股票，并且一股没有卖持有到现在」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/dmiZdm9RfdJg85ciZU0Lew">《庆涪陵榨菜新高》</a></td>
+</tr>
+<tr>
+<td>2017-12-02</td>
+<td>「我想了一个月，最终决定把<strong>我持有的</strong>涪陵榨菜纳入这个跟踪池」；「本周新增一个涪陵榨菜」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/qto2jRkGTPt8rKiKzHojaw">《中小市值成长股冲锋号（四）》</a></td>
+</tr>
+<tr>
+<td>2017 全年</td>
+<td>股价 <strong>+85.81%</strong>；他「今年差不多翻倍」；但<strong>仓位不高</strong>（「都只买了不多，涪陵榨菜还算买得比较多的」）</td>
+<td>🟢</td>
+</tr>
+</tbody>
+</table>
+<h3>第三幕 · 2018：硬验证</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018-01-04</td>
+<td>《浅谈涪陵榨菜持有逻辑和未来风险》：动态 34 倍不加仓、25 倍再进</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/-x8pKdU0BBiMn38B-X4VXQ">链接</a></td>
+</tr>
+<tr>
+<td>2018-02-26</td>
+<td>「去年赚了 80%，但<strong>仓位仅占 10%</strong>」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/Dv9f4yUfwtcMkZmxSiA8Bw">《对近期投资的一点思考》</a></td>
+</tr>
+<tr>
+<td><strong>2018-03-23</strong></td>
+<td><strong>6000 字长文＝唯一的严格验证</strong>：营收 11.21→15.20 亿（+35.64%）、<strong>销量 11.13→13.05 万吨（+17.26%，「并未减少」）</strong>、<strong>吨单价 1.01→1.16 万元（+15%）</strong>、营业总成本仅 +26.58%、<strong>运费 6360 万元增幅不到 10%</strong>（「充分证明了营收增加是靠产品提价得来的」）；结论「在提价权方面，我觉得榨菜更甚于茅台」；同时<strong>复盘最佳切入点＝2016.11-2017.1（提价 8-12%）</strong></td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/05myd5Bu8Peqb61ST4ukcg">《透过一包榨菜…》</a></td>
+</tr>
+<tr>
+<td>2018 全年</td>
+<td>组合 +30.8%；集中持股转型后重仓之一（再升 70% / 榨菜 25%）</td>
+<td>🟢</td>
+</tr>
+</tbody>
+</table>
+<h3>第四幕 · 2019-2026：衰减 → 证伪 → 模型化</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2019-03-22</strong></td>
+<td>2018 年报：销量 14.44 万吨，<strong>仅 +10.65%</strong>（2017 为 +17.26%）← <strong>衰减第一信号</strong></td>
+<td>⚪</td>
+</tr>
+<tr>
+<td>2019-04-26</td>
+<td>卖出大半，底仓 +200%、加仓部分 +80%；<strong>自述理由＝「因其他事需要用钱」</strong></td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/e57kdTUrQW1-dagTfQGCuw">《把一笔投资从合格变为卓越！》</a></td>
+</tr>
+<tr>
+<td><strong>2019-07-24</strong></td>
+<td>《涪陵榨菜暴雷几率如何？》：「依靠持续的产品提价策略，在 <strong>2018 年达到了业绩的巅峰</strong>……从 2018 年的销售情况来看，<strong>有点卖不动了的感觉</strong>」；销量 +10.65% + <strong>泡菜占比反降（8.11%→7.68%）</strong></td>
+<td>🟢 原文已删，见 <a href="../../raw/research/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/2019-07-24-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C%E6%9A%B4%E9%9B%B7%E5%87%A0%E7%8E%87%E5%A6%82%E4%BD%95.md">raw 归档</a></td>
+</tr>
+<tr>
+<td><strong>2019-07-30</strong></td>
+<td>《榨菜业绩大幅下滑了！》——<strong>对中报的提前预判，早 1 天</strong>（7.31 归档，Q2 净利 -16.18%）</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/o5AULJ3MnFZZ5Y7oGLOqug">链接</a></td>
+</tr>
+<tr>
+<td>2019-11-18</td>
+<td>买回：理由不是基本面修复，而是「<strong>一份很差的财报都不能把股价砸下去的时候，就是业绩底了</strong>」（盘面信号）</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/EPraKmIlpqm5ppiYNFdYzw">《脑壳一热…》</a></td>
+</tr>
+<tr>
+<td>2019 Q4</td>
+<td>跟踪发现<strong>县一级渠道增加几百个</strong> → 预判 2020Q1 业绩起来</td>
+<td>🟡 <strong>2020.11.13 才公开，行为在 2019Q4；数据来源未披露，不得外推</strong></td>
+</tr>
+<tr>
+<td>2020.1.7 → 9.4</td>
+<td>示范账户 @25.1 建 3800 股 → @49.2 清仓（8 个月翻倍）；9.29 @8.95 切鲁西</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong>2020-11-13</strong></td>
+<td>直播首次公开<strong>变量切换模型</strong>：「主要逻辑就是提价，<strong>每次提价多少大概就能对她的业绩提升产生多少影响</strong>」；2019 后变量换成「恢复发货 + 县一级渠道下沉」；「<strong>每天都要看</strong>」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/2fgh8H3w1UQca-cIsB0V_g">《主播疯狂的里海已上线（上）》</a></td>
+</tr>
+<tr>
+<td>2022-10-24</td>
+<td>涪陵三剑客收官：榨菜 <strong>-25.54%</strong>（静态最优跌最惨）</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/rfSw22X7ekTiGWTYC2Cn3g">《唉，涪陵三剑客！》</a></td>
+</tr>
+<tr>
+<td>2023-04-24</td>
+<td>事后定性：「2015 年尝试性小幅提价，结果<strong>销量并未下滑</strong>……那为啥 2020 年后不涨了呢？很简单，<strong>这几招不灵了</strong>」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/AMzo3XF-JGal-hu0LeeNhA">《涪陵是我的福地》</a></td>
+</tr>
+<tr>
+<td>2023-06-20</td>
+<td>复盘榨菜 4 年＝「<strong>运气多</strong>」</td>
+<td>🟢 <a href="https://mp.weixin.qq.com/s/_WZCJQXEvBj-8Q4q2M_-4g">《最近在干一件事》</a></td>
+</tr>
+<tr>
+<td>2026-02-26</td>
+<td>学股史十九：<strong>十年后</strong>才完整自述 2016 年的发现过程</td>
+<td>🟡</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>三、认知链条：他何时知道什么</h2>
+<table>
+<thead>
+<tr>
+<th>认知</th>
+<th>首次出现</th>
+<th>性质</th>
+<th>与建仓的先后</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>财报出现拐点（Q4 净利 +557.67%）</td>
+<td>2016-03/04 可读</td>
+<td>⚪</td>
+<td><strong>同步</strong>（学股史口径）</td>
+</tr>
+<tr>
+<td>「提价了，销量没影响」</td>
+<td><strong>2017.1</strong></td>
+<td>🟢 陈述</td>
+<td><strong>同步</strong>（买入理由）</td>
+</tr>
+<tr>
+<td>提价是渐进/变相的（常识推理）</td>
+<td>2016（模拟数据）</td>
+<td>🟡</td>
+<td>无法用于实证</td>
+</tr>
+<tr>
+<td><strong>终端实证：175g → 150g</strong></td>
+<td>2017-11-21</td>
+<td>🟢 观察</td>
+<td>建仓后约 8-10 个月</td>
+</tr>
+<tr>
+<td><strong>提价→利润的量化（+8% 利润率）</strong></td>
+<td>2017-11 中旬</td>
+<td>🟢 测算</td>
+<td>建仓后约 8 个月</td>
+</tr>
+<tr>
+<td><strong>严格量价拆分证明</strong></td>
+<td><strong>2018-03-23</strong></td>
+<td>🟢 验证</td>
+<td><strong>建仓后约 14 个月</strong></td>
+</tr>
+<tr>
+<td>口头预警「明年难达 50%」</td>
+<td>2017-10-31</td>
+<td>🟢</td>
+<td>早于财报证据 5 个月（且<strong>错了一年</strong>——2018 恰是巅峰）</td>
+</tr>
+<tr>
+<td>提价效应衰减（销量增速 17.26%→10.65%）</td>
+<td>2019-03-22</td>
+<td>⚪</td>
+<td>建仓后约 2 年</td>
+</tr>
+<tr>
+<td>拐点实锤（Q2 净利 -16.18%）</td>
+<td>2019-07-31</td>
+<td>⚪</td>
+<td>建仓后约 2.5 年</td>
+</tr>
+<tr>
+<td>完整变量切换模型</td>
+<td>2020-11-13</td>
+<td>🟢 事后公开</td>
+<td>清仓后 2 个月</td>
+</tr>
+<tr>
+<td>「2016 年我是这样发现的」</td>
+<td>2026-02-26</td>
+<td>🟡 <strong>十年后回忆</strong></td>
+<td>建仓后 10 年</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>读法</strong>：<strong>证据最薄的时点＝下注的时点</strong>（2017.1），<strong>证据最硬的时点＝已经不需要它了</strong>（2018.3）。这条错位是整个榨菜案例最值得记住的结构。</p>
+</blockquote>
+<hr />
+<h2>四、跟踪方法的升级：从「年」到「日」</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>跟踪对象</th>
+<th>频率</th>
+<th>评价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2016-2018</td>
+<td>财报营收/净利、<strong>年报销量与吨单价</strong></td>
+<td><strong>年</strong>（年报 3 月出）</td>
+<td>低频、滞后，只能年度体检</td>
+</tr>
+<tr>
+<td>2017-2019</td>
+<td><strong>终端包装克重</strong>（175g→150g）、变相涨价</td>
+<td>不定期</td>
+<td>草根但<strong>可肉眼验证</strong></td>
+</tr>
+<tr>
+<td><strong>2019Q4 起</strong></td>
+<td><strong>县一级渠道数量</strong></td>
+<td><strong>日</strong>（「每天都要看」）</td>
+<td>高频、前瞻、可量化</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>这次升级是 2019.3「滞后」的直接产物</strong>：年报销量数据一年一更、3 月才出，天然当不了预警器。2019Q4 切到「渠道铺设数」后，跟踪频率从<strong>年</strong>提到<strong>日</strong>。这也是 <a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a>「建模」段（把变量变成可日频跟踪的数）的<strong>最早实例</strong>——比鲁西化工（2020）更早。</p>
+<p>⚠️ 「县一级渠道增加几百个」的<strong>具体数据来源未公开</strong>（2020.11.13 只说「我一直跟踪渠道的铺设信息」），<strong>不得外推</strong>为互动易/调研/经销商/券商任一具体渠道。</p>
+</blockquote>
+<hr />
+<h2>五、决策点 vs 实际驱动因素（关键：信号 ≠ 驱动）</h2>
+<table>
+<thead>
+<tr>
+<th>决策点</th>
+<th>表面信号</th>
+<th><strong>实际驱动（原文自述）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017.1 买入</td>
+<td>提价不掉量</td>
+<td>业绩预告大幅增长 + <strong>市值 70 亿 / 业绩 2.5 亿 / PE&lt;30</strong> + 提价已知（估值+成长，非单靠提价）</td>
+</tr>
+<tr>
+<td>2017.12 入跟踪池</td>
+<td>护城河四论</td>
+<td>「我想了一个月」+ 公司具备资本市场意识（并购惠通泡菜等）</td>
+</tr>
+<tr>
+<td><strong>2019.4.26 卖大半</strong></td>
+<td>销量增速腰斩（+10.65%）</td>
+<td>🟡 <strong>「因其他事需要用钱」</strong>——不是衰减判断</td>
+</tr>
+<tr>
+<td><strong>2019.11.18 买回</strong></td>
+<td>—</td>
+<td><strong>盘面信号</strong>：「一份很差的财报都不能把股价砸下去的时候，就是业绩底了」</td>
+</tr>
+<tr>
+<td>2019.7.24/7.30 预判</td>
+<td>销量+10.65%、泡菜占比反降</td>
+<td><strong>多维合成</strong>（销量 + 第二曲线未接棒 + 新产能待消化）</td>
+</tr>
+<tr>
+<td>2020.9.4 清仓</td>
+<td>短期逻辑走完</td>
+<td>卖出三原则：基本面/估值/挖到更好的（鲁西）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>结论</strong>：<strong>「销量增速 17.26%→10.65%」这个信号几乎没单独驱动过任何决策。</strong> 卖（用钱）、买回（盘面）、预判（多维合成）各有主因。唯一由它直接支撑的是 2019.7 的<strong>公开预判写作</strong>。</p>
+<p><strong>且它是「疑点」不是「证据」</strong>：17.26%→10.65% <strong>仍在增长</strong>，无法区分周期波动与趋势反转；真正构成拐点的是 <strong>-16.18%（负增长）</strong>。</p>
+</blockquote>
+<hr />
+<h2>六、矛盾与存疑（照录）</h2>
+<ol>
+<li>🔴 <strong>建仓时点的重大口径冲突（本页新增，主线案例页矛盾清单未收录）</strong>：
+<ul>
+<li><strong>2016 年</strong>（2026.2.26 回忆）：市值 30 多亿、预估利润冲 2 亿、账户不到 10 万全买入。</li>
+<li><strong>2017 年</strong>（当时记录）：2017-11-20「涪陵榨菜（<strong>时间点 1 月份</strong>）」、市值约 <strong>70 亿</strong>、业绩 <strong>2.5 亿</strong>；2017-04-17「<strong>最近新介入</strong>的长线股……提着胆子慢慢介入」；2017-11-21「<strong>今年年初</strong>我有幸，买入了这家公司的股票」；2017-11-15「<strong>3 月</strong>挖了涪陵榨菜」；2017-10-28「从今年 <strong>3 月份</strong>开始写文章」。</li>
+<li><strong>最合理解读</strong>：两段式建仓——2016 年熔断底附近（市值 30 多亿）小额买入，<strong>2017 年 Q1（业绩预告后）才是主仓建仓</strong>（市值 70 亿）。但「2017-04 仍称最近新介入」与之仍有张力。</li>
+<li><strong>无法定论，照录</strong>。⚠️ 主线案例页矛盾清单第 2 条只记了「2016 初买 vs 2017 才公开写文」，<strong>未收录「2017 年当时文章自称 2017 年才新介入」这一更强冲突</strong>。</li>
+</ul>
+</li>
+<li><strong>挖掘月份自述不一</strong>：1 月（2017-11-20）vs 3 月（2017-11-15、2017-10-28「3 月开始写文章」）。可能「1 月挖掘 / 3 月发文推介」，属同一事件的两个时点，<strong>待核</strong>。</li>
+<li><strong>2016 年提价公告（2016-07-09）</strong>：主线案例页时间线有此标注，<strong>未回到公告原文核实</strong>，标待核。</li>
+<li><strong>实地调研是黑箱</strong>：原文只录「问了未来战略 + 行业竞争看法」→「心头就有底了」，<strong>高管说了什么一字未录</strong>；同行者「大部分都不相信」说明该次交流信息含量不具决定性。故它提供的是<strong>重仓的心理许可</strong>，不是可证伪的事实验证。</li>
+<li><strong>提价数据是模拟数据</strong>：2026 学股史中的「100g→90g」「60g→75g，1 元→1.5 元」原文明注为模拟举例。真实可引用的终端实证只有 <strong>2017-11-21 的 175g→150g</strong>。</li>
+<li><strong>史料体裁风险</strong>：2026 年学股史是<strong>回忆录</strong>，天然把后见之明写成先见之明。凡与 2017/2018 当时记录冲突处，<strong>以当时记录为准</strong>。</li>
+<li><strong>待查</strong>：半年报是否也披露销量？若披露，理论上 2018-08 即可见半年度放缓，「可以更早」——未核实；2018 各季度营收增速待查 <code>data/db/002507.db</code>。</li>
+</ol>
+<hr />
+<h2>参见</h2>
+<ul>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C.html">里海案例-涪陵榨菜</a> — 主线案例页（术/道/能力/根 × 体系映射；本页为其时间线溯源子页）</li>
+<li><a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%9B%9B%E6%AE%B5%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.html">里海-四段式工作流</a> — 「建模＝把变量变成可日频跟踪的数」；榨菜＝提价 + 县一级渠道数（本页 §四为其最早实例）</li>
+<li><a href="../%E6%96%B9%E6%B3%95%E8%AE%BA/20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%B7%9F%E8%B8%AA.html">里海-建模与跟踪</a> — 建模与跟踪方法论</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E9%B2%81%E8%A5%BF%E5%8C%96%E5%B7%A5.html">里海案例-鲁西化工</a> — 同一建模法的 later 完整公开案例（产品价格日更跟 8 个月）</li>
+<li><a href="%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E7%94%B5%E5%8A%9B.html">里海案例-涪陵电力</a> — 涪陵三剑客对照组（单因子：在建工程）</li>
+<li><a href="../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/2019-07-24-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C%E6%9A%B4%E9%9B%B7%E5%87%A0%E7%8E%87%E5%A6%82%E4%BD%95.html">../../raw/research/疯狂的里海/2019-07-24-涪陵榨菜暴雷几率如何</a> — 衰减预判原文
+<a href="../../../../research/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7.md">research/疯狂的里海/疯狂的里海.md</a> · <a href="../../../../research/index.md">research/index.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E6%A1%88%E4%BE%8B">← 返回 案例</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/疯狂的里海/案例/里海案例-涪陵榨菜-提价发现与跟踪决策时间线.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
