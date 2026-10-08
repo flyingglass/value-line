@@ -1,0 +1,480 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 「跌透」判定与业绩指引验证链（2023-03-29 → 2024-03-20）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="跌透判定与指引验证链（2023-2024）.html">泡泡玛特 (09992) — 「跌透」判定与业绩指引验证链（2023-03-29 → 2024-03-20）</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 「跌透」判定与业绩指引验证链（2023-03-29 → 2024-03-20）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-10-08</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/跟踪</span></div><div class="md" id="md"><h1>泡泡玛特（09992.HK）·「跌透」判定与指引验证链</h1>
+<blockquote>
+<p><strong>一句话结论</strong>：<strong>2023-03-29 的泡泡玛特&quot;跌势止住、但没跌透&quot;（三判据只过一条半）；营收端的硬数据在 2023-10-24 的 Q3 业务状况公告就已确认，但股价又跌了 3.5 个月、再创一次新低，直到 2024-02 才走完。——&quot;基本面验证&quot;与&quot;股价反应&quot;之间，隔了整整一个季度。</strong></p>
+<p><strong>价格口径</strong>：前复权（qfq）<strong>港元</strong>，来自 <code>data/db/09992.db</code> kline 表；恒生指数为收盘点位。前复权因分红会略低于当时真实成交价，本页只用其<strong>相对幅度</strong>。</p>
+</blockquote>
+<hr />
+<h2>一、2023-03-29 算不算「跌透」：三判据对照</h2>
+<p>判据来自里海体系（&quot;底部&quot;定义 + 模型 1 买点条件 + 模型 3 的 PB 实例，见 <a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">里海-双左侧</a>、<a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E9%87%8C%E6%B5%B7-2444%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB.html">里海-2444投资体系</a>）：</p>
+<table>
+<thead>
+<tr>
+<th>判据</th>
+<th>里海的标准</th>
+<th>泡泡玛特 2023-03-29</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 会不会跌没</strong>（生存底）</td>
+<td>破产风险 / 亏损性质 / 股东背景</td>
+<td>FY2022 净利仍为正 <strong>4.76 亿</strong>；现金+短期存款 <strong>50.4 亿</strong> vs 总负债 <strong>16.1 亿</strong>、负债率 <strong>18.8%</strong>；无银行借款</td>
+<td>✅ <strong>过</strong></td>
+</tr>
+<tr>
+<td><strong>② 还能跌多少</strong>（空间底）</td>
+<td>秦安 <strong>1 倍 PB</strong>、长安 <strong>0.5 倍 PB</strong>、新希望「PB 在净资产附近」</td>
+<td>BPS <strong>5.2288 元</strong>（2022-12-31）÷ 股价 18.7526 → <strong>PB ≈ 3.1 倍</strong> 🟡；PE ≈ <strong>46 倍</strong>（FY2022 归母 4.76 亿）/ <strong>38 倍</strong>（经调整 5.74 亿）🟡</td>
+<td>❌ <strong>不过</strong>（差 3–6 倍）</td>
+</tr>
+<tr>
+<td><strong>③ 跌完没有</strong>（行为底）</td>
+<td>「大幅下跌 + <strong>在一个区域内长期横盘</strong>、筹码充分交换」；「再次出现利空后股价不怎么跌了」</td>
+<td>不再创新低 ✅（2022-10-28 的 9.60 未被破）；但<strong>距底仅 5 个月</strong>、且<strong>已从 9.60 反弹到 18.75（+95%）</strong></td>
+<td>⚠️ <strong>一半</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🟡 算法：BPS 5.2288 元 × 汇率（2023 年 3 月约 1 CNY ≈ 1.14 HKD）→ 约 5.96 港元；PB = 18.75 ÷ 5.96。股本 1,341,043,150 股（DB <code>meta</code>）。</p>
+<p><strong>三条里最要命的是②与③</strong>：</p>
+<ul>
+<li><strong>②</strong> 是&quot;便宜&quot;这一层——<strong>泡泡玛特全程不是低 PB 标的</strong>（轻资产、高 ROE），所以它<strong>从来套不进里海的模型 3（困境反转）</strong>；</li>
+<li><strong>③</strong> 的关键词是&quot;<strong>长期</strong>&quot;横盘——2023-03-29 距底才 5 个月，且已反弹 95%（里海原话是&quot;<strong>微微</strong>往上涨了一点&quot;）。</li>
+</ul>
+<p><strong>一个反直觉的事实</strong>：2023-03-29 是<strong>最差年报</strong>的公告日（净利 −44.3%、毛利率 57.49% 为全序列最低），可股价已经从底部翻了近一倍——<strong>这正是里海说的&quot;市场先生提前定价&quot;。</strong></p>
+<hr />
+<h2>二、2023-03-29 发布了什么：三条指引 + 原文出处</h2>
+<p>出处：<code>raw/research/泡泡玛特/2023-03-29-年度业绩发布会纪要.md</code>（2022 年度业绩发布会；中报 08-22 收市后刊发，<strong>业绩会次日 08-23 召开</strong>）。</p>
+<table>
+<thead>
+<tr>
+<th>指引</th>
+<th>提问方</th>
+<th>回答人</th>
+<th>原文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>收入 +30–40%</strong></td>
+<td>摩根士丹利</td>
+<td>司德</td>
+<td>「预计 <strong>2023 年营收将实现 30% 至 40% 的增长</strong>。」</td>
+</tr>
+<tr>
+<td><strong>毛利率 60%+</strong></td>
+<td>中金公司</td>
+<td>杨镜冰</td>
+<td>「预计 <strong>2023 年毛利率将比去年提升 1 至 3 个百分点</strong>，并以<strong>达到 60% 以上的毛利率为管理目标</strong>。」</td>
+</tr>
+<tr>
+<td><strong>净利增速大幅快于收入</strong></td>
+<td>摩根士丹利</td>
+<td>司德</td>
+<td>「预计全年<strong>净利润的增速将大幅快于收入增速</strong>。」</td>
+</tr>
+<tr>
+<td><s>Q1 收入环比 +30%</s></td>
+<td>中金公司</td>
+<td>司德</td>
+<td>⚠️ <strong>环比低基数</strong>（2022Q4 为疫情闭店最惨季度）；同场另有 23H1 会披露的「<strong>Q1 同比仅 0–5%</strong>」</td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚠️ 第三条之外的修正</strong>：常被引用的&quot;Q1 环比 +30%、线下环比 +70%&quot;是<strong>环比</strong>数字，不能当同比拐点用——<strong>同期同比只有 0–5%</strong>（见下节 23H1 业绩会原文）。</p>
+<hr />
+<h2>三、完整验证链条（七个节点）</h2>
+<table>
+<thead>
+<tr>
+<th>时点</th>
+<th>距指引</th>
+<th>事件</th>
+<th>性质</th>
+<th>能验证什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2023-03-29</strong></td>
+<td>0</td>
+<td>FY2022 业绩会</td>
+<td>指引</td>
+<td>❌ 只有承诺</td>
+</tr>
+<tr>
+<td>2023-04 中下旬</td>
+<td>~1 月</td>
+<td>Q1「最新业务状况」<strong>自愿公告</strong></td>
+<td>季度数据</td>
+<td>⚠️ 验出 Q1 仅 0–5%</td>
+</tr>
+<tr>
+<td><strong>2023-07-19</strong></td>
+<td><strong>3.7 月</strong></td>
+<td><strong>正面盈利预告（盈喜）</strong></td>
+<td>公告</td>
+<td>❌ 只验利润端</td>
+</tr>
+<tr>
+<td><strong>2023-08-22</strong></td>
+<td><strong>4.8 月</strong></td>
+<td><strong>23H1 中报</strong></td>
+<td>定期财报</td>
+<td>❌ <strong>H1 仅 +19.3%，低于指引下限 10.7pct</strong></td>
+</tr>
+<tr>
+<td><strong>2023-10-24</strong></td>
+<td><strong>6.8 月</strong></td>
+<td><strong>★ Q3「最新业务状况」公告</strong></td>
+<td>公告·<strong>硬数据</strong></td>
+<td>✅ <strong>首次确认达到指引（Q3 +35–40%）</strong></td>
+</tr>
+<tr>
+<td>2023-11 → 2024-01</td>
+<td></td>
+<td>数据已好、股价仍跌</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>2024-02-05 起</strong></td>
+<td>10.3 月</td>
+<td><strong>股价领先上涨</strong>（+33.9%，超额 +27pct）</td>
+<td>市场行为</td>
+<td>✅ 提前定价年报</td>
+</tr>
+<tr>
+<td><strong>2024-03-20</strong></td>
+<td><strong>11.7 月</strong></td>
+<td><strong>FY2023 年报</strong></td>
+<td>定期财报</td>
+<td>✅ <strong>完全兑现（+36.5%）</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>23H1 中报（2023-08-22）：三条指引里只有收入不达标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>2023H1</th>
+<th>2022H1</th>
+<th>同比</th>
+<th>对照指引</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>营业额</td>
+<td>28.1381 亿</td>
+<td>23.5882 亿</td>
+<td><strong>+19.29%</strong></td>
+<td>❌ 低于 30–40% 下限</td>
+</tr>
+<tr>
+<td>毛利 / 毛利率</td>
+<td>16.9836 亿 / <strong>60.36%</strong></td>
+<td>13.7041 亿 / 58.10%</td>
+<td>+23.9% / +2.26pct</td>
+<td>✅ 已达成 60%+</td>
+</tr>
+<tr>
+<td>股东应占溢利</td>
+<td><strong>4.76575 亿</strong></td>
+<td>3.3282 亿</td>
+<td><strong>+43.2%</strong></td>
+<td>✅ 已快于收入</td>
+</tr>
+</tbody>
+</table>
+<p><strong>最有力的绝对水平</strong>：<strong>23H1 半年归母 4.77 亿 &gt; FY2022 全年 4.76 亿。</strong></p>
+<p><strong>收入是怎么补回来的</strong>（🟡 我算的）：FY2023 63.0102 亿 − 23H1 28.1381 亿 = <strong>23H2 34.87 亿</strong>；FY2022 46.1732 亿 − 22H1 23.5882 亿 = 22H2 22.59 亿 → <strong>23H2 同比 +54.4%</strong>。<strong>是下半年提速一倍多，才把全年从 +19.3% 拉到 +36.5%。</strong></p>
+<h3>2023-10-24 Q3 公告：营收端的第一份硬数据</h3>
+<table>
+<thead>
+<tr>
+<th>口径</th>
+<th>同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>整体收益</strong></td>
+<td><strong>+35%–40%</strong></td>
+</tr>
+<tr>
+<td>中国内地</td>
+<td>+25%–30%</td>
+</tr>
+<tr>
+<td>港澳台及海外</td>
+<td><strong>+120%–125%</strong></td>
+</tr>
+<tr>
+<td>零售店</td>
+<td>+35%–40%</td>
+</tr>
+<tr>
+<td>机器人商店</td>
+<td>+45%–50%</td>
+</tr>
+<tr>
+<td><strong>抽盒机</strong></td>
+<td><strong>−10%–15%</strong> ⚠️</td>
+</tr>
+<tr>
+<td><strong>抖音</strong></td>
+<td><strong>+875%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>（多源一致：新华网 2023-10-24、新京报、财联社；按中间值测算 Q3 单季收入约 <strong>16 亿</strong>。<strong>&quot;未经审核&quot;但属公司正式公告，有法律责任</strong>）</p>
+<p><strong>为什么它决定性</strong>：Q1（0–5%）、Q2（超 40%）、Q3（35–40%）已知，Q4 面对的是全序列最差基数（2022Q4 疫情闭店）——<strong>&quot;全年 +30–40%&quot;在这一刻从&quot;管理层承诺&quot;变成了&quot;大概率事实&quot;</strong>。<strong>结果 +36.5%，落在区间中间。</strong></p>
+<h3>23H1 业绩会（2023-08-23）：把 H1 的混合数字拆开</h3>
+<p>「全年指引维持 +30–40%」的全部依据，来自会上<strong>两段口头补充</strong>（这正是&quot;只有管理层主观指引&quot;的那部分）：</p>
+<blockquote>
+<p><strong>司德（答高盛）</strong>：「年初的时候我们给出的指引是今年的同比增长做到 30% 到 40%。<strong>我们今年上半年的收入同比增长是 19%。主要是因为上半年 Q1，因为去年的 Q1 基数还是蛮大的</strong>……所以 <strong>Q1 的同比增速在 0 到 5% 之间，我们在整个 Q2，我们的增速已经超过了 40%</strong>。」「<strong>所以我们的指引就目前还是这样。</strong>」
+<strong>司德（答中金追加）</strong>：「其实 <strong>7 月份延续了 Q2 的表现，整个 7 月份的同比增长也超过了 40%</strong>。8 月份……表现不错。」（另举爆款：8-04 浪漫指尖<strong>当天销售超 2000 万</strong>；MEGA 1000% 第二个产品<strong>首日超 3000 万</strong>）</p>
+</blockquote>
+<hr />
+<h2>四、价格轨迹与大盘对照</h2>
+<h3>三段价格</h3>
+<table>
+<thead>
+<tr>
+<th>区间</th>
+<th>泡泡玛特（qfq）</th>
+<th>恒生指数</th>
+<th>相对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021-02-17 高 <strong>102.955</strong> → 2022-10-28 低 <strong>9.598</strong></td>
+<td><strong>−90.7%</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2023-03-29（<strong>18.75</strong>）→ 2023-12-29（<strong>19.64</strong>）</td>
+<td><strong>+4.7%</strong>（中途 09-04 曾到 25.31，+35%）</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2023-09-04（25.31）→ 2024-02-05（16.66）</td>
+<td><strong>−34.2%</strong>（低点 16.39 → −35.2%）</td>
+<td>18,844 → 15,510 = <strong>−17.7%</strong></td>
+<td><strong>跑输 16.5pct</strong></td>
+</tr>
+<tr>
+<td><strong>2024-02-05（16.66）→ 2024-03-19（22.31）</strong></td>
+<td><strong>+33.9%</strong></td>
+<td>15,510 → 16,529 = <strong>+6.6%</strong></td>
+<td><strong>跑赢 27.3pct</strong></td>
+</tr>
+<tr>
+<td>2024-02-05 → 2024-12-31（<strong>87.73</strong>）</td>
+<td><strong>+426.5%</strong></td>
+<td>15,510 → 20,060 = <strong>+29.3%</strong></td>
+<td>跑赢约 400pct</td>
+</tr>
+</tbody>
+</table>
+<p><strong>三个读数</strong>：</p>
+<ol>
+<li><strong>2023-10-24 的 Q3 公告（好消息）之后，股价仍跌了 3.5 个月</strong>（22.40 → 16.39，−26.8%），同期恒指自 17,000 一线跌到 <strong>2024-01-22 的 14,961（多年新低）</strong>——<strong>大盘是主因，但泡泡玛特跌得更多，抽盒机 −10~15% 那条负项是自身原因</strong>；</li>
+<li><strong>2024-02-05 起的上涨不是大盘带的</strong>（超额 +27.3pct）；</li>
+<li><strong>恒指底部在 2024-01-22，泡泡玛特底部在 2024-02-05</strong>——<strong>它比大盘晚两周见底</strong>。</li>
+</ol>
+<h3>「长期横盘」区间的完整形态（🟡）</h3>
+<ul>
+<li>起：2022-10-28（低 9.598）</li>
+<li>区间：<strong>9.60 – 27.01</strong>（2023-01-26 高）</li>
+<li>终：2024-02-05（低 16.39，<strong>未破前低</strong>）</li>
+<li><strong>跨度约 16 个月</strong></li>
+</ul>
+<p><strong>→ 到 2024-02，&quot;在一个区域内长期横盘、筹码充分交换&quot;这条③才真正成立；叠加底部微右，即里海口中的「股价右侧」。</strong></p>
+<hr />
+<h2>五、归位：这是里海的<strong>模型 1（白马股杀业绩）</strong>，不是模型 3</h2>
+<p>模型 1 的三个条件（原文）与泡泡玛特的对应：</p>
+<table>
+<thead>
+<tr>
+<th>模型 1 条件</th>
+<th>泡泡玛特（2023-03-29 时点）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 公司非常优质、<strong>最好是行业第一</strong></td>
+<td>潮玩龙头 ✓</td>
+</tr>
+<tr>
+<td>② 纯属<strong>经营业绩周期调整</strong>、逻辑没有丝毫变化</td>
+<td>疫情 + 扩张费用致利润腰斩，业务逻辑未变 ✓</td>
+</tr>
+<tr>
+<td>③ <strong>市场底走出来后</strong>（再出利空股价不怎么跌）→ 跟踪到<strong>业绩过了最差、且有明确往上迹象</strong> = 最佳买点</td>
+<td>2022-10 见底不再新低 ✓；业绩会给出 +30–40% / 60%+ / 净利快于收入 ✓（<strong>后续全部兑现</strong>）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>模型 3（困境反转）套不上</strong>：它要求&quot;跌无可跌 + PB 0.5–1 倍&quot;，而泡泡玛特 2023-03-29 的 PB ≈ <strong>3.1 倍</strong>。</p>
+<p><strong>里海给模型 1 的评价</strong>：「<strong>因为这种股，会明确地展示底部，让我知道底部到了，有充分的判断和买入机会。</strong>」且「不需要深入研究，只需要抓拐点、抓变量」。</p>
+<p><strong>但收益来源要说清</strong>：<strong>泡泡玛特赚的不是&quot;估值修复&quot;的钱，而是&quot;业绩重新加速&quot;的钱</strong>（2023 +36.5% → 2024 +106.9% → 2025 +184.7%）。这与模型 3 的收益机制（低估值修复）<strong>完全不同</strong>。</p>
+<hr />
+<h2>六、五条可迁移的结论</h2>
+<ol>
+<li>
+<p><strong>「跌透」是三件事，不是一个数</strong>：死不死得了（生存底）、还能跌多少（空间底）、跌完没有（行为底）。<strong>前两样靠算，第三样只能等</strong>。用&quot;便宜&quot;替代&quot;走出来&quot;，就是里海 300 万学费买的那一课。</p>
+</li>
+<li>
+<p><strong>管理层指引有一个独立的验证通道</strong>：公司自愿披露的 <strong>Q1/Q3「最新业务状况」公告</strong>（每年 4 月中下旬 / 10 月下旬）+ <strong>正面盈利预告</strong>。<strong>泡泡玛特营收回升的硬证据出现在 2023-10-24，比年报早 5 个月。</strong></p>
+</li>
+<li>
+<p><strong>验证基面的独立办法有三类</strong>：① 公司季度通道；② <strong>会计上难造假的硬指标</strong>（存货周转 155→132 天、员工数 +3.1%、行政开支 +3%、合约负债、经营现金流，见 <a href="%E6%A8%AA%E5%88%87%E5%8F%98%E9%87%8F%E8%B7%9F%E8%B8%AA.html">跟踪/横切变量跟踪</a>）；③ 外部第三方（电商监测、门店实地、二手溢价）。<strong>2023 年这三类只够验证&quot;成本修复&quot;，验证不了&quot;收入增长&quot;</strong>——收入那条当时只有管理层一句话。</p>
+</li>
+<li>
+<p><strong>指引是&quot;公司说&quot;，可解释；财报科目是&quot;事已发生&quot;，不可解释</strong>。H1 只 +19.3% 能被&quot;Q1 高基数&quot;解释掉；存货周转从 155 天到 132 天解释不掉。</p>
+</li>
+<li>
+<p><strong>基本面右侧 ≠ 股价右侧，两者可以差 3–4 个月</strong>：泡泡玛特**基本面右侧（2023-10-24）<strong>与</strong>股价右侧（2024-02）**之间，还夹着一次 −26.8% 的回撤和一次新低。<strong>里海&quot;最好股价先到右侧&quot;这条纪律，在这个案例里值 26%。</strong></p>
+</li>
+</ol>
+<hr />
+<h2>七、诚实标注</h2>
+<ul>
+<li>价格为 <strong>qfq（前复权）港元</strong>，因分红略低于当时真实成交价，<strong>只用其相对幅度</strong>；估值为 <strong>PE=TTM / ROE=年度加权</strong>混用口径，<strong>仅作对照，不作投资判断</strong>。</li>
+<li><strong>§一的三判据表为分析层归纳（🟡）</strong>：里海原文给的是&quot;大幅下跌 + 长期横盘 + 筹码充分交换&quot;（体系定义）与&quot;利空不跌&quot;（模型 1），<strong>未提出过&quot;三判据&quot;这一命名</strong>；PB/PE 的具体倍数为本页推算。</li>
+<li><strong>§二、§三的全部指引原话可回查 raw 纪要</strong>；<strong>Q3 公告内容来自媒体多源转述</strong>（新华网 / 新京报 / 财联社一致），<strong>未调取港交所公告原文</strong>。</li>
+<li><strong>LABUBU 泰国爆火的具体起始月份存疑</strong>：多源确认泰国首店 <strong>2023-09</strong> 开业&quot;引发千人排队&quot;；但&quot;Lisa 带货起点&quot;查到 <strong>2023 年 4 月</strong>与 <strong>2024 年 4 月</strong>两种矛盾说法，<strong>本页不采信具体月份</strong>，仅作为 2024 年海外叙事背景。</li>
+<li>本页为 AI 对话产出（2026-10-08），<strong>非投资建议</strong>。</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../../%E5%B1%B1%E4%B8%9C%E8%B5%AB%E8%BE%BE/%E8%90%A5%E6%94%B6-%E6%8A%AB%E9%9C%B2%E6%97%B6%E7%82%B9-%E8%82%A1%E4%BB%B7%E5%AF%B9%E7%85%A7%E5%9B%BE.html">营收-披露时点-股价对照图</a> — 12 期业绩披露 × 股价的位置对照（本页的图表来源）</li>
+<li><a href="%E6%A8%AA%E5%88%87%E5%8F%98%E9%87%8F%E8%B7%9F%E8%B8%AA.html">跟踪/横切变量跟踪</a> — 六个横切变量（库存 / 经营杠杆 / 人 / 租金 / 物流 / 营运资本）</li>
+<li><a href="../%E4%B8%9A%E7%BB%A9/2022-%E5%B9%B4%E5%BA%A6%E4%B8%9A%E7%BB%A9%E5%8F%91%E5%B8%83%E4%BC%9A-%E8%89%BE%E5%BE%B7%E5%8B%92%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81.html">业绩/2022-年度业绩发布会-艾德勒阅读摘要</a> — 2023-03-29 那场会（指引 + 资源陷阱）</li>
+<li><a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/90-%E6%A8%AA%E5%88%87/%E9%87%8C%E6%B5%B7-%E4%BC%B0%E5%80%BC%E5%B0%BA%E5%AD%90%EF%BC%88PER%E4%B8%8EPEG%EF%BC%89.html">../../疯狂的里海/方法论/90-横切/里海-估值尺子（PER与PEG）</a> — 为什么&quot;估值便宜&quot;不是他的判据</li>
+<li><a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/30-%E5%85%B1%E6%8C%AF/%E9%87%8C%E6%B5%B7-%E5%8F%8C%E5%B7%A6%E4%BE%A7.html">../../疯狂的里海/方法论/30-共振/里海-双左侧</a> — &quot;至少一个右侧，最好股价先到右侧&quot;</li>
+<li><a href="../../../../research/index.md">research/index.md</a> · <a href="../../../../research/log.md">research/log.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E8%B7%9F%E8%B8%AA">← 返回 跟踪</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/消费/泡泡玛特/跟踪/跌透判定与指引验证链（2023-2024）.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

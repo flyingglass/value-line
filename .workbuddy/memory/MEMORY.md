@@ -79,7 +79,8 @@ CN 补充：此机器上 eastmoney 直连必失败，**但 fetcher/pdf_downloade
 - **skill 路径失效待修**：`lihai-2444-analysis/SKILL.md` 写的 `方法论/里海-变化论.md`、`方法论/里海-双左侧.md` 实际在 `方法论/10-初筛/`、`方法论/30-共振/` 下（用户未点头前不擅自改）
 
 ## 已知 Bug 模式
-- 🔴 **build.py step_4_5 自动生成的 `business_commentary.py` 必须手工重写**（2026-09-27 宝信 600845 实测）：生成器产出有三处硬伤 —— ① P1 引用**未定义变量 `name`** → `build()` 抛 NameError → engine **静默回退**到通用评论，而 Step 8 仍报 ALL PASS，**不报错、极易漏过**；② business 段结构描述重复矛盾（「软件开发及工程服务68%…65%…服务外包34%…32%」）；③ P3/P5 是「规模成本优势／渠道粘性／产能释放／需求回暖」通用套话，对无实体产能、需求取决于集团 capex 的标的完全不成立。**验收法：跑完 build 后查 `report_data.json` 的 `analyst.commentary_from_script` 必须为 `True`**
+- 🔴 **build.py step_4_5 自动生成的 `business_commentary.py` 必须手工重写**（2026-09-27 宝信 600845 实测）：生成器产出有三处硬伤 —— ① P1 引用**未定义变量 `name`** → `build()` 抛 NameError → engine **静默回退**到通用评论，而 Step 8 仍报 ALL PASS，**不报错、极易漏过**；② business 段结构描述重复矛盾（「软件开发及工程服务68%…65%…服务外包34%…32%」）；③ P3/P5 是「规模成本优势／渠道粘性／产能释放／需求回暖」通用套话，对无实体产能、需求取决于集团 capex 的标的完全不成立；④ **P4 估值段写死 CF 倍数**（`cf_15x`/`cf_20x`），**对 PB 法标的（603882 / 002209 / 002810）必然写错**。**验收法：跑完 build 后查 `report_data.json` 的 `analyst.commentary_from_script` 必须为 `True`**（2026-10-04 山东赫达 002810 实测，改前 False）
+- 🔴 **`build.py` 8 步里没有 `extract_pdf_metadata.py`**（该文件在仓库中不存在）：`business_desc` 与 `employee_count` 都不会进库 → 左栏 Business 区不显示员工数。**新标的需手工写 db meta**：`employee_count`（取年报「公司员工情况」节的「在职员工数量的合计」）+ `employee_year`（2026-10-04 山东赫达：1738 / 2025，取自 2025 年报 p58）
 - **单引号**：JS 单引号字符串里 `DIV'D` 会截断 → 改用 Unicode `\u2019`
 - **花括号**：Python f-string 里的 JS `{ }` 必须写 `{{ }}`
 - 🔴 **bash 双引号 + `python -c` 写 Markdown**：反引号被当命令替换；若其中是**真实存在的相对路径**（如 `学股/广州/xxx.md`），sh 会**把该 md 当脚本执行**，`> **来源**：` 行触发重定向凭空造垃圾文件。
