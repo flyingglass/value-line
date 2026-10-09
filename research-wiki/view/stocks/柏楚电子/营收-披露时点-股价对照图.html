@@ -205,14 +205,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <li><strong>披露日股价多数落在 65~107 元区间</strong>：FY2025（+26.5%）2026-04-10 披露当日 100.13 元，2026H1（+15.8%）2026-08-18 披露当日 107.15 元；2026 年内收盘高 125.30（05-20）、低 90.30（07-17）。</li>
 <li><strong>披露节奏</strong>：年报从 03-11（FY2020）/04-28（FY2019）逐年提前到 4 月上旬（FY2023 03-20、FY2024 04-03、FY2025 04-10）；中报集中在 8 月中下旬；三季报 10 月下旬；一季报多与上年报同日披露。</li>
 </ul>
-<h2>复现</h2>
-<pre><code class="language-bash">.venv/Scripts/python .codebuddy/skills/revenue-price-timeline/scripts/revenue_price_timeline.py \
-  --code 688188 --name 柏楚电子 --extremes 2019:low,2021:high,2022:low,2026:high \
-  --out research-wiki/research/AI软件/柏楚电子/assets/revenue-price-timeline.png \
-  --csv scripts/out/688188_revenue_vs_price.csv
-</code></pre>
-<p>出图脚本已沉淀为 skill：<code>revenue-price-timeline</code>（参数化任意 A 股代码）。明细 CSV：<code>scripts/out/688188_revenue_vs_price.csv</code>（28 期：FY / H1 / Q1 / Q3 各 7 期）。</p>
-<p>Windows cmd 下 <code>--out</code> 含中文路径时先 <code>set &quot;PYTHONUTF8=1&quot;</code>，否则路径会乱码报 <code>Errno 22</code>。</p>
+<blockquote>
+<p><strong>数据源</strong>：东方财富「利润表-按报告期」营业总收入 + NOTICE_DATE（定期报告公开披露日）· 新浪日线前复权（<code>ak.stock_zh_a_daily</code>，qfq）。行情起点 2019-08-08，本图数据截至 2026-09-30；柱位置＝该期报告的实际披露日，共 28 期。</p>
+</blockquote>
 <h2>参见</h2>
 <ul>
 <li><a href="2444%E5%8F%98%E5%8C%96%E8%AE%BA%E6%89%AB%E6%8F%8F.html">AI软件/柏楚电子/2444变化论扫描</a> — 同标的变化论扫描（智能焊接/整线第二曲线、毛利率 −4.90pct）</li>
