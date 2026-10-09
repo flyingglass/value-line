@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992.HK) — 渠道单店 / 单台产出时间线（2020H1–2026H1，中国内地 vs 海外）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">泡泡玛特</a> › <a href="渠道单店产出时间线.html">泡泡玛特 (09992.HK) — 渠道单店 / 单台产出时间线（2020H1–2026H1，中国内地 vs 海外）</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992.HK) — 渠道单店 / 单台产出时间线（2020H1–2026H1，中国内地 vs 海外）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-10-08</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特</span></div><div class="md" id="md"><h1>泡泡玛特（09992.HK）· 渠道单店 / 单台产出时间线</h1>
+<blockquote>
+<p><strong>一句话</strong>：把「渠道收入 ÷ 期末单位数」拆成<strong>中国内地 / 海外</strong>两个面板、<strong>年报线 / 中报线</strong>两条线，看<strong>每一家店、每一台机器在单个报告期里产出多少钱</strong>——区分&quot;增长来自开更多店&quot;还是&quot;来自单产提升&quot;。</p>
+<p><strong>⚠️ 一句话口径警告：年报线与中报线口径不同（全年 vs 半年），纵向不可比大小，只能在各自序列内部比同比。</strong></p>
+</blockquote>
+<hr />
+<h2>一、零售店：单店产出</h2>
+<p><img src="../../../research/%E6%B6%88%E8%B4%B9/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/assets/store-efficiency-timeline.png" alt="泡泡玛特零售店单店产出 · 年报 vs 中报 · 2020H1-2026H1（中国内地 / 海外双面板）" /></p>
+<h2>二、机器人商店：单台产出</h2>
+<p><img src="../../../research/%E6%B6%88%E8%B4%B9/%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9/assets/robot-efficiency-timeline.png" alt="泡泡玛特机器人商店单台产出 · 年报 vs 中报 · 2020H1-2026H1（中国内地 / 海外双面板）" /></p>
+<p><strong>图的结构</strong>：左面板 = <strong>中国内地</strong>，右面板 = <strong>海外（含港澳台）</strong>，两面板共享纵轴刻度；每个面板自带<strong>右轴</strong>画该区域的门店/机器人数（用来解释&quot;摊薄&quot;）。<strong>实线圆点 = 年报线</strong>（全年收入 ÷ 期末单位数），<strong>虚线菱形 = 中报线</strong>（半年收入 ÷ 期末单位数）。</p>
+<hr />
+<h2>三、关键读数</h2>
+<h3>零售店（百万元 / 店 / 期）</h3>
+<table>
+<thead>
+<tr>
+<th>期</th>
+<th>中国内地</th>
+<th>海外</th>
+<th>海外 ÷ 中国内地</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25A（年报）</td>
+<td>20.7</td>
+<td><strong>39.8</strong>（序列峰值）</td>
+<td>1.9×</td>
+</tr>
+<tr>
+<td>25H1（中报）</td>
+<td>8.9</td>
+<td>20.1</td>
+<td><strong>2.3×</strong></td>
+</tr>
+<tr>
+<td><strong>26H1（中报）</strong></td>
+<td><strong>13.0</strong></td>
+<td><strong>14.3</strong></td>
+<td><strong>1.1×</strong></td>
+</tr>
+<tr>
+<td>26H1 同比</td>
+<td><strong>+45.2%</strong></td>
+<td><strong>−28.7%</strong></td>
+<td>倍数差消失</td>
+</tr>
+</tbody>
+</table>
+<h3>机器人商店（万元 / 台 / 期）</h3>
+<table>
+<thead>
+<tr>
+<th>期</th>
+<th>中国内地</th>
+<th>海外</th>
+<th>海外 ÷ 中国内地</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25A（年报）</td>
+<td>54.7</td>
+<td><strong>140.8</strong>（序列峰值）</td>
+<td>2.6×</td>
+</tr>
+<tr>
+<td>25H1（中报）</td>
+<td>26.9</td>
+<td>88.2</td>
+<td><strong>3.3×</strong></td>
+</tr>
+<tr>
+<td><strong>26H1（中报）</strong></td>
+<td><strong>31.1</strong>（中报序列新高）</td>
+<td><strong>49.3</strong></td>
+<td><strong>1.6×</strong></td>
+</tr>
+<tr>
+<td>26H1 同比</td>
+<td><strong>+15.9%</strong></td>
+<td><strong>−44.2%</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3>分母（单位数）在同期怎么动</h3>
+<table>
+<thead>
+<tr>
+<th>期</th>
+<th>中国内地零售店</th>
+<th>海外零售店</th>
+<th>中国内地机器人</th>
+<th>海外机器人</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>23H1</td>
+<td>340</td>
+<td>38</td>
+<td>2,185</td>
+<td>106</td>
+</tr>
+<tr>
+<td>24A</td>
+<td>401</td>
+<td>120</td>
+<td>2,300</td>
+<td>172</td>
+</tr>
+<tr>
+<td>25A</td>
+<td>410</td>
+<td>220</td>
+<td>2,350</td>
+<td>287</td>
+</tr>
+<tr>
+<td><strong>26H1</strong></td>
+<td><strong>419</strong></td>
+<td><strong>257</strong></td>
+<td><strong>2,436</strong></td>
+<td><strong>391</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>→ 中国内地店数近三年几乎不动（401 → 419），台数近三年零增长（2,190 → 2,436）；而海外仍在快速铺（店 120 → 257，台 172 → 391）。</strong></p>
+<hr />
+<h2>四、这两张图能读出什么、不能读出什么</h2>
+<p><strong>能读出的（事实层）</strong></p>
+<ol>
+<li><strong>海外单产在 25A 见顶</strong>（零售店 39.8、机器人 140.8 均为序列峰值），<strong>26H1 双双大幅回落</strong>（−28.7% / −44.2%）；</li>
+<li><strong>中国内地单产在提升</strong>：零售店 26H1 <strong>+45.2%</strong>，机器人 26H1 <strong>+15.9% 且为中报序列新高</strong>——<strong>在国内店数/台数几乎不增的前提下，增长全部来自单产</strong>；</li>
+<li><strong>海外与中国的单产差距在快速收窄</strong>（零售店 2.3× → 1.1×；机器人 3.3× → 1.6×）——曾经&quot;海外一家店顶国内两三家&quot;的溢价基本消失。</li>
+</ol>
+<p><strong>不能读出的（⚠️ 口径限制）</strong></p>
+<blockquote>
+<p>脚本原文口径：<strong>「公司不披露同店销售（SSSG），分母为期末时点数、分子为区间收入，含新店/新机爬坡与装修期摊薄，是上界方向读数而非纯需求读数。」</strong></p>
+</blockquote>
+<p><strong>即：26H1 海外单产下滑，无法据此直接判定是&quot;需求转弱&quot;还是&quot;新店爬坡摊薄&quot;</strong>——海外 26H1 净增门店 37 家、净增机器人 104 台，分母扩张本身就足以压低均值。<strong>要分清二者必须要有 SSSG，而公司不披露。</strong></p>
+<p><strong>这也是这两张图的定位</strong>：<strong>提供方向，不提供定性</strong>。</p>
+<hr />
+<h2>五、完整口径声明（照录脚本，逐条）</h2>
+<ol>
+<li><strong>年报线与中报线分开连线、不折算</strong>——年报点 = 全年收入 ÷ 期末单位数，中报点 = 半年收入 ÷ 期末单位数。<strong>二者口径不同，纵向不可直接比大小</strong>，只能在各自序列内部比同比。年报普遍为中报的 <strong>1.8–2.3 倍</strong>，且倍率逐年变化——这正是不能混算的原因。</li>
+<li><strong>分子是该渠道的收入，不是总营收</strong>——零售店图剔除线上/机器人/批发，机器人图剔除零售店/线上/批发。交叉校验：26H1 中国零售店 60.90 + 海外 30.22 = <strong>91.12 亿</strong>，与中报「零售店占全集团收入 <strong>53.1%</strong>」吻合。</li>
+<li><strong>左面板 = 中国内地，右面板 = 港澳台及海外</strong>，两者相加 = 全球；<strong>25H1 起中报把港澳台并入「中国业务」披露，本图已回加</strong>以保持全期可比（图上有一条 25H1 的竖线标记口径切换）。</li>
+<li><strong>x 轴刻度颜色</strong>：橙色 = 年报，深色 = 中报。</li>
+<li><strong>两处特殊口径</strong>：24H1 中国内地零售店收入采用 2025 中报 Note 5 口径 <strong>17.24 亿</strong>（用户渠道表 Old 口径为 14.71 亿）；21H1 海外机器人收入披露为 <strong>0</strong>（当年仅 7 台）。</li>
+<li><strong>分母来源</strong>：中国内地数取各期年报/中报渠道章节原文（如 24A「合計零售店 401 家／合計機器人商店 2,300 間」）；海外数 <strong>24A 及以前</strong>取同章节「港澳台及海外」（<strong>不含合营/加盟</strong>，与渠道收入配套，如 24A 120 家／172 台）——年报业务概览章节另有含合营及加盟口径（24A 130 家／192 台），<strong>不采用</strong>（合营/加盟收入不计入渠道收入）；<strong>25H1/26H1</strong> 中报渠道章节不再披露海外分项，改用「<strong>全球 − 中国内地</strong>」倒推（全球取中报概览 571／2,597、676／2,827），这两期与前期可能存在含合营口径的小幅差异。</li>
+<li><strong>左面板 y 轴 = 单次报告期产出</strong>；右轴 = 期末单位数（淡灰虚线），两个面板各自独立。</li>
+</ol>
+<hr />
+<h2>六、复现</h2>
+<pre><code class="language-bash"># 两张图一起出（默认输出到 research-wiki/research/消费/泡泡玛特/assets/）
+.venv/Scripts/python scripts/09992/channel_efficiency_timeline.py
+
+# 只出其中一张
+.venv/Scripts/python scripts/09992/channel_efficiency_timeline.py --kind robot
+
+# 自定义输出目录 / CSV 目录
+.venv/Scripts/python scripts/09992/channel_efficiency_timeline.py \
+  --outdir research-wiki/research/消费/泡泡玛特/assets \
+  --csv-dir scripts/out
+</code></pre>
+<ul>
+<li>脚本：<code>scripts/09992/channel_efficiency_timeline.py</code>（<code>--kind store|robot|all</code>，默认 <code>all</code>）</li>
+<li>明细 CSV：<code>scripts/out/09992_store_efficiency.csv</code> · <code>scripts/out/09992_robot_efficiency.csv</code>（列：期间 / 报告口径 / 单店产出 / 单位数）</li>
+<li><strong>数据点全部硬编码在脚本顶部的 <code>STORE_*</code> / <code>ROBOT_*</code> 常量中</strong>，每处附原披露出处注释——更新数据即改脚本常量后重跑。</li>
+</ul>
+<hr />
+<h2>七、诚实标注</h2>
+<ul>
+<li>本页为<strong>图的说明页</strong>，数据与口径均来自出图脚本；本页作者未独立回核原始年报/中报。</li>
+<li><strong>26H1 的海外单位数（257 家 / 391 台）为「全球 − 中国内地」倒推值</strong>，与 24A 及以前的&quot;不含合营/加盟&quot;口径可能存在小幅差异（脚本已注明）。</li>
+<li>本页<strong>不对&quot;海外单产下滑&quot;作定性解释</strong>——摊薄与需求转弱在本口径下不可分。</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../%E5%B1%B1%E4%B8%9C%E8%B5%AB%E8%BE%BE/%E8%90%A5%E6%94%B6-%E6%8A%AB%E9%9C%B2%E6%97%B6%E7%82%B9-%E8%82%A1%E4%BB%B7%E5%AF%B9%E7%85%A7%E5%9B%BE.html">营收-披露时点-股价对照图</a> — 同期「业绩披露时点 × 股价位置」对照（同目录，同体例）</li>
+<li><a href="%E4%B8%9A%E7%BB%A9/%E7%BB%8F%E8%90%A5%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%EF%BC%882020-2026%EF%BC%89.html">业绩/经营时间序列（2020-2026）</a> — 门店网络与收入全序列（本页分母来源）</li>
+<li><a href="../%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E8%BF%90%E8%90%A5%E6%8C%87%E6%A0%87.html">运营指标</a> — 会员 / 复购 / 存货周转等运营读数</li>
+<li><a href="%E8%B7%9F%E8%B8%AA/%E6%A8%AA%E5%88%87%E5%8F%98%E9%87%8F%E8%B7%9F%E8%B8%AA.html">跟踪/横切变量跟踪</a> — 六个横切变量（库存 / 经营杠杆 / 人 / 租金 / 物流 / 营运资本）</li>
+<li><a href="%E8%B7%9F%E8%B8%AA/04-%E6%B5%B7%E5%86%85%E5%A4%96%E6%94%B6%E5%85%A5%E5%88%86%E5%8C%96%EF%BC%882026H1%EF%BC%89%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%88%A4%E6%8D%AE.html">跟踪/04-海内外收入分化（2026H1）机制与判据</a> — 海内外分化的机理分析</li>
+<li><a href="../../../research/index.md">research/index.md</a> · <a href="../../../research/log.md">research/log.md</a></li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/消费/泡泡玛特/渠道单店产出时间线.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var el=document.getElementById("md");var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
