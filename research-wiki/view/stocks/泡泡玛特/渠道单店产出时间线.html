@@ -269,25 +269,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 <li><strong>左面板 y 轴 = 单次报告期产出</strong>；右轴 = 期末单位数（淡灰虚线），两个面板各自独立。</li>
 </ol>
 <hr />
-<h2>六、复现</h2>
-<pre><code class="language-bash"># 两张图一起出（默认输出到 research-wiki/research/消费/泡泡玛特/assets/）
-.venv/Scripts/python scripts/09992/channel_efficiency_timeline.py
-
-# 只出其中一张
-.venv/Scripts/python scripts/09992/channel_efficiency_timeline.py --kind robot
-
-# 自定义输出目录 / CSV 目录
-.venv/Scripts/python scripts/09992/channel_efficiency_timeline.py \
-  --outdir research-wiki/research/消费/泡泡玛特/assets \
-  --csv-dir scripts/out
-</code></pre>
-<ul>
-<li>脚本：<code>scripts/09992/channel_efficiency_timeline.py</code>（<code>--kind store|robot|all</code>，默认 <code>all</code>）</li>
-<li>明细 CSV：<code>scripts/out/09992_store_efficiency.csv</code> · <code>scripts/out/09992_robot_efficiency.csv</code>（列：期间 / 报告口径 / 单店产出 / 单位数）</li>
-<li><strong>数据点全部硬编码在脚本顶部的 <code>STORE_*</code> / <code>ROBOT_*</code> 常量中</strong>，每处附原披露出处注释——更新数据即改脚本常量后重跑。</li>
-</ul>
-<hr />
-<h2>七、诚实标注</h2>
+<h2>六、诚实标注</h2>
 <ul>
 <li>本页为<strong>图的说明页</strong>，数据与口径均来自出图脚本；本页作者未独立回核原始年报/中报。</li>
 <li><strong>26H1 的海外单位数（257 家 / 391 台）为「全球 − 中国内地」倒推值</strong>，与 24A 及以前的&quot;不含合营/加盟&quot;口径可能存在小幅差异（脚本已注明）。</li>
