@@ -764,7 +764,8 @@ def _render_stat_array(data):
         depr_ps = round(depr * 100 / total_shares, 2) if total_shares else 0
         lines.append(f"> - 每股现金流/每股收益 = {per_cf/eps:.2f}x（差值 ¥{gap:.2f} ≈ 折旧 ¥{depr_ps:.2f}）→ {'轻资产，现金流质量高 ✅' if gap < eps*0.5 else '重资产，资本密集度高'}")
     if per_capex and depr and total_shares:
-        depr_ps = round(depr / (total_shares or 1), 2)
+        # 同 #1-#6 诊断窗口径: depr 单位亿, total_shares 单位百万股 → ×100 折成"元/股"
+        depr_ps = round(depr * 100 / (total_shares or 1), 2)
         capex_depr = per_capex / depr_ps if depr_ps > 0 else None
         if capex_depr:
             label = "高速扩张" if capex_depr > 1.5 else ("稳健增长" if capex_depr > 0.8 else "维持型")
