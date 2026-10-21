@@ -35,7 +35,10 @@ data/广州.zip
 
 # AI软件待选池中报批量下载产物（与 data/广州/ 同例：PDF 不入版本库，仅保留清单）
 data/AI软件/*.pdf
-scripts/out/tmp_*  
+scripts/out/tmp_*
+
+# 年报/中报 PDF 全文导出（pdfplumber → txt，可随时由 data/pdfs 重新生成，体积大不入库）
+scripts/out/zpg_*.txt
 
 # 调研临时工作台（data/tmp_<code>/）整体不入版本库：临时脚本/图表/中间数据都是过程留痕，
 # 成果应沉淀到 research-wiki/。本地文件保留，仅不跟踪。

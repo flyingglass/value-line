@@ -286,7 +286,8 @@ var DATA = {DATA_JS};
   // ===== VL Header: HTML table 2行, rowspan=2跨两行 =====
   var medianPE=Number(spot.median_pe)||null;
   var trailingPE=Number(spot.pe)||Number(ly.PE_AVG)||null;
-  var relPE=Number(ly.PE_RELATIVE)||(pos.pe?Number(pos.pe.avg):null);
+  // 相对PE = 个股PE / 指数PE; 当年无有效PE时留空 (原先回退到历史平均PE, 语义错误)
+  var relPE=Number(ly.PE_RELATIVE)||null;
   var divYld=Number(spot.div_yield)||Number(ly.DIV_YIELD);
 
   html+='<table class="header" style="border-collapse:collapse;border-bottom:2px solid #000;margin:0 0 2px 0;width:100%"><tr>';

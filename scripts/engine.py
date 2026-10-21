@@ -1231,11 +1231,15 @@ def calc_cagr(values, n_years):
 
 
 def calc_cagr_multi(metric_values, years):
-    vals = [v for v in metric_values if v is not None and v > 0]
+    # 只剔除 None, 保留负值 (亏损年) — 若在此过滤 v>0, 序列会「跳过亏损年」而错位:
+    # 例如连亏两年时 1yr 实际算的是更早两个盈利年份的增速 (00772 曾被算成 +31.7%)。
+    # 首尾非正时 calc_cagr 返回 None, 表示几何增长率不适用。
+    vals = [v for v in metric_values if v is not None]
     result = {}
     for label, n in [("1yr", 1), ("3yr", 3), ("5yr", 5), ("10yr", 10)]:
         if len(vals) > n:
-            result[label] = round(calc_cagr(vals[-n-1:], n), 1)
+            c = calc_cagr(vals[-n-1:], n)
+            result[label] = round(c, 1) if c is not None else None
         else:
             result[label] = None
     return result

@@ -232,7 +232,8 @@ def _render_business(data):
         lines.append(f"| **员工** | {emp_count/10000:.1f} 万人 ({cap_struct.get('employee_year','')}) |")
 
     lines.append(f"| **股价** | {_fmt(spot.get('price'), ' ' + meta.get('price_ccy', meta.get('currency','CNY')))} |")
-    lines.append(f"| **PE(TTM)** | {_fmt(spot.get('pe'), 'x')} |")
+    _pe_biz = _sf(spot.get('pe'))
+    lines.append(f"| **PE(TTM)** | {(_fmt(_pe_biz, 'x') if _pe_biz > 0 else 'N/A (当期亏损)')} |")
     lines.append(f"| **总市值** | {_fmt(spot.get('mkt_cap'), ' 亿')} |")
     lines.append("")
 
@@ -792,8 +793,17 @@ def _render_stat_array(data):
     pe_rel_vals = [v for v in pe_rel_vals if v is not None]
 
     if len(shares_vals) >= 2:
-        dir_text = "回购中（对每股指标正面）" if shares_vals[-1] < shares_vals[0] else "增发/摊薄中"
-        lines.append(f"> - #7 股数: {shares_vals[0]:.0f}M → {shares_vals[-1]:.0f}M → {dir_text}")
+        # 用最近一年变化判断方向 (首尾对比会把 1% 内的正常波动读成"增发/摊薄")
+        _shr_chg = ((shares_vals[-1] - shares_vals[-2]) / shares_vals[-2] * 100
+                    if shares_vals[-2] else 0)
+        if _shr_chg < -1:
+            dir_text = "回购中（对每股指标正面）"
+        elif _shr_chg > 1:
+            dir_text = "增发/摊薄中"
+        else:
+            dir_text = "基本持平"
+        lines.append(f"> - #7 股数: {shares_vals[0]:.0f}M → {shares_vals[-1]:.0f}M"
+                     f"（近一年 {_shr_chg:+.1f}%）→ {dir_text}")
     if len(pe_avg_vals) >= 3:
         trend_text = "估值回归" if pe_avg_vals[-1] < pe_avg_vals[0] else "估值扩张"
         lines.append(f"> - #8 PE 中枢趋势: {pe_avg_vals[0]:.0f}x → {pe_avg_vals[-1]:.0f}x → {trend_text}")
@@ -908,8 +918,11 @@ def _render_stat_array(data):
             quadrant = "🟡 稳健增长（留存回报中等）"
         elif retained > 10:
             quadrant = "❌ 价值毁灭（留存回报低，不如分给股东）"
-        else:
+        elif payout is not None and payout > 50:
             quadrant = "💰 现金牛（高分红，适合收息）"
+        else:
+            # 留存率低 (=净利/权益) 也可能源于净利为负或不分红, 不能直接判定为现金牛
+            quadrant = "⚠️ 留存率低但非高分红所致（盈利为负或分红极少），不构成现金牛"
         lines.append(f"> - 留存率 {retained:.1f}% + ROE {roe:.1f}% → {quadrant}")
 
     if payout is not None:
@@ -1179,11 +1192,18 @@ def _render_price_history(data):
         lines.append("")
         lines.append("| 估值指标 | 当前 | 最低 | 最高 | 中位数 | 百分位 |")
         lines.append("|----------|------|------|------|--------|--------|")
+        def _pct_txt(v):
+            """百分位: 负值表示跌破历史区间下沿 (引擎线性外推会得到负值)"""
+            if v is None:
+                return "-"
+            return "低于历史区间" if v < 0 else f"{v:.0f}%"
+
         if pe_pos:
             median_pe = spot.get("median_pe")
-            lines.append(f"| **PE** | {_fmt(pe_pos.get('current'), 'x')} | {_fmt(pe_pos.get('min'), 'x')} | {_fmt(pe_pos.get('max'), 'x')} | {_fmt(median_pe, 'x')} | {_fmt_pct(pe_pos.get('pct'), 0)} |")
+            _pe_cur = pe_pos.get('current')
+            lines.append(f"| **PE** | {(_fmt(_pe_cur, 'x') if (_pe_cur or 0) > 0 else 'N/A')} | {_fmt(pe_pos.get('min'), 'x')} | {_fmt(pe_pos.get('max'), 'x')} | {_fmt(median_pe, 'x')} | {_pct_txt(pe_pos.get('pct'))} |")
         if pb_pos:
-            lines.append(f"| **PB** | {_fmt(pb_pos.get('current'), 'x')} | {_fmt(pb_pos.get('min'), 'x')} | {_fmt(pb_pos.get('max'), 'x')} | {_fmt(pb_pos.get('avg'), 'x')} | {_fmt_pct(pb_pos.get('pct'), 0)} |")
+            lines.append(f"| **PB** | {_fmt(pb_pos.get('current'), 'x')} | {_fmt(pb_pos.get('min'), 'x')} | {_fmt(pb_pos.get('max'), 'x')} | {_fmt(pb_pos.get('avg'), 'x')} | {_pct_txt(pb_pos.get('pct'))} |")
         lines.append("")
 
     lines.append("---")
@@ -1422,9 +1442,12 @@ def build_reading_report(data):
     spot = data["spot"]
 
     title = f"# {meta['name']} ({meta['code']}) — Value Line 阅读报告"
+    # PE: 亏损公司无有效 PE (engine 置 0/None), 显示 N/A 而非 "0.0x"
+    _pe_sub = _sf(spot.get('pe'))
+    _pe_sub_txt = f"{_pe_sub:.1f}x" if _pe_sub > 0 else "N/A (亏损)"
     subtitle = (f"> 生成日: {meta.get('generated','')[:10]} | "
                 f"股价: {_fmt(spot.get('price'), ' ' + meta.get('price_ccy', 'HKD'))} | "
-                f"PE(TTM): {_fmt(spot.get('pe'), 'x')} | "
+                f"PE(TTM): {_pe_sub_txt} | "
                 f"总市值: {_fmt(spot.get('mkt_cap'), ' 亿')}")
 
     sections = [
