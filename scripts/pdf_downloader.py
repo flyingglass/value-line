@@ -100,8 +100,10 @@ class PDFValidator:
             fiscal_kw = {
                 "FY": ["年度报告", "年報", "ANNUAL REPORT", "全年业绩", "年度業績"],
                 "H1": ["半年度", "中期報告", "INTERIM REPORT", "HALF-YEAR"],
-                "Q1": ["第一季度", "一季报", "FIRST QUARTER"],
-                "Q3": ["第三季度", "三季报", "THIRD QUARTER"],
+                "Q1": ["第一季度", "一季报", "FIRST QUARTER", "季度財務業績",
+                       "季度财务业绩", "季度業績", "季度业绩", "QUARTERLY"],
+                "Q3": ["第三季度", "三季报", "THIRD QUARTER", "季度財務業績",
+                       "季度财务业绩", "季度業績", "季度业绩", "QUARTERLY"],
             }
             kw_list = fiscal_kw.get(report_type, ["年度"])
             type_ok = any(kw.lower() in search_text.lower() for kw in kw_list)
@@ -213,13 +215,14 @@ def _resolve_hkex_stock_id(code):
         except: pass
     return None
 
-def _search_hkex(stock_id, t2code, lang="zh"):
+def _search_hkex(stock_id, t2code, lang="zh", t1code="40000", row_range="200"):
     params = {
         "lang": lang, "category": "0", "market": "SEHK",
         "stockId": stock_id, "searchType": "1", "documentType": "-1",
-        "t1code": "40000", "t2code": t2code, "t2Gcode": "-2",
+        "t1code": t1code or "", "t2code": t2code or "",
+        "t2Gcode": "-2" if t2code else "",
         "fromDate": "20200101", "toDate": "20261231",
-        "MB-Daterange": "0", "rowRange": "200",
+        "MB-Daterange": "0", "rowRange": row_range,
         "sortByOptions": "DateTime", "sortDir": "0",
     }
     r = _S.get(HKEX_SEARCH, params=params, timeout=20)
@@ -246,6 +249,90 @@ def _classify_hk_report(title, t2code):
         return "Q1"
     return None
 
+# ── 港股季度业绩公告（内幕消息通道）──
+# 港股主板不强制季报，法定定期披露只有年报+半年报。但在美上市/双重主要上市的发行人
+# 须按 SEC 口径季度披露，并按《上市规则》13.10B 在港交所同步公布，落点是
+# 「公告及通告 - [內幕消息 / … / 季度業績]」(t1code=10000)，不在「财务报表」(40000) 下，
+# 文件名也不叫「季度报告」。故按全量公告 + 标签过滤，再从标题解析报告期。
+_HKEX_Q_TAG_RE = re.compile(r"季度業績|季度业绩|QUARTERLY\s+RESULTS", re.I)
+_HKEX_Q_EXCL_RE = re.compile(
+    r"六個月|六个月|中期|全年|年度|"
+    r"HALF[-\s]?YEAR|SIX\s+MONTHS|ANNUAL|FISCAL\s+YEAR", re.I)
+_HKEX_MONTH_Q = {3: "Q1", 9: "Q3"}
+_HKEX_EN_MONTH = {m: i + 1 for i, m in enumerate(
+    ("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+     "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"))}
+
+
+def _classify_hk_quarter(title, long_text=""):
+    """解析季度业绩公告 → (period, fiscal_year)，只认 Q1(3月末)/Q3(9月末)。
+
+    6月末(中期)与12月末(全年)分别由 H1/FY 通道覆盖，此处返回 (None, None)。
+    """
+    text = re.sub(r"<[^>]+>", " ", f"{title or ''} {long_text or ''}")
+    if not _HKEX_Q_TAG_RE.search(text):
+        return None, None
+    # 「三個月及六個月」「季度及全年」属中期/年度口径，已有专门通道
+    if _HKEX_Q_EXCL_RE.search(text):
+        return None, None
+    m = re.search(r"(\d{4})\s*年\s*(\d{1,2})\s*月", text)
+    if m:
+        period = _HKEX_MONTH_Q.get(int(m.group(2)))
+        return (period, m.group(1)) if period else (None, None)
+    m = re.search(r"([A-Za-z]+)\s+\d{1,2},?\s+(\d{4})", text)
+    if m:
+        period = _HKEX_MONTH_Q.get(_HKEX_EN_MONTH.get(m.group(1).upper()))
+        return (period, m.group(2)) if period else (None, None)
+    return None, None
+
+
+_HKEX_Q_CACHE = {}
+
+
+def _hkex_quarterly_rows(stock_id):
+    """全量公告中筛出季度业绩公告 [(period, fy, title, file_link), ...]"""
+    if stock_id in _HKEX_Q_CACHE:
+        return _HKEX_Q_CACHE[stock_id]
+    rows = _search_hkex(stock_id, None, "zh", t1code="", row_range="1000")
+    out = []
+    for ann in rows:
+        title = ann.get("TITLE", "")
+        label = ann.get("LONG_TEXT") or ann.get("SHORT_TEXT", "")
+        period, fy = _classify_hk_quarter(title, label)
+        if period and fy:
+            out.append((period, fy, title, ann.get("FILE_LINK", "")))
+    _HKEX_Q_CACHE[stock_id] = out
+    return out
+
+
+def _download_hkex_quarters(code, stock, stock_id, period, pdf_dir, results):
+    print(f"\n  [{config.PERIOD_NAME[period]} · 季度业绩公告]")
+    picks = [(fy, t, fl) for (p, fy, t, fl) in _hkex_quarterly_rows(stock_id) if p == period]
+    if not picks:
+        print("    未发现季度业绩公告（港股主板季报非强制，无属正常）")
+        return
+    for fy, title, fl in sorted(picks, reverse=True):
+        if not fl:
+            continue
+        title = re.sub(r"\s+", " ", title).strip()
+        if _TITLE_BLACKLIST_RE.search(title):
+            continue
+        out = os.path.join(pdf_dir, config.pdf_basename(
+            code, fy, config.PERIOD_NAME[period]))
+        if os.path.exists(out):
+            results["SKIP"] += 1
+            continue
+        pdf_url = fl if fl.startswith("http") else HKEX_BASE + fl
+        print(f"    下载: {fy} {title[:50]}")
+        ok = _download_and_validate(pdf_url, out, stock["name"], period, fy,
+                                    stock.get("alt_names"))
+        if ok:
+            results["OK"] += 1
+        else:
+            results["FAIL"] += 1
+        time.sleep(0.5)
+
+
 def download_hkex(code, periods=None):
     stock = config.STOCKS[code]
     stock_id = stock.get("hkex_stock_id") or _resolve_hkex_stock_id(code)
@@ -259,7 +346,11 @@ def download_hkex(code, periods=None):
     results = {"OK": 0, "FAIL": 0, "SKIP": 0}
 
     for period in periods:
-        t2code = {"FY": "40100", "H1": "40200", "Q1": "40300", "Q3": "40300"}.get(period)
+        # 季度业绩走「内幕消息」通道（t1code=10000），与年报/中报的财务报表通道不同
+        if period in ("Q1", "Q3"):
+            _download_hkex_quarters(code, stock, stock_id, period, pdf_dir, results)
+            continue
+        t2code = {"FY": "40100", "H1": "40200"}.get(period)
         if not t2code: continue
         print(f"\n  [{config.PERIOD_NAME[period]}]")
         time.sleep(1)
@@ -646,7 +737,7 @@ def download_us(code, periods=None):
 # ============================================================
 # 主函数
 # ============================================================
-def download(code=None):
+def download(code=None, periods=None):
     code = code or config.ACTIVE_STOCK
     stock = config.STOCKS[code]
     market = stock["market"]
@@ -659,7 +750,7 @@ def download(code=None):
     print(f"{'='*60}")
 
     if market == "hk":
-        return download_hkex(code)
+        return download_hkex(code, periods)
     elif market == "us":
         return download_us(code, periods=["FY"])
     else:
@@ -667,4 +758,6 @@ def download(code=None):
 
 if __name__ == "__main__":
     code = sys.argv[1] if len(sys.argv) > 1 else None
-    download(code)
+    # 可选期次: FY H1 Q1 Q3，省略则港股默认只跑年报+中报
+    _periods = [p.upper() for p in sys.argv[2:] if p.upper() in ("FY", "H1", "Q1", "Q3")]
+    download(code, _periods or None)
