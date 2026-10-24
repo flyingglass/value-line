@@ -1,0 +1,556 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>泡泡玛特 (09992) — 核心发动机「产品创新 × IP 运营」的跟踪体系：信号梯度 · 可辨识性判据 · 23A(2024-03) 回测</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="05-发动机跟踪（产品创新×IP运营）.html">泡泡玛特 (09992) — 核心发动机「产品创新 × IP 运营」的跟踪体系：信号梯度 · 可辨识性判据 · 23A(2024-03) 回测</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">泡泡玛特 (09992) — 核心发动机「产品创新 × IP 运营」的跟踪体系：信号梯度 · 可辨识性判据 · 23A(2024-03) 回测</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-10-09</span><span style="margin-left:auto;color:#b0b5bd">research/泡泡玛特/跟踪</span></div><div class="md" id="md"><h1>泡泡玛特 (09992) — 发动机跟踪：产品创新 × IP 运营</h1>
+<blockquote>
+<p><strong>定位</strong>：把「产品创意设计 + IP 运营」这个发动机，转成<strong>可跟踪、可判真伪、可定介入时点</strong>的操作体系。
+<strong>方法</strong>：以招股书（唯一系统披露单位经济体效率的文件）+ 2020–2026 全序列业绩会/财报为一手证据；每一个论断标注出处，凡推论逐条标注。
+<strong>关联</strong>：六变量（库存/杠杆/人/租金/物流/营运资本）见 <a href="%E6%A8%AA%E5%88%87%E5%8F%98%E9%87%8F%E8%B7%9F%E8%B8%AA.html">横切变量跟踪</a>；单位产出序列见 <a href="../%E6%B8%A0%E9%81%93%E5%8D%95%E5%BA%97%E4%BA%A7%E5%87%BA%E6%97%B6%E9%97%B4%E7%BA%BF.html">../渠道单店产出时间线</a>；业绩会全序列见 <a href="../%E4%B8%9A%E7%BB%A9/%E4%B8%9A%E7%BB%A9%E4%BC%9A%E7%BA%AA%E8%A6%81%E7%B4%A2%E5%BC%95%EF%BC%882020-2026%EF%BC%89.html">../业绩/业绩会纪要索引（2020-2026）</a>。</p>
+</blockquote>
+<h2>速读摘要</h2>
+<p><strong>一句话结论</strong>：发动机本身<strong>无法从财报跟踪</strong>（上市后即停披单位经济体指标、年报正文只在首发期写新品），只能从**「业绩会问答 + 财报首次披露 + 投入端附注」三级梯度<strong>间接跟踪；三级梯度的时间差约 <strong>2–3 年 / 1.5 年 / 同步</strong>，而</strong>可辨识性最早在 2024-03-20（23A）出现**。</p>
+<p><strong>四条硬事实</strong></p>
+<ol>
+<li><strong>招股书是唯一的「经营温度计」</strong>：单店年化收益（2017 421 万 → 2019 <strong>841 万</strong> → 2020H1 501 万）、同店销售增长（2018 +59.6% / 2019 +63.1% / 2020H1 <strong>-23.1%</strong>）、亏损店占比（2019 2.3% → 2020H1 11.2%）——<strong>上市后 20年报/21中报/21年报/22中报 全部零命中</strong>（本次程序化核查）。</li>
+<li><strong>单店模型极轻</strong>：每间新零售店平均初始投资约 <strong>230 万港元</strong>，开业后 1–2 个月收支平衡，现金回收期 <strong>3–6 个月</strong>（招股书「未來計劃」）→ 这门生意可以「用开店试错」；反过来说，<strong>单店产出跌破盈亏线就是扩张的自动刹车</strong>。</li>
+<li><strong>财报正文只在「首次发布」写新品</strong>：22 年报（2023-03）LABUBU 出现 <strong>13 次</strong>（首次书面披露搪胶毛绒）；而 23 中报 <strong>0 次</strong>、23 年报 <strong>LABUBU 0 次 / 毛绒 1 次</strong>——<strong>同一时间点的业绩会却在讲&quot;LABUBU +40% 验证毛绒&quot;</strong>。</li>
+<li><strong>23A（2024-03-20）是四判据第一次同时齐备</strong>：早于 Lisa 引爆（2024-04-16，据公开报道）约 4 周、早于财报确认（24H1）5 个月、早于峰值（2025-08-26）17 个月。</li>
+</ol>
+<p><strong>三条跟踪判据（本页产出）</strong>：① <strong>四判据齐备度</strong>（数据/品类匹配/市场验证/供应链跟进，缺一不算）；② <strong>业绩会主动表述 &gt; 财报正文</strong>（正文滞后一个周期）；③ <strong>终端&quot;断货 + 产能扩张&quot;双向确认</strong>（比收入早）。</p>
+<p><strong>一条最需要警惕的边界</strong>：23A 的兑现依赖<strong>外生流量事件</strong>（Lisa），公司可控的只有&quot;泰国样本已自验&quot;——<strong>能预判&quot;公司在押什么&quot;，预判不了&quot;会不会有人替它引爆&quot;</strong>。</p>
+<hr />
+<h2>一、发动机的解构：为什么「产品创新 × IP 运营」是核心</h2>
+<p>招股书开篇即定性：<strong>&quot;IP 是我們業務的核心&quot;</strong>，且以「覆蓋潮流玩具全產業鏈的一體化平台」定义自身（藝術家發掘 → IP 運營 → 消費者觸達 → 潮流玩具文化推廣）。</p>
+<p>但把发动机拆开后，<strong>两半的可预测性完全不同</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>半台发动机</th>
+<th>本质</th>
+<th>可预测性</th>
+<th>证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IP 运营</strong></td>
+<td>把已有 IP 商业化（系列节奏、品类匹配、区域落地）</td>
+<td>⚠️ <strong>部分可辨</strong>（方法论可复制）</td>
+<td>王宁 24-03：&quot;<strong>找到了不同 IP 擅长的点</strong>……有效地避免了 IP 之间的竞争&quot;</td>
+</tr>
+<tr>
+<td><strong>产品创意设计</strong></td>
+<td>找出下一个能爆的 IP</td>
+<td>❌ <strong>不可预测</strong>（管理层自认）</td>
+<td>Pucky：20A 业绩会预期&quot;小幅增长&quot;，实际 2021 <strong>-39.3%</strong>；LABUBU 是&quot;意外&quot;而非规划产物</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键推论</strong>：可跟踪的是**「IP 运营」这一半**（因为它有方法论、有可验证的输出），而「创造爆款」这一半只能<strong>事后确认</strong>。<strong>因此跟踪体系的设计目标不是&quot;预测下一个 LABUBU&quot;，而是&quot;尽早识别公司在下注什么，并跟踪这个下注的验证进度&quot;。</strong></p>
+<hr />
+<h2>二、渠道的双重身份：放大器 + 测试仪</h2>
+<p>招股书/业绩会里，四条渠道的定位是<strong>明写的分工</strong>（20A 业绩会司德原话）：</p>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>定位（原话）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线下门店</td>
+<td>销售 + <strong>品牌宣传</strong> + 会员拉新</td>
+</tr>
+<tr>
+<td>机器人商店</td>
+<td>便利购买 + 拉新 + &quot;<strong>雷达作用</strong>，根据销售表现考虑是否新增门店&quot;</td>
+</tr>
+<tr>
+<td>天猫/电商</td>
+<td><strong>以拉新为核心目标</strong>（团队 KPI 含&quot;新会员销售业务占比&quot;）</td>
+</tr>
+<tr>
+<td>微信抽盒机</td>
+<td><strong>核心用户聚集</strong>，玩法驱动</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&quot;机器人商店＝雷达&quot;是渠道即测试仪的书面证据。</strong></p>
+<h3>2.1 渠道数据的正确用法：预判、确认、证伪三分</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>看什么</th>
+<th>时点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>预判</strong></td>
+<td>渠道的<strong>新形态试点决策</strong>（快闪转正、主题店、雷达点位升格）</td>
+<td>最早</td>
+</tr>
+<tr>
+<td><strong>确认</strong></td>
+<td>渠道的<strong>单店/单台产出倍数异常</strong>（不是总量）</td>
+<td>中</td>
+</tr>
+<tr>
+<td><strong>证伪</strong></td>
+<td>单店产出/同店转负</td>
+<td>最灵敏，但最易被开店摊薄污染</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 两个必须区分的方向（逻辑不对称）</h3>
+<blockquote>
+<p><strong>&quot;真有好产品 → 会在渠道显现&quot;基本成立（必要性）。
+&quot;渠道数据好 → 说明产品好&quot;不成立（充分性）。</strong></p>
+</blockquote>
+<p>渠道数据是<strong>复合信号</strong>，至少混四种成分：<strong>真产品力 / 渠道扩张摊薄 / 运营改善 / 投机需求</strong>。</p>
+<ul>
+<li>招股书自证摊薄：门店 114 → 187 家时，零售店单店年化从 <strong>841 万</strong>掉到 501 万</li>
+<li>运营改善 ≠ 产品力：24A 门店同店 +28%，归因是&quot;提升陈列、精细化运营、奖励机制&quot;</li>
+<li>投机需求：25A 管理层自陈&quot;做好产品，<strong>不做理财产品</strong>&quot;；26H1 海外线上随即 -39.8% / -45.6%</li>
+</ul>
+<p><strong>→ 渠道更适合当&quot;证伪工具&quot;，不适合当&quot;证实工具&quot;。</strong></p>
+<hr />
+<h2>三、信号的三级梯度（本页核心方法）</h2>
+<p><strong>引擎的声音有明确的传导顺序，且每一级的时间差可以量化。</strong></p>
+<p>以「毛绒」这条线完整复盘（含精确到日的时点）：</p>
+<table>
+<thead>
+<tr>
+<th>级</th>
+<th>载体</th>
+<th>信号原文</th>
+<th>距放量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一级：业绩会口头方向</strong></td>
+<td>21H1 业绩会（2021-08）</td>
+<td>司德：衍生品三方向，&quot;会推出一些可能<strong>从毛绒</strong>到徽章，再到数码周边相关的产品&quot;，&quot;<strong>今年下半年衍生品重点</strong>&quot;</td>
+<td><strong>3 年</strong></td>
+</tr>
+<tr>
+<td>二级：财报首披</td>
+<td><strong>22 年报（2023-03）</strong></td>
+<td>首次书面：&quot;<strong>LABUBU 搪膠毛絨公仔</strong>……<strong>突破傳統品類的定義與設計模式</strong>，未來該產品線將進行<strong>長線開發</strong>&quot;</td>
+<td>1.5 年</td>
+</tr>
+<tr>
+<td>—</td>
+<td>23 中报 / 23 年报</td>
+<td><strong>几乎消失</strong>（LABUBU 0 次、毛绒 1 次）——<strong>正文只在首发期写新品</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>三级：业绩会量化确认</strong></td>
+<td><strong>23A 业绩会（2024-03-20）</strong></td>
+<td>LABUBU &quot;+40%，头部最快&quot;、&quot;<strong>成功验证毛绒品类</strong>&quot;、&quot;<strong>重点投入毛绒</strong>&quot;、&quot;<strong>断货</strong>&quot;</td>
+<td><strong>5 个月</strong></td>
+</tr>
+<tr>
+<td>收入可量化</td>
+<td>24H1 财报（2024-08）</td>
+<td>毛绒 <strong>4.5 亿（+993%）</strong>、The Monsters 6.27 亿（+292.2%）</td>
+<td>放量起点</td>
+</tr>
+<tr>
+<td>登顶</td>
+<td>25A 财报（2026-03）</td>
+<td>毛绒 <strong>187 亿、占营收 50.4%</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>三条操作含义</strong>：</p>
+<ol>
+<li><strong>业绩会问答的权重必须高于财报正文</strong>（正文滞后一个报告期，且首发期后即沉默）。</li>
+<li><strong>&quot;品类收入未单列&quot;≠&quot;看不见&quot;</strong>——22 年报的定性好评就是先行读数；等收入单列（24H1）时价格已 <strong>+89%</strong>。</li>
+<li>⚠️ <strong>一级信号不等于可信</strong>：21H1 的&quot;毛绒&quot;当时是<strong>衍生品三方向之一</strong>（且招股书里第三方产品早已含毛绒玩具）。真正的新东西是 <strong>&quot;自有 IP × 毛绒&quot;这个组合</strong>——方向对了，形态不同。<strong>引用一级信号时必须区分&quot;方向&quot;与&quot;具体形态&quot;。</strong></li>
+</ol>
+<h3>3.1 同一逻辑线的另一条（海外 DTC）</h3>
+<table>
+<thead>
+<tr>
+<th>级</th>
+<th>载体</th>
+<th>原文</th>
+<th>距放量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一级</td>
+<td><strong>21A 业绩会（2022-03）</strong></td>
+<td>文德一：&quot;今年的主要发展方向是 <strong>DTC（直接面向消费者）和本土化零售</strong>为重点&quot;</td>
+<td>—</td>
+</tr>
+<tr>
+<td>二级</td>
+<td><strong>22 中报（2022-08）</strong></td>
+<td>首次书面：&quot;港澳台地區及海外業務<strong>從以 To B 為主轉型為以 DTC 為主導</strong>的模式&quot;</td>
+<td>—</td>
+</tr>
+<tr>
+<td>三级</td>
+<td>24A（2025-03）</td>
+<td>海外 <strong>50.7 亿（+375.2%）</strong>，单店店效 +160%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>业绩会同样早于财报正文一个报告期</strong>——这是<strong>重复出现的模式</strong>，不是孤立现象。</p>
+<hr />
+<h2>四、四判据：如何区分&quot;真信号&quot;与&quot;管理层主推&quot;</h2>
+<p><strong>⚠️ 这是本页最重要的一节。</strong> 因为管理层每年都会点名新方向，多数无声消失。</p>
+<h3>4.1 反例：KUBO（23H1，2023-08）</h3>
+<p>管理层&quot;<strong>新 IP KUBO 主推</strong>&quot; → <strong>未兑现</strong>（2024–2025 未进头部，此后星星人反而跑出）。</p>
+<h3>4.2 正例：LABUBU × 毛绒（23A，2024-03-20）</h3>
+<table>
+<thead>
+<tr>
+<th>判据</th>
+<th>KUBO（2023-08）</th>
+<th>LABUBU × 毛绒（2024-03）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 是否已有实际增长数据</td>
+<td>新 IP，无</td>
+<td><strong>+40%，10 个破亿 IP 中增速最快</strong></td>
+</tr>
+<tr>
+<td>② 是否找到专属品类</td>
+<td>未提</td>
+<td><strong>&quot;发现更适合做毛绒玩具&quot;</strong></td>
+</tr>
+<tr>
+<td>③ 是否已有市场验证</td>
+<td>未提</td>
+<td><strong>&quot;成功验证毛绒品类&quot;</strong> + 泰国 6 家店（首店首日 500 万）</td>
+</tr>
+<tr>
+<td>④ 是否有供应链跟进动作</td>
+<td>未提</td>
+<td><strong>&quot;成立专门的团队&quot;，解决断货</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>判据：四者同时出现才算信号；只有&quot;管理层主推&quot;这一条，零预测力。</strong></p>
+<h3>4.3 与六变量体系的关系</h3>
+<p>四判据是<strong>发动机层</strong>的判读；<a href="%E6%A8%AA%E5%88%87%E5%8F%98%E9%87%8F%E8%B7%9F%E8%B8%AA.html">横切变量跟踪</a> 的六变量是<strong>财务层</strong>的落点。两者的接口是：</p>
+<blockquote>
+<p><strong>发动机点火（四判据齐备）→ 财务上是&quot;断货 + 产能追赶 + 品类收入爬坡&quot;三件套同步出现。</strong></p>
+</blockquote>
+<p>24H1 即标准样本：毛绒 +993% / 产能 2 月 40 万只 → 7 月 <strong>300 万只/月</strong> / 返修率 2% → 0.005%。</p>
+<hr />
+<h2>五、回测：23A（2024-03-20）为什么是&quot;信号最全&quot;的时点</h2>
+<h3>5.1 那天同场出现的五条信号</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>信号</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>LABUBU：&quot;头部 IP 中<strong>增速最快之一</strong>，去年增长近 <strong>40%</strong>。<strong>成功验证毛绒品类是展现 IP 的好方式</strong>&quot;</td>
+<td>司德</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&quot;去年我们<strong>找到了不同 IP 擅长的点</strong>，比如 <strong>LABUBU 发现更适合做毛绒玩具</strong>……有效地<strong>避免了 IP 之间的竞争</strong>&quot;</td>
+<td>王宁</td>
+</tr>
+<tr>
+<td>3</td>
+<td>毛绒&quot;已<strong>成立了专门的团队</strong>……争取解决大家经常看到的<strong>断货</strong>或质量问题&quot;</td>
+<td>司德</td>
+</tr>
+<tr>
+<td>4</td>
+<td>&quot;今年将<strong>重点投入毛绒品类</strong>&quot;</td>
+<td>司德</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>泰国第三家店首日超 500 万</strong>（当时海外全年仅 10.66 亿）</td>
+<td>文德一</td>
+</tr>
+</tbody>
+</table>
+<p>结构信号：<strong>盲盒占比首次低于 70%</strong>（68–69%）。</p>
+<h3>5.2 前后时点对照（为什么是&quot;唯一窗口&quot;）</h3>
+<table>
+<thead>
+<tr>
+<th>时点</th>
+<th>状态</th>
+<th>股价（前复权）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>23H1（2023-08-23）</td>
+<td><strong>空白</strong>：毛绒/LABUBU 未被提及；主推的是 KUBO（落空）</td>
+<td>22.9</td>
+</tr>
+<tr>
+<td>2024-02-05</td>
+<td>年内低点</td>
+<td><strong>16.4</strong></td>
+</tr>
+<tr>
+<td><strong>23A（2024-03-20）</strong></td>
+<td><strong>四判据首次齐备</strong></td>
+<td><strong>24.0</strong>（离底 +46%，对 EPS 0.80 元约 <strong>27 倍 PE</strong>）</td>
+</tr>
+<tr>
+<td>2024-04-16</td>
+<td>Lisa 晒 LABUBU（据公开报道）</td>
+<td>29.3</td>
+</tr>
+<tr>
+<td>24H1（2024-08-21）</td>
+<td>收入确认（毛绒 +993%），指引当场上调 60%/200%</td>
+<td><strong>45.3（+89%）</strong></td>
+</tr>
+<tr>
+<td>25A（2026-03-25）</td>
+<td>毛绒 187 亿</td>
+<td>137.7</td>
+</tr>
+<tr>
+<td>2025-08-26</td>
+<td>峰值</td>
+<td><strong>333.9</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>&quot;从前一个时点是空的、到后一个时点已经太贵&quot;——这就是&quot;唯一可辨识窗口&quot;的含义。</strong></p>
+<hr />
+<h2>六、为什么&quot;证据最薄的下注点&quot;是特征而非缺陷</h2>
+<blockquote>
+<p><strong>方法论来源</strong>：<a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C-%E6%8F%90%E4%BB%B7%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B7%9F%E8%B8%AA%E5%86%B3%E7%AD%96%E6%97%B6%E9%97%B4%E7%BA%BF.html">../../疯狂的里海/案例/里海案例-涪陵榨菜-提价发现与跟踪决策时间线</a>——该页的加粗判语是：&quot;<strong>证据最薄的时点＝下注的时点，证据最硬的时点＝已经不需要它了。</strong>&quot;</p>
+</blockquote>
+<h3>6.1 三个可分离的命题</h3>
+<table>
+<thead>
+<tr>
+<th>命题</th>
+<th>说的是什么</th>
+<th>23A 那天的所指</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>证据最薄</strong></td>
+<td>每条证据的<strong>强度</strong>（数字大小、硬度）</td>
+<td>LABUBU 仅 +40%、约 3 亿体量；毛绒收入<strong>未单列</strong>；产能无数字；泰国是单点</td>
+</tr>
+<tr>
+<td><strong>判据齐备</strong></td>
+<td>证据的<strong>来源是否独立、方向是否一致</strong></td>
+<td>四条独立来源（IP 增速 / IP×品类方法论 / 终端断货 / 供应链动作）<strong>同向</strong></td>
+</tr>
+<tr>
+<td><strong>必须下注</strong></td>
+<td>决策依据<strong>不在证据，在位置</strong></td>
+<td>离年内低点仅 +46%、约 27 倍 PE、派息率 35%、累计回购 11.9 亿（占总股本 4.21%）</td>
+</tr>
+</tbody>
+</table>
+<h3>6.2 为什么&quot;每条都弱&quot;是内生的</h3>
+<blockquote>
+<p><strong>如果每条证据都强，价格就不会是 24 港元。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>证据强度</th>
+<th>时点</th>
+<th>股价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>毛绒收入单列 +993%</td>
+<td>2024-08</td>
+<td>45.3</td>
+</tr>
+<tr>
+<td>产能数字（40 万 → 300 万只/月）</td>
+<td>2024-08</td>
+<td>45.3</td>
+</tr>
+<tr>
+<td>LABUBU 收入 141 亿</td>
+<td>2026-03</td>
+<td>137.7</td>
+</tr>
+</tbody>
+</table>
+<p><strong>证据强度与市场定价是同一枚硬币的两面</strong>——强证据出现的时点，就是市场也看得见的时点。所以&quot;薄&quot;不是选择，是<strong>只剩</strong>。榨菜完全对称：严格量价拆分（2018-03-23）晚建仓 <strong>14 个月</strong>，而 2017 全年股价已 <strong>+85.81%</strong>。</p>
+<h3>6.3 为什么&quot;齐备&quot;能部分弥补&quot;弱&quot;</h3>
+<p>一条强证据可能是偶然；<strong>四条来源独立、方向一致的弱证据，同时错的可能性低一个量级</strong>。其中<strong>价值最高的是第 2 条</strong>——它不是&quot;LABUBU 好&quot;，而是&quot;<strong>我们学会了给 IP 找它擅长的品类</strong>&quot;。<strong>这是能力，不是状态。</strong></p>
+<h3>6.4 &quot;必须下注&quot;的依据不在证据里</h3>
+<blockquote>
+<p><strong>不是&quot;证据够所以必须下注&quot;，而是&quot;位置提供了容错，所以敢于在证据不足时下注&quot;。</strong></p>
+</blockquote>
+<p>榨菜 2017.1 的实际驱动（该页 §五 原文）：&quot;业绩预告大幅增长 + <strong>市值 70 亿 / 业绩 2.5 亿 / PE&lt;30</strong> + 提价已知&quot;。泡泡玛特 2024-03-20 的结构相同：<strong>低估值 + 底部 + 变化，三者齐备。</strong></p>
+<h3>6.5 收口</h3>
+<blockquote>
+<p><strong>证据薄（必然）＋ 多源同向（可辨识）＋ 价格低（有容错）＝ 超额收益的唯一入口。</strong>
+卖出的对称结构同样成立：榨菜 2019-03-22 年报披露销量增速从 +17.26% 掉到 +10.65%——<strong>证据变强、方向变差</strong>，那才是该走的时候。</p>
+</blockquote>
+<hr />
+<h2>七、边界与待验证</h2>
+<ol>
+<li>🔴 <strong>这套结构提高的是赔率，不是胜率。</strong> 里海对榨菜四年的自评是&quot;<strong>运气多</strong>&quot;（2023-06-20 复盘）。四判据齐备而每条弱，同样可能什么都没发生——<strong>弱者体系的承诺只是&quot;看错了亏不了多少&quot;</strong>。</li>
+<li>🔴 <strong>23A 的兑现依赖外生变量。</strong> LABUBU 全球引爆踩在 Lisa 2024-04-16 的 Instagram 上（<strong>二手报道</strong>：搜狐、泰国头条新闻；日期未获一手确认）。管理层在泰国已自我验证（首日 500 万），但<strong>泰国能否扩散成全球，公司不可控</strong>。</li>
+<li>🔴 <strong>&quot;读法 B&quot;未排除</strong>：LABUBU 的全球爆红含较大社交货币/投机成分（管理层自陈&quot;不做理财产品&quot;）。<strong>在中国/亚洲这种收藏文化成熟市场，新 IP 可靠收藏需求接棒；西方市场缺那波社交流量则可能接不上。</strong> 26H1 海外线上 -39.8%～-59.0% 已在显示该风险；26H1 星星人虽成&quot;现象级&quot;，但司德自陈&quot;<strong>目前在西方热度跟亚洲地区有差距</strong>&quot;。</li>
+<li>⚠️ <strong>&quot;断货&quot;证据链在 2023 年不完整</strong>：本次检索<strong>未找到 2023 年下半年 LABUBU 毛绒断货的可靠当时报道</strong>（命中的多为 2025 年 LABUBU 3.0 爆红期）。23A 的&quot;断货&quot;是<strong>公司单方面口径</strong>，未获第三方印证。</li>
+<li>⚠️ <strong>PE 27 倍为粗算</strong>（EPS 0.80 元来自 23A 业绩会原文；港元/人民币折算未精确核实）。</li>
+<li>⚠️ <strong>模具成本口径需区分</strong>：年报为&quot;使用年限为一年内的模具成本&quot;（4,565 / 7,460 / 17,155 / 18,135 / 26,138 千元，2019–2023），中报用另一个科目（&quot;模具成本&quot;，21 中报 10,881），<strong>不可混用</strong>。</li>
+</ol>
+<h2>待办</h2>
+<ul>
+<li>[ ] 用<strong>平均店数</strong>（而非期末店数）重算 2020–2026 单店产出序列，检验能否更早定位拐点</li>
+<li>[ ] 把 2020–2026 全部 12 场业绩会按<strong>四判据</strong>逐场打分，检验该卡的历史命中率（能否正确排除 Pucky 21A、KUBO 23H1）</li>
+<li>[ ] 补 2023 年下半年终端层面的一手证据（若可得）以独立验证 23A 的&quot;断货&quot;</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../%E4%B8%9A%E7%BB%A9/%E4%B8%9A%E7%BB%A9%E4%BC%9A%E7%BA%AA%E8%A6%81%E7%B4%A2%E5%BC%95%EF%BC%882020-2026%EF%BC%89.html">../业绩/业绩会纪要索引（2020-2026）</a> — 12 场全序列 + 指引兑现追踪表</li>
+<li><a href="../%E4%B8%9A%E7%BB%A9/2023-%E5%B9%B4%E5%BA%A6%E4%B8%9A%E7%BB%A9%E5%8F%91%E5%B8%83%E4%BC%9A-%E8%89%BE%E5%BE%B7%E5%8B%92%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81.html">../业绩/2023-年度业绩发布会-艾德勒阅读摘要</a> — 23A 的完整四级阅读（&quot;爆发前夜沙盘&quot;）</li>
+<li><a href="../%E6%B8%A0%E9%81%93%E5%8D%95%E5%BA%97%E4%BA%A7%E5%87%BA%E6%97%B6%E9%97%B4%E7%BA%BF.html">../渠道单店产出时间线</a> — 单位产出序列与口径限制（SSSG 不可得）</li>
+<li><a href="%E6%A8%AA%E5%88%87%E5%8F%98%E9%87%8F%E8%B7%9F%E8%B8%AA.html">横切变量跟踪</a> — 财务层六变量（库存/杠杆/人/租金/物流/营运资本）</li>
+<li><a href="../../%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0/%E8%BF%90%E8%90%A5%E6%8C%87%E6%A0%87.html">../运营指标</a> — IP 集中度 / 品类 / 渠道 / 会员的现行读数</li>
+<li><a href="../%E9%9C%80%E6%B1%82/%E6%83%85%E7%BB%AA%E9%9C%80%E6%B1%82%E6%8C%81%E7%BB%AD%E6%80%A7%E8%B7%9F%E8%B8%AA.html">../需求/情绪需求持续性跟踪</a> — 需求端长期框架</li>
+<li><a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%A1%88%E4%BE%8B/%E9%87%8C%E6%B5%B7%E6%A1%88%E4%BE%8B-%E6%B6%AA%E9%99%B5%E6%A6%A8%E8%8F%9C-%E6%8F%90%E4%BB%B7%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B7%9F%E8%B8%AA%E5%86%B3%E7%AD%96%E6%97%B6%E9%97%B4%E7%BA%BF.html">../../疯狂的里海/案例/里海案例-涪陵榨菜-提价发现与跟踪决策时间线</a> — &quot;证据最薄的下注点&quot;出处</li>
+<li><a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E6%96%B9%E6%B3%95%E8%AE%BA/20-%E8%A7%A3%E6%9E%84%E5%BB%BA%E6%A8%A1%E8%B7%9F%E8%B8%AA/%E9%87%8C%E6%B5%B7-%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%B7%9F%E8%B8%AA.html">../../疯狂的里海/方法论/20-解构建模跟踪/里海-建模与跟踪</a> — 建模方法论（⚠️ 该页&quot;跟踪不到即出局&quot;系归纳，非原文）
+<a href="../../../../research/index.md">research/index.md</a> · <a href="../../../../research/log.md">research/log.md</a></li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E8%B7%9F%E8%B8%AA">← 返回 跟踪</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/消费/泡泡玛特/跟踪/05-发动机跟踪（产品创新×IP运营）.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

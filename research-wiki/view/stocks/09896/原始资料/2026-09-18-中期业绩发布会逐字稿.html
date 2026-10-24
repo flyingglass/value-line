@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-09-18-中期业绩发布会逐字稿</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">09896</a> › <a href="2026-09-18-中期业绩发布会逐字稿.html">2026-09-18-中期业绩发布会逐字稿</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2026-09-18-中期业绩发布会逐字稿</h1><div class="meta-line"><span class="tag tag-raw">原始</span><span style="margin-left:auto;color:#b0b5bd">raw/research/09896</span></div><div class="md" id="md"><h1>名创优品（09896 / MNSO）2026 年中期业绩发布会逐字稿（业绩电话会）</h1>
+<blockquote>
+<p>来源：Benzinga「Benzinga Insights」<br />
+原文链接：https://www.benzinga.com/news/26/09/61862221/miniso-group-holding-reports-q2-2026-results-full-earnings-call-transcript <br />
+作者：Benzinga Insights（Benzinga Staff Writer）<br />
+发布时间：2026-09-18 05:32（美东时间），原文标注 47 min read<br />
+会议信息：MINISO Group Holding（NYSE: MNSO / HKEX: 09896）2026 年中期业绩发布会，2026-09-18，Zoom 网络直播，提供中英文同传<br />
+参会管理层：叶国富（创始人兼 CEO）、张靖京 Eason Zhang（首席财务官）<br />
+原始来源：公司业绩说明会现场录音，由 Benzinga 自动转录（可能存在错漏，正式口径以 SEC 6-K / 港交所公告为准）<br />
+译文说明：本文为英文逐字稿的<strong>中文全译</strong>（非官方译稿），按原文顺序逐段对应翻译，数字与口径一律保留原值；原文明显的自动转录错误（如 &quot;magic share&quot; 实指 IP 占比）按上下文校正，不作逐处加注</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：中国大店模型（Land / Super MINISO）· 自有 IP（UU / Chocho）· 会员战略 · 海外盘整与分销收缩 · 利润率下调指引</p>
+</blockquote>
+<p><strong>一句话核心</strong>：中国区以「大店 + 自有 IP + 会员」跑出近三年最快 H1 增速（收入 <strong>+26.2%</strong>），但海外分销下滑与北美直营投入拖累利润，管理层<strong>主动降速</strong>将海外定调为「盘整期（holding stage）」，并把全年调整后经营利润率指引从「-1~2pp」下调到 <strong>-3~-4pp</strong>，同时明确 <strong>2027 年才是利润率改善拐点</strong>。</p>
+<p><strong>关键数据</strong>：</p>
+<ul>
+<li>集团收入 <strong>115 亿元（+22.4%）</strong>，EPS <strong>+8.2%</strong>，经营现金流 <strong>+46%</strong>，全球门店 <strong>8,674 家</strong></li>
+<li>中国收入 <strong>+26.2%</strong>（Q2 <strong>+23%</strong>，远超原预期低双位数），同店中高个位数；门店 <strong>4,665 家</strong>（H1 净增 97：Land +59 / 旗舰 +159 / 常规 -121）</li>
+<li>会员销售贡献 <strong>77%</strong>（去年同期 57%、去年全年 60%、Q1 63%），会员数 <strong>1.3 亿（+31%）</strong>，客单价 <strong>+5%</strong></li>
+<li>自有 IP：H1 收入近 <strong>5 亿元</strong>，集团 <strong>10 亿元</strong>年度目标 <strong>7 月底提前达成</strong>；利润率高于公司平均，库存周转 <strong>30–40 天</strong></li>
+<li>海外收入 <strong>40.6 亿元（+40.9%）</strong>，但终端 GMV <strong>82.9 亿元（+40%）</strong> 与收入背离；海外利润贡献占比从 2023 年的 <strong>35–40%</strong> 降至 H1 的 <strong>10–15%</strong></li>
+<li>调整后经营利润 <strong>14.9 亿元（-6%）</strong>，剔除汇兑 <strong>16.3 亿元（+5%）</strong>；调整后净利率 <strong>-2.6pp</strong></li>
+<li>毛利率 H1 <strong>44.3%</strong>（持平，含关税退税 +0.6pp），Q2 <strong>45.3%</strong>（+1.0pp，含退税 +1.2pp）</li>
+<li>库存周转：整体 <strong>102 天</strong>（97）、中国 <strong>67 天</strong>（73）、海外 <strong>273 天</strong>（240）</li>
+<li>不派中期股息；H1 股东回报 <strong>13.1 亿元</strong>（回购 5.2 亿元），全年政策为回购+分红 ≥ 剔汇兑调整净利的 <strong>50%</strong></li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>中国超预期 vs 海外不及预期</strong>：中国「大店驱动」被验证（Land 坪效为常规店 2 倍、H1 净开 72 家），海外却因分销商去库存 + 北美以外直营未盈利，把集团利润率拖低 3–4pp</li>
+<li><strong>自有 IP 的高增长 vs 高投入</strong>：UU 单月销售连续破 1 亿、Chocho 首发售罄，但广告、IP 授权费、销售人工合计推高销售费用率 2.6pp，「战略投入期」尚未进入利润收获期</li>
+<li><strong>规模 vs 渠道健康</strong>：管理层主动关店（海外 H2 净减 50–70 家、分销全年净减 100–110 家）、主动放慢开店（&quot;除非有 100% 信心&quot;），以短期收入换长期单店模型</li>
+<li><strong>北美目标 vs 现实</strong>：全年 40 亿元收入 / 10% 净利率目标不变，但 Q2 增速从 37% 放缓至 25%，断货、关税调整、新店前置费用三重压制</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li><strong>海外 800 家直营店的单店模型</strong>是否在 2027 年前跑通（管理层自认「盘整期」）</li>
+<li><strong>分销库存去化</strong>：亚洲分销 H2 收入仍将 -10% 左右，低效店清理「还将持续两个季度」</li>
+<li><strong>北美 9 月断货缓解</strong>是否兑现，Q4 旺季能否支撑 40 亿收入 / 10% 净利率目标</li>
+<li><strong>Chocho 能否成为第二个年销 10 亿的自有 IP</strong>，以及 UU 与 Disney 级别以上的合作落地</li>
+<li><strong>7–8 月中国 GMV 仍 +20%</strong>、同店中个位数，H2 中双位数收入指引的达成度（去年 11–12 月 Zuntopia 高基数）</li>
+<li><strong>回购力度</strong>：管理层称当前估值「极具吸引力」，将以大规模回购替代中期股息</li>
+</ol>
+<hr />
+<h2>正文</h2>
+<h3>一、主持人开场与合规声明</h3>
+<p><strong>OPERATOR</strong>：大家好，感谢各位的耐心等待，欢迎参加名创优品 2026 年中期业绩发布会。目前所有参会者处于旁听模式，管理层发言后将进行问答环节。提问前请说明您的姓名及所代表的机构。请注意本次会议将被录音，会议提供英文同传，您可以在 Zoom 会议中点击「同声传译」选择您偏好的语言。</p>
+<p>我们今天早些时候已发布 2026 年第二季度及中期业绩，可在 ir.miniso.com 查阅。出席今天会议的有创始人兼首席执行官叶国富先生，以及首席财务官张靖京先生。在会议开始前，请参阅我们业绩新闻稿中的前瞻性声明（Safe Harbor），该声明同样适用于本次电话会，因为我们将作前瞻性陈述。同时请注意，我们今天将讨论非 IFRS 财务指标，相关说明及与 IFRS 最可比指标的调节表载于我们的业绩公告以及向美国 SEC 和香港联交所提交的文件中。</p>
+<p>除另有说明外，所有金额单位均为人民币。此外，我们为今天的会议准备了包含财务与运营信息的 PPT，使用 Zoom 的参会者可以看到，稍后也可在投资者关系网站查看。现在有请叶先生。</p>
+<h3>二、CEO 叶国富：整体表现与中国业务</h3>
+<p><strong>叶国富（创始人兼 CEO）</strong>：大家好。上半年名创优品集团收入达到 <strong>115 亿元，同比增长 22.4%</strong>；每股收益增长 <strong>8.2%</strong>，经营现金流增长 <strong>46%</strong>。全球门店数量达到 <strong>8,674 家</strong>。</p>
+<p>名创优品今天正处在一个关键节点：我们在经营更大、更好的门店，在建设自有 IP，在发展海外组织能力。机遇与挑战并存。我坚信，这些战略方向和它们的阶段性意义，远比短期数字更重要。</p>
+<p>我将按三大板块向大家介绍本季度业务表现：名创优品中国、名创优品海外，以及 TOP TOY。</p>
+<p>官方数据显示，今年上半年中国社会消费品零售总额同比增长 <strong>1.3%</strong>。在这一宏观背景下，名创优品中国上半年收入增长 <strong>26.2%</strong>，不仅大幅跑赢社零大盘，也超出了我们此前的指引。这是我们<strong>近三年最快的上半年增速</strong>。</p>
+<p>更重要的是，增长质量确实很高，主要由<strong>同店中高个位数增长</strong>驱动。截至 2026 年第二季度末，名创优品中国门店数达到 <strong>4,665 家</strong>，上半年净增 <strong>97 家</strong>，其中 Land 业态净增 <strong>59 家</strong>，旗舰业态净增 <strong>159 家</strong>，常规店净关 <strong>121 家</strong>。8 月 22 日，名创优品 Land 成都东郊记忆店正式开业，成为中国<strong>第 100 家 Land 门店</strong>。</p>
+<p>门店数量在稳步增长，但质量更重要。6 月末我们的中国门店数同比增长 <strong>8%</strong>，而收入增长 <strong>26%</strong>，反映出单店产出大幅提升、整体坪效健康增长。我想展示三组数据。</p>
+<p>第一，关于坪效与租售比。逐月看，Land 业态门店的坪效约为常规店的<strong>两倍</strong>。与存量门店相比，2026 年新开门店面积显著更大，但坪效保持稳定，其中<strong>租售比改善最为明显</strong>。我们的新店不再只是一个租户，而是客流引擎。</p>
+<p>第二，门店翻新节奏继续加快。上半年我们完成了 <strong>189 家</strong>门店翻新，翻新后门店表现<strong>几乎翻倍</strong>。全年翻新目标 355 家，我们完全有信心在年底前超额完成。</p>
+<p>第三，加盟商回报持续改善。无论以回本周期、利润率还是盈利门店占比衡量，上半年全国名创优品 Land 门店及全国名创门店的盈利水平都达到了 <strong>2019 年以来的最佳</strong>。加盟商越来越愿意开更大、更好的店，这是对我们渠道战略最直接的认可。从「腾笼换鸟」到大店驱动增长，我们的渠道升级战略已经推进两年，并且对未来依然意义重大。</p>
+<p>这一点可以从两个事实来评估：第一，中国翻新门店的占比仍然很低；第二，我们在店型上持续创新。今年我们为店型矩阵增加了一个新成员——<strong>Super MINISO</strong>，这是 2026 年最重要的创新。回顾过去两年渠道升级的演进：2024 年，MINISO Land 验证了 IP 沉浸式旗舰店；2025 年，名创进入中高端商圈，定位「轻奢」；2026 年，Super MINISO 把 IP 体验带给更广泛的大众客群。它的商品结构是 <strong>50% IP 商品 + 50% 通用生活用品</strong>。自推出以来，它已成为最受消费者欢迎的店型之一。</p>
+<p>Super MINISO 的巧妙之处在于，它并不推翻消费者既有的品牌认知，而是在此基础上叠加：它保留了消费者对名创优品「高性价比商品」的熟悉感，同时通过 IP 注入潮流与体验感。其他业态如 Friends、Land、Space 则逐级加深 IP 商品占比，帮助消费者从生活杂货走向 IP wonderland，这也是品牌升级的一部分。</p>
+<p>我想说，大店的成功不仅仅是渠道创新，而是<strong>内容 + 空间 + 运营的系统性创新</strong>。门店是空间，IP 是填充它的灵魂。大店的势能与 IP 的价值相互强化，形成一个不断加速的飞轮。</p>
+<p>去年 6 月，我们推出了第一个自有 IP <strong>UU</strong>。仅仅一年时间，UU 已进入全球 <strong>53 个国家</strong>，上半年相关收入接近 <strong>5 亿元</strong>。最具标志性的里程碑是 <strong>UU × Disney Toy Story 5</strong> 系列：Woody、Buzz Lightyear、Slinky Dog 的 UU 版本在多个国家的门店热销。仅仅一年，UU 的成功就把我们的自有 IP 推进到一个新阶段——能够以平等的地位与全球顶级 IP 合作。</p>
+<p>除了名创优品的旗舰业态与品牌，TOP TOY 也建立了自己的 IP 矩阵。其旗舰 IP <strong>Nomi 累计 GMV 已超过 3 亿元</strong>。可以看到，UU 在旗舰品牌内验证了方法论，而 Nomi、Yui、Duidui 在 TOP TOY Land 品牌下验证了不同风格。围绕自有 IP，我们已经积累了覆盖「艺术家签约—产品定义—设计开发—供应链排产—上市前 staging 与调试—渠道店内活动—粉丝运营」的<strong>全链路 SOP</strong>。</p>
+<p>我们在今年年初设定的<strong>全集团 10 亿元自有 IP 销售目标，已于 7 月底提前达成</strong>。这充分证明我们「多 IP、多品类、全球化」战略的成功，也充分展示了名创优品独特的资源禀赋。在建设自有 IP 方面，我们拥有全品类覆盖、全渠道渗透、全球布局和全链路运营能力。放眼全球，名创优品在商品品类上拥有最大的灵活性与延展性，在渠道上具备强成本控制与创新能力，拥有覆盖最广、质量最高的全球门店网络。在运营层面，名创优品发挥从签约艺术家到设计、开发、营销、销售的全链路优势，在每个环节深度赋能艺术家，最大化每个 IP 的潜力。这些正是名创优品高度差异化且稀缺的资源，也是名创实现跨越式发展的关键。在自有 IP 上，有「四种力量」让我们能够比绝大多数公司更高效地完成从 IP 创意到上架的完整流程。</p>
+<p>所以大家可以看到，UU 才刚刚开始。8 月 22 日，我们推出新的艺术家 IP <strong>Chocho</strong>，首发当日全部售罄，远超预期。我们已经签约了多位设计师玩具艺术家。可以看到，8 月 26 日晚直播中，<strong>5 万套</strong> Chocho <strong>在 1 秒内售出</strong>。同时，我们通过 <strong>IP Protégé 计划</strong>在全球范围内招募顶尖创意人才。</p>
+<p>我们未来的愿景是：<strong>引领 100 个中国 IP 走向全球舞台</strong>。</p>
+<h3>三、CEO 叶国富：自有 IP 的产业判断与会员战略</h3>
+<p><strong>叶国富（创始人兼 CEO）</strong>：当前，全球 IP 市场进入了前所未有的繁荣期。一个大国的崛起，必然伴随文化符号的诞生及其全球化上升。名创优品凭借世界领先的渠道、商品和 IP 运营能力，将在这场历史性机遇中占据头部位置。我们的愿景是成为<strong>全球领先的 IP 运营平台</strong>。</p>
+<p>按渠道规模衡量，我们已经是<strong>全球最大的 IP 产品零售商</strong>，而我们的自有 IP 业务正在构建一个兼具独特性、爆发力和可复制性的新增长引擎。向自有 IP 的战略转型，是基于时代趋势的长期选择，我们将持续长期投入。即便从短期看，自有 IP 产品线也交出了出色的成绩单：不仅 UU 被验证成功，我们的第二个 IP Chocho 也是如此；上半年自有 IP 的<strong>利润率高于公司平均水平</strong>，<strong>库存周转控制在 30–40 天</strong>。自有 IP 战略没有对整体盈利能力造成压力，为我们继续构建 IP 生态奠定了坚实基础。</p>
+<p>接下来我讲会员战略。去年我说过，会员将成为名创优品增长的另一个重要引擎。会员战略的价值正在稳步兑现。</p>
+<p>会员规模与贡献持续创新高。上半年我们的中国会员数增长 <strong>31%</strong>，达到 <strong>1.3 亿</strong>，创历史新高。会员贡献销售占比从去年同期的 <strong>57%</strong>、去年全年的 <strong>60%</strong>、第一季度的 <strong>63%</strong>，进一步提升至当前的 <strong>77%</strong>。同时，会员也是名创优品增长从「机会驱动」转向「系统驱动」的最新证据。会员的价值体现在两个方面。</p>
+<p>核心引擎是提升客单价。客单价增长 <strong>5%</strong>。在与全球 IP 合作方面，例如三丽鸥、迪士尼、哈利波特，以及 Chocho，叠加自有 IP 的爆款效应，大店已成为高价值会员的核心阵地。因此，中国会员的<strong>人均贡献是非会员的两倍</strong>；<strong>IP 会员的客单价是非 IP 会员的三倍以上</strong>。</p>
+<p>第二，会员是通过精准触达和权益驱动的留存，进一步提升用户活跃生命周期的顶层引擎。精准识别会员的消费偏好与品类需求，能让新品高效触达目标消费者；而返现权益等升级后的会员权益，则把一次购买直接转化为下一次购买的动力。2025 年新增的 IP 会员，上半年<strong>留存率比非 IP 会员高 8 个百分点</strong>，<strong>购买频次是非 IP 会员的两倍</strong>。</p>
+<p>使用返现权益的会员，<strong>复购频次比不使用者高 1.6 倍</strong>。IP 驱动获客、大店品质升级、复购延伸，是我们实现高度可持续会员价值的底层公式。当规模、结构与频次同时驱动时，就能支撑长期成功。</p>
+<h3>四、CEO 叶国富：海外业务——坦承不及预期，定调「盘整期」</h3>
+<p><strong>叶国富（创始人兼 CEO）</strong>：接下来看看海外市场。今年上半年，海外收入增长 <strong>40.9%</strong>，达到 <strong>40.6 亿元</strong>。</p>
+<p>门店数达到 <strong>3,644 家</strong>。坦率地说，海外表现<strong>不及我们的预期</strong>，并在一定程度上拖累了集团利润。海外对公司利润的贡献从 2023 年的 <strong>35%–40%</strong> 降至今年上半年的 <strong>10%–15%</strong>。影响来自两个因素：第一，<strong>分销商业务收入下滑</strong>；第二，<strong>北美以外的直营市场仍处于早期投入阶段</strong>，店型仍在打磨，尚未盈利。</p>
+<p>我们也对这些问题做了内部复盘。在海外直营店扩张上，我们将<strong>更加聚焦、更加审慎</strong>，严格评估新店的 ROI，集中资源深耕优先市场。我要求团队<strong>放慢开店节奏，除非你有 100% 的信心</strong>。下半年，我们将首先专注于经营好现有的 <strong>800 家海外直营店</strong>，待单店模型跑通后再复制。</p>
+<p>海外市场是我们的广阔天地，短期波动不会改变长期增长趋势。我们已经纠正了过去过度强调出货量和门店数的增长方式，让终端销售增长、库存周转与总部出货重新形成健康的闭环。现在也正是我们真正提升海外市场表现的时候。<strong>我们的海外业务目前处于盘整阶段（holding stage）。</strong></p>
+<p>我们需要打磨店型，更重要的是确保中国的转型能在国际市场成功验证。国际市场到了再一次升级的时候。我们已经做了重大的调整与变革。我想借这个机会鼓励海外团队。从 2015 年至今，我们的海外征程已走过 11 年。越往海外深处走，我越深切地体会到，一家中国公司要在海外真正站稳脚跟、获得可持续利润有多么困难。</p>
+<p>这不仅是产品力和供应链的问题，还涉及组织能力、管控模式和本地化战略。名创优品的海外业务从第一天起就是盈利的。但我们必须认识到，今天海外的挑战恰恰标志着名创的全球化进入了<strong>深水区</strong>。随着直营业务占比上升，我们必须再次沉淀，追求精细化运营、本地化、更强的组织能力和全球化的管控模式。</p>
+<p>在夯实管理基本功的同时，我们看到许多国际消费品牌过去十年在中国做得很好，但近几年开始亏损。所以，无论是国际品牌进入中国，还是中国品牌走向国际，都必须具备适应性，否则利润就无从谈起。这也是每一家走向国际化的公司都必须面对的「二次升级与转型」。</p>
+<p>名创优品过去几年的中国转型取得了巨大成功，我们初步实现了品牌升级与商业模式迭代，中国业务开始迸发新的活力。海外业务今天面临的挑战，本质上与中国三年前相同：<strong>从规模优先转向质量优先</strong>。过去三年，中国交出了转型答卷——从跑马圈地，到 wonderland 式的升级，再到精细化运营。</p>
+<p>这套方法论同样适用于海外市场。我们从不缺产品、供应链或渠道，我们缺的是<strong>更多耐心去充分打磨单店模型</strong>。出海是一场马拉松。我们今天所做的每一次调整、每一笔投入，都在为长期价值奠定坚实基础。名创在海外每多开一家好店、每多服务一位消费者、每多积累一位会员，就让我们离「成为全球领先 IP 运营平台」的愿景更近一步。</p>
+<p>我对海外团队有信心。给他们时间，给他们耐心。我相信，海外的明天一定会比今天更好。</p>
+<h3>五、CEO 叶国富：TOP TOY</h3>
+<p><strong>叶国富（创始人兼 CEO）</strong>：接下来请允许我谈谈 TOP TOY。上半年 TOP TOY 收入增长 <strong>32.7%</strong>；全球门店数达到 <strong>365 家</strong>，其中海外 <strong>48 家</strong>。本季度，TOP TOY 的美国首店在纽约<strong>时代广场</strong>开业，成为首个进入「世界十字路口」的中国潮玩品牌。</p>
+<p>上半年，自有 IP 占 TOP TOY 销售的 <strong>10%</strong>。随着自有 IP 矩阵不断扩大，我们也做了一些颇受欢迎的快闪活动，尤其是 UU 在杭州的快闪，<strong>单月 GMV 已超过 5,000 万元</strong>。接下来，我请 Eason 为大家介绍上半年的财务情况。请。</p>
+<h3>六、CFO 张靖京：对照指引、分区域表现与同店</h3>
+<p><strong>张靖京（CFO，Eason Zhang）</strong>：好，谢谢叶总。今天我向大家介绍关键财务指标。与其逐行讲财务数据，我会就大家最关心的几个数据点做一些说明。</p>
+<p>首先，我们回顾一下相对 5 月业绩会给出的 2026 年上半年指引的执行情况。上半年收入增长 <strong>22.4%</strong>，略高于我们 <strong>20%–22%</strong> 的指引。中国收入上半年增长 <strong>26.2%</strong>，其中第二季度增长 <strong>23%</strong>，而我们此前对中国 Q2 的预期仅为<strong>低双位数增长</strong>。</p>
+<p>中国这一超预期表现来自两个因素：第一，<strong>渠道升级加速</strong>——中国第一季度净增 <strong>25 家</strong>门店，第二季度净增 <strong>72 家</strong>，远超我们约 40 家的预计；第二，<strong>自有 IP 尤其是 UU 的销售贡献</strong>。中国同店销售也实现了指引的中个位数增长。正如叶总所说，短期内我们的自有 IP 交付了出色业绩：自有 IP 产品的利润高于公司平均水平，库存周转控制在 <strong>30–40 天</strong>。</p>
+<p>当然，30–40 天在当下仍可能意味着供应偏紧，但在改善中。因此，自有 IP 并未对我们的整体财务形成压力。</p>
+<p>海外收入上半年增长 <strong>15%</strong>，低于我们<strong>高双位数增长</strong>的指引。主要原因是<strong>分销商业务收入下滑 10%</strong>，亚洲与拉美市场均出现收入暂时性下滑。正如我已经汇报的，北美同店中个位数增长，低于此前高个位数至低双位数的指引，主要原因是 <strong>6 月北美同店表现走弱</strong>。</p>
+<p>剔除汇兑损益后的调整后经营利润同比增长 <strong>5%</strong>，略低于我们此前高个位数增长的预期，主要由于分销收入——我们业务中毛利较高的部分——下滑。</p>
+<p>上半年，名创优品海外<strong>终端 GMV 同比增长 40% 至 82.9 亿元</strong>；<strong>收入增长 50% 至 40.6 亿元</strong>。我按区域拆解一下。</p>
+<p><strong>亚洲</strong>：上半年亚洲终端 GMV 同比增长低个位数，收入同比下滑低个位数。印尼、印度、菲律宾等市场是拖累亚洲整体表现的主要因素。客观地说，这些市场面临宏观挑战，但不可否认我们的本地化运营能力仍有提升空间：我们对市场变化的本地化理解、商品与渠道的匹配还不够深入；我们的商品企划、渠道策略与终端执行效率，还不及我们在中国达到的水平。</p>
+<p>同时，我们主动清理了一批表现不佳、效率偏低的门店。例如在菲律宾等市场，我们关闭了业态陈旧、产出持续偏弱的门店，这对短期收入有一定影响。海外分销市场的低效门店清理<strong>还将持续两个季度</strong>。我们也可以看到，像越南这样的市场，在经历前期关闭高端低效门店和商品结构调整后，今年上半年已开始改善。</p>
+<p>其效率持续提升，达到<strong>近三年最佳水平</strong>；越南第二季度同店销售增长 <strong>20%</strong>，并保持正增长势头。这说明我们未来的方向是正确的。接下来，我们将继续加深对亚洲市场的理解，因地制宜提升本地化运营能力，聚焦渠道升级与商品结构调整，积极探索适应当地消费变化的产品组合与价格带。</p>
+<p><strong>拉美</strong>：上半年拉美终端 GMV 同比增长高个位数，但收入同比下滑低双位数。出现这种背离有几个原因。例如包括哥伦比亚在内的多个核心市场面临政治波动、运费上涨、自然灾害等多重外部挑战，对海外订货与发货造成一定影响。但终端需求仍然有韧性。</p>
+<p>贡献当地业绩 <strong>80%</strong> 的拉美前四大国家，上半年均实现了稳健的终端 GMV 增长；墨西哥剔除汇率影响后也实现高个位数增长——实际上以本币计，墨西哥终端 GMV 增长接近 <strong>20%</strong>。随着外部扰动消退，我们对长期发展有信心。</p>
+<p><strong>北美</strong>：上半年北美收入增长 <strong>37%</strong>，达到接近 <strong>18 亿元</strong>，与我们的预期基本一致，同店中个位数增长。</p>
+<p>分季度看，第二季度收入增速小幅放缓至 <strong>25%</strong>，两年 CAGR 保持在约 <strong>50%</strong>。放缓主要有三个原因。第一，<strong>IP 产品上市节奏出现暂时性空档</strong>：北美 IP 产品占比高，因此对 IP 上新节奏更敏感。上半年我们未能保持足够稳定的上新频率，在一定程度上影响了门店客流与转化。这为我们未来优化 IP 产品 staging 提供了宝贵经验。</p>
+<p>第二，<strong>美国市场本地直采产品的销售占比过去超过 50%</strong>，但年初并未完全按我们的计划推进。在关税政策变化的背景下，我们着手控制和逐步降低海外直采占比——将直采聚焦于总部不经营的品类。但调整商品结构需要时间，这一点在上半年尚未体现。接下来，我们将进一步完善海外商品的提前规划。</p>
+<p>第三，<strong>新开直营店的前置费用投入</strong>：上半年我们净增 <strong>75 家</strong>门店，接近去年同期的两倍，前置投入对盈利能力有短期影响。好消息是，今年新开门店的利润率和坪效显著高于老店，在选址质量与渠道匹配上表现更优。进入下半年，我们将把重心转向深化门店运营，把已开门店经营做透。</p>
+<p>全年来看，北美与欧洲仍将保持较高增长。北美门店方面，我们将继续提升成功率。我们预计北美全年将达到接近 <strong>40 亿元</strong>规模，净利率 <strong>10%</strong>。欧洲也是我们看好的市场，但仍处于直营发展的早期阶段，因此波动是正常的。上半年欧洲收入增速放缓至 <strong>26%</strong>，同店销售中个位数下滑。</p>
+<p>我们的欧洲团队正在建设组织能力与精细化店型。请给他们信心与耐心，让市场来验证我们的战略。</p>
+<p>2026 年上半年，名创优品中国大陆实现同店中高个位数增长，符合我们的预期，也为全年低个位数同店增长目标留出了充足空间。名创优品海外同店销售低个位数下滑，其中北美实现同店中个位数增长。</p>
+<p>北美同店表现第一季度相当强劲，增长 <strong>10%</strong>，但第二季度放缓，尤其是因为某些畅销品——特别是<strong>畅销 IP 产品——出现断货</strong>。我们预计断货将在 <strong>9 月</strong>缓解。</p>
+<h3>七、CFO 张靖京：毛利率、费用与盈利能力</h3>
+<p><strong>张靖京（CFO，Eason Zhang）</strong>：2026 年上半年毛利率为 <strong>44.3%</strong>，与去年同期持平，其中包含约 <strong>0.6 个百分点</strong>来自美国关税退税的贡献。</p>
+<p>第二季度毛利率为 <strong>45.3%</strong>，同比提升 1 个百分点，其中关税退税带来 <strong>1.2 个百分点</strong>的正面影响。</p>
+<p>基于目前已收到的退税，公司预计关税退税还将在未来两个季度为整体毛利率提供 <strong>20–30bps</strong> 的支撑。</p>
+<p>剔除对外投资与可转债融资影响，我们上半年核心业务的盈利情况如下。</p>
+<p>调整后经营利润为 <strong>14.9 亿元</strong>，去年同期为 <strong>15.9 亿元</strong>，同比<strong>下降 6%</strong>。</p>
+<p>剔除汇兑影响后，两个数字分别为 <strong>16.3 亿元</strong>和 <strong>15.5 亿元</strong>，同比<strong>增长 5%</strong>。</p>
+<p>剔除汇兑影响后，调整后净利润为 <strong>12.2 亿元</strong>，去年同期为 <strong>12.4 亿元</strong>，同比<strong>下降 1.7%</strong>。</p>
+<p>对应的调整后净利率同比下降 <strong>2.6 个百分点</strong>，这也反映出本期销售费用率同比上升 2.7 个百分点，从 <strong>23.1%</strong> 升至 <strong>25.8%</strong>。</p>
+<p>具体来看，与直营门店相关的租金及折旧费用占收入比重从去年同期的 <strong>7.1%</strong> 上升至今年上半年的 <strong>8.1%</strong>，提高 1.0 个百分点。</p>
+<p>广告推广费用上升 <strong>0.2 个百分点</strong>；IP 授权费从去年上半年的 <strong>2.6%</strong> 上升至今年上半年的 <strong>3.1%</strong>，提高 <strong>0.5 个百分点</strong>。</p>
+<p>这两项费用的上升在很大程度上反映了我们<strong>对自有 IP 的战略投入</strong>。</p>
+<p>销售相关的人工成本从去年的 <strong>6.8%</strong> 上升至今年的 <strong>7.2%</strong>，提高 <strong>0.4 个百分点</strong>。</p>
+<p>以上四项费用的增长合计贡献了 <strong>2.6 个百分点</strong>的费用上升。</p>
+<p>分业务看，利润率同比下降的主要原因是<strong>收入结构变化</strong>。2026 年上半年，高毛利的加盟与分销业务（净利率超过 <strong>30%</strong>）的收入贡献<strong>下降 6 个百分点</strong>，而海外直营业务的贡献<strong>上升 3 个百分点</strong>——不过该板块去年是<strong>个位数亏损率</strong>。</p>
+<p>营运资本方面：上半年整体库存周转为 <strong>102 天</strong>，去年同期 <strong>97 天</strong>。</p>
+<p>名创优品中国库存周转为 <strong>67 天</strong>，去年同期 <strong>73 天</strong>。</p>
+<p>名创优品海外国际市场库存周转为 <strong>273 天</strong>，去年同期 <strong>240 天</strong>。</p>
+<p>接下来，我们的海外业务必须<strong>优先保障库存健康</strong>，并采取果断措施应对与支撑库存。此外，在旺季我们必须借助 IP 上新与节假日，配合会员促销和赠礼活动，用爆款产品带动慢动销库存的变现。</p>
+<p>6 月末，我们的现金储备为 <strong>73.9 亿元</strong>。</p>
+<p>上半年经营活动净现金流入为 <strong>14.8 亿元</strong>，同比增长 <strong>45.5%</strong>。</p>
+<p>我们始终高度重视现金流管理。这一稳健水平也为公司转型与股东回报提供了有力支撑。</p>
+<p>2026 年上半年，公司向股东回报 <strong>13.1 亿元</strong>，包括分红与回购，其中回购金额 <strong>5.2 亿元</strong>。叠加叶总个人上半年约 <strong>5,400 万元</strong>的增持，我们上半年的回购规模已超过 <strong>2025 年全年总和</strong>，充分体现了对未来业务的信心。</p>
+<p>我们本次<strong>未派发中期股息</strong>，因为公司认为当前估值<strong>极具吸引力</strong>；我们将在未来一段时间进行<strong>大规模回购</strong>，并在年底根据全年利润做出合理的分红决策。</p>
+<p>公司今年的股东回报政策是：回购加分红合计不低于剔除汇兑影响后调整净利润的 <strong>50%</strong>。</p>
+<h3>八、CFO 张靖京：下半年与全年指引</h3>
+<p><strong>张靖京（CFO，Eason Zhang）</strong>：回顾上半年，我们的国内业务再次超出预期，验证了我们「开大店、建 IP、追求高质量发展」的路径是有效的。海外市场保持了近 <strong>40%</strong> 的复合增长率。现在我们正处在从规模扩张向质量升级的过渡期。我们仍需要时间来建设组织能力。</p>
+<p>基于公司目前的预测，我们预计下半年公司收入同比增长<strong>高个位数</strong>，全年<strong>中双位数</strong>增长。</p>
+<p>下半年，名创优品中国收入预计同比增长<strong>中双位数</strong>，但海外收入将增长<strong>低个位数</strong>。</p>
+<p>海外分销收入预计下滑<strong>低双位数</strong>；海外直营业务将增长<strong>低双位数</strong>。</p>
+<p>TOP TOY 收入预计下半年<strong>持平</strong>，全年<strong>低双位数</strong>增长。</p>
+<p>与今年年初的全年展望相比，国内收入与利润均略好于预期，差异主要来自<strong>海外与 TOP TOY</strong>。</p>
+<p>下半年，我们在主动放缓海外节奏：继续关闭一批低效分销门店，并控制直营开店节奏。</p>
+<p>我们预计下半年海外市场<strong>净减少 50–70 家</strong>门店，直营<strong>净增 40–50 家</strong>，分销门店全年<strong>净减少 100–110 家</strong>。</p>
+<p>我们对名创优品中国与名创优品北美<strong>低个位数同店增长</strong>的指引保持不变。</p>
+<p>剔除汇兑影响，调整后经营利润预计同比<strong>下降高个位数</strong>。</p>
+<p>调整后经营利润率预计同比下降 <strong>3–4 个百分点</strong>。</p>
+<p>我们的利润展望比年初给出的指引更为谨慎——年初我们预计全年利润较上年加速增长，隐含的利润率假设是下降 <strong>1–2 个百分点</strong>。</p>
+<p>但我们现在认为将下降 <strong>3–4 个百分点</strong>，原因是未来两个季度海外分销市场收入将下滑，从而影响我们的利润率。</p>
+<p>我的发言到此结束。现在进入问答环节。</p>
+<h3>九、问答环节</h3>
+<p><strong>OPERATOR</strong>：谢谢各位。请将您的显示名称改为「姓名 + 所在机构」，并请确保只提一个问题。现在有请高盛的 Michelle。</p>
+<h4>Q1 中国大店模型的常态化表现与选址标准（高盛 Goldman Sachs）</h4>
+<p><strong>Michelle（高盛分析师）</strong>：叶总、Eason 好，感谢给我提问机会。我有一个关于中国内地大店业态的问题。叶总已提到大店表现超出预期。我们知道，很多大店在刚开业时表现相当强劲。在开业红利或首店效应逐步消化之后，这些大店的常态化表现如何？</p>
+<p>特别是与常规店相比，销售效率和坪效会有多大差异？公司内部是否有目标？在选择大店的区域或店址时是否有标准？问题主要关于大店业态。谢谢。</p>
+<p><strong>叶国富（创始人兼 CEO）</strong>：谢谢。我先讲整体判断。<strong>大店模式持续超出公司预期</strong>。我们最早的一批大店已经开业两年，这不是短期动作。同时我们有多个大店，不是一两家。从这个角度看，它不是开业炒作带来的短期爆发，而是<strong>持续的增长趋势</strong>。我们的店型矩阵持续演进，现在有 Park 业态、旗舰店、常规店和快闪店。</p>
+<p>我用几个门店经营指标来拆解大店的单店模型。Park 业态系列非常健康：作为该系列最早的业态，<strong>MINISO Land 单店业绩仍高于 300 万元的基准线</strong>；而 2026 年新推出的 <strong>Super MINISO</strong> 已给我们带来惊喜，基本可以<strong>稳定保持在 100 万元基准线之上</strong>。坪效方面，Park 业态约为常规店的<strong>两倍</strong>。</p>
+<p>租售比方面，Park 业态比常规店<strong>高个位数百分点</strong>，但由于与商场谈判获得更优条件，趋势是向下的。回本周期方面，Park 业态门店在早期实现了<strong>6 个月内回本</strong>，目前平均约<strong>一年</strong>，快于常规店的 <strong>60–80 个月</strong>。加盟商利润率与盈利门店占比同步上升。上半年，全国名创门店的盈利水平达到 <strong>2019 年以来最佳</strong>。</p>
+<p>上半年，<strong>30 多家 Land 业态门店进入同店基数</strong>，单店日均销售最高实现 <strong>30%</strong> 的增长。旗舰业态门店中，有 <strong>400 家</strong>实现单店日均销售中高至双位数同比增长。选址上，我们坚持<strong>质量优于速度</strong>，大店与旗舰店的占比将持续提升。</p>
+<p>根据我们的分析，名创优品中国门店总数将达到 <strong>7,000–8,000 家</strong>：Land 业态系列 <strong>1,200 家</strong>（其中 Super MINISO 与 MINISO Friends 共 950 家）；旗舰业态 <strong>2,000 家</strong>；常规业态 <strong>4,500 家</strong>。</p>
+<p>选址上，位置价值与人流始终是我们的核心标准。我们看商圈，优先选择顶流核心商圈；例如我们看店铺结构，优先选择<strong>转角位与临街面</strong>；当然我们也看客流动线，确保门店位于<strong>主客流通道</strong>上。谢谢。</p>
+<h4>Q2 7–8 月消费趋势与「人货场」应对（中金 CICC）</h4>
+<p><strong>OPERATOR</strong>：谢谢。现在有请中金的杨仁波。</p>
+<p><strong>杨仁波（中金分析师）</strong>：Eason、叶总好。我提一个问题。上半年名创优品中国表现确实理想，但 7 至 8 月国内零售环境波动，一些零售企业表示承压。能否分享一下你们看到的市场消费趋势，以及公司将采取哪些具体措施应对？谢谢。</p>
+<p><strong>叶国富（创始人兼 CEO）</strong>：这是个很好的问题。从国家统计局数据看，大家都能看到，6 月增速回落，7 月仅增长 <strong>0.6%</strong>，完全不理想。但名创优品中国依然强劲。自 7 月以来，名创优品中国 <strong>GMV 同比增长约 20%</strong>，这由大店在门店结构中占比提升和同店稳步发展共同驱动。<strong>7 月同店日均销售实现中个位数增长</strong>。</p>
+<p>在这一点上，我们说名创优品中国下半年将实现<strong>中双位数收入增长</strong>。这些成绩离不开我们前面提到的「人、货、场」战略。</p>
+<p>第一，即使社零下行，对传统零售业务而言需要消费者去「工作赚钱」才能消费，但同时你可以看到<strong>情绪类消费的销售在上升</strong>。例如户外用品和潮玩增长很快，而传统零售增长没那么快。</p>
+<p>这就是我们必须持续打造 MINISO Land 的原因——我们在打造沉浸式 IP 主题，<strong>这是未来的趋势</strong>。</p>
+<p>在「人」方面，会员运营是我们的关键增长杠杆，尤其是建设返现会员体系。我们在业绩会中分享了会员项目的进展，包括会员数量增长与会员对销售的贡献。我们需要门店的精细化运营。</p>
+<p>在「货」方面，我们的商品结构现在真正与 IP 对齐。例如我们的自有 IP 可以提供带情绪价值的兴趣驱动型商品，这类产品销售增长非常快。尤其是今年上半年，以 UU 为首的自有 IP 成为显著的增量驱动，设计师玩具品类表现突出。自有 IP 目前<strong>已占线下销售的中个位数、线上销售的双位数占比</strong>，增长非常快，尤其是在 MINISO Land 与 MINISO Space 等顶级门店中。</p>
+<p>在 Genie 联名中，我们一直在刻意向<strong>更高价格带</strong>推进，测试更高端的商品；并且我们将从 <strong>9 月 1 日</strong>起开设首个 <strong>LISA 品牌快闪店</strong>。许多国际名人和巨星乐于与名创合作，帮助我们继续在中国构建兴趣驱动的消费市场。</p>
+<p>经济环境不算好，但中国人口规模依然庞大。中国有 14 亿人口，Z 世代与 80 后、90 后仍占很大比例。这些人从不缺物质消费，他们需要的是<strong>情绪价值与兴趣消费</strong>。我们的竞争对手也在快速增长，这说明中国市场有巨大潜力可以走得更远。</p>
+<p>在渠道方面，我谈到的是门店质量升级战略，这将为国内业务未来几年的可持续发展提供充足空间。</p>
+<p>坚持质量优于数量的原则，我们的国内业务仍处于相当理想的状态。我们会继续推进存量门店翻新。我已强调，名创优品中国 4,665 家门店覆盖多种业态，我们将对较低层级的门店做升级。中国的年轻人都需要带情绪价值的兴趣消费。如果我们把门店场景和沉浸式体验做好，我们的潮玩和 IP 产品就更有吸引力。</p>
+<p>这可以帮助我们继续提升消费、把价格带继续往上推。我刚从东北回来，看到许多门店位置很好。<strong>我们的店效不输竞争对手，部分门店甚至可以超过 Pop Mart。这是我们的内部目标。<strong>如果有时间，我建议你们去看看我们在</strong>哈尔滨百盛</strong>的门店。我们在那里有两家面对面的门店，我们的表现超过了 Pop Mart 在哈尔滨百盛的表现，这极大增强了我们对大店的信心。</p>
+<p>内部我们提出<strong>坪效要超越竞争对手</strong>的目标，我们完全有信心做到。我们在 Land 门店的潮玩产品销售占比已超过 <strong>35%</strong>，并将提升至 <strong>40% 以上</strong>。我们已经有 UU 和 Chocho 两个自有 IP，Chocho 是两天前刚发布的。**如果 Chocho 被证明成功，我们就将拥有两个年销超过 10 亿元的自有 IP。**如果达成这一目标，那么我们的多业态加上自有 IP，将形成 <strong>50% 由潮玩驱动、另外 50% 由 IP 联名商品驱动</strong>的结构。</p>
+<p>这样我们的商业模式将更稳定、更可持续、更具沉浸感与体验感。我们<strong>大多数门店面积超过 800 平方米</strong>，包含两层。所以我对大店业态、尤其是 Land 非常有信心。即便当前面临挑战，我依然真相信我们仍处于转型的「爬坡阶段」。利润承压，但未来可期，我相信这一商业模式在运转中仍让我们感到兴奋。</p>
+<p>这是国内市场。国际市场方面，我们面临许多问题。从下半年开始，我将投入更多时间在国际市场。上半年我们在做中国店型的打磨，今年下半年我们要把这套做法搬到国际市场。在墨西哥，9 月 10 日至 15 日我们也将落地 MINISO Land 业态。我们在中国解决的问题在国际市场同样存在，在墨西哥我们还将庆祝周年庆。</p>
+<p>拉美消费者的偏好与中国相似，收入水平、人口结构与密度都比较接近，<strong>也到了他们拥抱运营转型的时候</strong>。我相信，兴趣驱动消费与情绪价值将成为未来增长的下一轮驱动力。我们或许不再需要太多物质价值——只有在部分非洲国家，物质价值的需求仍然很大。但在中国、东盟这样的发展中国家，我们将从物质价值转向情绪价值与兴趣消费。</p>
+<p>谢谢。</p>
+<h4>Q3 7–8 月同店拆分、翻新贡献与 H2 展望（杰富瑞 Jefferies）</h4>
+<p><strong>OPERATOR</strong>：谢谢。下一位有请杰富瑞的 Annie。</p>
+<p><strong>Annie（杰富瑞分析师）</strong>：叶总、Eason 以及 IR 团队好。我有一个关于最新表现的问题。7 月和 8 月最新的同店销售数据如何？天气是否是影响因素？能否把同店销售拆分为客单价与客流量？门店升级、翻新和商品结构变化各自贡献了多少增长？哪些品类表现最好？考虑到零售疲软和去年的高基数，你们对 2026 年下半年同店销售的展望如何？</p>
+<p>高线城市与低线城市之间是否有差异？谢谢。</p>
+<p><strong>叶国富（创始人兼 CEO）</strong>：7 月和 8 月，名创优品中国同店表现非常稳健，<strong>超出我们的预期</strong>，尤其是 Super MINISO，表现相当有竞争力。从客单价与客流量拆分看：<strong>客单价（ATV）增长约 20%</strong>，量价齐升，非常健康。我们也提到将推进更高的客单价与更高的毛利率，但这还没有完全启动。</p>
+<p>我们确实在**万象城（MixC）<strong>以及</strong>太古（Taikoo）**等商场开设了更多高端门店，商品仍在打磨阶段，需要进一步改进。同店增长由多个引擎驱动，包括门店升级、商品升级以及会员。升级并非唯一来源——在中个位数的同店增长中，<strong>门店翻新贡献约低个位数</strong>，其余来自更精细的运营，包括优化「商品—渠道」匹配、确保「对的商品在对的渠道」，以及针对不同店型定制商品结构。</p>
+<p>我们有更多高端门店，但商品仍需改进。商品调整需要时间，但这与门店调整不同。门店调整方面，我们正在把基础设施建对；接下来我们将依赖商品继续增长。我们有自有产品，以及加速推进的商品结构开发。对于大店模型和设计师玩具，<strong>一二线城市的渗透率更高，而低线城市仍然很低</strong>。这意味着低线城市有广阔的扩张空间，也是未来同店增长的潜在来源。</p>
+<p>品类表现方面，<strong>大玩具（big toys）是我们表现最好的品类之一</strong>，占总销售的比重<strong>提升 1 个百分点</strong>。IP 占比方面，<strong>IP 商品整体约占销售的四分之一</strong>；<strong>自有 IP 与艺术家 IP 的占比提升 4 个百分点</strong>。下半年展望方面，我们面临去年 11 月至 12 月 <strong>Zuntopia 热潮</strong>带来的高基数，而今年同期我们也有不错的 IP 阵容。</p>
+<p>总体而言，年初至今同店销售中个位数增长，我们仍有信心实现全年中国<strong>低个位数同店增长</strong>以及下半年<strong>中双位数收入增长</strong>。我们也看到几个重要抓手：第一，持续优化低效门店；第二，商品层面，<strong>开学季</strong>是重点——我们去年做得不够好，今年要确保抓住，把握文创品类的机会；第三，节假日方面，我们将抓住<strong>国庆与中秋</strong>的销售高峰窗口；第四，通过会员返现权益机制强化复购与心智。</p>
+<h4>Q4 H2 的 IP 与品类规划、打造爆款的杠杆（华泰证券 Huatai）</h4>
+<p><strong>OPERATOR</strong>：谢谢叶总。下一个问题有请华泰证券的施迪。</p>
+<p><strong>施迪（华泰证券分析师）</strong>：晚上好，感谢清晰的指引。今年上半年公司推出了许多新 IP 与产品，例如与 Genie 的联名，引发了强烈反响。你们的自有 IP Chocho 与 UU 表现也很好。下半年计划做哪些 IP 类型与品类扩张？下半年打造爆款的杠杆是什么？节假日档期有何安排？</p>
+<p><strong>叶国富（创始人兼 CEO）</strong>：我们的 IP 战略仍由双引擎驱动：<strong>授权 IP 与自有 IP</strong>，各有规划。授权 IP 方面，我们已与 <strong>180 个</strong>全球 IP 合作，覆盖影视、电视与明星 IP，积累了从 IP 选择到产品开发再到运营的端到端经验。Genie 联名方面，我们的产品——包括配饰、盲盒、毛绒等——覆盖约 <strong>70 个 SKU</strong>，从 <strong>9 月 1 日</strong>起上市销售。</p>
+<p>我们还有更多 IP 在管道中。同时，Chocho 才刚刚开始释放巨大潜力，需求远超预期。最开始时我们完全没有想到它会这么火，它在小红书上表现非常好。<strong>9 月 12 日</strong>，我们将在<strong>泰国</strong>正式发布与 <strong>LISA</strong> 的联名。<strong>9 月 9 日</strong>，我们将举办 LISA 联名 IP 展览。大家都知道 LISA 的影响力有多大。</p>
+<p>我们要成为全球的 IP 合作方与 IP 延展方。我们的产品包括盲盒与毛绒，定价将对普通消费者友好。毛利率贡献也达到了最佳水平，我们将通过全球布局持续改进产品与定价。关于自有 IP，这是我们的长期战略杠杆，我们将与大店业态携手推进。正如我提到的，<strong>UU 在 6 月和 7 月连续两个月销售超过 1 亿元</strong>。</p>
+<p>UU 后续将有一个<strong>超越迪士尼级别</strong>的重大 IP 合作。UU 还与<strong>麦当劳</strong>和<strong>瑞幸咖啡</strong>有合作，你们可以在小红书上看到相关广告。许多消费品牌希望与我们在 UU 上合作。Chocho 的成功再次证明我们的自有 IP 模式是成功且可行的，团队越来越有信心。<strong>一次成功可能是运气，但两次成功绝不是运气——你需要方法论和成熟的战略。</strong></p>
+<p>我们也在与不同明星合作，尤其是与<strong>李宇春</strong>的合作已经非常成熟，属于全球领先的策略。我们正在学习，但我们也在超越——这是我团队的重要战略，致力于在不久的将来推出更好的营销创新，超越同行，给行业、社会和消费者带来惊喜。这也说明我们的商业化自有 IP 正从阶段走向更成熟的阶段。</p>
+<p>总结一下，我们有几个抓手：继续与顶级授权 IP 和明星 IP 合作，坚持孵化自有 IP；依托现有的 IP 矩阵，让 IP 与商品在跨品类、跨 SKU 上协同，并借助我们的大店与不同业态转化 IP 销售、推进自有 IP。你们可以到门店来看，迪士尼与 UU 的盲盒已经在协同运作，Chocho 的盲盒也做得很好、非常专业。</p>
+<p>我们的盲盒能力正在取得巨大进步。有了好的应用场景和 IP，当消费者走进我们的门店并感受到我们的专业——尤其是在与李宇春合作之后——我们相信名创优品的潮玩消费经营会持续进步。这也能帮助建立未来的合作，并成为我们未来增长的强大驱动。我的回答到此，谢谢。</p>
+<h4>Q5 北美 40 亿收入 / 10% 净利率目标的达成路径（瑞银 UBS）</h4>
+<p><strong>OPERATOR</strong>：谢谢。下一个问题，有请瑞银的 Samuel。</p>
+<p><strong>Samuel（瑞银分析师）</strong>：谢谢叶总和 Eason。我有一个关于美国市场的问题。你们提出了北美 <strong>40 亿元收入与 4 亿元利润</strong>的目标，但第二季度我们看到销售有所放缓。你们打算如何完成这一目标——驱动因素是什么？在利润方面，你们打算如何提升盈利能力？</p>
+<p><strong>叶国富（创始人兼 CEO）</strong>：非常感谢。内部我们是把美国和加拿大作为一个整体来看的。对北美，我们的业绩目标是 <strong>40 亿元收入、10% 净利率</strong>。如果排除短期数据，仅看美国，名创优品是 <strong>2025 年美国增长最快的零售商</strong>，这一点《福布斯》有过报道。把业绩口径从间接转为直营后，美国业务在 <strong>2022 至 2025 年的 CAGR 达到 120%</strong>。同店表现方面，我们的目标是维持在<strong>两年低个位数增长</strong>，这与我们的预期一致。</p>
+<p>提升美国利润率仍取决于<strong>经营杠杆</strong>与<strong>门店数量优化</strong>。过去两年我们开了一些客流量很大的门店；现在我们会在节奏上稍微放慢，专注于整体提升利润与收入。</p>
+<h4>Q6 H2 的费用规划与利润率拐点（中信证券 CITIC）</h4>
+<p><strong>OPERATOR</strong>：下一个问题来自中信证券。</p>
+<p><strong>中信证券分析师</strong>：你们好。今年上半年，你们提到在旺季前提前开店、以规模运营业务，你们相当有信心。今年下半年的费用规划展望如何？投资会加速吗？谢谢。</p>
+<p><strong>张靖京（CFO，Eason Zhang）</strong>：几个数字：今年上半年北美净增门店 <strong>75 家</strong>。也就是说，我们确实希望确保门店在旺季前开出，以加速增长。全年来看，北美零售商的销售与利润季节性非常典型——我们上半年赚得不多，主要依靠下半年、尤其是第四季度来驱动全年销售与利润。在我的发言中，我展示了一张分业务利润率的幻灯片：2025 年加盟与代理业务净利率约为 <strong>30%</strong>，这与季节性和结构相符。</p>
+<p>展望今年下半年，我们预计利润将继续稳步提升。国际代理业务保持稳定。直营方面我们分两部分：<strong>北美直营</strong>，净利率目标约 <strong>10%</strong>；以及<strong>仍处成长期的直营业务</strong>——欧洲、澳大利亚与东盟，我们将继续优化。今年上半年，美国后台费用率略有下降，利润率将继续提升。同时，在集团层面，我们预计 2026 年调整后经营利润率同比下降 <strong>3–4 个百分点</strong>。我们希望 <strong>2027 年</strong>成为利润率改善的<strong>拐点</strong>。</p>
+<h4>Q7 美国商品结构：总部直供与本地直采的平衡（长江证券 Changjiang）</h4>
+<p><strong>OPERATOR</strong>：谢谢。下一个问题有请长江证券的秦阳。</p>
+<p><strong>秦阳（长江证券分析师）</strong>：谢谢给我机会。我有一个关于美国业务的问题。关于美国商品策略，你们提到正在调整商品结构。今年下半年与明年的关键重点是什么？你们如何平衡总部直供产品与本地直采产品？</p>
+<p><strong>张靖京（CFO，Eason Zhang）</strong>：优化商品结构是持续性的工作，尤其是在政策微调的背景下。我们不断调整海外商品结构。从销售贡献看，<strong>设计师玩具仍是美国最大品类，贡献超过三分之一的销售</strong>，其中毛绒表现尤其好——这主要建立在授权 IP 之上。我们计划<strong>重启自有 IP</strong>，这应能贡献增量增长。第二季度，部分畅销 IP 产品因商品规划问题<strong>断货</strong>；我们通过快速直采弥补了销售缺口。结果是由于规划问题，一些 SKU 出现断货，但这不是我们的目标，我们将继续做商品差异化。</p>
+<p>在美国，<strong>总部直供产品的占比从 2024 年初的 60%–70% 下降至上年的接近 40%</strong>，而直采产品占比大幅上升。在这些直采 SKU 中，门店转化率与连带率显著改善。</p>
+<p>尽管美国承压、我们正在调整商品结构并放慢开店，但<strong>总部正在对商品中心（merchandise center）进行重大投入</strong>。关于毛利率，美国市场毛利率约为 <strong>65%–70%</strong>，部分得益于关税返还，下半年也将继续带来正面贡献。资产周转率控制良好。随着重磅 IP 上市与 IP 占比提升，我们相信美国毛利率将在下半年提升。</p>
+<h4>Q8 分销市场的收缩节奏与渠道健康（分析师 Wu Chenxi）</h4>
+<p><strong>OPERATOR</strong>：谢谢叶总。下一个问题，有请吴晨曦。</p>
+<p><strong>吴晨曦（分析师）</strong>：谢谢。正如您提到的，分销商运营仍面临一些压力（韧性考验）。公司对分销市场增长的前景与规划是什么？</p>
+<p><strong>张靖京（CFO，Eason Zhang）</strong>：谢谢。今年上半年，分销商放缓补库，收入放缓。展望下半年，<strong>亚洲分销收入仍将下滑约 10%</strong>。收入负增长不一定意味着终端需求有问题。2025 年全年，分销业务整体销售超过 <strong>100 亿元</strong>，CAGR 超过 <strong>10%</strong>，相当稳健。剔除汇率影响，上半年终端 GMV 仍保持<strong>高个位数增长</strong>。</p>
+<p>我们看到存在一个缺口：部分渠道正在消化库存；在这一过程中，分销商补库滞后于其自身的 sell-through，这是正常现象。外部方面，中东与亚洲部分市场受到地缘政治冲突、汇率波动等宏观因素影响，这些市场上半年库存周转承压。拉美也面临宏观、汇率与自然灾害的逆风，但其库存周转已有改善。</p>
+<p>我们在海外经营 <strong>80 个分销市场</strong>，前 80 个市场贡献了 80% 的业务。上半年，前 80 个市场的库存周转同比基本持平，略优于直营市场整体。总体而言，我们内部坦诚地认识到，我们要维护<strong>长期渠道健康</strong>，而不是为短期业绩压货。终端销售将回归常态，同时我们将在部分市场减少门店数量。</p>
+<p>例如在<strong>新西兰与菲律宾</strong>，我们关闭了一些低效门店。由于渠道问题，我们做出战略决策，关闭部分低效门店。下半年，我们预计分销市场全年<strong>再净关 100–110 家</strong>。这一决策对分销收入带来短期压力，但长期看确保了整个生态的健康与可持续发展。拉美是关键区域。</p>
+<p>当地分销商背景与运营能力强，这些市场的零售点位净变化为低个位数；上半年拉美终端表现稳健。<strong>我们不会用短期收入换取渠道健康。<strong>墨西哥将在第三至第四季度庆祝</strong>十周年</strong>，该市场将继续推出改良店型，我们要求在核心城市的核心商场落地 <strong>MINISO Land 与 Super MINISO</strong>。</p>
+<p>在商品与运营方面，对于已形成规模的分销区域，我们将投放本地化商品与 IP 商品。我们充分认识到上市节奏需要更强规划。我们现在已建立更完整的<strong>上市日历</strong>，清晰标注当地关键节假日以及不同阶段 IP 的上市时点，以最大化销售势能。对于有增长潜力的品类，我们将帮助分销市场迭代营销方案，提供更好的场景化内容，缩小内容差距，提升高势能品类的 sell-through。</p>
+<p>整体商品结构方面，我们将<strong>淘汰低效、低毛利 SKU</strong>，用高性价比日常商品补足销量，并引入高价值感的本地爆款来带动销售。</p>
+<p><strong>OPERATOR</strong>：谢谢 Eason。感谢所有投资者对名创优品的关注，我们下次再见。今天的会议到此结束。</p>
+<hr />
+<blockquote>
+<p><strong>免责声明（原文附录）</strong>：本逐字稿仅供信息参考。尽管我们力求准确，自动转录可能存在错误或遗漏。关于公司的正式陈述与财务信息，请参阅公司的 SEC 申报文件与官方新闻稿。公司参会人员与分析师的观点仅代表其截至会议当日的看法，可能随时变更，恕不另行通知。</p>
+</blockquote>
+</div><div class="backrow"><a href="../index.html#dir=%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99">← 返回 原始资料</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../raw/research/09896/2026-09-18-中期业绩发布会逐字稿.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
