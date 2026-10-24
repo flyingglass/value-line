@@ -48,6 +48,13 @@ stock_info = {
     '阿里巴巴': '互联网', '拼多多': '互联网',
     '神火股份': '金属与矿业', '紫金矿业': '金属与矿业', '腾讯控股': '互联网',
     'AMZN': '互联网', 'GOOGL': '互联网', 'MSFT': '互联网',
+    '09896': '消费',
+}
+
+# 纯代码目录 → 站点显示名：目录名是交易所代码（如 raw/research/09896/）而非常用中文名时，
+# 首页卡片与组标题用这里的中文名展示；未登记则原样显示目录名。按需增补。
+CODE_DISPLAY = {
+    '09896': '名创优品',
 }
 
 # 行业标签配色（浅底 + 深字），同类行业在首页/目录页用同色区分
@@ -257,7 +264,8 @@ def scan_wiki():
                 for code in sorted(os.listdir(subpath)):
                     cpath = os.path.join(subpath, code)
                     if os.path.isdir(cpath) and code not in CASE_GROUP_NAMES:
-                        stock_dirs.append((code, code, stock_info.get(code, '其他'),
+                        stock_dirs.append((code, CODE_DISPLAY.get(code, code),
+                                           stock_info.get(code, '其他'),
                                            False, cpath))
                 continue
             stock_dirs.append((sub, CASE_GROUP_NAMES.get(sub, sub),
@@ -279,14 +287,14 @@ def scan_wiki():
             if not os.path.isdir(subpath) or sub == 'articles':
                 continue
             is_case = sub in CASE_GROUP_NAMES
-            gname = CASE_GROUP_NAMES.get(sub, sub)
+            gname = CASE_GROUP_NAMES.get(sub, CODE_DISPLAY.get(sub, sub))
             industry = stock_info.get(sub, '其他')
             for rel, fpath in iter_md(subpath):
                 art = read_article(fpath, f"raw/research/{sub}/{rel}")
                 if is_case:
                     add_case(sub, gname, art)
                 else:
-                    add_article(sub, sub, industry, art)
+                    add_article(sub, gname, industry, art)
 
     # 通用文章
     general = []
@@ -794,7 +802,11 @@ activate(fromHash());
 def generate_group(scope, gid, info):
     group_out_dir = os.path.join(VIEW_DIR, scope, gid)
     group_idx = os.path.join(group_out_dir, 'index.html')
-    display_name = info.get('name', gid) if scope == 'cases' else gid
+    # 标的组：目录名为纯代码（如 raw/research/09896/）时用 CODE_DISPLAY 的中文名，
+    # 其余标的/名单池仍用 gid；路径与 URL 一律按 gid。
+    display_name = info.get('name') or gid
+    if scope == 'stocks' and not gid.isdigit():
+        display_name = gid
     is_case = scope == 'cases'
 
     raw_name = raw_top_name(gid, info['articles'])
@@ -1030,6 +1042,10 @@ def split_home_groups(groups):
                 if rp.startswith('research/' + d + '/'):
                     hit = d
                     break
+        if not hit and info.get('industry') in CONTAINER_DIRS:
+            # 只有原始资料、尚未建 wiki 页的组：行业与容器同名时归入对应容器 tab
+            # （如 raw/research/09896/ 行业＝消费 → 消费 tab），不再垫底到首个 tab
+            hit = info['industry']
         (by_container[hit] if hit else raw_only)[gid] = info
     return by_container, raw_only
 
