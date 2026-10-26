@@ -43,3 +43,9 @@ scripts/out/zpg_*.txt
 # 调研临时工作台（data/tmp_<code>/）整体不入版本库：临时脚本/图表/中间数据都是过程留痕，
 # 成果应沉淀到 research-wiki/。本地文件保留，仅不跟踪。
 data/tmp_*/
+
+# 业绩会录音等音频（与 data/pdfs 同例：体积大、可从原始渠道重新获取，不入版本库）
+data/audio/
+
+# 临时 pickle（深读 / 抓取的中间产物）
+_tmp_*.pkl
