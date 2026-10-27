@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2024-05-14-CY2024Q1业绩会交流纪要（天风海外）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">名创优品</a> › <a href="2024-05-14-CY2024Q1业绩会交流纪要（天风海外）.html">2024-05-14-CY2024Q1业绩会交流纪要（天风海外）</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2024-05-14-CY2024Q1业绩会交流纪要（天风海外）</h1><div class="meta-line"><span class="tag tag-raw">原始</span><span style="margin-left:auto;color:#b0b5bd">raw/research/名创优品</span></div><div class="md" id="md"><h1>名创优品 2024 年 3 月季度（CY2024Q1）业绩会交流纪要（天风海外）</h1>
+<blockquote>
+<p>来源：天风证券海外研究团队《名创优品24Q1业绩会交流纪要》<br />
+原文链接：https://duplik-1252068037.cos.ap-beijing.myqcloud.com/duplik/447460783945158/478332121942086/59c2ca9b5bc840d1bc3470f71091d8e3447460783945158.pdf<br />
+会议时间：2024-05-14 下午 17:00（北京时间）<br />
+材料性质：<strong>券商研究纪要（中文要点式），不是逐字稿</strong>；问答按 Q/A 逐条整理，内容经过归纳，与现场原话有措辞差异<br />
+用途：该场官方讲稿（同目录 <code>2024-05-14-CY2024Q1业绩电话会逐字稿.md</code>）不含问答，本纪要用于补齐问答要点<br />
+入库：2026-10-26，<strong>原文照录</strong>，未改写</p>
+</blockquote>
+<hr />
+<h2>正文</h2>
+<p>（第 1 页）
+【天风海外】名创优品24Q1业绩会交流纪要240514
+时间：2024年5月14日 下午5点
+【KeyTakeaway】
+业绩亮点：一季度海外市场门店净增109个，创造Q1开店记录
+2024年：新增门店目标900-1100家
+2028年：50%IP消费占比
+美国市场：保持向上趋势，2021-2023年CAGR130%以上，24Q1美国同店销售额同比+30-40%；目前美国150家门
+店，24年新增目标80-100家
+TOPTOY：年营收超10亿，拥有160个门店，普及全国近70个城市
+TOPTOY开店目标：由50提升至100，2024年末超250个
+【QA】
+Q：国内方面，分线级城市的同店表现？大店优化对客单价的提升？
+A：关于大店战略，希望在好的商圈开大店开好店，2023年以来，随着广州北京路店，上海淮海路店、北京
+合生汇店等门店的开业，积累了大量的经验，大店模型还在完善中。
+Q：海外方面，美国单店情况？点位的选取？
+A：关于美国业务的情况，美国向上趋势不变。美国业务在优秀的海外团队的运营下，已连续很多个季度保持了快速
+增长，2021-2023年CAGR保持130%以上。Q1美国同店销售额同比+30-40%，对美国市场充满信心。目前美国150家
+门店，24年新增目标80-100家。根据前两年数据，Q4占全年收入一半以上，季节性非常明显。最大的三个州是加利
+福尼亚州和佛罗里达州，其次是新英格兰地区。
+Q：毛利方面，国内GPM下降？未来趋势？
+A：国内一线城市&gt;底线城市，一线城市已经恢复了98%，三线及以下的低线城市较去年下降了低个位数，国内的毛利
+率低于集团均值，整个集团的毛利率取得了提升的成绩。
+未来国内GPM的驱动在产品组合优化，盲盒、旅游相关产品会增加。
+Q：海外同店同比提升21%的主要驱动力？
+A：同店销售额的主要来自直营市场，尤其美国、欧洲市场。主要两个增长原因：1）在海外市场的品牌知名度增加，
+新客数量提升、转化为会员；2）产品结构优化，IP产品占比提升至40%，带动产品均价提升，提升趋势不变。主要
+的驱动力仍将来自销售网络扩张和销售增长，销售网络扩张对整体销售增长有更大贡献。
+Q：chiikawa表现火爆，后续快闪店的计划？
+A：不断提高引进IP质量、多元组合，今年是五年战略规划的第一年，有信心完成全年的增长目标。快闪店会继续跨
+省做，根据每个省份的情况，开设在武汉、成都、长沙等年轻人多的城市，以及北方区域中心，比如西安后续计划开
+始10+个快闪店。
+Q：美国市场UE模型？
+A：现在不会讨论太多细节。在物流、配送费用方面，在节省成本方面有很大的改进空间。</p>
+<p>（第 2 页）
+Q：版权费？
+A：拉长时间维度可看作可变成本。
+Q：TOYTOP上调目标的原因？同店增速的驱动力？产品组合上的计划？
+A：1）竞争格局：三年前竞争非常激烈，现在小玩家出清。2）供给端：议价权提升；Top toy拥有160家门店，是行
+业的领导者，因此与供应商的议价能力更高。3）利润端，TOPTOY连续2个季度盈利，23Q4只是盈亏平衡，自本
+季度以来Top toy一直在创造可观的利润率，GPM提高了8pct，利润结构越来越健康，改善不仅在独家
+产品，第三方产品的GPM也一直在改善，因为公司议价能力更高、规模更大。
+【公司情况】
+毛利率：43.4%，同比+4.1pct，创历史新高。原因：海外收入占比提升，TOP TOY毛利率优化。
+调整后净利润6.2亿，同比增长28%，调整后净利率为16.6%。
+本季度为公司历史上开店数量最多的 331 季度，为全年 900-1100 家门店新增目标打下了坚实基数，海外直营业务快
+速拓展。
+集团层面，收入同比增长 26% 到 37.2 亿，主要来源于平均门店数量增加19%，以及同比可比同店销售增长9%。在
+当前不确定的经济环境下，放眼全球同等规模的消费品企业，名创优品保持了行业领先的收入增长速度。
+在高速增长背后，我们看到几个趋势。1）中国企业出海天地广阔，前景大有可为。早期名创优品出
+国、中国供应链出海积累了优先发优势，拥有超过 100 个海外市场门店网络和拓展经验，目前已经到
+了品牌出海的阶段。2）时代的潮流决定了中国将诞生一批世界级的消费品牌，名创的目标将就是成为
+中国的全球超级品牌。3）全球经济环境不确定性提升，兴趣消费方兴未艾。我们提出到 2028 年做到
+50% 的 IP 产品和 50% 高性价比商品的目标，这就因为我们看到了疫情结束后国内消费者的行为呈现
+出了理性消费和兴趣消费共存的局面，而这一趋势全球都是相同的。 IP联名是兴趣消费的典型代表，
+全球 IP零售业规模近人民币2万亿，竞争格局风度高度分散。中国人均 IP商品消费额人民币为 51 元，
+只有全球平均水平的 1/ 4，是美国的 1/ 60，是日本的 1/ 10。 IP零售大有可为。
+【名创中国】
+业绩表现：门店同比增长16%，同期国内商品零售额增速为5%（国家统计局）。其中客单价持平，客单量恢复至
+98%。
+能够实现优于大盘的原因：（1）坚持产品创新，巩固差异化产品的预期，结合消费趋势和自身优势进行战略品类的
+开发，如盲盒、玩具、美妆工具和出行用品等。Q1国内战略品类销售占比超过4成，销售额同比增长超过40%，保障
+了大盘销售额66%的增长，其中盲盒实现近200%的增长，出行相关的产品实现了70%的增长。（2）即时零售的快速
+发展。Q1同比及时零售业务增长80%。即时零售业务的热销频率相比线下门店的销售有更强的IP属性和即时需求属
+性。今年采取了运营优化手段，如电商。
+门店：国内净增108家，刷新了国内Q1季度新增门店的记录。结构特点：（1）一二线城市新增占比超过50%。除了
+经济正常化，一二线城市拥有大量的空白商圈可以开店。（2）国内新建的累计时长达到29家，相比前一年15家接近
+翻倍。（3）国内门店网络高质量发展，关店率连续三个季度稳定在1.4%左右的健康水平。
+【名创海外】
+业绩表现：超过此前公司最乐观的预期，收入突破12亿，同比增长53%。直营市场收入同比增长92%，按可同比口径
+为80%，已连续4个季度实现了超过80%同比增长。直营市场占海外收入58%，收入贡献同比及环比均有增长。</p>
+<p>（第 3 页）
+海外门店GMV同比增长16%，其中直营市场GMV同比增长104%，代理市场同比增长29%。按可同比口径，直营市场
+及代理市场同比分别增长78%及35%。北美同比增长近110%，欧洲超80%，拉美约40%，亚洲增长了30%。从结构
+上来看，拉美和亚洲前两大市场贡献海外GMV近3/4，但欧美市场增长迅速，GMV贡献超过20%，特别是北美地区。
+2021年末重启北美业务时，北美只占海外GMV 7%，现在为13%。预计欧美的GMV占比有持续快速提升。
+GMV增长的重要原因：可比同店销售增长21%，其中直营市场增长了32%，代理市场增长了18%。海外所有区域都实
+现了同店增长，其中北美增长了32%，拉美增长了25%，亚洲增长了19%，欧洲增长了13%。前20大国家和地区整体
+实现了23%增长。
+海外市场门店净增109个，创造Q1开店记录。今年将对海外开店节奏做更强的管控，争取在Q4旺季之前开更多好
+店。从结构上看，直营市场贡献了60%的新店，其中印尼和美国合计超过40%。从区域来看，亚洲新店贡献超过
+60%，北美和拉美分别贡献了17%和10%。
+【IP产品】
+和迪士尼、芭比的合作很成功，3月末与Chiikawa的合作引发现象级消费热潮。名创优品具有强大的IP转化能力。
+本季度，IP产品的销售占比达到了26%，其中国内IP占比约1/4，同比略有提升。海外 IP 发货增长 100% 以上，发货
+占比同比大幅提升至 4% 以上。
+2028 年 IP 销售占比目标：50%。
+【TOPTOY】
+拐点已至，年营收超10亿，拥有160个门店，普及全国近70个城市
+开店目标由50提升至100，2024年末超250个。
+本季度TOPTOY收入同比增长55%，可比同店销售额实现26%的增长，门店数量同比增加44家。
+随着规模的快速成长，这个业务将开始逐渐释放利润空间。 top toy 已连续两个季度实现盈利，一方面
+通过商品结构优化，毛利率同比提高 8 个百分点。另一方面随着经营杠杆释放，以及更加合理的费用
+投入，费用率将进一步降低。
+【财务情况】</p>
+<p>（第 12 页）
+【电话会PPT截图】</p>
+</div><div class="backrow"><a href="../index.html#dir=%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99">← 返回 原始资料</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../raw/research/名创优品/2024-05-14-CY2024Q1业绩会交流纪要（天风海外）.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2021-02-25-FY2021Q2业绩电话会逐字稿-中文译本</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">名创优品</a> › <a href="2021-02-25-FY2021Q2业绩电话会逐字稿-中文译本.html">2021-02-25-FY2021Q2业绩电话会逐字稿-中文译本</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2021-02-25-FY2021Q2业绩电话会逐字稿-中文译本</h1><div class="meta-line"><span class="tag tag-raw">原始</span><span style="margin-left:auto;color:#b0b5bd">raw/research/名创优品</span></div><div class="md" id="md"><h1>名创优品 2021 财年第二季度业绩电话会逐字稿（中文译本）</h1>
+<blockquote>
+<p>来源：AlphaMadera 会议记录（自动转录）<br />
+原文链接：https://earningscalls.dev/transcripts/miniso-group-holding-limited_mnso_earnings_call_transcript_2021-02-25<br />
+英文原文：已按需从本目录移除，逐场源站 URL 与 git 取回命令见同目录 <code>00-英文原文获取方式与索引.md</code><br />
+会议日期：2021-02-25（美东时间）<br />
+参会管理层：叶国富（董事长兼 CEO，本场由 CFO 张赛音代读发言）、张赛音（CFO，原文作 Saiyin / Steven Zhang）、张靖京（投资者关系总监，主持兼口译）<br />
+原文性质：<strong>公司管理层讲中文、现场口译</strong>；原文叶国富的发言段落多由张赛音代读、张靖京口译，标注混乱，已按内容校正<br />
+季度口径：2021 财年第二季度（2020 年 10–12 月），公司财年截至 6 月 30 日<br />
+译者注：本译文为英文稿回译，<strong>不等于管理层中文原话</strong>；原文末尾有截断（最后一问的回答未完整记录）</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：上市后首个完整季度 · 收入 23 亿（−18%）但环比 +11% · 中国恢复 95% · &quot;X 战略&quot;与四大核心能力 · 7-1-1 产品哲学 · TOP TOY 9 家店</p>
+</blockquote>
+<p><strong>一句话核心</strong>：这是名创 IPO 后的第一个完整季度——<strong>收入同比 −18% 但环比 +11%</strong>，管理层把整场电话会当成一次&quot;<strong>X 战略宣讲</strong>&quot;：用<strong>供应链、零售 know-how、轻资产、数字化</strong>四项能力，论证&quot;能把这套能力复制到潮玩等新赛道&quot;，这也是 TOP TOY 叙事的起点。</p>
+<p><strong>关键数据</strong>：</p>
+<ul>
+<li>Q2 收入 <strong>23 亿元（−18%）</strong>，约为指引中值；<strong>环比 +11%</strong>（上季同比 −31%，降幅收窄）</li>
+<li><strong>海外 4 亿+（同比 −51%）</strong>（上季 −71%）；<strong>国内同比持平</strong>；<strong>海外环比 +32%、国内环比 +7%</strong></li>
+<li>环比增长由<strong>门店数 +4%</strong> 与<strong>单店收入 +7%</strong> 共同驱动</li>
+<li><strong>毛利率 28%</strong>（去年 31.6%、上季 25.2%）；<strong>海外占比 20%</strong>（去年 34%、上季 15%）</li>
+<li><strong>经营利润 5,400 万元</strong>（去年 3.3 亿、上季亏损 200 万）</li>
+<li><strong>调整后净利 8,400 万元</strong>（去年 3.9 亿、上季 1.02 亿）；含<strong>汇兑净损失 6,700 万元</strong>，<strong>剔除后约 1.5 亿元、环比 +25%</strong></li>
+<li><strong>每股 ADS 0.28 元</strong>（去年 1.52 元、上季 0.40 元）</li>
+<li>全球净开 <strong>184 家</strong>；<strong>CY2020 全年净开 303 家</strong></li>
+<li><strong>中国净开 135 家</strong>（占 CY2020 净增约 60%），<strong>约 60% 在下沉市场</strong></li>
+<li><strong>海外进入 2 个新国家、净开 49 家</strong>（占 CY2020 净增 63%）；<strong>年末 153 家海外店临时关闭</strong></li>
+<li><strong>中国整体恢复率约 95%</strong>，部分低线城市恢复到 100% 甚至正增长；<strong>海外平均恢复率约 60%</strong></li>
+<li>销售费用 <strong>3.06 亿元</strong>（去年 3.17 亿、上季 2.30 亿）；管理费用 <strong>1.60 亿元</strong>（同比、环比基本持平）</li>
+<li>现金 <strong>68 亿元</strong>（2020 年 9 月 30 亿），主要来自 IPO 募资与经营现金流</li>
+<li><strong>Q3 指引：22–24 亿元（+35%~+47%）</strong></li>
+<li><strong>TOP TOY 已开 9 家店、覆盖 5 城</strong></li>
+<li>线上占名创收入约 <strong>7%</strong></li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>同比 −18% vs 环比 +11%</strong>：疫情让同比失去意义，真正的信号是&quot;环比连续改善&quot;</li>
+<li><strong>中国恢复 95% vs 海外 60%</strong>：一个接近常态，一个仍在深水区，海外 153 家店停业</li>
+<li><strong>毛利率 28% vs 去年同期 31.6%</strong>：海外占比从 34% 掉到 20%，结构直接压掉 3.6pp</li>
+<li><strong>&quot;X 战略&quot;宏大叙事 vs 只有 TOP TOY 一个标的</strong>：承诺&quot;更多新赛道&quot;，但当季只有 9 家店</li>
+<li><strong>Q3 指引 +35%~47% vs 海外不确定</strong>：增长靠国内低基数，海外仍&quot;难以判断疫情何时结束&quot;</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li><strong>四大核心能力（X 战略的论证基础）</strong>：<strong>600 多家供应商的 C2M 能力</strong>（早于电商做 C2M）、<strong>零售 know-how</strong>（标准化陈列/灯光/动线）、<strong>轻资产合伙人模式</strong>、<strong>数字化</strong>（供应商可实时看销售数据、智慧门店做库存算法、<strong>中国日结分成</strong>）</li>
+<li><strong>&quot;飞轮效应&quot;表述</strong>：满意顾客带来口碑与复购、供应链成功带来可持续、满意伙伴带来全球扩张——这是管理层第一次系统讲这个飞轮</li>
+<li><strong>CY2021 开店计划</strong>：<strong>中国净增 500 家</strong>（下沉市场&quot;需求强、回报高&quot;）；<strong>海外净增约 200 家</strong>（欧洲 70、美洲 50、华语国家、新国家 10）</li>
+<li><strong>海外短期主基调</strong>：与伙伴约定&quot;<strong>未来几个季度主要任务是清库存、降经营风险</strong>&quot;，而非扩张</li>
+<li><strong>TOP TOY 定位</strong>：<strong>SKU 从 7 类扩到 8 类（新增&quot;雕塑&quot;）</strong>；<strong>客单价与产品尺寸为名创的 2–5 倍甚至 10 倍</strong>；<strong>聚焦 Z 世代、一线城市，1 年内不下沉</strong>，但<strong>从第一天就做全渠道</strong></li>
+<li><strong>线上策略定调</strong>：<strong>不烧钱换 GMV</strong>，走&quot;更可持续&quot;的线上增长路径</li>
+</ol>
+<hr />
+<h2>正文</h2>
+<h3>一、开场</h3>
+<p><strong>主持人</strong>：各位好，感谢等待，欢迎参加名创集团 2021 财年第二季度（截至 2020 年 12 月 31 日）业绩电话会。请注意本次会议将被录音。现在把会议交给今天的主持人、投资者关系总监张靖京先生。</p>
+<p><strong>张靖京（投资者关系总监）</strong>：谢谢。大家好，感谢各位参加今天的电话会。公司今天已公布季度财务业绩，新闻稿已在 IR 网站 ir.miniso.com 公布。</p>
+<p>今天大家将听到董事长兼 CEO 叶国富先生先做业务与增长战略概述，随后由 CFO 张赛音先生更详细地讲解财务，然后进入问答。</p>
+<p>在开始前，请参阅业绩公告中的前瞻性声明。请注意我们今天讨论非 IFRS 指标，相关说明及与国际财务报告准则下最可比指标的调节，已载于业绩公告与向 SEC 提交的文件中。下面我把会议交给张赛音先生，由他代表叶总发言。</p>
+<h3>二、业务回顾与 X 战略</h3>
+<p><strong>张赛音（CFO，代叶国富发言）</strong>：谢谢，大家好。今天的电话会，我先更新 12 月季度的名创业务，然后分享我们新的&quot;X 战略&quot;。</p>
+<h4>1. Q2：国内恢复 95%，海外 60%</h4>
+<p>对名创而言，我们很高兴看到<strong>国内运营交出令人鼓舞的表现</strong>，同时<strong>海外运营沿复苏路径继续推进</strong>。<strong>本季度全球门店网络新增 184 家</strong>。尽管 2020 自然年疫情冲击全球线下零售，<strong>我们全年仍净增 303 家门店</strong>，说明伙伴对我们韧性商业模式与快于平均的恢复速度有信心。</p>
+<p><strong>国内</strong>：<strong>本季度中国净增 135 家新店，约占 2020 自然年净增总数的 60%</strong>。此外，我们继续在中国低线城市打开机会，<strong>本季度约 60% 的新店位于这一市场</strong>。</p>
+<p><strong>海外</strong>：<strong>本季度我们进入 2 个新国家、新开 49 家门店，占 2020 自然年净增的 63%</strong>。尽管<strong>年末有 153 家海外门店临时关闭</strong>、还有许多海外门店因疫情被迫缩短营业时间，<strong>海外收入仍环比增长 32%</strong>。</p>
+<p>销售恢复方面：<strong>在中国，虽然本季度不时出现偶发病例，我们整体恢复率约 95%</strong>，<strong>部分低线城市门店恢复到 100% 甚至恢复增长</strong>。<strong>海外市场平均恢复率约 60%</strong>，但因疫情多次波动、假期社交聚集增加了部分国家的复苏难度，<strong>海外整体呈现不稳定、脆弱的复苏态势</strong>。</p>
+<h4>2. 产品：7-1-1 哲学与 IP</h4>
+<p>产品方面，我们坚持把 <strong>7-1-1 哲学</strong>作为产品战略核心，为客户提供（优质）产品与惊喜的&quot;寻宝&quot;体验。</p>
+<p>此外，我们继续寻求与新 IP 伙伴合作。例如<strong>与 B 站合作，我们推出了一系列新产品与活动，受到客户热烈欢迎</strong>，这次合作奠定了名创与 B 站之间高度重合的用户基础。<strong>我们赞助了 B 站一场中国农历新年晚会</strong>，加强了与年轻客户的沟通，刷新了名创的品牌形象。</p>
+<p><strong>IP 举措是产品战略的重要组成部分，未来我们将继续推出更多 IP 产品。</strong></p>
+<h4>3. 为什么做 X 战略</h4>
+<p>作为一家年轻的上市公司，名创在 12 月宣布了&quot;X 战略&quot;，进一步阐明我们&quot;成为全球领先新零售平台&quot;的愿景。今天我想借这个机会谈两个问题：<strong>为什么做 X 战略？我们如何实现这个愿景？</strong></p>
+<p><strong>为什么？</strong> 2020 年名创品牌庆祝成立 7 周年，团队在<strong>供应链管理、零售 know-how、轻资产商业模式与数字化</strong>上积累了核心能力。当我们意识到新零售的许多领域存在巨大潜力时，<strong>我们相信把这套核心能力延展到新赛道是正确的</strong>。</p>
+<p><strong>第一，高效的供应链是我们的核心比较优势。</strong> 我们与<strong>600 多家优质供应商伙伴</strong>合作，他们能满足我们复杂的需求。把他们的制造能力与我们独特的消费者洞察、海量数据连接起来，<strong>我们早在电商玩家之前就开创了 C2M</strong>（客对厂）。</p>
+<p>作为优化供应链努力的一部分，我们通过<strong>大批量采购、准时付款、引导他们提升产品效率与成本控制</strong>，与他们建立互利关系，从而形成良性循环：<strong>供应商伙伴能全神贯注于持续提升产品品质，我们则能以高性价比方式享受品质提升的收益</strong>。</p>
+<p>此外，我们高效的供应链体系加上快速更新产品的能力，帮助我们<strong>在更快的产品创新与健康库存水平之间取得平衡</strong>，使我们在产品上更具竞争力。<strong>我们可以把这套高效供应链进一步延展到新举措中。</strong></p>
+<p><strong>第二，我们从运营经验与深刻的消费者洞察中积累了深厚的零售 know-how。</strong> 我们极度重视并优化门店运营的每个关键环节，用这套 know-how 打造&quot;寻宝式&quot;购物体验：<strong>标准化的布局、装修、灯光、琳琅满目的商品与友好的店员，为到店顾客营造了受欢迎的环境</strong>；<strong>优化的商品陈列让门店动线清晰、易于浏览</strong>。我们把这件事做得如此之好，以至于<strong>大多数走进门店的顾客都会对我们与同行的差异留下深刻印象</strong>。我们相信，<strong>同样的方法适用于我们新开的 TOP TOY 门店</strong>。</p>
+<p><strong>第三，轻资产商业模式让我们与零售伙伴形成双赢关系</strong>，因为它让双方利益一致、创造共同利益。借助轻资产模式，<strong>名创以一致的品牌形象与消费体验，在黄金位置快速扩张门店网络</strong>。强大伙伴网络的支持，让我们容易进入零售业的其它板块。</p>
+<p><strong>第四，数字化。</strong> 零售业本质上是<strong>商品流、信息流、资金流</strong>的生意，成功的关键在于这三流能否被良好地掌控，这就凸显了强大 IT 系统的重要性。</p>
+<p>例如，<strong>我们的供应商伙伴可以接入我们的 PCM 系统，监控实时销售数据</strong>，从而在采购与生产上快速有效地决策。<strong>我们的智慧门店系统能追踪消费者画像、店内行为模式与产品销售趋势，并用算法定制门店级库存结构。</strong> 与这项 IT 优势相匹配，<strong>我们的系统还让我们能在中国按日与零售伙伴分账</strong>——这对伙伴极具吸引力。与其他核心能力一样，<strong>我们的数字化能力也可以延展到新举措中</strong>。</p>
+<p><strong>总结：我们的核心能力形成了一个专利式的飞轮效应。</strong> 用这个飞轮：<strong>满意顾客的势能驱动更多转介绍与复购；供应链成功的势能驱动可持续；满意零售伙伴的势能让我们在全球扩张门店网络</strong>。这就是名创过去成功的原因。<strong>更重要的是，这些能力对我们是高度可复制的（到其它赛道），对别人却很难复制。</strong></p>
+<h4>4. X 战略第一步</h4>
+<p>分享&quot;X 战略&quot;的一些初步动作：</p>
+<p><strong>第一，我们计划强化名创核心业务</strong>，不仅在中国、也在海外扩张门店网络。</p>
+<p><strong>中国</strong>：<strong>2021 自然年我们计划净增 500 家门店</strong>。特别是，<strong>我们看到低线城市需求强劲，且相比高线城市，伙伴的回报更高</strong>。我们对那里的巨大潜力感到兴奋，相信我们在那里走的是正确的战略。</p>
+<p><strong>海外</strong>：我们相信那里有难以置信的长期价值。疫情爆发前，<strong>名创已通过进入 80 多个国家，在团队建设、产品验证、客户与市场研究上积累了深厚的本地化经验</strong>。有这一坚实基础，<strong>在这些市场复制数百家新店、实现快速增长是容易的</strong>。</p>
+<p>但我们也认识到，<strong>短期内这类运营可能遭遇疫情带来的挑战</strong>。我们与海外伙伴已达成一致：<strong>未来几个季度我们的主要任务应是清库存、降低经营风险</strong>；同时我们将密切跟踪疫情发展，动态调整或协调开店计划。</p>
+<p><strong>第二，我们计划投资新的增长举措</strong>，这将帮助我们加快成为&quot;全球领先新零售平台&quot;的进程。以 <strong>TOP TOY</strong> 为例：<strong>我们观察到潮玩市场供需之间存在结构性失衡，这意味着巨大机会</strong>。</p>
+<p><strong>满足年轻人直接需求的第一步，是借助我们强大的供应链提供 8 个品类的产品。</strong> 不久我们将通过共享名创的 IP 库推出更多联名产品，也会有 TOP TOY 自有 IP 的产品开发与运营——这可能需要一些时间，但值得。</p>
+<p>总之，<strong>我们将借助名创的核心能力尽可能扩大供给，同时降低对任何单一品类的依赖</strong>。<strong>截至目前，我们已在中国 5 个不同城市开出 9 家 TOP TOY 门店</strong>。虽然仍处早期，但我们看到了令人鼓舞的初步结果，也收到了利益相关方的积极反馈。</p>
+<p><strong>第三，我们同样聚焦全渠道战略。</strong> 本季度<strong>线上约占名创收入的 7%</strong>，未来几年还有充足增长空间。<strong>我们计划以更可持续的速度发展线上业务，而不是烧钱换 GMV</strong>——后者是电商玩家的常见做法。我们的目标是<strong>通过全渠道战略为顾客提供更便捷、更易得、更个性化的购物体验</strong>，尤其是那些习惯线上购物的顾客。基于这一理念，<strong>TOP TOY 从最开始就上线了官方网店与自动售卖机网络</strong>，作为线下门店的良好补充。</p>
+<p>总结：我们过去能成功，是因为核心竞争战略；<strong>这套核心能力为我们的&quot;X 战略&quot;打下了坚实基础，而 X 战略对我们的运营能力与敏捷度提出了更高要求</strong>。我们将继续通过为员工创造内部成长机会、吸引更多人才，打造一支极具竞争力的团队。以上是叶总的发言。</p>
+<h3>三、CFO 张赛音：Q2 财务</h3>
+<p><strong>张赛音（CFO）</strong>：作为名创 CFO，下面我做本季度财务回顾。我先讲 12 月季度，再补充 3 月季度。运营费用部分我会提及剔除股份支付的非 IFRS 指标。</p>
+<h4>1. 收入</h4>
+<p><strong>12 月季度收入 23 亿元</strong>，约为我们指引的中值，<strong>同比 −18%</strong>。对比之下，<strong>上季度收入同比 −31%，本季有显著改善迹象</strong>。同样的趋势也体现在海外：<strong>海外收入同比 −51%</strong>（上季度 −71%）；<strong>国内收入同比持平</strong>。</p>
+<p>环比看，<strong>收入 +11%</strong>（<strong>海外 +32%、国内 +7%</strong>），<strong>也由于本季门店数 +4%、单店收入 +7%</strong>。我们实现环比增长的能力，进一步证明了<strong>下沉扩张战略的有效性</strong>以及国内外业务的复苏。</p>
+<h4>2. 毛利率</h4>
+<p><strong>毛利 6.43 亿元（同比 −28%、环比 +23%）</strong>，<strong>毛利率 28%</strong>（去年 31.6%、上季 25.2%）。这一波动主要由于<strong>海外业务收入贡献的波动</strong>——海外毛利率通常高于国内：<strong>本季海外占总收入 20%</strong>（去年 34%、上季 15%）。</p>
+<h4>3. 费用与盈利</h4>
+<p><strong>销售与分销费用 3.06 亿元</strong>（去年 3.17 亿、上季 2.30 亿）。环比增加主要由于<strong>物流费用随 12 月季度销售复苏而增加</strong>，以及我们持续强化名创与 TOP TOY 品牌认知带来的营销费用增加。</p>
+<p><strong>管理费用 1.60 亿元</strong>，同比与环比基本持平。<strong>其他净损失 5,500 万元</strong>（去年为净收入 2,400 万元、上季为净损失 6,000 万元），主要由<strong>6,700 万元汇兑净损失</strong>构成，这与 12 月季度人民币对美元升值一致。</p>
+<p><strong>经营利润 5,400 万元</strong>（去年 3.30 亿元、上季经营亏损 200 万元）。同比下降由于疫情期间海外经营收入下滑、而<strong>固定成本与费用保持稳定</strong>；不过我们很高兴看到<strong>经营利润环比有出色改善</strong>。</p>
+<p><strong>调整后净利 8,400 万元</strong>（去年 3.90 亿元、上季 1.02 亿元）。如前面提到，<strong>12 月季度调整后净利包含 6,700 万元汇兑净损失</strong>；<strong>剔除这项一次性汇兑损失，12 月季度调整后净利约 1.5 亿元、环比 +25%</strong>。随着疫情消退，我们预计利润率水平将在未来几个季度回归正常。</p>
+<p><strong>持续经营基本与摊薄每股 ADS 为 0.08 元</strong>（去年亏损 0.8 元、上季亏损 7 元）；<strong>调整后基本与摊薄每股 ADS 为 0.28 元</strong>（去年 1.52 元、上季 0.40 元）。</p>
+<h4>4. 现金与指引</h4>
+<p>截至 2020 年 12 月 31 日，<strong>现金、现金等价物与受限现金合计 68 亿元</strong>（2020 年 9 月 30 亿元），增加主要来自 IPO 募资与经营现金流。</p>
+<p>考虑到收入环比复苏与门店扩张，<strong>存货与应收账款周转环比持平</strong>，这是我们营运资本管理的有力体现。</p>
+<p>展望 2021 年 3 月季度，<strong>我们预计总收入 22–24 亿元，同比 +35% 至 +47%</strong>。由于我们仍在疫情严重程度与持续时间上面对重大不确定性，<strong>尤其海外市场，这一预测仅反映我们对市场与运营状况的当前初步看法，可能变化</strong>。</p>
+<p>最后我想重申：我们为团队的一贯执行力、以及他们在服务客户上超越职责的投入感到自豪。<strong>在不确定性面前的这种坚持，让我们在充满意外的环境中仍保持正轨。</strong></p>
+<p>往后，我们的财务策略将是在预算、成本控制与资本配置上保持纪律，聚焦持续交付稳健的财务表现。<strong>但我们不会自满，将继续为未来增长做战略性投入</strong>——这些举措可能在短期内影响个别财务指标，但我们坚信这些努力对名创的可持续长期增长仍有意义。</p>
+<p>展望未来，我们对底层商业模式的实力高度自信，并将坚定地巩固国内领导地位、扩大海外市场份额、为股东创造长期价值。我的发言到此，现在开始提问。</p>
+<h3>四、问答环节</h3>
+<h4>Q1 X 战略的品类/客群/地域、海外扩张指引、TOP TOY 计划（高盛 Goldman Sachs）</h4>
+<p><strong>Michelle Cheng（高盛）</strong>：三个问题。</p>
+<p>第一，关于&quot;X 战略&quot;：除 TOP TOY 之外，第一阶段你们准备探索哪些品类、哪些目标客户、哪些地域？</p>
+<p>第二，海外扩张：你们在短期趋势上似乎偏谨慎，能否再给一些今年的指引要点？目前你们认为海外扩张最大的风险在哪里？</p>
+<p>第三，TOP TOY：既然提到 5 城 9 店，今年扩张有没有更具体的计划？今年的平均单店销售应该怎么看？</p>
+<p><strong>张靖京</strong>（口译）：谢谢 Michelle。</p>
+<p><strong>第一个问题（X 战略）</strong>：如叶总所展示，<strong>TOP TOY 是我们&quot;X 战略&quot;的第一个项目，后续还会有更多项目</strong>。但<strong>目前 TOP TOY 无疑是最重要的一个，我们会集中资源把它发展为我们的第二曲线</strong>。</p>
+<p>如张赛音先生所展示，过去七八年名创借助核心竞争优势，建立起了全球零售网络。如我们在发言中提到的，<strong>我们在供应链管理、零售 know-how、数字化能力与轻资产模式上都有竞争优势</strong>，这些都可以用来支撑 X 战略的未来成功。</p>
+<p>虽然仍处早期，但现在也可以分享 TOP TOY 的一些情况：过去几个月，<strong>我们把品类供给从 7 类扩展到 8 类——新增了&quot;雕塑&quot;品类</strong>，因为我们认为它很重要、潜力更好。</p>
+<p><strong>定价策略</strong>：TOP TOY 显然会远高于名创。<strong>不只是客单价，产品的平均尺寸也是名创的 2–5 倍，甚至高到 10 倍。</strong></p>
+<p><strong>目标客户</strong>：显然是 Z 世代——他们在这部分市场有很强的消费能力与意愿。</p>
+<p><strong>地域</strong>：<strong>TOP TOY 首先聚焦一线城市，至少一年内不会进入低线城市</strong>；但 <strong>TOP TOY 从第一天就采用全渠道模式</strong>，所以低线城市的消费者仍可通过线上等渠道享受 TOP TOY 的体验。</p>
+<p><strong>第二个问题（海外扩张）</strong>：过去几个月疫情全速发展，<strong>中国在全球范围内复苏最好</strong>。尤其在 12 月的节假日季，社交聚集似乎让海外市场复苏变得<strong>不稳定、脆弱</strong>；从门店与开店成本看，成本也在上升。</p>
+<p>总之，<strong>很难判断疫情何时完全结束</strong>。过去几个月我们与 80 个伙伴保持沟通，<strong>未来几个季度仍应把降低经营风险与清库存作为重点</strong>。</p>
+<p>同时，我们仍然可以说<strong>对全球扩张的未来有信心</strong>——即便 2020 自然年疫情冲击零售业，我们当年仍净开约 <strong>（90）家</strong>海外门店。<strong>目前我们预计 2021 年海外市场将净增约 200 家门店</strong>，大约相当于我们在每个有业务的国家（各开一部分）。具体分布：<strong>欧洲约 70 家、美洲（含北美与南美）约 50 家、华语国家（若干）、新国家约 10 家</strong>。</p>
+<p><strong>第三个问题（TOP TOY 扩张）</strong>：叶总正准备回答，但原文此处记录中断（<code>[Foreign Language]</code> 后无译文）。</p>
+<p><strong>主持人</strong>：问答环节到此结束。再次感谢各位参加，如有进一步问题请联系 IR 团队，联系方式见今天的新闻稿。我们下季度再见。</p>
+</div><div class="backrow"><a href="../index.html#dir=%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99">← 返回 原始资料</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../raw/research/名创优品/2021-02-25-FY2021Q2业绩电话会逐字稿-中文译本.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
