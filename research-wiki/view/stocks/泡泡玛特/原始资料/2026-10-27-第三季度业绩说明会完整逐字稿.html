@@ -1,0 +1,346 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-10-27-第三季度业绩说明会完整逐字稿</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="2026-10-27-第三季度业绩说明会完整逐字稿.html">2026-10-27-第三季度业绩说明会完整逐字稿</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2026-10-27-第三季度业绩说明会完整逐字稿</h1><div class="meta-line"><span class="tag tag-raw">原始</span><span style="margin-left:auto;color:#b0b5bd">raw/research/泡泡玛特</span></div><div class="md" id="md"><h1>泡泡玛特2026年第三季度业绩说明会（完整逐字稿）</h1>
+<blockquote>
+<p>来源：微信公众号「泡泡玛特」（原创；文末署「苔藓花园 · MossGarden」，整理者小苔花）<br />
+原文链接：https://mp.weixin.qq.com/s/7ydPD_0W4gS00tb3BIFOsg<br />
+作者：9992.HK（小苔花整理）<br />
+发布时间：2026-10-27 19:47<br />
+会议信息：泡泡玛特国际集团有限公司（9992.HK）2026年第三季度业绩说明会，2026-10-27，约59分31秒，北京<br />
+参会管理层：司德（COO）、Ryan（管理层，接管亚太区）、财务负责人、主持人<br />
+原始来源：路演平台回放 https://net.comein.cn/roadshow/home/6492006231673845</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：海外门店与会员运营 · 库存和新品供给 · 美国定价与利润率 · 旗舰店计划 · IP内容与主题乐园 · 新品类及供应链</p>
+</blockquote>
+<p><strong>一句话核心</strong>：2026Q3 整体收入同比 <strong>-45%~-50%</strong>，海外三区跌幅 65%~75%，但管理层称 Q3 已在多数国家<strong>趋于平稳</strong>、Q4 随旺季环比增长，中国市场全年仍可<strong>正增长</strong>——本场真正的信息不是跌幅，而是&quot;回到泡泡玛特过去多年最熟悉的样子&quot;这一经营基调的确认。</p>
+<p><strong>关键数据（2026Q3，未经审计）</strong>：</p>
+<ul>
+<li>集团整体收入 <strong>-45%~-50%</strong>（对比 2025Q3，去年 Q3 为历史单季最高）</li>
+<li>分区域：中国 <strong>-25%~-30%</strong>；亚太 <strong>-65%~-70%</strong>；美洲 <strong>-70%~-75%</strong>；欧洲及其他 <strong>-50%~-55%</strong></li>
+<li>中国分渠道：线下 <strong>-5%~-10%</strong>；线上 <strong>-45%~-50%</strong></li>
+<li>美国门店数 Q3 <strong>突破 100 家</strong></li>
+<li>罗马非旅游区商场店（约 180㎡）月销约 <strong>100 多万元人民币</strong>，利润率尚可</li>
+<li>亚太 Q3 已有 <strong>6 个 IP 合计贡献超 60%</strong> 业绩（不再单靠 LABUBU）</li>
+<li>下半年集团毛利率较上半年<strong>下降不超过 2 个百分点</strong>；美国调价对毛利率影响约 <strong>1 个百分点</strong></li>
+<li>下半年费用率<strong>高于上半年</strong>，利润率亦承压</li>
+<li>集团库存 5 月见高点，<strong>9 月底已明显下降</strong>；暂不做大规模促销</li>
+<li>大陆：Q3 品牌新客<strong>双位数增长</strong>（环比 Q2 微增）；次复购<strong>与去年持平</strong>；次年留存率有百分比增加；跨品类消费会员数双位数增长</li>
+<li>旗舰店 vs 全国 TOP50：月均客流 <strong>2 倍以上</strong>、拉新数倍、转化率比 TOP50 平均<strong>再双位数提升</strong>；10 月旗舰店销售环比 8 月<strong>双位数增长</strong></li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>高基数 vs 真实需求</strong>：去年 Q3 是史上最高单季，今年腰斩；管理层把&quot;线上恢复慢于线下&quot;归因于自身&quot;线下开店拉新→再导流线上&quot;的模式，而非需求结构性走弱</li>
+<li><strong>去库存 vs 保品牌</strong>：库存高位需去化，但明确&quot;暂不做大规模促销&quot;，转向分销新渠道（美国大型连锁零售）与阶段性活动</li>
+<li><strong>收入结构 vs 利润率</strong>：海外占比下降（海外毛利率高于国内）+ 主动调价 + 新店固定费用，下半年毛利率、费用率、利润率三线承压</li>
+<li><strong>开店 vs 质量</strong>：美国破 100 家后转向&quot;重质不重量&quot;，旗舰店不再是核心策略，只在高把握位置开</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li>Q4 环比改善幅度，以及&quot;中国市场全年正增长&quot;能否兑现</li>
+<li>9 月底库存下降后的<strong>库龄结构</strong>与 Q4 新品供给（各大区 OTB 占比已高于前三季新品实际销售占比）</li>
+<li>海外<strong>会员销售占比</strong>与<strong>跨渠道消费占比</strong>（亚太前者远低于中国，后者不足中国区 1/3）</li>
+<li>下半年毛利率降幅是否守住 ≤2pct、费用率抬升幅度</li>
+<li>美国大型连锁零售新渠道的分销效果，及大版权合作能否成为新生意</li>
+<li>新品类（甜品/积木/饰品）与下一座乐园选址、内容项目（LABUBU 电影仍在剧本阶段）的节奏</li>
+</ol>
+<h2>正文</h2>
+<p><strong>整理者注（小苔花）</strong>：海外业务在高基数下如何恢复，是本场问答的主线。管理层从门店客流、会员拉新、线上线下流转、库存与供应链几个方面解释调整进展，也谈到旗舰店、美国定价、IP内容及新业务。罗马一家普通门店的例子贯穿了长期运营的思路：选好位置、经营好门店、积累粉丝，再逐步提高单店产出。问答同时给出了下半年毛利率、费用率的展望，以及对新乐园、内容项目和新品类投入节奏的说明。</p>
+<h3>一、季度业务数据</h3>
+<p><strong>主持人</strong>：接下来我会向大家介绍公司2026年第三季度的主要业务数据。介绍结束后，我们将进入问答环节，由公司管理层就大家关心的问题进行交流。</p>
+<p>下面向大家介绍公司2026年第三季度未经审计的主要业务数据。与2025年第三季度相比，公司整体收入下降45%—50%。</p>
+<p>分区域看，中国收入同比下降25%—30%，亚太下降65%—70%，美洲下降70%—75%，欧洲及其他地区下降50%—55%。</p>
+<p>中国市场分渠道看，线下收入同比下降5%—10%，线上收入同比下降45%—50%。以上是公司2026年第三季度主要业务数据的介绍，接下来进入问答环节。</p>
+<h3>二、问答环节</h3>
+<p><strong>会议接线员</strong>：大家好，如需提问，电话端参会者请先按话机上的星号键，再按数字一；网络端参会者可以在直播间互动区域文字提问，或点击旁边的举手按钮申请语音提问。谢谢！下面有请电话尾号5261的参会者提问，请先提供姓名和机构名，请发言，谢谢！</p>
+<p><strong>Q1 海外调整成效与大中华趋势（摩根士丹利）</strong></p>
+<p><strong>Dustin（摩根士丹利）</strong>：谢谢管理层提问的机会！我是摩根士丹利的Dustin。有两个问题请教。第一个，管理层如何评价目前海外市场的调整阶段和成效进展？过去一个季度，有没有哪些亮点可以分享？大中华市场今年上半年表现相对稳健、比较强劲，但三季度在高基数下出现同比下滑，线上线下差异也比较大。对于大中华市场趋势的变化，有没有可以分享的观察，以及对未来的判断？谢谢！</p>
+<p><strong>司德</strong>：谢谢提问。我先讲一下整体情况。去年业务的高爆发主要发生在三季度，也是我们历史上销售最高的一个季度，因此今年三季度的同比压力和挑战确实非常大。海外市场经历年初以来的持续回落后，在三季度终于实现了比较平稳的发展。从7、8、9三个月，到接下来的10月份，我们都看到了非常平稳的迹象，也在稳步往上走。包括接下来的销售旺季，我们也能看到比较好的机会。</p>
+<p>国内市场在三季度也受到了宏观经济的影响。但如果大家去店里面，会感受到顾客的热情和门店热闹的氛围没有发生变化。我们内部也经常开玩笑说，每次看到同比数字有压力，就去店里待一会儿，心情就变好了。</p>
+<p>从全年来看，中国市场的表现依然比较稳健和健康。在去年的高增长和宏观压力之下，全年我们预计依然可以实现正的同比增长。我们也会在接下来四季度的传统销售旺季，努力把握销售机会，为明年做好准备。同时，长期健康发展依然是我们当前的核心目标。</p>
+<p>简单回顾三季度的一些具体运营动作。从门店的角度，我们在9月份正式开业了巴黎旗舰店，这是我们欧洲第一个旗舰店，也是现在面积最大的门店。上周五，伦敦旗舰店也开始了试营业。相信这两家旗舰店的开业，对品牌提升会有很大帮助。同时，我们在杭州、长沙和新加坡也分别开出了城市级别的旗舰店，销售都超出了预期，非常好。</p>
+<p>同时，我们在美国的门店数量在三季度正式突破了100家。接下来，一方面会继续在全球开店，同时也会更加注重每一家门店的质量，确保品牌表达和盈利能力都能实现。</p>
+<p>对于已经开出的门店，有些我们谈下来可能还有问题，接下来可能会从品牌形象上做一些升级，有些会做房租谈判或者转让，但整个调整周期会相对比较长。所以我们会对未来新开的门店看得更加严格。</p>
+<p>从IP的角度，LABUBU十周年全球巡展终于来到了最后一站北京，这站面积也是最大的，做得非常好看，欢迎大家有空去看。LABUBU《精灵三部曲》的中文版也正式推出，希望大家可以从故事的起点理解整个LABUBU的世界。两周前刚刚上市的LABUBU猫系列，也取得了非常好的销售表现。</p>
+<p>星星人在三季度延续了非常亮眼的表现，推出了几个爆款产品。同时，星星人的偶装也第一次去到新加坡、马来西亚等多个地方，跟艺术家一起与粉丝见面。</p>
+<p>SKULLPANDA和小野在全球市场，尤其欧美市场的表现非常亮眼。小野上个月推出的暗场系列，也成为今年到目前为止最热销的产品之一。</p>
+<p>DIMOO凭借今年跟皮克斯的联名产品，在欧美市场增速也很快。艺术家阿烟刚刚完成了在美国的首个签售活动，接下来也会去欧洲。我们希望通过更多这样的联名活动，帮助DIMOO在海外市场取得更快增长，就像之前在中国和亚洲表现非常好一样。</p>
+<p>同时，MOLLY的20周年展览刚刚在曼谷收获了很多关注。CRYBABY的首个主题门店也马上会在曼谷开业。</p>
+<p>从供应链的角度，我们核心关注的是费用。在亚太，我们整合了很多线上线下仓库，进一步降低运营成本。美国通过调整供应商，以及电商本土发货比例持续增加，大幅降低物流费用。欧洲也初步建立了空运、海运、火车三者结合的头程运输方式，在费用优化的同时，缩短了头程的物流费用。</p>
+<p>组织方面，一个比较大的变化是由Ryan接管整个亚太区。我们希望通过这次调整，让中国团队和亚太团队有更多交流配合。一方面帮助中国团队更好地理解海外业务，同时也帮助亚太团队在长期稳定发展上做出更好的表现。</p>
+<p>我们也为亚太、欧洲、美国的多个岗位引入了很多优秀人才，继续加强欧美团队与总部的协作。比如刚提到几月份开业的巴黎旗舰店，就是中国团队和欧洲团队共同筹备完成的。接下来还会在总部和各区域团队之间做更多人员升级调整，所花时间会相对比较长。新人入职后，对企业文化的理解、融入，以及新的小团队搭建，可能都会持续推进。</p>
+<p>最后，近期我们刚刚完成公司职级体系的优化。希望通过这次优化，拉通全球各个市场、各个团队的人才职级，也为未来全球人才流动提供更好的条件。</p>
+<p>总之，我们做了一系列基础运营动作，希望帮助公司在接下来的Q4和明年实现更好、更健康、稳定的成长。Ryan可以介绍一下中国的情况。</p>
+<p><strong>Ryan（管理层）</strong>：好的，谢谢提问。我来说一下大中华的问题。先说结论，整个Q4，我们预计整体产出应该稳中有升，全年维持正增长没有太大压力。尽管三季度以来有一个多月的时间，平台电商流量侧部分承压。</p>
+<p>可以介绍一下门店的情况。Q3门店依然是业绩贡献的主力，客流实际上还是正增长，我们预计这一趋势在Q4可以得到加强。</p>
+<p>另外说一下门店拉新，也就是品牌新客的数据。Q3同比是双位数增长，绝对值环比Q2也有增长。也就是说，依然有很多消费者进店，而且很多是品牌新用户。这是全渠道业绩的基础。</p>
+<p>机器人不说了，Q3同比依然是双位数增长，持续了上半年以来的趋势。抽盒机Q3访问量的确有下滑，但是质量有提升，整体客户转化率在持续提升。这是在高基数下的回落，并不是需求端结构性走弱。</p>
+<p>平台电商尽管承压，但是从九月，甚至现在十月来看，新品发售表现依然非常突出。抖音整体情况也一样，比如我们新的在线拆，从去年到今年Q3，在平台电商承压的时候，依然有逆势双位数的增长幅度。</p>
+<p>总体来讲，全渠道经营指标在不断改善。谢谢！</p>
+<p><strong>Dustin（摩根士丹利）</strong>：谢谢管理层的提问机会与解答。</p>
+<p><strong>Ryan（管理层）</strong>：谢谢！</p>
+<p><strong>会议接线员</strong>：下面有请电话尾号0662的参会者进行提问，请优先提供您的姓名和机构名，请发言，谢谢！</p>
+<p><strong>Q2 海外分渠道恢复与亚太组织调整（中金公司）</strong></p>
+<p><strong>中金公司分析师</strong>：各位泡泡玛特管理层，下午好！我是中金公司的分析师。很开心看到海外市场在本季度已经逐渐企稳。我想跟进两个海外问题。第一个，能否分渠道分享海外线下门店、同店的恢复情况，以及海外线上流量回落是否已经见底？我们也想理解，过去一个季度，海外消费者对泡泡玛特品牌和产品的认知有没有新变化，以及我们对消费者的运营重点。这是关于海外分渠道的问题。</p>
+<p>第二个，刚才司德总讲到，Ryan接手亚太应该已经有一个季度。能不能多分享一些本季度的变化和整个亚太区的情况？在这一轮海外调整中，公司会用哪些指标判断调整进度？现在来看，有没有哪些市场可以率先恢复增长？以上两个问题，谢谢！</p>
+<p><strong>司德</strong>：我先回答第一个问题。今年以来海外流量一直下降，直到三季度，我们感觉绝大多数国家和地区的流量基本都实现了比较平稳的状态。去到我们大部分线下门店，感受到的氛围还是不错的。</p>
+<p>线上压力确实更大。去年同期线下布局没有那么多，很多爆发集中在线上。到了今年，线上流量的恢复速度会比线下更慢一些。</p>
+<p>这也与长期以来的运营方式有关。我们更多靠线下不断开店、拉新会员，实现品牌增长和粉丝增加，这些流量再慢慢去到线上，所以线上流量恢复速度整体会比线下慢一点。</p>
+<p>接下来随着四季度销售旺季到来，我们也能看到，各个市场应该基本会在保持稳定的基础上实现环比销售增长。当然，欧洲10月份原本表现还不错，但近期不稳定的局势确实会影响欧洲生意。欧洲占比相对比较小，对整体的影响不会太大。</p>
+<p>今天这个会没有太多数据可以分享，我想举一个之前内部讨论过的例子，让大家感受当前海外的情况。今年九月底，我跟欧洲同事去意大利巡店。罗马有两家店，一家在市中心旅游区，另一家在距市中心大概三四十分钟车程的大型商场。</p>
+<p>这个商场基本是罗马人流量最大的几个商场之一，用户基本都是本地居民。我在那里几乎感受不到游客氛围。我们在商场里开了一家大概180平的门店，位置还不错，不是最好，但还可以，装修也不错。我在店里待了蛮久，不断看到有人路过。有人被橱窗吸引，不少人会进店，也有一些人最终买了产品。</p>
+<p>我在现场能感受到，大部分人可能并不了解我们的品牌，其中有一些人好像知道LABUBU。这样一家门店，每个月销售大概100多万元人民币，没有那么亮眼突出，但利润率也还不错。</p>
+<p>我觉得可能去年表现太好了，大家可能对这样的门店数据没有感觉。但我自己在内部也分享过，这样的数据才是泡泡玛特过去多年最熟悉的样子。</p>
+<p>从2018年、2019年，一直到2022年、2023年，我们在中国的门店基本都从普通位置、可能普通的品牌知名度和销售额起步，一点一点通过更好的运营、服务、粉丝积累、更合适的产品组合、更多营销活动，慢慢让大家了解品牌、喜欢IP，积累更多粉丝，最终实现同店销售额不断增长。</p>
+<p>这也是接下来我们会在罗马这家门店做的事情。通过持续运营和营销，我相信这家门店的销售额、同店销售会持续增长，从100多万可能涨到150万、180万，未来某一天涨到200万，甚至也许还可以更多。</p>
+<p>到了某一天，当我们积累了足够多的势能和销售潜力，就有机会在这里拿到更好的位置。拿到更好的位置，做更好的装修、陈列和服务，进一步提升品牌、增加粉丝、提升销售。</p>
+<p>这就是过去多年我们在杭州、成都、武汉，以及中国各个城市经历过的状态。只不过今天全球的基础可能比当年中国更好，泡泡玛特综合能力也更强，整个过程不会需要当年在中国那么长的时间。但同时，我们也确实需要有耐心。</p>
+<p>那趟行程后来还去了意大利很多城市：那不勒斯、佛罗伦萨、博洛尼亚、都灵、米兰。我们看了很多类似罗马的商场，不在旅游区，而在市中心周边，是本地顾客会去的商场。</p>
+<p>商场的人流量和品牌组合都不错。当前我们还没有在这些商场开门店，但理论上似乎都可以开。</p>
+<p>我觉得这就是接下来的海外策略：我们看到了很好的海外增长空间，接下来要选好、经营好每一家店，实现更加健康的增长。</p>
+<p>除了基础运营工作，刚刚也一直在提用户、粉丝。在我们看来，门店除了技术工作，店内氛围同样非常重要，包括刚刚一直讲的&quot;热闹&quot;。</p>
+<p>我们特别希望，每一位全新消费者进店时，都能感受到热闹、潮流、快乐和庆祝的感觉！</p>
+<p>而这种氛围，除了我们自身努力，也需要店里的粉丝、我们的文化共同打造。因此，不断增加会员和粉丝，持续传递潮流玩具文化，同样是接下来重要的努力方向。</p>
+<p>这样的文化确实需要时间，长期来说也应该是我们的品牌价值。我们的生意一直不是特别快的生意，只是去年涨得太快，大家可能忽略了过去一路是怎么走过来的。最终，从商业角度，我们看到了很多成长可能性，但每一种都需要时间积累。这是当前海外整体的感受和平台情况。</p>
+<p>Ryan介绍一下亚太。</p>
+<p><strong>Ryan（管理层）</strong>：好的，我来简单介绍亚太的情况。谢谢提问！就像你提到的，一个季度以来，我们还是立足中长期，当然短期也有很多动作。</p>
+<p>首先看组织。我们着眼于提升人才密度和整个团队的能力，做了一些简化流程的措施。毕竟总部和亚太有10个国家，有很多沟通，业务流中也有很多可提效、简化的部分。我们会注重国家侧各管理团队及leader的管理经验，以及从总部的协同能力。</p>
+<p>我们有很多历史发展中积累的经验，但不会全盘复制，仍会结合当地消费者和不同文化背景再创。</p>
+<p>另外是商品端。我们会借助大中华这几年的管理经验和思路，推动动态化管理实践。去年高速增长时，可能注重IP或者热款运营，但回归正常经营本质，我们仍会深化至全品类，细化到SKU经营，而不是只看某一个IP的成长。</p>
+<p>在此过程中，我们已经在不断引入国际品牌人才。他们会在总部实习、培训、熟悉业务，再到各自岗位发挥作用，支持亚太持续增长。</p>
+<p>第三是渠道端。我们仍会聚焦零售本质，重视线下投入与当地消费者体验，协同线上线下运营节奏。线上在提升运营效率时，已经逐步开始减少一些国家小平台上不必要的资源分散和重复投入，提高整体运作效率。</p>
+<p>总的来讲，整个市场的恢复有先有后，但我们的立足点是整体亚太市场的恢复和持续增长。我们会注重提升亚太当前在手滚动库存的周转率。今年下半年、第三季度以来，一直在持续推进这件事。</p>
+<p>2025年，LABUBU热款的销售占比非常高。现在回归正常之后，也是一个机会，因为消费者能在各渠道看到更多IP。目前Q3，亚太也已经不只是一个LABUBU在维持销售。现在Q3来看，六个IP整体贡献已超60%的业绩，我们会持续推动多元化销售结构。</p>
+<p>另外可以说一下机会，可能不是KPI，因为KPI要看很多、很复杂。其中一些机会是：亚太很多业务以线下门店为主，当前会员销售占比与成熟的中国市场相比还有较大差距。但这也是未来可以着眼的机会，即提升门店会员销售占比。</p>
+<p>我们近期做了一系列动作。另外是跨渠道消费行为。以中国区内陆为主作比较，现在亚太各国跨渠道消费占比可能不足中国区的1/3。这也是不同的发展阶段。随着我们不断推动、带领各国持续改进，其中也有巨大的增长空间。谢谢。</p>
+<p><strong>中金公司分析师</strong>：好的，谢谢司德总和Ryan总，非常有帮助。我先问到这里。</p>
+<p><strong>会议接线员</strong>：下面有请电话尾号7656的参会者进行提问，请优先提供您的姓名和机构名，请发言，谢谢！</p>
+<p><strong>Q3 Q4备货与国内旗舰店表现（中信证券）</strong></p>
+<p><strong>徐航（中信证券）</strong>：非常感谢管理层接受提问。我是中信证券的徐航。第一个问题关于海外市场。去年Q4由于IP热度很高，出现部分商品备货不足的情况。请教管理层，今年Q4备货情况和计划如何？对海外需求的判断是否会更加准确？海外仓配和商品调拨效率有哪些改善？</p>
+<p>第二个问题关于国内。今年很多旗舰店陆续开业，门店需求和热度很高，这些旗舰店表现如何？我们也看到旗舰店迭代非常明显，想请教后续的计划和安排。谢谢！</p>
+<p><strong>Ryan（管理层）</strong>：我先介绍商品备货，司德总稍后可以补充。第一个动作是，自Q3开始以来，各大区调拨频次明显加强，也可以利用大中华和国内区域目前的运营状况，消化各区域国内仓的一些商品。</p>
+<p>Q4一方面要持续降低整体库存水位，这是一直在坚持的工作；另一方面也要注重新品供给。</p>
+<p>尤其Q4看各大区商品规划，主要看OTB占比，即订单占比。当前各大区，包括中国区，所有订单的OTB占比，都比各自前三个季度新品实际销售平均值的百分比有比较明显提升。甚至在一些有机会、旺季比较明显的国家和地区，OTB供给超过了今年高水位Q1的平均水平，以保证新品能够持续提供给各大区消费者。</p>
+<p>第二，我们会重点关注头程调拨的有效性。刚才介绍过仓配上头程物流有效性的提升，另一方面也会从商品运营角度关注规划的有效性。</p>
+<p>简单讲，一些国家和地区内部，商品网络存在比较明显的可调拨性。通过allocation调拨，可以持续满足网络内缺货、推高销售的情况，我们已经逐步实施动态化管理，而不是初配后一直等终端售罄率达到比较高的水平，再做后续动作。这样能减少不必要的召回，以及店内高频反复调货。目前整个Q4备货比较充足，我们比较有信心。</p>
+<p><strong>司德</strong>：今年我们在总部成立了看全球买货的商品团队、商品小组。过去四个区域、四个团队各自买货，现在统一起来，在大家提出买货需求后，由总部统一调控。一方面避免热款出现时各地都备很多，或者某些地方备得少；同时，当区域间销售进度相对不平衡时，也可由总部做更多调控，降低风险。</p>
+<p>海外需求预测的准确性现在肯定相对有提升，但与国内仍有较大差距。随着生意更平稳发展，肯定会相对变好。主要是去年和今年上半年波动太大，很多数据参考性变弱。</p>
+<p>从物流时效看，欧美很难达到国内小单快返的速度，我们现在只能通过提前排产解决。</p>
+<p>电商方面，美国现在已经实现本土发货，大幅提升配送效率。欧洲争取在年底把这块做得更好，现在看基本到年底应该能实现本土化。</p>
+<p><strong>Ryan（管理层）</strong>：大概是这样。我来说明国内旗舰店状况。我说得再多，不如大家亲自去门店看，相信各位在社媒上已经看到很多新闻和分享。</p>
+<p>我自己也都去看过，人确实非常多，对运营的压力很大。可以分享一组数据：旗舰店从开设以来，每家开业时间不同，迭代也不同。从准备、开业筹备到最终实施，我们都在不断迭代，吸取上一次成功的经验和没做好的地方。</p>
+<p>有一个数据可以大概分享：全国10月份旗舰店的销售数据，环比八月，因为八月还是高点，依然是双位数在持续增长。旗舰店的情况可以用这组数据说明。</p>
+<p>中国区有TOP50门店，平均产出、店效和运营状况都比较好，销售面积也比较理想。把现有旗舰店平均水平与全国TOP50作比较，可以先看月均客流。</p>
+<p>Q3截至目前，旗舰店月均客流依然是TOP50的两倍以上。很多旗舰店因为人太多，考虑客户体验，会做合理的客流管理。其实也可以进更多人，但是就没在体现在这个客流中了。</p>
+<p>另外，如果不看运营数据，只看最重要的品牌新客拉新指标，线下一直是最重要的拉新战场。旗舰店对比全国TOP50门店，拉新人数的增长是TOP50的数倍，而且趋势仍在稳步提升。</p>
+<p>最后说转化率。旗舰店面积大、涌入很多人，但转化率远高于TOP50平均值，大家知道TOP50平均转化率是双位数。近期Q3旗舰店运营结果来看，这几家店的转化率比TOP50门店平均水平还有双位数提升，而且持续保持这一状况。</p>
+<p>后续像去年说的一样，我们会持续探索，谈判更好的位置，但仍重质不重量。每开一家店都会做比较长时间的准备，从最早设计到最终实施，希望给消费者更好的体验。</p>
+<p><strong>司德</strong>：谢谢，再补充一点。</p>
+<p><strong>徐航（中信证券）</strong>：非常感谢。</p>
+<p><strong>司德</strong>：海外旗舰店方面，伦敦店刚开始试营业，应该再有一个月左右，围挡会撤下来，应该那边也会很漂亮。米兰旗舰店应该明年一季度开业；美国纽约第一家旗舰店年底开，第二家应该明年上半年开。同时，巴黎还会开第二家旗舰店。</p>
+<p>国内还有一家重要的店，预计年底应该也会开。接下来旗舰店不会是核心策略。通过这一波旗舰店开设，相信从品牌感等各方面，对全球业务都会有较好的提升。但未来旗舰店不会是核心目标，只会在非常好的地方、非常有信心的地方，才考虑新的旗舰店。大概是这样。</p>
+<p><strong>徐航（中信证券）</strong>：非常感谢各位管理层详尽的解答！</p>
+<p><strong>会议接线员</strong>：下面有请电话尾号5306的参会者进行提问，请优先提供您的姓名和机构名，请发言，谢谢！</p>
+<p><strong>Q4 美国调价与下半年毛利率/净利率展望（美银证券）</strong></p>
+<p><strong>Alice Ma（美银证券）</strong>：感谢管理层提问的机会。我是美银证券分析师Alice Ma。有两个问题：第一个关于价格，最近我们注意到美国产品价格有一定下调，未来海外市场定价策略大致是什么样的？今年的价格下调对毛利有什么影响，能否帮大家理解？</p>
+<p>第二个，考虑到收入增速和结构变化，以及海外扩张带来人力、租金、物流等费用抬升，想请管理层谈一下下半年毛利率和净利率的展望。谢谢！</p>
+<p><strong>司德</strong>：我先介绍美国调价的情况。首先，并非都下调，一部分产品下调，也有一小部分上调。更多是在重新定价，希望价格定得更合理。</p>
+<p>调整有几个方向。第一，过去一年多因为关税原因，一部分在此期间上市的新品，考虑额外成本增加，价格定得较高。店里同一品类产品可能因上市时间不同而价格不同，本质上不合理。这次我们统一作了调整。</p>
+<p>第二，特别高单价的产品，比如MEGA和一些限量款，过去加价率与普通盲盒产品类似。我们参考了国际知名品牌的全类定价策略，对极高单价产品的加价率做了部分下调，使全球市场这类产品的价格差不多。</p>
+<p>第三是微观小调整。比如有些价格原来是50块钱，就调成49；有些是48，也调成49，类似这样的小调整。</p>
+<p>对整个毛利率的影响，当时测算时，我们预计应该差不多一个点左右，不是非常大的毛利影响。</p>
+<p>未来海外大部分国家地区，没有受到美国去年特殊情况的影响，价格都在比较合理的水平。我们只会对极个别产品做像50调到49、48调到49这样的微观调整，目前看没有大的定价调整的机会。</p>
+<p><strong>财务负责人</strong>：第二个问题我回答。从目前看，下半年集团毛利率较上半年会有一定下降。目前预测下降不会超过2个百分点。一方面，海外收入占比预计较上半年有一定下降，海外业务整体毛利率应该高于国内。规模效应和收入结构变化两方面，都使集团整体毛利率下降。</p>
+<p>另一方面，为提升海外市场竞争力，部分海外市场主动调整了一些产品定价，刚才也提过，会对下半年毛利产生影响。</p>
+<p>费用方面，下半年核心海外市场会新增较多门店，相应的人力、租金、物业和装修摊销等固定费用增长，整体费用率会高于上半年。从目前看，下半年利润率也会受费用率影响，有所下降。</p>
+<p><strong>Alice Ma（美银证券）</strong>：好的，感谢管理层，谢谢！</p>
+<p><strong>会议接线员</strong>：下面有请电话尾号0903的参会者进行提问，请优先提供您的姓名和机构名，请发言，谢谢！</p>
+<p><strong>Q5 库存趋势、去化方案与会员复购（瑞银）</strong></p>
+<p><strong>Samuel（瑞银）</strong>：感谢管理层提问的机会！我是UBS瑞银的Samuel。上半年管理层提到自7月起库存开始拐头向下，想请教集团Q3库存趋势如何？海外滞销库存及备货库存的处理方案是什么？会不会通过促销等手段？对品牌和毛利率的影响怎么看？</p>
+<p>另外，想请教中国Q3新增会员和复购率的变化，以及核心粉丝留存相关策略。谢谢！</p>
+<p><strong>Ryan（管理层）</strong>：我先介绍库存情况，可能司德总可以补充。从集团总体看，库存在5月份达到一个比较高的点。期间我们确实做了刚才说的很多动作。</p>
+<p>首先在供给侧、买货方面，优化持续补货，同时维持新品推进。我们精细到SKU级别，做一些细致动作，管控买货可能对将来库存水位的影响。动态管理不是一次买货后期待多次销售结束，而是参考国内经验，用比较复杂的方式做更细致的管控。</p>
+<p>截至Q3九月底，集团整体库存水位从八月开始下降，到九月底已呈现比较明显的下降趋势。</p>
+<p>我们应该暂时不会做大规模促销活动，以保护品牌及消费者利益。</p>
+<p>从品类维度看，毛绒在Q3的业绩贡献仍占较大比重，且业绩贡献持续增长。但即使这样，毛绒品类库存的绝对金额并未提高。这也是我们与各大区商品联动，持续管控库存抗风险能力的结果。</p>
+<p>另一个重要品类是硬线公仔盲盒。从2025年末看，库存占比非常明显，销售贡献也处于比较重要的地位。到今年Q3，库存占比开始明显下降，尽管销售仍处于比较稳定的态势，在促进各大区和国家的销售情况。</p>
+<p>与此同时，以中国区为例，大中华区在增加各大区调拨时，也协助海外各区域消化库存。各大区自己也在积极消化库存，但不是大规模促销。</p>
+<p>比如每周有新市场分销渠道的拓展。亚太也以固定促销阶段、线上阶段性活动为主，同时兼顾毛利率，减少不必要的利润损失，大概是这样的情况。</p>
+<p><strong>司德</strong>：补充一点。就像Ryan刚才提到的，美国现在找了一些新渠道，包括大型连锁零售渠道合作。一方面分销大版权产品，另一方面帮助解决一些库存产品。目前确实是第一次尝试，希望有好的效果。</p>
+<p>另一方面，也希望以此打开未来长久的大版权合作的可能性。我觉得这也可能给我们找到一个新的生意机会。但长期来看，这些大型渠道合作方主要还是以大版权类产品，我们自有的IP为主。</p>
+<p>库存方面，今年上半年以来压力确实相对比较大。另一方面的压力是，我们看到很多国家和地区订货变得更加保守，担心手里库存太多，再订新货会有问题。</p>
+<p>过去一两个月，我们也在陆续帮助大家：一方面鼓励订新货，同时通过测算、预测等更好的方式，该订货就订货，正确理解库存，以及订货对未来生意的帮助。我觉得接下来对生意的影响和压力可能会变小，也希望生意慢慢回到正轨。</p>
+<p><strong>Ryan（管理层）</strong>：我来说大陆会员的情况。截至2026年第三季度，大陆品牌新客仍保持双位数增长趋势。甚至比第二季度、上半年业绩增长比较好的阶段，环比还有微增。从整个水池来看，情况比较不错、正向。</p>
+<p>另外看次复购，截至2026年第三季度，依然与去年同期持平。去年很多爆品、热款销售很多时，大陆也有效吸收了很多品牌新客和会员。</p>
+<p>大家可能关注到，一些旗舰店开业首月销售就过千万，也有很多品牌新客加入。但即使新客这样涌入，次复购基本持平，没有明显波动变化。</p>
+<p>常规数据在增加新的品牌新客的时候，一般会有下滑，但看到的数据情况应该比较理想。</p>
+<p>次年留存率截至2026年第三季度，仍有百分比增加。尤其去年消费过的会员，不管新客还是老客，截至第三季度都有比较高水平的有效留存。可以看到，会员对品牌的长期黏性更强，对我们的贡献也更强。</p>
+<p>如果只看第三季度单季，而不是截至当时的YTD数据，跨品类消费会员的人数和占比，同比都有稳定提升。尤其跨品类消费会员数，第三季度依然是比较高的双位数增长。这说明会员对品牌内部不同品类的探索不断加深，是比较好的情况。我们觉得这是能够持续下去的趋势。</p>
+<p>另外说核心粉丝留存。看2026年第三季度，跨IP消费老客人数的留存需要比较大的运营动作维持。现在单季人数依然是高双位数增长，跨品类老客人数也是比较高的双位数增长。这说明核心粉丝对品牌的忠诚度仍非常高，尤其老客贡献也有提高趋势。</p>
+<p>我们仍会坚持做几件事。第一，在全渠道线上线下，以内容为基础、陈列为基点，尤其在门店。陈列现在也同步适用到线上渠道，大家可以看到我们不断改进平台电商的visual，即视觉提升，以及直播间背景等一系列能与顾客有效互动的陈列、视觉元素。</p>
+<p>店内也做了很多互动项目，相信今年大家观感更强。员工会与顾客做一些更好的互动，包括之前的拉布布的品牌店，以及七夕节专门的互动情况。</p>
+<p>主要还是让全渠道不断迭代执行，改善用户观感和体感。在此过程中，顾客对多品类的兴趣，包括跨品类消费互动，明显增强。</p>
+<p>另外，我们仍会维护生态体系，一直强化各渠道差异化，从商品、陈列到用户最终体感、购买行为，都有明确定位。我们会坚持这样的策略：三方渠道注重拉新，一方渠道注重复购沉淀，全渠道注重流转而不是竞争，不断推高会员对整个生态体系的贡献，推动不同品类、IP和产品的持续业务增长。</p>
+<p>谢谢！</p>
+<p><strong>司德</strong>：补充一点海外情况。大家也看到会员对泡泡玛特的价值，因此过去我们做了很多技术研发投入。现在全球除两三个国家地区外，所有地方都已上会员系统。门店会员拉新也成为基础标准动作，纳入KPI考核。我们希望在海外把会员系统做得更好，通过会员不断增加，从线上线下流量循环到用户长期培养，为长期生意带来更多帮助。</p>
+<p><strong>Samuel（瑞银）</strong>：感谢管理层详细的回答。</p>
+<p><strong>会议接线员</strong>：下面有请电话尾号7592的参会者进行提问，请优先提供您的姓名和机构名，请发言，谢谢。</p>
+<p><strong>Q6 IP内容化投入与乐园布局（申万）</strong></p>
+<p><strong>申万分析师</strong>：管理层晚上好，我是申万分析师。有两个问题请教。首先，近期公司发布《The Monsters》简中绘本，IP影视化、内容化开发进度，以及内容投入的回报预期是什么样的？后面是否会加大内容预算？</p>
+<p>第二个，我们在上海，这次上海乐园快闪活动的客流表现还蛮好。对于其他城市，公司是否考虑继续通过快闪拓展乐园布局？北京乐园升级改造后，我们也看到很好的反馈，设备整体表现很好，夜游也是新尝试，管理层是否方便分享相关成果？以上两个问题，谢谢！</p>
+<p><strong>司德</strong>：内容长期价值确实很大。一方面本身可以带来商业化收入，比如电影票房。更多的是电影和内容产生的素材，包括音乐、场景、故事等，可以在整个商业模式里产生更大价值，涉及产品研发、授权、主题乐园等各方面。这也是泡泡玛特未来长期可能更有价值的地方，可以把所有东西在体系内转一圈。</p>
+<p>内容本身也不止包括影视化的东西，比如刚提到的绘本，还有我们最近在做的十周年展览、MOLLY展览、明年会做的DIMOO展览。这些展览本身也都在帮助大家理解我们的IP产品。</p>
+<p>从长期看还蛮重要。我举自己的例子，女儿两岁多，前几天带她去看LABUBU北京十周年展览。她看不懂但很喜欢，回来后主动要求，我连续给她讲了一个星期LABUBU绘本。可以感受到，好的内容不论什么形式，对成年人、小朋友的吸引力，以及长期对IP的喜欢，一定会产生很大价值。</p>
+<p>回到具体项目，LABUBU对外公布的电影现在还在剧本环节，剧本周期确实会相对更长。此外，我们也在跟海外一些知名公司探索LABUBU动画的可能性。</p>
+<p>除了LABUBU，SKULLPANDA、星星人和一些其他IP，也都在积极与不同创作团队探索可能性，有些目前进展相对比较顺利。</p>
+<p>但所有项目目前都处于早期，短期看应该不会特别大幅增加内容预算。如果未来走到做电影等阶段，可能确实会有一些投入，当然也要看最终电影的情况，整个周期会相对更长。</p>
+<p>我们对每个内容项目都会更有耐心，希望对IP的长期价值产生更大回报。</p>
+<p>乐园方面，先解释快闪店。快闪店本质上是营销行为，不会是接下来的重点。未来可能也许会在某些地方做一两场，但首先不是重点，也不会大幅增加快闪店的品质和频率。未来方向不是这个方向。</p>
+<p>乐园升级改造到目前为止非常好，可能凡是去过的都会感受到，无论品质、IP故事讲述还是整体氛围都很好。夜游也延长了营业时间，很多目标用户下班后可以去感受几个小时的快乐。我觉得这对整体乐园的收入，以及粉丝感情的维护，都有比较大帮助。</p>
+<p>接下来，我们正在继续优化升级乐园，比如泡泡机和一些区域扩展，目前都在计划中。同时积极推进下一个乐园项目，但仍处于选址阶段，我们相对比较慎重。</p>
+<p>乐园的长期价值，除了现有用户感受到IP氛围和包裹感，我们还看到了大量家庭用户和小朋友。我也在想象，今天的小朋友在乐园看到拉布布，看到星星人，就像小时候的我们看到皮卡丘。未来这些IP会陪伴他们长大，成为成年人，再由他们传给自己的小朋友。</p>
+<p>乐园以及前面提到的内容，对我们非常长周期的生意和整个IP的帮助会很大。所以乐园是接下来非常重要的商业模式。</p>
+<p><strong>主持人</strong>：由于时间关系，再请最后一个问题。</p>
+<p><strong>会议接线员</strong>：下面有请电话尾号7517的参会者进行提问，请优先提供您的姓名和机构名，请发言，谢谢。</p>
+<p><strong>Q7 全球供应链布局与新品类进展（花旗）</strong></p>
+<p><strong>Lidia（花旗）</strong>：管理层好！我是花旗的Lidia，感谢给我最后提问的机会。有两个问题。首先关于全球供应链，目前海外代工布局进展如何？能否有效缩短海外订单交付周期，减少预测偏差造成的积压？这是第一个问题。</p>
+<p>第二个关于新品类。去年开始，公司尝试了很多新品类，小野生活方式店铺和甜品反馈不错，但积木、饰品热度相对弱一些。管理层认为消费者对不同品类热度差异的原因是什么？未来对多品类集团还有哪些新想法可以分享？谢谢！</p>
+<p><strong>司德</strong>：谢谢提问。先说供应链。当前仍以中国为核心生产基地，只是从广东开始向内陆发展，一方面也可以降低一些生产成本。</p>
+<p>当前生产差不多在中国，因为合作多年，质量、工艺、效率各方面都在逐步提升。包括最近一些工艺指标、客诉率指标、准时交付等，今年都有很不错的提升。</p>
+<p>长期看，核心生产基地仍会在中国。越南是向外尝试的第一站，目前做了三年多，效率和质量仍在爬坡，目前基本达到了要求。</p>
+<p>但从减少海外订单交付时间的角度看，越南针对欧美的物流时效目前并不如中国。虽然成本有一定优势，但很难解决缩短海外订单交付周期的问题。</p>
+<p>同时也看了墨西哥，做了非常轻量的尝试。我觉得目前看起来，没有看到墨西哥会成为未来主要生产基地的可能性，这比较难。从海外订单交付的角度，确实没有办法从供应链所在地本身找到解决方案，目前没有好的办法。</p>
+<p>我们现在采取的方式，第一是相对更准确的预测、更前置的规划，以及多次滚动出货。可能首批货先发美洲、欧洲，再滚动出货；包括结合空运、海运、火车等多种物流方式，平衡整个交付的时效和成本。</p>
+<p>这是当前的解决方案。目前没有看到通过改变生产基地来缩短这个周期的方案。</p>
+<p>新的品类方面，首先我们对每个新品类都有足够的敬畏之心，每个品类确实都不一样，也依然有足够耐心。</p>
+<p>先说小野生活方式店铺。从我们的角度，更把它看作品牌项目，希望通过这样的门店，让大家更好感受小野品牌。它现在在海外陆续开了几家门店，一方面生意本身不错，另一方面让消费者、粉丝更深度理解小野在讲述什么样的情绪。它带来的帮助也是，小野这个IP在中国、海外市场，过去一个季度增长速度非常快、非常明显。</p>
+<p>但小野生活方式门店不会大量开店，仍以品牌为主，本身不是大的生意模式。</p>
+<p>甜品到目前反响不错，但门店数量其实很少，在乐园、阿那亚、新加坡RWS环球影城门口，以及泰国旗舰店。这几个店的核心特点都是旅游属性非常强。</p>
+<p>因为旅游属性强，用户对甜品的选择、喜好和复购，可能与开到商场里的情况不太一样。</p>
+<p>这个月底我们马上会在北京商场开出第一家独立甜品店。也希望通过陆续开几家，看看产品品类、产品组合是否需要变化，以及消费者反馈如何。</p>
+<p>收集更多数据后，再看甜品接下来如何发展。积木和饰品目前也都在正常发展过程中。</p>
+<p>饰品现在应该有八九家店，接下来还会缓慢开店。希望通过不断调整产品设计、供应链和团队，帮助饰品可能取得更长期、稳健的发展。</p>
+<p>积木也是，我们对长远发展仍有信心。只是在不断寻找：积木基于&quot;泡泡玛特&quot;品牌的价值在哪里？粉丝如何理解？积木品类的表达，与其他积木品牌不同的地方是什么？加上不断优化整个供应链，周期还会比较长。</p>
+<p>现在积木开发的频次和速度，相对也慢于其他产品。这也是理解产品品类时，不断积累知识、能力的过程。</p>
+<p>我觉得长期看，对于这几个新品类，除了小野不是长期加速发展的东西之外，甜品、积木、饰品，包括之前的小家电，都有更长远的规划。相对而言，我们会对发展周期更有耐心。</p>
+<p><strong>主持人</strong>：感谢各位的积极提问，也感谢管理层详尽的解答。本次电话会到此结束，感谢各位的参与以及长期以来对公司的关注与支持。如后续还有任何问题，欢迎随时与公司的投资者关系团队联系。再次感谢大家，谢谢！</p>
+<p><strong>会议接线员</strong>：本次会议已结束。the meeting has ended.</p>
+<hr />
+<p><strong>参考阅读（原文附）</strong>：<a href="https://mp.weixin.qq.com/s?__biz=MzY5OTM3NzEzMQ==&amp;mid=2247485121&amp;idx=1&amp;sn=945c454711b5369ce513f8cd56a2ae87&amp;scene=21#wechat_redirect">泡泡玛特2026年中期业绩发布会（完整逐字稿）</a></p>
+<p>●●●● 苔藓花园 · MossGarden</p>
+</div><div class="backrow"><a href="../index.html#dir=%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99">← 返回 原始资料</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../raw/research/泡泡玛特/2026-10-27-第三季度业绩说明会完整逐字稿.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
