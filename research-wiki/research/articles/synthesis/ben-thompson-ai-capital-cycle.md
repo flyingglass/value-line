@@ -9,7 +9,7 @@ source: ../../raw/research/articles/本汤普森_2026_BenThompson播客-AI融资
 # Ben Thompson 播客：AI 资本周期、聚合理论与科技巨头护城河
 
 > 来源：微信公众号「我有充足的时间」编译转载，原载 Stratechery（Ben Thompson × Patrick O'Shaughnessy 对话，2026-08-18）
-> 原始资料：[[../../raw/research/articles/本汤普森_2026_BenThompson播客-AI融资与科技巨头护城河]]
+> 原始资料：[[../../raw/research/投资/基金经理/本汤普森_2026_BenThompson播客-AI融资与科技巨头护城河]]
 > ⚠️ 本文为观点性内容（播客对话），文中数字均为对话中陈述，未经独立核验
 
 ## 核心命题

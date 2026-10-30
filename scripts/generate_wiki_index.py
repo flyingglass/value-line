@@ -88,6 +88,14 @@ CASE_GROUP_NAMES = {
     '感悟': '感悟 · 投资思考',
 }
 
+# raw/research 下的通用原始资料目录（非标的）：raw 子目录 → general 输出分类
+# 2026-10-30：articles 按主题拆分，书籍 / 投资（含 巴芒、基金经理）各自成目录
+RAW_GENERAL_DIRS = {
+    'articles': 'raw',
+    '书籍': '书籍',
+    '投资': '投资',
+}
+
 # 标的容器根下散落的 md（名单池）→ 归入「<容器>·名单池」组
 # 例：research/AI软件/AI软件名单-待选池.md → 组 id「AI软件·名单池」
 LIST_SUFFIX = '·名单池'
@@ -283,7 +291,7 @@ def scan_wiki():
     if os.path.isdir(raw_dir):
         for sub in sorted(os.listdir(raw_dir)):
             subpath = os.path.join(raw_dir, sub)
-            if not os.path.isdir(subpath) or sub == 'articles':
+            if not os.path.isdir(subpath) or sub in RAW_GENERAL_DIRS:
                 continue
             is_case = sub in CASE_GROUP_NAMES
             gname = CASE_GROUP_NAMES.get(sub, CODE_DISPLAY.get(sub, sub))
@@ -308,11 +316,14 @@ def scan_wiki():
                 art['category'] = cat
                 general.append(art)
 
-    raw_gen_dir = os.path.join(WIKI_DIR, "raw", "research", "articles")
-    if os.path.isdir(raw_gen_dir):
+    # raw/research 下的通用原始资料（非标的）：articles / 书籍 / 投资（含 投资/巴菲特与芒格、投资/基金经理）
+    for sub, catname in RAW_GENERAL_DIRS.items():
+        raw_gen_dir = os.path.join(WIKI_DIR, "raw", "research", *sub.split('/'))
+        if not os.path.isdir(raw_gen_dir):
+            continue
         for rel, fpath in iter_md(raw_gen_dir):
-            art = read_article(fpath, f"raw/research/articles/{rel}")
-            art['category'] = 'raw'
+            art = read_article(fpath, f"raw/research/{sub}/{rel}")
+            art['category'] = catname
             general.append(art)
 
     # synthesis 中命中标的的 → 归入标的组；未命中 → general
