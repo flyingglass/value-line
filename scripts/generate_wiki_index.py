@@ -1201,16 +1201,106 @@ def build_home(groups, cases, general):
 # 入口
 # ---------------------------------------------------------------------------
 
+def validate_scan(groups, cases, general):
+    """生成前自检：①磁盘上每个 md 恰好被收录一次 ②通用目录没被当成标的 ③知识库分类合法。
+
+    2026-10-31 连踩两坑（`投资/` 被当成标的组、同名文件互相覆盖），都属「目录结构与
+    分类映射不同步」。此处一次性兜住：任一项不过直接终止，不留半成品站点。
+    """
+    errors = []
+
+    # ① 收录清单 vs 磁盘清单
+    collected = []
+    for coll in (groups, cases):
+        for info in coll.values():
+            collected += [a['real_path'] for a in info['articles']]
+    collected += [a['real_path'] for a in general]
+
+    expected = set()
+    for root in (('research',), ('raw', 'research')):
+        base = os.path.join(WIKI_DIR, *root)
+        if not os.path.isdir(base):
+            continue
+        for sub in os.listdir(base):
+            subpath = os.path.join(base, sub)
+            if not os.path.isdir(subpath):
+                continue      # 目录根散落的 index.md / log.md 之类不收录
+            for _rel, fpath in iter_md(subpath):
+                expected.add(os.path.relpath(fpath, WIKI_DIR).replace(os.sep, '/'))
+
+    seen, dup = set(), []
+    for p in collected:
+        if p in seen:
+            dup.append(p)
+        seen.add(p)
+    missing = sorted(expected - seen)
+    extra = sorted(seen - expected)
+    if missing:
+        errors.append(f"{len(missing)} 个 md 未被收录，例如 {missing[:3]}")
+    if dup:
+        errors.append(f"{len(dup)} 个 md 被重复收录，例如 {dup[:3]}")
+    if extra:
+        errors.append(f"{len(extra)} 个收录项不在预期目录内，例如 {extra[:3]}")
+
+    # ② 通用目录（或其子目录）不许出现在标的/专题里
+    covered_top = {k.split('/')[0] for k in RAW_GENERAL_DIRS}
+    for label, coll in (('标的', groups), ('专题', cases)):
+        for gid in coll:
+            if gid in covered_top:
+                errors.append(f"{label}「{gid}」其实是 RAW_GENERAL_DIRS 收录的通用目录，"
+                              f"不该被当成{label}（检查 RAW_GENERAL_DIRS 的键与跳过判断）")
+
+    # ③ 知识库文章必须有合法分类
+    bad_cat = [a['real_path'] for a in general if a.get('category') not in GENERAL_CATEGORY_ORDER]
+    if bad_cat:
+        errors.append(f"{len(bad_cat)} 篇知识库文章分类不在 {GENERAL_CATEGORY_ORDER} 内，"
+                      f"例如 {bad_cat[:3]}（检查 RAW_GENERAL_DIRS 映射）")
+
+    if errors:
+        print("\n[自检失败]")
+        for e in errors:
+            print("  x " + e)
+        print("已终止，未生成站点。")
+        return False
+    print(f"  自检通过: {len(seen)} 个 md 各归一处（标的/专题/{GENERAL_TAB_NAME}）")
+    return True
+
+
+def validate_layout(groups, cases, general):
+    """第二遍自检：输出路径必须唯一。两篇同名 md 落到同一目录会互相覆盖（静默丢文章）。"""
+    arts = [a for coll in (groups, cases) for info in coll.values() for a in info['articles']]
+    arts += general
+    owner = {}
+    for art in arts:
+        out = art.get('_out')
+        if not out:
+            print(f"\n[自检失败] 未计算输出路径: {art['real_path']}")
+            return False
+        prev = owner.get(out)
+        if prev is not None and prev != art['real_path']:
+            print(f"\n[自检失败] 输出路径冲突: {os.path.relpath(out, BASE)}")
+            print(f"  <- {prev}")
+            print(f"  <- {art['real_path']}")
+            print("  两篇同名 md 会互相覆盖，需在输出目录上区分（或改文件名）。")
+            return False
+        owner[out] = art['real_path']
+    return True
+
+
 def main():
     print("扫描 research-wiki/ ...")
     groups, cases, general = scan_wiki()
     n_stock = sum(len(v['articles']) for v in groups.values())
     n_case = sum(len(v['articles']) for v in cases.values())
     print(f"  标的: {len(groups)} 个 ({n_stock} 篇) | 投资案例: {len(cases)} 个专题 ({n_case} 篇) | {GENERAL_TAB_NAME}: {len(general)} 篇")
+    if not validate_scan(groups, cases, general):
+        sys.exit(1)
 
     print("生成页面 ...")
     os.makedirs(VIEW_DIR, exist_ok=True)
     layout_all(groups, cases, general)   # 先定路径，供 [[wiki 链接]] 解析
+    if not validate_layout(groups, cases, general):
+        sys.exit(1)
     written = []
     for gid, info in groups.items():
         written += generate_group('stocks', gid, info)
