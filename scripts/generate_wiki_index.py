@@ -7,8 +7,8 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
                                              点击标签在当前页切换面板，不跳转
     view/stocks/<标的>/<目录…>/<文章>.html    独立文章阅读页
     view/cases/<案例专题>/…                  投资案例专题（组页同上，如 案例/方法论/时间线）
-    view/general/index.html                  知识库整组页（目录=顶栏 tab，就地切换）
-    view/general/<分类>/<文章>.html          知识库文章阅读页
+    view/knowledge/index.html                知识库整组页（目录=顶栏 tab，就地切换）
+    view/knowledge/<分类>/<文章>.html        知识库文章阅读页
 
 规则：
     · 组根散落的 md 收进「概览」标签（不叫「其他文档」、不单独铺卡片）
@@ -32,7 +32,8 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WIKI_DIR = os.path.join(BASE, "research-wiki")
 OUT_HOME = os.path.join(WIKI_DIR, "index.html")
 VIEW_DIR = os.path.join(WIKI_DIR, "view")
-GENERAL_VIEW_DIR = os.path.join(VIEW_DIR, "general")
+# 目录名与一级 tab（知识库）对齐；父级沿用 stocks / cases 的英文习惯
+GENERAL_VIEW_DIR = os.path.join(VIEW_DIR, "knowledge")
 GENERAL_IDX = os.path.join(GENERAL_VIEW_DIR, "index.html")
 
 if sys.platform == 'win32':
@@ -721,7 +722,7 @@ def layout_all(groups, cases, general):
                 register_link(art)
     for art in general:
         cat = art.get('catdir') or art.get('category', 'other')
-        art['_out'] = os.path.join(VIEW_DIR, 'general', cat,
+        art['_out'] = os.path.join(GENERAL_VIEW_DIR, cat,
                                    safe_stem(os.path.splitext(os.path.basename(art['path']))[0]) + '.html')
         register_link(art)
 
@@ -948,7 +949,7 @@ def general_topic_order(general):
     return grouped, ordered
 
 def general_group_page(general):
-    """知识库整组页：view/general/index.html，目录（书籍/投资/文章）当顶栏 tab，就地切换（与标的组页同构）。"""
+    """知识库整组页：view/knowledge/index.html，目录（书籍/巴芒/基金经理/文章）当顶栏 tab，就地切换。"""
     grouped, ordered = general_topic_order(general)
     total = len(general)
     html = head_html(GENERAL_TAB_NAME)
@@ -979,7 +980,7 @@ def generate_general(general):
     written = []
     for art in general:
         cat = art.get('catdir') or art.get('category', 'other')
-        out = os.path.join(VIEW_DIR, 'general', cat,
+        out = os.path.join(GENERAL_VIEW_DIR, cat,
                            safe_stem(os.path.splitext(os.path.basename(art['path']))[0]) + '.html')
         art['_out'] = out
         general_article_page(art, out)

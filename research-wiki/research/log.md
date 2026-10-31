@@ -1,5 +1,22 @@
 # 投研操作日志
 
+## [2026-10-31] 结构 | 通用区输出目录 `view/general/` → `view/knowledge/`
+
+### 用户指令
+- 指出上一条遗留项：目录名 `general` 与一级 tab「知识库」不一致，要求修复
+
+### 动作
+- `GENERAL_VIEW_DIR` 值改为 `knowledge`；`layout_all()` 与 `generate_general()` 里两处硬编码 `'general'` 改为引用该常量（原先散落三处，改目录要动三方）
+- 删除旧 `view/general/`（含 59 篇文章页 + index），重新生成到 `view/knowledge/`
+- 同步 `vl/modules/generate_wiki_index.py.md` 的页面结构树与 tab 对照表
+
+### 结果
+- `view/` 下三个平级目录：`stocks / cases / knowledge`，命名风格统一（英文父级 + 中文子目录）
+- 站点 357 页不变；自检通过 322 个 md；全站零引用旧路径（`research/log.md` 历史条目除外）
+- 代码内部标识符 `GENERAL_*` 保留未改名（`GENERAL_TAB_NAME` / `GENERAL_IDX` / `GENERAL_CATEGORY_ORDER`），因为它们表达的是"通用区"这一概念，与输出目录名解耦
+
+---
+
 ## [2026-10-31] 工程 | `generate_wiki_index.py` 加生成前自检（目录结构与分类映射一致性）
 
 ### 背景
