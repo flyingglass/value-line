@@ -754,7 +754,7 @@ def download(code=None, periods=None):
     elif market == "us":
         return download_us(code, periods=["FY"])
     else:
-        return download_cninfo(code)
+        return download_cninfo(code, periods)
 
 if __name__ == "__main__":
     code = sys.argv[1] if len(sys.argv) > 1 else None
