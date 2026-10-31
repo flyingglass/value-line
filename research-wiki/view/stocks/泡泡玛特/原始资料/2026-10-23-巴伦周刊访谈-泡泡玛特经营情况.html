@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-10-23-巴伦周刊访谈-泡泡玛特经营情况</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">泡泡玛特</a> › <a href="2026-10-23-巴伦周刊访谈-泡泡玛特经营情况.html">2026-10-23-巴伦周刊访谈-泡泡玛特经营情况</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2026-10-23-巴伦周刊访谈-泡泡玛特经营情况</h1><div class="meta-line"><span class="tag tag-raw">原始</span><span style="margin-left:auto;color:#b0b5bd">raw/research/泡泡玛特</span></div><div class="md" id="md"><h1>最新在巴伦周刊关于泡泡玛特经营情况的访谈（公众号访谈）</h1>
+<blockquote>
+<p>来源：微信公众号「Conan的投资笔记」<br />
+原文链接：https://mp.weixin.qq.com/s/CsGOxx3g7-QxR-V_zVmMiQ <br />
+作者：王卓玮（公众号「Conan的投资笔记」，自述研究泡泡玛特第 9 年）<br />
+发布时间：2026-10-23 20:43（广东）<br />
+访谈信息：巴伦周刊访谈，提问 孙骋（巴伦周刊），回答 王卓玮<br />
+原始来源：微信公众号原文抓取<br />
+栏目：#泡泡玛特｜上一篇：《这周二晚上参加巴伦周刊关于泡泡玛特的访谈》</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：星星人是体系产物还是偶然爆款 · 超级 IP 周期下行如何定价 · IP 标准化复制的可能性</p>
+</blockquote>
+<p><strong>一句话核心</strong>：泡泡玛特真正的壁垒不是「猜中哪个 IP 会火」（公司自己猜得也不准），而是**「能持续设计出好产品的体系」**——星星人 2026H1 收入 26.5 亿元是这套体系的产物，而非偶然；但短期销售下滑与高估值消化仍需正视。</p>
+<p><strong>关键数据</strong>：</p>
+<ul>
+<li>星星人 2026H1 收入 <strong>26.5 亿元</strong>，全年预计 <strong>50–60 亿元</strong></li>
+<li>LABUBU 从签约龙家升到成为超级 IP，约 <strong>6 年</strong>积累</li>
+<li>泡泡玛特股价曾达 <strong>300 元</strong>，访谈时跌逾一半；历史低位 <strong>10–12 元</strong>，作者买入价约 <strong>20 元</strong></li>
+<li>名创优品 2026Q3 GMV 增长 <strong>25–30%</strong>，并从泡泡玛特挖走一个小团队</li>
+<li>泡泡玛特股东会参会人数：最少 <strong>4 人</strong> → 去年近 <strong>300 人</strong>（往期标题称 388 人）</li>
+<li>高盛高频数据（信用卡等）显示泡泡玛特销售额<strong>有较大下滑</strong></li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>体系 vs 偶然</strong>：LABUBU 爆红前，公司产品重点是 SKULLPANDA，官方节目送给嘉宾的伴手礼全是 LABUBU（因销量不行要清库存）——说明公司自己也猜不准；但体系能保证「猜错时，有潜力的团队和 IP 仍能分到资源」。</li>
+<li><strong>作品 vs 作业</strong>：泡泡玛特允许设计师 6–12 个月反复延期返工（王宁：「希望大家交作品而不是作业」），名创优品只给 3 个月——工期制度直接决定产品质感上限，但也带来「摸鱼」的管理难题。</li>
+<li><strong>长期需求向上 vs 短期销售下滑</strong>：80 后起每五年一个代际，愿为 IP 付费的金额/数量/质量都在提升；但销售额同比下滑（作者反问「万一销售额同比降 30%，你们会不会亏」）正有概率成真。</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li>星星人全年能否兑现 50–60 亿，以及<strong>下一个同量级新 IP 何时出现</strong></li>
+<li>名创优品用「泡泡玛特评级偏低、未重点做的 IP」做出的自营爆款，是否形成<strong>可持续的正面竞争</strong></li>
+<li>销售额同比降幅的深度与持续时间（是否触及 -30%）</li>
+<li>情绪指标：股东会参会人数、段永平持仓动向</li>
+</ol>
+<blockquote>
+<p>原文存在个别笔误（<code>skupanda</code>＝SKULLPANDA、<code>展期</code>＝延期、<code>泡玛特</code>＝泡泡玛特、<code>泡泡玛及</code>＝泡泡玛特及），正文按原样保留以便核对。</p>
+</blockquote>
+<hr />
+<h2>数据交叉核对（入库时验证，不改原文）</h2>
+<p>用泡泡玛特 2026 中报（<code>09992_泡泡玛特_2026_中报.pdf</code> P25「按 IP 划分的收入」）核对访谈中的关键数字：</p>
+<table>
+<thead>
+<tr>
+<th>访谈表述</th>
+<th>中报实际数据</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>星星人 2026H1 收入 <strong>26.5 亿元</strong></td>
+<td>Twinkle Twinkle <strong>2,649,969 千元（26.50 亿）</strong>，占收入 15.4%（2025H1：3.89 亿，2.8%）</td>
+<td><strong>完全一致</strong>，且一年增长 6.8 倍</td>
+</tr>
+<tr>
+<td>（访谈未提）</td>
+<td>THE MONSTERS <strong>44.54 亿</strong>，占 26.0%，<strong>同比 −7.5%</strong>（2025H1：48.14 亿）</td>
+<td>第一大 IP 首次同比下滑</td>
+</tr>
+<tr>
+<td>（访谈未提）</td>
+<td>MOLLY 9.01 亿（<strong>−33.6%</strong>）、SKULLPANDA 15.51 亿（+27.1%）、CRYBABY 16.33 亿（+34.0%）、DIMOO 16.19 亿（+46.5%）</td>
+<td>老 IP 严重分化，非全线退潮</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>访谈称「LABUBU 火之前公司产品重点是 SKULLPANDA」，与中报结构相符：SKULLPANDA 现为第 4 大 IP（15.51 亿），仍是重要支柱而非弃子。</p>
+</blockquote>
+<p><strong>两项无法用库内数据验证，标注待核</strong>：</p>
+<ul>
+<li>「名创优品 2026Q3 GMV 增长 25–30%」——库内 <code>data/db/09896.db</code> 最新仅到 2026Q1，Q3 数据未入库</li>
+<li>「高盛报告显示销售额有较大下滑」——外部研报，未入库；作者本人也仅表述为「有一定概率符合实际情况」</li>
+</ul>
+<hr />
+<h2>正文</h2>
+<h3>导语</h3>
+<p>最新在巴伦周刊关于潮玩行业和泡泡玛特经营情况的访谈。对潮玩行业和泡泡玛特感兴趣球友可以来看看。也就是大约1年前，泡泡玛特当时受到市场可以说是狂热追捧，但也就过去1年多一点，情况已经大不一样了。从这个也能看出市场情绪变化之快和之大，极不理性。但对好公司持续的跟踪和研究是不会停的。今年这也我是研究泡泡玛特的第9年了，泡泡玛特最近遇到股价问题，在泡泡玛特经营历史上真就算小风波了。但高位买入破泡泡玛特股票投资者，可能情况就不一样了，所以投资哪怕是好公司，一个有意义的价格非常重要。</p>
+<hr />
+<h3>Q1 「星星人」是体系孵化还是偶然爆款（巴伦周刊 孙骋）</h3>
+<p><strong>孙骋</strong>：Twinkle Twinkle（星星人）2026上半年收入26.5亿元，仅两年做到该规模；LABUBU从签约龙家升到超级IP经历约六年积累。Twinkle Twinkle更像IP孵化体系落地还是独立爆款偶然事件？市场预期&quot;第二个头部IP&quot;如何反映在资产定价中？</p>
+<p><strong>王卓玮</strong>：要回答星星人是不是&quot;偶然&quot;，先看泡泡玛特自身历史，它经历过三次比较大的困境时期：2016至2017年从零售转盲盒，接近生存的危机；2017至2018年，代理的第一个重磅盲盒IP不再续约；以及上市后股价一度跌到10元，11元，12元，那时期产品体系出现问题。但每一次困难之后，公司的长期属性都在提升，这家公司看家本领就是这个，也非常看重这件事。这家公司长期打造的，很像中国乒乓球队的青训体系，体系好就能持续产生好运动员。</p>
+<p>在这个框架下，星星人更像是体系孵化出的产品。它上半年26.5亿元的收入，全年大概五六十亿元的销售额，非常不错，但大概率不是最后一个这规模的新IP。股价跌这么多主要有两个原因：一是2025年涨得太多，股价曾到300元，现在连一半都没有；二是其他公司起来了，比如名创优品今年三季度GMV增长25-30%，从泡泡玛特挖了一个小团队，销售额第一的自营IP产品恰恰是泡泡玛特评级偏低，没有重点做的IP。这种打法并非潮玩独创，A股曾有游戏公司成立&quot;兴趣发展基金&quot;，专接腾讯筛剩的项目。</p>
+<p>近两年券商和基金流行用信用卡数据等高频数据跟踪销售，高盛报告也显示销售额有较大下滑。以我过去对高盛高频数据质量的了解，有一定概率符合实际情况的。</p>
+<hr />
+<h3>Q2 港股消费投研框架与超级 IP 周期下行风险如何定价（巴伦周刊 孙骋）</h3>
+<p><strong>孙骋</strong>：港股可选消费处于历史估值低位，高度依赖头部IP的消费品企业容易出现&quot;板块修复个股震荡&quot;，以潮玩龙头财报为例，头部IP收入规模下滑。从港股消费通用投研框架看，市场对超级IP周期下行风险通常用什么定价框架评估？</p>
+<p><strong>王卓玮</strong>：不同投资者框架不同。我常用框架或者体系，更接近泡泡玛特产品部门的体系，也是目前找到的最有效方法，核心看产品体系和对产品支撑体系运转的能力。泡泡玛特经历三次较大困难后，设计体系、设计师和设计细节都在进步。</p>
+<p>以名创学习泡泡玛特遇到问题为例：比如，给设计师三个月做盲盒，可能做不完，或质量达不到设计师本人最理想要求，但公司觉得可以；而泡泡玛特王老板说&quot;希望大家交作品而不是作业&quot;，工期可拖到六个月，九个月甚至一年，不断延期返工过，为了出最理想的产品。这里边肯定会有很多人是用这个规则去摸鱼。不知道大家有没有想过这个问题，就是为什么现代企业会有打卡制度，我觉得很重要原因之一，是摸鱼行为对认真工作员工是不公平的行为，企业需要去考虑限制。那作为企业经营者平衡这种摸鱼和到底谁在不断延期是在认真做产品也就是绝活了。很多历史上非常好的游戏和电影，都有伴随大量延期。比如曾经黄金时期游戏公司暴雪，还有大家耳熟能详的电影《教父》，及国内的《流浪地球》都有很严重展期。</p>
+<p>我给大家展示了一个2020年我帮泡泡玛特上市做网络路演，他们送的非卖品纪念款盲盒。做工上，以2020年上市时那批限量非卖品盲盒产品体系能力，如果今天还是这样，泡泡玛特股价是30元，段永平可能也不会买；我现在展示泡泡玛特最新买的&quot;花木兰&quot;盲盒、其实并非重点产品，但已比当年哪怕限定纪念款好很多，泡泡玛特的产品体现能力每年都在提升。</p>
+<p>股价方面，段总买入对短期股价比较关键，没有段总买绝不是今天价格；去年很多投资者兴奋，说段总一直买、买得多，价格不低，我其实当时想问他们的问题是万一销售额同比降30%他们会不会亏，现在有概率要成真。很多投资者确实觉得亏，市场对潮玩行业理解我觉得很一般，所以会出现这种巨大股价反复，投资者水平参差但资金量大，股价波动率就会高，AI存储也有类似属性；理解不充分时高位买入，钱会在高位停留很长时间。</p>
+<p>长期需求我看好：80后是第一波开始重点买IP产品的人，70后就比较少；此后每五年一代际，愿意为IP消费的金额、数量、质量都在提升。古董拍卖金额其实很稳定；年轻投资者对奢侈品兴趣下降，会转向更消费得起也更懂的泡泡玛特，年轻消费者不一定懂一个宋朝的茶杯，但她有概率会懂拉布布的。很多年轻消费者不会去买几万元的奢侈品包，但会去买一个300元的包挂上300元LABUBU，对她来说感觉完全不同。这个市场会越来越大，未来非常光明，真正问题是未来泡泡玛特在这个市场里可以占多少。</p>
+<hr />
+<h3>Q3 超级 IP 能否标准化复制、IP 生命周期与收入天花板变量（巴伦周刊 孙骋）</h3>
+<p><strong>孙骋</strong>：LABUBU Twinkle Twinkle这类十亿级超级IP，能否通过标准化孵化体系持续复制，还是带很强偶然性？潮玩IP存在生命周期，评估收入天花板通常重点看哪些变量，如用户年龄跨度、品类拓展空间、文化渗透深度？</p>
+<p><strong>王卓玮</strong>：我觉得有一个问题很有意思就是：泡玛特自己猜哪个IP能火，准不准？我觉得历史还可以，偶尔准，但不是很准。早期我买LABUBU产品买的非常全，但其实拉布布并不火；我作为嘉宾参加过泡泡玛特官方的节目，交流对象都是泡泡玛及行业的从业者和设计师，他们水平其实很高的，但猜准确率也有限。参加这个节目，泡泡玛特送我的手办全是LABUBU，不是因为火，是因为销量不行要清库存。LABUBU火之前泡泡玛特的产品重点，我理解是skupanda，也就是泡泡玛特认为未来盲盒的设计和技术是一个至关重要的点，也是这个系列比较强的地方，这个系列销量可以，但达不到LABUBU的高度。</p>
+<p>泡泡玛特有一点很难得：不会因短期销售额不理想就放弃一个IP，LABUBU当时虽然没到top，但也没被分走设计师和资源，公司对这个产品系列投入不降还升。对比游戏行业，也有类似情况，阴阳师团队从畅游转到网易后评级开始是B，但网易还是有才的，慧眼识货，很快拉到A、再到S，评级变化带来设计师，推广资源重新分配，网易股价也被这个游戏带起两三倍。投资者预测&quot;下一个超级IP&quot;成功率，要打一个大问号。</p>
+<p>对投资更有借鉴价值的是泡泡玛特的思路：它一直在搭建&quot;能设计的体系&quot;，保证哪怕猜错了、不是最top的人选，有潜力的团队和设计师及IP，也能分到可观的资源。买点也很简单：在大家没人看的时候买。以前这家公司根本没人调研，股东会最少一次只有4人，去年快300人；我当时买的时候股价20元左右，销售额下滑，根本没人来调研，CFO还说&quot;没事可以来我公司转转&quot;。</p>
+<p>为什么是泡泡玛特起来？中国玩具行业老一波公司和从业者，很长时期设计，做工一般，但玩家水平不断提升，越年轻越识货。王老板之前，做潮玩的多是60后、70后老板，不重视设计和产品；而王老板很年轻，而且识货，创业也早优势很大。销售额下滑这类波动，是因为各家都开始重视了，竞争加剧。行业并没有完全定型，格局其实是有部分调整的。</p>
+<hr />
+<h3>往期推荐（原文附带）</h3>
+<ol>
+<li>泡泡玛特访谈感受</li>
+<li>参加2026年泡泡玛特股东会人数从4人到388人</li>
+<li>2025年上半年财报分析笔记：名创优品目标是自我升级，自有IP和设计上和泡泡玛特的差异化路线</li>
+</ol>
+<blockquote>
+<p>文末：作者提示：个人观点，仅供参考。</p>
+</blockquote>
+</div><div class="backrow"><a href="../index.html#dir=%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99">← 返回 原始资料</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../raw/research/泡泡玛特/2026-10-23-巴伦周刊访谈-泡泡玛特经营情况.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
