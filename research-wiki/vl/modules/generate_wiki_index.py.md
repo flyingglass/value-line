@@ -24,7 +24,7 @@ view/stocks/<标的>/index.html       标的组页：文件夹 Tab（跟踪/经�
 view/stocks/<标的>/<目录…>/<文章>.html   独立文章阅读页
 view/cases/<专题>/…                 投资案例专题（组页同标的结构，标记「作者案例」）
 view/general/index.html             通用整组页（目录 = 顶栏 tab，就地切换）
-view/general/<书籍|投资|文章>/<文章>.html   目录内文章（文章/ 下保留原 concepts|entities|papers|synthesis 子目录）
+view/general/<书籍|巴芒|基金经理|文章>/<文章>.html   目录内文章（文章/ 下保留原 concepts|entities|papers|synthesis 子目录）
 view/general/<分类>/<文章>.html     通用文章阅读页
 ```
 
@@ -41,7 +41,7 @@ view/general/<分类>/<文章>.html     通用文章阅读页
 | 白马 | 每个标的一张卡片，**按行业分行**（行业一个 `.secgrid`） | wiki 页面位于 `research/白马/<code>/` 的标的；仅有原始资料的组（AMZN / GOOGL / MSFT / 中芯国际）单列「仅原始资料」一节垫底，保留入口 |
 | 学股 | 组内每个标签（广州 / 深圳 / 跟踪 / AI软件）一张卡片 | 点击直达组页对应标签 `view/cases/本地/index.html#dir=<标签>` |
 | 疯狂的里海 | 组内每个标签（案例 / 方法论 / 时间线 / 概览 / 原始资料）一张卡片 | 同上 |
-| 知识库 | 每个**目录**一张卡片（书籍 / 投资 / 文章），与 `raw/research/{书籍,投资,articles}` 一一对应；原「多学科主题」（芒格·格栅理论 / 复杂经济学 / 生物学 / 心理学 / 书籍摘要）降级为卡片上的 `.pill.topic` 小标签 | `view/general/index.html#dir=<目录>` |
+| 知识库 | 每个**目录**一张卡片（书籍 / 巴芒 / 基金经理 / 文章），与 `raw/research/{书籍,投资/巴芒,投资/基金经理,articles}` 一一对应；原「多学科主题」（芒格·格栅理论 / 复杂经济学 / 生物学 / 心理学 / 书籍摘要）降级为卡片上的 `.pill.topic` 小标签 | `view/general/index.html#dir=<目录>` |
 
 - 卡片规格（`.grp`）：两行居中布局——第一行 = 名称链接 `.name`（全名、**允许换行、不截断**），第二行 = 标签；**不带**「进入 →」链接，名称本身即链接。
   - 标的卡片：浅蓝底 `#f2f7ff` + 描边 `#b7cdea`，标签为行业色 `.pill.industry`

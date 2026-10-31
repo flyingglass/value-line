@@ -94,7 +94,9 @@ CASE_GROUP_NAMES = {
 RAW_GENERAL_DIRS = {
     'articles': '文章',
     '书籍': '书籍',
-    '投资': '投资',
+    # 投资/ 下两个子目录语义不同，各自成 tab（2026-10-31：原先二级目录不单独成 tab）
+    '投资/巴芒': '巴芒',
+    '投资/基金经理': '基金经理',
 }
 
 # 知识库（非标的）：一级 tab 名 + 内部分类顺序
@@ -103,7 +105,7 @@ RAW_GENERAL_DIRS = {
 #             与 raw/research/{书籍,投资,articles} 及 research/articles 一一对应；
 #             原主题仍保留为卡片上的 topic 标签，不再作为 tab。
 GENERAL_TAB_NAME = '知识库'
-GENERAL_CATEGORY_ORDER = ['书籍', '投资', '文章']
+GENERAL_CATEGORY_ORDER = ['书籍', '巴芒', '基金经理', '文章']
 
 # 标的容器根下散落的 md（名单池）→ 归入「<容器>·名单池」组
 # 例：research/AI软件/AI软件名单-待选池.md → 组 id「AI软件·名单池」
@@ -300,7 +302,9 @@ def scan_wiki():
     if os.path.isdir(raw_dir):
         for sub in sorted(os.listdir(raw_dir)):
             subpath = os.path.join(raw_dir, sub)
-            if not os.path.isdir(subpath) or sub in RAW_GENERAL_DIRS:
+            # 该目录（或它的某个子目录）已被 RAW_GENERAL_DIRS 收编 → 不当作标的
+            if (not os.path.isdir(subpath) or sub in RAW_GENERAL_DIRS
+                    or any(k.startswith(sub + '/') for k in RAW_GENERAL_DIRS)):
                 continue
             is_case = sub in CASE_GROUP_NAMES
             gname = CASE_GROUP_NAMES.get(sub, CODE_DISPLAY.get(sub, sub))
@@ -901,7 +905,7 @@ def generate_group(scope, gid, info):
     return written
 
 # ---------------------------------------------------------------------------
-# 生成：知识库文章（书籍 / 投资 / 文章）
+# 生成：知识库文章（书籍 / 巴芒 / 基金经理 / 文章）
 # ---------------------------------------------------------------------------
 
 def general_article_page(art, out):
