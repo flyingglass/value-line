@@ -1,0 +1,409 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>钱塞勒_2017_资本回报-穿越资本周期的投资</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">多学科</a> › <a href="../index.html#dir=%E5%85%B6%E4%BB%96">其他</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">钱塞勒_2017_资本回报-穿越资本周期的投资</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">raw/research/书籍</span></div><div class="md" id="md"><h1>《资本回报：穿越资本周期的投资——一个资产管理人的报告 2002—2015》（深度阅读摘要）</h1>
+<blockquote>
+<p>编著：［英］爱德华·钱塞勒（Edward Chancellor）<br />
+译者：陆猛<br />
+出版社：中国金融出版社，2017 年 5 月第 1 版<br />
+书名原文：Capital Returns: Investing Through the Capital Cycle — A Money Manager's Reports, 2002-2015<br />
+原著版权：Marathon Asset Management LLP 2016；导言 © Edward Chancellor 2016<br />
+ISBN：978-7-5049-8908-6；字数 204 千；定价 58.00 元<br />
+原文件：<code>资本回报 一个资产管理人的报告 ([英] 爱德华·钱塞勒).pdf</code>（Z-Library，220 页扫描版）<br />
+入库日期：2026-10-31<br />
+<strong>文本来源说明：原件为纯图片扫描 PDF，无文字层，本摘要基于 RapidOCR 全文识别（220 页）整理，个别数字与专名可能存在识别误差，引用前需回原书核对。</strong></p>
+</blockquote>
+<blockquote>
+<p>结构：序言（马拉松创始成员）／前言（钱塞勒）／导言（钱塞勒，全书理论核心）／上部 投资哲学（第 1–3 章）／下部 繁荣、萧条、繁荣（第 4–7 章）／译后记</p>
+</blockquote>
+<hr />
+<h2>这本书是什么</h2>
+<p>不是一本专著，而是<strong>伦敦马拉松资产管理公司（Marathon Asset Management）2002—2015 年间《全球投资回顾》（GIR）文章的选集</strong>。马拉松每年写 8 期 GIR、每期约 6 篇、每篇约 1500 字，面向机构客户。钱塞勒从 600 多篇文章中选出本书各篇并做了编辑。</p>
+<p><strong>方法论警告（钱塞勒自述）</strong>：选编必然产生&quot;幸存者偏见&quot;——没能通过时间检验、后来被证明错误的文章被剔除，结果会让马拉松&quot;看起来比实际更具有预见力&quot;。他明确说&quot;我的目的并不是要恭维作者们的先见之明&quot;。同时，事后编辑也带来&quot;后知之明的偏差&quot;，在某种程度上削弱了本书作为原始资料的真实性。</p>
+<p><strong>阅读定位</strong>：本书价值不在结论（多数是 2002–2015 的即时判断），而在<strong>分析框架</strong>——如何用供给侧/资本流动的视角看行业，以及这套框架在哪里失效。</p>
+<hr />
+<h2>序言：马拉松的两个基本理念</h2>
+<p>作者（尼尔·奥斯特勒、威廉·亚拉，2015 年 6 月）自述三十年不变的两条：</p>
+<ol>
+<li><strong>高回报吸引资本，正如低回报排斥资本。</strong> 随之而来的资本潮起潮落常以可预见的方式改变行业竞争环境——即&quot;资本周期&quot;。</li>
+<li><strong>管理层资本配置的能力从长期看非常重要。</strong> 好的管理人理解其所处行业的资本周期，不会被有利的环境冲昏头脑。</li>
+</ol>
+<p>由此推出两个操作特征：①<strong>分析资本周期产生的机会常有很长的孕育过程，获利的时点高度不确定</strong>，所以方法在&quot;持有相对较多股票 + 持有较长时间&quot;时效果最好——这与行业惯例（集中持股 + 越来越短的持有期）正好相反；②组合换手率极低。</p>
+<p>作者同时坦白了失败清单：在 TMT 泡沫和 GFC（全球金融危机）瓦砾中接&quot;下落的飞刀&quot;，以及选管理层时的判断失误——&quot;耻辱堂&quot;里有贝尔斯登、布拉德福德宾利（Bradford &amp; Bingley）、MBIA、Blockbuster、HMV。</p>
+<hr />
+<h2>导言（钱塞勒）：资本周期的方法论</h2>
+<h3>一、资本周期的定义与机制</h3>
+<p><strong>资本被吸引进入高回报的业务，当回报降到资本成本之下则离开。</strong> 这个过程不是静态的而是周期性的。资本流入带来新投资，随时间推移增加产能并最终压低回报；回报低时资本撤离、产能下降，利润又会回升。从更广的经济角度看，这一周期类似熊彼特的&quot;创造性毁灭&quot;——繁荣之后的萧条，其作用就是<strong>清除上升时期的错误配置资本</strong>。</p>
+<p>与波特的连接：波特&quot;五种力量&quot;（供方/买方议价能力、替代品威胁、现有竞争、新进入者威胁）里，资本周期分析实际是从投资者角度看<strong>竞争优势如何随时间变化</strong>——重点在供给侧。</p>
+<h3>二、&quot;马克洛工业&quot;寓言（导言的骨架案例）</h3>
+<p>一家回报超过资本成本的小部件厂商 → CEO 上《财富》封面 → 9 个分析师中 7 个买入 → PE 14 倍 → 战略部预测新兴市场需求强劲（人均消费不到发达国家 1/10）→ 宣布三年产能 +50% → 投行格瑞德斯宾安排增发融资 → 《金融时报》Lex 专栏好评 → 股价上涨 → 增长型投资者买入。</p>
+<p><strong>五年后</strong>：CEO 在激进投资者压力下辞职，利润大跌，股价 12 个月跌 46%；新工厂延期超支（25 亿美元）；行业供给过剩；低成本新进入者（动态部件公司）IPO 后表现不佳；中国成为净出口国；仅剩 3 家券商跟踪，2 卖 1 持有。</p>
+<p><strong>寓言的解剖</strong>（这就是资本周期的心理机制）：</p>
+<ul>
+<li>高当期盈利让管理层把<strong>有利的行业环境误当作自己的才能</strong>，媒体推波助澜；</li>
+<li><strong>需求预测错误率高且有系统性偏差</strong>——好时过于乐观，坏时过于悲观；</li>
+<li>高利润让行业<strong>放松资本纪律</strong>，竞争对手跟进（或同样自大，或怕丢份额）；</li>
+<li><strong>CEO 薪酬常与盈利或市值挂钩</strong>，激励管理层扩大公司资产；</li>
+<li>高调宣布扩产时股价常上涨——&quot;增长型投资者喜欢增长！趋势型投资者喜欢趋势！&quot;</li>
+<li><strong>投资银行家为资本周期提供润滑剂</strong>：繁荣时帮扩产，低迷时帮整合；收费驱动，不关心长期结果；&quot;分析师和投资人员习惯于外推当期趋势。在一个周期性的世界中，他们的思维却是线性的。&quot;</li>
+</ul>
+<p><strong>关键的技术性要点</strong>：资本支出与新增产出之间有时滞，因此<strong>供给变化是突变的、容易调整过度的</strong>（供给曲线不像教科书那样平滑），这就是&quot;蛛网效应&quot;。</p>
+<h3>三、近期案例（导言给出的四个）</h3>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电信 TMT 泡沫</td>
+<td>假设&quot;互联网流量每 100 天翻倍&quot;→ 世通、环球电讯巨额资本开支 → 泡沫破裂后&quot;黑暗光纤&quot;多年消化不完</td>
+</tr>
+<tr>
+<td>全球造船</td>
+<td>2001–07 巴拿马级船日运费上涨 10 倍 → 2004–09 干散货船载重吨从 7500 万吨翻倍到 1.5 亿吨 → 日运费跌 90%，抹去十年全部涨幅；2007 年夏买船的投资者亏掉 2/3</td>
+</tr>
+<tr>
+<td>美国住宅开发</td>
+<td>2006 年见顶时存量新房 ≈ 每年新家庭形成数的 5 倍；西班牙/爱尔兰更极端，存量相当于繁荣前年供应量的 15 倍</td>
+</tr>
+<tr>
+<td>大宗商品超级周期</td>
+<td>矿业 ROE 从世纪初 7.5% → 2005 年 35%；资本支出从 300 亿 → 峰值 1600 亿美元（翻 5 倍多）；铁矿石产量 10 亿吨 → 2014 年 22.5 亿吨（+125%）；2011 年见顶，到 2015 年 4 月海运铁矿石价格跌 70%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>监管的反例（重要）</strong>：英国和澳大利亚同样经历房价&quot;泡沫&quot;，但严格的住宅监管阻止了供给快速增加，因此其房地产市场很快从金融危机中恢复——体现在股票上，英国住宅开发商过去十年表现远好于美国同行。</p>
+<h3>四、学术证据：资产增长反常</h3>
+<ul>
+<li>法玛与法兰奇五因子模型加入&quot;利润&quot;和&quot;投资&quot;两因子；观察到<strong>投资较少的公司回报更高</strong>，即&quot;资产增长反常&quot;（asset growth anomaly）。</li>
+<li>《金融期刊》研究：与资产扩张相关的行为（并购、新股发行、新贷款）常伴随此后低回报；与资产收缩相关的行为（分立、回购、偿债、分红）常伴随此后正的超额回报。<strong>资产扩张对股东回报的不利影响可持续五年。</strong></li>
+<li>有作者认为，<strong>资产增长是比传统价值、规模、动量因子更强的回报决定因子</strong>；控制资本投资后价值因子的效用甚至消失。</li>
+</ul>
+<h3>五、均值回归的供给侧解释</h3>
+<p>钱塞勒的关键论述：<strong>均值回归不只是&quot;动物精神&quot;的潮涨潮落，而是通过不同的投资率起作用的</strong>——回报高于资本成本的公司倾向于多投资，挣不回资本成本的公司则相反。</p>
+<p>引格雷厄姆与多德《证券分析》（1934）：股价溢价源于高回报，而<strong>高回报会引来竞争，通常不太可能一直持续</strong>；折价源于异常低盈利，缺乏新竞争、原有公司退出等自然力量最终会改变这一情况。</p>
+<p>实证：亚利桑那大学研究显示，在多数发达国家，<strong>公司投资是整体盈利能力、股票市场回报甚至 GDP 增长的显著反向指标</strong>。</p>
+<p><strong>两个当下的对照</strong>（写作时点）：</p>
+<ul>
+<li>美国：股票按 CAPE 看偏贵，但危机后公司投资毫无起色——<strong>缺了均值回归的主要驱动因子，利润停留在高位比预想更久</strong>，股市回报很好。</li>
+<li>中国：股价从价值角度看便宜，但<strong>投资和资产增长一直处于高位</strong>，导致公司盈利能力较差。</li>
+</ul>
+<h3>六、为什么市场不套利这个规律（六条行为解释）</h3>
+<ol>
+<li><strong>过度自信</strong>：投资者与管理层过度关注资产增长；&quot;做预测是困难的，尤其是关于未来&quot;（尤吉·贝拉）。</li>
+<li><strong>忽视竞争</strong>：几个竞争者同时扩产，没人考虑新增供给对未来回报的影响。格林伍德与汉森：&quot;当公司收到其决策后果的反馈存在时滞时，忽视竞争这种现象格外明显。&quot;《美国经济评论》研究：新进入者失败，是因为管理层对自身技能过度自信而忽视竞争威胁。</li>
+<li><strong>狭隘限定 / 认知失调</strong>：只看当前（预测的）盈利能力，忽视回报赖以产生的行业资产基础变动。</li>
+<li><strong>内部人观点</strong>（卡尼曼）：专注手中特定任务与信息做预测，把问题当作独一无二；<strong>外部观点</strong>则问&quot;是否存在其他类似情况可作标尺&quot;。行业专家最易陷入内部人观点。</li>
+<li><strong>外推</strong>：从较小样本得出强结论，线性预测一个本质周期性的世界。价值股长期跑赢的原因之一是&quot;投资者对未来多年增长率的过分外推，而增长的均值回归比市场预测发生的更快&quot;。<strong>但资本周期分析师要加一条：均值回归是由供给侧变化驱动的。</strong></li>
+<li><strong>扭曲的激励机制</strong>：CEO 薪酬与短期 EPS/股东回报/规模挂钩；股价对资本支出公告正面反应；投行按收费而非结果取酬；卖方分析师像啦啦队。<strong>有证据表明持股较多的管理层更可能在找不到好项目时通过回购削减资本占用。</strong></li>
+</ol>
+<h3>七、&quot;套利的局限&quot;</h3>
+<p>为什么不卖空高资产增长的公司？①这类股票波动性高，做空波动性代价高昂；②市值常常很大，回避它等于对指数做重大反向对赌；③短期业绩不佳带来&quot;职业风险&quot;；④<strong>资本周期长短不一，没人能提前知道何时反转</strong>。</p>
+<p>这也是马拉松采用私人股权结构 + 长期客户关系的原因——&quot;对偏离指数有更多容忍，这对运用资本周期是必须的&quot;。</p>
+<h3>八、六条基本信条（导言原列）</h3>
+<ol>
+<li>大部分投资者在分析需求上比分析供给花更多时间，<strong>但预测需求比预测供给更难</strong>；</li>
+<li><strong>供给变动驱动行业盈利性，股价常常未能预见供给侧的变动</strong>；</li>
+<li><strong>价值/增长的二分法是错误的</strong>；供给侧存在支持的行业内的公司有理由获得更高估值；</li>
+<li><strong>管理层资本配置的技巧是首要的</strong>，与管理层会晤常能提供有价值的洞察；</li>
+<li>投资银行家推动资本周期，很大程度上损害了投资者；</li>
+<li>当政策制定者干预资本周期时，市场出清过程可能停滞；<strong>新技术同样会打断正常资本周期的运转</strong>；</li>
+<li>泛行业分析师可以更好地运用资本周期分析所必需的&quot;外部人观点&quot;；</li>
+<li><strong>长期投资者更适于运用资本周期方法。</strong></li>
+</ol>
+<h3>九、可操作的观察指标（导言脚注给出）</h3>
+<ul>
+<li>资产增长最快的股票一般表现不佳；</li>
+<li><strong>资本支出/折旧 高于其历史平均水平</strong> = 资本周期恶化的信号；</li>
+<li><strong>报告盈利与自由现金流之差日益扩大</strong> = 另一个预警信号；</li>
+<li>赫芬达尔指数（行业集中度）反映竞争态势变化；</li>
+<li><strong>事件信号同样有效</strong>：公司开始建造宏伟新总部大楼，通常是坏信号。</li>
+</ul>
+<h3>十、资本周期在什么情况下失灵（作者主动列举）</h3>
+<ul>
+<li>新技术对既有商业模式的破坏性影响（互联网摧毁黄页广告、报纸、书店、音乐与录像出租）；</li>
+<li>政策制定者保护行业（见 5.4 破产的银行、5.5 边缘地带）；</li>
+<li>国家资本主义（见第六章中国综合症）。</li>
+</ul>
+<hr />
+<h2>上部 投资哲学</h2>
+<h3>第一章 资本周期革命（1.1–1.9）</h3>
+<p><strong>章导读</strong>：观察资本周期从鳕鱼捕捞业到全球啤酒、风力发电机等行业的运转。共同主题是<strong>理解竞争（供给侧）如何随时间演化，以及它在决定行业与公司资本回报中的作用</strong>。另有 4 篇描述过去 10 年矿业与油气领域日益增长的投资对股东造成的危害。</p>
+<ul>
+<li><strong>1.1 合作的演进（2004-02）</strong>：从阿克塞尔罗德的重复囚徒困境实验切入——&quot;针锋相对/礼尚往来&quot;在长期最成功；一战的堑壕战中出现过心照不宣的休战。投资含义：<strong>理想的资本周期机会常存在于从过度竞争演化出少数大参与者实施&quot;价格纪律&quot;的行业</strong>。参与者少很重要（报复更有力），仍需进入壁垒。反例：汽车行业噪声太多（价格、规格、客户融资、新车型、服务保修全都要决策），<strong>产品差异化反而成为阻碍超额回报的障碍</strong>；航空业定价权下放到基层，竞争环境极恶劣。关键概念是&quot;未来的影子&quot;——管理层能让对手预期到报复，就能延长&quot;未来的影子&quot;。理想的合作环境 = 少参与者 + 理性管理层 + 有进入壁垒 + 无退出壁垒 + 不复杂的接触规则。</li>
+<li><strong>1.2 鳕鱼哲学（2004-08）</strong>：超额利润会沿着产业链迁移（港口 → 中央市场波士顿 → 加工者 → 消费者），驱动力是<strong>技术成本下降消除了节点上的超额利润</strong>。政府干预（冰岛把水域国有化、配额制）在资本周期意义上是&quot;灾难&quot;——本该退出的产能被补贴维持，价格长期低迷；加拿大渔场&quot;每挣 1 美元政府要投 3 美元&quot;。<strong>方法论含义：研究不仅看盈利能力高低（节点规模），更看可持续性（为什么要停靠波士顿）；持股越久，可持续性越重要。</strong></li>
+<li><strong>1.3 这次没什么不同（2006-05）</strong>：铜价 3.6 美元/磅 vs 生产成本 0.8–0.9、边际成本约 1.2，是生产成本 3 倍——&quot;不可能看不到投机在起作用&quot;。反驳&quot;超级周期&quot;论（投资纪律好、采矿设备短缺、成本上升推高价格）：&quot;这就是牛市中的循环逻辑。&quot;2003–05 采矿成本翻倍，新增资本开支部分来自成本上升，但供给瓶颈不会永远存在；需求端中国会随发展提高原材料使用效率（德国建筑业转用 PVC，铜管需求从 9 万吨降到 4.5 万吨）。</li>
+<li><strong>1.4 超级周期的悲伤（2011-05）</strong>：明确判定大宗商品&quot;超级周期&quot;走向下行。MSCI 全球指数 124 家矿业公司资本支出预计 2011 年达 1800 亿美元，10 年前仅 300 亿（+6 倍）；2005–2010 金属采矿股票发行量 +50%，并购越来越大。<strong>&quot;在任何一个行业，大量 IPO 和高额并购活动的发生一般都是在资本周期的末期。&quot;</strong></li>
+<li><strong>1.5 没有小啤酒（2010-02）</strong>：啤酒行业整合提升定价能力。喜力 2002–2008 持股期间跑输欧洲大市近 30%，10 年投入近 95 亿美元收购而<strong>资本回报从 20% 跌到不足 10%</strong>；行业整体资本回报 2000 年 13% → 2008 年 9%。但整合（SAB 收 Miller、AmBev 与 Interbrew 合并、InBev 600 亿美元收安海斯-布希等）使<strong>全球前四大厂商份额从 1998 年 13.3% 升到 2008 年 50.8%</strong>；美国市场 80% 份额集中于两巨头，英国前三家占 67%。马拉松因此同时持有喜力、嘉士伯、百威英博（欧洲组合）与 SABMiller（英国组合）——<strong>行业整合后纪律改善，是买点而非卖点</strong>。</li>
+<li><strong>1.6 石油价格见顶（2012-02）／1.7 石油巨头之忧（2014-03）</strong>：油气行业的资本支出膨胀与<strong>现金转换率下降</strong>作为红灯信号。</li>
+<li><strong>1.8 资本周期革命（2014-03）／1.9 增长的悖论（2014-09）</strong>：章名出处，系统总结。</li>
+</ul>
+<h3>第二章 增长中的价值（2.1–2.9）</h3>
+<p><strong>章导读</strong>：资本周期分析完全关于<strong>均值回归的驱动因子</strong>；但同一框架可以用来找那些<strong>能排斥竞争的公司</strong>——它们有巴菲特所说的很宽的&quot;护城河&quot;，<strong>能比市场预期更久地保持利润，即均值回归被推迟</strong>。从资本周期角度看：<strong>竞争的缺乏阻止了供给侧对高利润做出反应</strong>。过去十年买这类公司对马拉松特别有效。钱塞勒强调：&quot;价值/增长&quot;二分法是错误的——真正的价值投资目标不是买会计指标上&quot;便宜&quot;的股票，而是<strong>买股价低于内在价值的股票</strong>。</p>
+<ul>
+<li><strong>2.1 引以为戒的标签（2002-09）</strong>：马拉松抵制&quot;价值型&quot;标签。传统价值投资（格雷厄姆式&quot;香烟屁股&quot;）找低估值倍数的不受欢迎股票；增长型管理人买另一端。马拉松组合估值一般低于市场平均，但<strong>欧洲组合的股票有相对较强的盈利增长</strong>——部分原因是一发现&quot;增长潜能超过平均水平的小公司通常较为便宜&quot;。结构性解释：欧洲 MSCI 540 只成分股中仅 88 只市值超 100 亿美元，流动性约束让大基金无法买小盘股；3/4 的工业股低于 10 亿美元市值，被大盘股基金&quot;筛掉&quot;，而 85% 的医疗股高于 10 亿美元，故医药股吸引不成比例的机构关注。</li>
+<li><strong>2.2 持久战 / 2.3 双重代理 / 2.4 数字护城河（2007-08）</strong>：网络效应与规模效应构成的护城河；后文 5.6 提到这套理解让马拉松成功投资亚马逊、Priceline、Rightmove。</li>
+<li><strong>2.5 质量时代（2011-08）／2.6 逃脱半导体周期（2013-02）／2.7 增长中的价值（2013-08）／2.8 质量控制（2014-05）／2.9 无人关注（2015-02）</strong>：半导体是资本周期最剧烈的行业（导言称&quot;超额利润在不到两年内就被榨干&quot;），本篇讨论如何识别能逃出该周期的公司。</li>
+</ul>
+<h3>第三章 管理层很重要（3.1–3.9）</h3>
+<p><strong>章导读</strong>：以巴菲特的话立论——&quot;如果一个 CEO 在其任职期间内每年公司保留盈余相当于公司净值的 10%，则任职十年后，这个 CEO 配置的资本就超过了公司全部资本的 60%&quot;。因此<strong>必须特别关注管理者资本配置的能力</strong>。马拉松的持有期限在延长（与行业整体相反），管理层研究成为日常工作。<strong>理想高管的画像：了解其行业资本周期，且利益与外部投资者一致。</strong></p>
+<ul>
+<li><strong>3.1 食品换思考（2003-09）</strong>：荷兰阿霍德（Ahold）案例。2003-02-24 宣布利润被高估 5 亿美元，纽交所股价当日跌 63%。马拉松用泛行业分析师团队事前发现危险，反过来检查投行研报，指出<strong>行业专家模式的系统性缺陷</strong>：①<strong>与管理层走得太近</strong>（分析师被&quot;俘获&quot;，成为管理层喉舌；研报标题如&quot;在赞丹生活&quot;&quot;与 CFO 的一晚&quot;暴露了不健康的接近；披露不透明 + 选择性透露专属信息 → &quot;礼尚往来倾向&quot; → 斯德哥尔摩综合征）；②<strong>过多信息</strong>（赌马研究：信息增加只提高信心，不提高选中率；&quot;只见树木不见森林&quot;——盯着每平方米销售额没用，<strong>看过去五年现金流能很快发现问题：管理层没能从核心业务中产生现金流</strong>）。</li>
+<li><strong>3.2 踩错周期（2010-08）／3.3 资本分配者（2010-09）／3.4 北方之星（2011-03）／3.5 关于薪酬（2012-02）／3.6 幸福的家族（2012-03）</strong>：家族长期持股、薪酬结构与管理层激励。</li>
+<li><strong>3.7 约翰·鲁伯特的幽默和智慧（2013-06）</strong>：历峰集团（Richemont）离任执行主席。马拉松自 2002 年持有，前身旺多姆公司至少自 1994 年持有。<strong>成立 25 年，最初投资的 5 瑞士法郎现值 120 瑞士法郎，加股利与分立股票后年化复利 13.5%</strong>。鲁伯特原话摘录（关于管理与短期主义）：
+<ul>
+<li>&quot;当一个经理不理解他或她所从事的业务时，这总是一个危险的信号。&quot;</li>
+<li>&quot;当你是老鼠时，不要玩猫和老鼠的游戏。&quot;</li>
+<li>&quot;如果你不够警觉，他们就会吃掉你的早餐。&quot;</li>
+<li>&quot;真正的问题在于公司是否能增长性地再投资自由现金流，还是把它浪费掉？&quot;</li>
+<li>&quot;任何想问我'你认为明年会怎样'的人，还是别这么问吧，我们是不会回答的。这并不是我们古怪，我们实在是不知道。&quot;</li>
+<li>&quot;如果你付一个过高的估值，那你就挣不回来了。&quot;</li>
+<li>&quot;我不是在试着出售企业时亏大钱。我亏钱是因为我买了烂货。那是在你花钱的时候，而不是在你试图找一个比你更傻的人来接盘的时候。&quot;</li>
+<li>&quot;永远不要把运气和天赋混为一谈。&quot;</li>
+<li>&quot;我们的工作是创造商誉，而不是为了商誉付别人钱。&quot;</li>
+</ul>
+</li>
+<li><strong>3.8 思想的会晤（2014-06）／3.9 文化热衷者（2015-02）</strong>：如何通过会面评价管理层。</li>
+</ul>
+<hr />
+<h2>下部 繁荣、萧条、繁荣</h2>
+<h3>第四章 酝酿中的灾祸（4.1–4.10）</h3>
+<p><strong>章导读</strong>：英国女王在 LSE 的著名一问&quot;为何事先没有预见到&quot;，真正答案是<strong>经济学家发展了一套有严重缺陷的范式</strong>——设想一个均衡、理性、货币与金融基本不活跃的世界。但&quot;说金融世界中没有人预见到危机来临则是不正确的&quot;：2008 年前多年，很多严肃投资者已警告信贷强增长、可疑金融创新与各地地产泡沫的危险。<strong>马拉松最早在 2002 年初就开始对证券化与信贷过度增长表示担忧</strong>，这些担忧在随后几年与银行管理层的会面中进一步强化——&quot;后者似乎正在引导其机构加速撞向礁石&quot;。<strong>危机也可以用资本周期理解</strong>：繁荣年代银行资产（贷款）快速增长而竞争加剧（影子银行出现、信贷利差下降），金融业供给侧外移最终影响行业盈利能力——<strong>&quot;从这个角度看，银行业并没有什么特殊的地方。&quot;</strong></p>
+<ul>
+<li><strong>4.1 酝酿中的灾祸：与盎格鲁爱尔兰银行的会晤（2002—2006）</strong>：马拉松会议记录的时间轴，几乎是逐次恶化的现场观察。摘录（图 4-1）：2004-10&quot;有着很强的庞氏金融的气息&quot;；2005-05&quot;新的 CEO 继承了肖恩·菲茨帕特里克的推销狂&quot;；2005-11&quot;较大的贷款金额使得它易于受到信贷环境恶化/房地产下行的影响&quot;；2007&quot;所有高管都有一张醉醺的脸（都柏林肤色！），并且可以说个没完但却啥实质问题都没说&quot;；2008-12&quot;这一定会崩溃——难道不是么？&quot;；2009 爱尔兰政府国有化了盎格鲁爱尔兰银行。<strong>这家银行的倒塌危害了爱尔兰的国家主权信用。</strong></li>
+<li><strong>4.2 开发商的银行 / 4.3 危险的资产证券化（2002-11）／4.4 继续私募股权（2004-12）／4.5 吹泡泡（2006-05）／4.6 击鼓传花（2007-02）／4.7 房地产嘉年华（2007-02）／4.8 管道街（2007-08）／4.9 触礁（2007-09）</strong>：从证券化、PE、地产到 SIV/管道，逐层拆解。</li>
+<li><strong>4.10 七宗致命的罪（2009-11）</strong>：以瑞典商业银行（Handelsbanken）为正面样本——瑞典最大银行、马拉松长期持有、<strong>唯一没有卷入 90 年代初北欧银行危机的瑞典银行，本轮危机中也未募资、未接受政府救助（欧洲仅有 3 家主要银行做到）</strong>。其去中心化模式：支行经理依据对本地客户的了解放贷，而非依赖集中信贷打分；持续获行业最佳客户服务评分与最低成本收入比。管理层的回答：&quot;（分行地毯上有洞）因为地毯不会挣钱。&quot; 引自尼尔斯·克罗纳《改进银行业的蓝图》——<strong>银行的七宗致命的罪</strong>：
+<ol>
+<li><strong>资产负债的草率不匹配</strong>（借短贷长；爱尔兰银行以短于一年的商业票据支撑 20 年以上房贷）；</li>
+<li><strong>支持客户的资产负债不匹配</strong>（向匈牙利、拉脱维亚家庭发放欧元/瑞郎按揭）；</li>
+<li><strong>向&quot;无力偿付，也不会偿付&quot;的客户贷款</strong>（次贷、PE；瑞典商业银行的原则是&quot;向有钱的客户提供贷款&quot;，做利基信贷）；</li>
+<li><strong>在不熟悉的领域寻求增长</strong>（欧洲银行买美国次贷 CDO，UBS 损失 400 亿美元；外包了信贷决策）；</li>
+<li><strong>从事表外信贷</strong>（管道与 SIV；瑞典商业银行的原则是&quot;只有准备把信贷放在资产负债表上持有到期才发放贷款&quot;）；</li>
+<li><strong>陷入良性/恶性周期</strong>（庞氏诱惑；分支机构风险偏好全周期稳定，故泡沫期丢份额、别人不放贷时抢份额）；</li>
+<li><strong>依赖后视镜</strong>（VaR 模型；美林 2007 年报披露 95% 置信、一天持有期的总风险敞口 1.57 亿美元，一年后损失 300 亿美元；美国房价十年涨 85% 后房地美最坏情形预测仅跌 13.4%）。
+另有两个制度细节：<strong>部门预算在 1972 年就被废弃</strong>（逻辑：有预算目标，定价环境不利时就难以远离市场）；员工激励通过 Oktogonen 基金。</li>
+</ol>
+</li>
+</ul>
+<h3>第五章 活死人（5.1–5.8）</h3>
+<p><strong>章导读</strong>：资本周期分析深受熊彼特&quot;创造性毁灭&quot;影响——衰退像森林大火烧掉死树和弱树，让健康的小树成长。危机后最好的机会常出现在<strong>泡沫破裂后资本快速撤出、整合发生的行业</strong>（爱尔兰银行业是好例子）。但<strong>坏消息是</strong>：欧洲政策制定者阻止了一些行业（尤其就业密集的汽车业、政治敏感的欧洲大陆银行业）的整合，<strong>资本周期因此被阻止运行</strong>——对投资者是坏消息（产能过剩与低利润未解决），对欧元区经济也是坏事（注定低生产率与弱增长）。<strong>超低利率又恶化了问题——降低融资成本让较弱的企业（僵尸企业）苟延残喘。</strong></p>
+<ul>
+<li><strong>5.1 可以买了（2008-11）</strong>：与 2006-05&quot;破裂的泡沫&quot;对照，逐条核对泡沫指标反转——大宗商品价格下跌且相关公司迅速搁置扩产（阿赛洛米塔尔减产稳价）；PE 价值崩塌（黑石自 2007-06 跌 81%、KKR PE 自 2006-04 跌 90%、阿波罗跌 86%、雷曼 PE 基金跌 80%）；PE 投资损失（TPG 在华盛顿互惠 5 个月亏近 70 亿美元，其中自己基金亏 12 亿；黑石买德国电信 4.5% 股份已亏 20%）；新股发行暴跌（合众集团自高点跌 60%、查理曼资本跌 89%）；并购低潮（法罗里奥宣布杠杆收购 BAA 后股价反涨，此后跌 77%；必和必拓撤回对力拓的竞标）。<strong>结论：估值对长期投资者已非常有吸引力。</strong></li>
+<li><strong>5.2 西班牙去建筑／5.3 PIIGS 也能飞（2011-11）／5.4 破产的银行（2012-09）／5.5 边缘地带（2015-11）／5.7 活死人（2013-11）／5.8 放松，皮凯蒂先生（2014-08）</strong>：欧债危机、银行&quot;宽容&quot;（forbearance）与僵尸企业。</li>
+<li><strong>5.6 资本惩罚（2013-03）</strong>：本章方法论核心，<strong>作者罕见地系统自陈失败</strong>：
+<ul>
+<li><strong>失败的三种外部原因</strong>：①低估政治或法律干预；②颠覆性技术；③全球化对行业的影响。</li>
+<li><strong>内生问题</strong>：资本未能退出回报较差的行业。最近的周期中，&quot;创造性毁灭的力量由于激进的货币宽松和低利率而减弱了&quot;，较弱公司得以偿付不可持续的债务；银行核销能力受限，&quot;银行的宽容&quot;进一步恶化效果。</li>
+<li><strong>政治干预的机制</strong>：制造业工作对政客有特别吸引力；对&quot;诚实&quot;工作的怀念 + 选票饥渴 → 保护主义。<strong>政治敏感行业的管理层面临囚徒困境</strong>：&quot;当削减产能带来的好处会不成比例地被其意大利竞争对手享有时，法国的汽车制造商为何要这么做呢？&quot;</li>
+<li><strong>中国的&quot;战略行业&quot;</strong>（太阳能、风能、不锈钢、造船、电信设备）在海外制造了突然的全球竞争。<strong>因此资本周期分析在&quot;性质上更主要是国内的行业，或主要参与者更倾向于盎格鲁-撒克逊类型资本主义的行业&quot;更有效。</strong></li>
+<li><strong>技术破坏的代价</strong>：互联网浩劫音乐、地区报纸、图书零售、旅行代理。马拉松在几个案例中因&quot;困境行业的供给侧整合不足以抵消需求侧的趋势性下降&quot;而受损——点名 CD 零售商 HMV、摄影设备生产商柯达、录像出租 Blockbuster、音乐公司百代。</li>
+<li><strong>方法演化</strong>：近几年**&quot;资本周期分析在寻找那些更能维持高回报的股票上，比在供给侧重组之后正在复苏的已受沉重打击的行业中寻找机会，要更为有效&quot;**。</li>
+</ul>
+</li>
+</ul>
+<h3>第六章 中国综合症（6.1–6.6）</h3>
+<p><strong>章导读</strong>：马拉松很少投资中国大陆股票，原因是<strong>很多公司是国有的，资本配置效率与外部股东（特别是外国人）的利益常被置于政策目标之后</strong>。</p>
+<ul>
+<li>宏观：中国把投资占 GDP 的比推高到&quot;此前从未见过的水平&quot;，即韩国、日本也未有过；<strong>结果可预见地是要素生产率下降</strong>。金融危机期间又决定以更高固定资产投资维持增长，问题恶化。低利率导致资本错配，尤其在资产密集行业 → 从钢铁到造船的过度产能与低回报。</li>
+<li>微观：很多上市中国公司&quot;账目令人疑虑、经营历史经不住推敲&quot;，本章细析数笔中国 IPO——&quot;买家要注意了&quot;。</li>
+<li><strong>6.1 东方谜局（2003-02）</strong>：围绕中国 IPO 的利润调整。开篇引用深圳沃尔玛店的公司司歌（&quot;我的心中充满了自豪……我渴望告诉你我有多么热爱沃尔玛&quot;）作讽刺。核心问题不是中国经济会不会增长，而是<strong>这一奇迹是否会让持有中国股票的外国投资者获益</strong>——1993–2003 与中国政府相关的股票发行表现不佳（表 6-1）。</li>
+<li><strong>6.5 价值陷阱（2014-09）</strong>：以中国四大行做定量拆解，回答&quot;便宜的银行股是不是机会&quot;，答案&quot;不&quot;。
+<ul>
+<li>四大行 2013 年平均 ROE 20%（过去 5 年 21%），2008 年以来利润年化 +18%，总市值超 6500 亿美元，可接近账面价值买入。</li>
+<li>以工行拆解：<strong>ROE 20.8% = 1.4% 资产回报 × 15 倍杠杆</strong>。信用风险（不良贷款拨备）是否充分反映存疑——工行信贷成本多年维持低位而信贷增速高企，与美国银行危机前数年相似（&quot;隐患终会酿成恶果&quot;）。</li>
+<li>敏感性：<strong>风险成本升到看似不起眼的 1%，ROE 就从 20.6% 降到 16.8%（近 1/5）</strong>；若同时把杠杆正常化到新兴市场银行平均的 10 倍，<strong>ROE 降至 11.3%</strong>——&quot;这一数据在我们看来更接近工行可持续的盈利能力&quot;。且这还没考虑资产质量与系统性风险。</li>
+</ul>
+</li>
+<li><strong>6.6 落后的人倒霉（2015-05）</strong>：中国的产能过剩与全球价格冲击。</li>
+</ul>
+<h3>第七章 华尔街的内心世界（7.1–7.7）</h3>
+<p><strong>章导读</strong>：题词是丘吉尔&quot;永远不要相信银行家&quot;。马拉松的资本周期方法&quot;让我们自然地对投资银行家感到警觉&quot;——华尔街的生意是<strong>向股票市场的热门领域提供资本，并从可疑的金融工程中产生费用</strong>。2000 年 9 月给客户的评论里，马拉松就预测&quot;下一轮的过剩会比上一次更糟。当大型投资银行不会因其贪婪和错误而受到惩罚——因为他们太大了或者由于有广泛的人脉而不能倒闭——他们挑战体系本身只是一个时间问题&quot;。<strong>这些黑暗的预测在 8 年后雷曼兄弟倒闭时实现了。</strong></p>
+<p>本章形式特殊：<strong>每年圣诞前后的讽刺连载</strong>，主角是虚构投行&quot;格瑞德斯宾&quot;及其首席银行家&quot;斯坦利·切恩&quot;（Stanley Chayne），首篇始于 2002 年 12 月（虚构科技公司与&quot;旧经济&quot;的通用巧克力公司的失败合并，收入上一本《资本账户》）。7.1 是一封来自通用巧克力公司 CEO 的&quot;投诉信&quot;——讽刺推销型管理层与&quot;非交易路演&quot;。7.7 是和 GIR 共进午餐。<strong>这些篇章是理解马拉松为何把&quot;投行活动&quot;当作资本周期的内生推手的最佳读物，但形式是讽刺文学而非分析。</strong></p>
+<hr />
+<h2>译后记要点（译者陆猛）</h2>
+<ul>
+<li>马拉松 1986 年成立，管理规模超 500 亿美元，<strong>投资团队至今仅 10 人左右</strong>，只面向机构投资者，没有销售队伍。</li>
+<li>投资哲学两点：<strong>①注意资本周期</strong>（利润高→资本涌入→竞争加剧→利润下降→资本撤出→整合→利润恢复；长期利润率均值回归）；<strong>②重视管理层</strong>，核心能力是资本配置——<strong>很多资本密集行业的管理层过度投资构建帝国，结果只是毁灭股东价值，而在没有合适投资机会时将资本返还股东的公司却能创造股东价值。</strong></li>
+<li>最著名的案例：<strong>通用动力（General Dynamics）</strong>——在因军费削减被视为衰退的国防工业中，把资本投向更有效率的部门，并把出售低效部门获得的现金通过回购返还股东；<strong>公司营业收入下降 60%，同期股价却翻了 7 倍</strong>（巴菲特曾持有该公司 50% 的股份）。</li>
+<li>马拉松深恶痛绝：<strong>只重视季度数据的卖方分析师</strong>，以及被分析师和期权激励驱动得越来越短视的管理层；认为很多欧洲家族企业因长期持股、利益绑定，反而能做有利于长远的决策。</li>
+<li><strong>组合年换手率一般只有百分之十几，大部分股票持有超过七年。</strong></li>
+<li>分析师都是<strong>泛行业分析师</strong>，独特之处在重视供给侧——&quot;大部分人忽视了在供给侧有多少资本在进入。忽视供给造成失败的案例比比皆是&quot;：90 年代全球造纸、欧美航空、过去十几年欧洲汽车与银行业、最近周期的能源与矿产，<strong>最严重的是中国的各种产能过剩</strong>。</li>
+<li>行业整合后若剩余企业变得更有纪律（不再过度投资、不再恶性竞价），利润可能恢复，又产生好机会——例子是美国整合后的航空业、全球整合后的啤酒业（马拉松一度同时持有百威英博、喜力、嘉士伯）。</li>
+<li>另两个影响资本周期的因素：<strong>政府干预</strong>（欧洲为保就业限制钢铁、汽车厂关闭；低利率与主权保护使欧洲银行业缺乏整合、资本退出缓慢）与<strong>破坏性技术进步</strong>。</li>
+</ul>
+<hr />
+<h2>速查清单</h2>
+<h3>资本周期的六个观察信号</h3>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资本支出 / 折旧 高于历史均值</td>
+<td>周期恶化</td>
+</tr>
+<tr>
+<td>报告盈利与自由现金流之差扩大</td>
+<td>盈利质量下降</td>
+</tr>
+<tr>
+<td>行业集中度（赫芬达尔指数）下降</td>
+<td>竞争加剧</td>
+</tr>
+<tr>
+<td>大量 IPO / 增发</td>
+<td>周期末期（银行家在抽水）</td>
+</tr>
+<tr>
+<td>并购金额与笔数创新高</td>
+<td>周期末期</td>
+</tr>
+<tr>
+<td>建造宏伟新总部</td>
+<td>坏信号</td>
+</tr>
+</tbody>
+</table>
+<h3>资本周期六阶段（导言图 1-1 的文字）</h3>
+<p>新进入者受高回报吸引（投资者乐观）→ 竞争加剧、回报跌落至资本成本之下（股价落后）→ 投资回落、行业整合、企业退出（投资者悲观）→ 供给侧改善、回报回升至高于资本成本（股价好于市场）→ 循环。</p>
+<h3>本书反复强调的四条反直觉判断</h3>
+<ol>
+<li><strong>预测供给比预测需求容易</strong>——供给增加常常可以提前知道，且有确定的时滞。</li>
+<li><strong>产品差异化有时是障碍</strong>（汽车），<strong>商品化反而是合作的前提</strong>（钢铁、纸业）。</li>
+<li><strong>行业整合、资本回报下滑时买入</strong>，而不是等行业好转；但前提是整合真的发生（政治与技术是两个破坏者）。</li>
+<li><strong>&quot;低估值 + 高资产增长&quot;是最坏组合</strong>（中国银行业案例：PE/PB 便宜，但资本持续膨胀 → 价值陷阱）。</li>
+</ol>
+<hr />
+<h2>存疑与文本说明</h2>
+<ul>
+<li><strong>原件为纯图片扫描 PDF（220 页，无文字层）</strong>，本摘要经 RapidOCR 识别后整理。已知识别/译名问题：
+<ul>
+<li>&quot;盘格鲁爱尔兰银行&quot;应为<strong>盎格鲁爱尔兰银行</strong>（Anglo Irish Bank）；&quot;云酿中的灾祸&quot;应为<strong>酝酿中的灾祸</strong>；&quot;益格鲁&quot;同前。</li>
+<li>第 3 章导读提到的&quot;芬兰三普集团的比约恩·瓦尔罗斯&quot;——比约恩·瓦尔罗斯（Björn Wahlroos）为芬兰 Sampo 集团与 UPM 董事长，中译本此处译名与 OCR 均需回原书核对。</li>
+<li>第 2 章导读&quot;芬兰三普集团&quot;同源。</li>
+<li>5.3 标题&quot;PIIGS 也能飞&quot;中 PIIGS 为欧债五国缩写（葡萄牙、意大利、爱尔兰、希腊、西班牙）。</li>
+</ul>
+</li>
+<li>书内图表（图 1-1 至 7-1，含资本周期图、矿业资本支出、并购活动、啤酒集中度、资产增长与回报散点、爱尔兰银行会晤时间轴等）未复刻，仅保留结论性数字。</li>
+<li>书中数据截至 2015 年，属历史材料；引用当下结论时须重新验证。</li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E5%85%B6%E4%BB%96">← 返回 其他</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../raw/research/书籍/钱塞勒_2017_资本回报-穿越资本周期的投资.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
