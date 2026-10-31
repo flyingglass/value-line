@@ -2,21 +2,22 @@
 generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
 
 页面结构与交互：
-    index.html                               首页（白马 / 学股 / 疯狂的里海 / 多学科 四个分类 tab + 搜索）
+    index.html                               首页（白马 / 本地 / 疯狂的里海 / 通用 四个分类 tab + 搜索）
     view/stocks/<标的>/index.html            标的组页：文件夹标签(跟踪/经营/…/概览/原始资料)，
                                              点击标签在当前页切换面板，不跳转
     view/stocks/<标的>/<目录…>/<文章>.html    独立文章阅读页
     view/cases/<案例专题>/…                  投资案例专题（组页同上，如 案例/方法论/时间线）
-    view/general/index.html                  多学科整组页（主题=顶栏 tab，就地切换）
-    view/general/<分类>/<文章>.html          通用文章阅读页
+    view/general/index.html                  知识库整组页（目录=顶栏 tab，就地切换）
+    view/general/<分类>/<文章>.html          知识库文章阅读页
 
 规则：
     · 组根散落的 md 收进「概览」标签（不叫「其他文档」、不单独铺卡片）
     · 组内子目录/主题点击 = 当前页 Tab 切换，不再生成子目录独立页
     · 每篇 md 仍生成独立阅读页，正文在生成期用 markdown-it-py 预渲染为 HTML 内嵌
       （不依赖任何 CDN / 联网，离线双击即看），[[页面名]] 解析为站内链接
-    · 多学科整组页与标的/案例组页同构：主题 当 tab，首页只保留标题+主题 chip+进入
-    · 首页一级分类与 research/ 下一级目录对齐（白马/本地/疯狂的里海/多学科），
+    · 知识库整组页与标的/案例组页同构：目录 当 tab，首页只保留标题+篇数 chip
+    · 首页一级分类与 research/ 下一级目录对齐（白马/本地/疯狂的里海/感悟/通用），
+      通用的内部分类与 raw/research 下 书籍 / 投资 / articles 一一对应，
       tab 点击就地切换面板；搜索跨 tab 过滤并自动跳到第一个有命中的分类
 
 运行：
@@ -91,10 +92,18 @@ CASE_GROUP_NAMES = {
 # raw/research 下的通用原始资料目录（非标的）：raw 子目录 → general 输出分类
 # 2026-10-30：articles 按主题拆分，书籍 / 投资（含 巴芒、基金经理）各自成目录
 RAW_GENERAL_DIRS = {
-    'articles': 'raw',
+    'articles': '文章',
     '书籍': '书籍',
     '投资': '投资',
 }
+
+# 知识库（非标的）：一级 tab 名 + 内部分类顺序
+# 2026-10-31：tab 名由「多学科」改为「知识库」（用户定名）；
+#             分类由关键词主题（芒格/复杂经济学/生物学…）改为「目录」，
+#             与 raw/research/{书籍,投资,articles} 及 research/articles 一一对应；
+#             原主题仍保留为卡片上的 topic 标签，不再作为 tab。
+GENERAL_TAB_NAME = '知识库'
+GENERAL_CATEGORY_ORDER = ['书籍', '投资', '文章']
 
 # 标的容器根下散落的 md（名单池）→ 归入「<容器>·名单池」组
 # 例：research/AI软件/AI软件名单-待选池.md → 组 id「AI软件·名单池」
@@ -303,7 +312,7 @@ def scan_wiki():
                 else:
                     add_article(sub, gname, industry, art)
 
-    # 通用文章
+    # 知识库文章（非标的）
     general = []
     general_dir = os.path.join(WIKI_DIR, "research", "articles")
     if os.path.isdir(general_dir):
@@ -313,7 +322,10 @@ def scan_wiki():
                 continue
             for rel, fpath in iter_md(catpath):
                 art = read_article(fpath, f"research/articles/{cat}/{rel}")
-                art['category'] = cat
+                art['category'] = '文章'   # 一级分类统一归到「文章」，原 concepts/entities/… 记入 subdir
+                art['subdir'] = cat
+                # 输出仍保留原一级子目录，避免 concepts/ 与 papers/ 下的同名文件互相覆盖
+                art['catdir'] = os.path.join('文章', cat)
                 general.append(art)
 
     # raw/research 下的通用原始资料（非标的）：articles / 书籍 / 投资（含 投资/巴菲特与芒格、投资/基金经理）
@@ -324,11 +336,13 @@ def scan_wiki():
         for rel, fpath in iter_md(raw_gen_dir):
             art = read_article(fpath, f"raw/research/{sub}/{rel}")
             art['category'] = catname
+            art['catdir'] = catname
             general.append(art)
 
     # synthesis 中命中标的的 → 归入标的组；未命中 → general
+    # 注：一级分类已是「文章」，此处按原子的子目录 subdir 判断
     for art in list(general):
-        if art['category'] != 'synthesis':
+        if art.get('subdir') != 'synthesis':
             continue
         fn = os.path.basename(art['path']).lower()
         matched = None
@@ -585,6 +599,9 @@ def card_html(art, from_file):
     s = ('<a class="card" href="' + esc(href) + '">'
          '<div class="t">' + esc(art['title']) + '</div>'
          '<div class="meta">' + kind_tag(art['kind']))
+    # 通用区卡片带主题小标签（芒格·格栅理论/复杂经济学/…），分类已由 tab 表达
+    if art.get('category') and art.get('topic') and art['topic'] != '其他':
+        s += '<span class="pill topic">' + esc(art['topic']) + '</span>'
     if art.get('date'):
         s += '<span class="date">' + esc(art['date']) + '</span>'
     s += '</div>'
@@ -699,7 +716,7 @@ def layout_all(groups, cases, general):
                 art['_out'] = os.path.join(group_out_dir, *seg, stem + '.html')
                 register_link(art)
     for art in general:
-        cat = art.get('category', 'other')
+        cat = art.get('catdir') or art.get('category', 'other')
         art['_out'] = os.path.join(VIEW_DIR, 'general', cat,
                                    safe_stem(os.path.splitext(os.path.basename(art['path']))[0]) + '.html')
         register_link(art)
@@ -884,17 +901,17 @@ def generate_group(scope, gid, info):
     return written
 
 # ---------------------------------------------------------------------------
-# 生成：通用文章（多学科）
+# 生成：知识库文章（书籍 / 投资 / 文章）
 # ---------------------------------------------------------------------------
 
 def general_article_page(art, out):
     md_file = os.path.join(WIKI_DIR, art.get('real_path', art['path']).replace('/', os.sep))
     body_html = render_md(art['body'], os.path.dirname(md_file), out)
-    topic = art.get('topic', '通用')
+    topic = art.get('category', GENERAL_TAB_NAME)
     frag = 'dir=' + quote(topic)
     back_target = posix_rel(out, GENERAL_IDX) + '#' + frag
     html = head_html(art['title'])
-    html += topbar_html(out, [('多学科', GENERAL_IDX), (topic, GENERAL_IDX, frag)])
+    html += topbar_html(out, [(GENERAL_TAB_NAME, GENERAL_IDX), (topic, GENERAL_IDX, frag)])
     html += '<div class="wrap">'
     html += '<h1 class="page-title">' + esc(art['title']) + '</h1>'
     html += '<div class="meta-line">' + kind_tag(art['kind'])
@@ -913,12 +930,12 @@ def general_article_page(art, out):
         f.write(html)
 
 def general_topic_order(general):
-    """按 topic_order 优先、其余字典序，返回出现过的主题列表。"""
+    """按 GENERAL_CATEGORY_ORDER 优先、其余字典序，返回出现过的目录分类（书籍/投资/文章）。"""
     grouped = {}
     for art in general:
-        grouped.setdefault(art.get('topic', '其他'), []).append(art)
+        grouped.setdefault(art.get('category', '其他'), []).append(art)
     ordered = []
-    for t in topic_order:
+    for t in GENERAL_CATEGORY_ORDER:
         if t in grouped:
             ordered.append(t)
     for t in sorted(grouped):
@@ -927,15 +944,15 @@ def general_topic_order(general):
     return grouped, ordered
 
 def general_group_page(general):
-    """多学科整组页：view/general/index.html，主题当顶栏 tab，就地切换（与标的组页同构）。"""
+    """知识库整组页：view/general/index.html，目录（书籍/投资/文章）当顶栏 tab，就地切换（与标的组页同构）。"""
     grouped, ordered = general_topic_order(general)
     total = len(general)
-    html = head_html('多学科')
-    html += topbar_html(GENERAL_IDX, [('多学科', GENERAL_IDX)])
+    html = head_html(GENERAL_TAB_NAME)
+    html += topbar_html(GENERAL_IDX, [(GENERAL_TAB_NAME, GENERAL_IDX)])
     html += '<div class="wrap">'
-    html += '<div class="page-hd"><h1>多学科</h1><span class="pill case">通用知识</span>'
+    html += '<div class="page-hd"><h1>' + GENERAL_TAB_NAME + '</h1><span class="pill case">非标的 · 跨学科</span>'
     html += '<span style="font-size:12px;color:#9aa0a6">' + str(total) + ' 篇</span></div>'
-    html += '<div class="meta-line">主题标签点击即切换，无需跳转 · 点击文章进入阅读</div>'
+    html += '<div class="meta-line">按目录分类：书籍 / 投资（巴芒·基金经理）/ 文章 · 点击标签就地切换</div>'
     html += '<div class="tabbar">'
     for t in ordered:
         html += ('<button class="tabbtn" data-dir="' + esc(t) + '">' +
@@ -957,7 +974,7 @@ def general_group_page(general):
 def generate_general(general):
     written = []
     for art in general:
-        cat = art.get('category', 'other')
+        cat = art.get('catdir') or art.get('category', 'other')
         out = os.path.join(VIEW_DIR, 'general', cat,
                            safe_stem(os.path.splitext(os.path.basename(art['path']))[0]) + '.html')
         art['_out'] = out
@@ -1071,18 +1088,18 @@ def home_section_container(container_groups, raw_only, from_file):
     return html
 
 def home_section_general(general, from_file):
-    """多学科每个主题分类单独一张卡片（不再整体显示 多学科 + 总篇数 的大标题块）。"""
+    """通用区每个目录分类（书籍/投资/文章）单独一张卡片（不再整体显示大类 + 总篇数的大标题块）。"""
     if not general:
         return ''
     grouped, ordered = general_topic_order(general)
     idx_href = posix_rel(from_file, GENERAL_IDX)
     html = ''
-    for topic in ordered:
-        arts = grouped[topic]
-        href = idx_href + '#dir=' + quote(topic)
-        search_text = topic + ' ' + ' '.join(a['title'] for a in arts)
+    for cat in ordered:
+        arts = grouped[cat]
+        href = idx_href + '#dir=' + quote(cat)
+        search_text = cat + ' ' + ' '.join(a['title'] for a in arts)
         html += '<div class="grp" data-search="' + esc(search_text).lower() + '">'
-        html += '<div class="grp-hd"><a class="name" href="' + esc(href) + '">' + esc(topic) + '</a>'
+        html += '<div class="grp-hd"><a class="name" href="' + esc(href) + '">' + esc(cat) + '</a>'
         html += '<span class="pill topic">' + str(len(arts)) + ' 篇</span></div>'
         html += '</div>'
     return html
@@ -1137,7 +1154,7 @@ if(input){input.addEventListener('input',doSearch);input.addEventListener('keydo
 
 
 def build_home(groups, cases, general):
-    """首页：一级分类 tab（各标的容器 / 各专题 / 多学科）+ 分类内卡片。"""
+    """首页：一级分类 tab（各标的容器 / 各专题 / 知识库）+ 分类内卡片。"""
     by_container, raw_only = split_home_groups(groups)
 
     panels = []      # [(tab 名, 卡片数, panel 内层 HTML)]
@@ -1154,7 +1171,7 @@ def build_home(groups, cases, general):
     if general:
         inner = ('<div id="sec-general">' +
                  home_section_general(general, OUT_HOME) + '</div>')
-        panels.append(('多学科', inner.count('class="grp"'), inner))
+        panels.append((GENERAL_TAB_NAME, inner.count('class="grp"'), inner))
 
     body = head_html('投研 Wiki')
     body += topbar_html(OUT_HOME, [])
@@ -1185,7 +1202,7 @@ def main():
     groups, cases, general = scan_wiki()
     n_stock = sum(len(v['articles']) for v in groups.values())
     n_case = sum(len(v['articles']) for v in cases.values())
-    print(f"  标的: {len(groups)} 个 ({n_stock} 篇) | 投资案例: {len(cases)} 个专题 ({n_case} 篇) | 通用: {len(general)} 篇")
+    print(f"  标的: {len(groups)} 个 ({n_stock} 篇) | 投资案例: {len(cases)} 个专题 ({n_case} 篇) | {GENERAL_TAB_NAME}: {len(general)} 篇")
 
     print("生成页面 ...")
     os.makedirs(VIEW_DIR, exist_ok=True)

@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-09-02-庶人哑士-AI应用随想录</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">知识库</a> › <a href="../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2026-09-02-庶人哑士-AI应用随想录</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">raw/research/articles</span></div><div class="md" id="md"><h1>AI应用随想录</h1>
+<blockquote>
+<p>来源：微信公众号「庶人投资笔记」，原创<br />
+原文链接：https://mp.weixin.qq.com/s/TJZFrqNqD5f_e3FZ314eMw<br />
+作者：庶人哑士<br />
+发布时间：2026-09-02 19:14（四川）<br />
+系列关系：上篇《AI企业端应用现状：百无一用穷翰林，草台班子数据库》→ 本篇 → 下篇《关于AI应用的十个判断》（2026-09-19）<br />
+入库时间：2026-09-20</p>
+</blockquote>
+<hr />
+<h2>摘要（3 分钟速读）</h2>
+<p><strong>一句话核心</strong>：<strong>AI 在 C 端无所作为，在 B 端大有可为</strong>——AI 是<strong>生产力工具</strong>（产业互联网，关键是&quot;数据和任务&quot;），不是连接工具（消费互联网，关键是&quot;连接和交互&quot;）；而企业级 AI 落地必须先把物理企业在数字世界完整复制一份（<strong>数字孪生</strong>），并在其上加一层能让 AI 读懂业务含义、且能<strong>写回执行</strong>的中间层——这就是 Palantir 的 <strong>Ontology（本体层）</strong>。</p>
+<p><strong>核心框架</strong></p>
+<ul>
+<li><strong>消费互联网 vs 产业互联网</strong>：前者一端都是人，&quot;四多&quot;（人/信息/商品/服务占一头）→ 网络效应自动转起来；后者落脚点是<strong>完成一个个具体的任务</strong>（按订单生产、按需求采购、出可研报告、出设计图）</li>
+<li><strong>数字化 vs 数智化</strong>：数字化＝把企业要素在数字孪生中生成映射；<strong>数智化＝让 Agent 读懂数据 + 读懂数据之间的业务勾稽关系，去完成具体任务</strong></li>
+<li><strong>企业级 AI 应用的三个前提</strong>：① 完成了数字化；② 能让 AI 读懂这些数据在企业语境中的含义；③ AI 可基于这些数据做推理和决策</li>
+<li><strong>Palantir 做的是第②③件事</strong>，本体层&quot;既不是数据，也不是大模型，而是<strong>连接数据和 AI 的中间层</strong>&quot;；用管理层话说，本体是<strong>一个决策系统</strong>，是&quot;帮助大模型由翰林变成县令的东西&quot;</li>
+</ul>
+<p><strong>Ontology 装的两样东西（关键）</strong></p>
+<ol>
+<li><strong>语义元素（&quot;名词&quot;）</strong>：对象（员工、飞机、采购订单、威胁行为者）／属性（姓名、油井经纬度）／链接（&quot;员工向经理汇报&quot;、&quot;发票包含明细项&quot;）</li>
+<li><strong>动力学元素（&quot;动词&quot;）</strong>：动作（&quot;批准采购订单&quot;、&quot;派遣技师&quot;）／函数（&quot;计算资产利用率&quot;）／<strong>安全</strong>（谁能在什么条件下看什么、改什么）</li>
+</ol>
+<p><strong>本质区别（与 BI 的分界线）</strong></p>
+<ul>
+<li><strong>大多数 BI 工具只能&quot;读&quot;数据，本体的动作可以&quot;写回&quot;底层系统执行</strong></li>
+<li>例子：飓风来袭 → &quot;重新规划所有经过厦门的货车路线&quot; → Agent 理解&quot;飓风&quot;与&quot;货车&quot;的业务关系 → 自动算新路线 → <strong>直接发指令给 SAP 更新运单</strong>；传统软件只会弹个天气图，&quot;剩下的你自己想办法&quot;</li>
+</ul>
+<p><strong>投资结论（原文口径）</strong></p>
+<ul>
+<li><strong>避开工具型 SaaS，去找干&quot;本体活儿&quot;的公司</strong>；不一定要像 Palantir 那么大而全，只要在某个细分领域能让大模型理解具体业务、让 Agent 跑起来干活</li>
+<li><strong>暴论</strong>：很多 AI 应用创业者出身大厂，带着消费互联网思维，喜欢 <strong>AI+</strong>；但 AI 应用是产业互联网，要 <strong>+AI</strong>，去找&quot;县令式&quot;场景</li>
+<li><strong>短期投资机会不在创业公司，而在&quot;在产业田间地头深耕的公司&quot;</strong></li>
+</ul>
+<p><strong>数字化的四个阶段（按被数字化时间顺序）</strong></p>
+<ol>
+<li>文件文档（纸质 → Word/Excel/PPT/PDF/CAD）</li>
+<li>沟通方式（QQ、微信等即时通讯）</li>
+<li>业务信息（SAP ERP、Salesforce CRM：进销存、财务、销售跟进）</li>
+<li>组织与流程（OA、钉钉：组织架构、审批流程、汇报与协作关系）</li>
+</ol>
+<p>原文强调：企业数字化是循序渐进的，<strong>&quot;大企业做得多一点，小企业做得少一点；美国的企业走得多一点，中国的企业走得少一点&quot;</strong>。</p>
+<p><strong>跟踪要点</strong></p>
+<ol>
+<li>判断一家 AI 应用公司：它是在卖&quot;躺在那里等人用的工具&quot;，还是在建本体（数据治理 + 数据映射 + 行业 know-how + 工作流与汇报关系）</li>
+<li><strong>细分领域的本体层</strong>也算数，不必大而全——这降低了&quot;Palantir 不可复制&quot;的否定力度</li>
+<li>找&quot;+AI&quot;而非&quot;AI+&quot;：场景来自产业深耕，不是模型能力外溢</li>
+<li>本体系列文章的&quot;翰林 vs 县令&quot;语境：见上篇《AI企业端应用现状：百无一用穷翰林，草台班子数据库》</li>
+</ol>
+<p><strong>局限提示（阅读时注意）</strong></p>
+<ul>
+<li>本文为个人随笔，全篇定性判断，无财务数据、无公司财务指标</li>
+<li><strong>Ontology 的例子作者自述是&quot;我与AI多轮对话之后生成的&quot;</strong>，属说明性示例，非 Palantir 官方披露的真实客户案例</li>
+<li>&quot;AI 在 C 端无所作为&quot;是作者判断，非事实；C 端已有实际落地的 AI 应用（不构成原文内容，仅提示阅读边界）</li>
+</ul>
+<hr />
+<h2>正文（完整原文）</h2>
+<p>AI在C端无所作为，在B端大有可为。</p>
+<p>互联网是连接工具，连接的是人与人、人与信息、人与商品、人与服务。每一种连接方式，都诞生了巨头。人与人生腾讯、Meta；人与信息是字节、Google；人与商品是阿里、多多、Amazon；人与服务是美团、携程、Booking、滴滴、Uber。</p>
+<p>AI是生产力工具，它会在我们人类生产的各个环节大幅度的降本增效。分产供销三个维度来看：</p>
+<p>在生产端，它可以通过IoT系统，实时检测产线、设备的运行状态参数，主动分析并上报异常。如果跑顺了，还可以授权给Agent写回系统，自动更换到达寿命临界点的轴承、皮带，自动加注润滑油和冷却液。完成后，它可以通过MES联动指挥生产线上的每一台设备重新运行。</p>
+<p>在供应端，它可以根据每日每周的产量数据，自动评估WMS系统里库房中每一样零部件的库存水平，主动发出预警信号。如果你允许，它还可以直接对接TMS物流系统，告诉关键供应商的Agent：&quot;本周四之前把50万件原材料A送到B车间仓库&quot;。甚至可以结合运力、天气情况替供应商把走陆运还是铁运、用自由车队还是请货拉拉的第三方车队规划好。</p>
+<p>在营销端，它可以自动生成营销素材，并发布到抖音、小红书等平台，然后实时监控浏览、点赞、评论数，并且显示在后台的数据看板上。当有客户点进来购买后，它会给这个客户打上100个标签，告诉你这属于羊毛党还是潜在高价值客户。对于决策链条和成交周期长的B端企业，它会把客户画像给到销售，让他们去线下跟单。成交后，它会主动解答客户的各种常规问题，只有复杂问题才会转交人类专家。</p>
+<p>从这个维度来看，AI是可以视为&quot;产业互联网&quot;。产业互联网我们喊了很多年，但一直停留在上市公司的饼里、顶层规划的文件里。</p>
+<p>消费互联网的关键是连接和交互，产业互联网的关键是数据和任务。</p>
+<p>不管是哪种连接，消费互联网的一端都是人。人是活物，不需要控制，只需要交互。一个APP里面，只要人多、信息多、商品多、服务多这&quot;四多&quot;占一头，再加上UI漂亮、体验好，人就会来，&quot;越多人用越好用&quot;的网络效应会自动转起来。</p>
+<p>产业互联网不一样。它最终的落脚点，是完成一个个具体的任务。</p>
+<p>按照客户订单生产一批货物，按照这批货的需求向供应商采购原材料，把仓库里积压的那批货赶紧卖出去，都是一个个任务。按老板要求完成一份可研报告，根据产品要求完成产品设计图，也都是一个个任务。</p>
+<p>要想把组织改造为AI 驱动去完成一个个任务，就得把物理世界的企业在数字世界完完整整的复制一个--这就是数字孪生。</p>
+<p>物理世界中的一个企业有哪些构成要素，数字孪生就得有哪些要素。这是一个把原子数字化为比特的过程。下面我大概按照这些要素被数字化的时间顺序说一下。</p>
+<p>最早被数字化的就是各种文件文档。在个人电脑被大规模普及之前，办公用的都是纸质文件，一有了电脑之后，这些纸质文件就变成了电脑中的 Word、Excel、PPT、PDF、CAD 图纸。</p>
+<p>有了QQ 、微信等即时通讯软件之后，物理世界的线下沟通方式，部分被转变成了线上沟通的。这是沟通方式的数字化。</p>
+<p>有了SAP的ERP 软件、Salesforce 的 CRM 软件之后，原本被保存在线下的进销存信息、财务信息、销售跟进情况信息等，也被数字化了。</p>
+<p>有了 OA 软件和钉钉等办公协同软件之后，公司内部组织架构、审批流程、汇报与协作关系开始被数字化。</p>
+<p>从这上面的这些不同要素的演进关系来看，企业组织的数字化是一点一点、循序渐进推进的过程。有些企业的数字化进程走得多一点，有些走得少一点；大企业做得多一点，小企业做得少一点；美国的企业走得多一点，中国的企业走得少一点。</p>
+<p>接下来 AI 来了，我们不仅要完成数字化，还要完成数智化。</p>
+<p>数字化是把企业组织的方方面面的要素都在数字孪生中生成一个映射，而数智化是要在数字世界，完全复刻一个很大程度上能够自我完成任务，甚至做一些不太重要的决策的数字孪生。</p>
+<p>数智化和数字化最大的不同就在于，以前那些数据都是死的，静静的躺在各种软件里面等着人们去查找和使用。而数智化是在 AI 的加持下，开始让各种 Agent 能够读懂数据，并且能够读懂各种数据之间的业务勾稽关系，让他们能够真正的利用这些数据去完成一个个具体的任务。</p>
+<p>所以企业级 AI 应用的有三个大前提：第一，完成了数字化；第二，能够让 AI 读懂这些数据在企业语境中的含义；第三，AI 可以基于这些数据去做推理和决策。</p>
+<p>Palantir就是在已经完成了数字化的美国企业的基础上，去做第二、第三件事。它的本体层，既不是数据，也不是大模型，而是连接数据和AI的中间层。用管理层的话说，它的本体（Ontology )，就是一个决策系统。放到&quot;翰林和县令&quot;的语境中，就是帮助大模型由翰林变成县令的东西。</p>
+<p>它把一家机构里所有散落在各处的真实事物（卡车、订单、病人、士兵、机器）以及它们之间的关系，用一套统一的&quot;业务语言&quot;映射到软件里，让人类和 AI 都能看懂、并能直接下达动作。</p>
+<p>举个例子来说明一下（例子是我与AI多轮对话之后生成的）：</p>
+<p>传统数据库存的是&quot;行和列&quot;，比如  ID_9982, Status_0, Loc_NY 。这对机器友好，对人、对 AI 都不友好。ChatGPT 看到这串字符，根本不知道它代表的是&quot;卡车 9982 油箱空了、停在纽约&quot;。</p>
+<p>Palantir 本体做的事情是中间加了一层语义翻译，把数据库里那行天书 → 映射成&quot;卡车 9982&quot;，Status_0  → 翻译成&quot;油箱为空&quot;， Loc_NY  → 翻译成&quot;当前在纽约&quot;。</p>
+<p>这样，无论是业务人员还是 AI 智能体，都能直接用自然语言理解和操作它。</p>
+<p>从这个角度来说，它也是一个翻译官：把原来只有机器看得懂的语言，翻译成人和智能体也看得懂的&quot;人话&quot;，</p>
+<p>它代表企业的决策，而不仅仅是数据。把数据、逻辑、动作、安全策略整合进一个统一的表示层，让人和 AI 都能在上面协作。</p>
+<p>本体里装了两样东西：</p>
+<p><strong>1. 语义元素（&quot;名词&quot;）</strong></p>
+<p>对象：现实世界里的实体，比如员工、飞机、采购订单、威胁行为者。</p>
+<p>属性：对象的字段，比如员工姓名、油井经纬度。</p>
+<p>链接：对象之间的逻辑关系，比如&quot;员工向经理汇报&quot;、&quot;发票包含明细项&quot;。</p>
+<p><strong>2.动力学元素（&quot;动词&quot;）</strong></p>
+<p>动作：可以对对象执行的操作，比如&quot;批准采购订单&quot;、&quot;派遣技师&quot;。</p>
+<p>函数：封装好的业务逻辑，比如&quot;计算资产利用率&quot;。</p>
+<p>安全：谁能在什么条件下看什么、改什么，约束结果。</p>
+<p>关键在于大多数 BI （经营分析）工具只能&quot;读&quot;数据，而本体的动作可以&quot;写回&quot;到底层系统去执行。这是它和普通数据看板的本质区别。</p>
+<p>假设一家医疗制造商，底层有几百个数据源：ERP、供应链系统、物流跟踪、生产线传感器…</p>
+<p>没有本体之前：数据孤岛，表结构混乱。生产工程师看到的是工单表，仓库员看到的是库存表，供应链分析师看到的是物流表，三者对不上话。</p>
+<p>有了本体之后：Palantir 把这些数据统一映射成业务对象——&quot;生产工厂&quot;、&quot;工单&quot;、&quot;客户&quot;、&quot;入库包裹&quot;、&quot;出库货件&quot;。</p>
+<p>于是，当飓风来袭，你可以直接对系统说：&quot;重新规划所有经过厦门的货车路线。&quot;</p>
+<p>系统里的 AI 智能体理解了&quot;飓风&quot;和&quot;货车&quot;在公司真实业务中的关系，自动计算新路线，并直接发指令给 SAP 更新运单——这就是&quot;动作回写&quot;。</p>
+<p>传统软件这时候只会弹个天气图给你看，然后说&quot;剩下的你自己想办法&quot;。而 Palantir 本体因为把&quot;货车&quot;这个真实对象、它的状态、它允许的动作、以及执行动作的权限都建模好了，所以 AI 才能真正动手。</p>
+<p>之前聊过，到了AI时代，SaaS软件由&quot;躺在那里等着被人使用的工具&quot;，变成了&quot;可以替人干活的一个个Agent&quot;。但这个不是变化的过程，不是像耶稣说&quot;要有光，于是就有了光&quot;，需要数据治理、数据映射，灌入行业know-how、工作流和汇报关系。</p>
+<p>可以简单粗暴的把这一系列的活儿，都理解为是本体干的。但它不替代你现有的 SAP、Salesforce、Oracle。它凌驾于这些东西上面，像中央控制器一样把它们连起来，构建一个反映现实的统一数字孪生。</p>
+<p>AI应用投资，就是要避开那些工具型的SaaS，去找到那些干本体活儿的公司。但不一定要像Palantir那么大而全的，只要是在某个细分领域，能够让大模型理解具体业务，让Agent跑起来干活儿的就行。</p>
+<p>这里说一个暴论，也call回前一篇文章：</p>
+<p>很多AI应用创业者，都是互联网大厂出来的，还是带着消费互联网的思维，喜欢AI+。而AI应用是产业互联网，AI是生产力工具，依附于具体的产业场景才能发挥作用。要+AI，要去找到&quot;县令式&quot;场景，用AI去赋能和改造千行百业。</p>
+<p>短期内的投资机会，不在于创业公司，而在于那些在产业的田间地头深耕的公司。</p>
+</div><div class="backrow"><a href="../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../raw/research/articles/2026-09-02-庶人哑士-AI应用随想录.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

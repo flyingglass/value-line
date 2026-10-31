@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ben Thompson 播客：AI 资本周期、聚合理论与科技巨头护城河</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../../index.html">知识库</a> › <a href="../../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">Ben Thompson 播客：AI 资本周期、聚合理论与科技巨头护城河</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-08-20</span><span style="margin-left:auto;color:#b0b5bd">research/articles/synthesis</span></div><div class="md" id="md"><h1>Ben Thompson 播客：AI 资本周期、聚合理论与科技巨头护城河</h1>
+<blockquote>
+<p>来源：微信公众号「我有充足的时间」编译转载，原载 Stratechery（Ben Thompson × Patrick O'Shaughnessy 对话，2026-08-18）
+原始资料：<a href="../%E6%9C%AC%E6%B1%A4%E6%99%AE%E6%A3%AE_2026_BenThompson%E6%92%AD%E5%AE%A2-AI%E8%9E%8D%E8%B5%84%E4%B8%8E%E7%A7%91%E6%8A%80%E5%B7%A8%E5%A4%B4%E6%8A%A4%E5%9F%8E%E6%B2%B3.html">../../raw/research/投资/基金经理/本汤普森_2026_BenThompson播客-AI融资与科技巨头护城河</a>
+⚠️ 本文为观点性内容（播客对话），文中数字均为对话中陈述，未经独立核验</p>
+</blockquote>
+<h2>核心命题</h2>
+<p><strong>一个根本问题</strong>：AI 资本开支狂潮（2026 年约 8000 亿美元，明年或升至 1.3 万亿美元）能否在资本耗尽之前，由 AI 收入及时接棒？</p>
+<p><strong>Ben 的答案</strong>：不是非黑即白——&quot;你可以同时相信 AI 是真实的、经济影响将极其巨大、又担心我们能否跨过这座桥&quot;。核心风险是<strong>时间错配</strong>（资本来源沿&quot;自由现金流 → 债务 → 股票&quot;曲线下行），而非技术本身失败。</p>
+<p><strong>核心洞见</strong>：用历史类比理解当下——铁路泡沫留下 BNSF 与横贯铁路，互联网泡沫留下暗光纤，AI 泡沫最可能留下<strong>过剩的电力</strong>；&quot;谷歌正在成为伯克希尔&quot;。</p>
+<h2>聚合理论（Aggregation Theory）专节</h2>
+<blockquote>
+<p>本节为本播客中 Ben Thompson 对其 2015 年提出的聚合理论的重述与应用</p>
+</blockquote>
+<ul>
+<li><strong>聚合理论重述</strong>：在供给极度丰富的世界里，难题不是分发而是<strong>发现</strong>——用户怎样找到真正感兴趣的东西？解决&quot;发现&quot;问题者支配市场，形成正反馈循环。另一个关键是交易成本（Google/Meta 的广告交易由计算机完成，单次新增交易成本接近零）。</li>
+<li><strong>AI 改变聚合理论的前提</strong>：推理成本是真实的边际成本，且不同公司、不同使用方式差异巨大——低端用户把 AI 当 Google 替代品，服务成本极低；高端测试时扩展&quot;每多思考一秒都要花钱&quot;。零边际成本假设被打破。</li>
+<li><strong>广告飞轮逻辑</strong>：消费者变现能力可持续提高，因为价格上涨由广告主承担，几乎没有需求弹性问题；而 Netflix 式订阅始终面对&quot;价格涨到什么时候消费者退订&quot;的问题。&quot;让人付钱很难，免费提供服务则很容易。&quot;</li>
+<li><strong>OpenAI ≈ Dropbox 的 100 倍规模重演</strong>：坚持面向消费者卖订阅，卖了很多但仍不够。&quot;只要做消费者市场，最终就必须做广告。&quot;</li>
+<li><strong>Apple 的经典聚合器打法</strong>：完整生态系统 + 控制通往客户的入口 → 供应商来就你。</li>
+<li><strong>广告即验证器</strong>：广告属于可验证领域（&quot;看广告能不能卖出商品&quot;），Google/Meta 拥有规模巨大、流动性极强的验证市场，可对海量创意 A/B 测试形成持续改进的反馈循环。&quot;只要把广告相关性提高几个百分点，回报就是数十亿美元，仅这一项就足以支持 Meta 投资最前沿的模型。&quot;</li>
+</ul>
+<h2>五个核心判断（均为 Ben Thompson 个人观点）</h2>
+<ol>
+<li><strong>Google 正在成为伯克希尔</strong>：搜索广告 = 喜诗糖果（史上最完美商业模式、纯聚合器、边际成本接近零）；AI = BNSF（TAM 覆盖全部白领工作 + 未来机器人，利润率较低但绝对利润大得多）。发股稀释股东权益，但&quot;如果蛋糕本身扩大了几个数量级，最终不会有人抱怨&quot;。</li>
+<li><strong>Amazon 护城河可能最深</strong>：&quot;先为自己建设能力，成为每项新业务的第一个、也是最好的客户&quot;。AWS、物流、自研芯片（Graviton/Trainium）皆循此路径。&quot;核心业务几乎不会被模型层 AI 颠覆，反而会受益。&quot;</li>
+<li><strong>英伟达的&quot;隐性降价&quot;</strong>：25% 信用支持、投资 Neocloud 并承诺买下其直到 2030 年的全部算力——&quot;资本成本下降是因为英伟达接过了风险。风险从不消失，只会转移&quot;。这些担保/投资/风险承担本质上就是降价，不出现在芯片报价或会计毛利率中。</li>
+<li><strong>电力是 AI 泡沫最有价值的遗产</strong>：&quot;如果 AI 投资最终崩盘，却留下严重过剩的电力，那将是一个极其美好的世界。&quot;充足电力维持得越久，Amazon/Google 越多时间改进自研芯片，英伟达高利润率越难维持——电力短缺反而有利英伟达（人人追求最高 Token 效率）。</li>
+<li><strong>&quot;高价格本身就是高价格的解药&quot;</strong>：台积电依赖促使客户寻找绕行路径；稀缺最终救了 Intel（客户宁愿忍受痛苦帮助 Intel 和三星的逻辑制程追上来）——&quot;我们反而免费获得了地缘政治保险&quot;。</li>
+</ol>
+<h2>其他要点摘录</h2>
+<ul>
+<li><strong>算力与台积电</strong>：晶圆厂建设周期比数据中心更长，今天投入的资金要到 2028/2029 年才形成产能；&quot;AI 如果也是一条牛鞭，可能是有史以来最长的一条&quot;。张忠谋 2000 年代末金融危机中逆势投资为台积电接管先进制程奠定基础。</li>
+<li><strong>大宗商品周期范式（科技行业普遍不懂）</strong>：大宗商品价格由边际供应商决定；数据中心会不会成为下一轮内存行业？即便长期算力短缺判断正确，中间仍可能出现&quot;资金断层&quot;——资本先耗尽、收入尚未接棒，就会断桥。</li>
+<li><strong>Microsoft = 1990 年代 IBM 的翻版</strong>：帮助企业弄懂 AI、建平台/中间层、承诺向后兼容；但 Codex、Claude Cowork 等产品&quot;像一支箭直指 Microsoft 的核心&quot;。</li>
+<li><strong>Meta 与 TikTok 洞见</strong>：TikTok 不是社交网络而是娱乐产品——关键在优秀内容的绝对数量而非比例；AI 生成内容对 YouTube 可能改善利润，对 Meta（内容零边际成本）反而让利润率变差。ATT 是&quot;科技史上最严重的反竞争行为之一&quot;。</li>
+<li><strong>智能商品化</strong>：&quot;差异化产品的 TAM 在定义上往往更小……如果智能最终也商品化并改变世界，我一点都不觉得奇怪。&quot;CUDA 护城河显著减弱；英伟达真正的竞争者是拥有更低资本成本的超大规模云厂商。</li>
+</ul>
+<h2>核心框架表</h2>
+<h3>伯克希尔 → Google 的资本结构类比</h3>
+<table>
+<thead>
+<tr>
+<th>业务</th>
+<th>特征</th>
+<th>伯克希尔</th>
+<th>Google</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高利润率、小再投资空间</td>
+<td>绝对利润规模受限</td>
+<td>喜诗糖果</td>
+<td>搜索广告</td>
+</tr>
+<tr>
+<td>低利润率、大资本规模</td>
+<td>绝对利润远高于前者</td>
+<td>BNSF 铁路</td>
+<td>AI</td>
+</tr>
+</tbody>
+</table>
+<h3>历史泡沫留下的资产</h3>
+<table>
+<thead>
+<tr>
+<th>泡沫</th>
+<th>留下</th>
+<th>今日形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>铁路（19世纪70年代）</td>
+<td>BNSF / 横贯铁路</td>
+<td>伯克希尔的现金来源</td>
+</tr>
+<tr>
+<td>互联网（2000年）</td>
+<td>暗光纤 / WorldCom 网络</td>
+<td>Google 的互联网核心</td>
+</tr>
+<tr>
+<td>AI（进行中）</td>
+<td>过剩电力（预期）</td>
+<td>支撑一切的能量基础设施</td>
+</tr>
+</tbody>
+</table>
+<h2>与 Wiki 的关系</h2>
+<ul>
+<li><a href="../concepts/%E6%9C%9F%E6%9D%83Wheel%E7%AD%96%E7%95%A5-%E5%8D%96%E6%9C%9F%E6%9D%83%E6%94%B6%E4%BF%9D%E8%B4%B9.html">articles/concepts/期权Wheel策略-卖期权收保费</a> — 同一资本/保险思维脉络（&quot;风险从不消失只转移&quot;）</li>
+<li><a href="../concepts/%E8%8A%92%E6%A0%BC%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA-%E5%A4%9A%E5%AD%A6%E7%A7%91%E6%80%9D%E7%BB%B4%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6.html">articles/concepts/芒格格栅理论-多学科思维投资框架</a> — 本文是&quot;用多学科模型（博弈论/大宗商品周期/垄断历史）分析单一产业&quot;的实例</li>
+<li><a href="../concepts/%E9%98%BF%E7%91%9F-%E6%94%B6%E7%9B%8A%E9%80%92%E5%A2%9E%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">articles/concepts/阿瑟-收益递增与涌现</a> — 正反馈循环（聚合器的网络效应、AI 军备竞赛）与复杂适应系统视角</li>
+</ul>
+<h2>引用边界</h2>
+<ul>
+<li>本页所有判断均为 Ben Thompson 播客对话中的个人观点，非事实陈述</li>
+<li>文中数字（资本开支 8000 亿/1.3 万亿美元、英伟达 5000 亿融资安排、Google 为 Anthropic 提供约 20% TPU、BNSF 单年 FCF 超喜诗历史总和等）均为对话陈述，未经独立核验</li>
+<li>论证方法可借鉴：反复用&quot;类比 + 反类比&quot;（Dropbox→OpenAI、IBM→Microsoft、伊朗→内存厂商、航运→算力），并在每一步标注置信度与不确定性</li>
+</ul>
+<h2>参见</h2>
+<p><a href="../concepts/%E8%8A%92%E6%A0%BC%E6%A0%BC%E6%A0%85%E7%90%86%E8%AE%BA-%E5%A4%9A%E5%AD%A6%E7%A7%91%E6%80%9D%E7%BB%B4%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6.html">芒格格栅理论-多学科思维投资框架</a>
+<a href="../../../../research/index.md">research/index.md</a></p>
+</div><div class="backrow"><a href="../../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/articles/synthesis/ben-thompson-ai-capital-cycle.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

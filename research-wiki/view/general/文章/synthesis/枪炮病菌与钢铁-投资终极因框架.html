@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>《枪炮、病菌与钢铁》投资启示——终极因框架</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../../index.html">知识库</a> › <a href="../../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">《枪炮、病菌与钢铁》投资启示——终极因框架</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-07-31</span><span style="margin-left:auto;color:#b0b5bd">research/articles/synthesis</span></div><div class="md" id="md"><h1>《枪炮、病菌与钢铁》给投资的启示</h1>
+<blockquote>
+<p><strong>最重要的启示只有一条：终极因决定一切。</strong></p>
+</blockquote>
+<p>戴蒙德花了 500 页只论证了一件事——皮萨罗打败印加帝国不是因为西班牙人更聪明、更勇敢或拥有更好的文化，而是因为 13,000 年前欧亚大陆在地理上继承了&quot;更好的不动产&quot;：东西向的大陆轴线让作物和技术可以快速传播，13 种可驯化的大型哺乳动物提供了畜力、蛋白质和病菌免疫力。印加人在智力上完全不输西班牙人，但他们站在一块&quot;地理上注定落后&quot;的大陆上。</p>
+<p><strong>映射到投资</strong>：</p>
+<p>你亏钱从来不是因为&quot;看错了财报&quot;或&quot;判断错了趋势&quot;——那些都是近因。终极因是：<strong>你买的公司站在哪块大陆上？</strong></p>
+<ul>
+<li>它的行业是东西向还是南北向？（决定了能扩张多快）</li>
+<li>它有占先驯化的物种吗？（微信、Windows——已被驯化，不需要再驯一遍）</li>
+<li>它携带了什么病菌？（生态锁定、转换成本、网络效应——这些比产品功能致命得多）</li>
+<li>它的&quot;安娜·卡列尼娜条件&quot;全部满足吗？（伟大企业六项全过，失败只需一条）</li>
+</ul>
+<p><strong>99% 的投资分析停留在近因层面</strong>——PE 多少、增速多少、管理层好不好。但芒格和巴菲特问的是终极因：<strong>为什么这家公司能持续赚钱而别人不能？</strong> 这个问题只能从地理（行业结构）、生物（竞争演化）和时间（积累优势）的层面回答。</p>
+<p>终极因想明白了，近因自然就对了。反过来，近因再漂亮，站错了大陆，迟早被病菌杀死。</p>
+<hr />
+<h2>一、终极因 vs 近因 —— 问对问题</h2>
+<p>这是戴蒙德全书最核心的方法论，也是芒格最推崇的思维方式。</p>
+<p>近因（proximate cause）是表面上的解释：&quot;皮萨罗打败印加帝国，因为西班牙人有枪炮、钢剑和骑兵。&quot;这没错，但不是全部。</p>
+<p>终极因（ultimate cause）追问更深一层：<strong>为什么西班牙人有枪炮而印加人没有？</strong> 答案是：欧亚大陆继承了 13 种可驯化的大型哺乳动物（提供了畜力、蛋白质和病菌免疫力）、东西向的大陆轴线（作物和技术可以沿同纬度快速传播）、以及由此产生的密集人口和复杂社会——这些都是印加帝国在地理上不可能拥有的&quot;不动产&quot;。</p>
+<p><strong>投资启示</strong>：分析任何一家公司时，不要止步于近因——&quot;这家公司收入增长 20% 因为推出了新产品&quot;。追问终极因：它为什么能推出新产品而对手不能？是因为专利壁垒、供应链控制、品牌积累，还是运气？<strong>近因可以被模仿，终极因才是护城河。</strong></p>
+<hr />
+<h2>二、安娜·卡列尼娜原则 —— 成功需要全部条件，失败只需一条</h2>
+<p>戴蒙德指出，全世界 148 种大型食草哺乳动物中只有 14 种被成功驯化。不是因为人类没有尝试——<strong>而是因为每头失败的动物&quot;各有各的不可驯化之处&quot;</strong>：斑马咬人、羚羊恐慌、犀牛脾气暴躁、猎豹拒绝在圈养中交配。只要六项条件（食性、生长速度、圈养繁殖、性情、恐慌倾向、社会结构）中任何一项不满足，驯化就失败。</p>
+<p><strong>投资启示</strong>：伟大的企业是&quot;全部条件都满足&quot;的幸存者。可口可乐（品牌、配方、渠道、规模、文化嵌入），缺一不可。反过来看失败的案例：乐视满足&quot;愿景&quot;但不满足&quot;现金流&quot;；瑞幸满足&quot;扩张速度&quot;但不满足&quot;真实收入&quot;。<strong>投资中最危险的不是&quot;看起来不够好&quot;的公司，而是&quot;只差一个条件&quot;的公司——因为其他条件太好，你会忽略那个致命缺陷。</strong></p>
+<hr />
+<h2>三、大陆轴线 —— 你所在的&quot;地理&quot;决定了你能走多远</h2>
+<p>欧亚大陆东西向（同纬度 = 同气候 = 作物和技术快速传播），美洲和非洲南北向（跨纬度 = 气候剧变 = 传播受阻）。这不是人类主观选择的结果，而是大陆板块在几亿年前漂移时决定的——<strong>在人类出现之前就已经写好了剧本</strong>。</p>
+<p><strong>投资启示</strong>：行业的&quot;大陆轴线&quot;决定了企业扩张的难易程度。</p>
+<ul>
+<li><strong>东西向行业</strong>（全球社交媒体、操作系统、支付网络）：同一套产品可以在全球同纬度复制，赢家通吃，但永远面临下一个&quot;东西向入侵者&quot;。</li>
+<li><strong>南北向行业</strong>（本地化金融服务、医疗、受监管行业）：每进入一个新市场都需要重新&quot;驯化&quot;当地法规、文化、供应链，速度慢但先发优势持久。</li>
+</ul>
+<p><strong>判断一个标的时，先看它的行业是东西向还是南北向。</strong> 东西向的泡泡玛特可以两年把 LABUBU 卖到 40 个国家；南北向的调味品（海天味业）出海要花十年以上——不是海天不努力，是行业的轴线决定的。</p>
+<hr />
+<h2>四、病菌比枪炮更致命 —— 看不见的才是真威胁</h2>
+<p>95% 的美洲土著死于旧大陆病菌，而非西班牙人的枪炮。欧洲人自己都不知道他们有这个武器。</p>
+<p><strong>投资启示</strong>：商业竞争中最致命的不是对手的&quot;枪炮&quot;（价格战、营销战、产品对标），而是那些看不见的&quot;病菌&quot;——</p>
+<ul>
+<li><strong>技术生态系统的锁定</strong>：Adobe 的 Creative Suite 不是靠更好的功能击败对手，而是靠&quot;换个软件全团队都要重学&quot;的转换成本。</li>
+<li><strong>供应链的隐性替代成本</strong>：台积电的客户不是不想找第二供应商，而是&quot;换了之后良率下降 5% = 年损失几十亿美元&quot;。</li>
+<li><strong>用户的隐性转换成本</strong>：微信的壁垒不是功能，是你 2,000 个联系人和 500 个群聊都在里面。</li>
+</ul>
+<p><strong>当你评估一家公司时，除了看它的&quot;枪炮&quot;（产品、价格、渠道），更要看它携带了什么&quot;病菌&quot;（生态锁定、转换成本、网络效应）。</strong> 反之，也要警惕那些你以为能靠&quot;枪炮&quot;取胜的公司——你可能忽略了对手携带着你免疫系统无法防御的&quot;病菌&quot;。</p>
+<hr />
+<h2>五、占先驯化 —— 为什么后来者做不出更好的替代品？</h2>
+<p>欧亚大陆率先驯化了牛、羊、猪、鸡——不是因为这些动物只存在于欧亚，而是因为欧亚大陆<strong>先有了农业基础</strong>，然后<strong>最先完成驯化的物种就不再需要被重新驯化了</strong>。全世界都用鸡下蛋，没有人再去找野生原鸡从头驯一遍。</p>
+<p><strong>投资启示</strong>：微信、Windows、Visa、Google Search——后来者不是做不出更好的产品，而是&quot;已被驯化，不需要再驯一遍&quot;。<strong>占先驯化 + 网络效应 = 最强的竞争壁垒。</strong> 抖音能挑战微信吗？技术上可以。但用户不会迁移，因为&quot;所有人都在微信上&quot;这个事实本身就是比任何技术优势更强的壁垒。</p>
+<p>这就是为什么芒格说：&quot;<strong>我们寻找的是那些有宽阔护城河的企业——那些企业就像拥有独门秘籍的城堡，没人能攻破。</strong>&quot;</p>
+<hr />
+<h2>六、波利尼西亚自然实验 —— 同一群人，不同环境，不同命运</h2>
+<p>波利尼西亚群岛提供了人类历史上最干净的自然实验：同一群祖先（约公元前 1200 年从萨摩亚出发），分散到不同岛屿后，发展出了从狩猎—采集（查塔姆群岛）到原始帝国（夏威夷）的多种社会形态。不是人的问题，是环境的问题。</p>
+<p><strong>投资启示</strong>：<strong>不要只看管理层，要看&quot;岛屿&quot;——行业环境。</strong> 同一个 CEO 在某个行业是天才，换个行业可能就是蠢材。孙正义在软银投资阿里巴巴是天才，在 WeWork 是灾难——不是人变了，是岛变了。</p>
+<p>巴菲特的智慧在于：他只投资那些&quot;傻瓜都能经营&quot;的公司。意思是，<strong>行业环境的优势如此巨大，以至于管理层的影响相对较小</strong>。可口可乐、喜诗糖果、GEICO——这些&quot;岛屿&quot;本身就提供了丰饶的资源，CEO 只要不太蠢就行。</p>
+<hr />
+<h2>七、核心总结：投资的终极因框架</h2>
+<table>
+<thead>
+<tr>
+<th>戴蒙德概念</th>
+<th>投资映射</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>终极因 &gt; 近因</td>
+<td>护城河的根源（专利/网络/成本/品牌）&gt; 当期业绩</td>
+</tr>
+<tr>
+<td>安娜·卡列尼娜原则</td>
+<td>伟大企业 = 全部条件满足；失败只需一条致命缺陷</td>
+</tr>
+<tr>
+<td>大陆轴线</td>
+<td>东西向行业赢家通吃，南北向行业先发持久</td>
+</tr>
+<tr>
+<td>病菌 &gt; 枪炮</td>
+<td>生态锁定/转换成本/网络效应 &gt; 价格战/营销战</td>
+</tr>
+<tr>
+<td>占先驯化</td>
+<td>先发 + 网络效应 = 不可替代性</td>
+</tr>
+<tr>
+<td>自然实验</td>
+<td>行业环境 &gt; 管理层能力</td>
+</tr>
+<tr>
+<td>食物生产 = 文明发动机</td>
+<td>现金流 = 企业发动机（没有盈余就没有一切）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>芒格的终极推论</strong>：既然竞争性毁灭是商业世界的默认状态，那么投资的唯一安全策略就是——<strong>只买那些护城河宽到连&quot;冰河期&quot;都能扛过去的公司，然后在价格合理时下重注。</strong></p>
+<hr />
+<p><em>相关阅读</em>：<a href="%E7%AB%9E%E4%BA%89%E6%80%A7%E6%AF%81%E7%81%AD-%E5%9B%9B%E4%B9%A6%E6%A0%BC%E6%A0%85%E5%88%86%E6%9E%90.html">竞争性毁灭-四书格栅分析</a> | <a href="%E8%8A%92%E6%A0%BC%E5%A4%9A%E5%85%83%E5%AD%A6%E7%A7%91%E6%8A%95%E8%B5%84%E5%86%B3%E7%AD%96%E6%A1%86%E6%9E%B6.html">芒格多元学科投资决策框架</a> | <a href="../concepts/%E7%AB%9E%E4%BA%89%E6%80%A7%E6%AF%81%E7%81%AD.html">竞争性毁灭</a></p>
+<h2>参见</h2>
+<p><a href="../../../../research/index.md">research/index.md</a>
+<a href="../../../../research/articles/synthesis/%E8%8A%92%E6%A0%BC%E5%A4%9A%E5%85%83%E5%AD%A6%E7%A7%91%E6%8A%95%E8%B5%84%E5%86%B3%E7%AD%96%E6%A1%86%E6%9E%B6.md">research/articles/synthesis/芒格多元学科投资决策框架.md</a> · <a href="../../../../research/articles/synthesis/%E7%AB%9E%E4%BA%89%E6%80%A7%E6%AF%81%E7%81%AD-%E5%9B%9B%E4%B9%A6%E6%A0%BC%E6%A0%85%E5%88%86%E6%9E%90.md">research/articles/synthesis/竞争性毁灭-四书格栅分析.md</a>
+<a href="../../../../research/articles/synthesis/%E7%AB%9E%E4%BA%89%E6%BC%94%E5%8C%96%E5%88%9D%E6%AD%A5%E6%A1%86%E6%9E%B6-%E4%BA%94%E4%B9%A6%E5%A4%9A%E5%85%83%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B.md">research/articles/synthesis/竞争演化初步框架-五书多元思维模型.md</a> · <a href="../../../../research/log.md">research/log.md</a></p>
+</div><div class="backrow"><a href="../../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/articles/synthesis/枪炮病菌与钢铁-投资终极因框架.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

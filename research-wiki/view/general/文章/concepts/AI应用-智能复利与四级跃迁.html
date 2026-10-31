@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AI 应用投资框架 — 智能复利与四级跃迁</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../../index.html">知识库</a> › <a href="../../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">AI 应用投资框架 — 智能复利与四级跃迁</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-09-20</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"><h1>AI 应用投资框架：智能复利与四级跃迁</h1>
+<blockquote>
+<p>收录日期：2026-09-20
+来源：微信公众号「庶人投资笔记」，作者 <strong>庶人哑士</strong>，《关于AI应用的十个判断》，2026-09-19 发布
+原文链接：https://mp.weixin.qq.com/s/zn3kxqr6W-f00R6kJSxdvQ
+原始资料见 <code>raw/research/articles/2026-09-19-庶人哑士-关于AI应用的十个判断.md</code></p>
+</blockquote>
+<blockquote>
+<p>⚠️ 定位声明：作者自述&quot;<strong>以上判断，准确性约等于神棍</strong>&quot;。本页是<strong>投资框架与假设集</strong>，不是事实陈述；引用任何数字前请先回溯原文或一手财报。</p>
+</blockquote>
+<hr />
+<h2>一、定义：两个核心概念</h2>
+<h3>智能复利（AI 时代的网络效应）</h3>
+<table>
+<thead>
+<tr>
+<th>时代</th>
+<th>主导经济特征</th>
+<th>飞轮</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工业时代</td>
+<td>规模效应</td>
+<td>产量↑ → 单位成本↓</td>
+</tr>
+<tr>
+<td>互联网时代</td>
+<td>网络效应</td>
+<td>用户 ↔ 用户 / 信息 / 商品</td>
+</tr>
+<tr>
+<td><strong>智能时代</strong></td>
+<td><strong>智能复利</strong></td>
+<td><strong>用户 ↔ 能力</strong></td>
+</tr>
+</tbody>
+</table>
+<p>回路：<strong>越深入客户业务场景 → 越理解客户要什么 → Agent/LLM 学得越快、能力越强 → 用的人越多 → 越好用 → 越多人用</strong>。</p>
+<p>原文承认&quot;智能复利&quot;概念来自<strong>曾鸣《智能：AI时代的商业、组织与战略的本质》</strong>，作者自称&quot;他是我的嘴替&quot;。</p>
+<h3>四级跃迁（商业模式分层标尺）</h3>
+<pre><code>土路        →  铺装路面      →  高速公路        →  AI 跑车飙起来
+数据治理    →  落数据中台    →  本体层 Ontology →  AIOS（类 Foundry）
+</code></pre>
+<p>原文强调：<strong>每往下一步，都代表商业模式的跃迁，估值范式都值得重构。</strong> 这条线的用途是&quot;评估当下这些应用公司到哪一层了&quot;。</p>
+<hr />
+<h2>二、十条判断（浓缩）</h2>
+<ol>
+<li><strong>AI 真能降本增效</strong> — 证据来自产业一线&quot;用钞票投票的买家行为&quot;，而非模型厂/云厂卖家秀</li>
+<li><strong>企业端开始 FOMO</strong> — 用 AI 不一定有优势，但不用一定有相对劣势</li>
+<li><strong>用 AI 的前提是数字化</strong> — 当下很多 AI 应用公司营收爆发式增长，其实来自<strong>数据治理</strong></li>
+<li><strong>LLM 的瓶颈是高质量私有数据</strong> — 互联网可抓文本约 100T，清洗后可用于 pre-train 约 15T，极致挖掘最多 300T，&quot;早都被用完了&quot;；<strong>只能让 LLM 成&quot;穷翰林&quot;，干不了&quot;县令&quot;式的活</strong></li>
+<li><strong>比私有数据更稀缺的是真实业务场景</strong> — ERP/CRM 是&quot;定格照片&quot;，没有从 A 到 B 的过程；不让 Agent 参与过程就&quot;总有些隔靴搔痒&quot;</li>
+<li><strong>智能时代的网络效应是智能复利</strong>（见上文）</li>
+<li><strong>智能复利过了临界点会自我加强</strong> — &quot;天下武功唯快不破&quot;仍管用，但飞轮从&quot;用户与商品&quot;换成&quot;<strong>用户与能力</strong>&quot;</li>
+<li><strong>看 AI 应用不能只盯营收增长</strong> — 要看<strong>跑得快</strong>（营收）+<strong>做得深</strong>（NDR）两个指标</li>
+<li><strong>中国版 Palantir 的现实路径</strong> — 数据治理 → 数据中台 → 本体层 → AIOS</li>
+<li><strong>AI 应用是盘大肉，没有一家能通吃</strong> — 见第四节三个子判断</li>
+</ol>
+<hr />
+<h2>三、核心验证指标：NDR（净美元留存率）</h2>
+<p>原文给出的判据：</p>
+<ul>
+<li><strong>营收增长</strong> = 谁跑得快（拓展的用户场景多）</li>
+<li><strong>NDR（复购率 + 增购率）</strong> = 谁做得深（长出用户离不开的能力）</li>
+<li><strong>&quot;这就是典型的过了临界点自我加强的财务证据&quot;</strong></li>
+</ul>
+<p>原文引 Palantir 分部门 NDR（<strong>未附出处，待核</strong>）：</p>
+<table>
+<thead>
+<tr>
+<th>部门</th>
+<th>NDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>US Commercial</td>
+<td><strong>150%</strong></td>
+</tr>
+<tr>
+<td>Government 整体</td>
+<td><strong>146%</strong></td>
+</tr>
+<tr>
+<td>Commercial 整体</td>
+<td>113%</td>
+</tr>
+<tr>
+<td>International Commercial</td>
+<td><strong>103%</strong>（拖累整体）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📌 交叉对照：Palantir <strong>整体</strong> NDR 为 <strong>157%</strong>（Q2 2026 财报电话会口径，环比 +700bp）。与原文 US Commercial 150% 量级吻合，但<strong>分部门数字仍需回溯一手财报/电话会原文</strong>，本页暂按作者口径收录。</p>
+</blockquote>
+<p><strong>图证（原文配图，2026-09-20 补录）</strong>：Palantir <strong>营业总收入（累计）</strong> 5.95（2018）→ 7.43 → 10.93 → 19.06 → 22.25 → 28.66 → <strong>44.75 亿美元（2025）</strong>；<strong>累计同比</strong> 2025 <strong>+56.18%</strong>、26-Q2 ≈<strong>90%</strong>（半年度口径，原图无数字标签，右侧轴读数）。</p>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th>2018</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>26-Q2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>营收（累计，亿美元）</td>
+<td>5.95</td>
+<td>7.43</td>
+<td>10.93</td>
+<td>（未标注）</td>
+<td>19.06</td>
+<td>22.25</td>
+<td>28.66</td>
+<td><strong>44.75</strong></td>
+<td>（未标注）</td>
+</tr>
+<tr>
+<td>累计同比</td>
+<td>—</td>
+<td>+24.71%</td>
+<td>+47.15%</td>
+<td>+41.11%</td>
+<td>+23.61%</td>
+<td>+16.75%</td>
+<td>+28.79%</td>
+<td><strong>+56.18%</strong></td>
+<td>≈90%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>原图（原文配图，<strong>已转写为上表，不存本地副本</strong>）：<code>https://mmbiz.qpic.cn/mmbiz_png/zgZ4D9nwqgGSDFibYiaZtvR3VsQzJRRH9Sn9nzVf71cJs3LWZIFXCuYr91FGBHFB1majwoH9sA2cyPeWkkn6I2BnzrVwiavicdZVsg6M6jT5S48/640?wx_fmt=png&amp;from=appmsg</code>；逐格核对说明见 raw 第 8 条。
+这是原文&quot;典型的过了临界点自我加强的财务证据&quot;那句的直接依据；图为<strong>第三方（理杏仁 lixinger.com）数据图，非公司财报原文</strong>，26-Q2 与 2021 两处为推算/目测，引用前需回溯财报。</p>
+</blockquote>
+<hr />
+<h2>四、第十条：三个子判断（分类法）</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特征</th>
+<th>模型能力的作用是</th>
+<th>例子（原文口径）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>a. 浅层工具型</strong></td>
+<td>只满足最大公约数的通用需求</td>
+<td><strong>被吞噬</strong></td>
+<td>美图、做 PPT 等</td>
+</tr>
+<tr>
+<td><strong>b. 深重型垂直</strong></td>
+<td>有私有数据 + 进得去真实业务场景</td>
+<td><strong>被赋能</strong></td>
+<td>Palantir（&quot;一座数据炼油厂，LLM 是超级饥渴的数据怪物&quot;）</td>
+</tr>
+<tr>
+<td><strong>c. 长尾细分</strong></td>
+<td>要做深做重但价值量不大，长不出 Palantir</td>
+<td>模型公司进不去</td>
+<td>workbuddy 类应用市场</td>
+</tr>
+</tbody>
+</table>
+<p>对 c 类的关键判断：<strong>应用市场最稀缺的能力不是&quot;丰富&quot;，而是&quot;筛选判断&quot;</strong>——帮用户筛出与具体任务最匹配的 Agent/Skill。</p>
+<hr />
+<h2>五、中国版路径：两条渗透路线（难度不同）</h2>
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>顺序</th>
+<th>难度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>正向</strong></td>
+<td>先帮客户数据治理 → 借机落自己的数据中台 → 再卖各种业务 Agent</td>
+<td>较易</td>
+<td>&quot;要致富，先修路，但又不能只是修路&quot;</td>
+</tr>
+<tr>
+<td><strong>反向</strong></td>
+<td>先把某个 Agent 卖进去 → 再渗透数据中台</td>
+<td><strong>难得多</strong></td>
+<td>例：迈富时营销 Agent、北森 HR Agent；<strong>&quot;换数据中台像高速换轮子，轻易不会换&quot;</strong></td>
+</tr>
+</tbody>
+</table>
+<p>关键卡点：<strong>本体层（Ontology）搭建技术不难，难的是对业务的深度理解</strong>——取决于两件事：<strong>客户配合度 + FDE 专业度</strong>。</p>
+<blockquote>
+<p>与本库关联：FDE（Forward Deployed Engineer，驻场工程师）由 <strong>Palantir</strong> 首创，是本框架的落地载体，见对话沉淀 <code>research-wiki/research/</code> 相关页（Palantir 未单独立库，待用户决定）。</p>
+</blockquote>
+<hr />
+<h2>六、怎么用这个框架（操作化）</h2>
+<ol>
+<li><strong>先分层再比较</strong>：拿&quot;四级跃迁&quot;给候选公司定位，不要跨层级比增速——处在&quot;数据治理&quot;层的公司营收爆发，与处在&quot;AIOS&quot;层的公司不是同一门生意</li>
+<li><strong>盯 NDR 不盯营收</strong>：营收增长可能是 FOMO 驱动的一次性项目收入；NDR 才证明&quot;智能复利&quot;真在转</li>
+<li><strong>问本体层而非模型能力</strong>：技术门槛不在模型，在业务理解 → 关键变量是客户配合度与 FDE 专业度</li>
+<li><strong>用三个子判断做排除</strong>：浅层工具型先排除（会被模型吞掉）</li>
+</ol>
+<hr />
+<h2>七、局限 / 待核</h2>
+<ul>
+<li><strong>作者自述&quot;准确性约等于神棍&quot;</strong>，全部为定性判断，无量化模型支撑</li>
+<li><strong>待核数据（作者口径，未附出处）</strong>：互联网文本 100T / 15T / 300T；Palantir 四个分部门 NDR（150% / 146% / 113% / 103%）</li>
+<li><strong>涉及公司的判断为作者观点</strong>：Palantir（最佳实践/北极星）、迈富时、北森、美图</li>
+<li><strong>框架未被证伪检验</strong>：&quot;智能复利是否真的存在临界点&quot;&quot;NDR 高是否等于过了临界点&quot;——原文以 Palantir 单一样本论证，样本量 = 1，存在<strong>幸存者偏差</strong>风险</li>
+<li>本库尚未建立 Palantir / 迈富时 / 北森 的标的页，若要实际使用该框架选股，需先补标的页与一手财报数据</li>
+</ul>
+<hr />
+<h2>关联</h2>
+<ul>
+<li><a href="%E9%98%BF%E7%91%9F-%E6%94%B6%E7%9B%8A%E9%80%92%E5%A2%9E%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">阿瑟-收益递增与涌现</a> — 同为&quot;递增/正反馈&quot;类机制，可作理论对照（收益递增 vs 智能复利）</li>
+<li><a href="%E8%8A%92%E6%A0%BC-%E4%B8%B4%E7%95%8C%E8%B4%A8%E9%87%8F.html">芒格-临界质量</a> — &quot;临界点自我加强&quot;的思维模型同构</li>
+<li><a href="../%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6-%E5%A4%8D%E6%9D%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%8C%87%E5%AF%BC%E6%89%8B%E5%86%8C.html">投资框架-复杂经济学指导手册</a></li>
+<li>曾鸣访谈（产业史观）：<code>raw/research/articles/2026-09-07-曾鸣访谈-和曾鸣聊产业史观-我的非共识判断.md</code> — 本框架&quot;智能复利&quot;概念的直接来源</li>
+</ul>
+<h2>参见</h2>
+<p><a href="%E6%9C%AC%E4%BD%93%E5%B1%82Ontology-%E6%95%B0%E6%8D%AE%E4%B8%8EAI%E7%9A%84%E4%B8%AD%E9%97%B4%E5%B1%82.html">本体层Ontology-数据与AI的中间层</a> · <a href="%E9%98%BF%E7%91%9F-%E6%94%B6%E7%9B%8A%E9%80%92%E5%A2%9E%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">阿瑟-收益递增与涌现</a></p>
+</div><div class="backrow"><a href="../../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/articles/concepts/AI应用-智能复利与四级跃迁.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

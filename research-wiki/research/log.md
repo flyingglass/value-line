@@ -1,5 +1,33 @@
 # 投研操作日志
 
+## [2026-10-31] 结构 | 「多学科」tab 改名为「知识库」，内部分类改为目录（书籍 / 投资 / 文章）
+
+### 用户指令
+- 「多学科这个 tab，现在与 `raw/research/投资`、`raw/research/书籍` 对应不上，这个 tab 还叫多学科，也不太合适」
+
+### 问题诊断
+- tab 名与内容脱节：分类靠 `topic_rules` 关键词聚类（芒格·格栅理论 / 复杂经济学 / 生物学 / 心理学 / 书籍摘要），与 2026-10-30 拆分后的物理目录（书籍 / 投资 / articles）无对应关系；一篇文章的归属由标题/正文前 300 字命中哪个关键词决定，不可预期
+- 站内出现「目录说一套、标签说一套」：`raw/research/书籍/道金斯_1976_自私的基因.md` 被归到「生物学」，而 `raw/research/投资/` 下的巴芒文章被归到「芒格·格栅理论」
+
+### 动作（`scripts/generate_wiki_index.py`）
+- 新增常量 `GENERAL_TAB_NAME = '通用'`、`GENERAL_CATEGORY_ORDER = ['书籍','投资','文章']`；`RAW_GENERAL_DIRS` 的 articles 值由 `raw` 改为 `文章`
+- `general_topic_order()` 分组依据由 `art['topic']` 改为 `art['category']`（=物理目录）
+- `research/articles/<concepts|entities|papers|synthesis>/` 统一归入一级分类「文章」，原子目录记入 `subdir`（synthesis 命中标的的归组逻辑随之改用 `subdir`）
+- 输出路径改用 `catdir`：`view/general/文章/<concepts|entities|papers|synthesis>/`，避免 `投资框架-复杂经济学指导手册.md`、`投资框架-参考著作.md` 两处同名文件在扁平化后互相覆盖（第一次改造因此丢了 2 篇，已修正）
+- 原「多学科主题」保留为卡片上的 `.pill.topic` 小标签，不再作为 tab
+- 清理旧产物：`view/general/{raw,concepts,entities,papers,synthesis}/` 共 34 个残留 HTML（生成器只写不删）
+- 同步 `vl/modules/generate_wiki_index.py.md`（概述 / 页面结构 / 首页 tab 对照表 / 配色说明）
+
+### 结果
+- 首页一级 tab：白马 / 消费 / AI软件 / 里海 / 本地 / 感悟 / **知识库**
+- 知识库 tab：**书籍 20 / 投资 5 / 文章 34**，合计 59 篇，与目录文件数逐一对齐
+- 站点仍 357 页；标的 189 篇、专题 74 篇不变
+
+### 命名
+- 先拟「通用」，用户否决（"太没有辨识度"）→ 候选 博观 / 格栅 / 书房 / 盘外 → **用户定名「知识库」**，落为常量 `GENERAL_TAB_NAME`（一行可改）
+
+---
+
 ## [2026-10-31] 书籍 | 钱塞勒编《资本回报：穿越资本周期的投资》入库（扫描版 PDF，OCR）
 
 ### 用户指令
