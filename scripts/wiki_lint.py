@@ -42,6 +42,23 @@ REPORT_STUB_MARKERS = ["无已拉取研报", "当前无研报", "暂无研报", 
 REPORT_MIN_LINES = 5
 # 研究专题目录：无 overview/thesis 四件套，不参与标的完整性检查
 NON_STOCK_DIRS = {"疯狂的里海", "本地", "感悟"}
+
+# 四件套【已知豁免】：2026-11-02 用户明确「记录下来，以后都不用处理」。
+# 这些标的目录文件不全属历史遗留（部分标的已有更细的经营/业绩/跟踪结构），不再补四件套，也不再报 ERROR。
+# "*" = 四件套全豁免；set = 仅豁免列出的文件。新增标的不要往这里塞，除非用户明确同意。
+EXEMPT_FOUR_PIECE = {
+    "AI软件/中航信": "*",
+    "AI软件/宝信软件": "*",
+    "AI软件/柏楚电子": "*",
+    "白马/TME": "*",
+    "白马/山东赫达": "*",
+    "白马/拼多多": "*",
+    "白马/阿里巴巴": "*",
+    "白马/建滔积层板": {"industry-chain.md", "operating-metrics.md"},
+    "白马/建滔集团": {"operating-metrics.md"},
+    "消费/分众传媒": {"industry-chain.md", "thesis.md"},
+    "消费/贵州茅台": {"overview.md", "thesis.md"},
+}
 # 标的容器目录：其下一级才是标的目录（2026-09-27 起：白马 / 消费 / AI软件）
 STOCK_CONTAINER_DIRS = {"白马", "消费", "AI软件"}
 
@@ -136,8 +153,11 @@ def main():
             errs.append(("WARN", f"vl/{d}/", f"vl/ 缺失子目录 {d}/"))
     # 标的目录（必需文件）
     for code in STOCK_DIRS:
+        exempt = EXEMPT_FOUR_PIECE.get(code)
         for sf, alts in STOCK_FILES.items():
             if not any(f"research/{code}/{a}" in all_rels for a in alts):
+                if exempt == "*" or (isinstance(exempt, set) and sf in exempt):
+                    continue
                 errs.append(("ERROR", f"research/{code}/{sf}",
                              f"标的 {code} 缺失 {sf}"))
         # 可选文件：存在则校验内容，防止无实质内容的占位页

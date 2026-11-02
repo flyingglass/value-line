@@ -1,5 +1,30 @@
 # 投研操作日志
 
+## [2026-11-02] Lint | ERROR 35 条登记为「四件套已知豁免」，此后不处理
+
+### 用户指令
+- 做一次 lint → 清理本地 → 「ERROR 的记录下来，以后都不用处理」
+
+### Lint 结果（清理前）
+- 372 个 md（raw 114 / vl 38 / research 219）：**ERROR=35 · WARN=319 · INFO=19**
+- 35 条 ERROR **全部**为「标的缺四件套」（overview / thesis / industry-chain / operating-metrics），涉及 11 个标的
+- 断链仅 2 条：`research/index.md` 的 `[[疯狂的里海/里海-涪陵榨菜战略股复盘]]`——**已被 2026-10-28 日志判定为 append-only 历史块，刻意保留，不修**
+
+### 动作
+- `scripts/wiki_lint.py` 新增 `EXEMPT_FOUR_PIECE`（11 个标的，粒度到单个文件；`"*"` 表示四件全豁免），四件套检查命中豁免即跳过
+- `WIKI-SCHEMA.md` 新增「四件套【已知豁免】」节，列出豁免表与依据，注明**新增标的不适用**
+- 清理本地（A+B 档，释放 9.0 MB）：`__pycache__` 32 个、`scripts/out/tmp_*/zpg_*` 22 个、`_tmp_yearly/` 68 文件
+- 本条日志
+
+### 豁免后
+- 重跑 lint：**ERROR=0 · WARN=319 · INFO=19**（WARN 未动，均为「交叉引用缺口」等规范建议）
+
+### 说明
+- WARN 319 条中 304 条是「交叉引用缺口」（A 引 B、B 未回引 A），属规范建议，不阻塞阅读，本次不动
+- 若某标的日后补齐四件套，从 `EXEMPT_FOUR_PIECE` 删掉对应条目即可恢复检查
+
+---
+
 ## [2026-10-31] 入库 | 丘栋荣 TriValue 路演纪要：低估值方法论与美元定价中国资产
 
 ### 用户指令

@@ -206,6 +206,21 @@ tags: [<标签>]
 检查项：矛盾、过时声明、孤立页面、断链、缺失概念页、交叉引用缺口、数据缺口。
 每次 Lint 追加 log.md。
 
+#### 四件套【已知豁免】（2026-11-02 用户决定：不补、不报、不再处理）
+
+下列标的目录缺 overview / thesis / industry-chain / operating-metrics 中的部分或全部，属**历史遗留**，不再补建，`wiki_lint.py` 的 `EXEMPT_FOUR_PIECE` 已登记，Lint 不再报 ERROR。**新增标的不适用本豁免**，除非用户明确同意。
+
+| 标的 | 豁免范围 |
+|------|----------|
+| AI软件/中航信、AI软件/宝信软件、AI软件/柏楚电子 | 四件全豁免 |
+| 白马/TME、白马/山东赫达、白马/拼多多、白马/阿里巴巴 | 四件全豁免 |
+| 白马/建滔积层板 | industry-chain、operating-metrics |
+| 白马/建滔集团 | operating-metrics |
+| 消费/分众传媒 | industry-chain、thesis |
+| 消费/贵州茅台 | overview、thesis（已有 `经营/`、`业绩/`、`跟踪/` 等更细结构） |
+
+> 2026-11-02：豁免前 ERROR=35 全为此类，豁免后 ERROR=0。若某标的日后补齐，直接从 `EXEMPT_FOUR_PIECE` 移除即可恢复检查。
+
 ## 领域分类
 
 ### vl/ 概念分类
