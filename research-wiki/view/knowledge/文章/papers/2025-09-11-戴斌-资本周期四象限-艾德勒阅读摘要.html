@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>听六禾致谦戴斌讲透资本周期的运用 — 艾德勒四级阅读法摘要</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../../index.html">知识库</a> › <a href="../../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">听六禾致谦戴斌讲透资本周期的运用 — 艾德勒四级阅读法摘要</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-11-09</span><span style="margin-left:auto;color:#b0b5bd">research/articles/papers</span></div><div class="md" id="md"><h1>《听六禾致谦戴斌讲透资本周期的运用，理解真正的&quot;老登与小登&quot;》— 艾德勒四级阅读法摘要</h1>
+<blockquote>
+<p>原文：<code>raw/research/投资/基金经理/2025-09-11-聪明投资者访谈戴斌-资本周期的四象限与老登小登.md</code>（微信公众号「聪明投资者」，2025-09-11 15:00）</p>
+</blockquote>
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：供给侧起点 · 资本周期四象限 · 两类公司与估值钟摆四层 · 离场信号 · 阳面与阴面 · 证据边界</p>
+</blockquote>
+<p><strong>一句话核心</strong>：戴斌主张公司分析起点<strong>不是预测最终需求、而是供给侧</strong>——A 股约 <strong>80%</strong> 公司没有自由现金流、沪深 300 PE 处 <strong>70%</strong> 历史分位，用「估值／资本开支／机构行为／上市公司对股票的行为」四维把行业定位到资本周期四象限，在<strong>象限 4→1（资本流出端）买入</strong>、在「行业出首富＋机构配到 20% 多＋暂停回购改配股」处离场；但全文为访谈口述＋编辑汇编，所有数字均为<strong>受访者自家工具口径、未附原始数据</strong>，四维无量化阈值，且图④横轴止于 2021/8 与正文所称 2022-04→2024-09 复盘区间不符（🔴 待核），故只能作为<strong>框架与信号清单</strong>使用，不可当作可复现的量化结论。</p>
+<p><strong>关键数据（2025 年语境，均为原文受访者自述口径）</strong>：</p>
+<ul>
+<li>A 股约 <strong>80%</strong> 的公司没有自由现金流（Q5；未给统计口径、样本范围与时间窗口）</li>
+<li>沪深 300 PE 处 <strong>70%</strong> 历史分位（Q8；原文归因于 ROE 恶化，非价格因素）</li>
+<li>香港信息技术 PB／PS 分别处十年 <strong>47%／78%</strong> 分位（Q7；对照 2023–2024 港股「净现金或低 PB」阶段）</li>
+<li>机构配到 <strong>20% 多</strong> 时行业就结束；新能源车股价常在渗透率 <strong>20%–30%</strong> 时已演绎结束（Q4；均为经验概括，无样本）</li>
+<li>复盘区间 <strong>2022-04-01 → 2024-09-18</strong>（Q7；与配图④横轴 2008/8→2021/8 不符）</li>
+<li>当下可关注的港股通红利低波 ETF、中证价值 ETF，<strong>PB 均在 1 倍左右</strong>（Q14；对照 2022-07 纳斯达克 100 估值 24 倍）</li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>「供给侧起点」与实际信号构成</strong>：口头上把需求预测排除在分析起点之外，但离场判断高度依赖首富、机构配置、媒体风评、回购配股等<strong>交易结构与情绪代理变量</strong>，原文未区分两类变量的解释力。</li>
+<li><strong>「80% 公司没有价值」与仍要交易它们</strong>：Q5 称无自由现金流公司「从严格的价值投资角度看，这些股票没有价值」，Q4／Q12 却用「峰值利润 × 一定估值」给这类公司算资本利得、并在基础化工等板块找结构机会。</li>
+<li><strong>框架的定性化与「死算账」的自我要求</strong>：四象限无阈值、无权重、无合成规则，但原文反复强调「几乎每个观点背后都能翻出一张庞大的 Excel 表格」「主观投资还是要靠死算账赚钱」，工具与数据均未披露。</li>
+<li><strong>便宜货不多 vs 组合创新高</strong>：Q8 判断估值已不便宜，Q13 自述组合已创历史新高；解法是阳面／阴面两端都留触角以降低波动，而非追求极致进攻——这与「在资本流出端买入」的单点信号存在取舍张力。</li>
+</ol>
+<p><strong>论证方式与证据强度</strong>：本文不是单场实录，而是 2025 年 4 月一次深谈＋后续路演、读书分享、投资手记及零散闲聊的<strong>编辑汇编</strong>（原文自称「确保回答的原汁原味」）。🟢 可直接引用的是受访者的框架陈述、行业分类、四象限定性描述与自述经历；🟡 属评价或转述的是编辑者按语（「研究气」「暖炉一样的存在」「宁可错过，不愿做错」）及对马拉松资本《资本回报》的引用；🔴 不可核验的是全部量化数字（股债性价比指数、行业监控工具、80%、70% 分位、20% 多、20%–30%）、「某热门港股互联网企业」的身份（原文未点名，不得代填）与「组合已创历史新高」（无净值、无基准、无区间）。配图为 2026-10-31 补做的 OCR 转写，其中「归纳维度」列与「阳面／阴面在资本开支轴上的坐标表达」均已被转写者标注为<strong>归纳、非原图／原文文字</strong>。</p>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li>四维是否有可落地的量化阈值与合成规则——决定「象限定位」能否从叙事变成判据（对应第三级检验 2）</li>
+<li>「80% 无自由现金流」的统计口径，以及「没有价值」与「市值扩张资本利得」如何自洽（检验 3）</li>
+<li>机构配置「20% 多」的口径（哪类机构、占流通市值还是占持仓）与离场信号的命中率、反例（检验 6）</li>
+<li>图④复盘区间与横轴不符，需回原文／作者核对（检验 7、第四级反向信号 3）</li>
+<li>「AI 供应不足可能 2–3 年供过于求」「下半年看好沪深 300」等 2025 年时点判断，须带时间锚点复核，不可直接移植到当下</li>
+</ol>
+<p><strong>受访者原话</strong>：「我们的分析起点不是对最终需求的预测，而是从供给侧开始。」（Q4）／「每个人都会错过，很正常。……关键是不能犯错，而不是不能错过。」（Q9）</p>
+<hr />
+<h2>第一级 · 检视阅读</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件性质</td>
+<td>公众号访谈整理：<strong>一手口述内容＋二手编辑整理</strong>；素材为多次交流汇编，非单次完整逐字稿</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>微信公众号「聪明投资者」（ID: Capital-nature），<code>https://mp.weixin.qq.com/s/e_RlIZM16pB8GECI3BJcYQ</code>，2025-09-11 15:00；编辑关鹤九、责编艾暄</td>
+</tr>
+<tr>
+<td>发言人</td>
+<td>戴斌（六禾致谦基金经理）：南京大学物理学学士、中国科学院微电子硕士；2010 年入职埃克森美孚，2011-05-04 加入六禾做一级市场，2014 年四五月转二级，2017 年起任研究总监，2020-05 起独立管理「六禾未来 100」</td>
+</tr>
+<tr>
+<td>引用文献</td>
+<td>马拉松资本《资本回报》（正文引「资本供应的变化，比需求更能解释回报的差异」；配图①为该书资本周期示意图）</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>导语＋6 个小节＋Q1–Q14 问答；正文后附 5 张内容配图的 OCR 转写、12 张非内容配图登记、原图 CDN 链接、文末编辑信息</td>
+</tr>
+<tr>
+<td>时间锚点</td>
+<td>文中「今年／当下／下半年／现在」均指 <strong>2025 年</strong>；「过去三年」「近两年」为相对表述</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一句话定位</strong>：一位中国私募基金经理把马拉松资本的资本周期理论，改造成以「估值／资本开支／机构行为／上市公司对股票的行为」四维定位行业位置的四象限框架，并用它解释 2022–2025 年 A/H 股的风格分化与自身的调仓逻辑。</p>
+<p><strong>是否值得精读</strong>：值得，但须限定读法。其价值在<strong>可观察的信号清单</strong>（回购、增持、配股、减持、资本开支、机构配置、首富现象）与<strong>中国化的估值分层</strong>（估值钟摆四层、跨层错位），这两点是原典没有直接给出的操作化尝试；不宜把它当作可回测、可复制的量化研究——全文无原始数据、无指标构造、无样本检验，且存在图表与正文的时间区间冲突。</p>
+<hr />
+<h2>第二级 · 通读全书</h2>
+<p><strong>结构骨架</strong>：</p>
+<ol>
+<li>导语：人物与框架缘起（「老登／小登」＝资本周期两端）＋四次职业节点</li>
+<li>几次「踩点」的职业生涯（Q1–Q2）：蛰伏期覆盖全部申万行业 → 等权编制 100 指数 → 2022-04 按资本周期修正</li>
+<li>资本周期的「四象限」（Q3–Q6）：定义 → 四象限循环 → 两类公司 → 估值钟摆四层</li>
+<li>现在市场中的便宜货确实不多了（Q7–Q9）：2022–2024 复盘 → 市场水温 → 错过与犯错</li>
+<li>市场对「反内卷」尚不认可（Q10–Q11）：反内卷 A 面／B 面、AI 为阳面</li>
+<li>基本面中的阳面和阴面（Q12–Q13）：行业判断 → 组合取舍与自我复盘</li>
+<li>关注 ETF 背后资产的回报率和估值（Q14）：ETF 的使用边界与当下可关注品种</li>
+</ol>
+<p><strong>主线（一句话因果链）</strong>：高回报吸引资本与竞争、低回报使资本退出 → 资本流入流出可由四个行为维度观测 → 把行业定位到象限 4→1→2→3 的循环中，在资本流出端买入、在资本涌入与融资行为集中处离场 → 组合目标不是收益最大化，而是「在回撤的深度和时间长度上少一点和短一点」→ 2025 年估值已不便宜，遂在阳面（AI）与阴面（顺周期、反内卷链条）两端都留触角以降波动。</p>
+<p><strong>核心框架表 1 · 四象限循环（Q4 原文口径，图②圆盘为 4→1→2→3 逆时针）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>象限</th>
+<th>估值</th>
+<th>资本开支／经营</th>
+<th>机构与上市公司行为</th>
+<th>媒体／情绪</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>十年内底部</td>
+<td>产业不景气、资本开支下降，利润表与资产负债表开始暴雷</td>
+<td>机构减持完毕；企业或管理层开始回购、增持</td>
+<td>风评不佳</td>
+</tr>
+<tr>
+<td>1</td>
+<td>低分位→中位数</td>
+<td>产业资本开支未开启，部分企业因经营现金流创新高先增加资本开支；少数企业体现景气度，利润表可能未改善</td>
+<td>只有少数机构组团买入</td>
+<td>对修复持续性存疑</td>
+</tr>
+<tr>
+<td>2</td>
+<td>中位数→高分位</td>
+<td>大多数企业资本开支，利润表大范围修复</td>
+<td>多数机构抱团；少数企业配股、大股东开始减持</td>
+<td>市场乐观</td>
+</tr>
+<tr>
+<td>3</td>
+<td>高分位→中位数</td>
+<td>PB 提升结束，前期资本开支带来利润创新高，但现金流开始出问题</td>
+<td>配股与股东减持纷纷到来，资本开始收缩</td>
+<td>出现「首富现象」</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>图②另有四套绰号（景气／机构／人物／资金，如「1 组（团）」「2 抱（团）」「3 散（团）」「4 崩（盘）」），为<strong>配图文字、正文未出现</strong>；「归纳维度」一列是转写者按词组归纳，非原图文字。</p>
+</blockquote>
+<p><strong>核心框架表 2 · 估值钟摆四层与两类公司（Q5–Q6）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>层／类</th>
+<th>内容</th>
+<th>原文对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 债性（最下、最安全）</td>
+<td>银行、公共事业、能源；最低估为格雷厄姆式清算估值</td>
+<td>Q6</td>
+</tr>
+<tr>
+<td>② 自由现金流</td>
+<td>白色家电、中药、消费兼具债性与 FCF</td>
+<td>Q6</td>
+</tr>
+<tr>
+<td>③ 利润表盈利</td>
+<td>化工、电子、医药等中游，需大额资本开支、缺长期稳定 FCF</td>
+<td>Q6</td>
+</tr>
+<tr>
+<td>④ SOTP／目标市值法（最上、最危险）</td>
+<td>创新类公司；只在熊转牛时被采用</td>
+<td>Q6</td>
+</tr>
+<tr>
+<td>跨层错位＝机会</td>
+<td>2022 年互联网巨头利润表估值跌入偏债性体系；2024 年部分创新企业从 SOTP 跌入清算估值体系</td>
+<td>Q6</td>
+</tr>
+<tr>
+<td>有 FCF 的公司</td>
+<td>石油石化、煤炭、食品饮料、交通运输、家电、通信运营商、某些医药、有色金属、公共事业、互联网；看「债性与债性变化的资本利得」</td>
+<td>Q5</td>
+</tr>
+<tr>
+<td>无充裕 FCF 的公司</td>
+<td>基础化工、电力设备、电子、建筑装饰、农林牧渔、国防、新能源、光伏（机械有一部分）；看「市值扩张的资本利得」</td>
+<td>Q5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>其余可引用事实（按 Q 编号）</strong>：2018 年首富多来自房地产、2021 年多来自碳中和、近期一些互联网企业相关人士成为首富（Q4）；新能源车 2018–2019 年渗透率个位数、电池成本降至单车 5 万元且补贴后接近内燃机成本时渗透率暴增（Q4）；2022-04 前半程抱团消费／医药／新能源且 PB 处历史极值，便宜的是运营商、银行、房地产链条及能源（Q7）；过去三年主要持仓为运营商、能源、水力发电、低估值制造业，银行「不在我的能力圈」（Q7）；2024 年初互联网估值基本到底，「尤其是腾讯这类企业，估值比我看的水电行业自由现金流倍数还要低」（Q7）；H 股回购过去需强制注销、A 股回购多用于股权激励，故 A 股大股东增持意义更重要（Q8）；2022 年写过「与过剩产能的恶斗是未来两年的主题」（Q10）；中国企业在 AI 产业链「更多是乙方的角色，承接美国的资本开支和制造外包」（Q11）；组合已创历史新高，自述遗憾为 2021 年只关注商业模式不注重 PB-ROE 性价比、2023 年从自由现金流审美难下手、2025 年「胆子又变得特别小」（Q13）。</p>
+<hr />
+<h2>第三级 · 分析阅读</h2>
+<blockquote>
+<p>以下「检验」为阅读者依艾德勒批判性阅读标准作出的判断，不属于原文内容；原文事实与受访者观点已分别标注。</p>
+</blockquote>
+<p><strong>核心论证链</strong>：资本周期由资本流入流出驱动（引马拉松资本）→ 这一循环在中国可由四个行为维度观测 → 因此可事前定位象限并据此调仓 → 组合回撤可控、并在 2025 年不便宜的市场中仍创新高。链条的四个环节中，第一环是<strong>引用他人结论</strong>，第二、三环是<strong>受访者的框架设计</strong>，第四环是<strong>自述业绩</strong>。</p>
+<p><strong>逐条检验</strong>：</p>
+<ol>
+<li>
+<p><strong>论点：分析起点应从供给侧而非需求预测开始</strong></p>
+<ul>
+<li>证据：引用《资本回报》「资本供应的变化，比需求更能解释回报的差异」；新能源车案例（低渗透率 → 电池成本降至单车 5 万元 → 渗透率暴增 → 股价在 20%–30% 已演绎结束）</li>
+<li>检验：<strong>方向自洽，但证据是类比与引用，不是检验</strong>。原文未给出 A 股或任何市场的样本、区间或统计结果；「股价往往在渗透率达到 20%-30% 时就已经演绎结束」中的「往往」无样本支撑，且「演绎结束」无定义。新能源车案例本身就是<strong>用需求侧变量（渗透率）作横轴</strong>的图谱（图③），与分析起点「不是需求预测」存在方法论上的混用（原文未澄清）。</li>
+</ul>
+</li>
+<li>
+<p><strong>论点：四个维度可把行业定位到某一象限</strong></p>
+<ul>
+<li>证据：Q4 逐象限的定性描述；图②圆盘的阶段标签与箭头</li>
+<li>检验：<strong>框架自洽、可复现性最弱</strong>。四维均无量化阈值、权重与合成规则；除「机构配到 20% 多」「估值十年内底部」外，其余表述（「机构减持完毕」「媒体风评不佳」「大多数企业进行资本开支」）无法判定边界。定性描述使框架具备很强的事后解释力，但事前把某个行业判为象限 1 还是象限 2，不同研究者难以得到一致结果。图②四套绰号与正文可互相印证，但属<strong>配图信息</strong>，不能当作戴斌在正文中给出的定义。</li>
+</ul>
+</li>
+<li>
+<p><strong>论点：A 股约 80% 的公司没有自由现金流，「这些股票没有价值」</strong></p>
+<ul>
+<li>证据：无（原文直接给结论与行业枚举）</li>
+<li>检验：<strong>全篇最薄弱一环</strong>。自由现金流的计算口径、时间窗口、样本范围、是否剔除金融业均未说明；「没有价值」是「从严格的价值投资角度看」的<strong>价值判断</strong>，不是事实陈述；同一篇中又为这类公司设定「峰值利润 × 一定估值」的资本利得算法，并在 Q12 于基础化工中找结构机会——同一对象既被判无价值又被纳入交易框架，原文未处理这一张力。</li>
+</ul>
+</li>
+<li>
+<p><strong>论点：两类公司的资本利得来源不同（债性变化 vs 市值扩张）</strong></p>
+<ul>
+<li>证据：行业枚举</li>
+<li>检验：分类有启发性但<strong>不是判据</strong>。「某些医药」「机械有一些有」自认边界模糊；「互联网」被列入有 FCF 类，与 Q7 所述互联网大幅增加资本开支、暂停回购改配股未作口径协调。无一条可据以复现分类的计算规则。</li>
+</ul>
+</li>
+<li>
+<p><strong>论点：估值钟摆四层，跨层错位产生机会</strong></p>
+<ul>
+<li>证据：2022 年互联网巨头跌入偏债性体系、2024 年部分创新企业跌入清算估值体系</li>
+<li>检验：两例均为<strong>事后举例、未给估值数字与公司名称</strong>（2022 年一例为泛称）；「越往下估值安全性越高，也更偏绝对回报」是规范性判断。但这一层是全文较有增量的部分：它把「同一时点不同板块适用不同估值体系」明确说出来，解释了为何单看指数 PE 分位会误判。</li>
+</ul>
+</li>
+<li>
+<p><strong>论点：离场信号＝出首富＋机构配满＋暂停回购改配股＋大股东减持＋资本开支大增＋媒体争议</strong></p>
+<ul>
+<li>证据：2018 房地产首富、2021 碳中和首富、某热门港股互联网企业 2022 年起回购时股价 16–32 元</li>
+<li>检验：<strong>信号清单有价值，命中率不可知</strong>。所举均为事后选取的正例，未给反例（出首富后继续上涨的行业、机构配满后仍延续的行情）、未给样本数与误报率。「某热门港股互联网企业」原文未点名，raw 摘要已注明「从他处叙述可推断为腾讯，但原文未明示」——<strong>不得代填</strong>。Q8 自述「每天都会通过代码爬虫来监测回购、股权变动」，说明该框架在六禾内部可能已有数据实现，但工具口径、字段与阈值全部未披露。</li>
+</ul>
+</li>
+<li>
+<p><strong>论点：AI 供应不足可能在 2–3 年内因工业进步与资本涌入转为供过于求</strong></p>
+<ul>
+<li>证据：类比上一轮智能手机与电动车</li>
+<li>检验：<strong>纯预测，但措辞克制</strong>。原文用「可能」，并在 Q11 明说「虽然我不确定这些板块都能起来」「基本面改善也不代表股价一定会涨」「产业触底后，行业基本面未改善、政策反复震荡时，企业股价不一定会跌」，Q9 说「每个人都会错过，很正常」——作者对本框架的解释边界有较明确的自我限定，这在同类访谈中并不常见，阅读时应保留这些限定，不把框架读成确定性判断。</li>
+</ul>
+</li>
+<li>
+<p><strong>论点：框架使组合在回撤与业绩上受益</strong></p>
+<ul>
+<li>证据：「目前我们的组合已经创出历史新高」（Q13）</li>
+<li>检验：<strong>自述业绩，不可核验</strong>。无净值曲线、无基准、无区间、无规模；且原文同时列出三处遗憾（2021 只关注商业模式、2023 难下手、2025 胆子变小），自述并非纯正面陈述，不宜据此推翻框架，也不宜据此证实框架有效。</li>
+</ul>
+</li>
+</ol>
+<p><strong>坦承无法回答的问题（原文未明确说明）</strong>：</p>
+<ul>
+<li>四维的量化阈值、权重与合成规则；股债性价比指数、行业监控工具的构造</li>
+<li>「80% 无自由现金流」的统计口径；「20% 多」机构配置的分母与机构范围</li>
+<li>四象限判定的事前一致性（不同研究者能否得到同一象限）</li>
+<li>「某热门港股互联网企业」的身份；Q7 复盘所用个股与持仓权重</li>
+<li>组合净值与业绩基准；2022-04 指数修正后的实际效果</li>
+<li>图④横轴止于 2021/8，与正文「整理了 2022-04-01 到 2024-09-18」不符（raw 配图转写已核 17 张图全部下载、无遗漏，属原文／图表本身的矛盾，待核）</li>
+</ul>
+<hr />
+<h2>第四级 · 比较阅读</h2>
+<blockquote>
+<p>仅与<strong>项目内已入库、可回溯</strong>的材料对照，不引入外部未经核实的数据或观点。</p>
+</blockquote>
+<p><strong>可比来源一 · 理论原典</strong>：<code>raw/research/书籍/钱塞勒_2017_资本回报-穿越资本周期的投资.md</code></p>
+<ul>
+<li><strong>一致的骨架</strong>：原典定义「高回报吸引资本投入和竞争，并带来低回报」、资本流出带来均值回归；戴斌的 Q3 定义与之同构，且两者都强调管理层资本配置能力（原典序言第二条理念；戴斌 Q3 第二条投资哲学）。</li>
+<li><strong>关键差异</strong>：原典给出<strong>可量化的预警信号清单</strong>（资本支出／折旧高于历史均值、报告盈利与自由现金流之差扩大、行业集中度即赫芬达尔指数下降、大量 IPO／增发、并购额创新高、建造宏伟新总部），并接上「资产增长反常」的学术证据（法玛-法兰奇投资因子、资产扩张对股东回报的不利影响可持续五年）；访谈<strong>没有引用这些可量化指标</strong>，改用「估值／资本开支／机构行为／上市公司对股票的行为」四维定性判断，并加入「出首富」「机构配到 20% 多」等本土行为信号。增量在<strong>中国市场的操作化与信号密度</strong>，代价是<strong>可复现性与可检验性下降</strong>。</li>
+<li><strong>另一处差异</strong>：原典第 6 章对中国的主要关切是国有企业的资本配置效率与外部股东利益（「马拉松很少投资中国大陆股票」）；访谈则默认 A/H 股全行业可放进同一四象限框架，未讨论所有制与政策干预对资本退出机制的约束，仅在 Q10「反内卷」处间接触及政策变量。</li>
+</ul>
+<p><strong>可比来源二 · 同名不同义，需隔离</strong>：<code>research/articles/synthesis/ben-thompson-ai-capital-cycle.md</code></p>
+<ul>
+<li>该页的「AI 资本周期」指 AI 基础设施资本开支能否由收入及时接棒、资本来源沿「自由现金流 → 债务 → 股票」下行的<strong>融资时间错配</strong>，并牵出聚合理论；与本文「高回报吸引资本、低回报排斥资本」的供给侧行业周期<strong>不是同一概念</strong>。两处都谈 AI 资本开支，但戴斌的落点是「供应不足可能 2–3 年供过于求」，Ben Thompson 的落点是「资本耗尽前收入能否接棒」——不可互相引证或混为一谈。</li>
+</ul>
+<p><strong>可比来源三 · 同批三篇访谈</strong>：<code>research/感悟/2026-11-02-投资感悟-读王文丘栋荣戴斌三篇访谈.md</code></p>
+<ul>
+<li>该页 §一 已列三人一句话核心（王文「不买下行周期、等出清」、丘栋荣「低估值通常是雷，机会在不确定性定价」、戴斌「供给侧资本周期四象限」），但 <strong>§二「我的感悟」留空待本人口述</strong>，因此目前<strong>不能声称已完成三框架的对照结论</strong>，只能作为待比较清单。</li>
+</ul>
+<p><strong>可比来源四 · 纵向材料的缺口</strong>：<code>raw/research/投资/基金经理/2026-11-04-聪明投资者-丘栋荣戴斌王文-公开发声链接索引.md</code></p>
+<ul>
+<li>该索引核查结论：戴斌在聪明投资者官网仅 1 条（2022-04-15《从 0 到 1》读书笔记，非路演），2025-09-11 深度访谈为公众号内容、已入库，<strong>无历年路演序列</strong>。因此项目内<strong>没有</strong>可用来检验其框架在不同市况下是否稳定、观点如何演化的纵向材料。</li>
+</ul>
+<p><strong>发现的张力／反向信号</strong>：</p>
+<ol>
+<li><strong>方法名与实操不符</strong>：自称供给侧起点，离场信号却以交易结构／情绪代理为主（首富、机构配置、媒体争议、回购配股），原文未区分「资本流动」与「持仓结构」各自的解释力。</li>
+<li><strong>同一对象的双重判定</strong>：「80% 公司没有价值」与为这类公司计算市值扩张资本利得、并在其中找结构机会并存。</li>
+<li><strong>图表证据链缺口</strong>：图④横轴 2008/8→2021/8，正文称整理 2022-04→2024-09；raw 已核 17 个图片地址全部下载、非漏抓，属待核矛盾。图③、图⑤两轴均无刻度数值，A／B 标注框无文字，原文未解释。</li>
+<li><strong>时间锚点易失</strong>：全文为 2025 年语境，「最便宜的时间点已经过去了」「下半年还是看好沪深 300」「组合已创历史新高」都是时点判断；脱离 2025 年引用会失真。</li>
+<li><strong>素材拼接</strong>：多次交流汇编而非单场实录，观点可能跨时点拼接，无法按时间追踪演化；编辑者评价与受访者陈述混排，须逐段区分归属。</li>
+<li><strong>不可越界的归纳</strong>：raw 配图转写已明确标注「这正是阳面／阴面在资本开支轴上的坐标表达」为按图结构归纳、原文未明说，四套绰号的「归纳维度」亦非原图文字——比较阅读时不得把这些当作戴斌的主张。</li>
+</ol>
+<p><strong>独有增量洞察（原典与项目内其他材料未直接给出）</strong>：</p>
+<ul>
+<li>把资本周期落成<strong>四个可逐日监测的行为变量</strong>，并配套 Q8 的「代码爬虫监测回购、股权变动」——从理念到监测清单的转化，是本文最直接可用的部分</li>
+<li><strong>估值钟摆四层＋跨层错位</strong>：解释同一市场为何并存多套估值体系，以及周期错位时上一档跌进下一档的机会来源</li>
+<li><strong>AH 回购含义不同</strong>：H 股回购过去需强制注销、A 股多用于股权激励，故 A 股大股东增持意义更重要——同一信号跨市场不可直接套用</li>
+<li><strong>两类公司的资本利得来源区分</strong>：有 FCF 看债性变化、无充裕 FCF 看市值扩张，避免用同一把尺子估值</li>
+<li><strong>纪律性表述</strong>：「关键是不能犯错，而不是不能错过」，以及 Q13 对自身三处遗憾的公开复盘，构成框架的风险偏好边界</li>
+</ul>
+<hr />
+<h2>四个基本问题的回答</h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>整体讲了什么</strong></td>
+<td>戴斌把马拉松资本的资本周期理论改造成四象限框架：以估值／资本开支／机构行为／上市公司对股票的行为定位行业，在象限 4→1 买入、象限 3 离场；再用「两类公司＋估值钟摆四层」决定估值方法，最后落到 2025 年「便宜货不多、阳面阴面两端留触角」的组合取舍</td>
+</tr>
+<tr>
+<td><strong>细部是怎样的</strong></td>
+<td>6 节 Q1–Q14：四象限逐象限特征、两类公司行业枚举、估值钟摆四层与 2022／2024 跨层错位、2022–2024 复盘、反内卷 A／B 面、AI 阳面与顺周期阴面、ETF 使用边界；配图①–⑤ 提供圆盘模型、渗透率×CAPEX/DC 与行业监控截图（含一处时间区间矛盾）</td>
+</tr>
+<tr>
+<td><strong>有道理吗</strong></td>
+<td><strong>框架自洽，证据不足以证实</strong>。供给侧视角、行为信号清单、估值分层与 AH 回购差异有解释力且原典可支撑；但关键数字全部无出处、四维无阈值、离场信号只有正例、组合业绩为自述，图④与正文冲突未解。作者自己保留了「可能」「不确定」「关键是不能犯错」等限定，宜按<strong>假说与检查清单</strong>而非结论使用</td>
+</tr>
+<tr>
+<td><strong>读它干什么</strong></td>
+<td>① 抽取可执行的监测清单（回购／增持／配股／减持／资本开支／机构配置）用于跟踪；② 用「估值钟摆跨层」检查自己是否在用错估值体系；③ 与原典的六项可量化预警信号互补，把定性四维尽量补齐为可判据；④ 待核事项：80% 口径、20% 多口径、图④区间、某港股企业名称、组合净值基准</td>
+</tr>
+</tbody>
+</table>
+<h2>参见</h2>
+<ul>
+<li>原文：<code>raw/research/投资/基金经理/2025-09-11-聪明投资者访谈戴斌-资本周期的四象限与老登小登.md</code></li>
+<li><a href="../concepts/%E8%89%BE%E5%BE%B7%E5%8B%92-%E5%9B%9B%E7%BA%A7%E9%98%85%E8%AF%BB%E6%B3%95.html">艾德勒-四级阅读法</a></li>
+<li><a href="../../%E4%B9%A6%E7%B1%8D/%E9%92%B1%E5%A1%9E%E5%8B%92_2017_%E8%B5%84%E6%9C%AC%E5%9B%9E%E6%8A%A5-%E7%A9%BF%E8%B6%8A%E8%B5%84%E6%9C%AC%E5%91%A8%E6%9C%9F%E7%9A%84%E6%8A%95%E8%B5%84.html">《资本回报》深度摘要</a></li>
+<li><a href="../synthesis/ben-thompson-ai-capital-cycle.html">Ben Thompson：AI 资本周期（同名不同义，不可混用）</a></li>
+<li><a href="../../../cases/%E6%84%9F%E6%82%9F/2026-11-02-%E6%8A%95%E8%B5%84%E6%84%9F%E6%82%9F-%E8%AF%BB%E7%8E%8B%E6%96%87%E4%B8%98%E6%A0%8B%E8%8D%A3%E6%88%B4%E6%96%8C%E4%B8%89%E7%AF%87%E8%AE%BF%E8%B0%88.html">读王文、丘栋荣、戴斌三篇访谈</a></li>
+<li><a href="../../%E5%9F%BA%E9%87%91%E7%BB%8F%E7%90%86/2026-11-04-%E8%81%AA%E6%98%8E%E6%8A%95%E8%B5%84%E8%80%85-%E4%B8%98%E6%A0%8B%E8%8D%A3%E6%88%B4%E6%96%8C%E7%8E%8B%E6%96%87-%E5%85%AC%E5%BC%80%E5%8F%91%E5%A3%B0%E9%93%BE%E6%8E%A5%E7%B4%A2%E5%BC%95.html">同来源公开发声链接索引</a></li>
+</ul>
+</div><div class="backrow"><a href="../../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/articles/papers/2025-09-11-戴斌-资本周期四象限-艾德勒阅读摘要.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
