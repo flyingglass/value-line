@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-11-13-逸修1-AI重塑PGC内容行业</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">知识库</a> › <a href="../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2026-11-13-逸修1-AI重塑PGC内容行业</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">raw/research/articles</span></div><div class="md" id="md"><h1>AI重塑PGC内容行业（雪球专栏文章）</h1>
+<blockquote>
+<p>来源：雪球App · 雪球专栏「逸修1」<br />
+原文链接：https://www.xueqiu.com/1936609590/416627172<br />
+作者：逸修1<br />
+发布时间：页面显示「修改于 2026-11-13 10:19 · 来自雪球 · 浙江」，原始首发时间未标注<br />
+资料类型：个人投资分析文章（非研报、非公司披露）<br />
+关联篇目：作者在本篇（1）节要求「优先观看」的框架文《头腾大战：谁会打穿内容行业？》 https://www.xueqiu.com/1936609590/130952320 （已另行入库 <code>2025-04-02-逸修1-头腾大战谁会打穿内容行业.md</code>）<br />
+入库时间：2026-11-14</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：PGC/PUGC/UGC 分层 · AI 为何先跑通 PGC · 生产/分发/消费/变现四环节</p>
+</blockquote>
+<p><strong>一句话核心</strong>：作者认为「AI 把互联网从边际成本趋于零的字节模式变成重资产算力和 token 模式」这一负面逻辑<strong>只对 UGC 成立，对 PGC 不成立</strong>——AI 在<strong>生产端</strong>大幅降本，而<strong>消费端仍是字节复制、不是即时生成</strong>，因此 AI 对 PGC 内容「无论是对于内容还是渠道来讲，都是商业模式的升维」；目前跑通的只有<strong>代码和 PGC 内容</strong>两个大行业，影视与游戏是最大的两个 PGC 内容行业，<strong>游戏因门槛更高、更复杂、需具备互动性，被 AI 重塑要比影视稍晚</strong>。</p>
+<p><strong>关键数据（均为原文量级举例，非统计数据）</strong>：</p>
+<ul>
+<li>长尾内容商业化的成本门槛：一个影视或游戏内容只有几千个用户时，古法模式成本需<strong>几百万、几千万</strong>则难跑通；AI 把成本降到<strong>几百几千</strong>，「即使只有几千用户的商业需求也能跑通」（原文为量级举例，未给口径与出处）</li>
+<li>作者称「AI 目前在 PGC 内容上商业模式跑通的原因（目前就<strong>二个</strong>大行业，<strong>代码和 PGC 内容</strong>）」</li>
+<li>内容分层：从 <strong>PGC → PUGC → UGC</strong>，生产成本与门槛递减、合格生产者递增、内容总量递增、平均质量递减、单内容受众规模与商业化价值递减</li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>AI 对互联网是「颠覆性创新且偏负面」 vs 对 PGC 是「商业模式升维」</strong>：前者成立的前提是消费端也变成即时生成的 token 模式，后者恰恰因为消费端仍是字节复制</li>
+<li><strong>AI 提高生产效率 vs 未必提高盈利能力</strong>：作者在（3）节把「终局仍会是用户直接付费为主」与「广告占比会大幅度增加」并列，并自设问 IP 的重要性是增加还是下降，两角度都成立、未给结论</li>
+<li><strong>高上限 vs 模型能力受限</strong>：作者称「更高的上限这点，限于模型能力，目前甚至未来短期内都较难体现」，但「相信以目前的速度发展下去，未来肯定会体现出来」</li>
+<li><strong>供给大增利好 IP 辨识度 vs IP 数量同增稀释单个 IP 价值</strong>：原文明确列出「好的角度」与「差的角度」，未下判断</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li>四环节落地节奏：<strong>生产</strong>（人用人 → 人用 AI／模型和 Agent）、<strong>分发</strong>（编辑推荐重要性下降、智能推荐更重要；agent 网络部分替代社交网络时的互联互通）、<strong>消费</strong>（当前仍为字节模式，token 成本下降后即时生成仍是优点）、<strong>变现</strong>（用户直接付费为主 → 广告占比大幅增加）</li>
+<li>平台形态：原先的 PGC 平台会变成 <strong>PGC+PUGC 混合模式</strong>，「网络效应更强、定价权也会更高」（原文判断）</li>
+<li>通用规律：「平台（渠道）的价值有一个通用规律：<strong>上下游越分散，则中间的平台（渠道）价值更高</strong>」</li>
+<li>IP 价值方向未决，需观察供给扩张后存量 IP 是被强化还是被稀释</li>
+<li>游戏相对影视的滞后：互动性与复杂度决定 AI 重塑游戏「要比影视要稍微晚一些」</li>
+</ol>
+<p><strong>术语提醒（入库注）</strong>：本篇多处「字节」指<strong>字节/byte 的数字复制</strong>（如「基于字节复制的服务器和流量模式」「字节的边际成本极低」），<strong>不是「字节跳动」</strong>；文中除（2）节「强规模效应的点就是字节的边际成本极低」外未出现公司名，勿误读。</p>
+<h2>正文</h2>
+<h1>AI重塑PGC内容行业</h1>
+<blockquote>
+<p>更大的话题应该叫AI重塑内容行业，不过今天只谈PGC内容</p>
+</blockquote>
+<p><strong>（1）什么是PGC内容？</strong></p>
+<p><a href="https://www.xueqiu.com/1936609590/130952320" title="https://www.xueqiu.com/1936609590/130952320">网页链接</a></p>
+<p>上面文章的内容极其重要，建议优先观看</p>
+<p>PGC内容指专业生产内容、PUGC内容是专业用户生产内容、UGC内容是用户生产的内容</p>
+<p>可以理解从PGC、PUGC到UGC，内容生产的成本和门槛越来越低，合格内容生产者越来越多，内容总量也越来越多，内容的平均质量越来越低，单内容的受众规模（广泛性）越来越小，单内容的商业化价值也就越来越低</p>
+<p>与之对应的也会有三种渠道，PGC平台、PUGC平台、UGC平台（当然有些平台会多种混合在一起）</p>
+<p>对应的分发方式：越靠近PGC，编辑推荐和搜索越重要，越靠近UGC，则是社交分发和智能推荐越重要</p>
+<p>对应的商业模式：靠靠近PGC，用户直接付费（包括点播和会员订阅）越重要，越靠近UGC，广告越重要</p>
+<p><strong>（2）为什么先是PGC内容？</strong></p>
+<p>之前大家都听到过AI对互联网行业是一个颠覆性创新，且是偏负面的，一个核心点就是AI让互联网行业的商业模式变得更差，主要是因为成本大幅度提升——由边际成本趋于零的商业模式变成重资产的算力和token模式（有没有网络效应是另外一个点，不在本篇讨论范围）</p>
+<p>过去我们说互联网商业模式好，主要是基于二点，强网络效应和强规模效应，强规模效应的点就是字节的边际成本极低，一个内容或服务跑通后，给1个用户提供和1亿用户提供，成本并不会增加1亿倍（复制的成本极低）</p>
+<p>当AI把复制变成即时生成，且在当下算力成本还很高的情况下，就完全不一样</p>
+<p>上面这个逻辑本身没问题，是对的，这也是AI目前在C端较难跑通的核心原因之一，但上面这个逻辑对UGC内容成立，对PGC内容是不成立的</p>
+<p>对于PGC内容行业，AI恰恰解决了这个行业过去最大的缺陷，就是高成本和高度依赖少数头部（无论是制作人、导演还是明星等）</p>
+<p>对于PGC内容行业，AI在保留其广泛性（最大范围的受众）和可商业化、消费端仍是边际成本趋于零的字节模式的同时，生产者的高成本变成中等成本且不再高度依赖少数头部人、高上限、更长尾——无论是对于内容还是渠道来讲，都是商业模式的升维</p>
+<p>即用AI做一个影视或游戏内容的成本大幅度低于古法模式，但用户在消费这些影视或游戏内容时，仍然是基于字节复制的服务器和流量模式，不是即时生成的token模式</p>
+<p>更低的成本、更多的生产者，意味着更多的创意和长尾内容：当一个影视或游戏内容只有几千个用户时，而成本需要几百万、几千万时，商业模式当然难跑通；成本降低到几百几千，则即使只有几千用户的商业需求也能跑通</p>
+<p>至于更高的上限这点，限于模型能力，目前甚至未来短期内都较难体现，但相信以目前的速度发展下去，未来肯定会体现出来</p>
+<p>以上就是AI目前在PGC内容上商业模式跑通的原因（目前就二个大行业，代码和PGC内容）</p>
+<p>而影视和游戏就是二个最大的PGG内容行业，当然游戏比影视的门槛更高、更复杂，且具有互动性才能称为游戏，所以AI重塑游戏行业要比影视要稍微晚一些</p>
+<p><strong>（3）AI怎么重塑PGC内容行业？</strong></p>
+<p>四大环节：生产、分发、消费、变现</p>
+<p><strong>1、生产</strong></p>
+<p>人用人变成人用AI（模型和Agent）</p>
+<p><strong>2、分发</strong></p>
+<p>平台（渠道）的价值有一个通用规律：上下游越分散，则中间的平台（渠道）价值更高</p>
+<p>原先的PGC平台会变成PGC+PUGC混合模式，网络效应更强、定价权也会更高</p>
+<p>对于平台来讲：编辑推荐的重要性会下降，智能推荐（算法）会更加重要；如果agent网络部分替代掉社交网络，与agent网络的互联互通也会重要</p>
+<p><strong>3、消费</strong></p>
+<p>消费端仍然是传统的边际成本趋于零的字节模式，但这在token成本高的当下，是优点不是缺点，日后token成本下来，消费端也会有AI即时生成的内容还会是优点</p>
+<p><strong>4、变现</strong></p>
+<p>过去是用户直接付费为主、广告为辅。终局仍然会是用户直接付费为主，但广告占比会大幅度增加（也有可能二者比重类似），在前期AI生产的PGC内容质量还不够顶级的情况下，会出现广告收入为主、用户直接付费为辅的情况</p>
+<p>有一个值得讨论的问题是ip的重要性是增加还是下降的？</p>
+<p>有二个角度：好的角度是在供给大幅度增加时，ip是提高辨识度的极好方法；差的角度是供给大幅度增加后意味着ip数也会大幅度增加，单个ip或存量ip的价值无疑会被稀释</p>
+<p>风险提示：用户发表的所有文章仅代表个人观点，与雪球的立场无关。投资决策需建立在独立思考之上。</p>
+<hr />
+<h2>入库备注</h2>
+<ul>
+<li><strong>原文完整性</strong>：正文按 <code>web_fetch</code> 返回的雪球正文照录，剔除的仅为雪球阅读器 UI 文案（登录弹窗、国家/地区区号列表、热门话题、热股榜、打赏/分享/投诉控件、页脚版权等），<strong>未删减任何正文段落</strong>；保留文末风险提示。</li>
+<li><strong>格式整理（不改文字）</strong>：① 三个小标题与四环节小标题按原文加粗层级还原；② 原文「网页链接」按返回内容还原为指向 <code>130952320</code> 的 Markdown 链接；③ 列表与空行按原文段落切分。</li>
+<li><strong>原文疑误照录（不擅改）</strong>：「二个最大的PGG内容行业」疑为 PGC 笔误；「靠靠近PGC」疑为「越靠近PGC」笔误；「消费端也会有AI即时生成的内容还会是优点」疑有衍字。均保留原样。</li>
+<li><strong>图表</strong>：本篇正文无配图；<code>web_fetch</code> 未返回任何承载数据的图片，无需图表转写。</li>
+<li><strong>性质提示</strong>：全文为<strong>个人观点文章</strong>，无数表、无第三方数据出处，「几百万、几千万／几百几千」为量级举例，不可作为统计数据引用。</li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../raw/research/articles/2026-11-13-逸修1-AI重塑PGC内容行业.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

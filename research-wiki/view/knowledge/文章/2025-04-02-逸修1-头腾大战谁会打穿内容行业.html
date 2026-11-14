@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-04-02-逸修1-头腾大战谁会打穿内容行业</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">知识库</a> › <a href="../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2025-04-02-逸修1-头腾大战谁会打穿内容行业</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">raw/research/articles</span></div><div class="md" id="md"><h1>头腾大战：谁会打穿内容行业？（雪球专栏文章 · 内容行业分析框架）</h1>
+<blockquote>
+<p>来源：雪球App · 雪球专栏「逸修1」<br />
+原文链接：https://www.xueqiu.com/1936609590/130952320<br />
+作者：逸修1<br />
+发布时间：页面显示「修改于 2025-04-02 16:29 · 来自雪球」；<strong>原始首发日期未标注</strong>，正文事件（抖音 2019 年初 DAU 2.5 亿、快手 2020 年春节前 3 亿 DAU 目标、腾讯音乐 2018 年收入）指向 2019 年，引用时须按「2019 年口径」处理<br />
+资料类型：个人投资分析文章（应《证券市场红周刊》之邀撰写，纸媒版面有删节）<br />
+关联篇目：2026-11-13《AI重塑PGC内容行业》 https://www.xueqiu.com/1936609590/416627172 在（1）节要求「优先观看」本篇，作为 PGC/PUGC/UGC 分层与内容行业属性的框架出处<br />
+入库时间：2026-11-14</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：内容行业定义与三类分层 · 内容成本与规模效应 · 头腾攻防与腾讯的能力长短板</p>
+</blockquote>
+<p><strong>一句话核心</strong>：作者给出的内容行业框架是——<strong>信息生产成本低、复制成本几乎为零、越靠近 PGC 广泛性越强</strong>，因而强规模效应；按合格生产者数量分为 <strong>UGC／PGC 平台／PGC</strong> 三类，<strong>内容成本依次小于 30%／30%–70%／容易超过 70%</strong>；「假如有公司能打穿 UGC、PGC 平台、PGC 三大内容渠道，在 PGC 基础上衍生出 PGC 平台或 UGC，可以帮助摊销 PGC 巨大的内容成本，形成巨大的竞争优势」，故「头腾大战的本质是内容行业的王者之争，不可避免」。</p>
+<p><strong>关键数据（原文口径，多为 2019 年时点、作者自述或转引，部分未注来源）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>原文出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UGC 内容成本</td>
+<td>小于 <strong>30%</strong></td>
+<td>作者个人测算口径，「三者体现在数值上差别大致为」</td>
+</tr>
+<tr>
+<td>PGC 平台内容成本</td>
+<td><strong>30%–70%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>PGC 内容成本</td>
+<td>容易 <strong>＞70%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>腾讯音乐 2018 年收入</td>
+<td><strong>190 亿</strong>（在线音乐 <strong>55 亿</strong>、社交娱乐服务及其它 <strong>135 亿</strong>）</td>
+<td>原文，未注来源</td>
+</tr>
+<tr>
+<td>抖音 DAU</td>
+<td>2019 年初突破 <strong>2.5 亿</strong>，年中 <strong>3.2 亿</strong></td>
+<td>原文，未注来源</td>
+</tr>
+<tr>
+<td>快手 DAU</td>
+<td>2019 年春节突破 <strong>2 亿</strong>，目标 2020 年春节前 <strong>3 亿</strong></td>
+<td>原文，转述宿华全员信</td>
+</tr>
+<tr>
+<td>快手 2018 年直播收入</td>
+<td>约 <strong>200 亿</strong>（称已是国内甚至全球第一直播平台）</td>
+<td>原文，未注来源</td>
+</tr>
+<tr>
+<td>今日头条 DAU 瓶颈</td>
+<td><strong>1.8 亿</strong></td>
+<td>原文，未注来源</td>
+</tr>
+<tr>
+<td>全网非短视频用户</td>
+<td>约 <strong>3 亿</strong>，理论增量 <strong>1–2 亿</strong></td>
+<td>QuestMobile 年中报告，原文转引</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：以上数字逐条回对正文原句，未做换算；均为作者 2019 年时点口径，非当前数据，且多数未给原始报告名称与日期。</p>
+</blockquote>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>PGC 广泛性与商业化最强 vs 内容成本最高、风险全由渠道承担</strong>：PGC 渠道「完全承担成本和风险」，内容成本容易＞70%，「一旦用户不喜欢就巨亏」</li>
+<li><strong>腾讯是 UGC 和 PGC 双霸主 vs 公开性质 UGC 与 PGC 平台是薄弱之处</strong>：「长于产品，短于服务与运营」，而这两类恰需强服务与运营能力</li>
+<li><strong>字节想切 PGC vs 短期打不起也打不赢版权大战</strong>：「PGC 的高内容成本可以靠依据 PGC 发展起来的 PGC 平台和 UGC 业务摊销」，跳板是直播</li>
+<li><strong>短视频只吃掉腾讯二三年增长 vs 战火烧到游戏和整个 PGC 则可能吃掉三-五年甚至永久增长</strong>：后者「真正触及腾讯的核心」</li>
+</ol>
+<p><strong>跟踪要点</strong>（原文判断，均为 2019 年视角）：</p>
+<ol>
+<li>谁能「打穿」UGC／PGC 平台／PGC 三类渠道并用后者摊销 PGC 内容成本</li>
+<li>头条直播大中台能否做成——作者视其为切入游戏、音乐、长视频、体育的跳板</li>
+<li>腾讯＋快手能否维持「抖音快手二强争霸」，避免字节彻底垄断短视频</li>
+<li>搜索：孤岛化下「自己变成巨型孤岛之一」比做全网搜索更现实</li>
+<li>腾讯是否会在短视频领域犯「第三个大错」</li>
+</ol>
+<p><strong>局限提示</strong>：</p>
+<ul>
+<li>全文为<strong>个人框架与观点文章</strong>，作者自述「以上分类为笔者个人分类，不要用他人分类套用」，且系纸媒约稿「有些话题只能点到为止」</li>
+<li>分类术语与 2026-11-13 篇略有差异：本篇用「UGC／PGC 平台／PGC」三分（按渠道），后篇用「PGC／PUGC／UGC」三分（按内容生产方式），<strong>不可直接等同</strong></li>
+<li>表格中数值均为 2019 年前后口径，DAU、收入、行业排名已过时；本库引用时只取<strong>结构性结论</strong>（内容成本占比、渠道价值、能力长短板），不取时点数字</li>
+</ul>
+<h2>正文</h2>
+<h1>头腾大战：谁会打穿内容行业？</h1>
+<p>七月份搭建起个人的内容行业分析框架，最近会有三篇文章都用到它，所以会看到三篇文章（也可能更多篇，因为下周财报周）有部分内容是一样的，如想保证单篇文章的完整性，就得这样。本文为其中一篇，是应《证卷市场红周刊》之邀写的头腾大战分析，它是纸媒，版面有限，有些话题只能点到为止。</p>
+<p>&quot;头腾大战&quot;硝烟再起，谁将成为最终的王者？</p>
+<p>上周末，今日头条母公司字节跳动和腾讯轮番刷屏，先是今日头条官微发布招聘消息，成立搜索部门，招兵买马，虽然此举受威胁最大的可能在百度，但不可否认，加码搜索的字节跳动，将对公司整体实力带来提升，此举无形中也给竞争对手腾讯带来一定压力。</p>
+<p>不知是否出于巧合，随后腾讯被爆出已基本完成对快手投资，快手有望接手腾讯的短视频业务，而众所周知，短视频是字节跳动发展的一大利器。</p>
+<p>本文拟结合&quot;头腾大战&quot;，解读上周末两起事件，对腾讯的战略布局或者业绩的影响。</p>
+<p>注：文中头条指字节跳动。</p>
+<p><strong>一、头腾大战的本质是什么？可不可避免？</strong></p>
+<p>回答问题前需要先谈下内容行业的定义、分类与属性：</p>
+<p><strong>（1）定义</strong></p>
+<p><strong>当用户所消费的核心是信息，不管这种信息是何种媒介，满足的需求是什么，以何种方式消费，都可以认为是内容行业的一部分</strong>。具体如即时通讯、社交网络、社交媒体、陌生人交友、短视频、游戏、直播、二次元弹幕、电影、剧集、动画、综艺、音乐、文学、漫画、资讯、段子、话题社区、在线教育、在线体育等。</p>
+<p><strong>（2）分类</strong></p>
+<p>内容满足的用户需求有六类，交流、表现、开心、了解、学习、创造。由此诞生内容行业六大分类，即时通讯、社交、互动娱乐、娱乐、资讯、知识。从即时通讯-知识，越往后面，生产参与的门槛越高，合格生产者越少。依据合格内容生产者的数量，可以有UGC、PGC平台、PGC三类，如下图：</p>
+<p>注：以上分类为笔者个人分类，不要用他人分类套用。</p>
+<p><strong>（3）属性</strong></p>
+<p>信息有三个特点：1、生产成本较低；2、复制成本几乎为零；3、从UGC-PGC平台-PGC，越容易对更多人有用，即广泛性越强。<strong>2+3导致销售的边际成本为零，即有强规模效应</strong>。即使在使用第三方渠道分销时分销商需分成仍具有强规模效应，因为只有一个可变成本且占比不会特别大。强规模效应，一旦能发挥，结果是较高甚至超高利润率，这导致内容行业虽并非大产值行业，但价值不输于。</p>
+<p>内容行业简单模型中，上游是内容生产者，中间是渠道，下游是内容消费者。上下游构成双边网络，数量到一定程度时渠道形成平台。在用户既是内容生产者又是内容消费者的UGC领域，双边网络演变为单边网络。<strong>于渠道而言，上下游的数量越多，则网络效应越强</strong>。毫无疑问，以网络大小定义属于渠道的网络效应，是UGC（强）＞PGC平台（较强）＞PGC（弱）。</p>
+<p>但广泛性越高，口碑效应越强，好、坏口碑都极易传播得极快，口碑本质是种原始社交网络效应。<strong>PGC也有强网络效应，但不属于渠道，属于作品与作品背后的内容生产者，用户容易跟着好内容与好生产者走</strong>。</p>
+<p>强网络效应形成竞争壁垒，赋予头部渠道和头部作品定价权，进一步加强利润率：UGC渠道不需承担成本与风险，PGC平台渠道与生产者共担成本与风险，PGC渠道完全承担成本和风险。三者体现在数值上差别大致为：UGC的内容成本小于30%；PGC平台的内容成本在30%-70%之间；PGC的内容成本很容易＞70%。（该段很重要，为方便理解，举例子：朋友圈人人都是合格内容生产者，属于UGC，微信不需花钱购买该内容，朋友圈的广告收入也不需与用户分成；公众号有一定门槛但不高，属于PGC平台，腾讯在公号文章中的广告收入需要和公号主分成；腾讯视频内容生产门槛极高，属于PGC，腾讯需要花高价去买版权或自制再给用户看，一旦用户不喜欢就巨亏）</p>
+<p>PGC平台与PGC，内容成本都是第一成本。UGC、PGC平台的内容往往夹着PGC内容，这部分仍需版权；PGC、PGC平台也可夹着UGC内容，则不需版权。<strong>假如有公司能打穿UGC、PGC平台、PGC三大内容渠道，在PGC基础上衍生出PGC平台或UGC，可以帮助摊销PGC巨大的内容成本，形成巨大的竞争优势</strong>。</p>
+<p><strong>腾讯想，头条也想，头腾大战的本质是内容行业的王者之争，不可避免。</strong></p>
+<p>至于搜索，它在PC后期是信息分发的核心手段，是全网第一入口；移动时代因社交分发与智能分发出现加上大内容爆发，地位下降很多，但仍然是用户在有确定性需求时的首选。移动互联网孤岛化（国内更严重），最好的选择是自己变成那几个巨型孤岛之一（百度很晚才意识到），之后再连接周围的小岛屿形成岛屿群，搜索、小程序都是连接的手段，巨头如都选择这样做，则真正的全网搜索会有难度。头条做搜索，第一目标是满足自己用户的搜索需求，当然随着生态扩张，用户体量增加，自然也会满足越多越多用户的搜索需求；第二目标是满足不是自己用户的搜索需求。前者较易，后者很难。微信也有搜索，但建立在自己的用户与场景上，头条做搜索对它短中期影响不大，对百度会有影响，随着它们重叠用户体量增加影响会增加。如日后头条的生态与搜索效果（不一定需技术强于）都强于百度，会吃掉百度一部分全网搜索份额，后者基于自己生态的份额还是会保住，但如生态不大这部分自然也不大。其实之前阿里的搜索与微信的搜索已经让百度搜索的天花板降低很多，头条只是再插一刀，任何有实力成为大巨头的公司都想并会插这一刀，微信还正在做电商搜索想吃阿里的电商份额，最终能做得怎样关键也是看生态和场景做得怎么样。</p>
+<p><strong>二、头条与腾讯谁攻谁防？各有何对策？</strong></p>
+<p>腾讯起家于即时通讯和社交网络等UGC行业，凭借UGC带来的资金、巨大流量与社交关系链切入资讯、游戏、在线音乐、在线视频、在线阅读、在线体育等PGC行业，目前是UGC和PGC双霸主，但因它的UGC核心是熟人社交关系链，属于私密（点对点即时通讯）和半私密性质（QQ空间、朋友圈、群），公开性质UGC是薄弱之处，PGC平台也是其薄弱之处。这与其能力有关，长于产品，短于服务与运营，而公开性质UGC和PGC平台都需要强服务与运营能力。微信团队较为特殊，公众号、小程序都属于PGC平台，做得不错，但仍用的是平台少干扰轻运营的去中心化策略，不一定利于长期发展与竞争（近期传微信小程序或将上线中心化入口）。</p>
+<p>头条起家于PGC平台（内涵段子、今日头条都属于，后者用UGC筛选PGC，有一定的UGC属性），凭借短视频切入公开性质的UGC，对私密和半私密性质的UGC虎视眈眈，如年初推出多闪、5月份推出飞聊、上周抖音上线群聊功能，但这些是强网络效应领域，在主流用户需求已被老产品满足的情况下除非变革来临不然没大机会；对PGC也很有想法，如西瓜视频去年8月宣布进入自制综艺领域，抖音的短视频越来越长，今年3月推出免费阅读产品番茄小说，近二年先后推出gogokid、aiKID、大力课堂等在线教育产品，但PGC行业高内容成本，有版权壁垒，想短期做出成绩很难，就算做出了代价也会很大不一定有意义。</p>
+<p>攻防关系，整体来讲是头条攻、腾讯防：私密和半私密性质的UGC直接封杀，多闪、飞聊都是上线就被微信封杀；有版权壁垒的PGC和PGC平台用版权保护，如3月份的禁止多闪使用用户微信昵称和头像，禁止抖音、火山小视频、西瓜视频等直播《王者荣耀》、《英雄联盟》《穿越火线》等游戏；另外以攻为守，腾讯做信息流和短视频都是，之前扶持微视等一大堆自家短视频，扶了一年多发现扶不起来，最近转为扶持快手，微信朋友圈已经对快手重新开放，更是传出腾讯要控股快手，将短视频业务交给快手的信息，拿下短视频基本是幻想，更为现实的是希望在短视频领域能拖住头条，不至于让后者彻底垄断短视频再肆无忌惮地向其它行业发起进攻。</p>
+<p>个人认为腾讯目前在短视频领域犯过二个大错：第一个是误判短视频空间，过早地关掉微视，第二个是18年初短视频大爆发重启微视后，把快手在腾讯生态的流量也封杀，一年多后才解封。头条的短视频都是在16年推出，如腾讯在17年推出自家短视频，是有一定机会的，18年初抖音借春节大爆发之后头条ALL in，全网为抖音买流量，到年中腾讯实际就没什么机会，那会就应该果断控股甚至收购快手然后全力扶持，那现在就有可能短视频第一是快手而不是抖音。这不是马后炮，我在去年5月份的文章《移动互联网下半场中腾讯的机遇与挑战》中曾写到：以字节跳动目前所掌握的资源与能力，加上短视频极高的传播能力，留给腾讯的时间窗口已经很小，快手、腾讯如今的参股关系并不一定能帮助快手防御住字节跳动的进攻，全资收快手可能是唯一的希望，不一定能做到就是。</p>
+<p>抖音在今年初日活突破2.5亿，年中到3.2亿，仍具备一定的增长潜力，这一切离它诞生不过三年，但如想进一步大幅度增长，除进一步往高龄、低线用户渗透以及产品形态升级吸引之前用过但不喜欢的用户使用外，只剩下抢快手用户。快手日活于春节突破2亿，年中宿华发全员信，进入全员'战斗状态'，目标2020年春节前3亿日活，单就QuestMobile的年中报告看，增长已乏力得想办法。所以目前这个点，腾讯需要快手，快手也需要腾讯。</p>
+<p>快手是家战斗力较强的互联网公司，虽不如头条；快手是个很有生命力的产品，相比抖音更加去中心化的流量分发模式带来的社交关系沉淀甚至具备一定的往熟人社交发展的潜力。但抢存量用户的难度远超于抢增量用户，目前短视频领域的存量用户大头在头条手中，腾讯+快手能否正面PK头条很大程度取决于如今的腾讯能带给快手多少增量用户：以QuestMobile的数据看，全网还有3亿左右用户不是短视频用户，考虑到肯定会有部分用户很长时间内甚至永远都不是，理论增量用户还剩1-2亿，腾讯需要在这批用户成为头条系短视频用户之前导流给快手，双方全力合作的时间越早越好，要是拖到年底这部分用户基本也没了。个人认为腾讯+快手的翻盘机会渺茫，但做的好有机会维持抖音快手二强争霸局面，希望腾讯不在短视频领域犯第三个大错。</p>
+<p><strong>三、未来会如何发展？对腾讯有何影响？</strong></p>
+<p>头条的角度，全球化是战略方向之一：17年12月10亿美元收购Musical.ly，18年中国内大局初定下半年全球化就是实际业务重点（这里不谈远，日后头条上市再谈）。国内方面，今日头条做全网搜索的核心目的之一是突破目前1.8亿日活瓶颈，短视频大战还得继续，私密和半私密性质的UGC也得试，PGC也会试，甚至非信息层的电商和硬件都会试，但关键点会是直播，直播甚至关系到头腾大战会不会进一步蔓延到更多领域。今年3月份，传出头条正在搭建直播大中台的消息。</p>
+<p>头条目前还打不起也打不赢PGC的版权大战，冒然开战非明智之举。PGC的高内容成本可以靠依据PGC发展起来的PGC平台和UGC业务摊销，如腾讯音乐：2018年收入190亿，其中在线音乐55亿、社交娱乐服务及其它135亿，单靠在线音乐的收入根本覆盖不了成本费用，收入利润大头都靠社交娱乐，即直播和全民k歌，前者为PGC平台、后者为UGC。</p>
+<p>UGC短视频战场确定，再把PGC平台直播做起来，头条就有切入PGC的跳板，再大手笔切入，头腾大战会进一步升级：如腾讯禁止头条旗下产品直播其核心游戏，而如今直播是游戏推广的核心渠道之一，吃鸡游戏在17年的传播直播居首功，头条在自研重度手游，有可能于2020年初发布，在这期间如把直播做起来，推广自家游戏会水到渠成，当然前提是游戏的品质过关。而借助直播方便切入的行业，除游戏还有音乐、长视频、体育等。战火一旦烧到游戏和整个PGC行业，就真正触及腾讯的核心。</p>
+<p>单信息流和短视频的爆发，会压缩腾讯所占的用户时长，进而影响广告收入和增值服务收入的增长，但如止步于此，只是吃掉腾讯二三年的增长，一旦上面说的出现，则可能吃掉腾讯三-五年甚至永久的增长（不是指收入增长，指股价增长）。</p>
+<p>短视频特别适合做直播，快手已经做起来（2018年直播收入200亿左右，已是国内甚至全球第一直播平台），火山和抖音的直播流水都涨得很快，我看好头条做起直播业务。</p>
+<p>风险提示：用户发表的所有文章仅代表个人观点，与雪球的立场无关。投资决策需建立在独立思考之上。</p>
+<hr />
+<h2>入库备注</h2>
+<ul>
+<li><strong>原文完整性</strong>：正文按 <code>web_fetch</code> 返回的雪球正文照录，剔除的仅为雪球阅读器 UI 文案（登录弹窗、区号列表、热股榜、打赏/分享控件、页脚），<strong>未删减任何正文段落</strong>；保留文末风险提示。</li>
+<li><strong>格式整理（不改文字）</strong>：① 三个大标题与（1）(2)(3) 小标题按原文加粗层级还原；② 抓取把原文弯引号拍平为直引号，此处按中文语境统一为 <code>&quot;</code> <code>&quot;</code>，文字未变；③ 原文「如下图」所指配图 <code>web_fetch</code> 未返回，正文照录该句，未补图、未补写图内容。</li>
+<li><strong>原文疑误照录（不擅改）</strong>：《证卷市场红周刊》疑为《证券市场红周刊》；「这导致内容行业虽并非大产值行业，但价值不输于」句子未完；「满足越多越多用户」疑为「越来越多」；「冒然开战」疑为「贸然」。均保留原样。</li>
+<li><strong>图表</strong>：正文提及「如下图」一张分类图，<code>web_fetch</code> 只回文本、未返回该图；该图为分类示意、不承载数值，按 <code>research-ingest</code> 第五节不落盘，标注「原图未获取，分类结构以正文文字为准」。</li>
+<li><strong>性质提示</strong>：全文为<strong>个人框架与观点文章</strong>，时点为 2019 年；表格数字多为作者自述或转引且未注来源，<strong>不可当作当前数据引用</strong>。</li>
+</ul>
+</div><div class="backrow"><a href="../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../raw/research/articles/2025-04-02-逸修1-头腾大战谁会打穿内容行业.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
