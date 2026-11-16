@@ -95,6 +95,8 @@ CASE_GROUP_NAMES = {
 RAW_GENERAL_DIRS = {
     'articles': '文章',
     '书籍': '书籍',
+    # 2026-11-16：庶人哑士 AI 软件系列 5 篇由 articles/ 移入软件开发/（申万二级行业名）
+    '软件开发': '软件开发',
     # 投资/ 下两个子目录语义不同，各自成 tab（2026-10-31：原先二级目录不单独成 tab）
     '投资/巴芒': '巴芒',
     '投资/基金经理': '基金经理',
@@ -106,7 +108,7 @@ RAW_GENERAL_DIRS = {
 #             与 raw/research/{书籍,投资,articles} 及 research/articles 一一对应；
 #             原主题仍保留为卡片上的 topic 标签，不再作为 tab。
 GENERAL_TAB_NAME = '知识库'
-GENERAL_CATEGORY_ORDER = ['书籍', '巴芒', '基金经理', '文章']
+GENERAL_CATEGORY_ORDER = ['书籍', '巴芒', '基金经理', '文章', '软件开发']
 
 # 标的容器根下散落的 md（名单池）→ 归入「<容器>·名单池」组
 # 例：research/AI软件/AI软件名单-待选池.md → 组 id「AI软件·名单池」
@@ -116,6 +118,11 @@ LIST_LABEL = ' · 名单池'
 # 标的容器目录：其下一级才是标的目录（2026-09-27 起：白马 / 消费 / AI软件）。
 # 容器对最终站点透明：组键、view 输出目录、链接解析仍按 <code> 处理。
 CONTAINER_DIRS = ('白马', '消费', 'AI软件')
+
+# 2026-11-16：raw/research 下按丘栋荣团队研究分组重排（用户决议），
+# 标的路径由 raw/research/<code>/ 变为 raw/research/<行业>/<code>/。
+# 解析时跳过行业层，组 id 仍为 <code>，view/ 输出结构不变。
+RAW_INDUSTRY_DIRS = ('消费', '周期', '医疗', '制造', '科技')
 
 # 组顶层文件夹（标签）的展示顺序；未列出的按名称字典序；概览 紧随其后；原始资料始终垫底
 GROUP_DIR_ORDER = {
@@ -307,11 +314,25 @@ def scan_wiki():
             if (not os.path.isdir(subpath) or sub in RAW_GENERAL_DIRS
                     or any(k.startswith(sub + '/') for k in RAW_GENERAL_DIRS)):
                 continue
+            # 2026-11-16 行业容器：raw/research/<行业>/<code>/，逐个 <code> 建标的组，不建行业组
+            if sub in RAW_INDUSTRY_DIRS:
+                for code in sorted(os.listdir(subpath)):
+                    codepath = os.path.join(subpath, code)
+                    if not os.path.isdir(codepath):
+                        continue
+                    gname = CODE_DISPLAY.get(code, code)
+                    industry = stock_info.get(code, sub)
+                    for rel, fpath in iter_md(codepath):
+                        art = read_article(fpath, f"raw/research/{sub}/{code}/{rel}")
+                        art['group_path'] = f"raw/research/{code}/{rel}"
+                        add_article(code, gname, industry, art)
+                continue
             is_case = sub in CASE_GROUP_NAMES
-            gname = CASE_GROUP_NAMES.get(sub, CODE_DISPLAY.get(sub, sub))
-            industry = stock_info.get(sub, '其他')
             for rel, fpath in iter_md(subpath):
+                gname = CASE_GROUP_NAMES.get(sub, CODE_DISPLAY.get(sub, sub))
+                industry = stock_info.get(sub, '其他')
                 art = read_article(fpath, f"raw/research/{sub}/{rel}")
+                art['group_path'] = f"raw/research/{sub}/{rel}"
                 if is_case:
                     add_case(sub, gname, art)
                 else:
@@ -401,7 +422,7 @@ def build_group_tree(articles, gid):
     raw_name = raw_top_name(gid, articles)
     raw_folder = None
     for art in articles:
-        p = art['path']
+        p = art.get('group_path', art['path'])
         if p.startswith(f"research/{gid}/"):
             parts = p[len(f"research/{gid}/"):].split('/')
             root.insert(parts, art)
@@ -645,7 +666,7 @@ def head_html(title):
 
 def article_layout(art, gid, raw_name):
     """返回 (tab名, 相对组根的目录链 seg)。seg 也决定文章 HTML 的物理输出位置。"""
-    p = art['path']
+    p = art.get('group_path', art['path'])
     if p.startswith('research/' + gid + '/'):
         d = os.path.dirname(p[len('research/' + gid + '/'):])
         seg = [x for x in d.split('/') if x]

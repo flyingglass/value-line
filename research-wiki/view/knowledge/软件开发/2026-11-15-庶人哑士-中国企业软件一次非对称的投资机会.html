@@ -1,0 +1,1000 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">知识库</a> › <a href="../index.html#dir=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91">软件开发</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">raw/research/软件开发</span></div><div class="md" id="md"><h1>中国企业软件：一次非对称的投资机会（公众号文章）</h1>
+<blockquote>
+<p>来源：微信公众号「庶人投资笔记」，原创<br />
+原文链接：https://mp.weixin.qq.com/s/JpHWXjs0EL2bCbWIX_237w<br />
+作者：庶人哑士<br />
+发布时间：2026-11-15 17:11（四川）（修改于 2026-11-16）<br />
+关联篇目：作者自述本题前作《AI颠覆软件的三种可能再评估：只剩一种可能了》；系列产品《AI应用随想录》（2026-09-02）、《关于AI应用的十个判断》（2026-09-19）、《大模型吞噬软件：是叙事还是事实？》（2026-09-24），三篇 raw 均已在库<br />
+原文自述定位：「过去三四个月研究成果的一个总结，也是过去大半年投资体系转型的体现」<br />
+入库时间：2026-11-16</p>
+</blockquote>
+<hr />
+<h2>摘要（3 分钟速读）</h2>
+<blockquote>
+<p>核心话题：中国企业软件营收真实性 · SaaS 转型进度 · 资本与经营双周期叠加 · 低估值与股息 · 应然≠实然</p>
+</blockquote>
+<p><strong>一句话核心</strong>：作者用 8 家 A/H 股企业软件公司的营收与 SaaS 占比数据反驳「中国企业不愿为软件付费 / 中国没有 SaaS 土壤」两大看空观点，提出<strong>中国 SaaS 正处在「资本与产能出清周期 + 幸存者利润释放的经营周期」双期叠加，叠加低估值与股息，构成一次向下空间有限、向上空间巨大的非对称投资机会</strong>；但明确强调「<strong>应然≠实然</strong>」，向上空间能否兑现、何时兑现须等一个明确信号，且<strong>估值便宜不等于就能买</strong>。</p>
+<p><strong>关键数据</strong>（每条注明出处：正文 / 图号）</p>
+<ul>
+<li><strong>8 家样本</strong>：用友网络、广联达、鼎捷数智（A 股）；金蝶国际、畅捷通、明源云、北森控股、聚水潭（H 股）。除受地产基建影响的<strong>明源云、广联达</strong>外，<strong>其余 6 家营收长期增长</strong>（正文 §一，图 A/B/C）</li>
+<li><strong>SaaS 收入占比</strong>：北森约 <strong>80%</strong>（图 D 2026A 78.2%）、聚水潭 <strong>97%</strong>（图 E 2026H1 96.9%）、金蝶 <strong>55.9%</strong>（正文，与图 F 2026H1 55.9% 吻合）、畅捷通 <strong>74.6%</strong>（正文，与图 G 2026H1 74.6% 吻合）、明源云云服务 <strong>&gt;80%</strong>、广联达 <strong>&gt;72%</strong>（正文 §二）</li>
+<li><strong>金蝶剩余 44.1% 营收</strong>：<strong>&gt;36.5%</strong> 是软件实施部署、<strong>7.6%</strong> 是非 SaaS 软件收入；畅捷通剩余 <strong>25.4%</strong> 由实施部署 + 非 SaaS 软件构成（正文 §二）</li>
+<li><strong>聚水潭 26H1 净利率 17.35%</strong>，「其他几家刚扭亏」（正文 §二）</li>
+<li><strong>超长投入期</strong>：Salesforce <strong>1998 年创立、2016 年后才稳定盈利</strong>（正文 §三，图 H）；北森 2014 前后转型 HCM SaaS「亏了十几年，今年终于能够实现盈利」；聚水潭 2014 创立、<strong>2024 年</strong>盈利转正；畅捷通 2015 转型、SaaS 业务 <strong>2023 年</strong>才真正盈利；金蝶 2014 起转型、<strong>2020–2024 合计亏 15.9 亿</strong>、2025 扭亏；用友 2018 起转型、2023 激进转型，<strong>至今合计亏 56.2 亿</strong>（正文 §三）</li>
+<li><strong>两轮融资热潮</strong>：<strong>2014~2015</strong>、<strong>2019~2021</strong>（正文 §三）</li>
+<li><strong>融资额</strong>：全球 SaaS 风投 <strong>2021 年峰值 126.9 十亿美元</strong>、<strong>2024 年 72.8</strong>、2023 年 59.9（图 J，来源 PitchBook-NVCA Venture Monitor）；中国企业级 SaaS <strong>2021 年峰值 442.98 亿元</strong>、<strong>2023 年 65.19 亿元（较峰值 −85%）</strong>（图 K，来源中国信通院《中国企业级SaaS产业发展研究报告（2024年）》/ IT 桔子）</li>
+<li><strong>估值举例</strong>（正文 §四，原文未注明币种，按港股语境疑为港币，<strong>待核</strong>）：畅捷通市值 <strong>14 亿</strong>、今年估计赚 <strong>1 个亿</strong>、大股东 <strong>100% 分红</strong>；北森市值 <strong>19 亿</strong>、账上 <strong>16 亿现金</strong>、<strong>11 亿净资产</strong>、今年约 <strong>1.0 亿</strong>、今年已回购 <strong>9500 万港币</strong>；明源云市值 <strong>11.4 亿</strong>、账上现金 <strong>&gt;35 亿</strong>、净资产 <strong>41 亿</strong>、过去三年每年合计分红 <strong>5.8 亿港币</strong>、三年合计回购 <strong>3.35 亿港币</strong>；聚水潭市值 <strong>44 亿</strong>、今年 Non-GAAP 利润估计 <strong>4~4.5 亿</strong>；金蝶市值 <strong>263 亿</strong>、今年 Non-GAAP 利润估计 <strong>5.6 亿</strong>、OCF <strong>14 亿</strong></li>
+</ul>
+<p><strong>核心矛盾</strong></p>
+<ol>
+<li><strong>「应然≠实然」</strong>——作者自述这是「对我过去体系打的最大的补丁」：双期叠加 + 低估值 + 股息 + 无人问津，只能说明<strong>向下空间有限确定性高</strong>；巨大向上空间能否兑现、何时兑现「需要等到一个明确信号出现」，而该信号作者<strong>未定义</strong></li>
+<li><strong>营收长期增长 vs 主流看空</strong>：市场说「宁愿多招一个人也不愿为软件付费」「宁愿用盗版也不买正版」，作者承认「有事实的成分」，但用 8 家公司报表反驳</li>
+<li><strong>SaaS 更先进的商业模式 vs 极难做的生意</strong>：多租户分摊、只维护一个版本、越过临界点后研发与获客成本被摊薄；但<strong>动辄 8~10 年投入期</strong>，考验创始团队耐心与现金流，初创公司现金流「答案只有一个：投资人」→ 作者反转因果：「中国企业不愿意用 SaaS，很大一部分原因是中国没有好的 SaaS 软件供应」</li>
+<li><strong>资本出清对龙头是利好，但需求端同时受压</strong>：中尾部企业「无法实现 AI 转型」而下游「没有 AI 根本批不了预算」，双重夹击加速产能出清——供给出清与需求抑制同源</li>
+<li><strong>便宜 ≠ 能买</strong>：作者明示「港股中小公司有很多坑」「上面的个股分析仅为举例，不是为了荐股」</li>
+</ol>
+<p><strong>跟踪要点</strong></p>
+<ol>
+<li><strong>双期叠加是否被财报坐实</strong>：北森 / 畅捷通 / 金蝶 / 聚水潭扭亏为盈后经营杠杆的释放幅度与持续性（作者只说「再看看财报」，未给量化门槛）</li>
+<li><strong>「明确信号」的操作化定义</strong>：作者未定义，需自行设定可证伪判据，否则「等信号」不可执行</li>
+<li><strong>分红 / 回购可持续性</strong>：畅捷通 100% 分红的动机是大股东用友「SaaS 转型缺钱」，属母公司资金需求驱动而非子公司资本配置政策；北森「填坑之前不分红」；聚水潭「刚上市 1 年，分红回购如何还待验证」</li>
+<li><strong>SaaS 占比口径</strong>：图 F 为「纯 SaaS 订阅收入占营收比例」、图 D 为「HCM SaaS 占比」、图 E 为「SaaS 收入占比」、正文另用「云服务收入占比」，四者口径不同，<strong>跨公司横比前须回年报统一</strong></li>
+<li><strong>币种与估值口径</strong>：§四市值 / 利润 / 现金未注币种，Non-GAAP 未给定义；本库 DB 未收录这 5 只，暂不可交叉验证</li>
+<li><strong>与本库「AI 吞噬软件」框架的关系</strong>：本文作者结论是「AI 不仅不会完全吞噬软件，反而对软件有利」（见 2026-09-24 篇），但本文未讨论「工具型 SaaS 被模型吞掉 / 本体层」的分层，两套判据尚未打通</li>
+</ol>
+<p><strong>图表数据状态</strong>：正文共 <strong>11 张配图</strong>，全部为数据图或结构图，<strong>首轮入库即同步复原</strong>：图 A–C（营收）3 张、图 D–G（SaaS 占比 / 营收构成）4 张、图 H（Salesforce 盈利节奏）1 张、图 I（Gartner 热度曲线，转文字结构）1 张、图 J–K（融资）2 张。逐图表格与校验注见正文对应位置，CDN 回溯链接见文末「图表索引」。</p>
+<p><strong>局限提示（阅读时注意）</strong></p>
+<ul>
+<li>全篇为<strong>个人投资思路梳理</strong>，作者明示「个人观点，仅供参考」「仅为举例，不是为了荐股」；无目标价、无仓位建议</li>
+<li>图中数值来自<strong>第三方数据图</strong>（理杏仁 lixinger.com / PitchBook-NVCA / 中国信通院·IT 桔子 / 吴昊《SaaS创业路线图 2.0》），<strong>不等于公司财报原文</strong>，本库未回查各公司年报</li>
+<li>图 A/B/C/H 存在**标签与柱位非严格一一对应、单位混用（亿元 / 万港币 / 亿美元）**问题，已在各表下标注「待核」，不硬凑年份</li>
+<li>§四估值段落数字<strong>未注币种、未注时点</strong>；累计亏损 15.9 亿 / 56.2 亿<strong>未注明区间口径与数据来源</strong></li>
+<li>正文疑误照录未改：§一「除用友外，其余5家的<strong>营营收</strong>」、§二「SaaS 在<strong>网</strong>中大型企业渗透」、§二「净利率已经<strong>取到</strong>17.35%」，见文末入库备注</li>
+</ul>
+<hr />
+<h2>正文（完整原文）</h2>
+<p>本文是过去三四个月研究成果的一个总结，也是过去大半年投资体系转型的体现。尽量简洁一些，很多显而易见的东西，就直接说结论。对于推导过程有疑问的，可在评论区讨论。</p>
+<p>之前关于这个话题的文章，基本都在解决一个问题：AI究竟会不会吞噬软件。只有回答了这个问题，研究具体的公司才有意义。我的答案参考<a href="https://mp.weixin.qq.com/s?__biz=Mzg3NzcwNzUyNA==&amp;mid=2247487948&amp;idx=1&amp;sn=5531cd81b4606d571f650ae21b19fb74&amp;scene=21#wechat_redirect">AI颠覆软件的三种可能再评估：只剩一种可能了</a>。</p>
+<p>更详细的论证过程，可以参考合集中的其他系列文章，不再赘述。</p>
+<h3>一、软件企业的收入在实打实的增长</h3>
+<p>关于企业软件，市场流行的看空说法有很多，比如中国企业宁愿多招一个人，也不愿意为软件付费；宁愿用盗版，也不愿意买正版。</p>
+<p>这些说法中，当然有事实的成分。但我们来看另一个事实。下面是在A股、港股上市的8家企业软件公司的营收情况（分组的原则是A股放在一张图，H股上市时间接近的放在一张图）：</p>
+<p><strong>【图 A】A 股 3 家 · 营业总收入（累计）— 图上显式数值标签（单位：亿元）</strong></p>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>图上显式数值标签（按柱从左至右顺序照录）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用友网络</td>
+<td>11.13、17.26、23.47、29.79、41.22、43.63、44.51、51.13、63.44、77.03、85.10、89.32、97.96、91.53</td>
+</tr>
+<tr>
+<td>广联达</td>
+<td>1.76、3.09、17.60、20.39、29.04、35.41、56.19、65.91、62.40</td>
+</tr>
+<tr>
+<td>鼎捷数智</td>
+<td>7.19、9.95、10.53、11.40、13.42、14.96、19.95、23.31</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：横轴为 2006–2025 年，<strong>并非每年柱都有数值标签</strong>，上表只列原图显式标注者，未标注年份不反推、不目测填充。数值标签多置于柱顶偏左，<strong>与柱位非严格一一对应，逐值年份归属待核</strong>；原图水印 <code>理杏仁 lixinger.com</code>，属第三方数据图，非年报原文。作者仅用此图支撑「除明源云、广联达外营收长期增长」的定性判断。</p>
+</blockquote>
+<p><strong>【图 B】H 股 2 家 · 营业总收入（累计）与累计同比</strong></p>
+<table>
+<thead>
+<tr>
+<th>期间（原图横轴照录）</th>
+<th>北森控股营收（亿元）</th>
+<th>北森累计同比（绿线）</th>
+<th>聚水潭营收（亿元）</th>
+<th>聚水潭累计同比（棕线）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19-03</td>
+<td>3.82</td>
+<td>—</td>
+<td>（原图未标注）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>20-03</td>
+<td>4.59</td>
+<td>19.95%</td>
+<td>（原图未标注）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>21-03</td>
+<td>5.56</td>
+<td>21.33%</td>
+<td>（原图未标注）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>22-03</td>
+<td>6.80</td>
+<td>22.16%</td>
+<td>（原图未标注）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>22-12</td>
+<td>7.51</td>
+<td>10.49%</td>
+<td>5.23</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>23-12</td>
+<td>8.55</td>
+<td>13.83%</td>
+<td>6.97</td>
+<td>33.29%</td>
+</tr>
+<tr>
+<td>24-12</td>
+<td>（原图未标注）</td>
+<td>10.57%</td>
+<td>9.10</td>
+<td>30.49%</td>
+</tr>
+<tr>
+<td>26-03</td>
+<td>（原图未标注）</td>
+<td>16.90%</td>
+<td>11.42</td>
+<td>25.58%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：北森财年截至 3 月 31 日、聚水潭按自然年，<strong>两家财年口径混在一张图</strong>，横轴 22-03 后直接跳到 22-12、末尾为 26-03，中间缺 25-03 刻度，<strong>期间口径待核</strong>。红底同比标签按所属折线颜色（绿＝北森、棕＝聚水潭）归位；原图水印 <code>理杏仁 lixinger.com</code>，第三方数据图，非年报原文。</p>
+</blockquote>
+<p><strong>【图 C】H 股 3 家 · 营业总收入（累计）— 图上显式数值标签</strong></p>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>图上显式数值标签（按柱从左至右顺序照录）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>金蝶国际</td>
+<td>6.11亿元、7.67亿元、8.75亿元、9.97亿元、14.37亿元、20.22亿元、17.55亿元、16.02亿元、15.47亿元、15.86亿元、18.62亿元、23.03亿元、28.09亿元、33.26亿元、33.56亿元、41.74亿元、48.66亿元、56.79亿元、62.56亿元、70.06亿元</td>
+</tr>
+<tr>
+<td>畅捷通</td>
+<td>3.06亿元、3.30亿元、3.12亿元、3.35亿元、3.46亿元、4.31亿元、4.99亿元、4.29亿元、4.63亿元、5.09亿元、5.90亿元、6.80亿元、8.01亿元、9.59亿元、10.95亿元</td>
+</tr>
+<tr>
+<td>明源云</td>
+<td>1.91亿元、3.27亿元、4.55亿元、531.60万港币、107.40万港币、3,713.70万港币、1.12亿港币、9.13亿元、12.64亿元、17.05亿元、21.84亿元、18.16亿元、16.40亿元</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：横轴 2006–2025 年。⚠️ <strong>明源云序列单位混用</strong>（亿元 / 万港币 / 亿港币），疑为数据源币种或单位换算未统一，<strong>不可直接连线比较，待核</strong>；畅捷通在 2006–2010 区间原图另有极小值标签（如 0.21亿元、107.40万港币、3,713.70万港币等），位置与颜色归属存在歧义，本表只列可明确归属者。原图水印 <code>理杏仁 lixinger.com</code>，第三方数据图，非年报原文。</p>
+</blockquote>
+<p>这三张图反映了几个基本事实：</p>
+<ol>
+<li>
+<p>这8家公司中，除了受地产、基建行业影响的明源云和广联达外，其余6家的营收都是长期增长的。</p>
+</li>
+<li>
+<p>明源云的CRM和地产开盘项目上高度绑定，营收21年达峰后掉得最惨；广联达不止运用于地产，还有其他建筑、基建相关，22年达峰后这几年只是微降。</p>
+</li>
+<li>
+<p>其余6家中，金蝶、用友、畅捷通是做全行业ERP的，聚水潭是电商行业ERP的，北森是做全行业HCM（人力资源管理）的，鼎捷数智是做制造业软件的。</p>
+</li>
+<li>
+<p>用友这几年营收增长停滞，是因为受SaaS转型拖累。这个后面细说。除用友外，其余5家的营营收整体的趋势都是增长的。</p>
+</li>
+</ol>
+<p>这个现象说明，中国企业愿意为软件付费。</p>
+<p>背后的原因很简单：尽管有种种阻碍，企业的数字化是必须做的。软件企业的营收和行业企业用户端的调研，都证实了这一点。</p>
+<h3>二、软件的SaaS转型在实打实的进行</h3>
+<p>对中国软件的另一大主流看空观点是：偏好本地部署，不愿意用云端SaaS。中国没有SaaS的土壤，所以中国SaaS没有前途。</p>
+<p>这种大而化之的印象中，也有部分是事实。但这种过于简单化的观点，对投资毫无帮助。当我们把镜头拉得更近一些，更多细节呈现出来的时候，我们看到的是另一番景象。</p>
+<p>还是先让数据说话。下图是北森、聚水潭、金蝶、畅捷通四家公司纯SaaS业务占比：</p>
+<p><strong>【图 D】北森控股 HCM SaaS、专业服务占比</strong></p>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th>HCM SaaS 占比</th>
+<th>专业部署服务占比</th>
+<th>合计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019A</td>
+<td>54.7%</td>
+<td>45.3%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2020A</td>
+<td>56.6%</td>
+<td>43.4%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2021A</td>
+<td>62.7%</td>
+<td>37.3%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2022H1</td>
+<td>67.0%</td>
+<td>33.0%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2022A</td>
+<td>68.2%</td>
+<td>31.8%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2023H1</td>
+<td>72.2%</td>
+<td>27.8%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2023A</td>
+<td>71.5%</td>
+<td>28.5%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2024H1</td>
+<td>74.0%</td>
+<td>26.0%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2024A</td>
+<td>74.0%</td>
+<td>26.0%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2025H1</td>
+<td>77.6%</td>
+<td>22.4%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2025A</td>
+<td>76.4%</td>
+<td>23.6%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2025H1（原图标签重复，按序列疑为 2026H1，待核）</td>
+<td>80.3%</td>
+<td>19.7%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2026A</td>
+<td>78.2%</td>
+<td>21.8%</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：每行两项加总均为 <strong>100.0%</strong>，逐格通过。⚠️ 原图第 12 个期间标签与第 10 个同为「2025H1」，按时间顺序疑为 <strong>2026H1</strong>（推断，未改原标签，待核）。正文「SaaS 占比约 80%」与 2026A 的 78.2% / 该期 80.3% 吻合；专业部署服务占比「这两年已经下降到 20%」亦与 19.7%–21.8% 吻合。</p>
+</blockquote>
+<p><strong>【图 E】聚水潭营收构成</strong></p>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th>SaaS 收入占比</th>
+<th>销售支持设备收入占比</th>
+<th>推广服务费收入占比</th>
+<th>其他收入占比</th>
+<th>合计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022A</td>
+<td>95.2%</td>
+<td>3.4%</td>
+<td>1.3%</td>
+<td>0.1%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2023A</td>
+<td>96.1%</td>
+<td>2.6%</td>
+<td>1.3%</td>
+<td>0.1%</td>
+<td>100.1%</td>
+</tr>
+<tr>
+<td>2024H1</td>
+<td>96.6%</td>
+<td>2.3%</td>
+<td>1.0%</td>
+<td>0.2%</td>
+<td>100.1%</td>
+</tr>
+<tr>
+<td>2024A</td>
+<td>96.5%</td>
+<td>2.0%</td>
+<td>1.5%</td>
+<td>0.1%</td>
+<td>100.1%</td>
+</tr>
+<tr>
+<td>2025H1</td>
+<td>96.7%</td>
+<td>1.5%</td>
+<td>1.6%</td>
+<td>0.2%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>2025A</td>
+<td>96.7%</td>
+<td>1.4%</td>
+<td>1.7%</td>
+<td>0.1%</td>
+<td>99.9%</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td>96.9%</td>
+<td>1.8%</td>
+<td>1.1%</td>
+<td>0.2%</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：四项加总 <strong>99.9%–100.1%</strong>，差异为一位小数四舍五入，通过。正文「占比高达 97%」与 2026H1 的 96.9% 吻合。原图纵轴自 92.0% 起（截断轴），读图时勿按柱高直观比较。</p>
+</blockquote>
+<p><strong>【图 F】金蝶 SaaS 收入及 ARR（折线部分）</strong></p>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th>纯 SaaS 订阅收入占营收比例（黄线）</th>
+<th>纯 SaaS 订阅 ARR 增速（灰线）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019A</td>
+<td>17.3%</td>
+<td>58.0%</td>
+</tr>
+<tr>
+<td>2020A</td>
+<td>22.1%</td>
+<td>57.0%</td>
+</tr>
+<tr>
+<td>2021A</td>
+<td>34.2%</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>2022A</td>
+<td>40.0%</td>
+<td>36.3%</td>
+</tr>
+<tr>
+<td>2023A</td>
+<td>45.8%</td>
+<td>33.6%</td>
+</tr>
+<tr>
+<td>2024A</td>
+<td>49.8%</td>
+<td>19.9%</td>
+</tr>
+<tr>
+<td>2025H1</td>
+<td>52.7%</td>
+<td>18.5%</td>
+</tr>
+<tr>
+<td>2025A</td>
+<td>50.8%</td>
+<td>19.2%</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td>55.9%</td>
+<td>18.3%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：黄线 2026H1 <strong>55.9%</strong> 与正文「金蝶的 SaaS 收入占营收比例已经 55.9%」完全一致；灰线 ARR 增速自 58.0% 单向降至 18.3%，与「转型阵痛期后段」叙述方向一致。⚠️ 图中另有蓝柱「纯 SaaS 订阅收入」与橙柱「纯 SaaS 订阅 ARR」（左轴 0–50），<strong>柱体无数值标签，只能按轴目测，故不列入表格、不作数值引用</strong>；两套标签颜色不同（黄底＝占比、灰底＝增速），已按底色归位，2023A 黄标在原图被切分处按放大图读作 45.8%。</p>
+</blockquote>
+<p><strong>【图 G】畅捷通营收构成</strong></p>
+<table>
+<thead>
+<tr>
+<th>期间</th>
+<th>本地部署软件收入（亿元）</th>
+<th>总营收（亿元）</th>
+<th>SaaS 订阅收入（亿元）</th>
+<th>SaaS 订阅占比（黄线）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2013A</td>
+<td>2.91</td>
+<td>3.12</td>
+<td>（原图未标注）</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>2014A</td>
+<td>3.02</td>
+<td>3.35</td>
+<td>（原图未标注）</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>2015A</td>
+<td>3.02</td>
+<td>3.46</td>
+<td>（原图未标注）</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>2016A</td>
+<td>3.75</td>
+<td>4.31</td>
+<td>（原图未标注）</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>2017A</td>
+<td>4.24</td>
+<td>4.99</td>
+<td>（原图未标注）</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>2018A</td>
+<td>3.91</td>
+<td>4.29</td>
+<td>（原图未标注）</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>2019A</td>
+<td>3.17</td>
+<td>4.63</td>
+<td>（原图未标注）</td>
+<td>（原图未标注）</td>
+</tr>
+<tr>
+<td>2020A</td>
+<td>（标签被遮挡）</td>
+<td>5.09</td>
+<td>1.16</td>
+<td>22.8%</td>
+</tr>
+<tr>
+<td>2021A</td>
+<td>0.85</td>
+<td>（标签被遮挡，约 5.9）</td>
+<td>2.59</td>
+<td>43.9%</td>
+</tr>
+<tr>
+<td>2022A</td>
+<td>（原图未标注）</td>
+<td>6.80</td>
+<td>3.81</td>
+<td>56.0%</td>
+</tr>
+<tr>
+<td>2023A</td>
+<td>（原图未标注）</td>
+<td>8.01</td>
+<td>4.88</td>
+<td>61.0%</td>
+</tr>
+<tr>
+<td>2024A</td>
+<td>（原图未标注）</td>
+<td>9.59</td>
+<td>6.54</td>
+<td>68.2%</td>
+</tr>
+<tr>
+<td>2025A</td>
+<td>（原图未标注）</td>
+<td>10.95</td>
+<td>7.58</td>
+<td>69.2%</td>
+</tr>
+<tr>
+<td>2026H1</td>
+<td>（原图未标注）</td>
+<td>5.48</td>
+<td>4.09</td>
+<td>74.6%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：占比 ＝ SaaS 订阅收入 ÷ 总营收，逐期复算 <strong>1.16/5.09=22.8%、3.81/6.80=56.0%、4.88/8.01=60.9%、6.54/9.59=68.2%、7.58/10.95=69.2%、4.09/5.48=74.6%</strong>，与原图标签全部吻合（2023A 差 0.1pp 为四舍五入）。2026H1 <strong>74.6%</strong> 与正文「畅捷通高达 74.6%」一致。⚠️ 2020A 蓝色标签被 22.8% 黄标遮挡、2021A 橙色标签被遮挡，均标「被遮挡」不硬凑；右轴为占比、左轴为金额，双轴勿混读。</p>
+</blockquote>
+<p>北森和聚水潭两家公司，是一开始就做的云端SaaS软件。北森由于做的是中大型企业的HCM，一开始专业部署服务（就是替客户按照软件、教客户使用软件）收入占比很高，这两年已经下降到20%了，SaaS占比约80%。</p>
+<p>聚水潭做电商ERP，客户规模都不算大，所以是非常纯粹的SaaS公司，占比高达97%。因为占比高，所以盈利能力很强，26H1的净利率已经取到17.35%，而其他几家刚扭亏。</p>
+<p>金蝶和畅捷通一开始都是做本地部署ERP软件的，大概从2015年前后开始转型。目前金蝶的SaaS收入占营收比例已经55.9%，畅捷通高达74.6%。</p>
+<p>金蝶剩下的44.1%的营收中，超过36.5%是软件的实施部署，剩下的7.6%是非SaaS软件收入。畅捷通剩下的25.4%的营收中，也是实施部署+非SaaS软件两部分构成。</p>
+<p>8家中其余4家，明源云的云服务收入占比超过80%。广联达自2016年起启动转型，<strong>放弃永久买断模式，全面切换为按年付费的SaaS订阅模式，SaaS主要在数字成本业务中，占比已经超过72%。</strong></p>
+<p><strong>鼎捷数智和用友转型更慢，但是也都开始了SaaS转型之路。用友中最近的交流中，已经将SaaS转型作为未来的战略方向。畅捷通作为其旗下的小微企业软件，早已完成了SaaS转型，也都已经实现了盈利。</strong></p>
+<p>这几家公司，用自身的案例和财务数据说明了：</p>
+<ol>
+<li>
+<p>中国企业确实喜欢本地部署，但也接受SaaS；</p>
+</li>
+<li>
+<p>大型央国企确实喜欢本地部署，但小微企业接受SaaS无压力，且SaaS在网中大型企业渗透；</p>
+</li>
+<li>
+<p>相对于传统企业，新质生产力企业对SaaS接受度更高，具体可参考金蝶的客户画像；</p>
+</li>
+</ol>
+<p>这些背后的原因，还是在于SaaS的多租户分摊，确实是一种更先进的商业模式：对于软件企业而言，只需要更新维护一个版本，一旦营收越过临界点，前期大量的研发成本和获客成本被摊薄，飞轮就转起来了；对于软件用户而言，传统本地部署软件“只有在安装完成那一刻是最好的”，而SaaS可以随时用上最新版本。更重要的是，成本低得多。</p>
+<h3>三、SaaS行业资本和经营周期</h3>
+<p>SaaS和本地部署软件最大的不同，在于前期投入带来的盈利节奏差异。本地部署软件就是一堆代码，没有硬件成本，能够搓出来实现功能就可以拿去卖了。运气好的话，一两年就能实现盈亏平衡。</p>
+<p>但SaaS有很大不同。云端多租户架构不仅有硬件投入，对于高并发要求高得多。具体技术细节不展开，因为我也不太懂。去看看SaaS鼻祖Salesforce的盈利节奏，就知道这个飞轮有多难转起来了：1998年创立，真正实现稳定盈利，是在2016年以后。见下图：</p>
+<p><strong>【图 H】Salesforce 营业收入 / 净利润 / 净利率（累计）— 图上显式数值标签</strong></p>
+<table>
+<thead>
+<tr>
+<th>序列</th>
+<th>图上显式数值标签（按从左至右顺序照录）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>营业收入（累计）</td>
+<td>2,240.90万美元、1.76亿美元、4.97亿美元、10.77亿美元、16.57亿美元、30.50亿美元、53.74亿美元、63.74亿美元、83.92亿美元、104.80亿美元、132.82亿美元、170.98亿美元、212.52亿美元、264.92亿美元、313.52亿美元、348.57亿美元、415.25亿美元、224.78亿美元</td>
+</tr>
+<tr>
+<td>净利润（累计）</td>
+<td>−2,860.90万美元、−1,157.20万美元、−2.63亿美元、1.80亿美元、11.10亿美元、14.44亿美元、40.72亿美元、41.36亿美元、61.97亿美元</td>
+</tr>
+<tr>
+<td>净利率（累计）</td>
+<td>−19.05%、3.66%、9.19%、0.10%、4.03%、4.21%、−0.51%、−8.87%、−4.89%、2.14%、8.36%、0.74%、19.16%、5.45%、11.87%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：横轴为财年刻度（02-01、04-01、07-01、10-01、13-01、16-01、19-01、22-01、25-01 年报，末点 26-07），<strong>刻度数少于数据点数，标签与柱位非一一对应，逐值年份归属待核</strong>；末点 224.78亿美元疑为半年 / 滚动口径，与 415.25亿美元不可直接比。早期净利率在正负之间反复（−19.05% → 3.66% → 9.19% → … → −8.87% → −4.89%），后段升至 8.36%–19.16%，<strong>方向上支持正文「2016 年以后才稳定盈利」</strong>，但<strong>不能由本图单独证成该年份</strong>。原图水印 <code>理杏仁 lixinger.com</code>，第三方数据图，非公司财报原文。</p>
+</blockquote>
+<p>Salesforce不是孤例，美股的workday、Hubspot、Intuit，甚至大牛股Palantir也是走过了一条“一开始亏成狗，后面才开始稳定赚钱”的路。</p>
+<p>港股这边，北森最早做人力测评的，2014年前后开始转型做HCM SaaS，亏了十几年，今年终于能够实现盈利了。</p>
+<p>聚水潭2014年创立以来，一直亏到2024年才实现盈利转正。</p>
+<p>畅捷通2015年开始云端转型，要不是传统本地部署软件业务撑着，SaaS业务要真正实现盈利，也要等到8年后的2023年了。</p>
+<p>金蝶的云端转型也是开始于2014年，因为有传统软件业务撑着，2014~2019年没亏。但真正激进的让客户上云的阵痛期发生在2020以后，到2024年合计亏了15.9亿，2025年才开始扭亏为盈。</p>
+<p>A股这边，用友大概是2018年开始云端转型的，真正激进转型是2023年，至今合计亏了56.2亿（当中有部分是因为接了超大型央国企定制化项目）。</p>
+<p>所以，SaaS是一门投入期超长、盈利可能遥遥无期的慢生意。我甚至怀疑“中国企业不愿意用SaaS软件”，很大一部分原因是“中国没有好的SaaS软件供应”，因为SaaS生意实在是太难做了。</p>
+<p>动辄8~10年的超长投入期，不仅考验创始团队的耐心，而且考验公司的现金流。对于一家初创公司，现金流从哪里来呢？答案只有一个：投资人。</p>
+<p>中国经历了两轮SaaS创业和投资热潮：一次是2014~2015，一次是2019~2021。两次热潮之后，留下一堆靠融资勉强活到现在的SaaS公司，和一堆一听SaaS就PTSD的投资人。</p>
+<p>下图是吴昊老师在《SaaS创业路线图 2.0》中总结的中国SaaS行业的Gartner热度曲线图：</p>
+<p><strong>【图 I】中国 SaaS 的 Gartner 热度曲线（结构转写，无数值数据）</strong></p>
+<table>
+<thead>
+<tr>
+<th>阶段（横轴）</th>
+<th>年份标记（曲线上的点）</th>
+<th>图中标注的投资人关注点 / 经营动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>萌芽期</td>
+<td>2013</td>
+<td>投资人看重：经营收入；SLG-强力扩张销售团队</td>
+</tr>
+<tr>
+<td>膨胀期</td>
+<td>2016</td>
+<td>投资人看重：ARR；加强产品、不做多年单</td>
+</tr>
+<tr>
+<td>泡沫破裂低谷期</td>
+<td>2017、2018（谷底）、2019</td>
+<td>（原图此处无独立标注，谷底 2018 与爬升 2019 落在同一段）</td>
+</tr>
+<tr>
+<td>爬升期</td>
+<td>2020</td>
+<td>投资人看重：NDR；建设客户成功体系</td>
+</tr>
+<tr>
+<td>膨胀期 II</td>
+<td>2021、2022、2023、2024、2025</td>
+<td>投资人看重：单位经济；精细化经营</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：本图为<strong>示意 / 流程图，无坐标数值</strong>，按「结构转写」处理，不生成数值表；图中「（中国SaaS元年）」标注位于萌芽期→膨胀期之间，年份标记照录。纵轴标签为「期望 / 产品营销服务能力」，横轴为「时间」。来源：吴昊《SaaS创业路线图 2.0》（作者转引，<strong>本库未收藏该书，未核原文</strong>）。</p>
+</blockquote>
+<p>以下是2014~2024年十年间，SaaS行业全球和中国风险投资融资情况：</p>
+<p><strong>【图 J】全球 SaaS 行业风险投资融资情况（2014–2024）</strong></p>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>融资总额（十亿美元）</th>
+<th>交易数量（笔）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2014</td>
+<td>23.0</td>
+<td>3,146</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>24.9</td>
+<td>3,254</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>23.1</td>
+<td>3,158</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>24.8</td>
+<td>3,240</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>36.4</td>
+<td>3,592</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>44.4</td>
+<td>3,861</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>47.3</td>
+<td>4,013</td>
+</tr>
+<tr>
+<td>2021</td>
+<td><strong>126.9</strong></td>
+<td>5,782（标签被柱顶数字遮挡，待核）</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>75.4</td>
+<td>5,311</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>59.9</td>
+<td>4,170</td>
+</tr>
+<tr>
+<td>2024</td>
+<td><strong>72.8</strong></td>
+<td>3,481</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：原图注明数据来源 <strong>PitchBook-NVCA Venture Monitor</strong>；2021 柱为红色并附批注「2021 融资高峰（疫情+数字化+低利率）」。正文「2021 年那个红色的柱子有多耀眼，2023 年那个灰色的柱子就有多暗淡」与 126.9 → 59.9 吻合；但 2024 回升至 72.8，<strong>「资本出清」在 2024 已非单调向下</strong>，引用时勿省略。左轴为融资总额（十亿美元）、右轴为交易数量（笔），双轴勿混读。2021 交易数量标签与 126.9 重叠，放大后读作 5,782，<strong>待核</strong>。</p>
+</blockquote>
+<p><strong>【图 K】中国企业级 SaaS 行业融资情况（2014–2023）</strong></p>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>融资金额（亿元）</th>
+<th>融资事件数（起）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2014</td>
+<td>37</td>
+<td>117</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>108</td>
+<td>289</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>132</td>
+<td>350</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>106</td>
+<td>286</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>238</td>
+<td>248</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>187 / 189（两标签重叠，归属待核）</td>
+<td>189 / 187（两标签重叠，归属待核）</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>200</td>
+<td>202</td>
+</tr>
+<tr>
+<td>2021</td>
+<td><strong>443</strong>（批注：峰值 442.98 亿元）</td>
+<td>298（被红柱遮挡，待核）</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>182</td>
+<td>183</td>
+</tr>
+<tr>
+<td>2023</td>
+<td><strong>65</strong>（批注：65.19 亿元，较峰值 −85%）</td>
+<td>（原图未标注清晰值）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：原图注明数据来源「中国信息通信研究院云计算与大数据研究所《中国企业级SaaS产业发展研究报告（2024年）》，原始数据来自 IT 桔子」，口径注记为「中国企业 SaaS（标准化、订阅制、公有云部署），不含泛企业服务 / IT 服务 / 硬件」。左轴为融资金额（亿元人民币）、右轴为融资事件数（起），双轴勿混读。⚠️ 2019 年柱值与线值两个标签上下重叠（可辨数字约 186–189）、2021 事件数标签被红色柱遮挡（约 298）、2023 事件数无可辨标签，均标「待核」，<strong>不硬凑</strong>；2014 与 2023 柱为灰色（与红色 2021 峰值柱区分），非数据缺失。</p>
+</blockquote>
+<p>图中2021年那个红色的柱子有多耀眼，2023年那个灰色的柱子就有多暗淡。</p>
+<p>所以，当下整个SaaS行业处于资本“闻SaaS而色变”的资本出清周期。没有了资本的输血，行业里很多在盈亏线附近苦苦挣扎的中尾部企业，无法实现AI转型，而下游用户的需求也基本是“没有AI根本批不了预算”。双重夹击之下，行业的过剩产能也在出清中。</p>
+<p>再看看北森、畅捷通、金蝶、聚水潭的财报，就会发现还处于这些活下来的幸存者们扭亏为盈、经营杠杆快速释放的经营周期。</p>
+<p>资本/产能出清周期+龙头利润释放的经营周期，双期叠加。向下的空间有限，向上的空间巨大，一次明显的非对称投资机会。</p>
+<h3>四、企业的估值处于低位</h3>
+<p>如果说双期叠加还不够的话，再来看看企业的估值：</p>
+<p>畅捷通，现在市值14亿，用友旗下做小微企业SaaS的，今年估计能赚1个亿。大股东用友SaaS转型缺钱，100%分红。按照每年15%左右的营收增长，加上经营杠杆，如果未来几年的利润全分，可能几年就能把公司买下来。</p>
+<p>北森当下19亿市值，账上16亿现金，11亿净资产。接下来15%左右的营收增速，今年能够挣差不多1.0亿，经营杠杆释放之下，未来也是几年时间就能买下公司。但它因为历史上都在亏钱，所以在填坑之前不分红，但公司有回购，今年已经回购了9500万港币。</p>
+<p>明源云当下市值11.4亿，账上现金超35亿，净资产41亿，过去三年每年合计分红5.8亿港币，三年合计回购3.35亿港币。</p>
+<p>聚水潭当下市值44亿，今年Non-GAAP利润估计4~4.5亿。由于公司刚上市1年，分红回购如何，还待验证。</p>
+<p>金蝶当下市值263亿，今年Non-GAAP利润估计5.6亿，OCF 14亿。不算便宜，但流动性最好。</p>
+<blockquote>
+<p>校验（入库注）：本节<strong>全部数字均未在原文注明币种、估值时点与 Non-GAAP 定义</strong>；「今年估计」「估计」为作者预测而非已实现数据。本库 <code>data/db/</code> 未收录这 5 只标的，<strong>暂无法交叉验证</strong>，引用前须回各公司年报 / 中报核实。</p>
+</blockquote>
+<h3>五、总结及风险提示</h3>
+<p>估值便宜并不等于就能买，港股中小公司有很多坑，要注意识别。本文仅为记录个人投资思路梳理，上面的个股分析仅为举例，不是为了荐股。</p>
+<p>具体到我个人身上，经过这大半年投资体系的迭代，也不会再仅仅因为便宜，就着急忙慌的一下子把所有仓位打进去。</p>
+<p>双期叠加+低估值+不错的股息回报+无人问津的行业，只能说向下空间很有限是确定性很高的。但巨大的向上空间能否兑现、什么时候兑现，需要等到一个明确信号出现。</p>
+<p>应然≠实然。不把应然当实然，可能是对我过去体系打的最大的补丁。</p>
+<hr />
+<h2>图表索引（原图 CDN 回溯链接）</h2>
+<blockquote>
+<p><code>mmbiz.qpic.cn</code> 有 Referer 防盗链，<strong>以下链接仅作人工回溯入口</strong>（浏览器地址栏直接打开或在公众号原文内查看），不要在 Markdown 里内嵌 <code>![]()</code>；原图副本按 2026-09-20 约定<strong>不落盘</strong>，转写为表格即完成留证。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>图号</th>
+<th>内容</th>
+<th>原图链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图 A</td>
+<td>A 股 3 家营收（用友/广联达/鼎捷）</td>
+<td>https://mmbiz.qpic.cn/mmbiz_png/zgZ4D9nwqgHTB1sfNVCxh0ew5hVD1n1CyAPK0VuJPQksn3kSPkvbD0rxVicf7ibRDlXEPLhIzAcHzxkTMKibLIOnN9jDqfnrx8n7lAeOPIf4Aw/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 B</td>
+<td>H 股 2 家营收（北森/聚水潭）</td>
+<td>https://mmbiz.qpic.cn/mmbiz_png/zgZ4D9nwqgHicibUocr7Yh9FPUz1HrZwfn3jwAbovzZ78SDY1IgYCjoHlfxALqgLNSlygLL0cR8GllYPRWRNcnkDaBkPvKUAjThC8lpM3Ac7Q/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 C</td>
+<td>H 股 3 家营收（金蝶/畅捷通/明源云）</td>
+<td>https://mmbiz.qpic.cn/sz_mmbiz_png/zgZ4D9nwqgHbqbVm92FBbd8kYkvwjHjMURq1mnskher8qVYyialKsF4sFx70rx1xIsYbscaU5DQ9icUbpMaGV18NjMgiaibvZrOUlyyumPxczzE/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 D</td>
+<td>北森 HCM SaaS / 专业服务占比</td>
+<td>https://mmbiz.qpic.cn/sz_mmbiz_png/zgZ4D9nwqgFe761olash1uAMyzXH4YAzlh0dcCicGgeQLfwHSSgfDq9Zml86NUyibajVoF8NJ7V8MEVpsEO23hJ5zJecjWuUw5YDyVp8YAJbk/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 E</td>
+<td>聚水潭营收构成</td>
+<td>https://mmbiz.qpic.cn/sz_mmbiz_png/zgZ4D9nwqgEEw4dtBguU3SyFspjpa4xd3icMnra3ozuMsQjvr6jNtjkHwZ0BI0TiaPia6vcv9Q4s1xzGXL6mWhBpZjfubZxuMCLQu4g3q82pnU/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 F</td>
+<td>金蝶 SaaS 收入及 ARR</td>
+<td>https://mmbiz.qpic.cn/mmbiz_png/zgZ4D9nwqgG5VEAG2A6iaauq8LiaqvvL3ztxrtvr0sia69Mbn2XBz2dOpKAMTGgISiauLibkYg5WxHwoIfQ2kLgcjl7ScTxcZHFvKyFcG6RNUIVc/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 G</td>
+<td>畅捷通营收构成</td>
+<td>https://mmbiz.qpic.cn/sz_mmbiz_png/zgZ4D9nwqgHBsP3lfQCXLPPcrKrJdpCxoENJKBWyYMXVbic9R395gITNkTIaBzv2CqcVXibUq2N8l5dPv77cdSFqfNW1PoRvXPzH0kpvCT43o/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 H</td>
+<td>Salesforce 营收/净利润/净利率</td>
+<td>https://mmbiz.qpic.cn/sz_mmbiz_png/zgZ4D9nwqgEC9dqnq2zLwDlM0ibI0ib8QWfFaDnG67s5wZiaOLCZpXfXIqCM0NXvnTuKPnCC28UWpJtPILPFWlebzaLcXic0yp2Q97BgGhgn0hY/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 I</td>
+<td>中国 SaaS 的 Gartner 热度曲线</td>
+<td>https://mmbiz.qpic.cn/sz_mmbiz_png/zgZ4D9nwqgGibNT6AnhcZibYzarKlQZDxgfW69FaY6DwxfEqvTUH3aRA3ekmkmeD5FlollhYYXeHlwOd57Yo555PzSjOibX6sOnMUzDOPvzKWA/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 J</td>
+<td>全球 SaaS 风投融资 2014–2024</td>
+<td>https://mmbiz.qpic.cn/mmbiz_png/zgZ4D9nwqgFTOsPmS2f12miaRCsV3coe9x4W8oKsjxPy2mQyoGZuy3H3NhR9RjBuvOqKNCexyvNdVz9EVuFFYdXmSKnicDJ3Fo96J4l6KBtQM/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+<tr>
+<td>图 K</td>
+<td>中国企业级 SaaS 融资 2014–2023</td>
+<td>https://mmbiz.qpic.cn/sz_mmbiz_png/zgZ4D9nwqgHBgJsSdfhbw6j2MKWYFzicWsiattw5dhQx9qadwofxdJyRWNH0JnAO7QUiblcQcxGTOBWRk49hGFe0QV1zMSENib7OuzpdRhLMGAQ/640?wx_fmt=png&amp;from=appmsg</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>入库备注</h2>
+<ol>
+<li><strong>原文完整性</strong>：<code>web_fetch</code> 取回全文后，仅剔除微信阅读器 UI 文案（「在小说阅读器读本章」「去阅读」「关闭」「微信扫一扫」「预览时标签不可点」「喜欢作者」等），文章正文五节、开头引言、原文内链、加粗强调、编号列表<strong>逐字照录未改写</strong>；页面元信息「作者提示: 个人观点，仅供参考」「修改于2026年11月16日」「AI应用 · 目录 / #AI应用」「上一篇 企业数字系统建设就像盖房子，但中美工地不一样」并入头部元数据与备注，未混入正文。</li>
+<li><strong>疑误照录未改</strong>：§一「除用友外，其余5家的<strong>营营收</strong>整体的趋势」；§二「SaaS 在<strong>网</strong>中大型企业渗透」（疑为「在往」）；§二「净利率已经<strong>取到</strong>17.35%」（疑为「达到」）；§二「替客户<strong>按照</strong>软件」（疑为「安装」）；§二「用友<strong>中</strong>最近的交流中」（疑为衍字）。均按原文保留。</li>
+<li><strong>图表处理</strong>：按 <code>research-ingest</code> 第五节，本轮为<strong>首轮入库同步复原</strong>（非补录）。curl + UA 抓 HTML → 反转义 <code>\x22</code> 后取 <code>js_content</code> 内 <code>data-src</code> → <strong>11 张去重配图</strong>；下载后先整体浏览、再左右切分放大 2 倍、对重叠标签区域局部放大 3 倍逐格核对。图 F 初读把黄线 2026H1 误作 39.5%，放大后确认为 <strong>55.9%</strong>（与正文吻合），已按放大结果定稿——此即第五节「先放大校对」要求的必要性。原图副本与 HTML 临时文件<strong>不留在库内</strong>。</li>
+<li><strong>口径警示</strong>：图 A/B/C/H 的第三方营收图存在标签跨柱、财年混排、单位混用（亿元 / 万港币 / 亿美元 / 万美元），表中只列可明确归属的显式标签，<strong>未标注年份不反推、不目测</strong>，统一标「待核」；这四张图在原文中只支撑定性趋势，不可作为精确财务序列引用。</li>
+<li><strong>与本库既有资料的关系</strong>：同作者 2026-09-24《大模型吞噬软件：是叙事还是事实？》第 4、5 条已提出「中国 SaaS 两轮融资热潮后供给出清」「订阅制转 token 消耗」；本文是该线索的<strong>数据化展开</strong>，但<strong>未提供 NDR / 复购率</strong>，而本库 <code>research/AI软件/AI软件名单-按吞噬顺序筛选.md</code> §一、§七第 2 条已把 NDR 定为主证据且记录「A/H 股全池不可得」——<strong>本文不能填补该证据缺口</strong>。</li>
+<li><strong>未做的事</strong>：按用户 2026-09-24「不需要创建概念页，没啥用」约定（见 <code>research/log.md</code> 2026-11-12 条），本次<strong>只入 raw</strong>，未建概念页、未在 <code>research/index.md</code> 增行、未重建 <code>view/</code> 生成物、未改动 <code>research/AI软件/</code> 名单池。</li>
+</ol>
+</div><div class="backrow"><a href="../index.html#dir=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91">← 返回 软件开发</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../raw/research/软件开发/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
