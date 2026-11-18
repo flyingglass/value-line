@@ -2,7 +2,10 @@
 generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
 
 页面结构与交互：
-    index.html                               首页（白马 / 本地 / 疯狂的里海 / 通用 四个分类 tab + 搜索）
+    index.html                               首页（能力圈 tab + 搜索）
+                                              白马 / 消费 两个能力圈内按五个具体组名分节：
+                                              消费 / 医疗 / 周期 / 制造 / 科技；申万二级行业作卡片小标签
+                                              其余 tab（AI软件 / 感悟 / 本地 / 疯狂的里海 / 知识库）保持原结构
     view/stocks/<标的>/index.html            标的组页：文件夹标签(跟踪/经营/…/概览/原始资料)，
                                              点击标签在当前页切换面板，不跳转
     view/stocks/<标的>/<目录…>/<文章>.html    独立文章阅读页
@@ -16,9 +19,12 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
     · 每篇 md 仍生成独立阅读页，正文在生成期用 markdown-it-py 预渲染为 HTML 内嵌
       （不依赖任何 CDN / 联网，离线双击即看），[[页面名]] 解析为站内链接
     · 知识库整组页与标的/案例组页同构：目录 当 tab，首页只保留标题+篇数 chip
-    · 首页一级分类与 research/ 下一级目录对齐（白马/本地/疯狂的里海/感悟/通用），
+    · 首页一级分类与 research/ 下一级目录对齐（白马/消费/AI软件/感悟/本地/疯狂的里海/知识库），
       通用的内部分类与 raw/research 下 书籍 / 投资 / articles 一一对应，
       tab 点击就地切换面板；搜索跨 tab 过滤并自动跳到第一个有命中的分类
+    · 白马 / 消费 是「能力圈」，圈内按五个具体组名（消费/医疗/周期/制造/科技）分节，
+      见 CIRCLE_TABS / CIRCLE_GROUPS / STOCK_CIRCLE_GROUP；申万二级行业作卡片小标签，
+      AI软件 及非标的 tab 不参与
 
 运行：
     .venv\\Scripts\\python scripts\\generate_wiki_index.py
@@ -123,6 +129,67 @@ CONTAINER_DIRS = ('白马', '消费', 'AI软件')
 # 标的路径由 raw/research/<code>/ 变为 raw/research/<行业>/<code>/。
 # 解析时跳过行业层，组 id 仍为 <code>，view/ 输出结构不变。
 RAW_INDUSTRY_DIRS = ('消费', '周期', '医疗', '制造', '科技')
+
+# ---------------------------------------------------------------------------
+# 能力圈分组（2026-11-18 用户决议）
+# 「白马 21 / 消费 6 这两个为能力圈，然后能力圈再去按丘栋荣的划分进行分类」
+# 层级只有两层：能力圈（= 白马 / 消费 tab）→ 五个具体组名
+# （消费 / 医疗 / 周期 / 制造 / 科技）。分组标题一律用具体组名本身，
+# 不加任何笼统前缀；申万二级行业只作卡片小标签，不单独成层。
+# AI软件 是具体行业，不动；感悟 / 本地 / 疯狂的里海 / 知识库 等非标的 tab 一律不动。
+# ---------------------------------------------------------------------------
+
+# 采用能力圈分组的 tab
+CIRCLE_TABS = ('白马', '消费')
+
+# 能力圈内的五个具体组名及展示顺序
+CIRCLE_GROUPS = ('消费', '医疗', '周期', '制造', '科技')
+
+# 标的 → 具体组名。覆盖白马 21 + 消费 6 = 27 个标的；
+# 未登记者归入「未分组」，避免新增标的静默漏卡片。
+# 归属依据：2026-11-16 用户拍板决议（见 research/log.md 该日条目）+ 本次 2 处补拟。
+STOCK_CIRCLE_GROUP = {
+    # --- 白马 tab（21）---
+    '腾讯控股': '科技', '拼多多': '科技', '阿里巴巴': '科技', 'TME': '科技',
+    '润泽科技': '科技', 'AMZN': '科技', 'GOOGL': '科技', 'MSFT': '科技', '心动': '科技',
+    '云铝股份': '周期', '神火股份': '周期', '紫金矿业': '周期',
+    '山东赫达': '周期', '建滔积层板': '周期', '建滔集团': '周期',
+    'TCL中环': '制造', 'TCL科技': '制造', '京东方': '制造',
+    '宁德时代': '制造', '中芯国际': '制造',
+    '人福医药': '医疗',
+    # --- 消费 tab（6）---
+    # 既有决议：贵州茅台 / 泡泡玛特 / 名创优品 → 消费；安琪酵母 → 周期（用户拍板）
+    '贵州茅台': '消费', '泡泡玛特': '消费', '名创优品': '消费',
+    '安琪酵母': '周期',
+    # 本次补拟（2026-11-18，按业务属性，非用户拍板，可调）：
+    # 时代天使 = 隐形正畸（医疗器械/服务）→ 医疗；分众传媒 = 生活圈广告、下游为消费品牌 → 消费
+    '时代天使': '医疗', '分众传媒': '消费',
+}
+
+# 标的 → 申万《行业分类标准 2021 版》二级行业名（卡片小标签，不再单独成层）。
+# 出处（均已落地本地，可复核）：
+#   data/sw_industry/StockClassifyUse_stock_2026-11-11.xls  官方个股行业分类变动历史（按「计入日期」取最新一条）
+#   data/sw_industry/SwClassCode_2021.xls                   官方 6 位分类代码 → 一/二/三级行业名称对照
+# 二级行业码 = 三级码前 4 位 + '00'（例 630501 → 630500 光伏设备）。
+# A+H 双重上市标的用其 A 股代码查询；纯港股/美股不在该 A 股表覆盖范围内
+# （该表 5937 只全为 6 位 A 股代码），故留空 → 卡片不显示申万标签，不臆造行业名。
+STOCK_SW2 = {
+    'TCL中环': '光伏设备',     # 002129 → 630501
+    'TCL科技': '光学光电子',   # 000100 → 270301
+    '京东方': '光学光电子',     # 000725 → 270301
+    '人福医药': '化学制药',     # 600079 → 370102
+    '宁德时代': '电池',         # 300750 → 630701
+    '山东赫达': '化学制品',     # 002810 → 220309
+    '云铝股份': '工业金属',     # 000807 → 240301
+    '神火股份': '工业金属',     # 000933 → 240301
+    '紫金矿业': '工业金属',     # 601899 → 240302（A 股代码）
+    '中芯国际': '半导体',       # 688981 → 270106（A 股代码）
+    '润泽科技': '通信服务',     # 300442 → 730104
+    # --- 消费 tab（3 个 A 股；港股 泡泡玛特/名创优品/时代天使 无 A 股分类）---
+    '贵州茅台': '白酒Ⅱ',       # 600519 → 340501
+    '安琪酵母': '调味发酵品Ⅱ', # 600298 → 340901
+    '分众传媒': '广告营销',     # 002027 → 720502
+}
 
 # 组顶层文件夹（标签）的展示顺序；未列出的按名称字典序；概览 紧随其后；原始资料始终垫底
 GROUP_DIR_ORDER = {
@@ -490,6 +557,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC
 .filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
 .section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
 .section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
 .grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
 /* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
 .secstocks{display:flex;flex-direction:column;gap:18px}
@@ -1013,14 +1085,17 @@ def generate_general(general):
 # 生成：首页
 # ---------------------------------------------------------------------------
 
-def home_section_blocks(pairs, from_file, scope):
+def home_section_blocks(pairs, from_file, scope, sw2_map=None):
     """pairs: [(gid, info)] 已排好序。scope 决定 stocks/cases 分组链接。
-    首页块只保留 名称+标签（无"进入"、无文件夹 chip），一行可放 4-5 个标的。"""
+    首页块只保留 名称+标签（无"进入"、无文件夹 chip），一行可放 4-5 个标的。
+    sw2_map: {gid: 申万二级行业名}，仅能力圈分组传入；有值时在卡片上追加一个小标签。
+    其余 tab 不传，卡片渲染保持原样。"""
     html = ''
     for gid, info in pairs:
         group_idx = os.path.join(VIEW_DIR, scope, gid, 'index.html')
+        sw2 = (sw2_map or {}).get(gid)
         data = (info.get('name', gid) + ' ' + info.get('industry', '') + ' ' + gid + ' ' +
-                ' '.join(a['title'] for a in info['articles'])).lower()
+                (sw2 or '') + ' ' + ' '.join(a['title'] for a in info['articles'])).lower()
         html += '<div class="grp" data-search="' + esc(data) + '">'
         html += '<div class="grp-hd"><a class="name" href="' + esc(posix_rel(from_file, group_idx)) + '">' + esc(info.get('name', gid)) + '</a>'
         if scope == 'cases':
@@ -1028,8 +1103,15 @@ def home_section_blocks(pairs, from_file, scope):
         else:
             ind = info.get('industry', '其他')
             style = INDUSTRY_STYLE.get(ind, INDUSTRY_STYLE_DEFAULT)
-            html += ('<span class="pill industry" style="' + style + '">' +
-                     esc(ind) + '</span>')
+            ind_pill = ('<span class="pill industry" style="' + style + '">' +
+                        esc(ind) + '</span>')
+            if sw2:
+                # 申万二级行业退居卡片小标签，与原行业标签并排一行
+                html += ('<div class="pillrow">' + ind_pill +
+                         '<span class="pill sw2" title="申万 2021 二级行业">' +
+                         esc(sw2) + '</span></div>')
+            else:
+                html += ind_pill
         html += '</div>'
         html += '</div>'
     return html
@@ -1113,6 +1195,51 @@ def home_section_container(container_groups, raw_only, from_file):
                  '</div>')
     return html
 
+def home_section_circle(container_groups, raw_only, from_file):
+    """能力圈分组（2026-11-18）：tab 内只按五个具体组名分节，卡片直接在组名下铺开。
+
+    用于 CIRCLE_TABS（白马 / 消费）；AI软件 及非标的 tab 仍走
+    home_section_container 的原按行业分行逻辑，不受影响。
+
+    层级只有两层：能力圈（tab）→ 具体组名（消费 / 医疗 / 周期 / 制造 / 科技）。
+    申万二级行业不再单独成层，只作为卡片小标签（STOCK_SW2）。
+    """
+    pairs = list(container_groups.items())
+    raw_gids = set(raw_only or {})
+    if raw_only:
+        pairs += list(raw_only.items())
+
+    # 具体组名 -> [(gid, info)]
+    buckets = {}
+    for gid, info in pairs:
+        if info.get('is_list'):
+            continue
+        grp = STOCK_CIRCLE_GROUP.get(gid, '未分组')
+        buckets.setdefault(grp, []).append((gid, info))
+
+    sw2_map = {gid: sw2 for gid, sw2 in STOCK_SW2.items()}
+    grp_order = list(CIRCLE_GROUPS) + ['未分组']
+    html = ''
+    for grp in grp_order:
+        arts = sorted(buckets.get(grp, []), key=lambda x: x[0])
+        if not arts:
+            continue
+        n_raw = sum(1 for gid, _ in arts if gid in raw_gids)
+        extra = (' <span class="count">（其中 ' + str(n_raw) + ' 个仅有原始资料）</span>') if n_raw else ''
+        html += ('<div class="circlegroup"><div class="section-title">' + esc(grp) +
+                 ' <span class="count">' + str(len(arts)) + ' 个标的</span>' + extra + '</div>')
+        html += ('<div class="secgrid">' +
+                 home_section_blocks(arts, from_file, 'stocks', sw2_map) + '</div>')
+        html += '</div>'
+
+    lists = sorted((gid, info) for gid, info in pairs if info.get('is_list'))
+    if lists:
+        html += ('<div class="subhead">名单池 <span class="count">' +
+                 str(len(lists)) + ' 个</span></div>')
+        html += ('<div class="secgrid">' +
+                 home_section_blocks(lists, from_file, 'stocks') + '</div>')
+    return html
+
 def home_section_general(general, from_file):
     """通用区每个目录分类（书籍/投资/文章）单独一张卡片（不再整体显示大类 + 总篇数的大标题块）。"""
     if not general:
@@ -1164,6 +1291,11 @@ function doSearch(){
       sg.querySelectorAll('.grp').forEach(function(c){if(c.style.display!=='none')any=true;});
       sg.style.display=any?'':'none';
     });
+    p.querySelectorAll('.circlegroup').forEach(function(g){
+      var any=false;
+      g.querySelectorAll('.grp').forEach(function(c){if(c.style.display!=='none')any=true;});
+      g.style.display=any?'':'none';
+    });
     var dir=p.getAttribute('data-dir');
     counts[dir]=n;order.push(dir);total+=n;
     btns.forEach(function(b){if(b.getAttribute('data-dir')===dir){var c=b.querySelector('.n');if(c)c.textContent=n;}});
@@ -1185,10 +1317,15 @@ def build_home(groups, cases, general):
 
     panels = []      # [(tab 名, 卡片数, panel 内层 HTML)]
     for i, cdir in enumerate(CONTAINER_DIRS):
-        inner = ('<div class="secstocks">' +
-                 home_section_container(by_container.get(cdir, {}),
-                                        raw_only if i == 0 else None, OUT_HOME) +
-                 '</div>')
+        if cdir in CIRCLE_TABS:
+            # 白马 / 消费：能力圈内按五个具体组名分节，申万二级行业只作卡片小标签
+            # 「仅原始资料」的组（AMZN/GOOGL/MSFT/中芯国际/心动）仍只并在白马 tab
+            extra = raw_only if cdir == '白马' else None
+            section = home_section_circle(by_container.get(cdir, {}), extra, OUT_HOME)
+        else:
+            # AI软件 是具体行业，保持原按行业分行逻辑，一行不动
+            section = home_section_container(by_container.get(cdir, {}), None, OUT_HOME)
+        inner = '<div class="secstocks">' + section + '</div>'
         panels.append((cdir, inner.count('class="grp"'), inner))
     for gid, info in sorted(cases.items()):
         inner = ('<div class="casegrid">' +
