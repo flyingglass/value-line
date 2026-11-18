@@ -2,9 +2,10 @@
 generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
 
 页面结构与交互：
-    index.html                               首页（能力圈 tab + 搜索）
-                                              白马 / 消费 两个能力圈内按五个具体组名分节：
-                                              消费 / 医疗 / 周期 / 制造 / 科技；申万二级行业作卡片小标签
+    index.html                               首页（一级分类 tab + 搜索）
+                                              白马 21 + 消费 6 两个容器合并为单一「能力圈」tab（27 个标的），
+                                              圈内按五个具体组名分节：消费 / 医疗 / 周期 / 制造 / 科技；
+                                              申万二级行业作卡片小标签
                                               其余 tab（AI软件 / 感悟 / 本地 / 疯狂的里海 / 知识库）保持原结构
     view/stocks/<标的>/index.html            标的组页：文件夹标签(跟踪/经营/…/概览/原始资料)，
                                              点击标签在当前页切换面板，不跳转
@@ -22,9 +23,9 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
     · 首页一级分类与 research/ 下一级目录对齐（白马/消费/AI软件/感悟/本地/疯狂的里海/知识库），
       通用的内部分类与 raw/research 下 书籍 / 投资 / articles 一一对应，
       tab 点击就地切换面板；搜索跨 tab 过滤并自动跳到第一个有命中的分类
-    · 白马 / 消费 是「能力圈」，圈内按五个具体组名（消费/医疗/周期/制造/科技）分节，
-      见 CIRCLE_TABS / CIRCLE_GROUPS / STOCK_CIRCLE_GROUP；申万二级行业作卡片小标签，
-      AI软件 及非标的 tab 不参与
+    · 白马 / 消费 合并为单一「能力圈」tab，圈内按五个具体组名（消费/医疗/周期/制造/科技）分节，
+      见 CIRCLE_TAB_NAME / CIRCLE_TABS / CIRCLE_GROUPS / STOCK_CIRCLE_GROUP；
+      申万二级行业作卡片小标签，AI软件 及非标的 tab 不参与
 
 运行：
     .venv\\Scripts\\python scripts\\generate_wiki_index.py
@@ -139,7 +140,8 @@ RAW_INDUSTRY_DIRS = ('消费', '周期', '医疗', '制造', '科技')
 # AI软件 是具体行业，不动；感悟 / 本地 / 疯狂的里海 / 知识库 等非标的 tab 一律不动。
 # ---------------------------------------------------------------------------
 
-# 采用能力圈分组的 tab
+# 能力圈：白马 / 消费 两个容器合并为同一个 tab（用户决议 2026-11-18）
+CIRCLE_TAB_NAME = '能力圈'
 CIRCLE_TABS = ('白马', '消费')
 
 # 能力圈内的五个具体组名及展示顺序
@@ -1312,19 +1314,23 @@ if(input){input.addEventListener('input',doSearch);input.addEventListener('keydo
 
 
 def build_home(groups, cases, general):
-    """首页：一级分类 tab（各标的容器 / 各专题 / 知识库）+ 分类内卡片。"""
+    """首页：一级分类 tab（能力圈 / AI软件 / 各专题 / 知识库）+ 分类内卡片。"""
     by_container, raw_only = split_home_groups(groups)
 
     panels = []      # [(tab 名, 卡片数, panel 内层 HTML)]
-    for i, cdir in enumerate(CONTAINER_DIRS):
+    # 白马 / 消费 两个容器合并为单一「能力圈」tab：27 个标的一起按五个具体组名分节，
+    # 「仅原始资料」的组（AMZN/GOOGL/MSFT/中芯国际/心动）也并入此处。
+    merged = {}
+    for cdir in CIRCLE_TABS:
+        merged.update(by_container.get(cdir, {}))
+    section = home_section_circle(merged, raw_only, OUT_HOME)
+    inner = '<div class="secstocks">' + section + '</div>'
+    panels.append((CIRCLE_TAB_NAME, inner.count('class="grp"'), inner))
+    # 其余容器（AI软件 是具体行业）保持原按行业分行逻辑，一行不动
+    for cdir in CONTAINER_DIRS:
         if cdir in CIRCLE_TABS:
-            # 白马 / 消费：能力圈内按五个具体组名分节，申万二级行业只作卡片小标签
-            # 「仅原始资料」的组（AMZN/GOOGL/MSFT/中芯国际/心动）仍只并在白马 tab
-            extra = raw_only if cdir == '白马' else None
-            section = home_section_circle(by_container.get(cdir, {}), extra, OUT_HOME)
-        else:
-            # AI软件 是具体行业，保持原按行业分行逻辑，一行不动
-            section = home_section_container(by_container.get(cdir, {}), None, OUT_HOME)
+            continue
+        section = home_section_container(by_container.get(cdir, {}), None, OUT_HOME)
         inner = '<div class="secstocks">' + section + '</div>'
         panels.append((cdir, inner.count('class="grp"'), inner))
     for gid, info in sorted(cases.items()):
