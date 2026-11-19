@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-11-19-投资感悟-亏钱的五个共性</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">感悟 · 投资思考</a> › <a href="2026-11-19-投资感悟-亏钱的五个共性.html">2026-11-19-投资感悟-亏钱的五个共性</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2026-11-19-投资感悟-亏钱的五个共性</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">research/感悟</span></div><div class="md" id="md"><h1>2026-11-19 投资感悟 · 亏钱的五个共性（鹿人哑士）</h1>
+<blockquote>
+<p>性质：外部观点收录（雪球个人经验谈，<strong>非本人原创</strong>、非研报、非公司披露）。<strong>事实 / 判断 / 存疑</strong>分开写，不把推测写成结论。<br />
+记录日期：2026-11-19<br />
+来源：雪球「鹿人哑士」（雪球星计划创作者），页面显示修改于 11-19 12:35<br />
+原文链接：<strong>待补</strong>（资料为截图，未含 URL；两次 web_search 未找到原帖）<br />
+关联：<a href="%E6%8A%95%E8%B5%84%E6%84%9F%E6%82%9F%E7%B4%A2%E5%BC%95.html">感悟/投资感悟索引</a> · <a href="../../knowledge/%E6%96%87%E7%AB%A0/2026-11-19-%E9%B9%BF%E4%BA%BA%E5%93%91%E5%A3%AB-%E4%BA%8F%E9%92%B1%E7%9A%84%E4%BA%94%E4%B8%AA%E5%85%B1%E6%80%A7.html">../../raw/research/articles/2026-11-19-鹿人哑士-亏钱的五个共性</a>（原文逐字转录） · <a href="2026-11-14-%E6%8A%95%E8%B5%84%E6%84%9F%E6%82%9F-AI%E5%AF%B9%E8%85%BE%E8%AE%AF%E5%86%85%E5%AE%B9%E4%BA%A7%E4%B8%9A%E7%9A%84%E5%BD%B1%E5%93%8D.html">感悟/2026-11-14-投资感悟-AI对腾讯内容产业的影响</a> · <a href="2026-10-23-%E6%8A%95%E8%B5%84%E6%84%9F%E6%82%9F-2444%E5%AE%9E%E6%96%BD%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9%E6%B7%B1%E7%A0%94.html">感悟/2026-10-23-投资感悟-2444实施路径与泡泡玛特深研</a></p>
+</blockquote>
+<hr />
+<h2>一、事实（有出处，原文照录）</h2>
+<p>出处：<a href="../../knowledge/%E6%96%87%E7%AB%A0/2026-11-19-%E9%B9%BF%E4%BA%BA%E5%93%91%E5%A3%AB-%E4%BA%8F%E9%92%B1%E7%9A%84%E4%BA%94%E4%B8%AA%E5%85%B1%E6%80%A7.html">../../raw/research/articles/2026-11-19-鹿人哑士-亏钱的五个共性</a>。作者自述素材为<strong>个人亏钱经历 + 对朋友和雪球球友的观察</strong>，非统计数据。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>共性</th>
+<th>原文关键句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>高预期 + 强假设 + 高位</strong></td>
+<td>「高预期、强假设，然后再叠加股价涨了很多倍的高位。稍微有一点点不利因素，风吹草动就是惨烈的踩踏。」</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>能力圈窄、持仓高相关</strong></td>
+<td>「能力圈特别窄，阶段性的聚焦于一个或若干个相关性极高的行业，有些甚至就一家公司。市场风格切换的时候，切不了，换不动，又不甘心空仓。」</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>扎堆正面战场</strong></td>
+<td>「选择的都是一些惨烈的正面战场，而不是一些无人问津的边缘角落。这个战场的资金、注意力、智力密度太高了，任何人相对于市场的超额认知优势都可能是错的。」</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>太想证明自己是对的</strong></td>
+<td>「当市场出现负面信号的时候，条件反射的不是去检查『如果它是对的该怎么办』，而是去反驳它。」</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>顺境后线性外推</strong></td>
+<td>「过去一段时间太顺，收益率太高。这时候理性的选择是相信均值回归，但本能上又控制不住自己线性外推。」</td>
+</tr>
+</tbody>
+</table>
+<p>作者结尾称这些现象「在去年的泡沫、今年的 AI 硬件和铜金铝等有色上面都能观察到」，自己「切身经历了一轮，又在旁边旁观了两轮」——<strong>均为个人观察，无标的、无时间、无数据</strong>。</p>
+<hr />
+<h2>二、判断（本人对照，非原文观点，可证伪）</h2>
+<ol>
+<li><strong>第 4 条与库内「可证伪清单」是同一件事的两面</strong>。原文描述的触发点是「负面信号出现时的第一反应」；<a href="2026-11-14-%E6%8A%95%E8%B5%84%E6%84%9F%E6%82%9F-AI%E5%AF%B9%E8%85%BE%E8%AE%AF%E5%86%85%E5%AE%B9%E4%BA%A7%E4%B8%9A%E7%9A%84%E5%BD%B1%E5%93%8D.html">感悟/2026-11-14-投资感悟-AI对腾讯内容产业的影响</a> §3.3 的做法是<strong>在建仓前就写下否定信号</strong>（如「内容量/毛利率/研发费用率三项财务量都不动 → 判定商业模式升维尚未发生」）。差别在于：前者靠临场自律，后者靠<strong>事前写死的判据</strong>把「反驳」变成「对照」。把「如果它是对的该怎么办」提前写成可复现的观察项，比要求自己届时冷静更可执行。</li>
+<li><strong>第 5 条对应「假设必须显式写出」</strong>。上引腾讯文 §4.1 把 26H1 +9.6% 直线外推，但同时标注「属显式假设、非公司指引」并给出估值压缩/增速腰斩的情景值；这正是把「本能线性外推」改造成「显式假设 + 反推缓冲」。判断：对抗线性外推不靠「相信均值回归」这句话，靠<strong>把外推写下来并问『若它错了，回报还剩多少』</strong>。</li>
+<li><strong>第 2、3 条与 2444 的「风险下限」同向</strong>。<a href="2026-10-23-%E6%8A%95%E8%B5%84%E6%84%9F%E6%82%9F-2444%E5%AE%9E%E6%96%BD%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%B3%A1%E6%B3%A1%E7%8E%9B%E7%89%B9%E6%B7%B1%E7%A0%94.html">感悟/2026-10-23-投资感悟-2444实施路径与泡泡玛特深研</a> §六 主张「不追求提前发现，等 IP 热度冷下来找下限、列清单」「风险权重优先」；原文说「超额认知优势在资金/注意力/智力密度太高的战场都可能是错的」。两者共同指向：<strong>拥挤度本身就是折价理由</strong>，在无人问津处找下限比在高密度战场证明自己更省力。</li>
+<li><strong>五条其实是一条链</strong>：1（高位+强假设）决定<strong>入场赔率差</strong>，2、3（窄+拥挤）决定<strong>没有退路</strong>，4（证实偏差）决定<strong>该退时不退</strong>，5（线性外推）决定<strong>顺境时主动加码</strong>。判断：单看任何一条都像常识，连起来才是亏钱的完整机制——<strong>前两条造出脆弱仓位，后两条在信号出现时锁死纠错</strong>。<strong>这是按时间顺序的发生链</strong>；§四 另按体系关卡顺序重排，两者互补（发生链讲「亏钱怎么发生」，关卡表讲「在哪一步拦得住」）。</li>
+<li><strong>本页的用法</strong>：当作<strong>建仓前/持仓中的自检清单</strong>，不当作选股规则。原文没有给出任何可量化阈值，若日后要落地为检查项，阈值必须另行有出处，不得从这五条里推数字。</li>
+</ol>
+<hr />
+<h2>三、用户对齐与重点补充（2026-11-19 当面讨论）</h2>
+<blockquote>
+<p>来源：用户逐条对齐第 1/2/3 条，并明确「<strong>第 2 条…市场风格变化和不愿意空仓，这个之前确实一直忽视了</strong>」。下文「用户理解」照录用户原话，「库内校准」为本人补充并标出处；<strong>不把补充写成用户原话</strong>。</p>
+</blockquote>
+<h3>3.1 第 1 条：周期位置（用户理解 → 校准）</h3>
+<ul>
+<li><strong>用户理解（原话）</strong>：「第1条，说的是周期的位置吧？」</li>
+<li><strong>库内校准（判断）</strong>：方向对，但原文是<strong>股价位置 × 预期位置双高</strong>，不只是景气周期位置——「高预期、强假设」是主观定价状态，「涨了很多倍的高位」是客观位置，两者叠加才产生踩踏。里海的位置纪律更细：既避顶部（<code>里海案例-涪陵榨菜</code> §6「中巴两坑」坑1＝较高位置买优质公司、被市场充分发现、线性外推业绩 → 杀估值 50 倍到十几倍），也避左侧半山腰（坑2），要「走出来的底」（<code>里海-2444投资体系</code> §三·底部）。简单论回避清单另有同构表述：「高估值 + 因子复杂 + 看不懂，若有风吹草动，还是跑吧」（《喜欢简单的企业》2020.5.2，见 <code>里海-简单论</code> §四）。</li>
+</ul>
+<h3>3.2 第 2 条：市场风格切换 + 不愿空仓【用户重点：此前一直忽视】</h3>
+<ul>
+<li><strong>用户理解（原话照录）</strong>：「第2条，提到的市场风格变换和空仓，以及对构建组合中的行业相关性的听深刻」；补充强调「<strong>目前看第2条的，市场风格变化和不愿意空仓，这个之前确实一直忽视了</strong>」。</li>
+<li><strong>性质</strong>：这是<strong>用户自述的盲区复盘</strong>（此前一直忽视），属「怎么想、怎么做、错在哪」，不是一般知识摘录。本页因此把第 2 条从「五条之一」提升为<strong>重点跟踪项</strong>。</li>
+<li><strong>库内校准（判断）</strong>：
+<ol>
+<li>原文第 2 条含两层：<strong>认知层</strong>（能力圈窄、聚焦高相关行业甚至一家）+ <strong>组合层</strong>（风格切换时「切不了、换不动、又不甘心空仓」）。用户强调的正是<strong>组合层</strong>。</li>
+<li><strong>关键区分：里海也主张能力圈窄，但「认知窄 ≠ 持仓窄」</strong>。里海的术是分仓 <strong>3–5 只、单只 ≤40%</strong>，且「<strong>满仓防踏空，分仓控风险</strong>」（<code>里海体系-总览</code> §五）——解法不是空仓，而是让持仓落在不同底部 / 不同变化逻辑上。<strong>同一行业买五只，看似分仓，实为一个方向的杠杆</strong>，风格一来全趴下。</li>
+<li>11-14 腾讯文 §4.5 的「断层线」是这条的实盘版：算力 / 电力 / AI 硬件同属一条 capex 断层线，加腾讯是<strong>放大而非分散</strong>；因无持仓数据，当时答「未知/待查」。→ 可执行检查动作：<strong>按「驱动因子」而非行业标签给持仓分组</strong>，看是否全压在同一条断层线上。</li>
+<li>「不甘心空仓」的机制（<strong>本人推演，里海无直接论空仓的原话</strong>）：卖出已知的（哪怕已变弱）换入未知的需要双重决策，空仓则等于承认「这段时间我的能力圈没有机会」。里海用「满仓 + 分仓 + 成本低」绕开这个心理关口——不是靠意志力接受空仓，而是<strong>预先不让仓位集中到必须靠空仓才能纠错的程度</strong>。</li>
+</ol>
+</li>
+<li><strong>落地检查（本人建议，阈值待另寻出处）</strong>：建仓前问三句——① 这只和现有持仓共享几个驱动因子？② 若风格切走，组合里还有没有别的在动？③ 我是在等机会，还是因为怕空仓而在凑仓位？</li>
+</ul>
+<h3>3.3 第 3 条：热门股与白马的分类（用户理解 → 校准）</h3>
+<ul>
+<li><strong>用户理解（原话）</strong>：「第3条，提到的是热门股，热门股确实想要超额收益比较难，类似里海的分类体系，对于白马就是有白马该用的体系」</li>
+<li><strong>库内校准（判断）</strong>：里海原话「我的体系是把风险放在第一位，这就决定了我<strong>不会去买当前高估值的热门股，只会提前价值发现</strong>」（2020 总结，<code>里海-2444投资体系</code> §九）；超额收益路径 B =「未来比现在好 <strong>＋ 好未被市场广泛看到</strong>」是<strong>合取</strong>，热门股缺后半。精确化用户的「白马有白马的体系」：里海<strong>不是不买白马</strong>，而是白马走「<strong>白马股杀业绩</strong>」模型（茅台 2018 / 分众 / 榨菜），回避的是「高位热门优质公司」（坑1）——<strong>同一只白马，杀完业绩的低位是机会，高位热门是坑；分类按位置 × 预期，不按公司好坏</strong>。原文「超额认知优势都可能是错的」对应弱者视角「看错了也亏不了几分钱」。</li>
+</ul>
+<h3>3.4 待续</h3>
+<p>第 4、5 条<strong>尚未由用户逐条对齐</strong>；§四 只作体系层面的关卡归属（本人判断），不代表用户已确认。</p>
+<hr />
+<h2>四、体系对接：五条共性 × 四道关（2026-11-19 用户对齐）</h2>
+<blockquote>
+<p>来源：用户提出的体系定位「<strong>以里海 2444 为骨干，戴斌资本周期、王文博弈市场与真钱、丘栋荣流动性/周期/风险管理作充实</strong>」，及本人校准后的<strong>分层版</strong>——不并列，按「流程 → 行业 → 公司 → 风险」四道关。<br />
+本节把五条共性逐条挂到关卡上：<strong>每条共性其实是某一道关失守</strong>。用户理解与本人校准分开，不把校准写成用户原话。<br />
+主要出处：<code>research/感悟/2026-11-02-投资感悟-读王文丘栋荣戴斌三篇访谈.md</code>（下称「11-02 页」）· <code>research/疯狂的里海/里海-2444投资体系.md</code> · <code>research/疯狂的里海/里海体系-总览.md</code></p>
+</blockquote>
+<h3>4.1 四道关（分层，不并列）</h3>
+<table>
+<thead>
+<tr>
+<th>关卡</th>
+<th>承担者</th>
+<th>回答的问题</th>
+<th>核心口径（库内出处）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一 · 流程</strong></td>
+<td>里海 2444</td>
+<td>能不能买、怎么买</td>
+<td>简单 · 底部 · 变化 · 分仓（3–5 只 / 单只 ≤40%）、弱者视角「看错了也亏不了几分钱」、赚预期差的钱（<code>里海-2444投资体系</code> §三、§十）</td>
+</tr>
+<tr>
+<td><strong>二 · 行业</strong></td>
+<td>戴斌</td>
+<td>行业在资本周期哪个位置</td>
+<td>四维象限（估值 / 资本开支 / 机构行为 / 上市公司对股票的行为）、资本流出端买入、「出首富 + 机构配满 + 暂停回购改配股」离场（11-02 页 §四）</td>
+</tr>
+<tr>
+<td><strong>三 · 公司</strong></td>
+<td>王文</td>
+<td>是不是真钱、出清没有</td>
+<td>多重博弈下认清弱者位置、四条铁律（低估值 · 高现金流 · 高分红 · 可持续）、「好到溢出来了，好到可以分钱给你了」的出清信号（11-02 页 §三）</td>
+</tr>
+<tr>
+<td><strong>四 · 风险</strong></td>
+<td>丘栋荣</td>
+<td>这个便宜是不是雷、补偿够不够</td>
+<td>基于不确定性定价 / 摊成概率分布 / 表达三档（不买·不看好·做空）；「低估值通常是雷」（11-02 页 §二）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么必须分层（冲突处理）</strong>：王文「<strong>有现金流就是馅饼</strong>」与丘栋荣「<strong>低估值通常是雷</strong>」对「便宜」的定义冲突，11-02 页「附：待答问题」第 2 条已记录。二者不是待裁决的分歧，而是<strong>第三关给出便宜、第四关证伪便宜</strong>的先后关系——第三关用真钱与出清筛出候选，第四关用概率分布与风险补偿决定承担哪一份；<strong>顺序不能颠倒，结论也不要求一致</strong>（同一标的可以过第三关、不过第四关）。把它们并列成四套选股法，冲突就永远消不掉；按关卡分层，冲突变成一道校验。</p>
+<h3>4.2 五条共性 = 四道关失守（判断，非四位作者观点）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>共性</th>
+<th>失守的关卡</th>
+<th>对应判据（库内出处）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>高预期强假设 + 高位 → 踩踏</td>
+<td><strong>一 · 底部</strong> / <strong>二 · 象限 3</strong> / <strong>三 · 位置摆错</strong></td>
+<td>里海「低位看价值，高位看图形」「底部是走出来的」（<code>里海体系-总览</code> §五）；戴斌象限 3「资本开支高点、利润创新高、融资配股与乐观并存、首富现象」（11-02 页 §四·2）；王文「位置首先要摆正」（§三·认知 1）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>能力圈窄 / 风格切换 / 不甘空仓【<strong>用户重点</strong>】</td>
+<td><strong>一 · 分仓</strong> / <strong>二 · 阴阳面</strong></td>
+<td>里海分仓 3–5 只 / ≤40%、「满仓防踏空，分仓控风险」（<code>里海体系-总览</code> §五）；戴斌「对于『阴面』的适当触角，会使得投资组合的波动下降」（11-02 页 §四·4）；检查动作＝按驱动因子而非行业标签给持仓分组</td>
+</tr>
+<tr>
+<td>3</td>
+<td>扎堆正面战场、超额认知优势可能是错的</td>
+<td><strong>一 · 变化 / 预期差</strong> / <strong>三 · 多重博弈</strong> / <strong>四 · Alpha</strong></td>
+<td>里海超额收益路径 B「未来比现在好 <strong>＋ 好未被市场广泛看到</strong>」（<code>里海-2444投资体系</code> §十）；丘栋荣「Alpha 就像蘑菇一样，一见光就死了」（11-02 页 §二·3）；王文散户在多重博弈链条末端（§三·认知 1）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>太想证明自己是对的</td>
+<td><strong>四 · 运行时校验</strong></td>
+<td>负面信号应触发「重新摊概率分布 / 调表达档位」而非反驳（11-02 页 §二·2）；库内落法＝11-14 腾讯文 §3.3 事前写死否定信号</td>
+</tr>
+<tr>
+<td>5</td>
+<td>顺境后线性外推</td>
+<td><strong>二 · 资本周期</strong> / <strong>四 · 周期只作输入</strong></td>
+<td>戴斌「高回报吸引资本和竞争，低回报资本退出」（11-02 页 §四·1）；丘栋荣明确否认「周期投资」、周期位置只作风险识别输入（§二·5）；王文「偏见造成的低估才值得参与」（§三·认知 4）</td>
+</tr>
+</tbody>
+</table>
+<h3>4.3 本次调整说明</h3>
+<ol>
+<li><strong>§二 第 4 点的链状判断不改</strong>：它按<strong>时间顺序</strong>讲亏钱怎么发生；本节按<strong>关卡顺序</strong>讲在哪一步拦得住，两者互补，不互相替换。</li>
+<li><strong>第 2 条是唯一跨两关的一条</strong>（流程的分仓 + 行业的阴阳面）。这解释了用户为何把它列为重点：它不是心态问题，而是<strong>组合结构没有预先设计</strong>——风格切换只是把原本就高相关的仓位一次性暴露出来。</li>
+<li><strong>第 4、5 条仅作关卡归属</strong>，用户尚未逐条对齐，§3.4 的「待续」状态保持；关卡归属是本人判断。</li>
+<li>四道关是<strong>用户对自身体系的定位 + 本人校准</strong>，不是四位作者自述的合并体系；不据此宣称四人观点可无缝拼接。</li>
+</ol>
+<hr />
+<h2>五、存疑 / 待核</h2>
+<ol>
+<li><strong>原文链接待补</strong>：资料为雪球截图，未含原帖 URL；按作者名与正文关键词两次 web_search 均未检索到原帖。需用户补原帖链接后回填 raw 头部元数据。</li>
+<li>作者所称「好多水平还不错的人亏钱」是<strong>个人观察</strong>，无样本量、无筛选标准、无收益率统计；「切身经历一轮、旁观两轮」亦无标的与时间。不可当作群体结论。</li>
+<li>「去年的泡沫、今年的 AI 硬件和铜金铝等有色」为作者<strong>个人归因</strong>，无数据支撑；本库不据此对 AI 硬件或有色板块下任何判断。</li>
+<li>截图附带的「铝 -1.31%」为<strong>截图时点行情标签</strong>，日期未知、未写入 <code>data/db</code>，按「无出处＝不可用」不引用为行情数据。</li>
+<li>五条是<strong>行为/心态归因</strong>，不是可证伪的投资策略；本页 §二、§三、§四 的对照是本人推演，原文作者未表达这些对应关系。</li>
+<li><strong>用户对齐的边界</strong>：第 2 条「此前一直忽视」为<strong>用户自述</strong>，库内无交易记录可佐证，不代填具体案例；§3.2 第 4 点「里海用满仓 + 分仓绕开空仓心理关口」是<strong>本人推演</strong>——里海只有「满仓防踏空」原话、无直接论「空仓」的原话，不可当作作者观点引用。</li>
+<li><strong>体系对接的边界</strong>：四道关分层是<strong>用户对自身体系的定位 + 本人校准</strong>，非四位作者自述的合并体系；§4.2 的关卡归属是本人判断，四位作者未表达这种对应关系。11-02 页「附：待答问题」第 2 条（王文 vs 丘栋荣对「便宜」的定义冲突）在 §4.1 给出的是<strong>分层处理方案，不是裁决</strong>；11-02 页原文未改、未标为已答。</li>
+</ol>
+<hr />
+<h2>六、一句话收口</h2>
+<p>外部观点值得留下的不是「别贪、别执拗」这类常识，而是那条<strong>机制链</strong>：高位与强假设先造出没有退路的仓位，证实偏差与线性外推再在信号出现时锁死纠错；因此可执行的对策不在心态，而在<strong>事前写死否定信号、把外推显式化为假设并计算缓冲</strong>。<strong>用户对齐后的重点</strong>：第 2 条的组合相关性 / 风格切换是此前被忽视的盲区——<strong>认知窄不等于持仓窄；按驱动因子而非行业标签查持仓，别让「不甘心空仓」把集中持仓伪装成分仓</strong>。<strong>体系对接后的落点</strong>：五条共性即四道关的失守点（流程 → 行业 → 公司 → 风险），第 2 条是唯一跨两关的；<strong>分层而非并列</strong>，王文与丘栋荣对「便宜」的冲突才变成「第三关给候选、第四关做证伪」的先后校验。</p>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/感悟/2026-11-19-投资感悟-亏钱的五个共性.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
