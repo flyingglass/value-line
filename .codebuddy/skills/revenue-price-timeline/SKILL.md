@@ -19,7 +19,7 @@ agent_created: true
 .venv/Scripts/python .codebuddy/skills/revenue-price-timeline/scripts/revenue_price_timeline.py \
   --code 002810 --name 山东赫达 --end 2026-09-30 \
   --extremes 2018:low,2021:high,2024:low,2026:high \
-  --out research-wiki/research/白马/山东赫达/assets/revenue-price-timeline.png
+  --out research-wiki/research/周期/山东赫达/assets/revenue-price-timeline.png
 ```
 
 最小用法（其余全部自动）：

@@ -1,5 +1,34 @@
 # 投研操作日志
 
+## [2026-11-19] 目录对齐 | research/ 标的目录按五组重排，与 raw/research 对齐
+
+### 用户指令
+- 截图对比 `raw/research` 与 `research` 目录树：「两边要对齐」
+- 口径确认：「按 raw 的 research 的目录为准哈」——即 `research/` 侧标的目录要按 raw 的五组（消费/医疗/周期/制造/科技）组织。
+
+### 动作
+- **物理目录搬迁**：`research/白马/`（16）+ `research/消费/`（5）共 21 个标的目录，按 `STOCK_CIRCLE_GROUP` 归属移入 `research/<五组>/<code>/`：
+  - 消费 3（分众传媒 / 泡泡玛特 / 贵州茅台，原地）· 医疗 2（人福医药 / 时代天使）· 周期 7（安琪酵母 / 云铝 / 山东赫达 / 建滔×2 / 神火 / 紫金）· 制造 4（TCL中环 / TCL科技 / 京东方 / 宁德）· 科技 5（TME / 拼多多 / 润泽 / 腾讯 / 阿里）。
+  - 空目录 `research/白马/` 已删除。AI软件 / 本地 / 感悟 / 疯狂的里海 / articles 不动。
+  - 搬迁前用 `.codebuddy/tmp-research-backup/` 全量备份 research 树（事后可清理）。
+- **路径引用批量改写**（42 个 md/py，先读后写）：md 正文、`[[wiki链接]]` 中的 `白马/<code>` / `消费/<code>` → 对应五组；覆盖 `WIKI-SCHEMA.md`、`research/index.md`、各标的页、vl/concepts、scripts 下脚本、`.codebuddy/skills/`。`research/log.md` 历史条目按规范不改。
+- **脚本同步**：
+  - `generate_wiki_index.py`：`CONTAINER_DIRS = CIRCLE_GROUPS + ('AI软件',)`、`CIRCLE_TABS = CIRCLE_GROUPS`（五组容器合并为能力圈 tab）；`split_home_groups` 的 `industry in CONTAINER_DIRS` 兜底保留（raw-only 按行业归组）。
+  - `wiki_lint.py`：`STOCK_CONTAINER_DIRS` 改为五组 + AI软件；四件套豁免键随批量改写成 `科技/TME`、`周期/山东赫达` 等。
+  - `wiki_fix.py`：`stock_rel()` 剥容器前缀改为通用遍历五组 + AI软件。
+  - `scripts/002810/revenue_price_timeline.py`：山东赫达图表输出目录 `research/白马/` → `research/周期/`。
+- **文档同步**：`CODEBUDDY.md` 目录树与命名规则、`WIKI-SCHEMA.md` 豁免表、`vl/modules/generate_wiki_index.py.md` 该节与数据流描述。
+
+### 验证
+- `py_compile` 全部通过；`generate_wiki_index.py` 重建 371 页，自检 335 个 md 各归一处。
+- `wiki_lint.py`：**ERROR=0**，WARN=290（仅 1 处既有断链 `[[疯狂的里海/里海-涪陵榨菜战略股复盘]]`，与本次无关）。
+- 对齐检查：两边共有 8 个标的（名创/泡泡/茅台/人福/安琪/中芯/TME/拼多多等），**组归属零不一致**；raw 独有 6 个（仅原始资料）、research 独有 13 个（仅 wiki 页），属正常覆盖差异。
+- 首页 6 tab 不变：能力圈 27 / AI软件 4 / 感悟 1 / 本地 3 / 疯狂的里海 5 / 知识库 5；能力圈内 消费4/医疗2/周期7/制造5/科技9；HTML 标签配对 0 错误。
+
+> 本条为目录对齐的最终状态；当日此前的 tab 调整条目仍是呈现层的演进记录。
+
+---
+
 ## [2026-11-18] 标签修正 | TME / 心动 自建行业标签统一为「互联网」（方案 A）
 
 ### 用户指令

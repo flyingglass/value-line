@@ -10,7 +10,7 @@ updated: 2026-10-31
 ## 概述
 
 扫描 `research-wiki/` 下所有 `.md` 文件，生成 **多页静态站点**：
-- `research-wiki/index.html` — 首页（**能力圈** / AI软件 / 感悟 / 本地 / 疯狂的里海 / 知识库 共 6 个 tab + 分类内卡片 + 搜索）；白马 + 消费 合并为能力圈，按五个具体组名分节
+- `research-wiki/index.html` — 首页（**能力圈** / AI软件 / 感悟 / 本地 / 疯狂的里海 / 知识库 共 6 个 tab + 分类内卡片 + 搜索）；能力圈 = research/ 下五个具体组容器合并，按五个具体组名分节
 - `research-wiki/view/**` — 标的/案例组页、知识库整组页、每篇文章的独立 HTML 阅读页
 
 纯静态、无服务端依赖；`.github/workflows/deploy.yml` 推送时把整个 `research-wiki/` 原样部署到 GitHub Pages。
@@ -48,7 +48,7 @@ view/knowledge/<书籍|巴芒|基金经理|文章>/<文章>.html   目录内文�
 
 | tab | 卡片 | 来源 |
 |-----|------|------|
-| 能力圈（27） | 每个标的一张卡片，**按五个具体组名分节**（`.circlegroup` → `.section-title` + 一个 `.secgrid`）：消费 / 医疗 / 周期 / 制造 / 科技；详见下节 | `research/白马/`（21）+ `research/消费/`（6）两个容器**合并**；仅有原始资料的 5 个组也并入此处 |
+| 能力圈（27） | 每个标的一张卡片，**按五个具体组名分节**（`.circlegroup` → `.section-title` + 一个 `.secgrid`）：消费 / 医疗 / 周期 / 制造 / 科技；详见下节 | `research/` 下五组容器（21 个 wiki 标的）+ 仅有原始资料的 5 个组，2026-11-19 起五组目录与 `raw/research` 对齐 |
 | AI软件 | 每个标的一张卡片，**按行业分行**（行业一个 `.secgrid`）；AI软件 是具体行业，按用户要求保持不变 | 对应容器目录 |
 | 学股 | 组内每个标签（广州 / 深圳 / 跟踪 / AI软件）一张卡片 | 点击直达组页对应标签 `view/cases/本地/index.html#dir=<标签>` |
 | 疯狂的里海 | 组内每个标签（案例 / 方法论 / 时间线 / 概览 / 原始资料）一张卡片 | 同上 |
@@ -60,7 +60,7 @@ view/knowledge/<书籍|巴芒|基金经理|文章>/<文章>.html   目录内文�
   - 知识库卡片：同标的卡片底色
 - **行业标签配色**：每个行业一种「浅底 + 深字」固定色，色表集中在脚本顶部 `INDUSTRY_STYLE` 字典；新增行业在此补色，同类行业颜色全站一致（首页卡片与标的组页头部同一套）。
 
-### 白马 / 消费：能力圈 → 五个具体组名（2026-11-18 用户决议，最终版）
+### 能力圈 → 五个具体组名（2026-11-18 决议 + 11-19 目录对齐，最终版）
 
 用户最终决议：「白马 21 / 消费 6 这两个为能力圈，然后能力圈再去按丘栋荣的划分进行分类」；「能力圈 → 丘栋荣的具体划分，不要叫丘栋荣划分呀」；随后指出「这两个 tab 也没有合并为能力圈呀？」——即**白马与消费要合并成一个「能力圈」tab**，不是各自内部分组。
 
@@ -71,13 +71,14 @@ view/knowledge/<书籍|巴芒|基金经理|文章>/<文章>.html   目录内文�
 | 项 | 脚本常量 / 函数 |
 |---|---|
 | 合并后的 tab 名 | `CIRCLE_TAB_NAME = '能力圈'` |
-| 合并来源容器 | `CIRCLE_TABS = ('白马', '消费')` |
+| 合并来源容器 | `CIRCLE_TABS = CIRCLE_GROUPS`（五组）：`('消费','医疗','周期','制造','科技')` |
 | 五个具体组名与顺序 | `CIRCLE_GROUPS` |
 | 标的 → 具体组名（27 个） | `STOCK_CIRCLE_GROUP` |
 | 卡片上的申万二级行业小标签 | `STOCK_SW2` → `.pill.sw2` |
 | 渲染 | `home_section_circle()`；`home_section_blocks(..., sw2_map)` |
 
-- `build_home()` 先合并 `CIRCLE_TABS` 各容器的组 + `raw_only`，一次性生成「能力圈」panel；其余容器仍走 `home_section_container()`（按行业分行）。磁盘上 `research/白马/`、`research/消费/` 两个容器目录不变，只改首页 tab 呈现。
+- `build_home()` 先合并 `CIRCLE_TABS` 五组容器的组 + `raw_only`，一次性生成「能力圈」panel；`AI软件` 仍走 `home_section_container()`（按行业分行）。
+- **2026-11-19 目录对齐**：`research/` 下标的目录由 `research/白马/`、`research/消费/` 重排为 `research/<五组>/<code>/`，与 `raw/research/<五组>/<code>/` 对齐；`CONTAINER_DIRS = CIRCLE_GROUPS + ('AI软件',)`，`wiki_lint.py` 的 `STOCK_CONTAINER_DIRS` 与四件套豁免键同步更新；21 个标的的 md 内路径引用（60+ 文件）与 `[[wiki链接]]` 批量改写。两边共有 8 个标的组归属零不一致。
 - 合并后 5 节：消费 4 / 医疗 2 / 周期 7 / 制造 5 / 科技 9 = 27；一节一个 `.secgrid`，卡片直接铺开。
 - **申万行业名出处**（本地可复核）：`data/sw_industry/StockClassifyUse_stock_2026-11-11.xls`（申万官方个股行业分类变动历史，按「计入日期」取最新一条）+ `data/sw_industry/SwClassCode_2021.xls`（官方 6 位分类代码 → 一/二/三级行业名称）；二级行业码 = 三级码前 4 位 + `00`。
 - **港股/中概股缺口**：申万官方 A 股个股表 5937 只全为 6 位 A 股代码，不覆盖港股通/中概股明细（官方港股通分类需付费接口）。13 个标的无申万分类，卡片上就不显示申万标签，**不臆造行业名**；A+H 双重上市的紫金矿业（601899）、中芯国际（688981）用 A 股代码取到真实分类。共 14 个标的带申万小标签。
@@ -99,7 +100,7 @@ view/knowledge/<书籍|巴芒|基金经理|文章>/<文章>.html   目录内文�
 ```
 扫描 research-wiki/ 下的 .md
   → 解析 YAML frontmatter（标题/日期/分类/tags）
-  → 按来源归类：research/白马/<code>/（标的；容器目录对站点透明，组键仍为 <code>）、research/ 专题、
+  → 按来源归类：research/<五组>/<code>/（标的；容器目录对站点透明，组键仍为 <code>）、research/ 专题、
      research/articles/（通用多学科）、raw/**（原始资料，pdf 不入库）
   → 输出多页 HTML：首页 + view/ 组页 + 每文阅读页（base64 内嵌正文）
 ```

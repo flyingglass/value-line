@@ -40,7 +40,7 @@ START = pd.Timestamp("2016-08-26")   # 上市日
 END = pd.Timestamp("2026-09-30")
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-OUT_DIR = os.path.join(BASE, "research-wiki", "research", "白马", CODE, "assets")
+OUT_DIR = os.path.join(BASE, "research-wiki", "research", "周期", CODE, "assets")
 CSV_DIR = os.path.join(BASE, "scripts", "out")
 
 PRICE_C = "#2f6fd0"

@@ -50,17 +50,17 @@ EXEMPT_FOUR_PIECE = {
     "AI软件/中航信": "*",
     "AI软件/宝信软件": "*",
     "AI软件/柏楚电子": "*",
-    "白马/TME": "*",
-    "白马/山东赫达": "*",
-    "白马/拼多多": "*",
-    "白马/阿里巴巴": "*",
-    "白马/建滔积层板": {"industry-chain.md", "operating-metrics.md"},
-    "白马/建滔集团": {"operating-metrics.md"},
+    "科技/TME": "*",
+    "周期/山东赫达": "*",
+    "科技/拼多多": "*",
+    "科技/阿里巴巴": "*",
+    "周期/建滔积层板": {"industry-chain.md", "operating-metrics.md"},
+    "周期/建滔集团": {"operating-metrics.md"},
     "消费/分众传媒": {"industry-chain.md", "thesis.md"},
     "消费/贵州茅台": {"overview.md", "thesis.md"},
 }
-# 标的容器目录：其下一级才是标的目录（2026-09-27 起：白马 / 消费 / AI软件）
-STOCK_CONTAINER_DIRS = {"白马", "消费", "AI软件"}
+# 标的容器目录：其下一级才是标的目录（2026-11-19 起：五组 + AI软件，与 raw/research 对齐）
+STOCK_CONTAINER_DIRS = {"消费", "医疗", "周期", "制造", "科技", "AI软件"}
 
 
 def _list_stock_dirs():
@@ -122,7 +122,7 @@ def resolve_link(link, current_rel, key_to_paths):
         if not p2.suffix:
             p2 = p2.with_suffix(".md")
         cands.append(p2.as_posix())
-    # 2b. 含路径前缀时按 wiki 根解析（如 [[research/白马/TCL科技/thesis]]）
+    # 2b. 含路径前缀时按 wiki 根解析（如 [[research/制造/TCL科技/thesis]]）
     #     优先于 stem 兜底，避免同名页（overview / thesis / 跟踪）歧义命中错误标的
     if "/" in link:
         p3 = Path(link)

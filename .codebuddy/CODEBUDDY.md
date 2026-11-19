@@ -28,14 +28,16 @@ research-wiki/
     ├── index.md              索引（按标的 + 按主题）
     ├── overview.md           概述
     ├── log.md                操作日志
-    ├── 白马/                 标的目录（容器）
+    ├── 消费/ 医疗/ 周期/ 制造/ 科技/   标的目录（五组容器，2026-11-19 起与 raw/research 对齐）
     │   └── <code>/           标的
     │       ├── overview.md   数据目录
     │       ├── thesis.md     投资 Thesis
     │       ├── industry-chain.md 产业链全景
     │       ├── operating-metrics.md 运营指标
     │       └── research-reports.md  券商研报索引
-    ├── 学股/                 广深名单池
+    ├── AI软件/               具体行业容器（不动）
+    ├── 本地/                 广深名单池
+    ├── 感悟/                 投资感悟
     ├── 疯狂的里海/           作者案例专题
     └── articles/             通用投研文章（与 vl/ 同构）
         ├── concepts/         投资概念与框架
@@ -51,16 +53,17 @@ research-wiki/
 - 结构与 `research/` 并行，两者交叉链接互通
 
 **research/** — 投研 wiki：
-- 标的专项 → `research/白马/<code>/`（overview / thesis / industry-chain 等）
-- 专题 → `research/学股/`、`research/疯狂的里海/`
+- 标的专项 → `research/<五组>/<code>/`（消费 / 医疗 / 周期 / 制造 / 科技；overview / thesis / industry-chain 等）
+- 具体行业 → `research/AI软件/<code>/`（不动）
+- 专题 → `research/本地/`、`research/感悟/`、`research/疯狂的里海/`
 - 通用知识 → `research/articles/concepts|entities|papers|synthesis/`
 - 必须有 `index.md`、`overview.md`、`log.md`
-- 🔴 新增标的的 wiki 页面一律建在 `research/白马/<code>/` 下
+- 🔴 新增标的的 wiki 页面一律建在 `research/<对应五组>/<code>/` 下，与 `raw/research/<同组>/<code>/` 对齐
 
 **raw/** — 原始资料，只进不改：
 - VL 项目相关 → `raw/vl/articles/`
 - 投研通用话题/文章 → `raw/research/articles/`
-- 标的专项 → `raw/research/<code>/`
+- 标的专项 → `raw/research/<五组>/<code>/`（消费 / 医疗 / 周期 / 制造 / 科技）
 - 数据源/工具参考 → `raw/vl/<source>-reference/`
 
 两个 wiki 通过交叉链接互通，共享 `data/` 数据层。

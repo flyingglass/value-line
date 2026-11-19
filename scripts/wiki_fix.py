@@ -170,10 +170,16 @@ updated: {TODAY}
 
 
 def stock_rel(rel):
-    """剥掉 research/ 与标的容器目录前缀，返回「<code>/…」形式，便于按标的判断。"""
-    for pref in ("research/白马/", "research/"):
-        if rel.startswith(pref):
-            return rel[len(pref):]
+    """剥掉 research/ 与标的容器目录前缀，返回「<code>/…」形式，便于按标的判断。
+
+    容器目录为五组 + AI软件（2026-11-19 起与 raw/research 对齐）；用通用扫描避免硬编码。
+    """
+    if rel.startswith("research/"):
+        rel = rel[len("research/"):]
+        for c in ("消费", "医疗", "周期", "制造", "科技", "AI软件"):
+            if rel.startswith(c + "/"):
+                return rel[len(c) + 1:]
+        return rel
     return rel
 
 

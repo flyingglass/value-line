@@ -213,9 +213,9 @@ tags: [<标签>]
 | 标的 | 豁免范围 |
 |------|----------|
 | AI软件/中航信、AI软件/宝信软件、AI软件/柏楚电子 | 四件全豁免 |
-| 白马/TME、白马/山东赫达、白马/拼多多、白马/阿里巴巴 | 四件全豁免 |
-| 白马/建滔积层板 | industry-chain、operating-metrics |
-| 白马/建滔集团 | operating-metrics |
+| 科技/TME、周期/山东赫达、科技/拼多多、科技/阿里巴巴 | 四件全豁免 |
+| 周期/建滔积层板 | industry-chain、operating-metrics |
+| 周期/建滔集团 | operating-metrics |
 | 消费/分众传媒 | industry-chain、thesis |
 | 消费/贵州茅台 | overview、thesis（已有 `经营/`、`业绩/`、`跟踪/` 等更细结构） |
 
