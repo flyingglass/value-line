@@ -6,13 +6,15 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
                                               白马 21 + 消费 6 两个容器合并为单一「能力圈」tab（27 个标的），
                                               圈内按五个具体组名分节：消费 / 医疗 / 周期 / 制造 / 科技；
                                               申万二级行业作卡片小标签
-                                              其余 tab（AI软件 / 感悟 / 本地 / 疯狂的里海 / 知识库）保持原结构
+                                              其余 tab（AI软件 / 感悟 / 本地 / 疯狂的里海 / 知识库）保持原结构，
+                                              末尾追加「跟踪」tab 挂 report/ 下的跟踪型报告
     view/stocks/<标的>/index.html            标的组页：文件夹标签(跟踪/经营/…/概览/原始资料)，
                                              点击标签在当前页切换面板，不跳转
     view/stocks/<标的>/<目录…>/<文章>.html    独立文章阅读页
     view/cases/<案例专题>/…                  投资案例专题（组页同上，如 案例/方法论/时间线）
     view/knowledge/index.html                知识库整组页（目录=顶栏 tab，就地切换）
     view/knowledge/<分类>/<文章>.html        知识库文章阅读页
+    view/tracking/<报告>.html                跟踪报告阅读页（report/ 下 md 正文预渲染进站内页）
 
 规则：
     · 组根散落的 md 收进「概览」标签（不叫「其他文档」、不单独铺卡片）
@@ -20,6 +22,8 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
     · 每篇 md 仍生成独立阅读页，正文在生成期用 markdown-it-py 预渲染为 HTML 内嵌
       （不依赖任何 CDN / 联网，离线双击即看），[[页面名]] 解析为站内链接
     · 知识库整组页与标的/案例组页同构：目录 当 tab，首页只保留标题+篇数 chip
+    · 跟踪 tab 与 wiki md 命名空间解耦：来源为 report/ 下的 md 清单（TRACK_REPORTS），
+      只生成站内阅读页，不参与 scan_wiki / validate_scan，避免被误判为标的
     · 首页一级分类与 research/ 下一级目录对齐（白马/消费/AI软件/感悟/本地/疯狂的里海/知识库），
       通用的内部分类与 raw/research 下 书籍 / 投资 / articles 一一对应，
       tab 点击就地切换面板；搜索跨 tab 过滤并自动跳到第一个有命中的分类
@@ -117,6 +121,16 @@ RAW_GENERAL_DIRS = {
 #             原主题仍保留为卡片上的 topic 标签，不再作为 tab。
 GENERAL_TAB_NAME = '知识库'
 GENERAL_CATEGORY_ORDER = ['书籍', '巴芒', '基金经理', '文章', '软件开发']
+
+# 跟踪 tab（2026-11-22）：挂「非标的、需要持续盯证伪点」的跟踪型报告。
+# 源文件在 report/ 下，不属于 wiki 的 md 命名空间；生成时把正文预渲染进
+# research-wiki/view/tracking/，保证 GitHub Pages 只部署 research-wiki/ 也能打开。
+# 新增跟踪报告：往 TRACK_REPORTS 加一行（md 文件名, 显示名, 卡片标签）即可。
+TRACK_TAB_NAME = '跟踪'
+TRACK_VIEW_DIR = os.path.join(VIEW_DIR, 'tracking')
+TRACK_REPORTS = [
+    ('转债-三券收益率汇总.md', '可转债 · 三券收益率汇总', '可转债'),
+]
 
 # 标的容器根下散落的 md（名单池）→ 归入「<容器>·名单池」组
 # 例：research/AI软件/AI软件名单-待选池.md → 组 id「AI软件·名单池」
@@ -456,6 +470,36 @@ def scan_wiki():
 
     return groups, cases, general
 
+def scan_track_reports():
+    """跟踪 tab：读取 report/ 下的跟踪报告 md（不纳入 wiki md 扫描/自检）。"""
+    arts = []
+    for fname, display, label in TRACK_REPORTS:
+        src = os.path.join(BASE, 'report', fname)
+        if not os.path.isfile(src):
+            print(f"  [{TRACK_TAB_NAME}] 跳过（源文件不存在）: {src}")
+            continue
+        with open(src, 'r', encoding='utf-8') as f:
+            text = f.read()
+        meta, body = parse_frontmatter(text)
+        date_ = meta.get('created') or meta.get('updated') or meta.get('date') or ''
+        if isinstance(date_, (date, dt)):
+            date_ = date_.isoformat()[:10]
+        rel = 'report/' + fname
+        arts.append({
+            'title': meta.get('title') or display,
+            'label': label,
+            'kind': 'track',
+            'path': rel,
+            'real_path': rel,
+            'date': str(date_),
+            'summary': extract_summary(body),
+            'body': body,
+            'src_md': src,
+            '_out': os.path.join(TRACK_VIEW_DIR,
+                                 safe_stem(os.path.splitext(fname)[0]) + '.html'),
+        })
+    return arts
+
 # ---------------------------------------------------------------------------
 # 页面树（把每组文章按其物理目录组织成文件夹结构）
 # ---------------------------------------------------------------------------
@@ -688,9 +732,10 @@ def lightbox_html(body_html):
 
 def kind_tag(kind):
     m = {'wiki': 'tag-wiki', 'raw': 'tag-raw', 'concept': 'tag-concept',
-         'entity': 'tag-entity', 'synthesis': 'tag-synthesis', 'paper': 'tag-paper'}
+         'entity': 'tag-entity', 'synthesis': 'tag-synthesis', 'paper': 'tag-paper',
+         'track': 'tag-concept'}
     label = {'wiki': 'Wiki', 'raw': '原始', 'concept': '概念', 'entity': '人物',
-             'synthesis': '综合', 'paper': '参考'}.get(kind, kind)
+             'synthesis': '综合', 'paper': '参考', 'track': '跟踪'}.get(kind, kind)
     return '<span class="tag ' + m.get(kind, 'tag-wiki') + '">' + label + '</span>'
 
 def card_html(art, from_file):
@@ -1082,6 +1127,42 @@ def generate_general(general):
     written.append(general_group_page(general))
     return written
 
+def track_article_page(art, out):
+    """跟踪报告阅读页：正文服务端预渲染，离线 / GitHub Pages 均可直接打开。
+
+    源文件在 report/（不在 Pages 部署范围内），因此不生成「原文文件」外链，
+    只在元信息里标注来源路径；正文已完整内嵌，无需联网或跨目录取文件。
+    """
+    body_html = render_md(art['body'], os.path.dirname(art['src_md']), out)
+    frag = 'dir=' + quote(TRACK_TAB_NAME)
+    home = posix_rel(out, OUT_HOME)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    html = head_html(art['title'])
+    html += topbar_html(out, [(TRACK_TAB_NAME, OUT_HOME, frag)])
+    html += '<div class="wrap">'
+    html += '<h1 class="page-title">' + esc(art['title']) + '</h1>'
+    html += '<div class="meta-line">' + kind_tag(art['kind'])
+    html += '<span class="pill topic">' + esc(art['label']) + '</span>'
+    if art.get('date'):
+        html += '<span class="date">' + esc(art['date']) + '</span>'
+    html += ('<span style="margin-left:auto;color:#b0b5bd">来源：' +
+             esc(art['path']) + '</span></div>')
+    html += '<div class="md" id="md">' + body_html + '</div>'
+    html += ('<div class="backrow"><a href="' + esc(home + '#' + frag) +
+             '">← 返回 ' + esc(TRACK_TAB_NAME) + '</a>')
+    html += '<a href="' + esc(home) + '">首页</a></div>'
+    html += '</div>'
+    html += lightbox_html(body_html) + '</body></html>'
+    with open(out, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+def generate_track(track):
+    written = []
+    for art in track:
+        track_article_page(art, art['_out'])
+        written.append(art['_out'])
+    return written
+
 # ---------------------------------------------------------------------------
 # 生成：首页
 # ---------------------------------------------------------------------------
@@ -1258,6 +1339,20 @@ def home_section_general(general, from_file):
         html += '</div>'
     return html
 
+def home_section_track(track, from_file):
+    """跟踪 tab：一份报告一张卡片，点击直达站内阅读页（与其他 tab 卡片同构）。"""
+    html = ''
+    for art in track:
+        href = posix_rel(from_file, art['_out'])
+        data = (TRACK_TAB_NAME + ' ' + art['title'] + ' ' + art['label'] + ' ' +
+                art['path'] + ' ' + art.get('summary', '')).lower()
+        html += '<div class="grp" data-search="' + esc(data) + '">'
+        html += ('<div class="grp-hd"><a class="name" href="' + esc(href) + '">' +
+                 esc(art['title']) + '</a>')
+        html += '<span class="pill topic">' + esc(art['label']) + '</span></div>'
+        html += '</div>'
+    return html
+
 HOME_JS = """\
 <script>(function(){
 var btns=[].slice.call(document.querySelectorAll('.tabbtn'));
@@ -1312,8 +1407,8 @@ if(input){input.addEventListener('input',doSearch);input.addEventListener('keydo
 })();</script>"""
 
 
-def build_home(groups, cases, general):
-    """首页：一级分类 tab（能力圈 / AI软件 / 各专题 / 知识库）+ 分类内卡片。"""
+def build_home(groups, cases, general, track):
+    """首页：一级分类 tab（能力圈 / AI软件 / 各专题 / 知识库 / 跟踪）+ 分类内卡片。"""
     by_container, raw_only = split_home_groups(groups)
 
     panels = []      # [(tab 名, 卡片数, panel 内层 HTML)]
@@ -1340,6 +1435,11 @@ def build_home(groups, cases, general):
         inner = ('<div id="sec-general">' +
                  home_section_general(general, OUT_HOME) + '</div>')
         panels.append((GENERAL_TAB_NAME, inner.count('class="grp"'), inner))
+    # 跟踪 tab 垫底（首页一级分类最后一个），一张卡片 = 一份 report/ 跟踪报告
+    if track:
+        inner = ('<div class="casegrid">' +
+                 home_section_track(track, OUT_HOME) + '</div>')
+        panels.append((TRACK_TAB_NAME, inner.count('class="grp"'), inner))
 
     body = head_html('投研 Wiki')
     body += topbar_html(OUT_HOME, [])
@@ -1454,9 +1554,10 @@ def validate_layout(groups, cases, general):
 def main():
     print("扫描 research-wiki/ ...")
     groups, cases, general = scan_wiki()
+    track = scan_track_reports()
     n_stock = sum(len(v['articles']) for v in groups.values())
     n_case = sum(len(v['articles']) for v in cases.values())
-    print(f"  标的: {len(groups)} 个 ({n_stock} 篇) | 投资案例: {len(cases)} 个专题 ({n_case} 篇) | {GENERAL_TAB_NAME}: {len(general)} 篇")
+    print(f"  标的: {len(groups)} 个 ({n_stock} 篇) | 投资案例: {len(cases)} 个专题 ({n_case} 篇) | {GENERAL_TAB_NAME}: {len(general)} 篇 | {TRACK_TAB_NAME}: {len(track)} 篇")
     if not validate_scan(groups, cases, general):
         sys.exit(1)
 
@@ -1471,7 +1572,8 @@ def main():
     for gid, info in cases.items():
         written += generate_group('cases', gid, info)
     written += generate_general(general)
-    build_home(groups, cases, general)
+    written += generate_track(track)
+    build_home(groups, cases, general, track)
     written.append(OUT_HOME)
 
     print(f"  共生成 {len(written)} 个页面")

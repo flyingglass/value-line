@@ -707,3 +707,12 @@ PB=1.0x, 新建 scripts/02899/business_commentary.py, valuation_method="pb" 写�
 - 内容类问题（缺页、缺失概念页、交叉引用缺口）保留，按历史惯例不做自动补页
 
 触及页面：research/index.md、research/泡泡玛特/业绩/*（14）、research/疯狂的里海/*（13）、research/建滔集团|建滔积层板（5）、research/articles/*（4）、scripts/wiki_lint.py、scripts/wiki_fix.py
+
+## [2026-11-22] feat | 投研 Wiki 首页新增「跟踪」tab，挂可转债收益率汇总
+
+- 用户指令：「库里面生成了可转债的东西，你新建一个 tab 叫跟踪，然后放在这个 tab 下面」
+- 数据源：`report/转债-三券收益率汇总.md`（及同名 html，commit `1d83d63b`），报告原件不动
+- `scripts/generate_wiki_index.py`：新增 `TRACK_TAB_NAME` / `TRACK_VIEW_DIR` / `TRACK_REPORTS` 与 `scan_track_reports()` / `track_article_page()` / `generate_track()` / `home_section_track()`；`build_home()` 在「知识库」后追加第 7 个 tab，`main()` 串起扫描、生成与首页
+- 产物：`research-wiki/index.html`（6 → 7 个 tab，跟踪 1 张卡片）、`research-wiki/view/tracking/转债-三券收益率汇总.html`（正文服务端预渲染内嵌，6 张表；顶栏与「← 返回 跟踪」用 `index.html#dir=跟踪` 回首页并自动激活该 tab）。跟踪数据走旁路，不进入 `scan_wiki()` / 两道自检，既有 6 个 tab 与 `research/` 目录结构未动
+- 校验：`.venv\Scripts\python scripts\generate_wiki_index.py` 自检通过（337 个 md 各归一处 / 共 374 个页面）；`git status` 除首页与新增 `view/tracking/` 外无其它 view 文件变化
+- 文档：`research-wiki/vl/modules/generate_wiki_index.py.md` 同步 tab 数、卡片表与「跟踪 tab」小节

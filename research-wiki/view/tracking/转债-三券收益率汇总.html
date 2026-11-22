@@ -1,0 +1,502 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>可转债 · 三券收益率汇总</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../index.html">投研 Wiki</a> › <a href="../../index.html#dir=%E8%B7%9F%E8%B8%AA">跟踪</a></div><div class="topnav"><a href="../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">可转债 · 三券收益率汇总</h1><div class="meta-line"><span class="tag tag-concept">跟踪</span><span class="pill topic">可转债</span><span style="margin-left:auto;color:#b0b5bd">来源：report/转债-三券收益率汇总.md</span></div><div class="md" id="md"><h1>四、最终收益率汇总表</h1>
+<blockquote>
+<p>标的：天23转债（118031）· 通22转债（110085）· 晶澳转债（127089）
+生成时间：2026-11-22（周日休市，行情锚点为 2026-11-20 收盘）</p>
+</blockquote>
+<h2>口径与数据来源</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化方法</td>
+<td>XIRR，<code>P = Σ CFᵢ / (1+r)^tᵢ</code>，365 天年度化</td>
+</tr>
+<tr>
+<td>当下价格</td>
+<td>11-20 收盘：96.72 / 100.999 / 93.693；截图盘中快照 95.236 / 100.146 / 93.425 另列于文末</td>
+</tr>
+<tr>
+<td>计税口径</td>
+<td><strong>A</strong>（沪市）：面值以上全部溢价按 20% 代扣 → 天23、通22；<strong>B</strong>（深市）：仅最后一期票息 2 元按 20% 代扣 → 晶澳</td>
+</tr>
+<tr>
+<td>税前现金流</td>
+<td>天23 <code>1.5+1.8+115=118.30</code>（2029-02-13，2.2356y）；通22 <code>1.8+109=110.80</code>（2028-02-24，1.2630y）；晶澳 <code>1.5+1.8+108=111.30</code>（2029-07-18，2.6603y）</td>
+</tr>
+<tr>
+<td>税后现金流</td>
+<td>天23 <code>1.2+1.44+112.00=114.64</code>；通22 <code>1.44+107.20=108.64</code>；晶澳 <code>1.2+1.44+107.60=110.24</code></td>
+</tr>
+<tr>
+<td>核心假设</td>
+<td>到期足额兑付、持有至到期，无违约、无回售、无下修、无强赎</td>
+</tr>
+<tr>
+<td>数据来源</td>
+<td>各券《募集说明书》与上交所/深交所公告、2026 年三季报、2026-11-20 收盘行情；计税口径实证来自 2026 年 6 份到期兑付暨摘牌公告（韦尔 113616、大参、华安 600909、松霖、洽洽 128135、冀东）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>「跨越 10%」定义</strong>：买入价 ≤ 该价格时，持有到期的年化收益率 ≥ 10%。税前、税后各给一个价格。</p>
+<h2>主表：当下收益率与跨越 10% 的价格</h2>
+<table>
+<thead>
+<tr>
+<th>券</th>
+<th>代码</th>
+<th>交易所 / 计税</th>
+<th>当下价格</th>
+<th>当下税前 XIRR</th>
+<th>当下税后 XIRR</th>
+<th><strong>税前跨 10% 价格</strong></th>
+<th><strong>税后跨 10% 价格</strong></th>
+<th>距税后临界价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>天23</td>
+<td>118031</td>
+<td>沪 · A</td>
+<td>96.72</td>
+<td>9.62%</td>
+<td><strong>8.03%</strong></td>
+<td><strong>96.00</strong></td>
+<td><strong>92.96</strong></td>
+<td>−3.76</td>
+</tr>
+<tr>
+<td>通22</td>
+<td>110085</td>
+<td>沪 · A</td>
+<td>100.999</td>
+<td>7.72%</td>
+<td><strong>6.01%</strong></td>
+<td><strong>98.39</strong></td>
+<td><strong>96.45</strong></td>
+<td>−4.55</td>
+</tr>
+<tr>
+<td>晶澳</td>
+<td>127089</td>
+<td>深 · B</td>
+<td>93.693</td>
+<td>6.81%</td>
+<td><strong>6.40%</strong></td>
+<td><strong>86.76</strong></td>
+<td><strong>85.86</strong></td>
+<td>−7.83</td>
+</tr>
+</tbody>
+</table>
+<h2>价格继续下跌时的收益率阶梯</h2>
+<table>
+<thead>
+<tr>
+<th>券</th>
+<th>买入价</th>
+<th>税前 XIRR</th>
+<th>税后 XIRR</th>
+<th>标记</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>天23</td>
+<td>96.72</td>
+<td>9.62%</td>
+<td>8.03%</td>
+<td>当下</td>
+</tr>
+<tr>
+<td>天23</td>
+<td><strong>96.00</strong></td>
+<td><strong>10.00%</strong></td>
+<td>8.40%</td>
+<td>税前达标</td>
+</tr>
+<tr>
+<td>天23</td>
+<td>94.00</td>
+<td>11.06%</td>
+<td>9.44%</td>
+<td></td>
+</tr>
+<tr>
+<td>天23</td>
+<td><strong>92.96</strong></td>
+<td>11.63%</td>
+<td><strong>10.00%</strong></td>
+<td><strong>税后达标</strong></td>
+</tr>
+<tr>
+<td>天23</td>
+<td>90.00</td>
+<td>13.29%</td>
+<td>11.63%</td>
+<td></td>
+</tr>
+<tr>
+<td>天23</td>
+<td>85.00</td>
+<td>16.30%</td>
+<td>14.58%</td>
+<td></td>
+</tr>
+<tr>
+<td>通22</td>
+<td>100.999</td>
+<td>7.72%</td>
+<td>6.01%</td>
+<td>当下</td>
+</tr>
+<tr>
+<td>通22</td>
+<td><strong>98.39</strong></td>
+<td><strong>10.00%</strong></td>
+<td>8.26%</td>
+<td>税前达标</td>
+</tr>
+<tr>
+<td>通22</td>
+<td>97.00</td>
+<td>11.27%</td>
+<td>9.50%</td>
+<td></td>
+</tr>
+<tr>
+<td>通22</td>
+<td><strong>96.45</strong></td>
+<td>11.78%</td>
+<td><strong>10.00%</strong></td>
+<td><strong>税后达标</strong></td>
+</tr>
+<tr>
+<td>通22</td>
+<td>93.47</td>
+<td>14.63%</td>
+<td>12.80%</td>
+<td></td>
+</tr>
+<tr>
+<td>通22</td>
+<td>90.00</td>
+<td>18.17%</td>
+<td>16.27%</td>
+<td></td>
+</tr>
+<tr>
+<td>晶澳</td>
+<td>93.693</td>
+<td>6.81%</td>
+<td>6.40%</td>
+<td>当下</td>
+</tr>
+<tr>
+<td>晶澳</td>
+<td>90.00</td>
+<td>8.46%</td>
+<td>8.04%</td>
+<td></td>
+</tr>
+<tr>
+<td>晶澳</td>
+<td><strong>86.76</strong></td>
+<td><strong>10.00%</strong></td>
+<td>9.56%</td>
+<td>税前达标</td>
+</tr>
+<tr>
+<td>晶澳</td>
+<td><strong>85.86</strong></td>
+<td>10.44%</td>
+<td><strong>10.00%</strong></td>
+<td><strong>税后达标</strong></td>
+</tr>
+<tr>
+<td>晶澳</td>
+<td>83.24</td>
+<td>11.76%</td>
+<td>11.31%</td>
+<td></td>
+</tr>
+<tr>
+<td>晶澳</td>
+<td>80.00</td>
+<td>13.47%</td>
+<td>13.01%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>分券风险分析</h2>
+<blockquote>
+<p>风险口径：隐含违约概率用 <code>(纯债价值−现价)/(纯债价值−40)</code> 粗算（违约发生在到期、回收 40 元、折价全归因于信用），是 🟡 <strong>上限估计</strong>，折价里还含流动性与风险溢价，不代表真实违约率。风险调整价 = 按税后适用口径、违约概率 p、回收 40 元、中间票息照收的期望值模型反解出的 10% 买价。财务数据取自 2026 年三季报（截至 2026-09-30）与上交所/深交所公告。</p>
+</blockquote>
+<h3>天23（118031，沪 · A）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>收益定位</strong></td>
+<td>当下税后 <strong>8.03%</strong>，跨 10% 需跌到 <strong>92.96</strong>（−3.76）；到期兑付 <strong>67.29 亿，三只最轻</strong></td>
+</tr>
+<tr>
+<td>信用定价</td>
+<td>🟡 隐含违约概率 <strong>23.1%（三只最高）</strong>；现价 96.72 对纯债价值 113.80 折价 <strong>15.0%</strong>，市场要求贴现率 9.62% vs 无风险 1.78%；主体评级 <strong>AA/稳定（三只最低）</strong></td>
+</tr>
+<tr>
+<td>偿债</td>
+<td>总资产 1167.96 / 总负债 930.91 / 负债率 79.70%；有息负债 393.80 亿；一年内到期有息 ~170 亿 vs 货币资金 207.79 亿，但受限 73.80 亿（2026-06）→ <strong>可动用现金仅 120.66 亿</strong>；速动比率 0.67；财务费用 15.91 亿、同比 <strong>+76.99%</strong></td>
+</tr>
+<tr>
+<td>盈利与现金流</td>
+<td>9M 归母 −19.42 / <strong>扣非 −41.05 亿</strong>，减亏主要来自资产处置与公允价值变动；经营现金流 +47.03 亿（+64.73%）但 <strong>Q3 单季约 −3.7 亿转负</strong>；投资 −27.25 / 筹资 −65.52 / 现金 −50.04 亿</td>
+</tr>
+<tr>
+<td>条款风险</td>
+<td>回售 <strong>2027-02-13</strong> 才开门（触发价 11.20 &lt; 正股 8.91，价格已满足）；2026 年四次触发、四次拒修（8/26、9/16、10/15、11/5）；公司只需小幅修到 ~12 元即可把触发价压到 8.40 <strong>解除回售</strong>，同时清零 30 日计数、<strong>久期被动拉回 2029</strong></td>
+</tr>
+<tr>
+<td>对冲项</td>
+<td>capex 指引次年 ≤10 亿（较 2024 年 131.42 亿降约 92%）；出让天合跟踪支架 51–70% 股权补血 —— 但卖的是全球第二、2025 年收入 31.76 亿、境外毛利率约 20% 的盈利资产</td>
+</tr>
+<tr>
+<td>下行参照 / 风险调整价</td>
+<td>2024-08-23 盘中低点 <strong>75.00</strong>（距现价 −22.5%）；🟡 5% 违约 → <strong>90.05</strong>，10% → 87.14</td>
+</tr>
+<tr>
+<td>证伪点</td>
+<td>11 月底第五次下修触发后是否仍拒修；2026Q4 扣非与单季经营现金流；跟踪支架交易落地金额；评级展望是否调整</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这个收益对应要扛什么</strong>：8.03% 是三只里最高的，但它就是「信用折价」本身 —— 评级最低、可动用现金盖不住短债、Q3 单季经营现金流已转负。对冲是兑付额最小、经营现金流绝对额最强、capex 已砍到极限。</p>
+<h3>通22（110085，沪 · A）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>收益定位</strong></td>
+<td>当下税后 <strong>6.01%</strong>，跨 10% 需跌到 <strong>96.45</strong>（−4.55）；久期 <strong>1.2630 年最短</strong>，没有时间等基本面修复</td>
+</tr>
+<tr>
+<td>信用定价</td>
+<td>🟡 隐含违约概率 <strong>11.2%（三只最低）</strong>；纯债价值 108.7221，现价折价 7.1%；主体/债项评级 <strong>AAA 最硬</strong></td>
+</tr>
+<tr>
+<td>兑付压力</td>
+<td><strong>2028-02-24 一次性 130.62 亿（三只最大，占货币资金 75.1%）</strong>；有息负债 🟡 933.26 亿（口径待原表核）；一年内到期有息 288.95 亿</td>
+</tr>
+<tr>
+<td>盈利与现金流</td>
+<td>9M 营收 583.37 亿（−9.69%）、毛利率 −0.44%、归母 −67.59 / 扣非 −68.68 亿（<strong>亏损最大</strong>）；经营 +19.15 亿（−28.35%）/ 投资 −28.18 / 筹资 −23.95；capex 47.40 亿（−40.2%）；另推 <strong>48 亿收购丽豪清能</strong>（靠增发）</td>
+</tr>
+<tr>
+<td>缓冲项</td>
+<td>农牧 42.1% 收入对冲光伏周期；现金类资产 <strong>262.6 亿</strong>（货币资金 173.96 + 交易性金融资产 88.64）三只最厚；Q3 毛利率转正 3.32%（环比 +5.87pct），硅料 32→40 元/kg</td>
+</tr>
+<tr>
+<td>条款风险</td>
+<td><strong>三只里唯一回售权已通电</strong>：2026-04-29~05-08 首次回售、价 100.32、仅 <strong>80 张申报</strong>（当时市价更高）；<strong>2027-02-24 第二次机会</strong> → 一旦市价跌破回售价，挤兑最早在这里兑现。平价 32.11、溢价率 214.5%，股性≈0，上行只能靠债底收敛，无期权弹性</td>
+</tr>
+<tr>
+<td>风险调整价</td>
+<td>🟡 5% 违约 → <strong>93.47</strong>，10% → 90.49；无同口径历史低点，不套用 75</td>
+</tr>
+<tr>
+<td>证伪点</td>
+<td>2027-02-24 第二次回售申报率；48 亿收购进展与增发；2026Q4 扣非与硅料价格</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这个收益对应要扛什么</strong>：评级最硬 ≠ 兑付最轻。AAA 与农牧缓冲把违约概率压到最低，但换来的是 <strong>130.62 亿一次性现金支出</strong>和最短久期 —— 风险不在「会不会违约」，在「2028 年 2 月那笔钱从哪来」以及回售权已通电后的挤兑可能性。</p>
+<h3>晶澳（127089，深 · B）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>收益定位</strong></td>
+<td>当下税后 <strong>6.40%</strong>，跨 10% 需跌到 <strong>85.86</strong>（−7.83，跌幅最大）；久期 <strong>2.6603 年最长</strong>、赎回价 108 最低 → 信用暴露时间最长</td>
+</tr>
+<tr>
+<td>信用定价</td>
+<td>🟡 隐含违约概率 <strong>19.1%</strong>；纯债价值 106.3968，现价折价 11.9%；评级 AA+；<strong>PB 0.99 最低</strong></td>
+</tr>
+<tr>
+<td>偿债</td>
+<td>总资产 1293.14 / 总负债 1027.60 / 负债率 79.46% <strong>仍在上行</strong>；有息负债 473.46 亿；短期借款较年初 +48%、一年内到期非流动负债 +88.3%，<strong>短债 242.41 亿 vs 货币资金 126.66 亿 = 1.91×（三只最紧）</strong>；转债余额 89.58 亿约占市值 49%</td>
+</tr>
+<tr>
+<td>盈利与现金流</td>
+<td>业务最单一（组件 85.9% + 电池 8.2%）；9M 营收 281.13 亿（−23.62%）、毛利率 1.54%（Q3 1.97%），<strong>三只里唯一正毛利且同比 +4.14pct</strong>；归母 −36.40 / 扣非 −41.37 亿；Q3 单季经营现金流 31.20 亿；capex 18.48 亿（−51.4%）；海外出货 61%</td>
+</tr>
+<tr>
+<td>条款风险</td>
+<td>回售 <strong>2027-07-18 最晚开门</strong>（触发价 6.23 &gt; 正股 5.49，价格已满足）；下修有 <strong>每股净资产下限</strong>（BPS≈5.55），转股价已修到 8.90、平价 61.69；修到底平价可近 99，但需摊薄近半股本、股东会极难通过 → <strong>股性修复路径被锁死</strong></td>
+</tr>
+<tr>
+<td>风险调整价</td>
+<td>🟡 5% 违约 → <strong>83.24</strong>，10% → 80.61；无同口径历史低点，不套用 75</td>
+</tr>
+<tr>
+<td>证伪点</td>
+<td>净资产下限锁死后的下修空间；2026Q4 扣非能否转正；海外出货与毛利能否延续 Q3 修复</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这个收益对应要扛什么</strong>：现价最便宜却收益最低，因为 111.30 要摊到 2.66 年。要 10% 就得等最大跌幅，而等待期间短债覆盖最紧、负债率仍上行、下修空间被净资产锁死 —— <strong>时间站在公司对面</strong>。唯一亮点是 9M 唯一正毛利与 Q3 单季 31.20 亿经营现金流。</p>
+<p><strong>三只共有的底层风险</strong>：2026 年前三季扣非<strong>全部为负</strong>，2028/2029 的兑付靠 2027 年行业产能出清后扣非转正 + 再融资通畅，不是今天账上的现金。所有 XIRR 只改「买价」一个变量，改不了这个前提；压价买的是容错空间，不是提高收益。</p>
+<h2>读表要点</h2>
+<ol>
+<li><strong>当下三只税后都没到 10%</strong>，实际拿到的是 6.40%~8.03% 加一份左偏尾部。只有天23 的税前接近 10%（截图价 95.236 时为 10.40%，已跨过税前线）。</li>
+<li>收益排序 天23 &gt; 通22 &gt; 晶澳，与价格排序相反；决定因素是 <strong>「到期赎回价 ÷ 久期」</strong>（115/2.24y &gt; 109/1.26y &gt; 108/2.66y），不是票面价格。</li>
+<li>税前与税后临界价的差额 3.04 / 1.94 / 0.90 元，就是利息税的成本；赎回溢价越大、久期越短，税差越大。</li>
+<li>若按截图盘中价算：税后 8.80% / 6.73% / 6.51%，距税后临界价 −2.28 / −3.70 / −7.57。</li>
+</ol>
+<p>盯四个证伪点：11 月底天23 第五次下修触发后是否仍拒修；2027-02-24 通22 第二次回售申报率；三家 2026Q4 扣非与单季经营现金流；评级展望是否调整。</p>
+<hr />
+<blockquote>
+<p><strong>免责声明</strong>：本表基于公开数据与量化推演，仅供参考，不构成投资建议或税务意见；实际税负以兑付机构代扣结果及主管税务机关意见为准。市场有风险，投资需谨慎。</p>
+</blockquote>
+</div><div class="backrow"><a href="../../index.html#dir=%E8%B7%9F%E8%B8%AA">← 返回 跟踪</a><a href="../../index.html">首页</a></div></div></body></html>
