@@ -1599,6 +1599,12 @@ def generate_one(code, data_path=None):
         data_path = os.path.join(BASE_DIR, "report_data.json")
     with open(data_path, "r", encoding="utf-8") as f:
         data = json.load(f)
+    # report_data.json 只保存最后一次 build 的标的；code 与数据不符会静默写错阅读页
+    data_code = str(data.get("meta", {}).get("code", ""))
+    if data_code != str(code):
+        raise SystemExit(
+            f"[ERROR] {data_path} 属于 {data_code}，与请求的 {code} 不一致；"
+            f"请先对该标的运行 build.py 再生成阅读报告")
     report = build_reading_report(data)
 
     md_path = os.path.join(READING_DIR, f"{code}.md")

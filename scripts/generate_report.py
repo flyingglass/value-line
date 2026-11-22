@@ -17,7 +17,7 @@ HTML = f'''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1360">
-<title>Value Line — {DATA['meta']['name_en']} {DATA['meta']['code']}.{DATA['meta']['market']}</title>
+<title>Value Line — {DATA['meta']['name']} {DATA['meta']['code']}.{DATA['meta']['market']}</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
@@ -94,7 +94,7 @@ var DATA = {DATA_JS};
   var spot=d.spot||{{}};
   var latestYr=Y[Y.length-1], ly=MT[latestYr]||{{}};
   var meta=d.meta||{{}};
-  var stockName=meta.name_en||meta.name||'N/A';
+  var stockName=meta.name||meta.name_en||'N/A';
   var stockCode=meta.code||'';
   var cfMult=d.cf_multiplier||15;
   var pbMult=d.pb_multiplier||1;
