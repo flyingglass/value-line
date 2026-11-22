@@ -515,7 +515,14 @@ def fetch_cn_financials(store, code):
 
     # 分红 - 巨潮 (新API格式: 派息比例=每10股派息金额)
     print("  [cn_dividend] ", end="", flush=True)
-    df = ak.stock_dividend_cninfo(symbol=code)
+    try:
+        df = ak.stock_dividend_cninfo(symbol=code)
+    except Exception as e:
+        # 巨潮分红接口偶发返回非 records 结构（如 KeyError: 'records'），
+        # 不阻断整条流水线：改由下方年报 PDF 预案补齐。
+        import pandas as pd
+        df = pd.DataFrame()
+        print(f"WARN 巨潮分红接口异常({type(e).__name__}: {e})，改从年报PDF补预案 ", end="", flush=True)
     for _, r in df.iterrows():
         try:
             # "报告时间" 格式: "2004年报" → 提取年份
