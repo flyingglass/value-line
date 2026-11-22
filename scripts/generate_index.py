@@ -127,9 +127,8 @@ def group_by_industry():
 
 
 def _card_html(code, stock):
-    """生成单张卡片 HTML"""
+    """生成单张卡片 HTML（标的名一律只显示中文）"""
     name = stock["name"]
-    name_en = stock.get("name_en", "")
     market = stock.get("market", "hk")
     # B股: market 仍为 cn (复用A股财务口径), 但展示标签需区分
     if stock.get("share_class") == "B":
@@ -140,7 +139,7 @@ def _card_html(code, stock):
     rpt_file = f"{name}.html"
 
     return f'''      <div class="card">
-        <div class="card-title">{name_en} · {name}</div>
+        <div class="card-title">{name}</div>
         <div class="card-meta">
           <span class="code">{code}</span>
           <span class="badge badge-{mkt_class}">{mkt_label}</span>
