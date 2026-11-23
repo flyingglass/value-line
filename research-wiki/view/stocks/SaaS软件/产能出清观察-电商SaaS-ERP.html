@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>电商 SaaS ERP · 产能出清可观测性与双期叠加辨析</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">SaaS软件</a> › <a href="产能出清观察-电商SaaS-ERP.html">电商 SaaS ERP · 产能出清可观测性与双期叠加辨析</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">电商 SaaS ERP · 产能出清可观测性与双期叠加辨析</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-11-23</span><span style="margin-left:auto;color:#b0b5bd">research/SaaS软件</span></div><div class="md" id="md"><h1>电商 SaaS ERP · 产能出清能观察到吗</h1>
+<blockquote>
+<p>归类入口：<a href="index-%E9%A1%B5.html">index</a>。库内一手参考：<code>raw/research/软件开发/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md</code>（<a href="https://mp.weixin.qq.com/s/JpHWXjs0EL2bCbWIX_237w">原文链接</a>，2026-11-15，raw 只进不改）。
+<strong>本页只做证据对照与可观测性判断，不做资本周期定位、不给买卖结论。</strong>
+证据等级：🟢 观测（公告／库内数据） · 🟡 推算／二手转述／作者转引第三方数据图 · 🔴 不可识别。<strong>作者主张与本人判断严格分列</strong>，原文逐字引用标「作者」。</p>
+</blockquote>
+<h2>一、结论先行</h2>
+<p><strong>能观察到资本出清，观察不到 top5 口径的产能出清。</strong> 庶人哑士提出的「资本／产能出清周期 + 龙头利润释放的经营周期」双期叠加，在<strong>资本周期与经营周期两段都有台账证据支持</strong>；但「过剩产能也在出清中」是作者的<strong>因果推断</strong>，不是观测证据，且作者本人在结尾用「应然≠实然」自我限定了这一判断。两者不矛盾——差别在<strong>口径</strong>（中国企业软件 8 家 vs 电商 SaaS ERP top5）与<strong>证据性质</strong>（应然推断 vs 实然观测）。</p>
+<h2>二、「产能」在这门生意里对应什么</h2>
+<p>SaaS 没有厂房、产线或库存，戴斌式「产能投放→过剩→出清→价格回升」的链条在这里没有对应物。<strong>供给端实际是三样：玩家数 × 销售／实施人力 × 平台接口覆盖</strong>（🟡 这是本页的口径映射，非任何原文）。因此「出清」须翻译为可观测动作：玩家退出或停服、头部收缩交付人力、并购整合、产品线下线、<strong>价格／ARPU 止跌回升</strong>。用固定资产或 CAPEX/DC 去找，一定找不到（台账 §四已证 2025 硬 CAPEX 仅 169.9 万港元、CAPEX/DC 0.12）。</p>
+<h2>三、库内 raw 的核心主张（作者原话）</h2>
+<blockquote>
+<p>「所以，当下整个SaaS行业处于资本『闻SaaS而色变』的资本出清周期。没有了资本的输血，行业里很多在盈亏线附近苦苦挣扎的中尾部企业，无法实现AI转型，而下游用户的需求也基本是『没有AI根本批不了预算』。双重夹击之下，行业的过剩产能也在出清中。」（§三）</p>
+</blockquote>
+<blockquote>
+<p>「资本/产能出清周期+龙头利润释放的经营周期，双期叠加。向下的空间有限，向上的空间巨大，一次明显的非对称投资机会。」（§三）</p>
+</blockquote>
+<blockquote>
+<p>「双期叠加+低估值+不错的股息回报+无人问津的行业，只能说向下空间很有限是确定性很高的。但巨大的向上空间能否兑现、什么时候兑现，需要等到一个明确信号出现。」／「应然≠实然。不把应然当实然，可能是对我过去体系打的最大的补丁。」（§五）</p>
+</blockquote>
+<p><strong>该文自述的三处边界</strong>：① 8 家样本是<strong>中国企业软件宽口径</strong>（用友、金蝶、畅捷通、广联达、鼎捷数智、明源云、北森、聚水潭），其中只有聚水潭属电商 ERP；② 融资数据来自<strong>第三方数据图</strong>（PitchBook-NVCA、中国信通院·IT 桔子），非财报原文；③ 「明确信号」<strong>作者未定义</strong>，估值段落数字未注币种与时点、Non-GAAP 未给定义。</p>
+<h2>四、与台账的交叉验证</h2>
+<table>
+<thead>
+<tr>
+<th>作者主张</th>
+<th>台账／库内证据</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>两轮融资热潮 <strong>2014–2015、2019–2021</strong></td>
+<td>阶段前史：2015 天使→2017 A→2019 B1/B2/B3→2020 C 轮；阶段一 2021 慧策 D 轮 3.12 亿美元峰值</td>
+<td>✅ <strong>吻合</strong>，两条独立线索互相印证</td>
+</tr>
+<tr>
+<td><strong>2021 是融资峰值</strong></td>
+<td>图 K 中国企业级 SaaS <strong>442.98 亿元</strong>；图 J 全球 <strong>126.9 十亿美元</strong>；台账 top5 2021 慧策 D 轮</td>
+<td>✅ 吻合</td>
+</tr>
+<tr>
+<td>超长投入期 8–10 年</td>
+<td>聚水潭 2014 创立→2024 才盈利转正；阶段一投入强度冲到 86.1%</td>
+<td>✅ 吻合</td>
+</tr>
+<tr>
+<td><strong>资本出清周期</strong></td>
+<td>台账：2022–2024 top5 一级市场空档；2025 唯一大额是聚水潭 IPO 且 64.2% 未动用；2026H1 转回购＋股息</td>
+<td>✅ 吻合</td>
+</tr>
+<tr>
+<td><strong>龙头利润释放的经营周期</strong></td>
+<td>阶段二投入 CAGR +5.2% &lt; 营收 +20.6%、投入强度 73.8%→56.1%；聚水潭 2026H1 经调整净利率 30.1%、合约获取成本净摊销 22.8 百万元</td>
+<td>✅ 吻合，即经营杠杆</td>
+</tr>
+<tr>
+<td>「过剩产能也在出清中」</td>
+<td>top5 无一退出；单客价格仍在跌；头部还在扩人（见 §六）</td>
+<td>❌ <strong>top5 口径观测不到</strong>，属作者推断</td>
+</tr>
+<tr>
+<td>资本出清单调向下</td>
+<td>图 J 全球 2023 年 59.9 → <strong>2024 回升 72.8 十亿美元</strong>；中国口径图 K 只到 2023（65.19 亿、较峰值 −85%），2024–25 无数据</td>
+<td>⚠️ <strong>需修正</strong>：出清非单调，且中国侧缺近两年数</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>图 K 优先于网传「585 起→195 起」</strong>：库内 raw 图 K 注明来源「中国信通院《中国企业级SaaS产业发展研究报告（2024年）》／IT 桔子」，口径为标准化、订阅制、公有云部署，不含泛企业服务／IT 服务／硬件；<a href="https://36kr.com/p/3171784306605575">36氪</a> 转述的 585→195 起未注口径。两者均为 🟡（作者转引第三方图／媒体转述），<strong>不得升格为 🟢 财报原文</strong>。</p>
+</blockquote>
+<h2>五、五类出清信号的可观测性</h2>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>读数</th>
+<th>等级</th>
+<th>是否指向出清</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一级市场融资</td>
+<td>中国企业级 SaaS 2021 <strong>442.98 亿</strong> → 2023 <strong>65.19 亿（−85%）</strong>（图 K）；top5 2022–2024 无新大额融资</td>
+<td>🟡 转引第三方图／🟢 台账</td>
+<td>✅ <strong>资本出清最硬证据</strong></td>
+</tr>
+<tr>
+<td>经营投入收缩</td>
+<td>阶段一 CAGR +42.4% → 阶段二 +5.2%；投入强度 86.1%→56.1%</td>
+<td>🟢 库内推算</td>
+<td>✅ 投入退潮，但<strong>投入≠产能退出</strong></td>
+</tr>
+<tr>
+<td>玩家退出／停服</td>
+<td>行业级：2022 年以来倒闭或停服 SaaS 厂商超 40 家（《中国企业服务云图》，<a href="https://36kr.com/p/3171784306605575">36氪</a>转述）；有赞员工 4,494→1,582（−65%，<a href="https://www.huxiu.com/article/3916004.html">虎嗅</a>作者见闻）；用友 2024 减员约 3,700 人（业绩预告）</td>
+<td>🟡 二手</td>
+<td>⚠️ <strong>是中国企业软件宽口径，不是电商 ERP top5</strong>；top5 无一退出</td>
+</tr>
+<tr>
+<td>集中度提升</td>
+<td>灼识仅给 2024 年前五名份额静态快照（24.4/11.8/5.2/4.4/2.8，CR5 48.6%），<strong>无历年序列</strong></td>
+<td>🔴</td>
+<td><strong>不可识别</strong>——判断出清最该有、却完全没有的数</td>
+</tr>
+<tr>
+<td>价格／ARPU</td>
+<td>聚水潭平均合同价值 3.82 万(2021)→2.39 万(2024)，降 37%；客单价 1.08 万→0.99 万；LTV/CAC 9.3(2024)→8.0(2025H1)（<a href="https://caifuhao.eastmoney.com/news/1614038626">东财财富号</a>、<a href="http://www.looktmt.com/0032/944/63374784853.html">TMT观察</a>）</td>
+<td>🟡 媒体转述招股书，<strong>待回原文核</strong></td>
+<td>❌ <strong>方向相反：价格仍在跌</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>六、三处反证（说明出清没走完或概念不适用）</h2>
+<ol>
+<li><strong>价格没止跌</strong>。出清终点应是供给收缩后定价权回来、单价回升；但聚水潭四年降 37%，媒体归因「买三年送一年」预付款优惠。⚠️ 「平均合同价值 2.39 万」与 <a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a> 的「客单价约 1 万」不冲突：前者是 1–4 年合同总额，后者是年化口径。</li>
+<li><strong>头部还在扩人</strong>。光云 2025 研发人员 523→591（+68）；慧策官网称员工近 4,000（🟡 官网口径，与亿欧 3,000 冲突）；聚水潭 2026H1 销售／研发开支同比 +2.4%／+5.0%，均因雇员福利增加；库内 <code>employee_count</code> 2,552（2025）。裁的是用友这类综合 ERP 与客服岗（AI 提效 270→200 余人），<strong>不是 top5 的交付产能</strong>。</li>
+<li><strong>供给侧仍有新进入</strong>。电商平台自研工具（阿里系）、云厂商把 ERP 能力嵌入基础设施——这是出清的反面。</li>
+</ol>
+<h2>七、证伪指标清单（可执行，带阈值）</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前读数</th>
+<th>判定出清完成的阈值</th>
+<th>数据源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>top5 份额序列</td>
+<td>2024 静态快照 CR5 48.6%</td>
+<td>灼识／新版招股书出现 2025 或 2026 份额且 <strong>CR5 上升</strong></td>
+<td>灼识咨询／招股书</td>
+</tr>
+<tr>
+<td>单客合同价值</td>
+<td>2.39 万(2024)</td>
+<td><strong>连续两期止跌回升</strong></td>
+<td>招股书／年报</td>
+</tr>
+<tr>
+<td>玩家退出</td>
+<td>top5 无一退出</td>
+<td>出现停服／并购／注销公告</td>
+<td>官网／工商／港交所</td>
+</tr>
+<tr>
+<td>销售费用率</td>
+<td>两家 259→596 百万元仍上行</td>
+<td><strong>掉头向下</strong></td>
+<td>年报</td>
+</tr>
+<tr>
+<td>行业融资额</td>
+<td>中国 2023 65.19 亿（−85%）</td>
+<td>连续两年回升且<strong>分散到中尾部</strong>＝出清结束／新周期开启</td>
+<td>信通院·IT 桔子</td>
+</tr>
+<tr>
+<td>资本返还</td>
+<td>聚水潭 2026H1 回购 2.076 亿港元（库存股不注销）＋股息</td>
+<td><strong>注销式回购</strong>、IPO 募资动用加速</td>
+<td>港交所公告</td>
+</tr>
+</tbody>
+</table>
+<h2>八、剔除的伪证据（勿再引用）</h2>
+<ul>
+<li><strong>10100.com「大数跨境」系列</strong>（近 3 年 47% 跨境 ERP 退出、芒果店长停运、马帮收购大伟）：AI 生成内容，编造「艾瑞咨询 2023 报告」、虚构 ShopMaster 公司、数据精度可疑，<strong>一律不可用</strong>。</li>
+<li><strong><a href="https://asiaict.com/digitallive/12088.html">AsiaICT 英文站</a></strong>（SaaS 招聘 −58%、2025 提价 20% 而流失仅 +3pct、融资 280→120 起）：与 36氪 585→195 起口径冲突、无一手出处，<strong>只用方向不用数值</strong>。</li>
+<li><strong><a href="https://www.sgpjbg.com/labelsyh/dianshangsaasjiagezoushi/2/7067739.html">三个皮匠「价格三阶段／价值回归」</a></strong>：百科词条整理；有赞 ARPU 28,159 元属营销 SaaS 口径，不能套到 ERP。</li>
+<li><strong>庶人哑士 §四估值段落</strong>（聚水潭市值 44 亿、Non-GAAP 4~4.5 亿等）：作者预测、未注币种时点、未给 Non-GAAP 定义，本页<strong>不引用为结论</strong>。</li>
+</ul>
+<h2>九、数据边界</h2>
+<ol>
+<li>🔴 <strong>行业产能出清不可观测</strong>：无玩家数时间序列、无份额序列、无 top5 交付人力统计；<code>资本开支台账-电商SaaS-ERP-top5</code> 的「两家合计」只是可得样本下限。</li>
+<li>⚠️ <strong>口径不可混</strong>：庶人哑士 8 家样本是中国企业软件宽口径；本页结论只覆盖灼识 2024 电商 SaaS ERP 前五名。宽口径的「出清」不能直接套到窄口径。</li>
+<li>⚠️ <strong>证据性质不可混</strong>：作者「过剩产能出清」是因果推断（融资断供→中尾部无法 AI 转型→需求端不批预算→双重夹击），作者自述「应然≠实然」；本页问的是实然观测，两者不构成互相反驳。</li>
+<li>⚠️ <strong>待回原文核</strong>：聚水潭单客合同价值／客单价、慧策员工数、灼识份额是否有 2025／2026 更新版、中国企业级 SaaS 2024–2025 融资额。</li>
+<li>⚠️ 图 J／K 为第三方数据图转引，2019 与 2021 部分标签重叠、2023 事件数无清晰标签，raw 已标「待核」，不硬凑年份。</li>
+</ol>
+<h2>参见</h2>
+<ul>
+<li><a href="index-%E9%A1%B5.html">index</a> — SaaS 软件行业分类入口、数据来源分层与缺口总表</li>
+<li><a href="%E8%B5%84%E6%9C%AC%E5%BC%80%E6%94%AF%E5%8F%B0%E8%B4%A6-%E7%94%B5%E5%95%86SaaS-ERP-top5.html">资本开支台账-电商SaaS-ERP-top5</a> — 两阶段经营投入、资本动作时间轴、IPO 弹药状态</li>
+<li><a href="%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">商业模式-电商SaaS-ERP</a> — 前五名份额原表、官方定价、客户集中度、身份 🟡 推断</li>
+<li><a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a> — 市场规模 31 亿、渗透率三口径、客单价口径辨析</li>
+<li><a href="%E8%81%9A%E6%B0%B4%E6%BD%AD%E4%B8%8E%E5%85%89%E4%BA%91%E7%A7%91%E6%8A%80-%E5%AF%B9%E7%85%A7%E5%88%86%E6%9E%90.html">聚水潭与光云科技-对照分析</a> — 两家生意模式、2026H1 财务对照与现金结构</li>
+<li>库内原文：<code>raw/research/软件开发/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md</code>（图 J／K 融资、§三双期叠加、§五应然≠实然）</li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/科技/SaaS软件/产能出清观察-电商SaaS-ERP.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
