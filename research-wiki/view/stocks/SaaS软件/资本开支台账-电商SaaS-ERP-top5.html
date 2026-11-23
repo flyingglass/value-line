@@ -1,0 +1,815 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>电商 SaaS ERP top5 · 资本开支台账（2020–2026，两阶段）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">SaaS软件</a> › <a href="资本开支台账-电商SaaS-ERP-top5.html">电商 SaaS ERP top5 · 资本开支台账（2020–2026，两阶段）</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">电商 SaaS ERP top5 · 资本开支台账（2020–2026，两阶段）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-11-23</span><span style="margin-left:auto;color:#b0b5bd">research/SaaS软件</span></div><div class="md" id="md"><h1>电商 SaaS ERP · top5 资本开支台账（2020–2026，两阶段）</h1>
+<blockquote>
+<p>归类入口：<a href="index-%E9%A1%B5.html">index</a>。范围＝灼识咨询 2024 年中国电商 SaaS ERP <strong>前五名</strong>（招股书 INDUSTRY OVERVIEW p.117 份额表），不含跨境 ERP、不含综合 ERP 厂商、不含第 6 名以后长尾。<br />
+<strong>本页只落数据，不做资本周期定位</strong>；趋势与周期位置另议。<br />
+<strong>口径</strong>：这门生意的资本开支＝①经营投入（销售及营销＋研发）＋②资本化软投入（研发资本化、合约获取成本净增）＋③外部资本动作（融资／定增／IPO 注入与回购／分红返还）。三者合并汇总见 §四；固定资产购建极小，仅作口径排除说明，不占主表。<br />
+<strong>时间轴</strong>：同口径可比序列自 <strong>2020 年</strong>起（聚水潭 2020 才有财务数据）；按 <strong>2022 年投入强度拐点</strong>分两个阶段——<strong>阶段一 2020–2022 扩张期</strong>、<strong>阶段二 2023–2026 收缩／回收期</strong>。2012–2019 为「阶段前史」，只有光云单家财务与一级市场融资事件，不并入行业合计。<br />
+<strong>证据等级</strong>：🟢 交易所公告／公司官网原文 · 🟡 三方数据库、媒体转述或推算 · 🔴 不可识别。Company A–D 身份为 🟡 特征匹配推断，<strong>非招股书点名</strong>。<br />
+<strong>币种</strong>：财务数据按披露原币种（人民币）记录；融资按披露原币种（人民币／美元／港元）记录，<strong>跨币种不折算、不加总</strong>（<code>data/db/fx_rates.db</code> 仅有 hkd_cny，无 usd_cny）。</p>
+</blockquote>
+<h2>一、样本与可得性</h2>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>主体</th>
+<th>2024 份额</th>
+<th>资本状态</th>
+<th>销售／研发可得区间</th>
+<th>融资／资本动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>聚水潭 06687.HK</td>
+<td>24.4%</td>
+<td>独立上市（2025-10-21）</td>
+<td><strong>2020–2025</strong>（🟢 2020／2021 库内 DB、2022–2024 招股书原文；2025 🟡 财报镜像）</td>
+<td>🟢 港交所公告齐全</td>
+</tr>
+<tr>
+<td>2</td>
+<td>🟡 慧策·旺店通（Company A）</td>
+<td>11.8%</td>
+<td>纯非上市</td>
+<td>🔴 无三表</td>
+<td>🟢 公司官网融资历程</td>
+</tr>
+<tr>
+<td>3</td>
+<td>🟡 笛佛软件／吉客云·网店管家（Company B）</td>
+<td>5.2%</td>
+<td>纯非上市</td>
+<td>🔴 无三表</td>
+<td>🟡 工商／三方数据库，金额未披露</td>
+</tr>
+<tr>
+<td>4</td>
+<td>🟡 光云科技 688365.SH（Company C）</td>
+<td>4.4%</td>
+<td>独立上市（2020-04-29）</td>
+<td><strong>2016–2025</strong>（🟢 2016–2019 招股书期间费用表；2020–2025 🟡 年报利润表镜像）</td>
+<td>🟢 上交所公告齐全</td>
+</tr>
+<tr>
+<td>5</td>
+<td>🟡 金蝶·管易云（Company D）</td>
+<td>2.8%</td>
+<td>并入金蝶国际 00268.HK</td>
+<td>🔴 不单列，被合并进集团报表</td>
+<td>⚠️ 仅母公司层面可见，<strong>不可归因于管易云业务</strong></td>
+</tr>
+</tbody>
+</table>
+<p>前五合计 48.6%；有连续财务披露的覆盖 <strong>28.8 个百分点</strong>（聚水潭＋光云），其余 17 个百分点（Company A＋B）无财务数据，长尾 51.4% 亦不可得。<strong>同口径「两家合计」最早只能到 2020 年</strong>；2016–2019 只有光云单家，见 §二阶段前史表，不并入行业合计。</p>
+<h2>二、经营投入：销售＋研发（百万元人民币，两家同口径合计）</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>年</th>
+<th>聚水潭 销售／研发</th>
+<th>光云 销售／研发</th>
+<th><strong>两家合计</strong></th>
+<th>合计营收</th>
+<th><strong>投入强度</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一 · 扩张</strong></td>
+<td><strong>2020</strong></td>
+<td>158.8 / 66.9 🟢</td>
+<td>99.8 / 106.6 🟡</td>
+<td><strong>432</strong></td>
+<td>804</td>
+<td><strong>53.7%</strong></td>
+</tr>
+<tr>
+<td><strong>一 · 扩张</strong></td>
+<td>2021</td>
+<td>235.4 / 191.8 🟢</td>
+<td>175.5 / 159.8 🟡</td>
+<td><strong>762</strong></td>
+<td>979</td>
+<td><strong>77.9%</strong></td>
+</tr>
+<tr>
+<td><strong>一 · 扩张</strong></td>
+<td><strong>2022</strong></td>
+<td>314.3 / 234.3 🟢</td>
+<td>171.8 / 155.2 🟡</td>
+<td><strong>876</strong></td>
+<td>1,017</td>
+<td><strong>86.1%</strong> ← 拐点</td>
+</tr>
+<tr>
+<td><strong>二 · 收缩</strong></td>
+<td>2023</td>
+<td>344.0 / 233.9 🟢</td>
+<td>167.2 / 120.0 🟡</td>
+<td><strong>865</strong></td>
+<td>1,173</td>
+<td><strong>73.8%</strong></td>
+</tr>
+<tr>
+<td><strong>二 · 收缩</strong></td>
+<td>2024</td>
+<td>369.9 / 239.8 🟢</td>
+<td>182.6 / 107.2 🟡</td>
+<td><strong>900</strong></td>
+<td>1,388</td>
+<td><strong>64.8%</strong></td>
+</tr>
+<tr>
+<td><strong>二 · 收缩</strong></td>
+<td>2025</td>
+<td>395.9 / 243.1 🟡</td>
+<td>200.4 / 118.1 🟡</td>
+<td><strong>958</strong></td>
+<td>1,706</td>
+<td><strong>56.1%</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>2020／2021 聚水潭为库内一手数据</strong>：<code>data/db/06687.db</code> income 表（🟢），2020 营业额 293.946／销售及分销 158.776／研发 66.893 百万元，2021 为 433.422／235.361／191.804；与<a href="https://m.cls.cn/detail/1860420">财联社转述招股书</a>「2021 销售 2.35 亿／研发 1.92 亿、合计占营收 98.91%」吻合。⚠️ 该两年科目名为「销售及分销费用」，2022 起为「销售费用」；<code>meta.currency=HKD</code> 与数值口径不符（2022 营业额 523,078 千元与招股书人民币一致），<strong>勿按港元读</strong>。</li>
+<li>聚水潭 2022–2024 出自<a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1021/11884888/sehk25092902956_c.pdf">招股书附录一会计师报告</a>；2025 出自年报利润表镜像（🟡 待回原件核）。</li>
+<li>光云 2020–2025 出自各年年报利润表（腾讯财报镜像汇总 🟡），2025 年报原件见<a href="https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-04-25/688365_20260425_TJT3.pdf">上交所</a>；2020 年报数据另有<a href="https://raycloud.com/meitibaodao/36607.jhtml">公司官网</a>交叉印证（营收 5.10 亿、研发投入 1.07 亿）。<strong>上表为利润表「研发费用」口径</strong>；光云 2025 研发投入合计（含资本化）158.99 百万元，与 118.1 的差额为资本化部分，见 §四 4.2，不可混用。</li>
+<li>自洽校验：2022 两项合计 548.6 / 523.1 = 104.8%、2023 577.9 / 697.2 = 82.9%，与招股书披露占比一致。</li>
+</ul>
+<h3>两阶段读数（只陈述，不判断）</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>阶段一 2020–2022</th>
+<th>阶段二 2023–2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经营投入</td>
+<td>432 → 876，<strong>CAGR +42.4%</strong>〔🟡〕</td>
+<td>865 → 958，<strong>CAGR +5.2%</strong>〔🟡〕</td>
+</tr>
+<tr>
+<td>营收</td>
+<td>804 → 1,017，CAGR +12.5%〔🟡〕</td>
+<td>1,173 → 1,706，CAGR +20.6%〔🟡〕</td>
+</tr>
+<tr>
+<td>投入强度</td>
+<td>53.7% → <strong>86.1%</strong>（+32.4pct）</td>
+<td>73.8% → <strong>56.1%</strong>（−17.7pct）</td>
+</tr>
+<tr>
+<td>投入 vs 营收增速</td>
+<td><strong>投入远快于营收</strong>（扩张）</td>
+<td><strong>投入远慢于营收</strong>（回收）</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>起点选择会反转结论</strong>：若只看 2021–2025，投入 CAGR +5.9% 远低于营收 +14.9%，像是「一直在收缩」；加入 2020 后全期（2020–2025）投入 CAGR <strong>+17.3%</strong> 反而略高于营收 <strong>+16.2%</strong>。因此<strong>必须以两阶段读，不能用单一全期 CAGR 概括</strong>。</p>
+<h3>阶段前史：光云单家 2016–2019（参照序列，不并入行业合计）</h3>
+<table>
+<thead>
+<tr>
+<th>年</th>
+<th>销售</th>
+<th>研发</th>
+<th>合计</th>
+<th>营收</th>
+<th>投入强度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2016</td>
+<td>17.9</td>
+<td>36.3</td>
+<td><strong>54.1</strong></td>
+<td>262 🟡</td>
+<td>20.6%</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>25.5</td>
+<td>51.8</td>
+<td><strong>77.3</strong></td>
+<td>358 🟡</td>
+<td>21.6%</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>45.0</td>
+<td>84.7</td>
+<td><strong>129.7</strong></td>
+<td>466 🟡</td>
+<td>27.9%</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>75.9</td>
+<td>89.4</td>
+<td><strong>165.3</strong></td>
+<td>465 🟡</td>
+<td>35.5%</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>99.8</td>
+<td>106.6</td>
+<td><strong>206.4</strong></td>
+<td>510</td>
+<td>40.5%</td>
+</tr>
+</tbody>
+</table>
+<p>来源：🟢 <a href="https://xinsanban.eastmoney.com/Article/NoticeContent?id=AN202004231378505877&amp;pageIndex=117">招股说明书期间费用表</a>（2016–2018 及 2019 年 1–9 月；2019 全年数取年报口径 🟡）、<a href="https://www.jwview.com/jingwei/12-09/278174.shtml">中新经纬</a> 销售费用率交叉印证；营收由「销售费用率」倒算〔🟡〕。<strong>2016–2019 只有光云一家，任何行业口径的加总都不得跨过 2020</strong>。</p>
+<h2>三、资本动作时间轴（top5，按年）</h2>
+<h3>阶段前史 2012–2019（一级市场融资期，无同口径财务）</h3>
+<table>
+<thead>
+<tr>
+<th>年</th>
+<th>主体</th>
+<th>动作</th>
+<th>金额</th>
+<th>等级与出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2012</td>
+<td>慧策</td>
+<td>A 轮</td>
+<td>数百万美元</td>
+<td>🟡 <a href="https://data.iyiou.com/company/details/fefeed68b9cb8de1913f8d54758ab694/profile">亿欧</a>；⚠️ 官网大事记把 2019 首轮记为 A 轮，<strong>轮次命名冲突</strong></td>
+</tr>
+<tr>
+<td>2015</td>
+<td>聚水潭</td>
+<td>天使</td>
+<td>1,290 万（投后 8,300 万）</td>
+<td>🟢 <a href="https://www.leinews.com/n30367/detail.html">雷递</a>、<a href="https://news.qq.com/rain/a/20251013A03NIH00">腾讯新闻</a></td>
+</tr>
+<tr>
+<td>2016</td>
+<td>管易云</td>
+<td>被金蝶收购 58%</td>
+<td>2.5 亿元</td>
+<td>🟡 百科口径，<strong>待回金蝶公告核</strong></td>
+</tr>
+<tr>
+<td>2017</td>
+<td>聚水潭</td>
+<td>A 轮</td>
+<td>3,750 万（投后 2.5 亿）</td>
+<td>🟢 同上</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>聚水潭</td>
+<td>B1／B2／B3</td>
+<td>6,500 万＋4,750 万＋1.65 亿（B3 投后 27.5 亿）</td>
+<td>🟢 同上</td>
+</tr>
+<tr>
+<td>2019-05</td>
+<td>慧策</td>
+<td>A／B 轮</td>
+<td>过亿人民币（软银亚洲／TPG 软银合资基金）</td>
+<td>🟢 <a href="https://www.wangdian.cn/pc/about.html">官网大事记</a>、🟡 <a href="https://data.iyiou.com/company/details/fefeed68b9cb8de1913f8d54758ab694/profile">亿欧</a>（记 B 轮数亿）</td>
+</tr>
+<tr>
+<td>2020-03</td>
+<td>慧策</td>
+<td>B／C 轮</td>
+<td>过亿人民币（君联＋软银亚洲）</td>
+<td>🟢 <a href="https://m.wangdian.cn/ask/48728">官网</a></td>
+</tr>
+<tr>
+<td>2020-12</td>
+<td>慧策</td>
+<td>C 轮</td>
+<td>近 1 亿美元（GIC 领投，高瓴／君联／软银跟投）</td>
+<td>🟢 <a href="https://www.wangdian.cn/news/490">C 轮公告</a></td>
+</tr>
+<tr>
+<td>2020</td>
+<td>聚水潭</td>
+<td>C 轮</td>
+<td>2.86 亿元（投后 60 亿）</td>
+<td>🟢 <a href="https://www.leinews.com/n30367/detail.html">雷递</a>；🟡 <a href="https://vc.pedaily.cn/invest/411325.html">投资界</a>记 1 亿美元</td>
+</tr>
+<tr>
+<td>2020-04-29</td>
+<td>光云</td>
+<td><strong>IPO</strong></td>
+<td>4,010 万股 @10.80 元，总额 <strong>4.3308 亿元</strong>、净额 <strong>3.6955 亿元</strong></td>
+<td>🟢 <a href="https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-09-19/688365_20260919_V9F1.pdf">上交所募集资金专户销户公告</a>、<a href="https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2023-04-28/688365_20230428_AOUK.pdf">2022 年度募集资金专项报告</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>阶段前史读数</strong>：2015–2020 是 top5 的一级市场融资期，聚水潭估值从 8,300 万涨到 60 亿（约 72 倍）；<a href="https://www.mrjjxw.com/articles/2023-07-11/2911876.html">每日经济新闻</a>明确「自 2020 年 8 月最后一笔融资到账后，公司再没有从一级市场获得融资」。⚠️ 早期金额多为「宣布金额」或「过亿」模糊表述，非到账／实缴口径；轮次命名在官网与三方数据库间冲突，不据此推算累计融资额。</p>
+</blockquote>
+<h3>阶段一 2020–2022（扩张）／阶段二 2023–2026（收缩）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>年</th>
+<th>主体</th>
+<th>动作</th>
+<th>金额／数量</th>
+<th>等级与出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一</strong></td>
+<td>2021</td>
+<td>慧策</td>
+<td>D 轮</td>
+<td><strong>3.12 亿美元</strong>；累计四轮逾 4.52 亿美元</td>
+<td>🟢 <a href="https://wangdian.cn/about">公司官网</a>／<a href="https://m.wangdian.cn/news/734/">D 轮公告</a>；⚠️ 官网记 2021-07、亿欧记 2021-10-28，日期冲突待核</td>
+</tr>
+<tr>
+<td><strong>一</strong></td>
+<td>2022</td>
+<td>笛佛</td>
+<td>A 轮</td>
+<td><strong>金额未披露</strong>；注册资本 1,250→1,265.82 万元</td>
+<td>🟡 <a href="https://www.tianyancha.com/brand/b92491356">天眼查</a></td>
+</tr>
+<tr>
+<td><strong>一</strong></td>
+<td>2022</td>
+<td>光云</td>
+<td>第二期回购</td>
+<td>1,260,800 股／1,000.93 万元（超募资金），用于员工持股或股权激励</td>
+<td>🟢 公告 2022-072，见<a href="https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2025-08-23/688365_20250823_FAFA.pdf">上交所公告</a></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2023</td>
+<td>光云</td>
+<td>定增（简易程序向特定对象）</td>
+<td>24,824,684 股 @7.13 元，募资总额 <strong>1.77 亿元</strong>、净额 1.7186 亿元</td>
+<td>🟢 <a href="https://epaper.stcn.com/con/202303/07/content_2439261.html">发行结果暨股本变动公告 2023-016</a></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2024</td>
+<td>光云</td>
+<td>超募资金永久补流</td>
+<td>617 万元（占超募总额 29.95%）</td>
+<td>🟢 公告 2024-026（2024-07-20），见同上交所文件</td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2025</td>
+<td>光云</td>
+<td>剩余超募资金永久补流</td>
+<td>490.59 万元（含利息与理财收益）</td>
+<td>🟢 同上交所文件</td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2025</td>
+<td>聚水潭</td>
+<td><strong>IPO + 基石</strong></td>
+<td>发售 6,816.62 万股 @30.60 港元，总额 <strong>20.86 亿港元</strong>；基石 1.3 亿美元；净额 19.376 亿＋超额配售 3.003 亿＝<strong>22.379 亿港元</strong></td>
+<td>🟢 <a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0910/2026091000511_c.pdf">2026 中期报告</a>、<a href="https://vc.pedaily.cn/invest/411325.html">投资界</a></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2025</td>
+<td>光云</td>
+<td>大股东减持</td>
+<td>海南祺御减持 7,111,271 股（1.67%），持股 6.68%→5.00% 以下</td>
+<td>🟢 <a href="https://paper.cnstock.com/html/2025-08/28/content_2112051.htm">减持结果公告 2025-053</a></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2025</td>
+<td>光云</td>
+<td>并购</td>
+<td>2 亿元收购山东逸淘（供应链 SaaS）</td>
+<td>🟡 <a href="https://m.cls.cn/share/article/2355757">财联社</a></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2026H1</td>
+<td>聚水潭</td>
+<td>回购</td>
+<td>13,462,400 股／<strong>2.076 亿港元</strong>，<strong>作为库存股持有、未注销</strong></td>
+<td>🟢 <a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0828/2026082800256_c.pdf">中期业绩公告</a></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2026H1</td>
+<td>聚水潭</td>
+<td>中期股息</td>
+<td>每股 0.20 港元</td>
+<td>🟢 同上</td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2026-11</td>
+<td>聚水潭</td>
+<td>连续回购</td>
+<td>11/9 37.4 万股／420.23 万港元（授权累计 5,185,100 股）；11/16 150.1 万股 @11.88 港元（期末库存股 10,862,475）；11/17 15.27 万股／182.98 万港元；11/18 46 万股／549.88 万港元（授权累计 9,914,700 股／2.32%），<strong>均持作库存股不注销</strong></td>
+<td>🟢 <a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2026/1116/2026111601030_c.pdf">翌日披露报表 2026-11-16</a>（只覆盖 11/16 当日）；11/9、11/17、11/18 逐笔为 🟡 证券之星转述翌日披露报表，待回港交所原件逐份核</td>
+</tr>
+</tbody>
+</table>
+<p><strong>两阶段资本动作读数</strong>：阶段一（2020–2022）以一级市场大额注入为主，峰值是 2021 慧策 D 轮 3.12 亿美元；阶段二（2023–2026）一级市场融资空档，唯一大额是 2025 聚水潭 IPO（且 64.2% 未动用，见 §四 4.3），同时出现减持、回购、分红等<strong>返还型动作</strong>。</p>
+<p><strong>⚠️ 回购数量口径未打通，禁止加总</strong>：2026H1 公告的「期内购回 13,462,400 股」与 11 月翌日披露报表的「期末库存股 10,862,475 股」、11 月证券之星转述的「授权累计购回 9,914,700 股」是三个不同口径（期间流量／期末存量／授权日以来累计），且数值互不自洽（可能涉及注销、库存股处置或授权日不同）。<strong>本页三处数值照录不合并、不推算差额</strong>，待回港交所逐份翌日披露报表与月报表核对后再统一。</p>
+<h3>母公司层面动作（⚠️ 不可归因于管易云业务）</h3>
+<table>
+<thead>
+<tr>
+<th>年</th>
+<th>动作</th>
+<th>金额</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023-12</td>
+<td>金蝶国际向卡塔尔投资局 Al-Rayyan 配发 154,627,000 股 @10.10 港元</td>
+<td>净筹 <strong>15.61 亿港元</strong>，80% 拟用于潜在收购／股份回购</td>
+<td>🟢 <a href="https://investor.kingdee.com/static/temp/cw_COMPLETIONOFSUBSCRIPTIONOFNEWSHARESUNDERGENERALMANDATE_1702546198473.pdf">完成认购公告</a></td>
+</tr>
+<tr>
+<td>2024</td>
+<td>金蝶国际回购（逐笔）</td>
+<td>3 月–4 月 3,875,000 股／3,233.8 万港元；5 月–6 月 2,197,000 股／1,764.7 万港元，<strong>拟注销</strong></td>
+<td>🟢 <a href="https://investor.kingdee.com/static/temp/e_FF305_NEXT_DAY_DISCLOSURE_RETURN_EQUITY_V1_3_0-20240617_1718616371151.pdf">翌日披露报表</a></td>
+</tr>
+<tr>
+<td>2025</td>
+<td>金蝶国际回购延续、机构增持</td>
+<td>1 月单笔 150 万股／1,190 万港元；12 月富国基金增持 2,183.1 万股至 5.39%</td>
+<td>🟡 财经媒体转述联交所权益披露，待回公告核</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>口径警告</strong>：金蝶国际为综合企业软件集团，管易云仅为其电商 ERP 业务线；上述配股／回购／增持是<strong>集团资本行为，不是电商 SaaS ERP 行业的资本开支</strong>，不得计入本页任何加总。</p>
+</blockquote>
+<h2>四、两阶段资本开支总表（本页主口径）</h2>
+<p><strong>定义</strong>：这门生意的资本开支＝①经营投入（销售及营销＋研发，费用化）＋②资本化软投入（研发资本化、合约获取成本净增）＋③外部资本动作（融资／定增／IPO 注入与回购／分红返还）。三者按性质分列；<strong>跨币种不折算、不加总</strong>，人民币经营投入是唯一可连续加总的序列。<strong>阶段划分</strong>：一＝2020–2022 扩张期、二＝2023–2026 收缩／回收期，分界为 2022 年投入强度拐点。</p>
+<h3>4.1 ①经营投入（人民币百万元，可得样本两家合计）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>年</th>
+<th>销售及营销</th>
+<th>研发（费用化）</th>
+<th><strong>经营投入合计</strong></th>
+<th>同比 🟡</th>
+<th>合计营收</th>
+<th><strong>投入强度</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一</strong></td>
+<td><strong>2020</strong></td>
+<td>258.6</td>
+<td>173.5</td>
+<td><strong>432</strong></td>
+<td>—</td>
+<td>804</td>
+<td><strong>53.7%</strong></td>
+</tr>
+<tr>
+<td><strong>一</strong></td>
+<td>2021</td>
+<td>410.8</td>
+<td>351.6</td>
+<td><strong>762</strong></td>
+<td>+76.4%</td>
+<td>979</td>
+<td><strong>77.9%</strong></td>
+</tr>
+<tr>
+<td><strong>一</strong></td>
+<td><strong>2022</strong></td>
+<td>486.1</td>
+<td>389.6</td>
+<td><strong>876</strong></td>
+<td>+14.9%</td>
+<td>1,017</td>
+<td><strong>86.1%</strong> ← 拐点</td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2023</td>
+<td>511.2</td>
+<td>353.9</td>
+<td><strong>865</strong></td>
+<td>−1.2%</td>
+<td>1,173</td>
+<td><strong>73.8%</strong></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2024</td>
+<td>552.5</td>
+<td>347.0</td>
+<td><strong>900</strong></td>
+<td>+4.0%</td>
+<td>1,388</td>
+<td><strong>64.8%</strong></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2025</td>
+<td>596.3</td>
+<td>361.2</td>
+<td><strong>958</strong></td>
+<td>+6.4%</td>
+<td>1,706</td>
+<td><strong>56.1%</strong></td>
+</tr>
+<tr>
+<td><strong>一 小计</strong></td>
+<td>2020–22</td>
+<td>—</td>
+<td>—</td>
+<td><strong>2,070</strong>〔🟡 相加〕</td>
+<td>CAGR <strong>+42.4%</strong></td>
+<td>CAGR +12.5%</td>
+<td><strong>+32.4pct</strong></td>
+</tr>
+<tr>
+<td><strong>二 小计</strong></td>
+<td>2023–25</td>
+<td>—</td>
+<td>—</td>
+<td><strong>2,723</strong>〔🟡 相加〕</td>
+<td>CAGR <strong>+5.2%</strong></td>
+<td>CAGR +20.6%</td>
+<td><strong>−17.7pct</strong></td>
+</tr>
+<tr>
+<td><strong>全期</strong></td>
+<td>2020–25</td>
+<td>—</td>
+<td>—</td>
+<td><strong>4,793</strong>〔🟡 相加〕</td>
+<td>CAGR <strong>+17.3%</strong></td>
+<td>CAGR <strong>+16.2%</strong></td>
+<td>+2.4pct</td>
+</tr>
+</tbody>
+</table>
+<p>分项来源见 §二。<strong>读数（纯数据，不做周期定位）</strong>：</p>
+<ul>
+<li><strong>阶段一</strong>：投入两年翻一倍（432→876，CAGR +42.4%），快于营收 +12.5%，投入强度从 53.7% 冲到 86.1%（+32.4pct）——<strong>资本加速涌入</strong>。</li>
+<li><strong>阶段二</strong>：投入 CAGR 骤降至 +5.2%，落后于营收 +20.6%，投入强度单调回落 73.8%→56.1%（−17.7pct）——<strong>资本回收</strong>。</li>
+<li>拆开看：销售费用全期逐年上行 259→596（+130.6%），研发费用 2022 见顶 390 后始终未回到该水平（347–361）——<strong>增量几乎全在获客端，不在产品端</strong>。</li>
+<li>⚠️ <strong>起点会反转结论</strong>：只看 2021–2025 得「投入 CAGR +5.9% 远低于营收 +14.9%」，加入 2020 后全期（2020–2025）投入 +17.3% 略高于营收 +16.2%。<strong>必须用两阶段读，不能用单一全期 CAGR 概括</strong>。</li>
+</ul>
+<h3>4.2 ②资本化软投入（花出去但计入资产的「真资本开支」）</h3>
+<table>
+<thead>
+<tr>
+<th>主体</th>
+<th>科目</th>
+<th>读数</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>光云</td>
+<td>研发投入合计 − 研发费用</td>
+<td>2025：158.99 − 118.10＝<strong>40.9 百万元</strong>〔🟡 相减〕，为资本化部分</td>
+<td><a href="https://finance.sina.com.cn/stock/aigc/stockfs/2026-04-25/doc-inhvrtis4431173.shtml">2025 年报</a>（🟡 财经媒体转述）</td>
+</tr>
+<tr>
+<td>聚水潭</td>
+<td>合约获取成本（销售佣金资本化）</td>
+<td>2025-12-31 <strong>416.7</strong> → 2026-06-30 <strong>393.9 百万元人民币</strong>，净减 <strong>22.8</strong>；公告原文「報告期內攤銷金額高於確認金額」</td>
+<td>🟢 <a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0828/2026082800256_c.pdf">2026 中期业绩公告</a></td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ 这两项是 SaaS 最接近「资本开支」的会计科目：<strong>新增资本化额＝投入，摊销额＝回收；净额为负说明处于回收期而非投入期</strong>。但仅 2025／2026H1 可得，无法构成两阶段序列；2020–2024 标 🔴 待查，不得填 0 或估算。</p>
+<h3>4.3 ③外部资本动作（注入 − 返还，按年、按原币种）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>年</th>
+<th>注入</th>
+<th>返还</th>
+<th>净方向（定性）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一</strong></td>
+<td>2020</td>
+<td>光云 IPO 净额 <strong>3.6955 亿元</strong>；聚水潭 C 轮 2.86 亿元；慧策 C 轮近 1 亿美元</td>
+<td>—</td>
+<td><strong>密集注入</strong></td>
+</tr>
+<tr>
+<td><strong>一</strong></td>
+<td>2021</td>
+<td>慧策 D 轮 <strong>3.12 亿美元</strong>（累计 4.52 亿美元）</td>
+<td>—</td>
+<td><strong>大额注入</strong>（峰值）</td>
+</tr>
+<tr>
+<td><strong>一</strong></td>
+<td>2022</td>
+<td>笛佛 A 轮（金额未披露）</td>
+<td>光云回购 1,000.93 万元（员工持股／股权激励，非注销）</td>
+<td>注入规模不可识别</td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2023</td>
+<td>光云定增净额 <strong>1.7186 亿元</strong></td>
+<td>—</td>
+<td>小额注入</td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2024</td>
+<td>—</td>
+<td>—</td>
+<td><strong>空档</strong></td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2025</td>
+<td>聚水潭 IPO 净额 <strong>22.379 亿港元</strong>＋基石 1.3 亿美元</td>
+<td>光云大股东减持 1.67%（<strong>股东套现，非公司资本返还</strong>）</td>
+<td>单笔巨额注入，集中于一家</td>
+</tr>
+<tr>
+<td><strong>二</strong></td>
+<td>2026H1</td>
+<td>—</td>
+<td>聚水潭回购 <strong>2.076 亿港元</strong>（库存股不注销）＋中期股息 0.20 港元/股</td>
+<td><strong>转为返还</strong></td>
+</tr>
+</tbody>
+</table>
+<p>逐笔出处见 §三。<strong>两阶段读数</strong>：阶段一一级市场密集注入（2020 光云 IPO＋聚水潭 C 轮＋慧策 C 轮，2021 慧策 D 轮 3.12 亿美元见顶）；阶段二一级市场融资空档，唯一大额是 2025 聚水潭 IPO 且钱主要未动用，同时出现减持、回购、分红等返还型动作。⚠️ 「净方向」为事件定性，不是金额净额（币种不同、减持不属公司返还）。</p>
+<p><strong>IPO 弹药的状态（判断资本是否真正落地的关键）</strong>：截至 2026-06-30，22.379 亿港元净额中未动用 <strong>14.366 亿港元（64.2%）</strong>，累计已用 8.013 亿（35.8%）；其中研发配额 12.309 亿仅用 24.2%（未动用 9.336 亿，2028-12-31 前用完），销售营销配额 5.595 亿已用 74.9%（余 1.404 亿，2026-12-31 前用完）（🟢 <a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0910/2026091000511_c.pdf">2026 中期报告</a>，〔🟡 比例相除〕）。<strong>钱已募集但尚未转化为经营投入。</strong></p>
+<blockquote>
+<p><strong>固定资产购建为何不列入</strong>：聚水潭 2025 购建固定资产＋无形资产仅 169.9 万港元，折旧摊销 1,374.5 万港元，CAPEX/DC ≈ 0.12（<code>data/db/06687.db</code> cashflow，同币种相比不足折旧的 1/7），且绝对额相对经营投入（两家合计 9.58 亿元人民币）可忽略、不代表行业产能投放，故只作口径排除说明，不占主表。⚠️ 该比率为跨币种量级对照，非精确占比。</p>
+</blockquote>
+<h2>五、数据边界</h2>
+<ol>
+<li>🔴 <strong>行业资本开支加总不可得</strong>：top5 中 3 家无财务三表，长尾 51.4% 无数据；§四 的「经营投入合计」仅是<strong>可得样本的下限</strong>，不是行业总量。6 年 4,793 百万元为两家相加〔🟡〕，同比与 CAGR 由该序列计算，不引入其他样本。</li>
+<li>⚠️ <strong>Company A–D 身份均为 🟡 特征匹配推断</strong>，招股书匿名化未点名；融资记录挂在这些推断身份下，若身份被推翻，本页 §三 相应行需重挂。</li>
+<li>⚠️ <strong>币种不折算</strong>：美元、港元、人民币融资额并列但不可加总；<code>data/db/fx_rates.db</code> 只含 <code>hkd_cny</code>，无美元汇率，不做自造换算。</li>
+<li>⚠️ <strong>融资金额均为「宣布金额」</strong>，非到账／实缴口径；非上市公司无资金使用披露，无法验证实际投入。</li>
+<li>⚠️ <strong>待回公告原件核</strong>：聚水潭 2025 财务数、光云 2020–2025 财务数与 2019 全年口径、慧策 D 轮日期与轮次命名冲突、金蝶 2016 并购管易云与 2025 回购增持、聚水潭 2026-11 逐笔回购金额。</li>
+<li>⚠️ <strong>回购性质差异</strong>：金蝶为「拟注销」，聚水潭为「库存股不注销、用途未定」，光云 2022 回购用于员工持股／股权激励——三者对股本的实际影响不同，不可等同为「回购信号」。</li>
+<li>⚠️ 招股书份额表时点为 <strong>2024 年</strong>，2025 年及以后无同口径公开更新；「top5」名单不随年份动态变化。</li>
+<li>🔴 <strong>同口径序列不得跨过 2020</strong>：2016–2019 只有光云单家，§二「阶段前史」表为参照用途，不并入行业合计；把单家序列接在两家合计前会造成口径断裂。⚠️ 聚水潭 2020／2021 库内科目名为「销售及分销费用」（2022 起「销售费用」），且 <code>meta.currency=HKD</code> 与数值口径不符，勿按港元读。</li>
+<li>⚠️ <strong>起点选择影响结论</strong>：2021–2025 口径下投入 CAGR +5.9% &lt; 营收 +14.9%；2020–2025 口径下投入 +17.3% ≈ 营收 +16.2%。两阶段读数是本页的结论口径，单一全期 CAGR 不成立。</li>
+</ol>
+<h2>参见</h2>
+<ul>
+<li><a href="index-%E9%A1%B5.html">index</a> — SaaS 软件行业分类入口、数据来源分层与缺口总表</li>
+<li><a href="%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">商业模式-电商SaaS-ERP</a> — 前五名份额原表、身份 🟡 推断与「光云 23.2%」辨伪</li>
+<li><a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a> — 市场规模 31 亿、渗透率三口径与付费商家画像</li>
+<li><a href="%E8%81%9A%E6%B0%B4%E6%BD%AD%E4%B8%8E%E5%85%89%E4%BA%91%E7%A7%91%E6%8A%80-%E5%AF%B9%E7%85%A7%E5%88%86%E6%9E%90.html">聚水潭与光云科技-对照分析</a> — 两家生意模式、2026H1 财务对照与现金结构</li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/科技/SaaS软件/资本开支台账-电商SaaS-ERP-top5.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

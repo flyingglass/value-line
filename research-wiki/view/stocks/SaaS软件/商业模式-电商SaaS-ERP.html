@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>电商 SaaS ERP 商业模式与竞争格局</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">SaaS软件</a> › <a href="商业模式-电商SaaS-ERP.html">电商 SaaS ERP 商业模式与竞争格局</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">电商 SaaS ERP 商业模式与竞争格局</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-11-23</span><span style="margin-left:auto;color:#b0b5bd">research/SaaS软件</span></div><div class="md" id="md"><h1>电商 SaaS ERP · 商业模式与竞争格局（2024）</h1>
+<blockquote>
+<p>归类入口：<a href="index-%E9%A1%B5.html">index</a>。建立：2026-11-23。
+<strong>本页范围</strong>：这门生意怎么收费、钱从哪来、谁在赚、护城河与风险。市场规模（TAM）、渗透率、付费商家营收画像见 <a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a>。
+<strong>一手来源</strong>：聚水潭招股书 BUSINESS 章与 INDUSTRY OVERVIEW 章，PDF 原件 + 逐字摘录见 <code>raw/research/科技/SaaS软件/2025-09-29-聚水潭招股书-业务章（定价·客户·收费模式）.md</code> 与 <code>2025-09-29-聚水潭招股书-行业概览章（灼识咨询）.md</code>。
+<strong>证据等级</strong>：🟢 观测（原文）· 🟡 推算 · 🔴 不可识别。招股书把同业与客户全部匿名化，身份对应均为 🟡 特征匹配推断，<strong>非原文点名</strong>。</p>
+</blockquote>
+<h2>一、结论先行</h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>结论</th>
+<th>等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>怎么收费</td>
+<td><strong>年订阅 + 按处理订单量</strong>双轨；2024 年订阅占 <strong>62.1%</strong>、按单占 <strong>36.8%</strong></td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>客单价</td>
+<td>专业版 <strong>5,888–16,888 元/年</strong>，企业版 <strong>3 万元起</strong>（按单 0.05–0.3 元/单、最低购买 3 万）；实际平均约 <strong>1 万元/年</strong></td>
+<td>🟢 / 🟡</td>
+</tr>
+<tr>
+<td>收入结构</td>
+<td>SaaS 占 <strong>96.4%</strong>（8.78 亿），配套设备 2.0%、营销服务费 1.5%；SaaS 毛利率 <strong>69.9%</strong></td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>客户集中度</td>
+<td>前五大客户合计仅占收入 <strong>0.52%</strong>，收入主体是长尾中小商家</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>竞争格局</td>
+<td>一超多弱：聚水潭 <strong>24.4%</strong>，第 2–5 名合计 <strong>24.2%</strong>；光云为第 4 名（4.4%）</td>
+<td>🟢 / 🟡 身份</td>
+</tr>
+</tbody>
+</table>
+<h2>二、产品与官方定价（🟢 招股书 BUSINESS p.12–13）</h2>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>收费模式</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ERP <strong>专业版</strong></td>
+<td>年订阅</td>
+<td><strong>5,888 元/年 → 超过 16,888 元/年</strong></td>
+</tr>
+<tr>
+<td>ERP <strong>企业版</strong></td>
+<td>年订阅</td>
+<td><strong>30,000 元/年起</strong></td>
+</tr>
+<tr>
+<td>ERP 企业版</td>
+<td>按单</td>
+<td><strong>0.05–0.3 元/单</strong>，<strong>最低购买额 3 万元</strong></td>
+</tr>
+<tr>
+<td>聚胜算</td>
+<td>年订阅</td>
+<td>3,980 → 超过 19,980 元/年</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>核心 ERP 功能：OMS（订单）、WMS（仓储）、PMS（采购）、DMS（分销）；全部云原生 B/S 架构，无本地安装</li>
+<li>按量模式<strong>最低购买额 3 万元</strong>（p.15）——意味着按单计费只适用于较大商家，日均百单级客户走专业版包年</li>
+<li>合同期通常 <strong>1–4 年</strong>，预收全款；长周期、大批量有折扣；收入按合同期直线确认，按量收入于消耗时确认</li>
+<li>⚠️ 平台应用市场标价 <strong>1,000–5,888 元</strong>是 <code>authorization fees</code>（授权费 / marked price），<strong>不是销售合同价</strong>；原文明确其「do not represent, and are in addition to」合同价</li>
+</ul>
+<h2>三、收费模式与收入结构（🟢 招股书 p.14–15）</h2>
+<p><strong>SaaS 收入按收费模式拆分</strong>（千元 / 占比）：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025H1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年订阅</td>
+<td>256,393 / 51.5%</td>
+<td>376,683 / 56.2%</td>
+<td><strong>544,896 / 62.1%</strong></td>
+<td>317,705 / 62.7%</td>
+</tr>
+<tr>
+<td>按订单量</td>
+<td>235,408 / 47.3%</td>
+<td>285,073 / 42.6%</td>
+<td><strong>323,222 / 36.8%</strong></td>
+<td>173,929 / 34.4%</td>
+</tr>
+<tr>
+<td>其他（定制）</td>
+<td>6,134 / 1.2%</td>
+<td>8,118 / 1.2%</td>
+<td>9,412 / 1.1%</td>
+<td>14,901 / 2.9%</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>497,935</td>
+<td>669,874</td>
+<td><strong>877,530</strong></td>
+<td>506,535</td>
+</tr>
+</tbody>
+</table>
+<p>趋势：订阅占比从 51.5% 升至 62.7%，按单占比从 47.3% 降至 34.4% —— 收入结构向可预测的订阅制迁移。</p>
+<p><strong>收入按产品类别拆分</strong>（2024）：SaaS 877,530 千元（96.4%，毛利率 69.9%）／配套设备 18,002 千元（2.0%）／营销服务费 13,596 千元（1.5%）／其他 622 千元；总收入 <strong>909,750 千元</strong>，整体毛利率 68.5%。整体毛利率序列 52.3%(2022) → 62.3% → 68.5% → 71.8%(2025H1)。</p>
+<p><strong>成本侧</strong>：云服务器与技术费占销售成本 33.1%（2024）、34.2%（2025H1）；销售佣金占销售及营销费用 13.1%（2024）。最大供应商为单一 IaaS 云厂商，占采购额 50.3%（2024）。</p>
+<h2>四、客户结构与集中度（🟢 招股书 p.53–57）</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SaaS 客户数</td>
+<td>45.7 千(2022) → 62.2 千(2023) → <strong>88.4 千(2024)</strong> → 92.6 千(2025H1)</td>
+</tr>
+<tr>
+<td>客户规模门槛</td>
+<td><strong>&gt;60% 客户日均订单 &gt;100 单</strong>（<code>over 100</code>，分类下限，非均值）</td>
+</tr>
+<tr>
+<td>行业分布（2024，千家）</td>
+<td>服饰鞋包 33.6 / 家居 12.6 / 食品饮料 9.6 / 运动娱乐 8.9 / 其他 24.9</td>
+</tr>
+<tr>
+<td>前五大客户</td>
+<td>合计占收入 <strong>0.52%</strong>（全口径客户为 1.0%）</td>
+</tr>
+<tr>
+<td>最大客户</td>
+<td>占收入 <strong>0.5%</strong></td>
+</tr>
+<tr>
+<td>净客户收入留存率</td>
+<td><strong>115%</strong>（2024）</td>
+</tr>
+<tr>
+<td>LTV/CAC</td>
+<td>6.2 → 7.7 → <strong>9.3</strong> 倍（2022/2023/2024），行业均值约 3 倍</td>
+</tr>
+</tbody>
+</table>
+<p><strong>前五大电商商家客户（2024，按 SaaS 收入，招股书 p.56 原表）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>客户</th>
+<th>年付费</th>
+<th>占比</th>
+<th>业务</th>
+<th>成立/注册地</th>
+<th>注册资本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Customer G</td>
+<td><strong>129.5 万</strong></td>
+<td>0.14%</td>
+<td>日用品及个护贸易</td>
+<td>2017／天津</td>
+<td>1,000 万</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Customer K</td>
+<td><strong>97.2 万</strong></td>
+<td>0.11%</td>
+<td>化妆品及日用品</td>
+<td>2011／浙江</td>
+<td>1.5 亿</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Customer F</td>
+<td><strong>88.8 万</strong></td>
+<td>0.10%</td>
+<td>家用纸品及母婴卫生用品制造</td>
+<td>1985／福建／上市</td>
+<td>5.11 亿</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Customer L</td>
+<td><strong>83.4 万</strong></td>
+<td>0.09%</td>
+<td>食品及农产品</td>
+<td>2021／上海</td>
+<td>3,000 万</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Customer H</td>
+<td><strong>76.0 万</strong></td>
+<td>0.08%</td>
+<td>日用品</td>
+<td>2018／福建</td>
+<td>1,462 万</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>客户均为匿名代号，招股书另四张表（2022/2023/2025H1）逐字照录见 raw 摘录</li>
+<li>Customer F = 恒安集团为 🟡 五项特征匹配（1985、福建、生活用纸与妇幼卫生用品、上市、注册资本 5.11 亿）；恒安 2024 营收 226.69 亿（🟢 恒安官网业绩公告），ERP 支出约占其营收 0.004%。且该客户可能是集团旗下单一电商合同主体，非集团整体</li>
+<li><strong>收入主体是长尾</strong>：前五大合计不足 1%，说明规模来自 8.84 万中小商家的分散订阅，而非少数大客户</li>
+</ul>
+<h2>五、竞争格局：前五名份额原表（🟢 招股书 p.117）</h2>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>招股书原文</th>
+<th>2024 相关收入</th>
+<th>份额</th>
+<th>身份对应（🟡 推断，非原文点名）</th>
+<th>匹配依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Our Company</td>
+<td>7.65 亿</td>
+<td><strong>24.4%</strong></td>
+<td>聚水潭 06687</td>
+<td>招股书本人</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Company A¹</td>
+<td>3.70 亿</td>
+<td><strong>11.8%</strong></td>
+<td><strong>慧策·旺店通</strong>（较可靠）</td>
+<td>北京、2011、私营、电商 ERP + 采购分销；第三方分析亦直指「第二名旺店通 11.8%」</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Company B²</td>
+<td>1.62 亿</td>
+<td><strong>5.2%</strong></td>
+<td>笛佛软件／网店管家·吉客云（中等）</td>
+<td>杭州、2005、私营、电商 ERP + 线下门店 O2O 与供应链</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Company C³</td>
+<td>1.38 亿</td>
+<td><strong>4.4%</strong></td>
+<td><strong>光云科技 688365</strong>（较可靠）</td>
+<td>杭州、2013、<strong>中国上市</strong>、商品/订单管理 + 营销 + ERP 多品类</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Company D⁴</td>
+<td>0.88 亿</td>
+<td><strong>2.8%</strong></td>
+<td>金蝶·管易云（中等）</td>
+<td>上海、2013、私营、电商 ERP + 实体零售 ERP</td>
+</tr>
+</tbody>
+</table>
+<p><strong>自洽校验</strong>：11.8 + 5.2 + 4.4 + 2.8 = <strong>24.2%</strong> &lt; 24.4%，与原文「超过第二至第五大参与者份额总和」一致（🟢）。前五合计 48.6%，行业仍分散。原文脚注特别说明前五名「自成立之初即专注电商，而非传统 ERP 转型」。</p>
+<p><strong>辨伪：网传「光云 23.2% 排第二」错误</strong>。若第二名 23.2%，第 2–5 名合计必 &gt;24.4%，与原表及原文矛盾。23.2% 实为<strong>聚水潭自己 2023 年</strong>的份额（2022 20.7% → 2023 23.2% → 2024 24.4%），被误安到光云名下。光云 2025 年总营收 5.63 亿含配套硬件、CRM 短信、企服有成系列等非 ERP 收入，与「ERP 相关收入 1.38 亿」不同口径，不可反推份额。另有来源称「万里牛 28.6%／用友 U9 Cloud 17.3%／金蝶 K/3 WISE 15.8%／聚水潭 12.5%」属含传统本地部署 ERP、WMS、CRM 的更宽口径，相差 2–3 倍，不可并列。</p>
+<p><strong>未进前五 / 另一池</strong>：万里牛、吉客云、网店管家、百胜软件、用友畅捷通；跨境电商 ERP（店小秘、领星、赛狐、易仓、马帮、积加）是独立市场，2024 规模约 19.6 亿元，无同口径份额可比。</p>
+<h2>六、护城河与风险（要点，详见 <a href="%E8%81%9A%E6%B0%B4%E6%BD%AD%E4%B8%8E%E5%85%89%E4%BA%91%E7%A7%91%E6%8A%80-%E5%AF%B9%E7%85%A7%E5%88%86%E6%9E%90.html">聚水潭与光云科技-对照分析</a>）</h2>
+<ul>
+<li><strong>迁移成本</strong>：ERP 沉淀订单、库存、财务主数据，换系统需重做商品映射与历史对账；合同期 1–4 年、预收全款，NDR 115%</li>
+<li><strong>平台接口</strong>：对接 400+ 电商平台、800+ 物流商，行业平均 &lt;200 个平台；接口权限与并发配额是硬壁垒</li>
+<li><strong>规模效应</strong>：毛利率随规模从 52.3% 升至 71.8%，客户成功网络约 2,200 人、100+ 线下网点</li>
+<li><strong>结构性风险</strong>：命门在电商平台，接口规则变更直接冲击功能可用性；平台自有工具对轻量功能降维替代；中小商家生命周期短</li>
+<li>⚠️ 两家 NDR / 分产品收入金额 / 单客 ARPU 披露不完整，护城河判断缺主证据</li>
+</ul>
+<h2>七、数据边界</h2>
+<ol>
+<li>份额与定价时点为 <strong>2024 年</strong>（招股书 2025-09 定稿）；2025 年及以后无同口径公开更新。</li>
+<li>Company A–D、Customer A–P 为招股书匿名代号，身份为 🟡 特征匹配推断，<strong>不得升级为 🟢</strong>。</li>
+<li>31 亿是市场规模（分母），不是份额；24.4% / 8.7% / 7.1% 三口径分母不同，严禁互引，详见 <a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a>。</li>
+<li>🔴 招股书未给客户订单量分布、客单价分布、付费商家数。</li>
+<li>本页不做买卖建议、不给目标价、不由份额外推竞争胜负。行业资本开支数据见 <a href="%E8%B5%84%E6%9C%AC%E5%BC%80%E6%94%AF%E5%8F%B0%E8%B4%A6-%E7%94%B5%E5%95%86SaaS-ERP-top5.html">资本开支台账-电商SaaS-ERP-top5</a>。</li>
+</ol>
+<h2>参见</h2>
+<ul>
+<li><a href="index-%E9%A1%B5.html">index</a> — SaaS 软件行业分类入口</li>
+<li><a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a> — 市场规模、渗透率、付费商家营收规模画像</li>
+<li><a href="%E8%81%9A%E6%B0%B4%E6%BD%AD%E4%B8%8E%E5%85%89%E4%BA%91%E7%A7%91%E6%8A%80-%E5%AF%B9%E7%85%A7%E5%88%86%E6%9E%90.html">聚水潭与光云科技-对照分析</a> — 两家生意模式／产品矩阵／2026H1 财务对照</li>
+<li><a href="%E8%B5%84%E6%9C%AC%E5%BC%80%E6%94%AF%E5%8F%B0%E8%B4%A6-%E7%94%B5%E5%95%86SaaS-ERP-top5.html">资本开支台账-电商SaaS-ERP-top5</a> — 前五名份额对应的资本开支数据、融资与资本动作时间轴</li>
+<li>一手资料：<code>raw/research/科技/SaaS软件/2025-09-29-聚水潭招股书-业务章（定价·客户·收费模式）.md</code></li>
+<li>一手资料：<code>raw/research/科技/SaaS软件/2025-09-29-聚水潭招股书-行业概览章（灼识咨询）.md</code></li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/科技/SaaS软件/商业模式-电商SaaS-ERP.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

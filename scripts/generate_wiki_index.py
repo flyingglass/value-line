@@ -101,6 +101,9 @@ CASE_GROUP_NAMES = {
     '本地': '本地 · 广深',
     '感悟': '感悟 · 投资思考',
 }
+# 2026-11-23：SaaS软件/ 已迁入 科技/ 容器下，切勿登记进 CASE_GROUP_NAMES——
+# 容器下钻（下方 `code not in CASE_GROUP_NAMES`）会跳过已登记的子目录，导致两页不进站点；
+# 按普通子目录收集即可，wiki_lint 侧由 NON_STOCK_DIRS 豁免四件套检查。
 
 # raw/research 下的通用原始资料目录（非标的）：raw 子目录 → general 输出分类
 # 2026-10-30：articles 按主题拆分，书籍 / 投资（含 巴芒、基金经理）各自成目录

@@ -1,0 +1,670 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-09-29-聚水潭招股书-业务章（定价·客户·收费模式）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../index.html">SaaS软件</a> › <a href="2025-09-29-聚水潭招股书-业务章（定价·客户·收费模式）.html">2025-09-29-聚水潭招股书-业务章（定价·客户·收费模式）</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2025-09-29-聚水潭招股书-业务章（定价·客户·收费模式）</h1><div class="meta-line"><span class="tag tag-raw">原始</span><span style="margin-left:auto;color:#b0b5bd">raw/research/科技/SaaS软件</span></div><div class="md" id="md"><h1>聚水潭招股书 · BUSINESS 章（定价 / 收费模式 / 客户 原文摘录）</h1>
+<blockquote>
+<p>来源：港交所披露易（HKEXnews）「JST Group Corporation Limited 聚水潭集团股份有限公司」全球发售文件 · BUSINESS 章<br />
+原文链接：https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1021/11884887/sehk25092902977.pdf <br />
+原始文件：同目录 <code>2025-09-29-聚水潭招股书-业务章（定价·客户·收费模式）.pdf</code>（73 页，7,656,527 字节）<br />
+上市信息：聚水潭（06687.HK）2025-10-21 港交所主板挂牌，发售价 30.60 港元<br />
+摘录人：AI（按页面逐字照录，未改数字；中文为 AI 译，英文原文附后）<br />
+摘录范围：PDF p.3 / p.12–15 / p.32 / p.53–57（印刷页 181 / 190–193 / 210 / 231–235）</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：官方定价 · 收费模式结构 · 付费客户规模 · 客户分层</p>
+</blockquote>
+<p><strong>一句话核心</strong>：招股书披露 ERP <strong>专业版年费 5,888–16,888 元</strong>、<strong>企业版年订阅 3 万元起或按单 0.05–0.3 元/单（按量模式最低购买额 3 万元）</strong>；2024 年 SaaS 收入中<strong>年订阅占 62.1%、按单占 36.8%</strong>；<strong>超过 60% 客户为日均订单 &gt;100 单的大型商家</strong>（门槛值，非均值）；<strong>前五大客户 2024 年合计付费 474.9 万元、仅占总收入 0.52%</strong>。</p>
+<p><strong>关键数据</strong>：</p>
+<ul>
+<li>官方定价：专业版 <strong>RMB5,888 → over RMB16,888 per year</strong>；企业版年订阅 <strong>from RMB30,000 per year</strong>；按单 <strong>RMB0.05–0.3 per order</strong>；聚胜算 3,980 → over 19,980 元/年</li>
+<li>按量模式最低购买额：<strong>RMB30,000</strong>（p.15）</li>
+<li>2024 收费结构：年订阅 <strong>544,896 千元（62.1%）</strong>／按单 <strong>323,222 千元（36.8%）</strong>／其他 9,412 千元（1.1%）</li>
+<li>客户数：45.7 千（2022）→ 62.2 千（2023）→ <strong>88.4 千（2024）</strong>→ 92.6 千（2025H1）</li>
+<li>2024 处理订单 <strong>33.0 billion（330 亿单）</strong>；2024 SaaS 收入 <strong>877,530 千元</strong></li>
+<li>前五大客户 2024 年付费：129.5 / 97.2 / 88.8 / 83.4 / 76.0 万元</li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li>&quot;&gt;60% 客户日均 &gt;100 单&quot;是<strong>分类门槛</strong>（over 100），不是均值或典型值；招股书未给客户订单量分布，不能据此推算典型客户营收。</li>
+<li>按单计费有 3 万元最低购买额，且只占收入 36.8%；<strong>不能用&quot;订单量 × 单价&quot;反推全体客户客单价</strong>。</li>
+<li>前五大客户均为匿名代号（Customer A–P），只给成立年份、注册资本、上市状态、业务范围与城市，不点名；外部身份对应只能靠特征匹配。</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li>客户数（时点存量）与 SaaS 收入（全年流量）不可直接相除得精确 ARPU；年内客户从 62.2 千增至 88.4 千（+42%）。</li>
+<li>平台应用市场标价 1,000–5,888 元是 <strong>authorization fees（授权费 / marked price）</strong>，不是销售合同价，切勿混用。</li>
+</ol>
+<h2>正文</h2>
+<h3>一、核心指标图（p.3，印刷页 181）</h3>
+<blockquote>
+<p>No. 1 24.4% — E-commerce SaaS ERP Provider in China / Our Market Share in 2024
+RMB910m / 1,098m — Revenue / ARR in 2024
+115% — Net Dollar Retention Rate in 2024 ｜ 9.3x — LTV/CAC Ratio in 2024
+400+ E-commerce Platforms Connected Globally ｜ 92.6k SaaS Customers Served in the six months ended June 30, 2025
+<strong>33.0b E-commerce Orders Processed in 2024</strong>
+Note: (1) in China's e-commerce SaaS ERP sector and in terms of revenue.</p>
+</blockquote>
+<h3>二、产品矩阵与官方定价表（p.12–13，印刷页 190–191，逐字照录）</h3>
+<p><strong>Jushuitan ERP – Enterprise version</strong>（p.12）</p>
+<blockquote>
+<p>Key features: Order Management System (&quot;OMS&quot;), Warehousing Management System (&quot;WMS&quot;), Procurement Management System (&quot;PMS&quot;), Distribution Management System (&quot;DMS&quot;), On-site deployment and other value-added services and online supports.
+Fee model: Charged either (i) on an annual subscription basis or (ii) based on the number of orders processed on the products. <strong>For products charged on an annual subscription basis, priced from RMB30,000 per year; for products charged based on number of orders processed, priced from RMB0.05 per order to RMB0.3 per order.</strong></p>
+</blockquote>
+<p><strong>Jushuitan ERP – Professional version</strong>（p.13）</p>
+<blockquote>
+<p>Key features: OMS, PMS, DMS, Initial on-site deployment services and online support.
+Fee model: <strong>Charged on an annual subscription basis. Priced from RMB5,888 per year to over RMB16,888 per year.</strong></p>
+</blockquote>
+<p><strong>Jushengsuan (聚胜算)</strong>（p.13）</p>
+<blockquote>
+<p>Key features: Management reporting and analytics.
+Fee model: Charged on an annual subscription basis. <strong>Priced from RMB3,980 per year to over RMB19,980 per year.</strong></p>
+</blockquote>
+<blockquote>
+<p>All of our products are cloud-native and provided to customers as SaaS. Our products are based on browser/server architecture which can be accessed through an Internet browser without upfront localized installation.</p>
+</blockquote>
+<h3>三、收入按产品类别拆分（p.14，印刷页 192）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>2022 收入(千元) / 占比 / 毛利率</th>
+<th>2023</th>
+<th>2024</th>
+<th>2024H1</th>
+<th>2025H1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SaaS</td>
+<td>497,935 / 95.2% / 53.3%</td>
+<td>669,874 / 96.1% / 63.4%</td>
+<td><strong>877,530 / 96.4% / 69.9%</strong></td>
+<td>406,581 / 96.5% / 68.1%</td>
+<td>506,535 / 96.7% / 73.2%</td>
+</tr>
+<tr>
+<td>配套设备</td>
+<td>17,697 / 3.4% / 25.8%</td>
+<td>17,813 / 2.6% / 27.5%</td>
+<td>18,002 / 2.0% / 33.6%</td>
+<td>9,582 / 2.3% / 35.3%</td>
+<td>7,931 / 1.5% / 29.0%</td>
+</tr>
+<tr>
+<td>营销服务费</td>
+<td>6,998 / 1.3% / 46.6%</td>
+<td>8,746 / 1.3% / 52.5%</td>
+<td>13,596 / 1.5% / 71.3%</td>
+<td>4,173 / 1.0% / 49.5%</td>
+<td>8,387 / 1.6% / 81.2%</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>448 / 0.1%</td>
+<td>758 / 0.1%</td>
+<td>622 / 0.1%</td>
+<td>637 / 0.2%</td>
+<td>789 / 0.2%</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>523,078 / 100% / 52.3%</td>
+<td>697,191 / 100% / 62.3%</td>
+<td><strong>909,750 / 100% / 68.5%</strong></td>
+<td>420,973 / 100% / 66.4%</td>
+<td>523,642 / 100% / 71.8%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>收费模式原文</strong>（p.14）：</p>
+<blockquote>
+<p>We typically require prepayments from our customers before we grant them access to our SaaS products. Typically, we either charge customers (i) on an annual subscription package that offers unlimited or maximum volume, or (ii) based on the volume of orders processed on the products. … We generally provide discount for subscription with longer period and larger volume. Revenue is generally recognized ratably over the contract term. Under the limited volume model, customers first purchase certain number of volume, and consumed the volume upon usage. <strong>The minimum purchase amount under this volume model is RMB30,000.</strong>（p.15）</p>
+</blockquote>
+<h3>四、SaaS 收入按收费模式拆分（p.15，印刷页 193，逐字照录）</h3>
+<table>
+<thead>
+<tr>
+<th>收费模式</th>
+<th>2022 (千元/%)</th>
+<th>2023</th>
+<th>2024</th>
+<th>2024H1</th>
+<th>2025H1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>By annual subscription</td>
+<td>256,393 / 51.5</td>
+<td>376,683 / 56.2</td>
+<td><strong>544,896 / 62.1</strong></td>
+<td>249,246 / 61.3</td>
+<td>317,705 / 62.7</td>
+</tr>
+<tr>
+<td>By volume of orders processed</td>
+<td>235,408 / 47.3</td>
+<td>285,073 / 42.6</td>
+<td><strong>323,222 / 36.8</strong></td>
+<td>152,915 / 37.6</td>
+<td>173,929 / 34.4</td>
+</tr>
+<tr>
+<td>Others*</td>
+<td>6,134 / 1.2</td>
+<td>8,118 / 1.2</td>
+<td>9,412 / 1.1</td>
+<td>4,420 / 1.1</td>
+<td>14,901 / 2.9</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>497,935 / 100.0</td>
+<td>669,874 / 100.0</td>
+<td><strong>877,530 / 100.0</strong></td>
+<td>406,581 / 100.0</td>
+<td>506,535 / 100.0</td>
+</tr>
+</tbody>
+</table>
+<p>* Primarily refers to the insignificant SaaS revenue generated from customization services.</p>
+<h3>五、平台授权费与标价（p.30–32，印刷页 208–210）</h3>
+<blockquote>
+<p>For example, the minimum price for ERP products on one major e-commerce platform is <strong>RMB1,000 per year per store</strong>, and the minimum price for ERP products on another major e-commerce platform is <strong>RMB2,000 per year per store</strong>. … we set the marked price of our ERP products on such e-commerce platforms as the respective minimum prices.（p.30）
+In each year/period during the Track Record Period, our ERP products are offered on application marketplaces operated by 10 e-commerce platforms, and <strong>the marked prices for our ERP products typically range from RMB1,000 to RMB5,888</strong>.（p.32）</p>
+</blockquote>
+<p>⚠️ 此处 &quot;marked price / authorization fees&quot; 是平台应用市场标价与代收授权费，<strong>不是客户销售合同价</strong>；原文明确 &quot;such authorization fees do not represent, and are in addition to, the fees paid by merchants for our products pursuant to the sales contracts&quot;。</p>
+<h3>六、客户集中度、行业分布与规模（p.53–55，印刷页 231–233）</h3>
+<blockquote>
+<p>Our top five customers in each of 2022, 2023, 2024 and the six months ended June 30, 2025, in aggregate only accounted for <strong>1.2%, 1.2%, 1.0% and 1.3%</strong> of our total revenues … Our largest customer … accounted for <strong>0.3%, 0.5%, 0.5% and 0.6%</strong> of our total revenue.（p.53，全口径客户，含配套设备/营销服务）</p>
+</blockquote>
+<p><strong>客户行业分布（千家）</strong>（p.55）：</p>
+<table>
+<thead>
+<tr>
+<th>行业</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025H1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apparel, shoes and bags</td>
+<td>21.4</td>
+<td>27.3</td>
+<td>33.6</td>
+<td>34.9</td>
+</tr>
+<tr>
+<td>Home products</td>
+<td>6.9</td>
+<td>9.7</td>
+<td>12.6</td>
+<td>14.4</td>
+</tr>
+<tr>
+<td>Food and beverages</td>
+<td>4.4</td>
+<td>6.7</td>
+<td>9.6</td>
+<td>10.7</td>
+</tr>
+<tr>
+<td>Sports and entertainment</td>
+<td>3.2</td>
+<td>4.9</td>
+<td>7.7</td>
+<td>8.9</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>9.8</td>
+<td>13.6</td>
+<td>24.9</td>
+<td>23.7</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>45.7</strong></td>
+<td><strong>62.2</strong></td>
+<td><strong>88.4</strong></td>
+<td><strong>92.6</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>客户规模与合同原文</strong>（p.54，印刷页 232）：</p>
+<blockquote>
+<p>The total number of our SaaS customers increased throughout the Track Record Period, being <strong>45.7 thousand, 62.2 thousand, 88.4 thousand and 92.6 thousand</strong> as of December 31, 2022, 2023, 2024 and June 30, 2025, respectively. Our customers include both traditional e-commerce merchants and live streaming e-commerce merchants. <strong>A majority of our customers, being over 60% during the Track Record Period, are large scale merchants with an average daily order of over 100.</strong>
+Fee model: We charge our customers either on (i) annual subscription basis, or (ii) the number of orders processed on the products.
+Term: Our sales contracts of SaaS products typically have a term of <strong>one to four years</strong>.</p>
+</blockquote>
+<h3>七、前五大电商商家客户明细表（p.56–57，印刷页 234–235，逐字照录）</h3>
+<p>表头：Rank / Customer / Amount of SaaS revenue (RMB in thousands) / % of revenue contribution / Major SaaS products procured / Year of first transaction / Business scope / Year of establishment / Listing status / Registered capital (RMB in thousands, unless otherwise specified) / Location</p>
+<p><strong>For the year ended December 31, 2024</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Customer</th>
+<th>SaaS 收入(千元)</th>
+<th>占比</th>
+<th>采购产品</th>
+<th>首次交易</th>
+<th>业务范围</th>
+<th>成立</th>
+<th>上市</th>
+<th>注册资本(千元)</th>
+<th>地区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Customer G</td>
+<td>1,295</td>
+<td>0.14</td>
+<td>Jushuitan ERP, Jushengsuan, Jugongdan</td>
+<td>2022</td>
+<td>Daily goods and personal care products trade</td>
+<td>2017</td>
+<td>Not listed</td>
+<td>10,000</td>
+<td>Tianjin</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Customer K</td>
+<td>972</td>
+<td>0.11</td>
+<td>Jushuitan ERP, Jushengsuan, Jugongdan</td>
+<td>2021</td>
+<td>Cosmetics and daily goods</td>
+<td>2011</td>
+<td>Not listed</td>
+<td>150,000</td>
+<td>Zhejiang</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Customer F</td>
+<td>888</td>
+<td>0.10</td>
+<td>Jushuitan ERP, Jushengsuan, Jugongdan</td>
+<td>2021</td>
+<td>Manufacturer of household paper and maternal &amp; child hygiene product</td>
+<td>1985</td>
+<td><strong>Listed</strong></td>
+<td>511,408</td>
+<td>Fujian</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Customer L</td>
+<td>834</td>
+<td>0.09</td>
+<td>Jushuitan ERP, Juhuotong, Jugongdan</td>
+<td>2022</td>
+<td>Food and agricultural products</td>
+<td>2021</td>
+<td>Not listed</td>
+<td>30,000</td>
+<td>Shanghai</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Customer H</td>
+<td>760</td>
+<td>0.08</td>
+<td>Jushuitan ERP, Jushengsuan</td>
+<td>2018</td>
+<td>Daily goods</td>
+<td>2018</td>
+<td>Not listed</td>
+<td>14,623</td>
+<td>Fujian</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For the six months ended June 30, 2025</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Customer</th>
+<th>SaaS 收入(千元)</th>
+<th>占比</th>
+<th>业务范围</th>
+<th>成立</th>
+<th>上市</th>
+<th>注册资本(千元)</th>
+<th>地区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Customer M</td>
+<td>906</td>
+<td>0.18</td>
+<td>Sales of apparel, clothing and accessories</td>
+<td>1996</td>
+<td>Not listed</td>
+<td>103,800</td>
+<td>Guangzhou</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Customer G</td>
+<td>828</td>
+<td>0.16</td>
+<td>Daily goods and personal care products trade</td>
+<td>2017</td>
+<td>Not listed</td>
+<td>10,000</td>
+<td>Tianjin</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Customer N</td>
+<td>614</td>
+<td>0.12</td>
+<td>Manufacturing, wholesale and retail of cosmetics</td>
+<td>2002</td>
+<td><strong>Listed</strong></td>
+<td>401,000</td>
+<td>Guangzhou</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Customer O</td>
+<td>541</td>
+<td>0.11</td>
+<td>Sales of equipment and household appliances</td>
+<td>2014</td>
+<td>Not listed</td>
+<td>10,200</td>
+<td>Qingdao</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Customer P</td>
+<td>447</td>
+<td>0.09</td>
+<td>Sales of apparel and accessories</td>
+<td>2018</td>
+<td>Not listed</td>
+<td>600,000</td>
+<td>Kunshan</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For the year ended December 31, 2023</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Customer</th>
+<th>SaaS 收入(千元)</th>
+<th>占比</th>
+<th>业务范围</th>
+<th>成立</th>
+<th>上市</th>
+<th>注册资本</th>
+<th>地区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Customer F</td>
+<td>1,090</td>
+<td>0.16</td>
+<td>Manufacturer of household paper and maternal &amp; child hygiene product</td>
+<td>1985</td>
+<td>Listed</td>
+<td>511,408</td>
+<td>Fujian</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Customer G</td>
+<td>817</td>
+<td>0.12</td>
+<td>Daily goods and personal care products trade</td>
+<td>2017</td>
+<td>Not listed</td>
+<td>10,000</td>
+<td>Tianjin</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Customer H</td>
+<td>693</td>
+<td>0.10</td>
+<td>Daily goods</td>
+<td>2018</td>
+<td>Not listed</td>
+<td>14,623</td>
+<td>Fujian</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Customer I</td>
+<td>611</td>
+<td>0.09</td>
+<td>Textile and apparel</td>
+<td>2011</td>
+<td>Listed</td>
+<td>US$10.0 million</td>
+<td>Zhejiang</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Customer J</td>
+<td>577</td>
+<td>0.08</td>
+<td>Textile and apparel</td>
+<td>2016</td>
+<td>Not Listed</td>
+<td>4,000</td>
+<td>Guangdong</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For the year ended December 31, 2022</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Customer</th>
+<th>SaaS 收入(千元)</th>
+<th>占比</th>
+<th>业务范围</th>
+<th>成立</th>
+<th>上市</th>
+<th>注册资本(千元)</th>
+<th>地区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Customer A</td>
+<td>840</td>
+<td>0.16</td>
+<td>Wholesale and retail</td>
+<td>2020</td>
+<td>Not Listed</td>
+<td>15,000</td>
+<td>Guangdong</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Customer B</td>
+<td>655</td>
+<td>0.13</td>
+<td>Retail</td>
+<td>2012</td>
+<td>Not Listed</td>
+<td>5,000</td>
+<td>Guangdong</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Customer C</td>
+<td>566</td>
+<td>0.11</td>
+<td>Daily chemical products</td>
+<td>2001</td>
+<td>Not Listed</td>
+<td>90,000</td>
+<td>Zhejiang</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Customer D</td>
+<td>393</td>
+<td>0.08</td>
+<td>Home appliances</td>
+<td>2018</td>
+<td>Listed (as a subsidiary)</td>
+<td>400,000</td>
+<td>Jiangsu</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Customer E</td>
+<td>352</td>
+<td>0.07</td>
+<td>Other IT and internet services</td>
+<td>2019</td>
+<td>Not Listed</td>
+<td>1,000</td>
+<td>Shandong</td>
+</tr>
+</tbody>
+</table>
+</div><div class="backrow"><a href="../index.html#dir=%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99">← 返回 原始资料</a><a href="../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../raw/research/科技/SaaS软件/2025-09-29-聚水潭招股书-业务章（定价·客户·收费模式）.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

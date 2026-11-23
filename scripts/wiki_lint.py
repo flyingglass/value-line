@@ -41,7 +41,9 @@ OPTIONAL_STOCK_FILES = {
 REPORT_STUB_MARKERS = ["无已拉取研报", "当前无研报", "暂无研报", "待拉取", "无研报"]
 REPORT_MIN_LINES = 5
 # 研究专题目录：无 overview/thesis 四件套，不参与标的完整性检查
-NON_STOCK_DIRS = {"疯狂的里海", "本地", "感悟"}
+# 2026-11-23：SaaS软件/ 为行业分类目录（同日由 research 根迁入 科技/ 容器），
+# 只放分类入口 + 对照分析，不建标的四件套；容器下钻时按名字跳过它。
+NON_STOCK_DIRS = {"疯狂的里海", "本地", "感悟", "SaaS软件"}
 
 # 四件套【已知豁免】：2026-11-02 用户明确「记录下来，以后都不用处理」。
 # 这些标的目录文件不全属历史遗留（部分标的已有更细的经营/业绩/跟踪结构），不再补四件套，也不再报 ERROR。
@@ -309,7 +311,11 @@ def main():
                   "research/index.md", "research/overview.md", "research/log.md"}
 
     def _is_container(rel):
-        return rel in CONTAINERS or rel.rsplit("/", 1)[-1] == "log.md"
+        # 2026-11-23：research/科技/SaaS软件/index.md 是行业分类入口，只做导航，
+        # 与顶层 index 同类；index.md 本身不参与「参见区块」提取，故须豁免反引检查。
+        # 路径随目录由 research 根迁入 科技/ 容器同步。
+        return (rel in CONTAINERS or rel.rsplit("/", 1)[-1] == "log.md"
+                or rel == "research/科技/SaaS软件/index.md")
 
     def _group(rel):
         parts = rel.split("/")

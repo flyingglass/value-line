@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SaaS 软件行业分类</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">SaaS软件</a> › <a href="index-页.html">SaaS 软件行业分类</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">SaaS 软件行业分类</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-11-23</span><span style="margin-left:auto;color:#b0b5bd">research/SaaS软件</span></div><div class="md" id="md"><h1>SaaS 软件行业（分类入口）</h1>
+<blockquote>
+<p>建立：2026-11-23。用户指令「把光云科技和聚水潭合并为同一个行业，SaaS 软件行业，一起分析放在 research 的分类下面」。
+落位：<code>research/科技/SaaS软件/</code>（2026-11-23 由 <code>research/</code> 根迁入五组容器「科技」，与 <code>raw/research/科技/</code> 对齐）；本目录为行业分类页，不建标的四件套（理由见 §五）。</p>
+</blockquote>
+<h2>一、归类依据（只列库内有出处的事实）</h2>
+<ul>
+<li><strong>同属电商 SaaS</strong>：光云科技 2026 中报原文「公司是服务于电商商家的SaaS企业，核心业务是基于电商业务场景为电商商家提供SaaS服务及增值服务」（来源：<code>data/AI软件/688365_光云科技_2026中报.pdf</code> p11、p12）；聚水潭 2025 年报管理层讨论与分析原文「本集團的收入來自(i)為電商企業提供SaaS服務；(ii)銷售人員為其他公司的產品提供營銷服務所收取的佣金；(iii)銷售產品，包括一系列電商配套設備」（来源：<code>data/db/06687.db</code> meta 表 <code>mda_text</code>，2025 年报 MDA 原文摘录）。</li>
+<li><strong>产品直接重叠</strong>：两者都有电商 ERP——光云「快麦ERP」是「集订单、仓储、财务、采购等核心功能于一体的电商管理系统」（中报 p13）；聚水潭以「聚水潭ERP」为核心，覆盖订单、库存、仓储物流及供应链协同（来源：<code>scripts/06687/business_commentary.py</code> 引 2026 中期业绩公告 p17；<code>data/db/06687.db</code> meta <code>mda_text</code> 原文「專注於為電商企業提供訂單管理、庫存管理、倉儲物流及供應鏈協同等一體化數字化解決方案」）。</li>
+<li><strong>行业分类口径</strong>：申万 2021 版「计算机（801120）→ 软件开发（801104）」；同花顺 F10 把鼎捷数智、畅捷通、明源云、聚水潭、金蝶国际、北森控股列为可比公司（来源：<code>research-wiki/research/log.md</code> 2026-11-16 条 L313–L314）。本分类取其中<strong>电商 SaaS</strong> 子赛道，不覆盖全部软件开发。</li>
+<li><strong>与既有两组资料的关系（避免混淆）</strong>：
+<ul>
+<li><code>raw/research/软件开发/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md</code> 的 8 家样本（用友、广联达、鼎捷数智、金蝶、畅捷通、明源云、北森、聚水潭）是「<strong>中国 SaaS 转型 / 双期叠加</strong>」横比样本，范围大于本分类；原文已明确分工「金蝶、用友、畅捷通是做全行业ERP的，聚水潭是电商行业ERP的，北森是做全行业HCM的」（该文 §一 L114）。</li>
+<li><code>research/AI软件/AI软件名单-按吞噬顺序筛选.md</code> 是「<strong>AI 吞噬软件</strong>」框架的筛选池，不是行业归属台账；光云科技 688365 在该池中的条目<strong>保留不动</strong>，不因本次归类迁移。</li>
+</ul>
+</li>
+</ul>
+<h2>二、标的落位</h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>市场 / 上市</th>
+<th>核心产品</th>
+<th>库内主要数据资产</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>06687</td>
+<td>聚水潭（JST Group）</td>
+<td>港交所主板，2025-10-21 上市</td>
+<td>聚水潭ERP + 财务/客服/采购/分销等协同产品</td>
+<td><code>data/db/06687.db</code>（9 表，含 2022–2025 收入结构）、<code>scripts/06687/business_commentary.py</code>、<code>scripts/06687/insert_revenue.py</code>、<code>scripts/config.py</code>、<code>report/聚水潭.html</code></td>
+</tr>
+<tr>
+<td>688365</td>
+<td>光云科技</td>
+<td>上交所科创板（中报 p8）</td>
+<td>超级店长、快递助手、快麦ERP、快麦小智客服机器人、深绘美工机器人、逸淘供应链、有成系列等</td>
+<td><code>data/AI软件/688365_光云科技_2026中报.pdf</code>（194 页完整报告）、<code>data/AI软件/_manifest.json</code>、<code>scripts/out/ai_sw_final41.md</code>、<code>research/AI软件/AI软件名单-*.md</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>两只标的的档案、生意模式与逐项数据合并写在 <a href="%E8%81%9A%E6%B0%B4%E6%BD%AD%E4%B8%8E%E5%85%89%E4%BA%91%E7%A7%91%E6%8A%80-%E5%AF%B9%E7%85%A7%E5%88%86%E6%9E%90.html">聚水潭与光云科技-对照分析</a>，不另建标的子页（原因见 §五）。</p>
+</blockquote>
+<h2>三、本分类页面</h2>
+<ul>
+<li><a href="%E8%81%9A%E6%B0%B4%E6%BD%AD%E4%B8%8E%E5%85%89%E4%BA%91%E7%A7%91%E6%8A%80-%E5%AF%B9%E7%85%A7%E5%88%86%E6%9E%90.html">聚水潭与光云科技-对照分析</a> — 生意模式、产品矩阵、2026H1 财务、现金结构、护城河与风险、跟踪信号、数据缺口（本次「一起分析」主体）</li>
+<li><a href="%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">商业模式-电商SaaS-ERP</a> — 🆕 <strong>商业模式与竞争格局</strong>：官方定价（专业版 5,888–16,888 元/年、企业版 3 万起、按单 0.05–0.3 元/单）、订阅 62.1%/按单 36.8% 的收费结构与收入成本拆分、客户集中度（前五大仅占 0.52%）、前五名份额原表 24.4%/11.8%/5.2%/4.4%/2.8%、身份🟡推断与「光云 23.2%」辨伪、护城河与风险</li>
+<li><a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a> — 🆕 <strong>TAM 与付费商家画像</strong>：2024 年 ERP 市场 31 亿→2029E 83 亿、三口径 24.4%/8.7%/7.1% 不可混引、自下而上 36–46 万付费商家验证、官方渗透率 1.6% 的分母辨析与可服务商家口径 20%–45%、客单价约 1 万、日均 100 单对应年 GMV 约 270–280 万（🟡推算）。行业资本开支见 <a href="%E8%B5%84%E6%9C%AC%E5%BC%80%E6%94%AF%E5%8F%B0%E8%B4%A6-%E7%94%B5%E5%95%86SaaS-ERP-top5.html">资本开支台账-电商SaaS-ERP-top5</a>，本页不处理</li>
+<li><a href="%E8%B5%84%E6%9C%AC%E5%BC%80%E6%94%AF%E5%8F%B0%E8%B4%A6-%E7%94%B5%E5%95%86SaaS-ERP-top5.html">资本开支台账-电商SaaS-ERP-top5</a> — 🆕 <strong>行业资本开支台账</strong>：top5 范围（灼识 2024 前五名，不含跨境／综合 ERP）。<strong>同口径序列自 2020 起，按 2022 投入强度拐点分两阶段</strong>：阶段一 2020–2022 扩张（经营投入 432→876，CAGR +42.4% vs 营收 +12.5%，强度 53.7%→86.1%）、阶段二 2023–2026 收缩（CAGR +5.2% vs 营收 +20.6%，强度 73.8%→56.1%）；⚠️ 单一全期 CAGR 会因起点反转结论。2012–2019 阶段前史（一级市场融资、光云单家 2016–2019 参照序列）单列不并入合计；2015–2020 早期事件含<strong>光云 2020 IPO 净额 3.6955 亿元</strong>（原漏）。<strong>§四 两阶段资本开支总表</strong>：①经营投入 ②资本化软投入 ③外部资本动作注入－返还，IPO 弹药 64.2% 未动用。<strong>只落数据，不做资本周期定位</strong></li>
+</ul>
+<h2>四、数据来源与边界（必读）</h2>
+<p><strong>A 类 · 库内原始报告</strong></p>
+<ul>
+<li>光云科技：<code>data/AI软件/688365_光云科技_2026中报.pdf</code>，2026 半年度报告全文 194 页，<strong>未经审计</strong>（中报「重要提示」四）。本分类页所有光云数字均引自该 PDF 并标页码。</li>
+<li>通用文章：<code>research-wiki/raw/research/软件开发/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md</code>（公众号原文，含 11 张图表复原表格）。</li>
+</ul>
+<p><strong>B 类 · 库内既有引用（未见原文）</strong></p>
+<ul>
+<li>⚠️ <strong>聚水潭的 2025 年报、招股章程、2026 中期业绩公告 PDF 均不在库</strong>（<code>data/pdfs/</code> 无 06687 文件；06687 中报 PDF 于 2026-09-24 从 <code>data/AI软件/</code> 清理，见 <code>research/log.md</code> L1318）。本分类页聚水潭数字来自 <code>scripts/06687/business_commentary.py</code> 对年报 / 公告 / 招股章程的<strong>页码级引用</strong>、<code>data/db/06687.db</code>（含 meta <code>mda_text</code> 年报 MDA 原文片段）、<code>scripts/config.py</code> 与 <code>report/聚水潭.html</code>（VL 报告 2026-11-21 生成）。<strong>未获原文逐条复核，引用时保留页码，待回原文核</strong>。</li>
+</ul>
+<p><strong>raw 原文口径</strong>：建类时（2026-11-23 早）无新外部资料入库；同日补入聚水潭招股书 <strong>2 章</strong>——INDUSTRY OVERVIEW 章（灼识咨询，市场规模/渗透率/前五名份额表）与 BUSINESS 章（官方定价/收费结构/前五大客户表/客户规模），各含 PDF 原件 + 逐字摘录 md，来源链接见 raw 文件头部元数据；<code>raw/</code> 只进不改，未改动任何既有原始文件。</p>
+<p><strong>标记约定</strong>：⚠️ = 口径 / 来源限制；〔推算〕= 由两个披露数相除或相减得出，非披露值；〔推断〕= 基于业务性质的判断，非原文。</p>
+<h2>五、已知缺口（不补数、不推测）</h2>
+<ol>
+<li>聚水潭定期报告 PDF 原文缺失，是本分类最大的证据短板；<code>data/db/06687.db</code> 只能覆盖财务与收入结构，运营口径（客户数、订单量、单笔收入）目前只有脚本引用。</li>
+<li>光云科技库内<strong>仅有 2026 中报</strong>，无年报、无招股书；中报未给 SaaS 收入占比、分产品收入金额表，只给中小商家 +7.23% / 大商家核心产品 +35.91% 的增速（p13）。</li>
+<li><strong>NDR / 复购率全池不可得</strong>（<code>research/AI软件/AI软件名单-按吞噬顺序筛选.md</code> §七第 2 条），两家均未披露，护城河判断缺主证据。</li>
+<li>✅ 竞争格局、TAM、渗透率与付费商家画像已于 2026-11-23 补齐，按主题拆为两页：<a href="%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">商业模式-电商SaaS-ERP</a>（定价/收费结构/客户集中度/份额表）与 <a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a>（市场规模/渗透率/营收画像）；招股书行业概览章 + 业务章，两份 PDF 原件与逐字摘录均已入 raw。⚠️ 招股书匿名化 Company A–D / Customer A–P，身份为🟡推断；付费商家数、客单价分布、可服务商家数均未披露，相关推算已标🟡并交代假设；光云中报 p16 谈「接入平台最多」时仍只泛称「竞争对手」，未点名。<strong>行业资本开支数据见 <a href="%E8%B5%84%E6%9C%AC%E5%BC%80%E6%94%AF%E5%8F%B0%E8%B4%A6-%E7%94%B5%E5%95%86SaaS-ERP-top5.html">资本开支台账-电商SaaS-ERP-top5</a>；资本周期定位未做</strong>。</li>
+<li>估值数据时点不一致：聚水潭来自 VL 报告 2026-11-21，光云来自 2026-09-24 筛选池，不可当作同期横比。</li>
+<li>标的四件套（thesis / industry-chain / operating-metrics / research-reports）<strong>本次不建</strong>：库内无券商研报、无产业链原文、无逐季运营指标，按「严禁编造」不写占位页；待用户补原始资料后再建。<code>wiki_lint.py</code> 的 <code>NON_STOCK_DIRS</code> 已登记 <code>SaaS软件</code>，使其作为 <code>科技/</code> 容器下的分类子目录不参与标的四件套检查。</li>
+<li>🔴 行业资本开支<strong>加总不可得</strong>：top5 中仅 2 家有连续财务三表（覆盖 28.8 个份额百分点），Company A／B 无三表、Company D 并入金蝶集团不单列，长尾 51.4% 无数据；台账中「两家合计」只是可得样本下限，不是行业总量。</li>
+</ol>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/科技/SaaS软件/index.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
