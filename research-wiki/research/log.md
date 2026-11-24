@@ -7400,4 +7400,41 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 
 触及页面：research-wiki/research/科技/SaaS软件/聚水潭-四问综合-生意模式·资本周期·催化剂·AI.md（新建）、research-wiki/research/科技/SaaS软件/index.md、research-wiki/research/科技/SaaS软件/商业模式-电商SaaS-ERP.md、research-wiki/research/科技/SaaS软件/TAM与用户画像-电商SaaS-ERP.md、research-wiki/research/科技/SaaS软件/资本开支台账-电商SaaS-ERP-top5.md、research-wiki/research/科技/SaaS软件/产能出清观察-电商SaaS-ERP.md、research-wiki/research/科技/SaaS软件/聚水潭与光云科技-对照分析.md、research-wiki/research/index.md、research-wiki/research/log.md（本条）、research-wiki/view/stocks/SaaS软件/（重建覆盖）
 
+## [2026-11-24] 数据 | 新建「需要跟踪的影响」页：四组待验证信号
+
+- 用户指令「把这些记录到 md，md 的名称为需要跟踪的影响」→ 落位 `research/科技/SaaS软件/需要跟踪的影响.md`（沿用上一轮指定的分类目录）。收录连续问答收敛出的当前有效判断（§二 8 条基线）与待跟踪影响清单（§三 四组）。按四件套同步分类 index §三、顶层 index 首行与按标的区、log（本条）、6 页反向参见，并重建站点。**本轮未执行 git 提交／推送**（用户未要求）。
+
+### 本页核心判断
+
+- **出清红利不经过价格环节**：制造业＝产能退→价格涨→利润涨；电商 SaaS＝融资断供→停止扩张投入→经营杠杆→利润转正，链条里没有价格环节。⚠️ 26H1 毛利率提升中报归因「规模经济」、费用改善属经营杠杆，**不等于竞争减弱**（两家销售费用 259→596 百万元仍上行）。
+- **新客**：结构性降价冲动成立（MC≈0 ＋ 1–4 年预收全款 ⇒ 多签一单增量毛利近 100%），但被「获客成本」与「合约锁价」两道刹车压住 → 表现为成交折扣＋获客补贴，非标价战；**真实边际成本在获客端，不在交付端**。新客折扣若被老客看见，会在续约时压 NDR expansion（🟡 机制推断）。
+- **老客**：唯一真有定价权的一段，来自切换成本；不表现为涨价，表现为 NDR 115%(2024) 与 attach。NDR 是净值，混合续约／提价／扩张；gross／logo retention 全无 ⇒ **抛开结构后老客口径几乎不可识别**，总均价跌与老客价值升并存的差额就是结构。
+- **AI 校正**：「AI 降低研发成本」不成立——研发 1.21 亿仍 +5.0%、中报未把降本归给 AI、token 消耗 +300% 是成本项；水宝仍「逐步落地商用、开展试点应用」。老客端 AI 影响**基本未观察到**（公司侧动作 🟢，老客接受／付费／留存反应 🔴）。
+- **AI 三向判定**（取决于是否单独收费）：正向＝内嵌工作流加深切换成本、给 NDR／attach 新抓手；反向＝免费增值内嵌但 token 成本上升，落在**已锁价的存量合同**上，老客合约期毛利被吃（新客可按含 AI 成本的新价签，老客价已锁，反而更脆弱）；第三向＝AI Coding 与自动化长期削弱迁移成本（🟡 推断）。
+
+### 四组跟踪信号（均带阈值）
+
+1. **供给侧**：CR5 出现 2025/26 序列且上升、玩家退出／并购公告、销售费用率掉头向下、转注销式回购与募资动用加速。
+2. **价格**：新签单价／折扣率／合同期限分布、分客户层 ARPU、单笔变现能否延续并拆「交叉销售 vs 用量增长 vs 真提价」、新老客价差反噬 NDR。
+3. **老客**：NDR 2025/26 序列＋gross/expansion/churn 分解、续约价调整率与老客 cohort ARPU、attach rate 分产品拆分、大客户规模分层。
+4. **AI**：水宝措辞转「全面商用／规模化落地」＝窗口打开第一信号、是否单独收费、计费是否转 token／积分／按 GMV、token 成本占销售成本比与 AI 铺开后毛利率、使用率与试点转化率、「实施雇员福利」是否续降且归因 AI、长期护城河是否削弱。
+
+### 边界
+
+- **「未观察到」≠「影响为零」**：水宝仍在试点；合约 1–4 年预收直线确认，老客价格与功能变更要等续约周期才进报表；披露口径中 AI 无收入／成本拆分 ⇒ 观测窗口尚未打开。
+- 页面禁止过程注脚：正文只放当前有效结论与阈值清单，不写问答过程与对账叙述；家数／口径只在表内逐行。
+- 庶人哑士「订阅→token 计费」是作者列举的第 5 条利好（🟡），聚水潭仍是订阅＋按单，尚未发生；券商目标价（中金 41、广发 21.47 港元）不作结论；2.36 万（2024 全年）与 2.39 万（2024H1）为不同口径媒体转述值，待回原文核。
+- **本轮未改动既有页结论**：`产能出清观察-电商SaaS-ERP.md` 仍写单口径「价格仍在跌」，与本页 §二 三口径判断并存，是否覆盖待用户确认。
+
+触及页面：research-wiki/research/科技/SaaS软件/需要跟踪的影响.md（新建）、research-wiki/research/科技/SaaS软件/index.md、research-wiki/research/科技/SaaS软件/聚水潭-四问综合-生意模式·资本周期·催化剂·AI.md、research-wiki/research/科技/SaaS软件/商业模式-电商SaaS-ERP.md、research-wiki/research/科技/SaaS软件/TAM与用户画像-电商SaaS-ERP.md、research-wiki/research/科技/SaaS软件/资本开支台账-电商SaaS-ERP-top5.md、research-wiki/research/科技/SaaS软件/产能出清观察-电商SaaS-ERP.md、research-wiki/research/科技/SaaS软件/聚水潭与光云科技-对照分析.md、research-wiki/research/index.md、research-wiki/research/log.md（本条）、research-wiki/view/stocks/SaaS软件/（重建覆盖）
+
+## [2026-11-24] ingest | 逸修1《谈谈一类很好的结构性投资机会》→ raw/research/articles/
+
+- 用户给出雪球链接 https://www.xueqiu.com/1936609590/319244520 ，按 `research-ingest` 三段式入库。
+- `web_fetch` 取回雪球全文；`web_search` 补发布时间（页面显示「修改于 2025-01-03 23:32」，ai.xueqiu.com 镜像同；同作者转发帖 `319244734` 发布于 2025-01-03 16:45，**原始首发时间仍未标注**）；`web_fetch` 网易号「睿知投资」2025-01-29 转载版逐段交叉校验，正文一致。
+- 新建 `raw/research/articles/2025-01-03-逸修1-谈谈一类很好的结构性投资机会.md`：头部元数据保留原文链接、前置框架文 `286765853` 与当日讨论帖 `319244734` 链接；摘要分点（二元业务结构 / 「四击」/ 100-200% 涨幅量级 / 24 年 5 家举例 / 未定价与未转向清单），所有数字均标注为作者举例口径、非统计数据；正文照录，原文疑误「竟对」不改并入注。本篇无图表。
+- **未建 wiki 摘要页、未改 index.md、未重建 view/**（沿用用户此前「wiki 层由用户主导策划，待确认后再做」的约定）。本轮未执行 git 提交／推送。
+
+触及页面：research-wiki/raw/research/articles/2025-01-03-逸修1-谈谈一类很好的结构性投资机会.md（新建）、research-wiki/research/log.md（本条）
+
 

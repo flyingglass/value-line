@@ -1,0 +1,450 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>电商 SaaS ERP · 待跟踪影响与证伪信号（聚水潭 06687）</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">SaaS软件</a> › <a href="需要跟踪的影响.html">电商 SaaS ERP · 待跟踪影响与证伪信号（聚水潭 06687）</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">电商 SaaS ERP · 待跟踪影响与证伪信号（聚水潭 06687）</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-11-24</span><span style="margin-left:auto;color:#b0b5bd">research/SaaS软件</span></div><div class="md" id="md"><h1>电商 SaaS ERP · 需要跟踪的影响（聚水潭 06687）</h1>
+<blockquote>
+<p>归类入口：<a href="index-%E9%A1%B5.html">index</a>；基线判断见 <a href="%E8%81%9A%E6%B0%B4%E6%BD%AD-%E5%9B%9B%E9%97%AE%E7%BB%BC%E5%90%88-%E7%94%9F%E6%84%8F%E6%A8%A1%E5%BC%8F%C2%B7%E8%B5%84%E6%9C%AC%E5%91%A8%E6%9C%9F%C2%B7%E5%82%AC%E5%8C%96%E5%89%82%C2%B7AI.html">聚水潭-四问综合-生意模式·资本周期·催化剂·AI</a>。建立：2026-11-24。数据时点：2026H1。
+<strong>范围</strong>：当前有效判断（§二）与待验证影响清单（§三）。<strong>不做买卖建议、不给目标价、不做资本周期象限定位。</strong>
+证据等级：🟢 观测（公告／招股书／库内数据） · 🟡 推算／二手转述／机制推断 · 🔴 不可识别。
+⚠️ <strong>证据分层</strong>：招股书 BUSINESS 章与 INDUSTRY OVERVIEW 章原件已入 <code>raw/research/科技/SaaS软件/</code>；<strong>2025 年报、2026 中期业绩公告／中期报告 PDF 未入 raw</strong>，公司侧其余数字来自 <code>data/db/06687.db</code>、<code>scripts/06687/business_commentary.py</code> 的页码级引用或外部核对，属 B 类，待回原文复核。</p>
+</blockquote>
+<h2>一、结论先行</h2>
+<p>这门生意的<strong>出清红利不经过价格环节</strong>：资本断供先压住扩张性投入，经营杠杆让利润转正，价格不是中间变量。<strong>新客端定价权在获客成本、老客端在切换成本，两端都不表现为标价上调</strong>；AI 对老客端的影响尚未发生（仍处试点）。因此「价格是否回升」不是有效跟踪指标，应改用 §三 的四组信号：份额／费用率／NDR／AI 商业化。</p>
+<h2>二、当前有效判断（跟踪基线）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>主题</th>
+<th>判断</th>
+<th>主要证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>出清层级</td>
+<td><strong>资本出清 ✅ 可观测、top5 产能出清 ❌ 观测不到</strong>。资本断供只做到「不再新增供给」，没做到「存量供给退出」</td>
+<td>中国企业级 SaaS 融资 2021 442.98→2023 65.19 亿（−85%，🟡 图 K）；投入强度 86.1%→56.1% 🟢；CR5 仅 2024 静态 48.6% 🔴、top5 无一退出 🟢、光云研发 523→591 人 🟢</td>
+</tr>
+<tr>
+<td>2</td>
+<td>传导链</td>
+<td>制造业＝产能退→<strong>价格回升</strong>→利润回升；电商 SaaS＝融资断供→停止扩张投入→<strong>经营杠杆</strong>→利润转正，<strong>链条里没有价格环节</strong></td>
+<td>26H1 收入 +17.4% vs 三费 +2.4%／+4.9%／+5.0%、经营利润 +119% 至 0.59 亿 🟢。⚠️ 毛利率提升中报归因为「规模经济」，费用改善属经营杠杆，<strong>不等于竞争减弱</strong>；两家销售费用 259→596 百万元仍上行 🟢</td>
+</tr>
+<tr>
+<td>3</td>
+<td>价格三口径</td>
+<td>合同总价 −38%、年化客单 −9% 仍跌，<strong>单笔订单变现 0.0266→0.0285→0.030 元回升</strong>；年度序列与半年同比同向</td>
+<td>🟡 媒体转述招股书／🟢 中报与年报 p12</td>
+</tr>
+<tr>
+<td>4</td>
+<td>边际成本机制</td>
+<td>MC≈0 不产生成本推动型提价，且降价空间无限、压住价格中枢；但<strong>真实边际成本在获客端而非交付端</strong></td>
+<td>合约获取成本 4.17→3.94 亿 🟢、销售费用仍上行 🟢、LTV/CAC 9.3→8.0(2025H1) 🟡；机制为 🟡 推断</td>
+</tr>
+<tr>
+<td>5</td>
+<td>新客</td>
+<td>结构性<strong>降价冲动成立</strong>，被 CAC 与合约锁价两道刹车压住，表现为成交折扣＋获客补贴而非标价战；官方标价库内未见下调</td>
+<td>专业版 5,888–16,888 元/年、企业版 3 万起、按单 0.05–0.3 元/单 🟢；合约负债 23.03 亿 ≈ 年营收 2 倍 🟢；按单计费 36.8% 🟢</td>
+</tr>
+<tr>
+<td>6</td>
+<td>老客</td>
+<td><strong>唯一真有定价权的一段</strong>，来自切换成本（400+ 平台／800+ 物流接口＋主数据＋迁移风险）；不表现为涨价，表现为 NDR&gt;100% 与 attach</td>
+<td>NDR 115%(2024) 🟢、协同产品 26H1 +43.4% 🟢、每笔订单变现 0.030 元 🟢</td>
+</tr>
+<tr>
+<td>7</td>
+<td>抛开结构</td>
+<td><strong>老客口径几乎不可识别</strong>：NDR 是净值，混合续约／提价／扩张；总均价跌与老客价值升并存，<strong>差额本身就是结构</strong></td>
+<td>gross／logo retention 🔴、老客 ARPU 分 cohort 🔴、续约价调整率 🔴、NDR 2025+ 🔴</td>
+</tr>
+<tr>
+<td>8</td>
+<td>AI 校正</td>
+<td>「<strong>AI 降低研发成本</strong>」不成立：研发 1.21 亿仍 +5.0%，中报未把降本归给 AI，token +300% 是<strong>成本项</strong>；水宝仍处「逐步落地商用、开展试点应用」</td>
+<td>2026 中期报告 🟢；AI Coding 对 ERP 规则库／接口资产替代有限为 🟡 判断</td>
+</tr>
+</tbody>
+</table>
+<h2>三、需要跟踪的影响（本页主体）</h2>
+<h3>3.1 供给侧：出清是否走到产能层</h3>
+<table>
+<thead>
+<tr>
+<th>影响</th>
+<th>当前状态</th>
+<th>触发信号（阈值）</th>
+<th>数据源</th>
+<th>等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>集中度变化</td>
+<td>CR5 仅 2024 静态 48.6%</td>
+<td>灼识／新版招股书出现 2025 或 2026 份额且 <strong>CR5 上升</strong></td>
+<td>灼识咨询／招股书</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>玩家退出</td>
+<td>top5 无一退出停服</td>
+<td>出现停服／并购／注销公告</td>
+<td>官网／工商／港交所</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>竞争强度</td>
+<td>两家销售费用 259→596 百万元仍上行</td>
+<td><strong>销售费用率掉头向下</strong></td>
+<td>年报</td>
+<td>🟢 当前／🔴 序列</td>
+</tr>
+<tr>
+<td>资本返还</td>
+<td>回购全作库存股、拟注销 0</td>
+<td>转<strong>注销式回购</strong>、IPO 募资动用加速</td>
+<td>港交所公告</td>
+<td>🟢 当前</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 价格：定价权读数</h3>
+<table>
+<thead>
+<tr>
+<th>影响</th>
+<th>当前状态</th>
+<th>触发信号（阈值）</th>
+<th>数据源</th>
+<th>等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新签价／折扣／期限分布</td>
+<td>无披露</td>
+<td>出现新签单价、折扣率、1–4 年合同期限结构</td>
+<td>招股书／业绩会</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>分客户层 ARPU</td>
+<td>无披露</td>
+<td>新客 vs 老客、中小 vs 大商家分层序列</td>
+<td>年报</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>单笔订单变现</td>
+<td>0.030 元、连续回升 🟢</td>
+<td>能否延续；须拆「交叉销售」vs「用量自然增长」vs「真提价」</td>
+<td>中报／年报</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>新老客价差反噬</td>
+<td>无披露</td>
+<td>新客折扣被老客在续约时要求同等待遇 → 压 NDR expansion</td>
+<td>业绩会／年报</td>
+<td>🟡 机制／🔴 数据</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 老客：land-and-expand</h3>
+<table>
+<thead>
+<tr>
+<th>影响</th>
+<th>当前状态</th>
+<th>触发信号（阈值）</th>
+<th>数据源</th>
+<th>等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NDR 序列与分解</td>
+<td>仅 2024 的 115%</td>
+<td>2025／2026 序列；拆 <strong>gross retention / expansion / churn</strong></td>
+<td>年报</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>续约与提价</td>
+<td>无披露</td>
+<td>续约价调整率、老客 cohort ARPU、logo retention</td>
+<td>年报</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>attach rate</td>
+<td>协同产品 +43.4% 🟢</td>
+<td>分产品拆分，确认是否含 AI 模块</td>
+<td>中报</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>规模分层</td>
+<td>前五大仅占 0.52%、&gt;60% 客户日均 &gt;100 单 🟢</td>
+<td>大客户是否自研或迁往平台工具</td>
+<td>年报／官网</td>
+<td>🔴</td>
+</tr>
+</tbody>
+</table>
+<h3>3.4 AI：老客端影响（尚未发生）</h3>
+<table>
+<thead>
+<tr>
+<th>影响</th>
+<th>当前状态</th>
+<th>触发信号（阈值）</th>
+<th>数据源</th>
+<th>等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商业化窗口</td>
+<td>水宝「开展试点应用」🟢</td>
+<td>措辞转为「<strong>全面商用／规模化落地</strong>」＝窗口打开第一信号</td>
+<td>中报／公告</td>
+<td>🟢 可跟踪</td>
+</tr>
+<tr>
+<td>是否单独收费</td>
+<td>仍是订阅＋按单，未单独收费</td>
+<td>出现 AI 模块定价或 AI 相关收入拆分</td>
+<td>中报／年报</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>计费口径变化</td>
+<td>订阅 62.1%＋按单 36.8%</td>
+<td>是否转 token／积分／按 GMV 分成</td>
+<td>公告</td>
+<td>🟡 作者观点，尚未发生</td>
+</tr>
+<tr>
+<td>成本挤压</td>
+<td>token 消耗较 2025Q4 +300% 🟢</td>
+<td><strong>token 成本占销售成本比</strong>；AI 铺开后毛利率是否被压</td>
+<td>中报</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>使用与转化</td>
+<td>无披露</td>
+<td>AI 功能使用率、试点转商用比例、5,000+ 垂直技能实际调用量</td>
+<td>业绩会／中报</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>提效归属</td>
+<td>销售成本 −1.8%，公告归因实施雇员福利减少 🟢</td>
+<td>「实施雇员福利」是否继续降，且归因明确指向 AI（区别于规模效应）</td>
+<td>中报</td>
+<td>🟡 关联非因果</td>
+</tr>
+<tr>
+<td>长期护城河</td>
+<td>无观测</td>
+<td>AI 是否降低竞品复刻 ERP 门槛／提升客户自运维能力 → <strong>削弱切换成本</strong></td>
+<td>持续观察</td>
+<td>🟡 推断</td>
+</tr>
+</tbody>
+</table>
+<p><strong>方向判定（三向，取决于是否单独收费）</strong></p>
+<ul>
+<li><strong>正向</strong>：AI 内嵌工作流加深切换成本 → NDR／attach 获得新抓手；老客已锁定，AI 是最容易加购的模块。</li>
+<li><strong>反向</strong>：若作为免费增值内嵌而不单独收费，token 成本上升落在<strong>已锁价的存量合同</strong>上，老客合约期内毛利被吃——新客可按含 AI 成本的新价签，老客价已锁，这段反而比新客脆弱。</li>
+<li><strong>第三向</strong>：AI Coding 与实施／客服自动化长期可能降低迁移成本，削弱护城河（🟡 推断，无证据）。</li>
+</ul>
+<p>⇒ <strong>「老客端如何面对 AI」目前不能下结论</strong>：该影响尚未变成已发生事实，可确定的只有「公司在投入、成本在上升、还没开始收钱」。</p>
+<h2>四、观测窗口为何尚未打开</h2>
+<ol>
+<li>水宝处于<strong>试点应用</strong>阶段，不是规模铺开。</li>
+<li>合同 1–4 年预收全款、直线确认；老客的价格与功能变更要等<strong>续约周期</strong>才进报表。</li>
+<li>披露口径中 AI 没有任何收入或成本拆分。</li>
+</ol>
+<p><strong>「未观察到」≠「影响为零」</strong>。庶人哑士列举的「订阅制 → 积分／token 计费」是作者观点（🟡），聚水潭仍是订阅＋按单，<strong>尚未发生</strong>，不得写成既成事实。</p>
+<h2>五、数据边界与不可识别项</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新签价、折扣率、合同期限分布</td>
+<td>🔴 未披露</td>
+</tr>
+<tr>
+<td>分客户层 ARPU、老客 cohort、续约价调整率</td>
+<td>🔴 未披露</td>
+</tr>
+<tr>
+<td>NDR 2025+、gross／logo retention、attach rate 拆分</td>
+<td>🔴 未披露（NDR 仅 2024 的 115%）</td>
+</tr>
+<tr>
+<td>AI 单位经济：单独收费、对 ARPU 贡献、token 成本占比、使用率</td>
+<td>🔴 未披露</td>
+</tr>
+<tr>
+<td>份额与官方定价时点</td>
+<td>⚠️ 停在 2024，无 2025+ 同口径更新</td>
+</tr>
+<tr>
+<td>定期报告原件</td>
+<td>🔴 2025 年报、2026 中期业绩公告／中期报告 PDF 未入 raw，公司侧数字多为 B 类页码级引用</td>
+</tr>
+<tr>
+<td>平均合同价值</td>
+<td>⚠️ 2.36 万（2024 全年）与 2.39 万（2024H1）为不同口径的媒体转述值，待回招股书原文核</td>
+</tr>
+<tr>
+<td>券商目标价</td>
+<td>⚠️ 中金 41 港元、广发 21.47 港元属机构预测，不作结论</td>
+</tr>
+</tbody>
+</table>
+<p><strong>口径纪律</strong>：价格判断必须指定口径，三口径方向不同，单独引用任一口径都会得出相反结论；资本周期必须两阶段读，单一全期 CAGR 不成立；回购期间流量／期末存量／授权累计禁止加总；<strong>价格回升不是本行业的有效出清判据</strong>，判据为 CR5 序列、销售费用率掉头、NDR 上行。</p>
+<h2>参见</h2>
+<ul>
+<li><a href="index-%E9%A1%B5.html">index</a> — SaaS 软件行业分类入口、数据来源分层与缺口总表</li>
+<li><a href="%E8%81%9A%E6%B0%B4%E6%BD%AD-%E5%9B%9B%E9%97%AE%E7%BB%BC%E5%90%88-%E7%94%9F%E6%84%8F%E6%A8%A1%E5%BC%8F%C2%B7%E8%B5%84%E6%9C%AC%E5%91%A8%E6%9C%9F%C2%B7%E5%82%AC%E5%8C%96%E5%89%82%C2%B7AI.html">聚水潭-四问综合-生意模式·资本周期·催化剂·AI</a> — 四问基线：现状、资本周期与价格三口径、催化剂、AI 四层</li>
+<li><a href="%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">商业模式-电商SaaS-ERP</a> — 官方定价、收费结构、客户集中度、份额表与护城河</li>
+<li><a href="TAM%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F-%E7%94%B5%E5%95%86SaaS-ERP.html">TAM与用户画像-电商SaaS-ERP</a> — 市场规模、渗透率、客单价与付费商家画像</li>
+<li><a href="%E8%81%9A%E6%B0%B4%E6%BD%AD%E4%B8%8E%E5%85%89%E4%BA%91%E7%A7%91%E6%8A%80-%E5%AF%B9%E7%85%A7%E5%88%86%E6%9E%90.html">聚水潭与光云科技-对照分析</a> — 两家生意模式、2026H1 财务对照、现金结构</li>
+<li><a href="%E8%B5%84%E6%9C%AC%E5%BC%80%E6%94%AF%E5%8F%B0%E8%B4%A6-%E7%94%B5%E5%95%86SaaS-ERP-top5.html">资本开支台账-电商SaaS-ERP-top5</a> — 两阶段经营投入、融资时间轴、IPO 弹药状态</li>
+<li><a href="%E4%BA%A7%E8%83%BD%E5%87%BA%E6%B8%85%E8%A7%82%E5%AF%9F-%E7%94%B5%E5%95%86SaaS-ERP.html">产能出清观察-电商SaaS-ERP</a> — 资本／产能出清可观测性辨析、证伪指标清单</li>
+<li>库内原始资料：<code>raw/research/软件开发/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md</code>、<code>raw/research/科技/SaaS软件/</code>、<code>data/db/06687.db</code>、<code>scripts/06687/business_commentary.py</code></li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/科技/SaaS软件/需要跟踪的影响.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
