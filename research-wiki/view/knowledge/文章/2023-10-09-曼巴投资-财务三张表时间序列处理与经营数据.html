@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2023-10-09-曼巴投资-财务三张表时间序列处理与经营数据</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">知识库</a> › <a href="../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2023-10-09-曼巴投资-财务三张表时间序列处理与经营数据</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">raw/research/articles</span></div><div class="md" id="md"><h1>财务三张表的处理方法与经营数据（雪球回复帖）</h1>
+<blockquote>
+<p>来源：雪球 App · 用户「曼巴投资」<br />
+原文链接：https://www.xueqiu.com/2140389661/262739273（作者自注：https://xueqiu.com/2140389661/262739273）<br />
+作者：曼巴投资（回复 @贝塔猪）<br />
+发布时间：2023-10-09 23:33（页面 <code>datePublished</code>／<code>SNOWMAN_STATUS.created_at=1696865593000</code>，北京时间；页面未显示修改时间）<br />
+资料类型：雪球回复帖／个人经验谈（非研报、非公司披露、非统计数据）<br />
+入库时间：2026-11-25</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：三张表时间序列 · 资产负债表占比法 · 四费率 · 现金流验证 · 经营数据可视化 · 拼多多 GMV 亏损率</p>
+</blockquote>
+<p><strong>一句话核心</strong>：作者分享个人做法：<strong>用万得导出三张财务报表做多年时间序列</strong>，资产负债表的重要科目都除以股东权益看占比与历史变化，利润表看收入／利润增长、净利率／毛利率与四费率，现金流表主要用来<strong>验证</strong>前两张表；三张表之外同步统计行业经营数据并做可视化，并以拼多多「净利润/GMV」反驳「烧钱不可持续」的偏见。</p>
+<p><strong>关键数据（本篇为方法分享；下列比值均为作者口径，原图未标单位、未与财报核对）</strong>：</p>
+<ul>
+<li>资产负债表五项比率：<strong>净负债（或净现金）率</strong>＝(有息负债−现金或现金等价物)/股东权益；<strong>经营类重资产占比</strong>＝(固定资产＋无形资产＋土地使用权等)/股东权益；<strong>上下游占款</strong>＝(应付款−应收款)/股东权益；<strong>存货占款</strong>＝存货/股东权益；<strong>商誉占比</strong>＝商誉/股东权益</li>
+<li>利润表：净利润率＝净利润/收入；毛利率＝毛利/收入；四费率＝销售／管理／财务／研发费用÷销售收入</li>
+<li>现金流表：经营活动现金净额＝经营现金流入−经营现金流出；<strong>净利润＋折旧/摊销−利息收入＋利息支出＝经营活动现金流</strong>（其他项目先忽略）</li>
+<li>拼多多季度表（原文配图）：2017Q4–2020Q4 共 <strong>13 季</strong>；GMV 亏损率区间 <strong>−1.05%（2020Q1）～+0.11%（2020Q3）</strong>；净利率最低 <strong>−48.47%（2020Q1）</strong></li>
+<li>作者称「净利润/gmv……最高也没超过 <strong>1%</strong>，即 1 元出去，拼多多平台没亏超过 <strong>1 分钱</strong>」——⚠️ 与表中 2020Q1 <strong>−1.05%</strong> 略有出入，见附录校验注，<strong>本库不裁决</strong></li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>三张表 vs 经营数据</strong>：作者认为三张表「可视化必要不大，就纯表格」，但「业务数据可视化必要性大一些」——同一家公司需要两套数据语言</li>
+<li><strong>财务指标无好坏 vs 跨行业比较</strong>：作者强调「财务问题没有单纯的好坏，财务只是反应当下经营水平或行业特点，不要轻易跨行业比较」，但举例时又用重资产公司（三峡能源、长江电力）与贵州茅台对照经营现金流/净利润差异</li>
+<li><strong>「烧钱」标签 vs 单位经济效益</strong>：市场说拼多多低价烧钱不可持续，作者用净利润/GMV（每卖出 1 元亏多少）反驳，称「是偏见，是没看财报的」；对哔哩哔哩「好、不烧钱」的说法同样不认——<strong>均为作者个人判断，未在本帖给 B 站数据</strong></li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li>五项资产负债表比率 + 四项利润率/费率可直接做检查表，重点是<strong>时间序列变化</strong>而非单期绝对值</li>
+<li>现金流表是验证项：重资产公司现金流净额远大于净利润属会计机制（折旧摊销），不能据此判定优劣；茅台幅度不大同样不能说明什么</li>
+<li>经营数据按行业自定：酒店看数量／房间数／ADR／Repar／入住率；拼多多看月活／ACC／单量／单均价／GMV／佣金／变现率／净利润÷GMV</li>
+<li>证据边界：拼多多表为作者自制（图上红色强调 GMV 与亏损率），单位未标、未与财报核对；「2020Q1 后极速好转、2019Q4 就好转了」为作者判断</li>
+</ol>
+<p><strong>图表数据状态</strong>：原文含 <strong>1 张正文配图</strong>（<code>xqimg.imedao.com/18b150c928b58fea3fef9560.png</code>，页面「查看图片」链接处）。该图虽位于 <code>//@贝塔猪</code> 引用链位置，但内容是作者自制的<strong>拼多多 13 季度经营数据表</strong>，承载正文「亏损不超过 1%」的关键论据，按 skill 第五节触发提取：2× 放大、左右切分逐格校对后<strong>完整转写为表格</strong>（附录表 1），原图不落盘、只记 CDN 回溯链接。</p>
+<hr />
+<h2>正文</h2>
+<blockquote>
+<p>以下为雪球页面 <code>article__bd__detail</code> 正文逐字转录（含原文错别字、重复标点与不完整括号，未删改）；页面隐藏的来源行保留于首行。<code>查看图片</code> 处的配图转写见文末附录表 1。页面 UI（热股榜、登录弹窗、悬赏/转发计数等）非正文，未录入。</p>
+</blockquote>
+<p>来源：雪球App，作者： 曼巴投资，（https://xueqiu.com/2140389661/262739273）</p>
+<p>回复@贝塔猪: 谢谢贝塔老师邀请，我说说我的做法：</p>
+<p>①用万得软件，导出三张表到excel，一般有多少年的数据就导出多少年的数据，反正按时间序列就好。万得比较贵，貌似东财专业版也可以的，那个价格友好。</p>
+<p>②对三张表做处理，（我倒不太用可视化，就纯表格，看习惯了还更舒服。</p>
+<p>资产负债表主要看几个指标：</p>
+<p>净负债（或净现金）率情况（=(有息负债-现金或现金等价物）/股东权益），一个指标反应当下公司到底是有现金在经营还是有借钱在经营，及历史变化；</p>
+<p>经营类重资产占比情况（=（固定资产+无形资产+土地使用权等/股东权益），反应是轻资产还是重资产，及历史变化；</p>
+<p>上下游占款情况（=（应付款-应收款）/股东权益，这里应付和应收指实质意义的应收应付款，比如预收账款是应付，预付账款是预收等等），反应公司在上下游的产业链地位，及历史变化；</p>
+<p>存货占款情况（=存货/股东权益），反应库存风险，及历史变化；</p>
+<p>商誉占比情况（=商誉/股东权益），反应历史靠收购还是内生，并且哪个节点收购进来的；</p>
+<p>等等资产负债表你认为重要的子项目都拿来和股东权益做除法。</p>
+<p>利润表处理简单一些：</p>
+<p>也都用时间序列的数据（即过去几年及最新财报的数据）</p>
+<p>历史收入增长情况；历史利润增长情况；</p>
+<p>净利润率（=净利润/收入），反应盈利能力及变化；</p>
+<p>毛利率（=毛利/收入），反应毛利情况及变化；</p>
+<p>四费率，销售费用率/管理费用率/财务费用率/研发费用率(=相应费用/销售收入），每一个都反应背后的成本项目支出到底在什么地方，反向能帮助我们厘清公司的费用投向，到底是靠销售还是靠研发，还是靠重资金（财务）投入等等。。</p>
+<p>现金流表就更简单：</p>
+<p>其实时间序列下的资产负债表+利润表是可以推导出现金流量表的，所以，前两个功课做好了，这个就是验证了。</p>
+<p>简单看看：经营活动的现金净额（=经营现金流入-经营现金流出）；投资活动现金净额（投资活动，大额资本开支啥的）；筹资活动（股权融资或债券融资或回购或分红啥的）。。</p>
+<p>财务问题没有单纯的好坏，财务只是反应当下经营水平或行业特点，不要轻易跨行业比较。</p>
+<p>举个例子：我们常说经营活动现金净额一般大于净利润，不一定说明公司多优秀，事实上，因为净利润+折旧/摊销-利息收入+利息支出=经营活动现金流（其他项目先忽略），所以，重资产公司很容易经营活动现金流净额远大于净利润，比如你去看看三峡能源、长江电力这些，基本一定的，但并不能说明什么。。</p>
+<p>反而贵州茅台这样的，可能经营活动现金流净额比净利润大的幅度不是很多。</p>
+<p>③三张表外同步重要的是经营数据</p>
+<p>经营数据就随行业或公司业务特点，看需要统计什么就统计什么。</p>
+<p>比如，像看酒店，亚朵酒店、锦江酒店啥的，肯定需要把历史上各个季度，酒店的酒店数量、房间数量、Adr数据、Repar数据、入住率数据都统计下来，再做可视化处理（三张表可视化必要不大，但业务数据可视化必要性大一些）；</p>
+<p>比如看拼多多，早期要统计月活、年度购买总用户数ACC，年度购买单量、测算每单价格、总gmv、总佣金、每单佣金、佣金率，收入/gmv衡量变现率，净利润/gmv衡量早期跑通没跑通。</p>
+<p>做数据有个好处，你做多了，尤其结合时间序列，基本数据会说话。（我自己一个心得是，看不清楚看数据，数据自己会说话。记得美团王兴的“四大名著”就有《用图表说话》，我深以为然）</p>
+<p>举个例子，当年人家说拼多多低价烧钱不可持续，我就用了一个指标反驳，看似烧钱，其实不算烧：</p>
+<p>净利润/gmv相当于平台上每卖出1元，我拼多多亏多少，这个平台最高也没超过1%，即1元出去，拼多多平台没亏超过1分钱。你找找哪个烧钱的模式有这个效率。所以，我当时就判断说拼多多烧钱，是偏见，是没看财报的。（反过来，说哔哩哔哩好，不烧钱，我也是不认的。）</p>
+<p>并且，在2020年Q1后极速的好转，Q1是疫情影响了，其实2019Q4就好转了。。</p>
+<p>扯远了，希望对你有帮助。</p>
+<p>查看图片//@贝塔猪:回复@贝塔猪:@曼巴投资 老兄，可否唠一唠查看对话</p>
+<p>〔原文配图：拼多多季度经营数据表，位于「查看图片」处，转写见附录表 1〕</p>
+<hr />
+<h2>附录：原文配图转写（2026-11-25 提取）</h2>
+<blockquote>
+<p>提取方法：雪球页面 HTML 的 <code>查看图片</code> 链接指向原图；下载到临时目录、2× 放大并按左右两半逐格校对后转写，<strong>转写完成即删除临时图片</strong>。原图 CDN 链接：https://xqimg.imedao.com/18b150c928b58fea3fef9560.png（页面缩略图：<code>!thumb.jpg</code>）。</p>
+</blockquote>
+<h3>表 1 · 拼多多季度经营数据（作者自制表）</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th style="text-align:right">单季GMV</th>
+<th style="text-align:right">NON-GAAP</th>
+<th style="text-align:right">净利率</th>
+<th style="text-align:right">ttm利润</th>
+<th style="text-align:right">GMV亏损率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020Q4</td>
+<td style="text-align:right">5796.00</td>
+<td style="text-align:right">−1.845</td>
+<td style="text-align:right">−0.69%</td>
+<td style="text-align:right">−29.6534</td>
+<td style="text-align:right">−0.03%</td>
+</tr>
+<tr>
+<td>2020Q3</td>
+<td style="text-align:right">4392</td>
+<td style="text-align:right">4.664</td>
+<td style="text-align:right">3.28%</td>
+<td style="text-align:right">−35.9584</td>
+<td style="text-align:right">0.11%</td>
+</tr>
+<tr>
+<td>2020Q2</td>
+<td style="text-align:right">3462</td>
+<td style="text-align:right">−0.7724</td>
+<td style="text-align:right">−0.63%</td>
+<td style="text-align:right">−57.2224</td>
+<td style="text-align:right">−0.02%</td>
+</tr>
+<tr>
+<td>2020Q1</td>
+<td style="text-align:right">3026</td>
+<td style="text-align:right">−31.7</td>
+<td style="text-align:right">−48.47%</td>
+<td style="text-align:right">−60.56</td>
+<td style="text-align:right">−1.05%</td>
+</tr>
+<tr>
+<td>2019Q4</td>
+<td style="text-align:right">3696</td>
+<td style="text-align:right">−8.15</td>
+<td style="text-align:right">−7.55%</td>
+<td style="text-align:right">−42.65</td>
+<td style="text-align:right">−0.22%</td>
+</tr>
+<tr>
+<td>2019Q3</td>
+<td style="text-align:right">2503</td>
+<td style="text-align:right">−16.60</td>
+<td style="text-align:right">−22.09%</td>
+<td style="text-align:right">−53.46</td>
+<td style="text-align:right">−0.66%</td>
+</tr>
+<tr>
+<td>2019Q2</td>
+<td style="text-align:right">2347</td>
+<td style="text-align:right">−4.11</td>
+<td style="text-align:right">−5.64%</td>
+<td style="text-align:right">−43.05</td>
+<td style="text-align:right">−0.18%</td>
+</tr>
+<tr>
+<td>2019Q1</td>
+<td style="text-align:right">1520</td>
+<td style="text-align:right">−13.79</td>
+<td style="text-align:right">−30.34%</td>
+<td style="text-align:right">−45.67</td>
+<td style="text-align:right">−0.91%</td>
+</tr>
+<tr>
+<td>2018Q4</td>
+<td style="text-align:right">2032</td>
+<td style="text-align:right">−18.96</td>
+<td style="text-align:right">−33.53%</td>
+<td style="text-align:right">−34.56</td>
+<td style="text-align:right">−0.93%</td>
+</tr>
+<tr>
+<td>2018Q3</td>
+<td style="text-align:right">1192</td>
+<td style="text-align:right">−6.19</td>
+<td style="text-align:right">−18.36%</td>
+<td style="text-align:right">（原图空白）</td>
+<td style="text-align:right">−0.52%</td>
+</tr>
+<tr>
+<td>2018Q2</td>
+<td style="text-align:right">830</td>
+<td style="text-align:right">−6.73</td>
+<td style="text-align:right">−24.84%</td>
+<td style="text-align:right">（原图空白）</td>
+<td style="text-align:right">−0.81%</td>
+</tr>
+<tr>
+<td>2018Q1</td>
+<td style="text-align:right">662</td>
+<td style="text-align:right">−2.68</td>
+<td style="text-align:right">−19.35%</td>
+<td style="text-align:right">（原图空白）</td>
+<td style="text-align:right">−0.40%</td>
+</tr>
+<tr>
+<td>2017Q4</td>
+<td style="text-align:right">764</td>
+<td style="text-align:right">（原图空白）</td>
+<td style="text-align:right">（原图空白）</td>
+<td style="text-align:right">（原图空白）</td>
+<td style="text-align:right">（原图空白）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：原图 1311×589，按左（时间／单季GMV／NON-GAAP）右（净利率／ttm利润／GMV亏损率）两半各放大 2× 逐格校对。<strong>放大后确认 2020Q3 的 GMV 亏损率为 <code>0.11%</code>（正值，无负号）</strong>，不是缩略图目测的 −0.11%；2020Q4 单季 GMV <code>5796.00</code> 与亏损率 <code>−0.03%</code> 在原图为红色强调。</p>
+<p>存疑：① 原图<strong>未标注任何单位</strong>（GMV／NON-GAAP／ttm 利润各列单位未知），本库不换算、不补单位；② 正文称「最高也没超过 1%」，但表中 <strong>2020Q1 = −1.05%</strong>（绝对值略超 1%），2020Q3 为正值 0.11%，两者口径差异原文未说明，本库照录事实、<strong>不裁决、不改写正文</strong>；③ 表中「净利率」与「GMV亏损率」符号方向不同（部分季度净利率为负而 GMV 亏损率为正），计算口径未给，不推断；④ 该表为<strong>作者自制</strong>，非拼多多财报原文，未经一手财报核对，<strong>不作本库数据引用</strong>；⑤ 「2019Q4 就好转了」为作者判断，表中 2019Q4 净利率 −7.55%／GMV 亏损率 −0.22%，是否构成「好转」需结合作者未披露的口径，本库不作结论。</p>
+</blockquote>
+</div><div class="backrow"><a href="../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../raw/research/articles/2023-10-09-曼巴投资-财务三张表时间序列处理与经营数据.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2023-10-23-MA200-企业的面子、里子和底子以及现金流三层漏斗</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="../index.html">知识库</a> › <a href="../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">2023-10-23-MA200-企业的面子、里子和底子以及现金流三层漏斗</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">raw/research/articles</span></div><div class="md" id="md"><h1>企业的面子、里子和底子以及现金流三层漏斗（雪球长文）</h1>
+<blockquote>
+<p>来源：雪球 App · 用户「MA200」雪球专栏（页面底部现显示专栏名「啥也不懂呀」）<br />
+原文链接：https://xueqiu.com/9656826842/264106749?scene=1036&amp;share_uid=1238039784（正文自注规范链接：https://xueqiu.com/9656826842/264106749）<br />
+作者：MA200<br />
+发布时间：2023-10-23 10:31（页面 <code>SNOWMAN_STATUS.timeBefore</code>／<code>created_at=1698028284000</code>，北京时间 2023-10-23 10:31:24；修改于 2023-10-24 14:43）<br />
+资料类型：个人投资框架随笔（雪球长文，非研报、非公司披露、非统计数据）<br />
+入库时间：2026-11-25</p>
+</blockquote>
+<hr />
+<h2>摘要</h2>
+<blockquote>
+<p>核心话题：三张表与面子·里子·底子 · 三层现金流漏斗 · 生意模式三层次 · 段永平 3R · 会计科目 rewrite</p>
+</blockquote>
+<p><strong>一句话核心</strong>：作者把<strong>利润表＝面子、现金流量表＝里子、资产负债表＝底子</strong>，主张小股东长期只需盯住<strong>里子（赚钱能力）</strong>；判据是把现金流拆成<strong>三层漏斗</strong>（收入→经营现金流→扣投资后自由现金流→筹资与回报），前两层由<strong>商业模式</strong>决定、第三层由**企业文化（分不分给你）**决定，<strong>好生意＝摩擦损耗低、最后漏给股东</strong>，最后才是 Right Price。</p>
+<p><strong>关键数据（本篇为框架随笔，无财务统计序列；以下均为作者口径估算／转述，原文未附出处、本库未核）</strong>：</p>
+<ul>
+<li>新能源车「无中生有的钱」估算合计 <strong>800–1000 亿</strong>：上海／北京／深圳车牌补贴 <strong>300–400 亿</strong>（100 万张牌照 × 每张 3–4 万元）、补贴和购置税减免（<strong>500w 张</strong> × 每辆 1–3 万元）、养路费减免（每台车 <strong>0.2 万元</strong>）</li>
+<li>上述「面子总和」对应峰值市值 <strong>2 万亿–3 万亿</strong>；作者称其恰好构成当时新能源车链条的利润总和</li>
+<li>苹果：<strong>100%</strong> 把经营现金流回购和分红掉（作者举例，未附出处）</li>
+<li>文末附 <strong>3 家公司 10 年现金流表</strong>（泸州老窖／药明康德／碧桂园服务），作者用红字与高亮标出合计；<strong>图上合计数值未与一手财报核对，明细未逐格转写</strong>，见文末「附录：原文配图转写」</li>
+</ul>
+<p><strong>核心矛盾</strong>：</p>
+<ol>
+<li><strong>面子 vs 里子</strong>：卖股权、炒股看面子（信息差与短期供需），小股东长期看里子（现金流）；同一家公司在不同参与方式下关注点相反，且「没有里子的支持终究掉下去」</li>
+<li><strong>融资生态 vs 企业现金流</strong>：作者认为 A 股整体「拿的比吐出来的多」，新兴产业靠补贴与估值创新修饰面子再融资，融资完成、补贴退坡后估值坍塌；<strong>属作者个人判断，非事实陈述</strong></li>
+<li><strong>赚钱能力 vs 分享能力</strong>：前两层漏斗再强，若第三步不回购／分红（甚至借钱分红），小股东的投资闭环仍不成立；故商业模式与企业文化缺一不可</li>
+</ol>
+<p><strong>跟踪要点</strong>：</p>
+<ol>
+<li><strong>三层漏斗当检查表</strong>：① 收入→经营现金流（政府税负／供应商／员工、折旧、营运资本、期权激励费用）；② 经营现金流→投资现金流（固定资产／无形资产／长期投资，融资租赁与理财从严扣除）；③ →筹资现金流（回购分红 vs 借钱分红）</li>
+<li><strong>生意模式三层次</strong>：轻投入（港交所／茅台／社交网络）＞ 项目 IRR 高且会计寿命小于实际寿命（大水电）＞ 重投入、难差异化、会计寿命大于实际寿命（快递货仓／飞机／苹果链／CXO／环保）；并附「所长定律」＝贡献券商佣金最多的往往是最烂生意</li>
+<li><strong>3R 映射</strong>：Right Business → 经营／投资现金流；Right People → 三层现金流；Right Price → 对未来自由现金流的估算与买入价对比</li>
+<li><strong>rewrite 方法</strong>：逐个会计科目重写、看其在时间函数上的变化，是理解陌生生意的第一步，也是 Margin of Safety 的前提</li>
+<li><strong>证据边界</strong>：三张现金流量表附图为第三方导出截屏，作者手书合计未给口径与起止年份；本库只照录图文，不作数据引用</li>
+</ol>
+<p><strong>图表数据状态</strong>：原文含 <strong>6 张正文配图</strong>（页面 HTML <code>ke_img</code>，<code>xqimg.imedao.com</code>）。图 1 表格、图 3 截图已完整转写；图 2 折线图无数据标签，只转写结构与形态（标「目测」）；图 4–6 现金流量表大图只转写<strong>表头元数据、作者红字批注与右端高亮／合计数值</strong>，明细未逐格转写并逐图说明原因；原图 CDN 链接全部记录，不落盘保存副本。</p>
+<hr />
+<h2>正文</h2>
+<blockquote>
+<p>以下为原文逐字转录（含原文错别字与用语，未删改）；6 处配图位置以 <code>〔原文配图 N〕</code> 标注，转写见文末附录。雪球页面 UI（热股榜、登录弹窗、打赏、讨论区等）非文章正文，未录入；平台免责声明保留于文末。</p>
+</blockquote>
+<p><strong>企业的面子、里子和底子以及现金流三层漏斗</strong></p>
+<p>来源：雪球App，作者： MA200，（https://xueqiu.com/9656826842/264106749）</p>
+<p><strong>会计的三张表代表了企业的面子、里子和底子：</strong></p>
+<p>企业的三张表，利润表、现金流量表、资产负债表，分别代表了企业的面子、里子和底子。如果我们是想要格雷厄姆那样的破产清算，肯定是对底子比较看重，如果是经营企业，肯定里子比较重要，如果是想要卖股权，肯定面子比较重要。</p>
+<p><strong>对于小股东来说，长期来看，里子比面子重要：</strong></p>
+<p>对于小股东来说，里子比面子重要，底子是里子的长期结果。最重要的是里子，也就是企业的赚钱能力，我想不出如果不是这个重要，还有什么重要？如果赚钱能力差，大概率也没能力带你分，琢磨你的钱的概律更大。如果你买过房子，出租并收租，一下子你就会懂了，因为房子只有你一个股东。股票代表的公司比房子复杂多了，股东也比较多。但是本质是一回事儿。</p>
+<p><strong>炒股来说面子和其他任何因素都比现金流重要：</strong></p>
+<p>但是如果你是炒股，可能面子比较重要，往往追求信息差的意思，就是你比别人更早知道面子，就会比别人更高的价格卖出去，如果是炒股就不仅仅是面子重要了，任何可以刺激短期供需不平衡的要素都会激发股价变化，但是长期来看，如果没有里子的支持终究掉下去的。</p>
+<p><strong>为什么企业的筹资中的回购和分红很重要？</strong></p>
+<p>如果长期股价低迷，股价跟里子不匹配，那么企业家回购和分红，就是用企业内在现金流弥补外在交易价格的不匹配的重要一环，小股东也不是无限投币的玩家，我们用极端没有流动性的B股来说明，就是企业内在现金流支撑股价的最好的证明。只有粤高速B、古井贡B、老凤祥B等几个股票有机会新高。</p>
+<p><strong>A股整体是个融资的市场，拿的比吐出来的多：</strong></p>
+<p>A股赚真钱的企业很少，所以整个金融生态是以合谋琢磨你的钱为主的。只有彻底熊透了，ZF会比较着急，因为融资功能会丧失，只要融资功能不丧失，他也不会特别着急。因为股市不是整个社会的金融的担保品，只有楼市是目前整个社会金融的担保品。楼市出问题，他会更加着急。15年银行资金通过金融创新进了股市加了杠杆，垃圾资产变成了担保品，影响了金融体系的稳定性，他出手救了一下，通过时间让所有股民承担了垃圾资产泯灭的代价。</p>
+<p><strong>为了融资，会有无形的手伸进来扭曲企业的面子：</strong></p>
+<p>有些产业是没有办法通过银行融资，就是新兴产业，那么怎么办呢？有两种方式来融资，一种方式就是人为修改企业的面子，还有一种方式就是发明一种新的金融创新的估值方式，让别人相信企业未来有价值。</p>
+<p>在一些新兴产业方面，通过修改补贴方式，修改企业的面子的是比较常见的，就是我过去总结的融资成长股。国家通过修改补贴方式和条款，让部分企业有了报表面子，再引入股市融资，引入社会资本后，做大做强。然后再釜底抽薪，修改补贴条款，让企业内卷后，去全球抢现金流。</p>
+<p>比如我们来计算新能源汽车，上海、北京、深圳无中生有的车牌补贴假设300-400亿（100万张牌照，每张牌照3-4万元价值量），补贴和购置税减免（500w张，每辆平均1-3万元不等），养路费减免（每台车0.2万元），所以大概引入800-1000亿的无中生有的钱。这个无中生有的钱，恰好就构成了目前所有新能源车链条的利润总和，也就是面子的总和。然后这个面子的总和构成了峰值2万亿-3万亿市值总和。引入民间资本，融资以后，釜底抽薪，补贴离去，估值就会坍塌。这就是A股新兴产业牛市和熊市的根源。</p>
+<p>把美国的0到1抄袭到中国1到n的进取企业家、无形的手扭曲面子、通过面子融资后的资本市场再釜底抽薪无形的手离场。</p>
+<p>发明新的金融创新方面，这就是风险投资，类似创新药等范畴。这个更加复杂一点。这里不做解释。</p>
+<p>这些事情，长期来看，整体对国家是有利的吗？感觉上是，但是如果你炒股，又想赚资本利得，你什么阶段参与就比较重要的。</p>
+<p><strong>现金流摩擦的漏斗：</strong></p>
+<p>现金流量表是企业的里子，一般是把会计科目在银行这边的现金变化记录。拆分成企业的经营行为，投资行为和筹资行为。</p>
+<p>作为小股东，无法参与经营和投资的任何重大决策，或者说重大影响力几乎为0。只能买入做小股东，被动参与被稀释的筹资以及分红两种跟企业交互付出和获取的方式。或者说更高一级的要求是，不要求现在分享企业的自由现金流和分红，希望未来能享受。</p>
+<p>因此未来能赚到钱，就十分简单，企业未来是否在经营现金流扣掉投资现金流以后，能否还给你。这取决于两个要素，这个生意拿到小股东钱以后经营现金流会不会变的多多的，然后投资少少的，最后给我多多的。</p>
+<p>所以核心就是这个生意的赚钱能力和分享能力，这个就会落在商业模式和企业文化上，商业模式决定未来是否可以赚钱多多，以及长期赚钱多多，以及在利用投资上的效率。企业文化就是两个部分的意思，就是这个企业家能够把生意做好，还有就是分不分给你的意思。要不然这个投资的闭环是不能成立的。</p>
+<p>在这个过程中会有几次漏斗，</p>
+<p><strong>第一次漏斗：从收入到经营现金流的漏斗</strong></p>
+<p>通过产品和服务跟客户交互以后，留下的钱，再分给政府税负、供应商、员工后的钱。这是收付的概念，不是利润表那种权责发生制的概念。这里面还会调整非现金科目，大头是折旧、营运资本变化和其他，反应的是日常经营层面的问题。</p>
+<p>这里面其他科目有一个巨大的猫腻科目，就是期权激励费用。如果是新发股权，会显得没有现金支出，但是本质上还是股东掏的钱，在权益表那边“偷”的钱。这是新兴产业常会玩的猫腻。</p>
+<p>〔原文配图 1：股份支付（期权激励）会计处理表，转写见附录表 1〕</p>
+<p>严格来说，这部分钱也要扣掉。</p>
+<p>还有折旧的猫腻，会使得过去铺张浪费的企业显得很有钱，但是这个浪费的钱，也要需要看产生的效率。</p>
+<p>这个漏斗反应的是企业真正赚钱的第一步能力，是跟客户、供应商和员工关系重要体现，以及中短期经营层面的记录。</p>
+<p><strong>第二次漏斗：从经营现金流到投资现金流</strong></p>
+<p>刨除投资项来回的倒腾，现在企业的理财和投资实在是复杂。还有重大影响的，就是融资租赁的处理。这里都暂时先不做讨论，我认为在计算自由现金流价值的时候，要从严扣除。</p>
+<p>这里面影响最大的是固定资产、无形资产和长期投资，这个科目是商业模式的核心。好的生意，总是用少少的固定资产、无形资产和长期投资的投入就获得多多的经营现金流增长，这非常考验对生意未来的想象力，这是考验生意的中长期思考的重要科目。</p>
+<p>如果简单来说，生意模式分三个层次：</p>
+<p>第一个层次，用很小比例投入的，比如港交所、茅台、神奇药丸、社交网络。</p>
+<p>第二个层次，项目IRR较高，一次投入，会计生命小于实际寿命的，大水电。</p>
+<p>第三个层次，或者很难赚到差异化的钱的，快递的货仓物流，飞机等等。最差的赚面子上快钱的，一次投入，会计寿命大于实际寿命的，苹果链、CXO和环保等等。</p>
+<p>但是炒股的角度看，最差的生意，往往会是短期最绚烂的东西。</p>
+<p>互联网是介于第一类和第二类，也要因公司而已，有些网络建立成本低，不容易被攻击，有些网络建立成本高，不产生价值，而且非常容易被攻击。就跟水电站一样，有些水电站，就非常赚钱，发电小时高，单GW投入低，上网稳定。有些小水电，发电小时不稳定，单GW投入高。</p>
+<p>创新药目前我看不懂，我猜测类似高速公路的专利保护期，必须要有爆款，而且最好有长期爆款，类似高速客流量大。你投的研发就跟高速的单公里投入，西藏的肯定没有江苏的赚钱，虽然都叫高速。</p>
+<p>这里的思考，是最有价值的部分，因为对应的是企业长期的思考。</p>
+<p>贡献券商研究大部分佣金的全是在第三类生意上，可见我们整个行业长期是多么没有价值。这就是我说的所长定律的来源，这种贡献最多佣金的行业，往往是最烂的生意，资本周期的高点。</p>
+<p>大部分的融资性企业，是把小股东当工具的，融资完，放进设备和工厂里面，钱才是自己的。他们的夫妻老婆店从发家开始，就是觉得厂子是自己的。思维里就没有第三步。</p>
+<p>一些膨胀的互联网企业，也是在这个科目处理创业兄弟们的利益的，就是所谓的协同，最后证明都是撒币。</p>
+<p>〔原文配图 2：阿里巴巴扩张的帝国（四类资产折线图），转写见附录表 2〕</p>
+<p><strong>第三次漏斗：最后一步筹资现金流</strong></p>
+<p>就是处理银行、小股东的关系。</p>
+<p>类金融业企业会在这个科目，做点文章，就是借钱分红，银行和地产企业就是典型。HENGDA就是高级金融诈骗。</p>
+<p>如果不是玩资本利得的炒股，等成熟了回购和分给你很重要。</p>
+<p>这个美国企业是典型正面代表，苹果是100%把经营现金流回购和分红掉。</p>
+<p><strong>段永平的3R：Right Business、Right People、Right Price跟这三个漏斗的关系</strong></p>
+<p>这就是段永平说的商业模式，影响的是经营现金流和投资现金流科目，企业文化影响是经营现金流、投资现金流和筹资现金流。**好生意肯定是摩擦损耗很低，最后漏给股东了。**好的价格，就是这三个都想完以后，你对未来企业发生的自由现金流的估算，以及估算后跟买入价格对比。</p>
+<p><strong>也理解了段永平的中国不会有巴菲特，但是会有用价值思维投资的人：</strong></p>
+<p>原因很简单，好生意太少了，你没办法用他那种方式在中国买别人的好生意，做好生意收集器，段说巴菲特问过茅台大股东愿意出售吗，不愿意，他就不买了。</p>
+<p>但是价值思维，就是买股就是买公司，这是肯定有的。</p>
+<p><strong>会计科目的rewrite：</strong></p>
+<p>这里推荐一个朋友说的：<strong>rewrite陌生生意每个会计科目，分析每个科目在时间函数上的变化，这只是对生意理解的第一步</strong>。我觉得写的太好了。</p>
+<p>〔原文配图 3：雪球对话截图（rewrite 说法出处），转写见附录表 3〕</p>
+<p>Margin of Safety大概就是rewrite和思考未来的能力，然后才是价钱。</p>
+<p>在这个大跌的日子，写一点我的思考，我是理工科出身，会计知识和企业常识严重缺乏，没有证，没开过公司，写的东西很垃圾，也很正常。</p>
+<p>我想多这样想，拿着这些你反复想的生意，瞅着那些你想买的生意的恐慌报价，你大概就不恐慌了吧。如果你拿着你没rewrite的东西，三张表都是四处漏风的，你说股市在低点，有投资价值，我相信你是睡不好的，不要自己骗自己哈。</p>
+<p>并附录三个公司的现金流的表，算他们10年的总和，大家大概就看明白了。</p>
+<p>泸州老窖：【赚了还给投资人】</p>
+<p>〔原文配图 4：泸州老窖现金流量表，转写见附录表 4〕</p>
+<p>药明康德：【融来的钱进了罐子里面，老板上面减持赚资本利得了】</p>
+<p>〔原文配图 5：药明康德现金流量表，转写见附录表 5〕</p>
+<p>碧桂园服务：【融来的钱出去了】</p>
+<p>〔原文配图 6：碧桂园服务现金流量表，转写见附录表 6〕</p>
+<p>看清未来还是最重要的，也是很难的。</p>
+<p>附录两个球友对这个问题认知比较清晰的地方。</p>
+<p>帖子1：对Owner's Earning的帖子。</p>
+<p><a href="https://xueqiu.com/2647565570/78991831" title="https://xueqiu.com/2647565570/78991831">网页链接</a>{股东利润与自由现金流 原文是Joe Ponzio的文章《Owner Earnings vs. Free Cash Flow》，为了看起来方便将... - 雪球 (xueqiu.com)}</p>
+<p>帖子2：对经营性现金流、自由现金流和股东盈余的一些理解</p>
+<p><a href="https://xueqiu.com/5312958889/118020446" title="https://xueqiu.com/5312958889/118020446">网页链接</a>{对经营性现金流、自由现金流和股东盈余的一些理解 一般来说，在做企业财务分析的时候，会碰到经营性现金流（CFO，cash flow from operation），自由现... - 雪球 (xueqiu.com)}</p>
+<p>附录：张新明的企业财务报表分析网易公开课</p>
+<p><a href="https://open.163.com/newview/movie/courseintro?newurl=WHE4EQ93Q" title="https://open.163.com/newview/movie/courseintro?newurl=WHE4EQ93Q">网页链接</a>{对外经济贸易大学公开课：企业财务报表分析-网易公开课 (163.com)}</p>
+<p>风险提示：用户发表的所有文章仅代表个人观点，与雪球的立场无关。投资决策需建立在独立思考之上。（雪球平台免责声明）</p>
+<hr />
+<h2>附录：原文配图转写（2026-11-25 提取）</h2>
+<blockquote>
+<p>提取方法：抓取雪球文章原始 HTML（<code>SNOWMAN_STATUS</code> 与正文 <code>ke_img</code> 标签），按 URL 去重得 6 张正文配图；逐张下载到临时目录、2× 放大并切分校对后转写，<strong>转写完成即删除临时图片，不落盘保存副本</strong>。下列 CDN 链接为回溯入口。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>图号</th>
+<th>正文位置</th>
+<th>类型</th>
+<th>原图 CDN 链接</th>
+<th>转写状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>第一次漏斗「期权激励费用」段后</td>
+<td>表格截图</td>
+<td>https://xqimg.imedao.com/18b5a5ad93f84f313fe686c0.png</td>
+<td>完整转写（表 1）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>第二次漏斗末「撒币」段后</td>
+<td>折线图</td>
+<td>https://xqimg.imedao.com/18b5a5ad8728c5543fe68dec.png</td>
+<td>结构 + 形态（表 2），无数据标签不转录数值</td>
+</tr>
+<tr>
+<td>3</td>
+<td>「会计科目的rewrite」段后</td>
+<td>对话截图</td>
+<td>https://xqimg.imedao.com/18b5a5adaf384f323fd4c92d.png</td>
+<td>完整转写（表 3）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「泸州老窖：【赚了还给投资人】」后</td>
+<td>现金流量表</td>
+<td>https://xqimg.imedao.com/18b5a5c0a61a2eb33fe00595.png</td>
+<td>表头 + 批注／高亮合计（表 4），明细未逐格转写</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「药明康德：【融来的钱进了罐子里面…】」后</td>
+<td>现金流量表</td>
+<td>https://xqimg.imedao.com/18b5a5c3926cc64c3fee0686.png</td>
+<td>表头 + 批注／高亮合计（表 5），明细未逐格转写</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「碧桂园服务：【融来的钱出去了】」后</td>
+<td>现金流量表</td>
+<td>https://xqimg.imedao.com/18b5a5cb73bcc64f3fe14117.png</td>
+<td>表头 + 右端合计（表 6），明细未逐格转写</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：正文 HTML 中图片以 <code>!800.jpg</code> 缩放参数引用，上表记不带参数的原始 PNG 链接；6 张图在 HTML 中均出现两次（正文 + <code>SNOWMAN_STATUS.description</code> 转义副本），已按 URL 去重。</p>
+</blockquote>
+<h3>表 1 · 图 1 股份支付（期权激励）会计处理</h3>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>会计处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>授予日</td>
+<td>除了立即可行权的股份支付外，企业在授予日均不做会计处理</td>
+</tr>
+<tr>
+<td>等待期内每个资产负债表日</td>
+<td>应按授予日权益工具的公允价值计入成本费用和资本公积（其他资本公积），不确定其后续公允价值变动；借：管理费用等（当期应确认成本费用金额），贷：资本公积——其他资本公积；1. 当期应确认成本费用金额 = 累计成本费用 − 以前期间已确认成本费用；2. 累计成本费用 = 预计可行权股数 × 授予日股票公允价值 × 已过等待期 / 等待期</td>
+</tr>
+<tr>
+<td>可行权日之后</td>
+<td>在可行权日之后不再对已确认的成本费用和所有者权益总额进行调整</td>
+</tr>
+<tr>
+<td>行权日</td>
+<td>借：银行存款、资本公积——其他资本公积（等待期内累计确认的）；贷：股本、资本公积——股本溢价</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：图右下角水印「知乎 @MA200」；该表为会计准则科普表格，原文用它佐证「期权激励费用不体现现金支出、但本质由股东承担」。表内文字按放大图逐格校对。</p>
+</blockquote>
+<h3>表 2 · 图 2「阿里巴巴扩张的帝国」折线图</h3>
+<table>
+<thead>
+<tr>
+<th>曲线（图例）</th>
+<th>横轴</th>
+<th>形态（目测）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>固定资产净值（蓝）</td>
+<td>2012-03-31 → 2022-12-31</td>
+<td>单调缓升，四条线中升幅最平</td>
+</tr>
+<tr>
+<td>权益性投资（红）</td>
+<td>同上</td>
+<td>2018 前上行、2019 回落、2020 后再上行、末期略回落</td>
+</tr>
+<tr>
+<td>其他长期投资（绿）</td>
+<td>同上</td>
+<td>2018 后跳升，末期走平</td>
+</tr>
+<tr>
+<td>商誉及无形资产（紫）</td>
+<td>同上</td>
+<td>升幅最大，2021 前后见顶后回落，仍居四条线最高</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>存疑：纵轴刻度 0–5,000 <strong>未标单位</strong>，四条曲线<strong>无数据标签</strong>；按 skill「只能读轴的标目测」，此处只作形态描述，<strong>不转录任何数值、不作数据引用</strong>。图右下角水印「MA200」。</p>
+</blockquote>
+<h3>表 3 · 图 3 rewrite 说法出处（雪球对话截图）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>图上文字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>转发者／时间</td>
+<td>MA200，10-19 13:29，来自雪球</td>
+</tr>
+<tr>
+<td>MA200 评语</td>
+<td>很多人低估了这句话的力量。rewrite先要想过去，然后还要想未来。</td>
+</tr>
+<tr>
+<td>被转发者／时间</td>
+<td>lucybin，08-30 15:11</td>
+</tr>
+<tr>
+<td>被转发原帖</td>
+<td>对一个陌生的生意，第一步就是rewrite 每个会计科目，分析每个科目在时间函数上的变化，这只是对生意理解的第一步</td>
+</tr>
+<tr>
+<td>界面数字</td>
+<td>阅读 6524；转发(11)、评论(3)、赞(22)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验：截图只给月日、未给年份，正文写于 2023-10，故「10-19」「08-30」年份<strong>未确认，不作日期引用</strong>；该截图即正文「这里推荐一个朋友说的」的出处。</p>
+</blockquote>
+<h3>表 4 · 图 4 泸州老窖现金流量表</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>图上信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表头</td>
+<td>泸州老窖 [000568.SZ] – 现金流量表（单位：亿元，CNY）</td>
+</tr>
+<tr>
+<td>报告期</td>
+<td>2023-06-30 中报起，年报倒序至 2003-12-31</td>
+</tr>
+<tr>
+<td>报表类型</td>
+<td>合并报表</td>
+</tr>
+<tr>
+<td>右端红色批注</td>
+<td>531.59</td>
+</tr>
+<tr>
+<td>右端高亮／合计数值</td>
+<td>−148.74、41.59、297.73、31.68</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>存疑：右端数字位于表格数据列之外的空白区，<strong>未标注合计口径与起止年份</strong>；本库不推断其科目归属，也不把 531.59 认作「10 年经营现金流合计」。明细（每期每科目）未逐格转写，原因见表 7。</p>
+</blockquote>
+<h3>表 5 · 图 5 药明康德现金流量表</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>图上信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表头</td>
+<td>药明康德 [603259.SH] – 现金流量表（单位：亿元，CNY）</td>
+</tr>
+<tr>
+<td>报告期</td>
+<td>2023-06-30 中报起，年报倒序至 2014-12-31</td>
+</tr>
+<tr>
+<td>报表类型</td>
+<td>合并报表</td>
+</tr>
+<tr>
+<td>作者红字批注（照录）</td>
+<td>挣了 300 ／ 投了 440 ／ 股权募资了 260 借了40 ／ 分了 100 ／ 还有100多现金</td>
+</tr>
+<tr>
+<td>与批注同行的合计／高亮数值</td>
+<td>343.36（「挣了 300」旁）；124.61、316.87、182.97（「投了 440」附近）；260.95、206.82（「股权募资了 260 借了40」附近）；170.07、79.88（「分了 100」附近）；121.06（「还有100多现金」附近）</td>
+</tr>
+<tr>
+<td>橙色「经营现金流/收入项」行</td>
+<td>30% / 27% / 20% / 24% / 23% / 17% / 23% / 29% / 15% / 17%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>存疑：红字为作者手书概数（如「挣了 300」「投了 440」），与相邻合计数字<strong>不完全相等</strong>，原文未解释换算关系；合计列未标口径与起止年份，本库不推断科目归属、不据此计算。橙色百分比为图上逐年读数，未与营收核对。</p>
+</blockquote>
+<h3>表 6 · 图 6 碧桂园服务现金流量表</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>图上信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表头</td>
+<td>碧桂园服务 [6098.HK] – GSD. 现金流量表（单位：亿元，CNY）</td>
+</tr>
+<tr>
+<td>报告期</td>
+<td>2023-06-30 中报起，年报倒序至 2015-12-31</td>
+</tr>
+<tr>
+<td>报表类型</td>
+<td>合并报表</td>
+</tr>
+<tr>
+<td>右端合计列数值</td>
+<td>170、242、204、282、−212、−10</td>
+</tr>
+<tr>
+<td>图上正文结论标签</td>
+<td>【融来的钱出去了】（作者正文原话）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>存疑：170 / 204 / 282 / 242 / −212 / −10 位于表右端空白合计列，与「经营活动净额／投资活动／筹资活动」等科目的对应关系<strong>未逐格复核</strong>，本库不推断；明细未逐格转写。</p>
+</blockquote>
+<h3>表 7 · 图 4–6 明细未逐格转写的说明</h3>
+<table>
+<thead>
+<tr>
+<th>图</th>
+<th>表格规模（目测）</th>
+<th>未转写原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 泸州老窖</td>
+<td>约 30 行科目 × 21 个报告期</td>
+<td>小字截图，逐格校对无法保证读数无误，硬转写会把未核数字写进库</td>
+</tr>
+<tr>
+<td>5 药明康德</td>
+<td>约 30 行科目 × 10 个报告期</td>
+<td>同上；且作者已用红字批注给出其要表达的结论</td>
+</tr>
+<tr>
+<td>6 碧桂园服务</td>
+<td>约 25 行科目 × 9 个报告期</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>校验／存疑：三表均为<strong>第三方导出的现金流量表截屏（非公司财报原文）</strong>，含作者手书合计与颜色高亮；正文称「算他们10年的总和」，但图中列数覆盖 9–21 期，合计口径未标注。按 <code>research-ingest</code> 第五节，文章配图<strong>转写为表格即达标、不留原图副本</strong>，故此处只保留表头元数据 + 作者批注 + 高亮合计 + 原图 CDN 链接；所有图上数值<strong>均为作者／第三方口径，未经一手财报核对，不作本库数据引用</strong>。若后续需要任一期明细，按原图链接回查并逐格校对后补录。</p>
+</blockquote>
+</div><div class="backrow"><a href="../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../raw/research/articles/2023-10-23-MA200-企业的面子、里子和底子以及现金流三层漏斗.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>

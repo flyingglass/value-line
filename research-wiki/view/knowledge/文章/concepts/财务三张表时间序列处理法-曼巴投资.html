@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>财务三张表时间序列处理法 — 曼巴投资</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../../index.html">知识库</a> › <a href="../../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">财务三张表时间序列处理法 — 曼巴投资</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-11-25</span><span style="margin-left:auto;color:#b0b5bd">research/articles/concepts</span></div><div class="md" id="md"><h1>财务三张表时间序列处理法（曼巴投资）</h1>
+<blockquote>
+<p>收录日期：2026-11-25<br />
+来源：雪球「曼巴投资」回复 @贝塔猪，2023-10-09 23:33<br />
+原文链接：https://www.xueqiu.com/2140389661/262739273<br />
+原始资料：<a href="../2023-10-09-%E6%9B%BC%E5%B7%B4%E6%8A%95%E8%B5%84-%E8%B4%A2%E5%8A%A1%E4%B8%89%E5%BC%A0%E8%A1%A8%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%A4%84%E7%90%86%E4%B8%8E%E7%BB%8F%E8%90%A5%E6%95%B0%E6%8D%AE.html">raw 全文（三段式 + 拼多多季度表逐格转写）</a></p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>定位声明</strong>：这是一条<strong>个人方法分享帖</strong>（雪球回复），不是研报、不是公司披露、不是统计研究。作者自述工具与偏好（万得贵、东财专业版价格友好；不做可视化、只做纯表格）；文中所有比率与拼多多数据均为<strong>作者口径</strong>，配图为作者自制表、<strong>未标单位、未与一手财报核对</strong>。本页是外部观点收录，引用任何数字前请回溯原文或财报。</p>
+</blockquote>
+<hr />
+<h2>一、取数与组织</h2>
+<ul>
+<li>工具：<strong>万得</strong>导出三张表到 Excel，「有多少年的数据就导出多少年的数据，反正按时间序列就好」；作者补充「貌似东财专业版也可以的，那个价格友好」。</li>
+<li>组织方式：<strong>时间序列</strong>（过去几年 + 最新财报），不做可视化、只做纯表格（作者个人习惯）。</li>
+</ul>
+<h2>二、资产负债表：所有重要科目都除以股东权益（原文五项）</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>原文公式</th>
+<th>用途（作者口径）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>净负债（或净现金）率</td>
+<td>(有息负债 − 现金或现金等价物) / 股东权益</td>
+<td>判断当下是「有现金在经营」还是「借钱在经营」，及历史变化</td>
+</tr>
+<tr>
+<td>经营类重资产占比</td>
+<td>(固定资产 + 无形资产 + 土地使用权等) / 股东权益</td>
+<td>判断轻资产 / 重资产，及历史变化</td>
+</tr>
+<tr>
+<td>上下游占款</td>
+<td>(应付款 − 应收款) / 股东权益</td>
+<td>反映上下游产业链地位；应付应收按<strong>实质口径</strong>（预收账款算应付、预付账款算应收），及历史变化</td>
+</tr>
+<tr>
+<td>存货占款</td>
+<td>存货 / 股东权益</td>
+<td>反映库存风险及历史变化</td>
+</tr>
+<tr>
+<td>商誉占比</td>
+<td>商誉 / 股东权益</td>
+<td>反映历史靠收购还是内生，以及哪个节点收购进来的</td>
+</tr>
+</tbody>
+</table>
+<p>原文收口：「等等资产负债表你认为重要的子项目都拿来和股东权益做除法。」——即方法核心是<strong>以股东权益为统一分母看结构与时变</strong>，不是这五项的封闭清单。</p>
+<h2>三、利润表：增长 + 三率 + 四费率</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>原文公式</th>
+<th>作者用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历史收入增长 / 历史利润增长</td>
+<td>时间序列直接看</td>
+<td>增长轨迹</td>
+</tr>
+<tr>
+<td>净利润率</td>
+<td>净利润 / 收入</td>
+<td>盈利能力及变化</td>
+</tr>
+<tr>
+<td>毛利率</td>
+<td>毛利 / 收入</td>
+<td>毛利情况及变化</td>
+</tr>
+<tr>
+<td>四费率</td>
+<td>销售／管理／财务／研发费用 ÷ 销售收入</td>
+<td>「反向厘清公司的费用投向，到底是靠销售还是靠研发，还是靠重资金（财务）投入」</td>
+</tr>
+</tbody>
+</table>
+<h2>四、现金流表：前两张表的验证项</h2>
+<ul>
+<li>原文判断：「时间序列下的资产负债表 + 利润表是可以推导出现金流量表的，所以，前两个功课做好了，这个就是验证了。」</li>
+<li>简看三项：经营活动现金净额（=经营现金流入−经营现金流出）；投资活动现金净额（大额资本开支等）；筹资活动（股权／债券融资、回购、分红等）。</li>
+<li>原文公式（<strong>其他项目先忽略</strong>）：<strong>净利润 + 折旧/摊销 − 利息收入 + 利息支出 = 经营活动现金流</strong>。</li>
+<li>案例对照：重资产公司（原文举<strong>三峡能源、长江电力</strong>）经营现金流净额容易远大于净利润，但「并不能说明什么」；<strong>贵州茅台</strong>该幅度可能不大，同样不能说明什么。作者结论：<strong>「财务问题没有单纯的好坏……不要轻易跨行业比较。」</strong></li>
+</ul>
+<h2>五、三张表之外：经营数据要按行业自定并做可视化</h2>
+<table>
+<thead>
+<tr>
+<th>行业案例</th>
+<th>原文列出的统计项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>酒店（亚朵、锦江）</td>
+<td>各季度酒店数量、房间数量、ADR、Repar（原文写法）、入住率</td>
+</tr>
+<tr>
+<td>拼多多（早期）</td>
+<td>月活、年度购买总用户数 ACC、年度购买单量、测算每单价格、总 GMV、总佣金、每单佣金、佣金率、收入/GMV（变现率）、净利润/GMV（模式是否跑通）</td>
+</tr>
+</tbody>
+</table>
+<p>作者明确区分：<strong>三张表可视化必要不大、业务数据可视化必要性大一些</strong>；心得「看不清楚看数据，数据自己会说话」，并称美团王兴「四大名著」有《用图表说话》（<strong>转述，未核实书名/出处</strong>）。</p>
+<h2>六、拼多多「烧钱」判断：原文论断 vs 配图数据（本页核对，不裁决）</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原文论断</td>
+<td>「净利润/gmv 相当于平台上每卖出 1 元，我拼多多亏多少，这个平台最高也没超过 <strong>1%</strong>，即 1 元出去，拼多多平台没亏超过 <strong>1 分钱</strong>」；据此判断「拼多多烧钱，是偏见，是没看财报的」，并称对「哔哩哔哩好、不烧钱」的说法也不认</td>
+</tr>
+<tr>
+<td>配图数据（作者自制表，13 季 2017Q4–2020Q4）</td>
+<td>GMV 亏损率区间 <strong>−1.05%（2020Q1）～ +0.11%（2020Q3）</strong>；2020Q1 净利率 −48.47%、ttm 利润 −60.56；2019Q4 净利率 −7.55%、GMV 亏损率 −0.22%</td>
+</tr>
+<tr>
+<td>时间判断</td>
+<td>「2020 年 Q1 后极速的好转，Q1 是疫情影响了，其实 2019Q4 就好转了」</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>存疑（必读）：① 配图<strong>未标单位</strong>，各列金额口径未知；② 正文「最高也没超过 1%」与表中 <strong>2020Q1 = −1.05%</strong>（绝对值略超 1%）不完全一致，且 2020Q3 为<strong>正值 0.11%</strong>，原文未解释口径差异——本库照录事实，<strong>不裁决、不改写正文</strong>；③ 表中净利率与 GMV 亏损率符号方向部分相反，计算口径未给，不推断；④ 「2019Q4 就好转了」是作者判断，表中该季净利率仍 −7.55%，是否构成好转取决于作者未披露的口径；⑤ 对哔哩哔哩的判断本帖<strong>未给数据</strong>。完整 13 季逐格转写与校验注见 raw 附录表 1。</p>
+</blockquote>
+<h2>七、把方法当检查表（本页整理，非原文结论）</h2>
+<ol>
+<li>取数：三张表尽量拉长时间序列；同行业公司用同一口径，避免单期快照。</li>
+<li>资产负债表：五项比率 + 其余重要科目/股东权益，看<strong>结构 + 历史变化</strong>。</li>
+<li>利润表：增长 + 净利率/毛利率 + 四费率，定位费用投向。</li>
+<li>现金流表：只做验证——重资产的现金流/净利差是折旧机制，不是质量证据。</li>
+<li>经营数据：按行业自定（酒店看门店/房间/ADR/入住率，平台看 ACC/单量/GMV/佣金/变现率/单位经济效益），做可视化；跨行业比较前先问口径是否一致。</li>
+</ol>
+<h2>八、局限 / 待核</h2>
+<ul>
+<li><strong>性质</strong>：个人经验帖，作者自述无可视化偏好，工具与数据来源为个人选择；样本公司（三峡能源、长江电力、贵州茅台、亚朵、锦江、拼多多、哔哩哔哩）均为举例，本帖未给完整财报引用。</li>
+<li><strong>数据</strong>：拼多多表为作者自制，<strong>无单位、无财报出处、未核</strong>；本库不作数据引用；表内数字与正文论断的差异已登记、不裁决。</li>
+<li><strong>转述</strong>：王兴「四大名著」《用图表说话》为作者转述，未核实；「2019Q4 好转」「B 站不烧钱我不认」均为作者判断。</li>
+<li><strong>未做</strong>：拼多多表未与拼多多财报/招股书核对；三张表推导现金流的具体勾稽未在本帖展开；相关公司（PDD、BILI）标的页未建。等用户指示后再动。</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../2023-10-09-%E6%9B%BC%E5%B7%B4%E6%8A%95%E8%B5%84-%E8%B4%A2%E5%8A%A1%E4%B8%89%E5%BC%A0%E8%A1%A8%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%A4%84%E7%90%86%E4%B8%8E%E7%BB%8F%E8%90%A5%E6%95%B0%E6%8D%AE.html">原文全文（含拼多多 13 季表逐格转写与校验注）</a></li>
+<li><a href="../../../stocks/SaaS%E8%BD%AF%E4%BB%B6/index-%E9%A1%B5.html">投研 Wiki 索引</a></li>
+</ul>
+</div><div class="backrow"><a href="../../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/articles/concepts/财务三张表时间序列处理法-曼巴投资.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
