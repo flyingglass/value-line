@@ -7539,4 +7539,28 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 
 触及页面：research-wiki/view/knowledge/文章/2023-10-09-曼巴投资-财务三张表时间序列处理与经营数据.html（新建）、research-wiki/view/knowledge/文章/2023-10-23-MA200-企业的面子、里子和底子以及现金流三层漏斗.html（新建）、research-wiki/view/knowledge/文章/concepts/现金流三层漏斗-面子·里子·底子.html（新建）、research-wiki/view/knowledge/文章/concepts/财务三张表时间序列处理法-曼巴投资.html（新建）、research-wiki/index.html、research-wiki/view/knowledge/index.html、research-wiki/research/log.md（本条）
 
+---
+
+## [2026-11-26] 专题 | 新建 research/可转债/ 并收录「规则地图」
+
+### 用户指令
+
+- 「这个图非常好，收录下来，有没有一个目录叫可转债的？没有就建一个吧」——指 2026-11-26 投研对话中收敛出的**可转债规则盯盘地图**（三阶段 + 主线）。
+
+### 动作
+
+1. **目录新建**：`research/可转债/`（此前库内无可转债专题；仅有 `view/tracking/转债-三券收益率汇总.html`）。同步存 SVG 原件 `research/可转债/assets/可转债规则盯盘地图.svg`。
+2. **页面入库**：`research/可转债/规则地图.md`——三阶段表格（买入前定锚／持有中盯事件／退出期盯日期）+ 两类券规则分叉表（金诚深度价内 vs 破面券深度价外）+ 上交所退出期时间规则（T-20／T-3／T 日 15:00／T+1，含余额 <3000 万提前停牌例外）+ 四口径陷阱 + 参见。图的核心文字**全部转写为表格**，不依赖 SVG 渲染。
+3. **脚本登记**：`generate_wiki_index.py` 的 `CASE_GROUP_NAMES` 加 `'可转债': '可转债 · 规则与条款'`（使站点作为专题组收录）；`wiki_lint.py` 的 `NON_STOCK_DIRS` 加 `"可转债"`（专题目录无四件套义务，免误报）。
+4. **索引同步**：`research/index.md` 最后更新戳 + 「按标的」专题行 + 专题目录说明；`研究/articles/concepts/期权Wheel策略-卖期权收保费.md` 反向补链（避免 lint 交叉引用缺口）。
+5. **来源**：上交所自律监管指引第 12 号（2025-03 修订，一手）· 上交所 2022 第 322 期发布会 · 金诚信兑付公告（2026-11-20）· 公众号「静思至远」《拥抱可转债》（2026-11-25）· AKShare 行情（2026-11-26 收盘）。
+
+### 内容边界（诚实标注）
+
+- 本页是**规则框架**，不是个券买卖建议；金诚 113615 / 破面券仅作规则分叉的例证，价格与评级均为 2026-11-26 截面，不保证后续有效。
+- 「价格分位低≠溢价便宜」取自当日券商口径（平价中位数 73.5 元、5% 分位；百元溢价率 90% 分位），属媒体二次引用，需回原文核。
+- 退出期规则以交易所公告为准；具体标的的最后交易日/转股日每券不同，不可照抄本页 T 日。
+
+触及页面：research-wiki/research/可转债/规则地图.md（新建）、research-wiki/research/可转债/assets/可转债规则盯盘地图.svg（新建）、research-wiki/research/index.md、research-wiki/research/log.md（本条）、research-wiki/research/articles/concepts/期权Wheel策略-卖期权收保费.md（反向补链）、scripts/generate_wiki_index.py、scripts/wiki_lint.py
+
 

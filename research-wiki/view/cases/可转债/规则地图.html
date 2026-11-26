@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>可转债规则地图</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../index.html">投研 Wiki</a> › <a href="index.html">可转债 · 规则与条款</a> › <a href="规则地图.html">可转债规则地图</a></div><div class="topnav"><a href="../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">可转债规则地图</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span class="date">2026-11-26</span><span style="margin-left:auto;color:#b0b5bd">research/可转债</span></div><div class="md" id="md"><h1>可转债 · 规则地图</h1>
+<blockquote>
+<p><strong>一句话定位</strong>：可转债的规则不是散点，按「买入前定锚 → 持有中盯事件 → 退出期盯日期」三阶段归类；核心主线是<strong>深度价内盯正股、深度价外盯信用</strong>——两类券用的是完全不同的规则集，混用必错。</p>
+</blockquote>
+<p><strong>配图</strong>：<img src="../../../research/%E5%8F%AF%E8%BD%AC%E5%80%BA/assets/%E5%8F%AF%E8%BD%AC%E5%80%BA%E8%A7%84%E5%88%99%E7%9B%AF%E7%9B%98%E5%9C%B0%E5%9B%BE.svg" alt="可转债规则盯盘地图" />（同一内容的可视化版本）</p>
+<h2>一、三阶段规则地图</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>盯什么</th>
+<th>具体条目</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>买入前：定锚</strong></td>
+<td>算清这张券是股性还是债性</td>
+<td>转股价值 / 溢价率 / 债底；评级 + 正股是否 ST；下修 / 强赎 / 回售触发线；价格分位低 ≠ 溢价便宜</td>
+</tr>
+<tr>
+<td><strong>持有中：盯事件</strong></td>
+<td>盯定价锚的变化</td>
+<td>平价：正股决定价内程度；下修提议 / 强赎公告；评级下调 / 兑付舆情；余额 &lt; 3000 万会提前停牌</td>
+</tr>
+<tr>
+<td><strong>退出期：盯日期</strong></td>
+<td>盯不可逆的时间窗</td>
+<td>T-20：≥3 次提示公告；T-3：停止交易；T 日 15:00：最后转股；错过 → 按兑付价被动成交</td>
+</tr>
+</tbody>
+</table>
+<h2>二、两类券的规则分叉</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>深度价内（例：金诚转债 113615）</th>
+<th>深度价外（例：破面券）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定价锚</td>
+<td>正股价格 × 每券可转股数（Delta≈1）</td>
+<td>纯债价值 / 到期兑付价</td>
+</tr>
+<tr>
+<td>关键变量</td>
+<td>正股涨跌、到期日</td>
+<td>信用资质、现金流、评级变动</td>
+</tr>
+<tr>
+<td>到期风险</td>
+<td>市价远高于兑付价，<strong>不转股即巨亏</strong></td>
+<td>市价接近或低于兑付价，赌兑付确定性</td>
+</tr>
+<tr>
+<td>到期动作</td>
+<td>卖出或转股，二选一，错过不可逆</td>
+<td>持有到期拿本息，或提前止损</td>
+</tr>
+<tr>
+<td>例子</td>
+<td>11-26 收 407.58 元 / 转股价值 409.08 元 / 兑付价 112 元，不转股亏 72.5%</td>
+<td>宏图 CC、三房 A-、美锦 A、闻泰 BBB-、芳源 BBB、百畅 BBB+</td>
+</tr>
+</tbody>
+</table>
+<h2>三、退出期时间规则（上交所）</h2>
+<p>依据《上交所上市公司自律监管指引第 12 号》第二十条、第三十五条：</p>
+<table>
+<thead>
+<tr>
+<th>时点</th>
+<th>规则</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-20 交易日</td>
+<td>至少发布 3 次提示性公告</td>
+<td>提醒投资者转股期结束前 3 个交易日停止交易</td>
+</tr>
+<tr>
+<td>T-3 交易日</td>
+<td>停止交易（转股仍可继续）</td>
+<td>不能再二级市场卖出</td>
+</tr>
+<tr>
+<td>T 日（到期日）15:00</td>
+<td>最后转股时点</td>
+<td>错过后无补救通道</td>
+</tr>
+<tr>
+<td>T+1</td>
+<td>摘牌、兑付资金发放</td>
+<td>未转股部分按兑付价被动成交</td>
+</tr>
+</tbody>
+</table>
+<p><strong>例外</strong>：流通面值低于 3000 万元，公告 3 个交易日后可提前停止交易，不必等到 T-3。制度设计初衷（上交所 2022 发布会）：在停止交易后留 3 个交易日供投资者继续转股，减少不必要损失。</p>
+<h2>四、容易踩的口径陷阱</h2>
+<ul>
+<li><strong>价格分位低 ≠ 溢价便宜</strong>：2026-11-26 价格中位数 119 元为近一年最低，但百元平价溢价率仍在 90% 分位——价格低是因为平价（73.5 元，5% 分位）崩了，不是溢价被杀。</li>
+<li><strong>发行时评级 ≠ 当前评级</strong>：筛&quot;AA 以上&quot;必须用最新债项评级。闻泰发行 AA+ → 现 BBB-、三房 AA → A-，按发行评级筛会多出假候选。</li>
+<li><strong>转股期 ≠ 交易期</strong>：金诚转债最后交易日 12-17、最后转股日 12-22，中间 3 个交易日只能转股不能卖；两个日期不是一回事。</li>
+<li><strong>转股价修正 ≠ 转股</strong>：下修是调整转股价（需董事会提案+股东会 2/3 通过+持债股东回避），转股是持有人主动申请，二者独立。</li>
+</ul>
+<h2>参见</h2>
+<ul>
+<li><a href="../../knowledge/%E6%96%87%E7%AB%A0/concepts/%E6%9C%9F%E6%9D%83Wheel%E7%AD%96%E7%95%A5-%E5%8D%96%E6%9C%9F%E6%9D%83%E6%94%B6%E4%BF%9D%E8%B4%B9.html">articles/concepts/期权Wheel策略-卖期权收保费</a> — 期权卖方收保费，与可转债&quot;债底+看涨期权&quot;结构互补阅读</li>
+</ul>
+</div><div class="backrow"><a href="index.html#dir=%E6%A6%82%E8%A7%88">← 返回 概览</a><a href="index.html">目录</a><a href="../../../index.html">首页</a><a href="../../../research/可转债/规则地图.md" style="margin-left:auto">原文文件 ↗</a></div></div><script>var el=document.getElementById("md");var lb=document.createElement("div");lb.id="lb";lb.innerHTML="<em>点击任意处关闭（Esc）</em><img>";document.body.appendChild(lb);var lbImg=lb.querySelector("img");el.addEventListener("click",function(e){if(e.target.tagName==="IMG"){lbImg.src=e.target.getAttribute("src");lb.classList.add("on");}});lb.addEventListener("click",function(){lb.classList.remove("on");lbImg.removeAttribute("src");});document.addEventListener("keydown",function(e){if(e.key==="Escape")lb.classList.remove("on");});</script></body></html>
