@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>達人知命</title><style>:root{--bg:#f6f7f9;--text:#1a1a1a;--blue:#2563eb;--border:#e0e0e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.topbar{background:#16181d;color:#fff;padding:9px 20px;position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar .logo{color:#fff;text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+.topbar .logo b{color:#3b82f6}
+.topbar .crumb{color:#9aa0a6;font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .crumb a{color:#c0c4cc;text-decoration:none;margin:0 2px}
+.topbar .crumb a:hover{color:#fff;text-decoration:underline}
+.topbar .topnav a{color:#c0c4cc;text-decoration:none;font-size:12px;padding:5px 12px;border:1px solid #4a4f5a;border-radius:6px;margin-left:8px;white-space:nowrap}
+.topbar .topnav a:hover{color:#fff;border-color:#8a8f9a;background:#262a33}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 20px 70px}
+.filters{display:flex;gap:8px;padding:2px 0 12px;flex-wrap:wrap}
+.filters input{flex:1;min-width:200px;padding:8px 12px;border:1px solid #d6d9e0;border-radius:8px;font-size:14px;outline:none}
+.filters input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.section-title{font-size:15px;font-weight:700;color:#333;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #3b82f6;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:12px;color:#9aa0a6;font-weight:400}
+/* 白马 / 消费（能力圈）：五个具体组名分节，搜索时整块隐藏空组 */
+.circlegroup .section-title{margin:18px 0 10px}
+.circlegroup:first-child .section-title{margin-top:2px}
+.pillrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;align-self:center}
+.pill.sw2{background:#eef2f7;color:#475569;font-size:10px}
+.grp{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+/* 首页标的区：网格排布，一行 4-5 个（无文件夹 chip）；案例/多学科整宽条 */
+.secstocks{display:flex;flex-direction:column;gap:18px}
+.secstocks .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.secstocks .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+.secstocks .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.secstocks .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.secstocks .grp-hd .pill{align-self:center}
+#sec-general{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-general .grp{margin-bottom:0;min-width:0;background:#f2f7ff;border:1px solid #b7cdea;box-shadow:0 1px 2px rgba(30,60,120,.06)}
+#sec-general .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-general .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-general .grp-hd .pill{align-self:center}
+.pill.topic{background:#ede9fe;color:#6d28d9}
+#sec-cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+#sec-cases .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+#sec-cases .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+#sec-cases .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+#sec-cases .grp-hd .pill{align-self:center}
+.grp-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.grp-hd h2{font-size:16px;font-weight:700}
+.grp-hd a.name{font-size:16px;font-weight:700;color:inherit;text-decoration:none}
+.grp-hd a.name:hover{color:var(--blue)}
+.grp-hd .go{margin-left:auto;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.grp-hd .go:hover{text-decoration:underline}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;background:#eef2ff;color:#4338ca;font-weight:500;white-space:nowrap}
+.pill.industry{background:#eef0f3;color:#555}
+.pill.case{background:#f6ecf9;color:#8e24aa}
+.dirchips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #e0e2e8;background:#fafbfc;border-radius:9px;padding:6px 13px;font-size:13px;color:#333;transition:all .15s}
+.chip:hover{border-color:#3b82f6;color:var(--blue);background:#f3f7ff}
+.chip b{color:var(--blue);font-weight:600;font-size:12px}
+.chip.raw{border-style:dashed}
+.page-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
+.page-hd h1{font-size:24px;font-weight:800;letter-spacing:.3px}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px;color:#888;font-size:13px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tabbar{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 16px}
+.tabbtn{border:1px solid transparent;background:transparent;padding:8px 16px;font-size:14px;color:#555;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap;transition:all .12s;font-weight:500}
+.tabbtn:hover{color:var(--blue);background:#eef4ff}
+.tabbtn.active{color:var(--blue);background:#fff;border-color:#d0d5e0;border-bottom-color:#fff;font-weight:700;box-shadow:0 -1px 4px rgba(0,0,0,.04)}
+.tabbtn .n{opacity:.6;font-size:11px;margin-left:5px;font-weight:600}
+.panel{display:none}
+.panel.active{display:block;background:#fff;border:1px solid #e6e8ee;border-radius:0 12px 12px 12px;padding:16px}
+.panel .subhead{font-size:13px;font-weight:700;color:#555;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.panel .subhead:first-child{margin-top:0}
+.panel .subhead .count{font-size:12px;color:#9aa0a6;font-weight:400}
+.subhead{border-bottom:1px dashed #eceff4;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.card{display:block;background:#fbfcfe;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:box-shadow .15s,border-color .15s,transform .1s}
+.card:hover{box-shadow:0 3px 12px rgba(30,60,120,.1);border-color:#b9cdf5;transform:translateY(-1px)}
+.card .t{font-size:13.5px;font-weight:600;line-height:1.4;color:#1f2937}
+.card:hover .t{color:var(--blue)}
+.card .meta{display:flex;gap:6px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.card .sum{font-size:12px;color:#8a909a;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-size:10px;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-wiki{background:#e7f6ec;color:#1f8a4c}
+.tag-raw{background:#fdf0e2;color:#d97706}
+.tag-concept{background:#e3f0fd;color:#1d6fd0}
+.tag-entity{background:#fde8ee;color:#d6336c}
+.tag-synthesis{background:#f4e9fb;color:#9333ea}
+.tag-paper{background:#e1f4f3;color:#0f766e}
+.date{font-size:11px;color:#a4a9b1}
+.page-title{font-size:24px;margin:4px 0 8px;font-weight:800;line-height:1.35}
+.md{font-size:15px;color:#20242c}
+.md h1{font-size:21px;margin:24px 0 10px;line-height:1.4}
+.md h2{font-size:17px;margin:22px 0 10px;padding-bottom:4px;border-bottom:1px solid #eef0f4;line-height:1.4}
+.md h3{font-size:15px;margin:18px 0 8px}
+.md h4,.md h5{font-size:14px;margin:14px 0 6px}
+.md p{margin:10px 0}
+.md blockquote{border-left:3px solid #3b82f6;padding:6px 14px;margin:12px 0;background:#f6f8fc;color:#4b5563;border-radius:0 6px 6px 0}
+.md ul,.md ol{padding-left:26px;margin:10px 0}
+.md li{margin:4px 0}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid #dde0e6;padding:6px 10px;text-align:left}
+.md th{background:#f4f5f7;font-weight:600}
+.md code{background:#f0f1f4;padding:1px 5px;border-radius:3px;font-size:13px}
+.md pre{background:#f4f5f8;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px;margin:14px 0}
+.md pre code{background:none;padding:0}
+.md a{color:#1d6fd0}
+.md .wl-miss{color:#9aa0a6;border-bottom:1px dashed #c7ccd4;cursor:help}
+.md img{max-width:100%;border-radius:6px;cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(15,18,24,.93);z-index:9999;display:none;overflow:auto;cursor:zoom-out;text-align:center;padding:26px 18px}
+#lb.on{display:block}
+#lb img{max-width:none;width:auto;height:auto;background:#fff;box-shadow:0 10px 44px rgba(0,0,0,.55)}
+#lb em{position:fixed;top:14px;right:18px;font-style:normal;font-size:12.5px;color:#cbd3e0;background:rgba(0,0,0,.45);padding:4px 11px;border-radius:14px}
+.md hr{border:none;border-top:1px solid #e8eaef;margin:18px 0}
+.backrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:14px;border-top:1px solid #e6e8ee}
+.backrow a{color:#555;text-decoration:none;font-size:13px}
+.backrow a:hover{color:var(--blue)}
+.no-results{display:none;text-align:center;padding:50px 20px;color:#9aa0a6}
+.empty{color:#9aa0a6;font-size:13px;padding:24px 8px}
+/* 首页一级分类 tab（白马 / 学股 / 疯狂的里海 / 多学科） */
+.casegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px;align-items:stretch}
+.casegrid .grp{margin-bottom:0;min-width:0;background:#fbf6fe;border:1px solid #e2c9f0;box-shadow:0 1px 2px rgba(120,40,160,.06)}
+.casegrid .grp-hd{margin-bottom:0;flex-direction:column;align-items:stretch;gap:6px}
+.casegrid .grp-hd a.name{display:block;text-align:center;white-space:normal;overflow:visible}
+.casegrid .grp-hd .pill{align-self:center}
+@media (max-width:768px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.secstocks{gap:14px}.secgrid,#sec-general,#sec-cases,.casegrid{grid-template-columns:1fr}.md table{display:block}.topbar .crumb{display:none}.tabbar{overflow-x:auto;flex-wrap:nowrap}.tabbtn{padding:7px 12px;font-size:13px}}
+</style></head><body><div class="topbar"><a class="logo" href="../../../../index.html">投研<b>Wiki</b></a><div class="crumb"><a href="../../../../index.html">投研 Wiki</a> › <a href="../../index.html">知识库</a> › <a href="../../index.html#dir=%E6%96%87%E7%AB%A0">文章</a></div><div class="topnav"><a href="../../../../../report/index.html">📊 Value Line</a></div></div><div class="wrap"><h1 class="page-title">達人知命</h1><div class="meta-line"><span class="tag tag-wiki">Wiki</span><span style="margin-left:auto;color:#b0b5bd">research/articles/entities</span></div><div class="md" id="md"><h1>達人知命 · 雪球实战派投资者画像与五层体系</h1>
+<blockquote>
+<p>性质：外部人物/体系收录（<strong>第三方拆解，非当事人自述</strong>、非研报、非公司披露）。事实 / 本人判断 / 存疑分开写，推测一律标「判断」，不把推测写成结论。<br />
+记录日期：2026-11-27<br />
+来源：雪球「ljm94」长文《拆透老股民「達人知命」的投资体系与真账本》，2026-11-25 发布、11-26 修改；作者自述统计基准日 2026-11-25<br />
+原文链接：https://xueqiu.com/5074021865/418583195?scene=1036&amp;share_uid=1238039784<br />
+原文全文：<a href="../2026-11-25-ljm94-%E6%8B%86%E9%80%8F%E8%80%81%E8%82%A1%E6%B0%91%E9%81%94%E4%BA%BA%E7%9F%A5%E5%91%BD%E7%9A%84%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB%E4%B8%8E%E7%9C%9F%E8%B4%A6%E6%9C%AC.html">raw 逐字转录</a> · 关联 <a href="../../../cases/%E6%84%9F%E6%82%9F/%E6%8A%95%E8%B5%84%E6%84%9F%E6%82%9F%E7%B4%A2%E5%BC%95.html">感悟/投资感悟索引</a> · <a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">里海体系总览</a> · <a href="../../../cases/%E6%84%9F%E6%82%9F/2026-11-19-%E6%8A%95%E8%B5%84%E6%84%9F%E6%82%9F-%E4%BA%8F%E9%92%B1%E7%9A%84%E4%BA%94%E4%B8%AA%E5%85%B1%E6%80%A7.html">亏钱的五个共性</a> · <a href="../concepts/%E7%AB%9E%E4%BA%89%E6%80%A7%E6%AF%81%E7%81%AD.html">竞争性毁灭</a> · <a href="../concepts/%E8%8A%92%E6%A0%BC-%E4%B8%B4%E7%95%8C%E8%B4%A8%E9%87%8F.html">芒格-临界质量</a></p>
+</blockquote>
+<hr />
+<h2>〇、口径先行（读本页前必看）</h2>
+<ol>
+<li><strong>本页作者是「ljm94」，不是 達人知命 本人</strong>。全部数字有两个来源层：① 原文转述的<strong>達人知命自述/其雪球组合数据</strong>；② 原文作者自行统计的<strong>社交互动与组合调仓派生指标</strong>（HHI、持有天数、发帖热度、互动次数）。两层都<strong>未经当事人确认、未经本库 <code>data/db</code> 或年报核对</strong>，一律按「原文口径」引用，不作本库事实。</li>
+<li>原文引用的<strong>外部数据与人物引语</strong>（麦肯锡 ROIC 统计、盖伊·斯皮尔「亏损概率 80%」、散户乙「学巴菲特要么学全套」、巴菲特 500 强 ROIC 观察）均为<strong>原文转述，本库未找到一手出处</strong>，按项目行为准则不作已验证引语引用。</li>
+<li>本文是<strong>体系拆解 + 复盘</strong>，不是投资建议；其收益数字是个人账本，不可外推为可复制策略。</li>
+</ol>
+<hr />
+<h2>一、事实层（原文照录，按出处分层）</h2>
+<p>出处均为 <a href="../2026-11-25-ljm94-%E6%8B%86%E9%80%8F%E8%80%81%E8%82%A1%E6%B0%91%E9%81%94%E4%BA%BA%E7%9F%A5%E5%91%BD%E7%9A%84%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB%E4%B8%8E%E7%9C%9F%E8%B4%A6%E6%9C%AC.html">raw 全文</a>。</p>
+<h3>1.1 人物履历与账本（原文转述当事人自述）</h3>
+<table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+<th>原文口径数字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1996 春节前</td>
+<td>深圳红岭路开户，5000 元买入 5–6 倍 PE 的深康佳、皖美菱</td>
+<td>上证 500 多点</td>
+</tr>
+<tr>
+<td>1997-02-20</td>
+<td>恐慌中以全天最低价 16.76 元割掉深科技，后眼看涨到 70 元</td>
+<td>立下「绝不在市场恐慌时抛售」铁律</td>
+</tr>
+<tr>
+<td>1998</td>
+<td>100% 身家单吊 4 倍 PE 四川长虹，囤彩管致利润下滑、股价腰斩</td>
+<td>当年实盘 <strong>−40%</strong></td>
+</tr>
+<tr>
+<td>2006–2007</td>
+<td>银行 + 钢铁大赚，上证 3900 点提前清仓</td>
+<td>躲过 2008 年 <strong>−65%</strong> 崩盘</td>
+</tr>
+<tr>
+<td>2008–2009</td>
+<td>东方海外 42→22→12→破 10 港元一路补仓；合生创展 30→3 元抄底、最低 1.46 港元</td>
+<td>后者账面再浮亏 60%</td>
+</tr>
+<tr>
+<td>2016 / 2017</td>
+<td>中国奥园、嘉里建设获利</td>
+<td>+19.3% / +37.2%；2018 登央视《投资者说》</td>
+</tr>
+<tr>
+<td>2018–2020</td>
+<td>心态膨胀 + 分散不深研 + 125% 融资仓位过冬</td>
+<td>2019 仅 +6%、2020 <strong>−26%</strong>；「五虎上将」粤海置地 −40%、莱蒙国际 −40%、远洋集团 −33%、中国太平 −30%、上实控股 −12%；年终总结断更 3 年</td>
+</tr>
+<tr>
+<td>2021 起</td>
+<td>立「实控人人品一票否决」「1 亿前持股不超 10 只」，清扫无真实现金流烟蒂股</td>
+<td>中国神华/中煤翻身 → 2022 秋八成身家压中海油</td>
+</tr>
+<tr>
+<td>2026 初</td>
+<td>海油估值到位后清减，分散到港股制造、集运、A 股资源</td>
+<td>第二个 30 年收益目标主动降到 <strong>10%–15%</strong></td>
+</tr>
+<tr>
+<td>1996–2025</td>
+<td>人民币加权年化复合收益率</td>
+<td><strong>22.2%</strong>，5000 元滚大三百多倍，实盘数千万元；2020 前后全职投资；雪球 11.5 万关注</td>
+</tr>
+</tbody>
+</table>
+<h3>1.2 两个公开组合（原文口径）</h3>
+<table>
+<thead>
+<tr>
+<th>组合</th>
+<th>区间</th>
+<th>收益</th>
+<th>回撤 / 煎熬</th>
+<th>与实盘关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低估值輪動 ZH111175</td>
+<td>十余年</td>
+<td>净值最高约 40 倍，最新约 35.3 倍</td>
+<td>—</td>
+<td>当事人自述早年满仓轮动港股地产<strong>有运气成分</strong>，美股组合没真买</td>
+</tr>
+<tr>
+<td>高股息精选 ZH132436</td>
+<td>2015 初建仓—2025-11 关停</td>
+<td>累计 <strong>+939.04%</strong>、年化 <strong>+24.11%</strong></td>
+<td>最大回撤 <strong>−40.44%</strong>；2018-01—2021-08 <strong>1288 天不创新高</strong></td>
+<td>当事人称<strong>与实盘几乎同步的镜像组合</strong>；同期盈富基金（含股息）年化仅 +2.88%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>口径差解释（原文）</strong>：雪球组合按<strong>港币税前毛股息自动复投</strong>，实盘走港股通：红筹（中海油）扣 <strong>28%</strong> 红利税、H 股扣 20%，再担汇差。2025 中海油港币税前总回报 +19.78%，扣税 −2.34%、汇差 −4.35%，人民币实得 +12.33%（当事人 2025 年报写「税和汇率吃掉 4 个多点，全年实盘 +15.3%」）；2026 前 11 月港币毛回报 +4.6%，扣税汇后 −2.8%。</p>
+<h3>1.3 五层实战投资体系（原文作者归纳，非当事人自述框架）</h3>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>核心命题</th>
+<th>关键判据 / 数字（原文口径）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一 · 产业底牌</td>
+<td><strong>万物皆周期</strong>；无门槛行业超额暴利必引资本涌入直至全行业亏损</td>
+<td>长期 ROIC 中枢≈10%（原文引麦肯锡/罗素 3000/巴菲特观察，未核一手出处）；<strong>内外卷法则</strong>：国人内卷（无电解铝 4500 万吨式行政约束）躲避，中外竞争赢面高；资源股「有色 vs 煤油 vs 航运」命格：紫金巨龙铜矿净利率 65%–70%，神东煤受 700 元长协限价净利率封在 30%，海油超 85 美元油价特别收益金抽 40%</td>
+</tr>
+<tr>
+<td>二 · 排雷实证观</td>
+<td><strong>发钱的是好公司，要钱的是烂公司</strong>；只查过去十年真金白银</td>
+<td>中远海控 2016 重组时 A+H 市值 294 亿，2021–2025 派现 1218 亿 + 回购 98 亿 = 1316 亿（4.5 倍市值）；某新能源车企一年多定增 81.6 + 引战 61.2 + H 股 IPO 129 = 要 272 亿。四铁闸：① 实控人人品一票否决（查母公司十年老底，兆科眼科→李氏大药厂案例）② 只认真实现金流、不认投入成本/重置 PB ③ 避开高管代理黑箱与乱花钱国企 ④ 精读年报附注、不听高管画饼（融创 2015 销售 549 亿/并表收入 230 亿）</td>
+</tr>
+<tr>
+<td>三 · 双轨估值</td>
+<td>不追「差生进步」，死守「尖子生绝对价值」</td>
+<td><strong>五年复利 PB 尺</strong>：10% ROE 五年增值 61.05%；15%→101.1%=1.66PB、20%→148.8%=2.44PB、25%→205.2%=3.36PB；港股通红筹再 ×0.72 安全锁（海油常态 ROE 15% → 表面 PB 越过 <strong>1.19 倍</strong> 即不便宜，2026 初 1.43 倍时清减）。成长股用<strong>十年终局倒推</strong>（比亚迪 2021 市值 7850 亿/PE200+，按十年后丰田级净利 1650 亿×10PE=16500 亿，仅 +110%）；收息股用<strong>十年国债锚</strong>（2024 底 1.74%）</td>
+</tr>
+<tr>
+<td>四 · 仓位与危机</td>
+<td>绝对低估绝对重仓；外围小仓试错、看准重锤</td>
+<td>8 组合 909 笔调仓派生：全股票持有中位数 35–37 天，中海油 <strong>1916 天（&gt;5.2 年）</strong>；高股息精选平均 HHI <strong>0.750</strong>、低估值輪動 <strong>0.483</strong>（普通公募约 0.065，&gt;0.25 即高度集中）；海油低估期组合持股压到 2–3 只、单票 62%–80%（实盘 83%–86%），净值 7→40 倍；2026-11 平均持股 7 只（月末 10 只）、头号仓位压回 20% 内、HHI 降至 0.118。<strong>乌龟底线法</strong>：布伦特 50 美元×4 年、海油 18.4→12 港元，10000 股股息复投成 13275 股，第 5 年 80 美元/6PE=24.34 港元，五年 +75%、年化 11.8%</td>
+</tr>
+<tr>
+<td>五 · 心性生活</td>
+<td>心态可持续支撑重仓</td>
+<td><strong>80 分消费原则</strong>、<strong>生活账户反向转账</strong>（亏钱时多花钱弥补）、<strong>记忆股息</strong>（体验 &gt; 物质）；引《Die With Zero》</td>
+</tr>
+</tbody>
+</table>
+<h3>1.4 原文作者的三条冷思考（作者本人判断，非当事人观点）</h3>
+<ol>
+<li><strong>83%–86% 单票极限仓位普通人不可学</strong>：几千万家底、零杠杆、几十万股息打底是前提；单一重资产公司暴露于不可分散黑天鹅（BP 漏油式事故、地缘冻结/暴利税），5% 概率撞上即账户缩水 40%+；作者建议普通工薪家庭单票锁 <strong>20%–30%</strong>。</li>
+<li><strong>时间体感与人性弱点</strong>：三年半不创新高；233 笔已完结交割中，亏损平仓平均持有 167 天 &gt; 盈利平仓 100 天，「卖飞票」（清仓后一年涨超 20%）占四成以上；语气最绝对时翻车概率更高。</li>
+<li><strong>制造业成本思维的能力圈盲区</strong>：14 元卖美的、163 美元卖苹果、111 美元卖台积电；2026 美股组合重仓中概年内 <strong>−28.2%</strong>，跑输标普 500 三十多个百分点。当事人对边界诚实：2025 年初没看透金铜趋势就没切紫金，「错过了就错过了，再去追风险就大了」。</li>
+</ol>
+<h3>1.5 原文精选 26 条原话（ See raw 第四节）</h3>
+<p>按「看周期与生意 / 识人与排雷 / 算估值与赔率 / 管仓位与抗暴跌 / 修心性与过日子」五类分列，<strong>逐字见 raw 全文</strong>。高频可用条目：</p>
+<ul>
+<li>「行业景气度就是这只狼」（2026《万物皆周期》）</li>
+<li>「低点不是一个价位，而是一片区域……持有 2~4 年……一定要买数一数二的公司」（2026-05）</li>
+<li>「好公司就是一直给股东发钱的公司，烂公司就是一直找股东要钱的公司」（2026《好公司与坏公司》）</li>
+<li>「为什么港股通算 PB 也要扣掉 28% 股息税？迟早要分的，回报一定会少 28%」（2026-11）</li>
+<li>「绝对低估时绝对重仓，相对低估时相对重仓，反映正常价值时维持 20% 左右的仓位」（2024-02）</li>
+<li>「等有一轮跌势跌得你实在受不了、想着无论如何也要卖出的时候，就开始加仓」（2026-11）</li>
+</ul>
+<hr />
+<h2>二、本人判断：与本库体系的关系（非原文观点，用户未对齐）</h2>
+<blockquote>
+<p>本节是本人按库内既有框架做的<strong>映射提示</strong>，不是原文作者或 達人知命 的观点，也<strong>不代表用户已确认</strong>。不改写既有页面结论。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>库内关卡/概念</th>
+<th>本页可对照的原文要点</th>
+<th>边界（不能混为一谈）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="wl-miss" title="未找到同名页面">里海 2444 · 底部</span></td>
+<td>「低点是一片区域、2~4 年、数一数二的公司」与「走出来的底」同向</td>
+<td>里海要求「变化」与价值发现前置；原文更强调估值低位 + 龙头，<strong>未见对「变化」的独立判据</strong></td>
+</tr>
+<tr>
+<td><span class="wl-miss" title="未找到同名页面">里海 · 简单 / 分仓</span></td>
+<td>「1 亿前不超 10 只」、外围试错 + 看准重锤</td>
+<td>里海分仓 3–5 只、单只 ≤40% 是<strong>弱者视角</strong>底线；原文 83%–86% 单票是<strong>强者集中</strong>，前提（家底/零杠杆/股息）不可复制——<strong>方向与里海相反，不作校准</strong></td>
+</tr>
+<tr>
+<td><span class="wl-miss" title="未找到同名页面">竞争性毁灭</span> · <span class="wl-miss" title="未找到同名页面">组合进化</span></td>
+<td>「万物皆周期」+ ROIC≈10% + 内外卷法则，与超额利润被资本填平同构</td>
+<td>原文「中外竞争赢面高」是作者经验判断，无统计样本；不作本库行业结论</td>
+</tr>
+<tr>
+<td><span class="wl-miss" title="未找到同名页面">现金流三层漏斗</span> · <span class="wl-miss" title="未找到同名页面">国企激励机制</span></td>
+<td>「真钱」判据：发钱 vs 要钱、高管代理黑箱、只认自由现金流不认重置成本</td>
+<td>与「王文式」真钱/出清口径同向，但原文无博弈链分析，不合并为同一体系</td>
+</tr>
+<tr>
+<td><span class="wl-miss" title="未找到同名页面">芒格-临界质量</span> · <span class="wl-miss" title="未找到同名页面">格栅理论</span></td>
+<td>「能力圈盲区」诚实：卖飞苹果/台积电、错过紫金不追</td>
+<td>与格栅的「多学科」互补而非等同；单案例不构成证据</td>
+</tr>
+<tr>
+<td><span class="wl-miss" title="未找到同名页面">亏钱五共性</span></td>
+<td>第 1 条「高预期 + 高位」↔ 尖子生考砸被踩、差生进步被捧；第 4 条「想证明自己是对的」↔ 央视后心态膨胀、125% 杠杆</td>
+<td>「强者集中」与「该空仓就空仓」是两条路线，本库无数据裁决</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一条贯穿线索（本人判断）</strong>：原文的价值不在「22.2% 年化」这个结果，而在<strong>挨打→立规矩的闭环</strong>——1997 恐慌割肉→不恐慌抛售；1998 单吊腰斩→避开过热；2018–2020 杠杆 + 不深研→实控人一票否决 + 持股≤10 只 + 只认真实现金流。这与 <a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E9%87%8C%E6%B5%B7%E4%BD%93%E7%B3%BB-%E6%80%BB%E8%A7%88.html">里海体系</a>「风险第一、弱者视角」是<strong>同源不同路径</strong>：一个靠研究深度支撑集中，一个靠承认弱者支撑分仓；不要各取一半拼成「深度研究后重仓 80%」。</p>
+<hr />
+<h2>三、存疑 / 待核</h2>
+<ol>
+<li><strong>全部数字为第三方转述</strong>：原文作者 986 帖/84 长文/909 笔调仓的抓取脚本、原始数据、时间窗均未公开；22.2% 年化、组合净值、HHI、持有天数、互动次数等<strong>未与当事人或雪球后台核对</strong>。本库不作可引用业绩数据，引用时必须带「原文口径」。</li>
+<li><strong>两层来源不可混用</strong>：当事人自述（账本/规则）与作者派生统计（HHI/发帖热度/卖飞率）是不同证据等级；后者是作者分析，不是当事人行为事实。</li>
+<li><strong>外部数据/引语未核一手</strong>：麦肯锡 1963–2004 7000 家公司中位数 ROIC≈10%、罗素 3000 加权≈9.5%、巴菲特 500 强 10%–12%、「盖伊·斯皮尔：亏损概率 80%」、散户乙「学巴菲特要么学全套」、比尔·珀金斯《Die With Zero》——均为原文转述，本库未核出处，按项目 AI 行为准则不作已验证引语引用。</li>
+<li><strong>原文自身的加粗与引号错乱</strong>：如「好公司就是一”直给股东发钱的公司」「<strong>125% 的融资仓位 过冬……大亏</strong> -26%」「温和的** 0.118」等 Markdown 标记错位，raw 已按「只进不改」原样保留，本页按语义还原但不改原文。</li>
+<li><strong>图 1–10 已全部下载并转写（2026-11-27 补录）</strong>：PNG 原图存 <code>raw/research/articles/assets/2026-11-25-達人知命/图01.png</code>–<code>图10.png</code>，raw 内嵌本地引用 + CDN 链接；逐图数值转写见 raw 文末「附录：配图数值转写」（图 2 年度拆解、图 5 比价尺、图 6 PB 全表 6 档 ×3 口径、图 7 HHI 全表、图 8 逐年仓位、图 10 互动榜）。10 张均为作者自制、带「雪球 · ljm94」水印，非公司财报原文；图上无标签的数值已标「约/目测/反推」，不精确引用。</li>
+<li><strong>当事人 UID</strong>：原文末尾数据说明写「UID: 8632046745」，但原文首页链接为 <code>xueqiu.com/n/達人知命</code>；两者未交叉验证，本页不写死 UID。</li>
+<li><strong>本页 §二 是本人映射</strong>，用户尚未逐条对齐；不得据此宣称两套体系可拼接或已合并。</li>
+</ol>
+<hr />
+<h2>四、一句话收口</h2>
+<p><strong>可学的是闭环，不是仓位</strong>：把「挨打 → 算死账 → 立规矩 → 照样挨打再改」这套机制内化（<a href="../../../cases/%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%8C%E6%B5%B7/%E9%87%8C%E6%B5%B7-2444%E6%8A%95%E8%B5%84%E4%BD%93%E7%B3%BB.html">里海</a>的弱者纪律同源），<strong>不可学的是 83%–86% 单票极限</strong>——那是几千万家底 + 零杠杆 + 股息打底的结果，不是可复制的起点。</p>
+</div><div class="backrow"><a href="../../index.html#dir=%E6%96%87%E7%AB%A0">← 返回 文章</a><a href="../../index.html">目录</a><a href="../../../../index.html">首页</a><a href="../../../../research/articles/entities/達人知命.md" style="margin-left:auto">原文文件 ↗</a></div></div></body></html>
