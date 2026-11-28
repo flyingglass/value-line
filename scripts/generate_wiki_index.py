@@ -24,6 +24,8 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
     · 文章配图：raw 中「![...](assets/...)」紧跟「> 原图：<CDN 链接>」时，
       HTML 用原图 CDN 链接；本地 assets 原图仍保留在磁盘作离线备份、不入库，
       原图链接失效时可在 HTML 中把 src 换回 raw 里的本地相对路径
+    · raw 的「配图说明 + 本地文件清单 + 校验注」属入库留痕，只在 md 保留，
+      不渲染进 HTML 阅读页
     · 知识库整组页与标的/案例组页同构：目录 当 tab，首页只保留标题+篇数 chip
     · 跟踪 tab 与 wiki md 命名空间解耦：来源为 report/ 下的 md 清单（TRACK_REPORTS），
       只生成站内阅读页，不参与 scan_wiki / validate_scan，避免被误判为标的
@@ -817,6 +819,17 @@ def origin_image_map(body):
             for src, url in ORIGIN_IMG_RX.findall(body)}
 
 
+# raw 的入库留痕：「配图说明」段 + 本地文件清单表格 + 紧随的「校验注」，
+# 只在 md 里可追溯，阅读页不需要展示（本地路径在网页中也点不开）。
+INGEST_NOTE_RX = re.compile(
+    r'^\*\*配图说明[^\n]*\n(?:[ \t]*\n|\|[^\n]*\n)*>[ \t]*校验注[^\n]*\n', re.M
+)
+
+
+def strip_ingest_notes(body):
+    return INGEST_NOTE_RX.sub('', body)
+
+
 def rewrite_md_assets(body, md_dir, out):
     out_dir = os.path.dirname(out)
     origins = origin_image_map(body)
@@ -924,8 +937,9 @@ def convert_wikilinks(body, out):
 
 
 def render_md(body, md_dir, out):
-    """md 正文 → HTML（图片路径重写 + wiki 链接解析 + 服务端渲染）"""
-    text = rewrite_md_assets(body, md_dir, out)
+    """md 正文 → HTML（剥离入库留痕 + 图片路径重写 + wiki 链接解析 + 服务端渲染）"""
+    text = strip_ingest_notes(body)
+    text = rewrite_md_assets(text, md_dir, out)
     text = convert_wikilinks(text, out)
     return _MDIT.render(text)
 
