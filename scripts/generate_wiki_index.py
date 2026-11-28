@@ -776,7 +776,7 @@ def card_html(art, from_file):
     return s
 
 def duo_article_html(art, from_file):
-    """双栏文章条目：大标题 + 完整一句话核心，不用卡片框。"""
+    """双栏文章卡片：标题 + 一句话核心摘要。"""
     href = posix_rel(from_file, art['_out'])
     core = core_text(art)
     s = '<a class="it" href="' + esc(href) + '">'
@@ -821,13 +821,15 @@ DUO_CSS = """\
 .duo-tab .duo-pane.on{display:block}
 .duo-tab .pn{font-size:32px;font-weight:800;letter-spacing:.5px;border-bottom:2px solid #111827;padding-bottom:12px;margin-bottom:2px}
 .duo-tab .pn small{font-size:14px;font-weight:500;color:#6b7280;margin-left:14px;letter-spacing:0}
-.duo-tab .it{display:block;padding:22px 0;border-bottom:1px solid #e8eaee}
+.duo-tab .articles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start;margin-top:18px}
+.duo-tab .it{display:block;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;color:inherit;text-decoration:none;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:border-color .15s,box-shadow .15s,transform .15s;overflow:hidden}
+.duo-tab .it:hover{border-color:#93b4f5;box-shadow:0 5px 16px rgba(30,60,120,.09);transform:translateY(-2px)}
 .duo-tab .it:hover .tt{color:var(--blue)}
-.duo-tab .it .dt{font-size:13px;color:#6b7280;letter-spacing:.3px}
-.duo-tab .it .tt{font-size:20px;font-weight:700;line-height:1.45;margin-top:5px;color:#1f2937}
-.duo-tab .it .cr{font-size:15px;color:#374151;line-height:1.8;margin-top:10px}
+.duo-tab .it .dt{font-size:12.5px;color:#6b7280;letter-spacing:.3px}
+.duo-tab .it .tt{font-size:17px;font-weight:700;line-height:1.5;margin-top:5px;color:#1f2937;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.duo-tab .it .cr{font-size:14px;color:#4b5563;line-height:1.7;margin-top:9px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .duo-tab .it .cr.empty{color:#9aa0a6;font-size:13px}
-@media(max-width:768px){.duo-tab .duo{grid-template-columns:1fr;gap:20px}.duo-tab .side{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;padding-bottom:8px}.duo-tab .side .side-hint{display:none}.duo-tab .side .pitem{flex:0 0 auto;white-space:nowrap}.duo-tab .pn{font-size:26px}}
+@media(max-width:768px){.duo-tab .duo{grid-template-columns:1fr;gap:20px}.duo-tab .side{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;padding-bottom:8px}.duo-tab .side .side-hint{display:none}.duo-tab .side .pitem{flex:0 0 auto;white-space:nowrap}.duo-tab .pn{font-size:26px}.duo-tab .articles{grid-template-columns:1fr}}
 """
 
 
@@ -1277,10 +1279,10 @@ def general_group_page(general):
             panel += ('<div class="duo-pane' + (' on' if i == 0 else '') +
                       '" data-g="' + esc(gname) + '">')
             panel += ('<div class="pn">' + esc(gname) + '<small>' + str(len(arts)) +
-                      ' 篇</small></div>')
+                      ' 篇</small></div><div class="articles">')
             for art in arts:
                 panel += duo_article_html(art, GENERAL_IDX)
-            panel += '</div>'
+            panel += '</div></div>'
         panel += '</main></div>'
         panel += '</div>'
         html += panel
