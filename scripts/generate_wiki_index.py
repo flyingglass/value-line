@@ -822,7 +822,7 @@ DUO_CSS = """\
 .duo-tab .pn{font-size:32px;font-weight:800;letter-spacing:.5px;border-bottom:2px solid #111827;padding-bottom:12px;margin-bottom:2px}
 .duo-tab .pn small{font-size:14px;font-weight:500;color:#6b7280;margin-left:14px;letter-spacing:0}
 .duo-tab .articles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start;margin-top:18px}
-.duo-tab .it{display:block;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;color:inherit;text-decoration:none;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:border-color .15s,box-shadow .15s,transform .15s;overflow:hidden}
+.duo-tab .it{display:block;background:#fff;border:1px solid #93b4f5;border-radius:10px;padding:16px 18px;color:inherit;text-decoration:none;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:border-color .15s,box-shadow .15s,transform .15s;overflow:hidden}
 .duo-tab .it:hover{border-color:#93b4f5;box-shadow:0 5px 16px rgba(30,60,120,.09);transform:translateY(-2px)}
 .duo-tab .it:hover .tt{color:var(--blue)}
 .duo-tab .it .dt{font-size:12.5px;color:#6b7280;letter-spacing:.3px}
