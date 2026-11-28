@@ -1119,6 +1119,23 @@ def general_topic_order(general):
             ordered.append(t)
     return grouped, ordered
 
+def person_of_general(art):
+    """基金经理类文章按人物分组：取文件名日期后的作者段，统一别名后返回。"""
+    stem = os.path.splitext(os.path.basename(art.get('real_path', art['path'])))[0]
+    name = stem.split('-', 3)[3] if len(stem.split('-', 3)) > 3 else stem
+    aliases = {
+        '戴斌（MA200）': '戴斌', '戴斌访谈': '戴斌', '聪明投资者访谈戴斌': '戴斌',
+        'ljm94': '達人知命', '塞斯卡拉曼访谈': '塞斯卡拉曼', '丘栋荣TriValue路演': '丘栋荣',
+        '管清友对话王文': '王文 · 管清友', '聪明投资者': '丘栋荣 · 戴斌 · 王文',
+        '逸修1': '逸修1', '曼巴投资': '曼巴投资', '徐新': '徐新',
+        '霍华德马克斯': '霍华德·马克斯',
+    }
+    for key, label in aliases.items():
+        if key in name:
+            return label
+    return name
+
+
 def general_group_page(general):
     """知识库整组页：view/knowledge/index.html，目录（书籍/巴芒/基金经理/文章）当顶栏 tab，就地切换。"""
     grouped, ordered = general_topic_order(general)
@@ -1136,10 +1153,22 @@ def general_group_page(general):
     html += '</div>'
     for t in ordered:
         panel = '<div class="panel" data-dir="' + esc(t) + '">'
-        panel += '<div class="grid">'
-        for art in grouped[t]:
-            panel += card_html(art, GENERAL_IDX)
-        panel += '</div></div>'
+        if t == '基金经理':
+            people = {}
+            for art in grouped[t]:
+                people.setdefault(person_of_general(art), []).append(art)
+            for person, arts in sorted(people.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+                panel += '<div class="subhead">' + esc(person) + ' <span class="count">' + str(len(arts)) + ' 篇</span></div>'
+                panel += '<div class="grid">'
+                for art in arts:
+                    panel += card_html(art, GENERAL_IDX)
+                panel += '</div>'
+        else:
+            panel += '<div class="grid">'
+            for art in grouped[t]:
+                panel += card_html(art, GENERAL_IDX)
+            panel += '</div>'
+        panel += '</div>'
         html += panel
     html += '</div>' + TAB_JS + '</body></html>'
     os.makedirs(GENERAL_VIEW_DIR, exist_ok=True)
