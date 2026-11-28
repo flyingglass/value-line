@@ -8,7 +8,7 @@
 数据口径：data/db/002507.db kline 表（前复权 qfq）。
           图中「名义价 56.24」= 前复权 2020-09-03 最高 38.21（不复权口径）。
 
-输出：research-wiki/research/疯狂的里海/assets/kline-002507-period-compare.png
+输出：data/assets/research/疯狂的里海/assets/kline-002507-period-compare.png
 
 用法：.venv\\Scripts\\python scripts\\002507\\period_compare.py
 """

@@ -4,7 +4,7 @@
 检查项（每页 5 项）：
   1) 时间线表头为 4 列（含「业绩（间隔 / 公告）」）
   2) 页面引用了 kline-<code>-review.png
-  3) 该图片文件在 assets/ 中真实存在
+  3) 该图片文件在 data/assets/ 中真实存在
   4) data/db/<code>.db 存在
   5) data/disclosure/<code>_disclosure.json 存在
 

@@ -5,7 +5,7 @@
   .venv\\Scripts\\python scripts\\tools\\attach_case_chart.py            # 处理全部（幂等，已含图的跳过）
   .venv\\Scripts\\python scripts\\tools\\attach_case_chart.py 000830     # 只处理指定代码
 
-说明：图片由 scripts/linhai_chart.py 生成到 research-wiki/research/疯狂的里海/assets/；
+说明：图片由 scripts/linhai_chart.py 生成到 data/assets/research/疯狂的里海/assets/；
       本脚本只负责在案例页末尾追加引用块（不覆盖已有内容，不重复追加）。
 """
 import io
@@ -42,7 +42,7 @@ TPL = """
 
 ## 附：周K 复盘图（{y0}-{y1}）
 
-![{name}（{code}）里海案例复盘 · 周K（前复权）· {y0}-{y1}](../assets/kline-{code}-review.png)
+![{name}（{code}）里海案例复盘 · 周K（前复权）· {y0}-{y1}](../../../../data/assets/research/痂狂的里海/kline-{code}-review.png)
 
 > **读图**：主图 = 周K（前复权）+ 阶段框（蓝线为阶段切换年）+ 关键顶底 + 里海买卖点（文字为案例页原文「当时成交名义价」，与前复权价口径不同）+ 关键水平位。
 > 主图下方「披露带」= 定期报告 / 业绩预告披露日（橙 = 业绩预告 · 快报，灰 = 年报 / 中报 / 一季报 / 三季报，标签 = 两位年份 + 报告期，如 21A / 21H1 / 21Q3）；底部 = 周成交量。三块面板共用同一时间轴。

@@ -24,7 +24,7 @@
 用法：
     python scripts/09992/revenue_price_timeline_hk.py --code 09992 --name 泡泡玛特 \
         --extremes 2021:high,2022:low,2025:high,2026:low \
-        --out research-wiki/research/消费/泡泡玛特/assets/revenue-price-timeline.png \
+        --out data/assets/research/消费/泡泡玛特/assets/revenue-price-timeline.png \
         --csv scripts/out/09992_revenue_vs_price.csv
 """
 import argparse

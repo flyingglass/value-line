@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """review_chart.py — 中际旭创(300308) 行情复盘图（周K）
 
-样式对齐 research-wiki/research/疯狂的里海/assets/kline-*-review.png。
+样式对齐 data/assets/research/疯狂的里海/assets/kline-*-review.png。
 """
 import os
 import sqlite3

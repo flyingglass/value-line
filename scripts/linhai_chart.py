@@ -33,7 +33,7 @@ plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
 plt.rcParams["axes.unicode_minus"] = False
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ASSETS = os.path.join(BASE, "research-wiki", "research", "疯狂的里海", "assets")
+ASSETS = os.path.join(BASE, "data", "assets", "research", "疯狂的里海")
 
 UP, DOWN = "#d93a34", "#1f9e63"          # A 股惯例：涨红跌绿
 BUY_C, SELL_C = "#c62828", "#0b7a4b"
