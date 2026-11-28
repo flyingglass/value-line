@@ -780,11 +780,21 @@ def topbar_html(from_file, crumbs):
             '<div class="crumb">' + crumb + '</div>'
             '<div class="topnav"><a href="' + esc(posix_rel(from_file, os.path.join(BASE, 'report', 'index.html'))) + '">📊 Value Line</a></div></div>')
 
-def head_html(title):
+# 仅知识库总页使用：基金经理 tab 的人物分组块样式
+PERSON_CSS = """\
+.person-block{margin:0 0 20px;padding:12px 14px 14px;background:#f8fafc;border:1px solid #e6eaf2;border-left:4px solid #4f46e5;border-radius:8px}
+.person-block:last-child{margin-bottom:0}
+.person-block .ph-name{font-size:15px;font-weight:800;color:#1e293b;letter-spacing:.3px}
+.person-block .ph-count{font-size:12px;color:#64748b;background:#eef2ff;border:1px solid #dbe3ff;border-radius:10px;padding:1px 9px;margin-left:8px;font-weight:600}
+.person-block .grid{margin-top:10px}
+"""
+
+
+def head_html(title, extra_css=''):
     return ('<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
             '<title>' + esc(title) + '</title>'
-            '<style>' + CSS + '</style></head><body>')
+            '<style>' + CSS + extra_css + '</style></head><body>')
 
 # ---------------------------------------------------------------------------
 # 生成：组页（标的 / 投资案例，单页 Tab 切换）+ 每篇文章的阅读页
@@ -1140,7 +1150,7 @@ def general_group_page(general):
     """知识库整组页：view/knowledge/index.html，目录（书籍/巴芒/基金经理/文章）当顶栏 tab，就地切换。"""
     grouped, ordered = general_topic_order(general)
     total = len(general)
-    html = head_html(GENERAL_TAB_NAME)
+    html = head_html(GENERAL_TAB_NAME, PERSON_CSS)
     html += topbar_html(GENERAL_IDX, [(GENERAL_TAB_NAME, GENERAL_IDX)])
     html += '<div class="wrap">'
     html += '<div class="page-hd"><h1>' + GENERAL_TAB_NAME + '</h1><span class="pill case">非标的 · 跨学科</span>'
@@ -1158,11 +1168,12 @@ def general_group_page(general):
             for art in grouped[t]:
                 people.setdefault(person_of_general(art), []).append(art)
             for person, arts in sorted(people.items(), key=lambda kv: (-len(kv[1]), kv[0])):
-                panel += '<div class="subhead">' + esc(person) + ' <span class="count">' + str(len(arts)) + ' 篇</span></div>'
+                panel += '<div class="person-block"><span class="ph-name">' + esc(person) + '</span>'
+                panel += '<span class="ph-count">' + str(len(arts)) + ' 篇</span>'
                 panel += '<div class="grid">'
                 for art in arts:
                     panel += card_html(art, GENERAL_IDX)
-                panel += '</div>'
+                panel += '</div></div>'
         else:
             panel += '<div class="grid">'
             for art in grouped[t]:
