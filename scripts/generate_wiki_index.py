@@ -20,7 +20,10 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
     · 组根散落的 md 收进「概览」标签（不叫「其他文档」、不单独铺卡片）
     · 组内子目录/主题点击 = 当前页 Tab 切换，不再生成子目录独立页
     · 每篇 md 仍生成独立阅读页，正文在生成期用 markdown-it-py 预渲染为 HTML 内嵌
-      （不依赖任何 CDN / 联网，离线双击即看），[[页面名]] 解析为站内链接
+      （正文文字不依赖联网，离线双击即看），[[页面名]] 解析为站内链接
+    · 文章配图：raw 中「![...](assets/...)」紧跟「> 原图：<CDN 链接>」时，
+      HTML 用原图 CDN 链接；本地 assets 原图仍保留在磁盘作离线备份、不入库，
+      原图链接失效时可在 HTML 中把 src 换回 raw 里的本地相对路径
     · 知识库整组页与标的/案例组页同构：目录 当 tab，首页只保留标题+篇数 chip
     · 跟踪 tab 与 wiki md 命名空间解耦：来源为 report/ 下的 md 清单（TRACK_REPORTS），
       只生成站内阅读页，不参与 scan_wiki / validate_scan，避免被误判为标的
@@ -802,14 +805,29 @@ def article_layout(art, gid, raw_name):
 
 IMG_RX = re.compile(r'(!\[[^\]]*\]\()([^)\s]+)(\))')
 
+# 配图后面紧跟「> 原图：<CDN 链接>」时，HTML 改用原图链接；
+# 本地 assets 文件不删、不入库，仅作原图失效时的离线备份。
+ORIGIN_IMG_RX = re.compile(
+    r'!\[[^\]]*\]\(([^)\s]+)\)[ \t]*\n(?:[ \t]*\n)?[ \t]*>[ \t]*原图[：:][ \t]*(https?://[^\s)]+)'
+)
+
+
+def origin_image_map(body):
+    return {os.path.normpath(src).replace(os.sep, '/'): url
+            for src, url in ORIGIN_IMG_RX.findall(body)}
+
 
 def rewrite_md_assets(body, md_dir, out):
     out_dir = os.path.dirname(out)
+    origins = origin_image_map(body)
 
     def rep(m):
         src = m.group(2)
         if src.startswith(('http://', 'https://', 'data:', '//', '#', '/')):
             return m.group(0)
+        key = os.path.normpath(src).replace(os.sep, '/')
+        if key in origins:
+            return m.group(1) + origins[key] + m.group(3)
         p = os.path.normpath(os.path.join(md_dir, src))
         rel = os.path.relpath(p, out_dir).replace(os.sep, '/')
         return m.group(1) + rel + m.group(3)
