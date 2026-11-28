@@ -287,6 +287,19 @@ def extract_summary(body, max_len=120):
             break
     return summary.strip()[:max_len] + ('...' if len(summary) > max_len else '')
 
+def core_text(art):
+    """取 md 摘要段的完整「一句话核心」：不截断、去 markdown 标记与前缀。
+
+    仅用于知识库「基金经理」双栏人物页；卡片列表仍用 extract_summary() 的短摘要。
+    """
+    m = re.search(r'\*\*一句话核心\*\*\s*[：:]\s*(.+)', art.get('body', ''))
+    s = m.group(1) if m else art.get('summary', '')
+    s = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', s)
+    s = re.sub(r'\[\[([^\]]+)\]\]', r'\1', s)
+    s = re.sub(r'\*\*([^*]+)\*\*', r'\1', s)
+    s = re.sub(r'^\s*一句话核心\s*[：:]\s*', '', s)
+    return s.strip()
+
 def esc(s):
     s = str(s)
     return (s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
@@ -762,6 +775,19 @@ def card_html(art, from_file):
     s += '</a>'
     return s
 
+def person_article_html(art, from_file):
+    """双栏人物页的文章条目：大标题 + 完整一句话核心，不用卡片框。"""
+    href = posix_rel(from_file, art['_out'])
+    core = core_text(art)
+    s = '<a class="it" href="' + esc(href) + '">'
+    if art.get('date'):
+        s += '<div class="dt">' + esc(art['date']) + '</div>'
+    s += '<div class="tt">' + esc(art['title']) + '</div>'
+    s += ('<div class="cr' + ('' if core else ' empty') + '">' +
+          esc(core or '（该篇无一句话核心摘要）') + '</div>')
+    s += '</a>'
+    return s
+
 def chip_html(text, n, href, raw=False):
     cls = 'chip raw' if raw else 'chip'
     return ('<a class="' + cls + '" href="' + esc(href) + '">' + esc(text) +
@@ -780,13 +806,28 @@ def topbar_html(from_file, crumbs):
             '<div class="crumb">' + crumb + '</div>'
             '<div class="topnav"><a href="' + esc(posix_rel(from_file, os.path.join(BASE, 'report', 'index.html'))) + '">📊 Value Line</a></div></div>')
 
-# 仅知识库总页使用：基金经理 tab 的人物分组块样式
+# 仅知识库总页使用：基金经理 tab 的双栏人物页（左侧作者索引 + 右侧文章）
+# 2026-11-28：弃用「分组外框 + 2 列卡片」，改为无框双栏，放大字号、完整摘要。
 PERSON_CSS = """\
-.person-block{margin:0 0 20px;padding:12px 14px 14px;background:#f8fafc;border:1px solid #e6eaf2;border-left:4px solid #4f46e5;border-radius:8px}
-.person-block:last-child{margin-bottom:0}
-.person-block .ph-name{font-size:15px;font-weight:800;color:#1e293b;letter-spacing:.3px}
-.person-block .ph-count{font-size:12px;color:#64748b;background:#eef2ff;border:1px solid #dbe3ff;border-radius:10px;padding:1px 9px;margin-left:8px;font-weight:600}
-.person-block .grid{margin-top:10px}
+.panel.person-tab{padding:22px 0 0;border:none;background:transparent;border-radius:0;box-shadow:none}
+.person-tab .duo{display:grid;grid-template-columns:210px 1fr;gap:46px}
+.person-tab .side{position:sticky;top:60px;align-self:start}
+.person-tab .side .side-hint{font-size:11px;letter-spacing:2px;color:#9aa0a6;padding:0 0 8px 12px}
+.person-tab .side .pitem{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;font-size:14.5px;color:#374151;border-radius:8px;cursor:pointer;transition:background .12s,color .12s}
+.person-tab .side .pitem:hover{background:#f3f4f6}
+.person-tab .side .pitem.on{background:#111827;color:#fff;font-weight:700}
+.person-tab .side .pitem small{font-size:12px;opacity:.6;font-weight:500}
+.person-tab .person-pane{display:none}
+.person-tab .person-pane.on{display:block}
+.person-tab .pn{font-size:32px;font-weight:800;letter-spacing:.5px;border-bottom:2px solid #111827;padding-bottom:12px;margin-bottom:2px}
+.person-tab .pn small{font-size:14px;font-weight:500;color:#6b7280;margin-left:14px;letter-spacing:0}
+.person-tab .it{display:block;padding:22px 0;border-bottom:1px solid #e8eaee}
+.person-tab .it:hover .tt{color:var(--blue)}
+.person-tab .it .dt{font-size:13px;color:#6b7280;letter-spacing:.3px}
+.person-tab .it .tt{font-size:20px;font-weight:700;line-height:1.45;margin-top:5px;color:#1f2937}
+.person-tab .it .cr{font-size:15px;color:#374151;line-height:1.8;margin-top:10px}
+.person-tab .it .cr.empty{color:#9aa0a6;font-size:13px}
+@media(max-width:768px){.person-tab .duo{grid-template-columns:1fr;gap:20px}.person-tab .side{position:static;display:flex;overflow-x:auto;gap:4px;padding-bottom:8px}.person-tab .side .side-hint{display:none}.person-tab .side .pitem{flex:0 0 auto;white-space:nowrap}.person-tab .pn{font-size:26px}}
 """
 
 
@@ -1012,6 +1053,31 @@ window.addEventListener('hashchange',function(){var d=fromHash();if(d)activate(d
 activate(fromHash());
 })();</script>"""
 
+# 仅知识库总页使用：基金经理 tab 的左侧人物索引切换（与 TAB_JS 的目录切换互不干扰）
+PERSON_JS = """\
+<script>(function(){
+var nav=[].slice.call(document.querySelectorAll('.person-tab .pitem'));
+var panes=[].slice.call(document.querySelectorAll('.person-tab .person-pane'));
+if(!nav.length)return;
+function fromPerson(){
+  var h=(location.hash||'').replace(/^#/,'');
+  try{h=decodeURIComponent(h);}catch(e){}
+  var m=h.match(/(?:^|&)person=([^&]*)/);
+  return m?m[1]:'';
+}
+function activate(name){
+  if(!name){name=nav[0].getAttribute('data-person');}
+  nav.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-person')===name);});
+  panes.forEach(function(p){var on=p.getAttribute('data-person')===name;p.classList.toggle('on',on);p.style.display=on?'block':'none';});
+}
+nav.forEach(function(b){b.addEventListener('click',function(){
+  var name=this.getAttribute('data-person');activate(name);
+  try{if(history.replaceState){history.replaceState(null,'','#dir='+encodeURIComponent('基金经理')+'&person='+encodeURIComponent(name));}}catch(e){}
+});});
+window.addEventListener('hashchange',function(){var p=fromPerson();if(p)activate(p);});
+activate(fromPerson());
+})();</script>"""
+
 def generate_group(scope, gid, info):
     group_out_dir = os.path.join(VIEW_DIR, scope, gid)
     group_idx = os.path.join(group_out_dir, 'index.html')
@@ -1095,6 +1161,9 @@ def general_article_page(art, out):
     body_html = render_md(art['body'], os.path.dirname(md_file), out)
     topic = art.get('category', GENERAL_TAB_NAME)
     frag = 'dir=' + quote(topic)
+    if topic == '基金经理':
+        # 双栏人物页按作者分栏：返回时定位回该篇所属作者，而不是默认第一个
+        frag += '&person=' + quote(person_of_general(art))
     back_target = posix_rel(out, GENERAL_IDX) + '#' + frag
     html = head_html(art['title'])
     html += topbar_html(out, [(GENERAL_TAB_NAME, GENERAL_IDX), (topic, GENERAL_IDX, frag)])
@@ -1162,18 +1231,30 @@ def general_group_page(general):
                  esc(t) + '<span class="n">' + str(len(grouped[t])) + '</span></button>')
     html += '</div>'
     for t in ordered:
-        panel = '<div class="panel" data-dir="' + esc(t) + '">'
-        if t == '基金经理':
+        is_person_tab = (t == '基金经理')
+        panel = ('<div class="' + ('panel person-tab' if is_person_tab else 'panel') +
+                 '" data-dir="' + esc(t) + '">')
+        if is_person_tab:
             people = {}
             for art in grouped[t]:
                 people.setdefault(person_of_general(art), []).append(art)
-            for person, arts in sorted(people.items(), key=lambda kv: (-len(kv[1]), kv[0])):
-                panel += '<div class="person-block"><span class="ph-name">' + esc(person) + '</span>'
-                panel += '<span class="ph-count">' + str(len(arts)) + ' 篇</span>'
-                panel += '<div class="grid">'
+            ordered_people = sorted(people.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+            panel += '<div class="duo"><aside class="side"><div class="side-hint">作者</div>'
+            for i, (person, arts) in enumerate(ordered_people):
+                panel += ('<div class="pitem' + (' on' if i == 0 else '') + '" data-person="' +
+                          esc(person) + '"><span>' + esc(person) + '</span><small>' +
+                          str(len(arts)) + '</small></div>')
+            panel += '</aside><main class="people">'
+            for i, (person, arts) in enumerate(ordered_people):
+                arts = sorted(arts, key=lambda a: a.get('date', ''), reverse=True)
+                panel += ('<div class="person-pane' + (' on' if i == 0 else '') +
+                          '" data-person="' + esc(person) + '">')
+                panel += ('<div class="pn">' + esc(person) + '<small>' + str(len(arts)) +
+                          ' 篇</small></div>')
                 for art in arts:
-                    panel += card_html(art, GENERAL_IDX)
-                panel += '</div></div>'
+                    panel += person_article_html(art, GENERAL_IDX)
+                panel += '</div>'
+            panel += '</main></div>'
         else:
             panel += '<div class="grid">'
             for art in grouped[t]:
@@ -1181,7 +1262,7 @@ def general_group_page(general):
             panel += '</div>'
         panel += '</div>'
         html += panel
-    html += '</div>' + TAB_JS + '</body></html>'
+    html += '</div>' + TAB_JS + PERSON_JS + '</body></html>'
     os.makedirs(GENERAL_VIEW_DIR, exist_ok=True)
     with open(GENERAL_IDX, 'w', encoding='utf-8') as f:
         f.write(html)
