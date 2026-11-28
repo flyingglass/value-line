@@ -50,7 +50,5 @@ data/audio/
 # 临时 pickle（深读 / 抓取的中间产物）
 _tmp_*.pkl
 
-# 所有 assets 统一在 data/assets/ 下；其中 raw 原始配图体积大、本地保留供离线显示，不入库
-# （raw 内有 CDN 链接可重下）；研究图表 data/assets/research/ 正常入库。
-# 必须放在 !**/assets/ 例外规则之后才能覆盖它
-data/assets/raw/
+# 所有 assets 统一在 data/assets/ 下，原始配图与研究图表均入库（2026-11-28 用户要求）
+# 上面的 !**/assets/ 例外已保证这些文件可被跟踪
