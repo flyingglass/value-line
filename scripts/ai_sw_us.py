@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ai_sw_us.py — 拉取《大模型吞噬软件》原文点名的 8 家美股软件公司的 FY 数据
 
-出处：raw/research/软件开发/2026-09-24-庶人哑士-大模型吞噬软件-是叙事还是事实.md
+出处：raw/research/科技/SaaS软件/2026-09-24-庶人哑士-大模型吞噬软件-是叙事还是事实.md
       「无论是美股的 Palantir、SAP、Salesforce、Hubspot、Workday、Datadog、
         Snowflake、Cloudflare……它们都在积极拥抱 AI」
 

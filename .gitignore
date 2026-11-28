@@ -53,3 +53,4 @@ _tmp_*.pkl
 # 文章配图原图（体积大，本地保留供离线 HTML 显示，不入库；raw 内有 CDN 链接可重下）
 # 必须放在 !**/assets/ 例外规则之后才能覆盖它
 research-wiki/raw/research/articles/assets/
+research-wiki/raw/research/科技/SaaS软件/assets/

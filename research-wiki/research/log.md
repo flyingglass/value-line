@@ -7108,7 +7108,7 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 - 光云 2026 中报 p11 原文「服务于电商商家的SaaS企业」；聚水潭 2025 年报 MDA 原文（`data/db/06687.db` meta `mda_text`）「本集團的收入來自(i)為電商企業提供SaaS服務…」→ 同为电商 SaaS
 - 产品同含电商 ERP：光云「快麦ERP」（中报 p13「集订单、仓储、财务、采购等核心功能于一体的电商管理系统」）vs 聚水潭「聚水潭ERP」（`scripts/06687/business_commentary.py` 引 2026 中期业绩公告 p17）
 - 申万「计算机 → 软件开发 801104」与同花顺 F10 可比公司口径见本 log 2026-11-16 条 L313–L314
-- 边界（避免混概念）：`raw/research/软件开发/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md` 的 8 家样本是「中国 SaaS 转型 / 双期叠加」横比，范围大于本分类且原文已分工「聚水潭是电商行业ERP的」（§一 L114）；`research/AI软件/AI软件名单-*.md` 是「AI 吞噬软件」框架筛选池，不是行业归属台账，**光云科技 688365 在该池中的条目保留不动**
+- 边界（避免混概念）：`raw/research/科技/SaaS软件/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md` 的 8 家样本是「中国 SaaS 转型 / 双期叠加」横比，范围大于本分类且原文已分工「聚水潭是电商行业ERP的」（§一 L114）；`research/AI软件/AI软件名单-*.md` 是「AI 吞噬软件」框架筛选池，不是行业归属台账，**光云科技 688365 在该池中的条目保留不动**
 
 ### 动作
 - 新建 `research/SaaS软件/index.md`：分类入口（归类依据 / 标的落位 / A-B 数据分层 / 六项已知缺口 / 不建四件套理由）
@@ -7335,7 +7335,7 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 
 ## [2026-11-23] 数据 | 产能出清观察页入库：与庶人哑士双期叠加逐条对照
 
-- 用户问「这个行业能观察到产能出清的情况吗」，随后指定参考库内 raw `raw/research/软件开发/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md`（只进不改，本次**未改动**该 raw）。新建 `research/科技/SaaS软件/产能出清观察-电商SaaS-ERP.md`，按四件套同步分类 index §三、顶层 index 按主题区、四页反向参见、重建站点。
+- 用户问「这个行业能观察到产能出清的情况吗」，随后指定参考库内 raw `raw/research/科技/SaaS软件/2026-11-15-庶人哑士-中国企业软件一次非对称的投资机会.md`（只进不改，本次**未改动**该 raw）。新建 `research/科技/SaaS软件/产能出清观察-电商SaaS-ERP.md`，按四件套同步分类 index §三、顶层 index 按主题区、四页反向参见、重建站点。
 
 ### 核心判断（本页结论）
 
@@ -7626,3 +7626,12 @@ log.md 历史条目不改（只追加规则）；index.md 首行历史叙述为�
 - 未重建站点 HTML（新增 10 张 PNG 与附录内容不进 HTML）、未 git 提交推送。
 
 触及页面：research-wiki/raw/research/articles/2026-11-25-ljm94-拆透老股民達人知命的投资体系与真账本.md（补录）、research-wiki/raw/research/articles/assets/2026-11-25-達人知命/图01.png–图10.png（新建 10 张）、research-wiki/research/articles/entities/達人知命.md（存疑第 5 条）、research-wiki/research/log.md（本条）、.codebuddy/skills/research-ingest/skill.md、references/pdf-chart-extraction.md、references/raw_template.md
+
+## [2026-11-28] 目录合并 | `raw/research/软件开发/` 并入 `raw/research/科技/SaaS软件/`
+
+- 用户要求两个目录合并为 SaaS软件：5 篇庶人哑士文章移入 `科技/SaaS软件/`，旧 `软件开发/` 删除；生成器 `RAW_GENERAL_DIRS` / `GENERAL_CATEGORY_ORDER` 移除「软件开发」分类，知识库 tab 同步消失。
+- 配图按最新规范：抓公众号页面 HTML 的 `data-src`，共 20 张原图（09-02 1、09-19 1、09-24 0、11-07 7、11-15 11）下载至 `科技/SaaS软件/assets/<日期>-庶人哑士/`（`.gitignore` 排除、不入库）；raw 正文插入 `![...](assets/...)` + `> 原图：CDN` 配对引用。
+- 按「全删」精简 5 篇：删除图表数据状态、`【图 X】` 转写表格与校验注、「图表索引」「入库备注」整节及摘要悬空引用，只留元数据 + 摘要 + 正文 + 图片。
+- 微信图床 `mmbiz.qpic.cn` 带 Referer 返回 2,090 字节占位图（实测），生成器对 CDN 图片统一加 `referrerpolicy="no-referrer"`。
+- 13 个 wiki / 脚本里的旧路径引用批量更新；清理 `view/knowledge/软件开发/` 与 `view/knowledge/文章/` 下 8 个孤儿 HTML；全量重建 395 页。
+- 同时提交上一轮 `raw/research/articles/` 全目录精简（配图说明块、附录数值转写等共删 339 行）。

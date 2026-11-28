@@ -24,8 +24,8 @@ generate_wiki_index.py — 生成「投研 Wiki」多页静态站点
     · 文章配图：raw 中「![...](assets/...)」紧跟「> 原图：<CDN 链接>」时，
       HTML 用原图 CDN 链接；本地 assets 原图仍保留在磁盘作离线备份、不入库，
       原图链接失效时可在 HTML 中把 src 换回 raw 里的本地相对路径
-    · raw 的「配图说明 + 本地文件清单 + 校验注」属入库留痕，只在 md 保留，
-      不渲染进 HTML 阅读页
+    · raw/research/articles/ 的文章只保留正文 + 图片引用，不做原图识别/数值转写，
+      也不写配图说明、校验注、附录等入库注记
     · 知识库整组页与标的/案例组页同构：目录 当 tab，首页只保留标题+篇数 chip
     · 跟踪 tab 与 wiki md 命名空间解耦：来源为 report/ 下的 md 清单（TRACK_REPORTS），
       只生成站内阅读页，不参与 scan_wiki / validate_scan，避免被误判为标的
@@ -116,8 +116,7 @@ CASE_GROUP_NAMES = {
 RAW_GENERAL_DIRS = {
     'articles': '文章',
     '书籍': '书籍',
-    # 2026-11-16：庶人哑士 AI 软件系列 5 篇由 articles/ 移入软件开发/（申万二级行业名）
-    '软件开发': '软件开发',
+    # 2026-11-28：庶人哑士 AI 软件系列 5 篇由 软件开发/ 并入 科技/SaaS软件/（标的组）
     # 投资/ 下两个子目录语义不同，各自成 tab（2026-10-31：原先二级目录不单独成 tab）
     '投资/巴芒': '巴芒',
     '投资/基金经理': '基金经理',
@@ -129,7 +128,7 @@ RAW_GENERAL_DIRS = {
 #             与 raw/research/{书籍,投资,articles} 及 research/articles 一一对应；
 #             原主题仍保留为卡片上的 topic 标签，不再作为 tab。
 GENERAL_TAB_NAME = '知识库'
-GENERAL_CATEGORY_ORDER = ['书籍', '巴芒', '基金经理', '文章', '软件开发']
+GENERAL_CATEGORY_ORDER = ['书籍', '巴芒', '基金经理', '文章']
 
 # 跟踪 tab（2026-11-22）：挂「非标的、需要持续盯证伪点」的跟踪型报告。
 # 源文件在 report/ 下，不属于 wiki 的 md 命名空间；生成时把正文预渲染进
@@ -819,17 +818,6 @@ def origin_image_map(body):
             for src, url in ORIGIN_IMG_RX.findall(body)}
 
 
-# raw 的入库留痕：「配图说明」段 + 本地文件清单表格 + 紧随的「校验注」，
-# 只在 md 里可追溯，阅读页不需要展示（本地路径在网页中也点不开）。
-INGEST_NOTE_RX = re.compile(
-    r'^\*\*配图说明[^\n]*\n(?:[ \t]*\n|\|[^\n]*\n)*>[ \t]*校验注[^\n]*\n', re.M
-)
-
-
-def strip_ingest_notes(body):
-    return INGEST_NOTE_RX.sub('', body)
-
-
 def rewrite_md_assets(body, md_dir, out):
     out_dir = os.path.dirname(out)
     origins = origin_image_map(body)
@@ -936,12 +924,20 @@ def convert_wikilinks(body, out):
     return WIKI_RX.sub(rep, body)
 
 
+_CDN_IMG_RX = re.compile(r'<img src="(https?://[^"]+)"')
+
+
+def no_referrer(html):
+    """微信图床 mmbiz.qpic.cn 有 Referer 防盗链：带 Referer 会返回 2KB 占位图。
+    HTML 用原图 CDN 链接时禁止发送 Referer，浏览器才会拿到真图。"""
+    return _CDN_IMG_RX.sub(r'<img referrerpolicy="no-referrer" src="\1"', html)
+
+
 def render_md(body, md_dir, out):
-    """md 正文 → HTML（剥离入库留痕 + 图片路径重写 + wiki 链接解析 + 服务端渲染）"""
-    text = strip_ingest_notes(body)
-    text = rewrite_md_assets(text, md_dir, out)
+    """md 正文 → HTML（图片路径重写 + wiki 链接解析 + 服务端渲染）"""
+    text = rewrite_md_assets(body, md_dir, out)
     text = convert_wikilinks(text, out)
-    return _MDIT.render(text)
+    return no_referrer(_MDIT.render(text))
 
 
 def group_article_page(art, seg, out, display_name, group_idx):
