@@ -775,8 +775,8 @@ def card_html(art, from_file):
     s += '</a>'
     return s
 
-def person_article_html(art, from_file):
-    """双栏人物页的文章条目：大标题 + 完整一句话核心，不用卡片框。"""
+def duo_article_html(art, from_file):
+    """双栏文章条目：大标题 + 完整一句话核心，不用卡片框。"""
     href = posix_rel(from_file, art['_out'])
     core = core_text(art)
     s = '<a class="it" href="' + esc(href) + '">'
@@ -806,28 +806,28 @@ def topbar_html(from_file, crumbs):
             '<div class="crumb">' + crumb + '</div>'
             '<div class="topnav"><a href="' + esc(posix_rel(from_file, os.path.join(BASE, 'report', 'index.html'))) + '">📊 Value Line</a></div></div>')
 
-# 仅知识库总页使用：基金经理 tab 的双栏人物页（左侧作者索引 + 右侧文章）
+# 仅知识库总页使用：四个 tab 统一的双栏样式（左侧分组索引 + 右侧文章）
 # 2026-11-28：弃用「分组外框 + 2 列卡片」，改为无框双栏，放大字号、完整摘要。
-PERSON_CSS = """\
-.panel.person-tab{padding:22px 0 0;border:none;background:transparent;border-radius:0;box-shadow:none}
-.person-tab .duo{display:grid;grid-template-columns:210px 1fr;gap:46px}
-.person-tab .side{position:sticky;top:60px;align-self:start}
-.person-tab .side .side-hint{font-size:11px;letter-spacing:2px;color:#9aa0a6;padding:0 0 8px 12px}
-.person-tab .side .pitem{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;font-size:14.5px;color:#374151;border-radius:8px;cursor:pointer;transition:background .12s,color .12s}
-.person-tab .side .pitem:hover{background:#f3f4f6}
-.person-tab .side .pitem.on{background:#111827;color:#fff;font-weight:700}
-.person-tab .side .pitem small{font-size:12px;opacity:.6;font-weight:500}
-.person-tab .person-pane{display:none}
-.person-tab .person-pane.on{display:block}
-.person-tab .pn{font-size:32px;font-weight:800;letter-spacing:.5px;border-bottom:2px solid #111827;padding-bottom:12px;margin-bottom:2px}
-.person-tab .pn small{font-size:14px;font-weight:500;color:#6b7280;margin-left:14px;letter-spacing:0}
-.person-tab .it{display:block;padding:22px 0;border-bottom:1px solid #e8eaee}
-.person-tab .it:hover .tt{color:var(--blue)}
-.person-tab .it .dt{font-size:13px;color:#6b7280;letter-spacing:.3px}
-.person-tab .it .tt{font-size:20px;font-weight:700;line-height:1.45;margin-top:5px;color:#1f2937}
-.person-tab .it .cr{font-size:15px;color:#374151;line-height:1.8;margin-top:10px}
-.person-tab .it .cr.empty{color:#9aa0a6;font-size:13px}
-@media(max-width:768px){.person-tab .duo{grid-template-columns:1fr;gap:20px}.person-tab .side{position:static;display:flex;overflow-x:auto;gap:4px;padding-bottom:8px}.person-tab .side .side-hint{display:none}.person-tab .side .pitem{flex:0 0 auto;white-space:nowrap}.person-tab .pn{font-size:26px}}
+DUO_CSS = """\
+.panel.duo-tab{padding:22px 0 0;border:none;background:transparent;border-radius:0;box-shadow:none}
+.duo-tab .duo{display:grid;grid-template-columns:210px 1fr;gap:46px}
+.duo-tab .side{position:sticky;top:60px;align-self:start;max-height:calc(100vh - 80px);overflow-y:auto;scrollbar-width:thin}
+.duo-tab .side .side-hint{font-size:11px;letter-spacing:2px;color:#9aa0a6;padding:0 0 8px 12px}
+.duo-tab .side .pitem{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;font-size:14.5px;line-height:1.35;color:#374151;border-radius:8px;cursor:pointer;transition:background .12s,color .12s}
+.duo-tab .side .pitem:hover{background:#f3f4f6}
+.duo-tab .side .pitem.on{background:#111827;color:#fff;font-weight:700}
+.duo-tab .side .pitem small{font-size:12px;opacity:.6;font-weight:500;white-space:nowrap}
+.duo-tab .duo-pane{display:none}
+.duo-tab .duo-pane.on{display:block}
+.duo-tab .pn{font-size:32px;font-weight:800;letter-spacing:.5px;border-bottom:2px solid #111827;padding-bottom:12px;margin-bottom:2px}
+.duo-tab .pn small{font-size:14px;font-weight:500;color:#6b7280;margin-left:14px;letter-spacing:0}
+.duo-tab .it{display:block;padding:22px 0;border-bottom:1px solid #e8eaee}
+.duo-tab .it:hover .tt{color:var(--blue)}
+.duo-tab .it .dt{font-size:13px;color:#6b7280;letter-spacing:.3px}
+.duo-tab .it .tt{font-size:20px;font-weight:700;line-height:1.45;margin-top:5px;color:#1f2937}
+.duo-tab .it .cr{font-size:15px;color:#374151;line-height:1.8;margin-top:10px}
+.duo-tab .it .cr.empty{color:#9aa0a6;font-size:13px}
+@media(max-width:768px){.duo-tab .duo{grid-template-columns:1fr;gap:20px}.duo-tab .side{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;padding-bottom:8px}.duo-tab .side .side-hint{display:none}.duo-tab .side .pitem{flex:0 0 auto;white-space:nowrap}.duo-tab .pn{font-size:26px}}
 """
 
 
@@ -1053,29 +1053,33 @@ window.addEventListener('hashchange',function(){var d=fromHash();if(d)activate(d
 activate(fromHash());
 })();</script>"""
 
-# 仅知识库总页使用：基金经理 tab 的左侧人物索引切换（与 TAB_JS 的目录切换互不干扰）
-PERSON_JS = """\
+# 仅知识库总页使用：各 tab 内双栏索引切换（与 TAB_JS 的目录切换互不干扰）
+# 每个 tab 独立管理自己的索引/面板，避免同名分组跨 tab 串台；g 参数兼容旧的 person 参数。
+DUO_JS = """\
 <script>(function(){
-var nav=[].slice.call(document.querySelectorAll('.person-tab .pitem'));
-var panes=[].slice.call(document.querySelectorAll('.person-tab .person-pane'));
-if(!nav.length)return;
-function fromPerson(){
+function fromGroup(){
   var h=(location.hash||'').replace(/^#/,'');
   try{h=decodeURIComponent(h);}catch(e){}
-  var m=h.match(/(?:^|&)person=([^&]*)/);
+  var m=h.match(/(?:^|&)(?:g|person)=([^&]*)/);
   return m?m[1]:'';
 }
-function activate(name){
-  if(!name){name=nav[0].getAttribute('data-person');}
-  nav.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-person')===name);});
-  panes.forEach(function(p){var on=p.getAttribute('data-person')===name;p.classList.toggle('on',on);p.style.display=on?'block':'none';});
-}
-nav.forEach(function(b){b.addEventListener('click',function(){
-  var name=this.getAttribute('data-person');activate(name);
-  try{if(history.replaceState){history.replaceState(null,'','#dir='+encodeURIComponent('基金经理')+'&person='+encodeURIComponent(name));}}catch(e){}
-});});
-window.addEventListener('hashchange',function(){var p=fromPerson();if(p)activate(p);});
-activate(fromPerson());
+[].slice.call(document.querySelectorAll('.duo-tab')).forEach(function(tab){
+  var nav=[].slice.call(tab.querySelectorAll('.side .pitem'));
+  var panes=[].slice.call(tab.querySelectorAll('.duo-pane'));
+  if(!nav.length)return;
+  function activate(name){
+    var ok=panes.some(function(p){return p.getAttribute('data-g')===name;});
+    if(!ok){name=nav[0].getAttribute('data-g');}
+    nav.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-g')===name);});
+    panes.forEach(function(p){var on=p.getAttribute('data-g')===name;p.classList.toggle('on',on);p.style.display=on?'block':'none';});
+  }
+  nav.forEach(function(b){b.addEventListener('click',function(){
+    var name=this.getAttribute('data-g');activate(name);
+    try{if(history.replaceState){history.replaceState(null,'','#dir='+encodeURIComponent(tab.getAttribute('data-dir'))+'&g='+encodeURIComponent(name));}}catch(e){}
+  });});
+  window.addEventListener('hashchange',function(){var g=fromGroup();if(g)activate(g);});
+  activate(fromGroup());
+});
 })();</script>"""
 
 def generate_group(scope, gid, info):
@@ -1160,10 +1164,8 @@ def general_article_page(art, out):
     md_file = os.path.join(WIKI_DIR, art.get('real_path', art['path']).replace('/', os.sep))
     body_html = render_md(art['body'], os.path.dirname(md_file), out)
     topic = art.get('category', GENERAL_TAB_NAME)
-    frag = 'dir=' + quote(topic)
-    if topic == '基金经理':
-        # 双栏人物页按作者分栏：返回时定位回该篇所属作者，而不是默认第一个
-        frag += '&person=' + quote(person_of_general(art))
+    # 四个 tab 均为双栏：返回时定位回该篇所属分组，而不是默认第一个
+    frag = 'dir=' + quote(topic) + '&g=' + quote(duo_group_of(art, topic))
     back_target = posix_rel(out, GENERAL_IDX) + '#' + frag
     html = head_html(art['title'])
     html += topbar_html(out, [(GENERAL_TAB_NAME, GENERAL_IDX), (topic, GENERAL_IDX, frag)])
@@ -1214,55 +1216,75 @@ def person_of_general(art):
             return label
     return name
 
+# 知识库四个 tab 统一为双栏样式后，各 tab 左侧索引的分组维度（2026-11-28）
+ARTICLE_SUBDIR_LABELS = {
+    'concepts': '概念', 'entities': '人物', 'papers': '参考', 'synthesis': '综合',
+}
+DUO_SIDE_HINT = {
+    '基金经理': '人物', '书籍': '作者', '巴芒': '资料', '文章': '分类',
+}
+
+def duo_group_of(art, category):
+    """双栏左侧索引的分组键：基金经理按人物，其余按各自最自然的维度。"""
+    stem = os.path.splitext(os.path.basename(art.get('real_path', art['path'])))[0]
+    if category == '基金经理':
+        return person_of_general(art)
+    if category == '书籍':
+        parts = stem.split('_')
+        if len(parts) >= 2 and re.fullmatch(r'\d{4}', parts[1]):
+            return parts[0]              # 作者_年份_书名
+        if '艾德勒阅读法' in stem:
+            return '艾德勒阅读法'          # 阅读法系列笔记，无单一作者
+        return '其他'
+    if category == '巴芒':
+        return '艾德勒阅读法' if '艾德勒阅读法' in stem else '股东大会资料'
+    if category == '文章':
+        # raw/research/articles/ 下的散篇无 subdir，归「原始文章」而非笼统的「其他」
+        return ARTICLE_SUBDIR_LABELS.get(art.get('subdir')) or '原始文章'
+    return '其他'
+
 
 def general_group_page(general):
     """知识库整组页：view/knowledge/index.html，目录（书籍/巴芒/基金经理/文章）当顶栏 tab，就地切换。"""
     grouped, ordered = general_topic_order(general)
     total = len(general)
-    html = head_html(GENERAL_TAB_NAME, PERSON_CSS)
+    html = head_html(GENERAL_TAB_NAME, DUO_CSS)
     html += topbar_html(GENERAL_IDX, [(GENERAL_TAB_NAME, GENERAL_IDX)])
     html += '<div class="wrap">'
     html += '<div class="page-hd"><h1>' + GENERAL_TAB_NAME + '</h1><span class="pill case">非标的 · 跨学科</span>'
     html += '<span style="font-size:12px;color:#9aa0a6">' + str(total) + ' 篇</span></div>'
-    html += '<div class="meta-line">按目录分类：书籍 / 投资（巴芒·基金经理）/ 文章 · 点击标签就地切换</div>'
+    html += '<div class="meta-line">按目录分类：书籍 / 投资（巴芒·基金经理）/ 文章 · 顶部切换目录，左侧切换分组</div>'
     html += '<div class="tabbar">'
     for t in ordered:
         html += ('<button class="tabbtn" data-dir="' + esc(t) + '">' +
                  esc(t) + '<span class="n">' + str(len(grouped[t])) + '</span></button>')
     html += '</div>'
     for t in ordered:
-        is_person_tab = (t == '基金经理')
-        panel = ('<div class="' + ('panel person-tab' if is_person_tab else 'panel') +
-                 '" data-dir="' + esc(t) + '">')
-        if is_person_tab:
-            people = {}
-            for art in grouped[t]:
-                people.setdefault(person_of_general(art), []).append(art)
-            ordered_people = sorted(people.items(), key=lambda kv: (-len(kv[1]), kv[0]))
-            panel += '<div class="duo"><aside class="side"><div class="side-hint">作者</div>'
-            for i, (person, arts) in enumerate(ordered_people):
-                panel += ('<div class="pitem' + (' on' if i == 0 else '') + '" data-person="' +
-                          esc(person) + '"><span>' + esc(person) + '</span><small>' +
-                          str(len(arts)) + '</small></div>')
-            panel += '</aside><main class="people">'
-            for i, (person, arts) in enumerate(ordered_people):
-                arts = sorted(arts, key=lambda a: a.get('date', ''), reverse=True)
-                panel += ('<div class="person-pane' + (' on' if i == 0 else '') +
-                          '" data-person="' + esc(person) + '">')
-                panel += ('<div class="pn">' + esc(person) + '<small>' + str(len(arts)) +
-                          ' 篇</small></div>')
-                for art in arts:
-                    panel += person_article_html(art, GENERAL_IDX)
-                panel += '</div>'
-            panel += '</main></div>'
-        else:
-            panel += '<div class="grid">'
-            for art in grouped[t]:
-                panel += card_html(art, GENERAL_IDX)
+        panel = '<div class="panel duo-tab" data-dir="' + esc(t) + '">'
+        buckets = {}
+        for art in grouped[t]:
+            buckets.setdefault(duo_group_of(art, t), []).append(art)
+        ordered_groups = sorted(buckets.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+        panel += ('<div class="duo"><aside class="side"><div class="side-hint">' +
+                  esc(DUO_SIDE_HINT.get(t, '分组')) + '</div>')
+        for i, (gname, arts) in enumerate(ordered_groups):
+            panel += ('<div class="pitem' + (' on' if i == 0 else '') + '" data-g="' +
+                      esc(gname) + '"><span>' + esc(gname) + '</span><small>' +
+                      str(len(arts)) + '</small></div>')
+        panel += '</aside><main class="people">'
+        for i, (gname, arts) in enumerate(ordered_groups):
+            arts = sorted(arts, key=lambda a: a.get('date', ''), reverse=True)
+            panel += ('<div class="duo-pane' + (' on' if i == 0 else '') +
+                      '" data-g="' + esc(gname) + '">')
+            panel += ('<div class="pn">' + esc(gname) + '<small>' + str(len(arts)) +
+                      ' 篇</small></div>')
+            for art in arts:
+                panel += duo_article_html(art, GENERAL_IDX)
             panel += '</div>'
+        panel += '</main></div>'
         panel += '</div>'
         html += panel
-    html += '</div>' + TAB_JS + PERSON_JS + '</body></html>'
+    html += '</div>' + TAB_JS + DUO_JS + '</body></html>'
     os.makedirs(GENERAL_VIEW_DIR, exist_ok=True)
     with open(GENERAL_IDX, 'w', encoding='utf-8') as f:
         f.write(html)
